@@ -8,9 +8,7 @@
 </head>
 <body>
 <h1>
-	태흐ㅣ짱의 메인화면~  jhjgj55555ihhi
-	hi
-	
+version 1 // main
 </h1>
 
 </body>
