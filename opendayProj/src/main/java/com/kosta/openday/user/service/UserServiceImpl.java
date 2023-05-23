@@ -16,7 +16,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void JoinUser(UserDTO user) throws Exception {
 		user.setUserEmail(user.getEmailVal()+"@"+user.getDomain());
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd"); 
+		System.out.println(dateFormat.parse(user.getBirthVal()));
 		user.setUserBirth(dateFormat.parse(user.getBirthVal()));
 		userDAO.insertUser(user); 
 	} 

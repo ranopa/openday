@@ -30,7 +30,7 @@
                                 placeholder="비밀번호" required maxlength="15">
                         </li>
                         <li>
-                            <span class="red">*</span>&nbsp;&nbsp;<input type="password" class="ipbox" id="userPw2" name="userPw2"
+                            <span class="red">*</span>&nbsp;&nbsp;<input type="password" class="ipbox" id="userPw2"
                                 placeholder="비밀번호 확인" required>
                         </li>
                         <li>
@@ -47,7 +47,7 @@
                                 placeholder=" ' - ' 를 제외한 전화번호" pattern="[0-9]{1,11}" >
                         </li>
                         <li>
-                           <input type="text" class="ipbox notreq" name="userBirth"
+                           <input type="text" class="ipbox notreq" name="birthVal"
                                 placeholder="생년월일 8자리" pattern="[0-9]{1,8}">
                         </li>
                       

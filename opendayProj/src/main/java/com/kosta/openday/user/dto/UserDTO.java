@@ -7,11 +7,11 @@ public class UserDTO {
 	private String userPassword; //비밀번호
 	private String userName; //이름
 	private String userNickname; //별명 	
-	private Integer userTel; //번호
+	private String userTel; //번호
 	private String userAddress; //주소
 	private String emailVal; //이메일  
 	private String domain; //이메일  
-	private String userEmail;
+	private String userEmail; 
 	private String birthVal; //생일
 	private Date userBirth; //생일
 	private String userActive; //활성화
@@ -24,8 +24,9 @@ public class UserDTO {
 	
 	public UserDTO() {}
 
-	public UserDTO(String userId, String userPassword, String userName, String userNickname, Integer userTel,
+	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String birthVal) {
+		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
@@ -36,11 +37,12 @@ public class UserDTO {
 		this.domain = domain;
 		this.birthVal = birthVal;
 	}
-	
-	public UserDTO(String userId, String userPassword, String userName, String userNickname, Integer userTel,
+
+	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String userEmail, String birthVal, Date userBirth,
 			String userActive, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
 			String authority, Integer userFilenum) {
+		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
@@ -65,147 +67,146 @@ public class UserDTO {
 		return userId;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public String getUserNickname() {
-		return userNickname;
-	}
-
-	public Integer getUserTel() {
-		return userTel;
-	}
-
-	public String getUserAddress() {
-		return userAddress;
-	}
-
-	public String getEmailVal() {
-		return emailVal;
-	}
-
-	public String getDomain() {
-		return domain;
-	}
-
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public String getBirthVal() {
-		return birthVal;
-	}
-
-	public Date getUserBirth() {
-		return userBirth;
-	}
-
-	public String getUserActive() {
-		return userActive;
-	}
-
-	public Integer getUserAccount() {
-		return userAccount;
-	}
-
-	public String getUserAlarm() {
-		return userAlarm;
-	}
-
-	public Date getUserJoindate() {
-		return userJoindate;
-	}
-
-	public String getUserPrefer() {
-		return userPrefer;
-	}
-
-	public String getAuthority() {
-		return authority;
-	}
-
-	public Integer getUserFilenum() {
-		return userFilenum;
-	}
-
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
 	}
 
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
 	}
 
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
 
-	public void setUserTel(Integer userTel) {
+	public String getUserTel() {
+		return userTel;
+	}
+
+	public void setUserTel(String userTel) {
 		this.userTel = userTel;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
 	}
 
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
 	}
 
+	public String getEmailVal() {
+		return emailVal;
+	}
+
 	public void setEmailVal(String emailVal) {
 		this.emailVal = emailVal;
+	}
+
+	public String getDomain() {
+		return domain;
 	}
 
 	public void setDomain(String domain) {
 		this.domain = domain;
 	}
 
+	public String getUserEmail() {
+		return userEmail;
+	}
+
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+
+	public String getBirthVal() {
+		return birthVal;
 	}
 
 	public void setBirthVal(String birthVal) {
 		this.birthVal = birthVal;
 	}
 
+	public Date getUserBirth() {
+		return userBirth;
+	}
+
 	public void setUserBirth(Date userBirth) {
 		this.userBirth = userBirth;
+	}
+
+	public String getUserActive() {
+		return userActive;
 	}
 
 	public void setUserActive(String userActive) {
 		this.userActive = userActive;
 	}
 
+	public Integer getUserAccount() {
+		return userAccount;
+	}
+
 	public void setUserAccount(Integer userAccount) {
 		this.userAccount = userAccount;
+	}
+
+	public String getUserAlarm() {
+		return userAlarm;
 	}
 
 	public void setUserAlarm(String userAlarm) {
 		this.userAlarm = userAlarm;
 	}
 
+	public Date getUserJoindate() {
+		return userJoindate;
+	}
+
 	public void setUserJoindate(Date userJoindate) {
 		this.userJoindate = userJoindate;
+	}
+
+	public String getUserPrefer() {
+		return userPrefer;
 	}
 
 	public void setUserPrefer(String userPrefer) {
 		this.userPrefer = userPrefer;
 	}
 
+	public String getAuthority() {
+		return authority;
+	}
+
 	public void setAuthority(String authority) {
 		this.authority = authority;
+	}
+
+	public Integer getUserFilenum() {
+		return userFilenum;
 	}
 
 	public void setUserFilenum(Integer userFilenum) {
 		this.userFilenum = userFilenum;
 	}
 
-	
 	
 }
 
