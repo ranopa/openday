@@ -112,9 +112,7 @@ h1 {
 	list-style: none;
 }
 
-.tb {
-	margin-right: 15px;
-}
+
 
 .vertical {
 	width: 30px;
@@ -167,3 +165,10 @@ h1 {
 .search-icon{
 	font-size:23px;
 }
+
+.tB{
+padding-right:8px;
+padding-left:10px;
+border-right: 1px solid;
+}
+

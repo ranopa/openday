@@ -10,7 +10,7 @@
 
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/search/css/header.css"/>">
 
 </head>
 <body>
@@ -18,12 +18,12 @@
 	<div class="contentWrapper">
 		<header>
 			<ul class="topButtons">
-				<li class="topButtonColor tB">강사신청</li>
-				<hr class="vertical">
+				<li class="topButtonColor tB">강사신청</li> 
+				
 				<li class="topButton tB">클래스요청</li>
-				<hr class="vertical">
+				
 				<li class="topButton tB">고객센터</li>
-				<hr class="vertical">
+			
 			</ul>
 			<div class="logo-menu">
 				<h1>열어데이</h1>
