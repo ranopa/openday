@@ -67,7 +67,6 @@ hr {
 	top: 27px;
 	background: #E1E1E1;
 	left: 0px;
-	
 }
 
 h1 {
@@ -86,7 +85,6 @@ h1 {
 .topButtonColor {
 	width: 51px;
 	height: 16px;
-
 	top: 7px;
 	font-family: 'NanumBarunGothic';
 	font-style: normal;
@@ -99,7 +97,6 @@ h1 {
 .topButton {
 	width: 66px;
 	height: 16px;
-	
 	top: 7px;
 	font-family: 'NanumBarunGothic';
 	font-style: normal;
@@ -109,12 +106,64 @@ h1 {
 	color: #717171;
 }
 
-.topButtons{
-
+.topButtons {
 	display: flex;
-    justify-content: flex-end;
-    
+	justify-content: flex-end;
+	list-style: none;
 }
-.tb{
-	margin-right:15px;
+
+.tb {
+	margin-right: 15px;
+}
+
+.vertical {
+	width: 30px;
+	height: 0px;
+	left: 1110px;
+	top: 30px;
+	border: 1px solid #E1E1E1;
+	transform: rotate(-90deg);
+}
+
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
+
+.material-symbols-outlined {
+	font-size: 30px;
+}
+
+.vertical-align {
+	display: flex;
+	list-style: none;
+}
+
+.login {
+	margin-left: 10px;
+}
+
+.vertical-align p {
+	margin-top: -1px;
+}
+
+.vertical-align li {
+	margin-right: 15px;
+}
+
+.logo-menu {
+	display: flex;
+	justify-content: space-between;
+}
+
+.search {
+	box-sizing: border-box;
+	width: 322px;
+	height: 33px;
+	margin-top:25px;
+	background: #FFFFFF;
+	border: 1px solid #CFCFCF;
+	border-radius: 10px;
+}
+.search-icon{
+	font-size:23px;
 }

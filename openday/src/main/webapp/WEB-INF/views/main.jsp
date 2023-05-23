@@ -8,7 +8,14 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<p>메인콘텐츠</p>
+<p>도자기</p>
+<p>가죽</p>
+<p>도자기</p>
+<p>도자기</p>
+<p>도자기</p>
+<p>도자기</p>
+<p>도자기</p>
+
 <%@ include file="footer.jsp" %>
 </body>
 </html>
