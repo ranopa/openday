@@ -241,3 +241,10 @@ padding-top: 5px;
 .vertical-align a:hover {
 	color: #FF99B8;
 }
+
+.search-filter{
+border: 1px solid;
+height: 213px;
+position:  absolute;
+}
+

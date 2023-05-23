@@ -48,6 +48,13 @@
 			
 		</header>
 	</div>
+	
+	<div class="search-filter">
+	검색필터
+	</div>
+	
+	
+	
 	</div>
 
 </body>
