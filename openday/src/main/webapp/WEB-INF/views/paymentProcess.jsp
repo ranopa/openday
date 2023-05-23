@@ -13,6 +13,22 @@
 	height: 70vh;
 	margin: 0 auto;
 }
+.inner-container-content {
+	padding: 10px 20px;	
+	background-color: #f7f5fd;
+}
+.inner-container {
+	margin-bottom: 30px;
+}
+#final_payment_info table {
+	width:90%;
+}
+#final_payment_info tr td:nth-child(1) {
+  text-align: left;
+}
+#final_payment_info tr td:nth-child(2) {
+  text-align: right;
+}
 </style>
 <body>
 	<div class="container">
@@ -21,21 +37,25 @@
 				<span class="material-symbols-outlined">
 						arrow_back_ios 
 				</span>
-				<span><h3>구매자정보</h3></span>
+				<span class="header-title">구매자정보</span>
 				<span><a href="#">수정하기</a></span>
 			</div>
 			<div class="inner-container-content">
 				<table>
+				   <colgroup>
+				        <col width="200px">
+				        <col width="200px">
+				   </colgroup>
 					<tr>
-						<th>이름(닉네임)</th>
+						<td>이름(닉네임)</td>
 						<td>코스타코스타</td>
 					</tr>
 					<tr>
-						<th>이메일</th>
+						<td>이메일</td>
 						<td>코스타코스타</td>
 					</tr>
 					<tr>
-						<th>휴대폰 번호</th>
+						<td>휴대폰 번호</td>
 						<td>010-1234-5678</td>
 					</tr>
 				</table>
@@ -43,45 +63,68 @@
 		</div>
 		<div class="inner-container" id="refund_notice">
 			<div class="inner-container-header">
-				<span> <span><h3>취소 및 환불 안내</h3></span>
-				</span>
+				<span class="header-title">취소 및 환불 안내</span>
 			</div>
-			<div class="inner-container-content"></div>
+			<div class="inner-container-content">
+			
+			<h3>1. 날짜 별 취소 및 환불 정책</h3>
+			<table border="1px solid" style="width:80%;">
+			<tr>
+				<td>결제 후 1시간 이내 취소</td>
+				<td>100% 환불</td>
+			</tr>
+			<tr>
+				<td>결제 후 1시간 이내 취소</td>
+				<td>100% 환불</td>
+			</tr>
+			<tr>
+				<td>결제 후 1시간 이내 취소</td>
+				<td>100% 환불</td>
+			</tr>
+			<tr>
+				<td>결제 후 1시간 이내 취소</td>
+				<td>100% 환불</td>
+			</tr>
+			<tr>
+				<td>결제 후 1시간 이내 취소</td>
+				<td>100% 환불</td>
+			</tr>
+			</table>
+			<h3>2. 취소 방법</h3>
+			클래스 결제/예약 내역 페이지에서 취소하고자 하는 클래스 티켓의 수강 취소 버튼을 클릭하시면 취소 신청이 완료됩니다.
+			</div>
 		</div>
 		<div class="inner-container" id="payment_info">
 			<div class="inner-container-header">
-				<span> <span><h3>결제 정보</h3></span>
-				</span>
+				<span class="header-title"> 결제 정보</span>
 			</div>
 			<div class="inner-container-content">
-				<div class="inner-container-content">
 				<table>
 						<tr>
-							<th>선택 상품 금액</th>
+							<td>선택 상품 금액</td>
 							<td>45,000 원</td>
 						</tr>
 						<tr>
-							<th>신청 인원 수</th>
+							<td>신청 인원 수</td>
 							<td>3 명</td>
 						</tr>
 						<tr>
-							<th>총 금액</th>
+							<td>총 금액</td>
 							<td>135,000 원</td>
 						</tr>
 				</table>
-			</div>
 			</div>
 		</div>
 		<div class="inner-container" id="final_payment_info">
 			<div class="inner-container-content">
 				<table>
 					<tr>
-						<th>포인트 적용</th>
+						<td>포인트 적용</td>
 						<td>보유 2,000</td>
 						<td>2,000p</td>
 					</tr>
 					<tr>
-						<th>최종 결제 금액</th>
+						<td>최종 결제 금액</td>
 						<td>133,000 원</td>
 					</tr>
 				</table>
