@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	pause: 0;
+}
+
+.tc-main {
+	width: 1080px;
+	height: 1000px;
+	border: 1px solid;
+	margin: 0 auto;
+	display: flex;
+	flex-basis: (n)%;
+}
+
+
+.tc-haeder {
+	border: 1px solid;
+	flex-basis: 25%;
+}
+
+.tc-logo {
+	background-color: #5A2ECE;
+	color: white;
+}
+
+.tc-profile {
+	border: 1px solid;
+	height: 30px;
+}
+
+.tc-container {
+	border: 1px solid;
+	flex-basis: 75%;
+}
