@@ -5,9 +5,12 @@
 <html>
 <head>
 	<title>Home</title>
+	<link rel="stylesheet" href="<c:url value="/resources/search/css/main.css"/>">
 </head>
-<body>
+<body bgcolor='yellow'>
 <%@ include file="header.jsp" %>
+<div class="mainBg">
+<div class="mainWrapper">
 <p>도자기</p>
 <p>가죽</p>
 <p>도자기</p>
@@ -15,7 +18,8 @@
 <p>도자기</p>
 <p>도자기</p>
 <p>도자기</p>
-
+</div>
+</div>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

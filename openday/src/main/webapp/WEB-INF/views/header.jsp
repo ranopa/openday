@@ -15,40 +15,39 @@
 </head>
 <body>
 	<hr>
+	<div class="headerWrapper">
 	<div class="contentWrapper">
 		<header>
 			<ul class="topButtons">
-				<li class="topButtonColor tB">강사신청</li> 
+				<li class="topButtonColor tB"><a href=#>강사신청</a></li> 
 				
-				<li class="topButton tB">클래스요청</li>
+				<li class="topButton tB"><a href=#>클래스요청</a></li>
 				
-				<li class="topButton tB">고객센터</li>
+				<li class="topButton tB tBLast"><a href=#>고객센터</a></li>
 			
 			</ul>
 			<div class="logo-menu">
-				<h1>열어데이</h1>
-
-				<div class="search">검색</div>
-				<span class="material-symbols-outlined search-icon">search</span>
-
+				<h1><a href="#">열어데이</a></h1>
+				<div class="search-and-icon">
+				<input class="search" type="text" placeholder="검색어 입력">
+				<a href="#"><span class="material-symbols-outlined search-icon">search</span></a>
+				</div>
 				<ul class="vertical-align">
-					<li><span class="material-symbols-outlined login">
+					<li><a href="#"><span class="material-symbols-outlined login">
 							person </span>
-						<p>로그인</p></li>
-					<li><span class="material-symbols-outlined menu"> menu
+						<p>로그인</p></a></li>
+					<li><a href="#"><span class="material-symbols-outlined menu"> menu
 					</span>
-						<p>메뉴</p></li>
+						<p>메뉴</p></a></li>
 				</ul>
 			</div>
 
 
 
 
-			<div>
-				<div class="menuIcon"></div>
-				<span>메뉴</span>
-			</div>
+			
 		</header>
+	</div>
 	</div>
 
 </body>
