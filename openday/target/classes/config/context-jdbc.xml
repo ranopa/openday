@@ -20,6 +20,10 @@
 			<value>1234</value>
 		</property>
 	</bean>
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> branch 'header_footer' of https://github.com/binunu/openday.git
 </beans>
 	
