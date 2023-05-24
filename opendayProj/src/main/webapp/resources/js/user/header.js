@@ -61,4 +61,21 @@ function dis() {
 }
 
 //menu hide and show
+function disMenu() {
+  var disElement = document.getElementById('disMenu');
+  var disDisplayStyle = window.getComputedStyle(disElement).display;
 
+  if (disDisplayStyle === 'none') {
+    disElement.style.display = 'block';
+  } else {
+    disElement.style.display = 'none';
+  }
+}
+
+//menu or search
+
+document.getElementById('body').addEventListener('click', function(e) {
+  if (!document.getElementById('menu').contains(e.target)) {
+    document.getElementById('menu').style.display = 'none';
+  }
+});
