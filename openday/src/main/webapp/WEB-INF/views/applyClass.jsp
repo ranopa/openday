@@ -175,6 +175,7 @@ select {
 	font-weight: bold;
 	font-size: 22px;
 	color: #5a2ece;
+	margin-bottom:10px;
 }
 </style>
 
