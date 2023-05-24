@@ -5,10 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/user/login.css"/>">
 </head>
 <body>
 <div class="loginWrapper">
 <div class="contentWrapper">
+<p>로그인</p>
+
+<input type="text" class="idBox" id="loginUserId" name="loginUserId"
+                            placeholder="아이디" required maxlength="15">
 
 <ul class="ipcontainer">
                         <li>
@@ -28,7 +34,9 @@
                 <button type="submit" class="submit-btn">가입완료</button>
 </div>
 
+
 </div>
 </div>
+
 </body>
 </html>

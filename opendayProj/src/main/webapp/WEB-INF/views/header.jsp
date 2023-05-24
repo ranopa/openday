@@ -13,8 +13,6 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/header.css"/>">
 
-
-
 </head>
 <body>
 
@@ -31,7 +29,7 @@
 				</ul>
 				<hr>
 				<div class="logoMenu">
-					<h1>
+					<h1 class="logo">
 						<a href="#">열어데이</a>
 					</h1>
 					<div class="searchAndIcon">

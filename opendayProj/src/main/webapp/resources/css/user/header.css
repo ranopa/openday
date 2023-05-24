@@ -59,7 +59,16 @@
 * {
 	padding: 0;
 	margin: 0;
+	
 }
+
+.logo {
+	font-family: 'Cafe24 Ohsquare';
+}
+
+body{font-family: 'NanumBarunGothic';}
+
+
 /* *{overflow-x:hidden;} */
 .headerWrapper {
 	width: 100%;
