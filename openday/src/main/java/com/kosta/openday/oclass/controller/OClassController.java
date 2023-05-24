@@ -12,7 +12,7 @@ public class OClassController {
 	public String applyClass() {
 		return "applyClass";
 	}
-	@RequestMapping(value="/paymentProcess")
+	@RequestMapping(value="/paymentprocess")
 	public String paymentProcess() {
 		return "paymentProcess";
 	}

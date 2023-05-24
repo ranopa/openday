@@ -30,33 +30,37 @@
 		});
 
 		$("#datepicker").datepicker({
-	        beforeShowDay: function(date) {
-		          var currentDate = new Date();
-		          currentDate.setHours(0, 0, 0, 0); // 오늘 날짜의 시간을 00:00:00으로 설정
-		          if (date < currentDate) {
-		            return [true, "past-date", "과거 날짜"];
-		          }
-		          return [true, "", ""];
-		        }
-		      });
+			beforeShowDay : function(date) {
+				var currentDate = new Date();
+				currentDate.setHours(0, 0, 0, 0); // 오늘 날짜의 시간을 00:00:00으로 설정
+				if (date < currentDate) {
+					return [ true, "past-date", "과거 날짜" ];
+				}
+				return [ true, "", "" ];
+			}
+		});
 	});
 </script>
 <style>
 /* ================== <캘린더> ================== */
-.ui-datepicker { width: 80%; padding: 10px 10px; text-align:center; }
+.ui-datepicker {
+	width: 80%;
+	padding: 10px 10px;
+	text-align: center;
+}
 
 .ui-datepicker .ui-datepicker-title {
-    margin: 0 0;
-    line-height: 2em;
-    text-align: center;
+	margin: 0 0;
+	line-height: 2em;
+	text-align: center;
 }
 
 /* 날짜 영역 높이 */
 .ui-state-default {
-    height: 2.2em;
-    line-height:2.2em;
-    padding: 0;
-} 
+	height: 2.2em;
+	line-height: 2.2em;
+	padding: 0;
+}
 
 /* 전체 셀 기본 적용 */
 .ui-widget-header, .ui-widget-header .ui-state-default,
@@ -65,7 +69,7 @@
 	border: none;
 	background: #ffffff;
 	color: #050505;
-	text-align:center;
+	text-align: center;
 	vertical-align: middle;
 }
 
@@ -86,14 +90,17 @@
 
 /*  과거 날짜 */
 .past-date .ui-state-default {
-      background-color: #dddddd;
-      color: #aaaaaa;
+	background-color: #dddddd;
+	color: #aaaaaa;
 }
 
 /* ================== </캘린더> ================== */
-.container {
+.wrapper {
 	width: 880px;
 	margin: 0 auto;
+}
+
+.container {
 	display: grid;
 	grid-template-columns: 45% 55%;
 	grid-template-rows: repeat(5, 1fr);
@@ -164,54 +171,59 @@ select {
 	width: 80%;
 }
 
-
-
+.header-title {
+	font-weight: bold;
+	font-size: 22px;
+	color: #5a2ece;
+}
 </style>
 
 </head>
 <body>
-	<h3>클래스 신청</h3>
-	<div class="container">
+	<div class="wrapper">
+		<div class="header-title">클래스 신청</div>
+		<div class="container">
 
-		<div class="box">
-			<div class="class-image-card">이미지</div>
-			<div class="class-detail">
-				<h4>[서울/건대]마카롱 원데이 클래스 스위스머랭&비정제설탕</h4>
+			<div class="box">
+				<div class="class-image-card">이미지</div>
+				<div class="class-detail">
+					<h4>[서울/건대]마카롱 원데이 클래스 스위스머랭&비정제설탕</h4>
 
-				<div class="detail-bottom">
-					<span>카테고리</span> <span>가격</span>
-				</div>
-			</div>
-
-		</div>
-		<div class="box">
-			<div class="apply-date-calendar">
-				날짜 선택 - 캘린더
-				<div class="class-calendar">
-					<div id="datepicker"></div>
+					<div class="detail-bottom">
+						<span>카테고리</span> <span>가격</span>
+					</div>
 				</div>
 
 			</div>
-			<div class="apply-date-hour">
-				<p>시간 선택 - 드롭다운</p>
+			<div class="box">
+				<div class="apply-date-calendar">
+					날짜 선택 - 캘린더
+					<div class="class-calendar">
+						<div id="datepicker"></div>
+					</div>
 
-				<select>
-					<option>시간을 선택하세요</option>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
+				</div>
+				<div class="apply-date-hour">
+					<p>시간 선택 - 드롭다운</p>
 
-				</select>
+					<select>
+						<option>시간을 선택하세요</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+
+					</select>
+				</div>
 			</div>
-		</div>
-		<div class="box">
-			<div class="apply-people-count">
-				신청 인원 수 입력 - 카운터 <input type="number" min="1" max="100" value="1" />
+			<div class="box">
+				<div class="apply-people-count">
+					신청 인원 수 입력 - 카운터 <input type="number" min="1" max="100" value="1" />
+				</div>
 			</div>
-		</div>
-		<div class="box" style="padding-right: 0;">
-			<div class="button-next">
-				<button class="btn-next">다음으로</button>
+			<div class="box" style="padding-right: 0;">
+				<div class="btn-wrapper">
+					<button class="btn-next">다음으로</button>
+				</div>
 			</div>
 		</div>
 	</div>
