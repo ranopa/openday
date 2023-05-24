@@ -1,4 +1,4 @@
-package com.kosta.openday.main.dao;
+package com.kosta.openday.user.dao;
 
 import org.springframework.stereotype.Repository;
 
