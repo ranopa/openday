@@ -75,6 +75,10 @@
 	margin: 0;
 }
 
+body {
+	font-family: 'NanumBarunGothic';
+}
+
 .mainMenuTable button {
 	width: 240px;
 	height: 28px;
@@ -104,3 +108,54 @@
 	border: none;
 	border-radius: 5px;
 }
+
+.oclass{
+      
+      width: 300px;
+      height: 368.95px;
+      /* background-color: antiquewhite; */
+      border-radius: 5px;
+      border: 1px solid rgb(207, 207, 207);
+
+  }
+  .ssum-img{  
+      width: 100%;
+      height: 260px; 
+      background-color: rgb(218, 218, 218); 
+      margin-bottom: 10px;
+  }
+  .txt-box{
+      padding-right: 10px;
+      padding-left: 10px;
+  }
+  .tb1{
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 5px;
+  }
+  .t1 span{
+      margin-left: 8px; 
+      
+      
+  }
+  .t2 span{ 
+      margin-right: 8px;
+  }
+  
+  .cls-name{
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px solid rgb(212, 212, 212);
+      width: 95%; 
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      margin-left: 5px; 
+  }
+  .tb2{
+      font-size: 18px;
+      padding-bottom: 15px;
+      margin-right: 10px;
+      text-align: end;
+      
+  }

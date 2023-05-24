@@ -8,11 +8,15 @@
 	
 	<link rel="stylesheet" href="<c:url value="/resources/css/user/main.css"/>">
 </head>
-<body bgcolor='yellow'>
-
+<body>
+<div class="includeWrapper">
 <%@ include file="header.jsp" %>
+<div class="includeContent">
 <%@ include file="mainContent.jsp" %>
+</div>
+<div class="includeFooter">
 <%@ include file="footer.jsp" %>
-
+</div>
+</div>
 </body>
 </html>
