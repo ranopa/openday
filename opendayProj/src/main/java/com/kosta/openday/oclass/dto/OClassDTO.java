@@ -2,7 +2,7 @@ package com.kosta.openday.oclass.dto;
 
 import java.util.Date;
 
-public class OclassDTO {
+public class OClassDTO {
 	private Integer clsId;
 	private String clsName;
 	private String clsCode;
@@ -17,9 +17,9 @@ public class OclassDTO {
 	private String userId;
 	private Integer reqId;
 	
-	public OclassDTO() {}
+	public OClassDTO() {}
 	
-	public OclassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, String clsCurri,
+	public OClassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, String clsCurri,
 			Integer clsStar, Integer clsHeart, String clsStatus, Date clsCreatedAt, String clsOpenType, Integer filNum,
 			String userId, Integer reqId) {
 		this.clsId = clsId;
