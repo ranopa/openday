@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css/main/css/main.css"/>">
+	<link rel="stylesheet" href="<c:url value="/resources/css/user/main.css"/>">
 </head>
 <body bgcolor='yellow'>
 <%@ include file="header.jsp" %>
