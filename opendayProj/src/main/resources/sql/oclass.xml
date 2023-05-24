@@ -4,4 +4,25 @@
 						
 <mapper namespace="mapper.oclass">
 
+<select id="selectClass" resultType="com.kosta.openday.oclass.dto.OclassDTO">
+	select
+		cls_id as clsId, cls_name as clsName, cls_code as clsCode,
+		cls_description as clsDescription, cls_curri as clsCurri,
+		cls_star as clsStar, as cls_heart as clsHeart, cls_status as clsStatus,
+		cls_created_at as clsCreatedAt, cls_open_type as clsOpenType,
+		fil_num as filNum, user_id as userId, req_id as reqId
+	from oclass
+</select>
+<insert id="insertClass" parameterType="com.kosta.openday.oclass.dto.OclassDTO">
+	insert into oclass(cls_id, cls_name, cls_code,
+						cls_description, cls_curri,
+					   	cls_star, cls_heart, cls_status,
+					   	cls_created_at, cls_open_type,
+					   	fil_num, user_id, req_id)
+				values(#{clsId}, #{clsName},
+						#{clsCode}, #{clsDescription}, #{clsCurri},
+					   	#{clsStar}, #{clsHeart}, #{clsStatus},
+					   	#{clsCreatedAt}, #{clsOpenType},
+					   	#{filNum}, #{userId}, #{reqId})
+</insert>
 </mapper>
