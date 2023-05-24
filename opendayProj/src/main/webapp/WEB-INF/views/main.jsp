@@ -9,8 +9,10 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/user/main.css"/>">
 </head>
 <body bgcolor='yellow'>
+
 <%@ include file="header.jsp" %>
 <%@ include file="mainContent.jsp" %>
 <%@ include file="footer.jsp" %>
+
 </body>
 </html>

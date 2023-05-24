@@ -59,15 +59,15 @@
 * {
 	padding: 0;
 	margin: 0;
-	
 }
 
 .logo {
 	font-family: 'Cafe24 Ohsquare';
 }
 
-body{font-family: 'NanumBarunGothic';}
-
+body {
+	font-family: 'NanumBarunGothic';
+}
 
 /* *{overflow-x:hidden;} */
 .headerWrapper {
@@ -83,10 +83,21 @@ body{font-family: 'NanumBarunGothic';}
 	width: 1280px;
 }
 
-hr {
+.hr1 {
 	top: 27px;
-	background: #E1E1E1;
 	left: 0px;
+	border: none;
+	height: 1px;
+	background-color: #E1E1E1;
+}
+
+.hr2 {
+	left: 0px;
+	border: none;
+
+	background-color: #FFD8E4;
+	height: 1px;
+	margin-top:20px;
 }
 
 h1 {
@@ -143,7 +154,7 @@ h1 a {
 .verticalAlign {
 	display: flex;
 	list-style: none;
-	margin-top: 23px;
+	margin-top: 26px;
 }
 
 .login {
@@ -155,6 +166,7 @@ h1 a {
 }
 
 .verticalAlign li {
+	
 	margin-right: 20px;
 }
 
@@ -243,8 +255,8 @@ h1 a {
 }
 
 .searchFilterWrapper {
-	border-top: 1px solid #AAAAAA;;
-	border-bottom: 1px solid #AAAAAA;;
+	border-top: 1px solid #FFD8E4;
+	border-bottom: 1px solid #E1E1E1;
 	height: 213px;
 }
 
@@ -259,7 +271,7 @@ h1 a {
 }
 
 .filterUlTitle {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 600;
 }
 
@@ -411,9 +423,10 @@ select:focus {
 }
 
 .menuWrapper {
+	
 	background-color: #FFFFFF;
-	border-top: 1px solid #AAAAAA;;
-	border-bottom: 1px solid #AAAAAA;;
+	border-top: 1px solid #FFD8E4;
+	border-bottom: 1px solid #E1E1E1;
 	height: 213px;
 }
 
