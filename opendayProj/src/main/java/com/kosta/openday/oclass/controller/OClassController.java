@@ -10,7 +10,7 @@ public class OClassController {
 	/**
 	 *  클래스 상세 화면에서, "신청하기" 버튼 클릭 시
 	 * */
-	@RequestMapping(value="/applyclass")
+	@RequestMapping(value="/apply")
 	public String applyClass() {
 		return "applyClass";
 	}
