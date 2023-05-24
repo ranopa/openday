@@ -1,0 +1,193 @@
+@charset "UTF-8";
+
+#div1 {
+	margin: 30px auto;
+	width: 1280px;
+}
+
+h3 {
+	margin-left: 20px;
+}
+
+#opendiv1 {
+	background: rgba(204, 152, 255, 0.2);
+	margin: 10px 10px;
+	padding: 10px;
+}
+
+#opendiv1>div {
+	margin: 20px;
+	padding: 5px;
+	background: white;
+}
+
+#divdobule {
+	height: 350px;
+}
+
+#divdobule>div {
+	float: left;
+	background: white;
+	margin: 10px;
+	margin-right: 10px;
+	margin-left: 20px; margin-bottom 10px;
+	padding: 20px;
+}
+
+#divdobule>div>p {
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+
+.span {
+	margin-left: 10px;
+	margin-right: 30px;
+}
+
+.catediv > input {
+	margin-right: 10px;
+}
+.catediv > label {
+	font-size: 20px;
+}
+
+#curri {
+	clear: both;
+	padding: 20px !important;
+	height: 490px;
+}
+
+#curri p {
+	margin-bottom: 15px;
+	margin-left: 15px;
+}
+
+textarea {
+	width: 685px;
+	height: 300px;
+	font-size: 20px;
+}
+
+.thumbnail-container {
+	width: 400px;
+	height: 300px;
+	position: relative;
+	border: 1px solid #ccc;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center;
+	background: rgba(217, 217, 217, 1);
+}
+
+.file-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+#editor {
+	/* border : 1px solid; */
+	width: 1150px;
+	height: 450px !important;
+	margin: auto;
+}
+
+.toastui-editor-defaultUI-toolbar {
+	padding: 0 !important;
+}
+
+
+.detailT > tbody > tr > td {
+	width: 400px;
+	padding: 10px;
+}
+
+#detailP {
+	font-size: 20px;
+	margin-left: 20px;
+}
+
+#map {
+	margin-top: 10px;
+	border: 1px dotted;
+	width: 430px;
+	height: 330px;
+}
+
+@import
+	url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+
+#cal {
+	background-color: white;
+	height: auto;
+	width: 400px;
+	margin: 0px;
+	margin: 0 auto;
+	border-radius: 5px;
+	box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
+}
+
+.Calendar>thead>tr>td {
+	width: 50px;
+	height: 50px;
+}
+
+.Calendar {
+	text-align: center;
+}
+
+.Calendar>thead>tr:first-child>td {
+	font-family: 'Questrial', sans-serif;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.Calendar>thead>tr:last-child>td {
+	font-family: 'Questrial', sans-serif;
+	font-weight: 600;
+}
+
+.Calendar>tbody>tr>td>p {
+	font-family: 'Montserrat', sans-serif;
+	height: 45px;
+	width: 45px;
+	border-radius: 45px;
+	transition-duration: .2s;
+	line-height: 45px;
+	margin: 2.5px;
+	display: block;
+	text-align: center;
+}
+
+.pastDay {
+	color: lightgray;
+}
+
+.today {
+	background-color: #F5D042;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.futureDay {
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+
+.futureDay:hover {
+	background: #eee;
+}
+
+.futureDay.choiceDay, .today.choiceDay {
+	background: #0A174E;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+
