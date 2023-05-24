@@ -1,0 +1,148 @@
+@charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body{
+	font-family:'NanumSquare';
+}
+ #wrap {
+            /* background-color: pink; */
+            width: 1280px;
+            height: 1200px;
+            position: relative;
+            margin: -50px auto; 
+            /* display: inline-flex;
+            align-items: center;
+            justify-content: space-evenly; */
+        }
+        h2{
+            position: absolute;
+            left: 269px;
+            top: 180px;
+            color:rgb(104, 21, 182)
+        }
+     
+
+        .mybox1 {
+            width: 365px;
+            height: 451px;
+            left: 269px;
+            top: 286px;
+        }
+
+        .mybox2 {
+            width: 364.11px;
+            height: 98.93px;
+            left: 269.4px;
+            top: 756.09px;
+
+
+        }
+
+        .mybox3 {
+            width: 326.81px;
+            height: 98.93px;
+            left: 684.6px;
+            top: 285.75px;
+        }
+
+        .mybox4 {
+            width: 326.81px;
+            height: 98.93px;
+            left: 684.6px;
+            top: 403.33px;
+
+
+        }
+
+        .mybox5 {
+
+            width: 326.81px;
+            height: 98.93px;
+            left: 684.6px;
+            top: 520.92px;
+
+
+
+        }
+
+        .mybox6 {
+            width: 326.81px;
+            height: 98.93px;
+            left: 684.6px;
+            top: 635.26px;
+
+
+        }
+
+        .mybox7 {
+            width: 326.81px;
+            height: 98.93px;
+            left: 684.6px;
+            top: 756.09px;
+
+
+        }
+
+        .square {
+            position: absolute;
+            box-sizing: border-box;
+
+            border: 1px solid transparent;
+
+            margin: 0 auto;
+
+            background-image: linear-gradient(#fff, #fff), linear-gradient(to right, rgba(76, 9, 255, 0.15), rgba(255, 105, 105, 0.15));
+            border-radius: 8px;
+            border-image-slice: 1;
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
+
+        .mymenu-txt {
+            margin-left: 85px;
+            padding-top: 10px; 
+        }
+
+        .mymenu1 {
+            color: rgb(53, 53, 53);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .mymenu2 {
+            color: gray;
+            font-size: 11px;
+        } 
+        .myprofile-pic{
+            border: 1px solid rgb(34, 34, 34);
+            border-radius: 50%;
+            width: 300px;
+            height: 170px;
+            margin: 50px auto 0 auto;
+            text-align: center;
+            
+        } 
+        .border-bottom{
+            width: 300px;
+            margin: 0 auto;
+            border-bottom: 1px solid rgb(207, 207, 207);
+        }
+        .myprofile-btn {
+            width: 300px;
+            height: 39.74px; 
+            margin-top: 20px;
+            margin-left: 30px; 
+ 
+            background: rgba(239, 235, 244, 0.5);
+            border-radius: 8px;
+            border-style: none;
+            cursor: pointer; 
+        }
+   
+        .material-symbols-outlined {
+            position: absolute;
+            left: 27px;
+            top: 37px; 
+            font-size: 38px;
+            color: rgba(66, 40, 77, 0.7);
+        }

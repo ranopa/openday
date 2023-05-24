@@ -97,5 +97,24 @@ public class UserController {
 		return "mypage/reservedRecord";	
 	}
 	
+	
+	//선호카테고리 수정하기
+	@RequestMapping(value="/mypage/prefer",method=RequestMethod.POST)
+	public ModelAndView preferUpload() {
+		ModelAndView mav = new ModelAndView();
+		try {
+//			List<CategoryDTO> list = cateService.getCategoryList();
+//			
+//			List<String>
+//			mav.addObject("cateNames",user);
+//			mav.setViewName("redirect:/mypage/myPreference");
+			//변경, 받아오고 리다이렉
+			  
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
 
 }

@@ -3,12 +3,25 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.user">
+	<!--회원가입  -->
 	<insert id="insertUser" parameterType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[
 			insert into user values 
 			(#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userTel},#{userAddress}, #{userEmail}, #{userBirth},
 			'1', null, 'y', CURDATE(), null, '1', null)
-		]]>
-		
+		]]> 
 	</insert>
+	<!--선호카테고리 저장 -->
+	<update id="updateUserPrefer" parameterType="java.util.Map">
+		<![CDATA[
+			update user set user_preference = #{prefer} where user_id=#{id}  
+			
+		]]> 
+	</update>
+	<!--선호카테고리 받아오기 -->
+	<select id="selectUserPrefer" parameterType="String" resultType="String">
+		<![CDATA[
+			select user_preference from user where user_id=#{id} 
+		]]> 
+	</select>
 </mapper>

@@ -3,11 +3,17 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.oclass">
-	<select id="selectCategoryList" resultType="com.kosta.openday.oclass.dto.CategoryDTO">
+	<!-- <select id="selectCategoryList" resultType="com.kosta.openday.oclass.dto.CategoryDTO">
 	<![CDATA[
 		select cod_num, cod_classfication, cod_name from code where cod_classfication = '카테고리'
 	]]>
-	</select>  
+	</select>   -->
+	
+	<select id="selectCategoryList" resultType="com.kosta.openday.oclass.dto.CategoryDTO">
+	<![CDATA[
+		select cod_num as codNum, cod_classfication as codClassfication, cod_name as codName from code where cod_classfication = '카테고리'
+	]]>
+	</select>
 	
 	
 </mapper>
