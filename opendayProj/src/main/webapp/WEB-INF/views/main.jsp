@@ -5,21 +5,12 @@
 <html>
 <head>
 	<title>Home</title>
+	
 	<link rel="stylesheet" href="<c:url value="/resources/css/user/main.css"/>">
 </head>
 <body bgcolor='yellow'>
 <%@ include file="header.jsp" %>
-
-<div class="mainWrapper">
-<p>도자기</p>
-<p>가죽</p>
-<p>도자기</p>
-<p>도자기</p>
-<p>도자기</p>
-<p>도자기</p>
-<p>도자기</p>
-</div>
-
+<%@ include file="mainContent.jsp" %>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

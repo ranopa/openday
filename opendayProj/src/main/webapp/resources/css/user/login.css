@@ -1,0 +1,17 @@
+.contentWrapper {
+	margin: 0 auto;
+	width: 1280px;
+}
+
+.loginWrapper {
+	width: 100%;
+	height: 125px;
+	background-color: #F4F4F4;
+	left: 0;
+	right: 0;
+}
+* {
+	padding: 0;
+	margin: 0;
+}
+

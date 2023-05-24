@@ -74,8 +74,3 @@ function disMenu() {
 
 //menu or search
 
-document.getElementById('body').addEventListener('click', function(e) {
-  if (!document.getElementById('menu').contains(e.target)) {
-    document.getElementById('menu').style.display = 'none';
-  }
-});
