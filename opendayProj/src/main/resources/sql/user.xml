@@ -5,7 +5,9 @@
 <mapper namespace="mapper.user">
 	<insert id="insertUser" parameterType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[
-			insert into user(user_id,user_password, user_name,user_nickname, user_tel, user_address, user_email, user_birth, user_joindate) values (#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userTel},#{userAddress}, #{userEmail}, #{userBirth},CURDATE())
+			insert into user values 
+			(#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userTel},#{userAddress}, #{userEmail}, #{userBirth},
+			'1', null, 'y', CURDATE(), null, '1', null)
 		]]>
 		
 	</insert>

@@ -13,6 +13,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	//회원가입 > 데베에 insert
 	@Override
 	public void JoinUser(UserDTO user) throws Exception {
 		user.setUserEmail(user.getEmailVal()+"@"+user.getDomain());
