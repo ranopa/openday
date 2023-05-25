@@ -188,10 +188,10 @@ select {
 			<div class="box">
 				<div class="class-image-card">이미지</div>
 				<div class="class-detail">
-					<h4>[서울/건대]마카롱 원데이 클래스 스위스머랭&비정제설탕</h4>
+					<h4>${oclass.clsName }</h4>
 
 					<div class="detail-bottom">
-						<span>카테고리</span> <span>가격</span>
+						<span>카테고리</span> <span>${oclass.clsCode }</span>
 					</div>
 				</div>
 

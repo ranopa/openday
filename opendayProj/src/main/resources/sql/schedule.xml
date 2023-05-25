@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="mapper.schedule">
+<select id="selectScheduleByClassId"
+	parameterType="Integer"
+	resultType="com.kosta.openday.oclass.dto.ScheduleDTO">
+	select
+		scd_num as scdNum,
+		scd_date as scdDate,
+		scd_time as scdTime,
+		scd_loc as scdLoc,
+		scd_personnel as scdPersonnel,
+		scd_price as scdPrice,
+		scd_discount as scdDiscount,
+		scd_upload_date as scdUploadDate,
+		scd_status as scdStatus,
+		cls_id as clsId
+	from schedule
+	where cls_id = #{clsId}
+</select>
+
+
+</mapper>

@@ -3,19 +3,27 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.oclass">
-<select id="selectClassList" parameterType="String"
-	resultType="com.kosta.openday.oclass.dto.OclassDTO">
+<select id="selectClass" parameterType="String"
+	resultType="com.kosta.openday.oclass.dto.OClassDTO">
 	select
-		cls_id as clsId, cls_name as clsName, cls_code as clsCode,
-		cls_description as clsDescription, cls_curri as clsCurri,
-		cls_star as clsStar, as cls_heart as clsHeart, cls_status as clsStatus,
-		cls_created_at as clsCreatedAt, cls_open_type as clsOpenType,
-		fil_num as filNum, user_id as userId, req_id as reqId
+		cls_id as clsId,
+		cls_name as clsName,
+		cls_code as clsCode,
+		cls_description as clsDescription,
+		cls_curri as clsCurri,
+		cls_star as clsStar,
+		cls_heart as clsHeart,
+		cls_status as clsStatus,
+		cls_created_at as clsCreatedAt,
+		cls_open_type as clsOpenType,
+		fil_num as filNum,
+		user_id as userId,
+		req_id as reqId
 	from oclass
 	where cls_id=#{id}
 </select>
 
-<select id="selectClassList" resultType="com.kosta.openday.oclass.dto.OclassDTO">
+<select id="selectClassList" resultType="com.kosta.openday.oclass.dto.OClassDTO">
 	select
 		cls_id as clsId, cls_name as clsName, cls_code as clsCode,
 		cls_description as clsDescription, cls_curri as clsCurri,
@@ -24,7 +32,7 @@
 		fil_num as filNum, user_id as userId, req_id as reqId
 	from oclass
 </select>
-<insert id="insertClass" parameterType="com.kosta.openday.oclass.dto.OclassDTO">
+<insert id="insertClass" parameterType="com.kosta.openday.oclass.dto.OClassDTO">
 	insert into oclass(cls_id, cls_name, cls_code,
 						cls_description, cls_curri,
 					   	cls_star, cls_heart, cls_status,

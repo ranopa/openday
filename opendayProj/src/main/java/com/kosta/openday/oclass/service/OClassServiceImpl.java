@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosta.openday.oclass.dao.OClassDAO;
 import com.kosta.openday.oclass.dto.OClassDTO;
+import com.kosta.openday.oclass.dto.ScheduleDTO;
 
 @Service
 public class OClassServiceImpl implements OClassService {
@@ -27,5 +28,10 @@ public class OClassServiceImpl implements OClassService {
 	@Override
 	public void save(OClassDTO dto) throws Exception {
 		oClassDAO.insertClass(dto);
+	}
+	
+	@Override
+	public List<ScheduleDTO> findScheduleByClassId(Integer clsId) throws Exception {
+		return oClassDAO.selectScheduleByClass(clsId);
 	}
 }
