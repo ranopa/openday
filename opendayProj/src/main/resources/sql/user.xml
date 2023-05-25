@@ -24,4 +24,27 @@
 			select user_preference from user where user_id=#{id} 
 		]]> 
 	</select>
+	
+	<!-- 파일업로드(유저프로필)  -->
+	<insert id="insertUserFile" parameterType="com.kosta.openday.user.dto.UserFileDTO">
+		<![CDATA[
+		insert into file values(${fileNum},${fileClassification},${fileOriginalName},${fileSaveName},${fileSize},CURDATE())
+		]]> 
+	</insert>
+	
+	<!-- 프로필수정 -->
+	<update id="updateUser" parameterType="java.util.Map">
+		<![CDATA[
+		update user set user_nickname=${nickname}, user_tel=${tel} where user_id=${id}
+		]]> 
+	</update> 
+	
+	<!-- select user -->
+	<select id="selectUser" parameterType="String" resultType="com.kosta.openday.user.dto.UserProfileVO">
+		<![CDATA[ 		
+		select user_id as userId, user_password as userPassword, user_name as userName, user_nickname as userNickname, user_address as userAddress, user_email as userEmail, fil_num as userFileNum 
+		from user where user_id=${id}
+		]]> 		 
+	</select>
+	
 </mapper>

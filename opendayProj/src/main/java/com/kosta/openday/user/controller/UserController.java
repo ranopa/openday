@@ -9,11 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.oclass.dto.CategoryDTO;
 import com.kosta.openday.oclass.service.SbCategoryService;
 import com.kosta.openday.user.dto.UserDTO;
+import com.kosta.openday.user.dto.UserProfileVO;
 import com.kosta.openday.user.service.UserService;
 
 @Controller
@@ -49,14 +52,33 @@ public class UserController {
 	}
 
 	
-	//마이페이지 > 태희언니 헤더 가져오면 지움(테스트용) 
+	//마이페이지 (테스트용) 
 	@RequestMapping(value = "/mypage/", method=RequestMethod.GET)
 	public ModelAndView myPayge() {
 		ModelAndView mav = new ModelAndView();
 		try {
 			String id = "sbsb";
 			session.setAttribute("id", id); 
+			UserProfileVO user = userService.getUserProfile(id); 
+			System.out.println(user.getUserName());
+			mav.addObject("user", user);
 			mav.setViewName("mypage/myPage");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		return mav;
+	}
+	
+	//프로필수정
+	@RequestMapping(value = "/mypage/editprofile", method=RequestMethod.POST)
+	public ModelAndView editProfile(HttpSession session,@RequestParam(value="file", required=false) MultipartFile file,
+			@RequestParam(value="nickname", required=false) String nickname, @RequestParam(value="tel",required=false) String tel) {
+		ModelAndView mav = new ModelAndView(); 
+		try {
+			String id = (String) session.getAttribute("id");
+			userService.editUserProfile(id,nickname, tel,file);
 		}catch(Exception e) {
 			System.out.println("실패");
 			e.printStackTrace();
