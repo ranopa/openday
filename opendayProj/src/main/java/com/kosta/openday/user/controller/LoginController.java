@@ -10,4 +10,9 @@ public class LoginController {
 	public String findId(){
 		return "findId";
 	}
+	
+	@RequestMapping(value="/findpw", method = RequestMethod.GET)
+	public String findPw(){
+		return "findPw";
+	}
 }
