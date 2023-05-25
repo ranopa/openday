@@ -31,19 +31,16 @@
 	vertical-align: middle;
 }
 
-/* 오늘 날짜 */
-.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+/* 오늘 날짜 -- 기능롤백 */
+/* .ui-state-highlight, .ui-widget-content .ui-state-highlight,
 	.ui-widget-header .ui-state-highlight {
 	border: none;
 	background: #edbaed;
-}
+} */
 
-/* 선택한 날짜  */
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active,
-	a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover
-	{
-	background: #5a2ec2;
-	color: white;
+/* 선택한 날짜 & 가능  */
+.ui-datepicker-current-day.available {
+	background-color: blue;
 }
 
 /*  과거 날짜 */
@@ -51,7 +48,10 @@
 	background-color: #dddddd;
 	color: #aaaaaa;
 }
-
+/* 스케줄 */
+.available:not([class="ui-datepicker-current-day"]) .ui-state-default {
+	background-color: #bbeebb;
+}
 /* ================== </캘린더> ================== */
 .wrapper {
 	width: 880px;

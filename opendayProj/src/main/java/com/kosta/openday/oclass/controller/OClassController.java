@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kosta.openday.oclass.dto.OClassDTO;
 import com.kosta.openday.oclass.dto.ScheduleDTO;
@@ -32,10 +33,7 @@ public class OClassController {
 			// class + schedule:list 긁어와야함
 			model.addAttribute("oclass", oclass);
 			model.addAttribute("schedules", scheduels);
-			
-			for (ScheduleDTO scheduleDTO : scheduels) {
-				System.out.println("s: "+scheduleDTO.getScdNum()+ ","+ scheduleDTO.getScdLoc());
-			}
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

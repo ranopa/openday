@@ -12,6 +12,83 @@
 	<link rel="stylesheet" href="${contextPath}/resources/css/user/applyClass.css">
 	<script src="${contextPath }/resources/js/user/applyClass.js"></script>
 </head>
+
+<c:if test="${schedules ne null and schedules.size() > 0}">
+
+ <script>
+let availableDays = [];
+let availableDateTimes = [];
+<c:forEach var="s" items="${schedules}">
+	availableDays.push("${s.scdDate}");
+	availableDateTimes.push({
+		date: "${s.scdDate}",
+		time: "${s.scdTime}"
+	});
+</c:forEach>
+
+function textToDateStr(dateText) {
+	let date = new Date(dateText);
+	
+	let offset = date.getTimezoneOffset() * 60000; //ms단위라 60000곱해줌
+	let selectedDate = new Date(date.getTime() - offset);
+	const selectedDateStr = selectedDate.toISOString().substr(0,10);
+    return selectedDateStr;
+}
+
+$(function() {
+	let lastSelectedDateTime = {date: "", time: ""};
+	$("#datepicker").datepicker({
+		beforeShowDay : function(date) {
+			var currentDate = new Date();
+			currentDate.setHours(0, 0, 0, 0); // 오늘 날짜의 시간을 00:00:00으로 설정
+			if (date < currentDate) {
+				return [ true, "past-date", "과거 날짜" ];
+			}
+			date = $.datepicker.formatDate('yy-mm-dd', date);
+			if (availableDays.includes(date)) {
+	        	return [true, "available"];
+	    	} 
+			return [ true, "", "" ];
+		},
+        onSelect: function(dateText, inst) {
+        	$('#selectTimes').empty();
+        	$('#selectTimes').append("<option>시간을 선택하세요</option>");
+        	const selectDate = textToDateStr(dateText);
+        	
+        	if (availableDays.includes(selectDate)) {
+        		lastSelectedDateTime.date = selectDate;
+        		
+        		$.each(availableDateTimes, function (i, item) {
+        			if (item.date == lastSelectedDateTime.date) {
+        				 $('#selectTimes').append($('<option>', { 
+        				        value: item.time,
+        				        text : item.time 
+        				 }));	 
+        			}
+        		});
+        	} else {
+        		$(".ui-datepicker-current-day").css("background-color", "");
+        		lastSelectedDateTime.date = "";
+        	}
+        	
+        	$("#lastSelectedDate").val(lastSelectedDateTime.date);
+        	$("#lastSelectedTime").val(lastSelectedDateTime.time);
+        	
+        	if (lastSelectedDateTime.date == "") {
+        		$("#requestDateSelection").show();
+        	} else {
+        		$("#requestDateSelection").hide();
+        	}
+        },
+	});
+	$(".ui-datepicker-current-day").removeClass("ui-datepicker-current-day");
+	
+	
+})
+	
+ </script>
+</c:if>
+
 <body>
 	<div class="wrapper">
 		<div class="header-title">클래스 신청</div>
@@ -34,17 +111,16 @@
 					<div class="class-calendar">
 						<div id="datepicker"></div>
 					</div>
-
+					<input type="hidden" id="lastSelectedDate" name="lastSelectedDate" />
+					<input type="hidden" id="lastSelectedTime" name="lastSelectedTime" />
 				</div>
+				<div id="requestDateSelection">날짜를 선택하세요</div>
+				
 				<div class="apply-date-hour">
 					<p>시간 선택 - 드롭다운</p>
 
-					<select>
-						<option>시간을 선택하세요</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-
+					<select id="selectTimes">
+`						<option value="none">시간을 선택하세요</option>
 					</select>
 				</div>
 			</div>
