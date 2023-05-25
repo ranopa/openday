@@ -43,7 +43,7 @@
 					<li><a href="#"><span
 							class="material-symbols-outlined login"> person </span>
 							<p>로그인</p></a></li>
-					<li onclick="disMenu()"><a href="#"><span
+					<li id="menu" onclick="disMenu()"><a href="#"><span
 							class="material-symbols-outlined menu"> menu </span>
 							<p>카테고리</p></a></li>
 				</ul>
