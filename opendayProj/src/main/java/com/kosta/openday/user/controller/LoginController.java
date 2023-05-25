@@ -15,4 +15,8 @@ public class LoginController {
 	public String findPw(){
 		return "findPw";
 	}
+	@RequestMapping(value="/idconfirm", method = RequestMethod.GET)
+	public String idConfirm(){
+		return "idConfirm";
+	}
 }
