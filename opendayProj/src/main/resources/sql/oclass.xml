@@ -3,5 +3,20 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.oclass">
+	
+	<insert id="classOpen" parameterType="com.kosta.openday.dto.OclassDTO">
+		 <![CDATA[
+		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCarrer,clsCurri)
+		     values( nextval(orderInfo_seq),#{clsName},#{clsCode},#{clsDescription},#{fileId},
+		     		#{clsCarrer},#{clsCurri})
+	     ]]>
+	</insert>
+
+	<insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
+		<![CDATA[
+			insert into file values (#{num},#{directory},#{name},#{classification},#{originalname},#{savename},#{size},#{newdate})	
+		]]>		
+	</insert>
+
 
 </mapper>

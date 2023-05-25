@@ -1,26 +1,28 @@
 package com.kosta.openday.oclass.dto;
 
 public class OclassDTO {
-	private Integer clsId;
+	private int clsId;
 	private String clsName;
 	private String clsCode;
 	private String clsDescription;
+	private String clsCarrer;
 	private String clsCurri;
-	private Integer clsStar;
-	private Integer clsHeart;
+	private int clsStar;
+	private int clsHeart;
 	private String clsStatus;
 	private String clsCreatedAt;
 
 	private String clsOpenType;
-	private Integer fileId;
+	private int fileId;
 	
 	public OclassDTO() {}
 	
-	public OclassDTO(Integer clsId, String clsName, String clsDescription, String clsCurri, Integer clsStar, Integer clsHeart, 
-					String clsStatus, String clsCreatedAt, String clsOpenType) {
+	public OclassDTO(int clsId, String clsName, String clsDescription, String Carrer, String clsCurri, int clsStar, int clsHeart, 
+					String clsStatus, String clsCreatedAt, String clsOpenType, int fileId) {
 		this.clsId = clsId;
 		this.clsName = clsName;
 		this.clsDescription = clsDescription;
+		this.clsCarrer = clsCarrer;
 		this.clsCurri = clsCurri;
 		this.clsStar = clsStar;
 		this.clsHeart = clsHeart;
@@ -29,11 +31,11 @@ public class OclassDTO {
 		this.clsOpenType = clsOpenType;
 	}
 
-	public Integer getClsId() {
+	public int getClsId() {
 		return clsId;
 	}
 
-	public void setClsId(Integer clsId) {
+	public void setClsId(int clsId) {
 		this.clsId = clsId;
 	}
 
@@ -60,6 +62,14 @@ public class OclassDTO {
 	public void setClsDescription(String clsDescription) {
 		this.clsDescription = clsDescription;
 	}
+	
+	public String getClsCarrer() {
+		return clsCarrer;
+	}
+
+	public void setClsCarrer(String clsCarrer) {
+		this.clsCarrer = clsCarrer;
+	}
 
 	public String getClsCurri() {
 		return clsCurri;
@@ -69,7 +79,7 @@ public class OclassDTO {
 		this.clsCurri = clsCurri;
 	}
 
-	public Integer getClsStar() {
+	public int getClsStar() {
 		return clsStar;
 	}
 
@@ -77,7 +87,7 @@ public class OclassDTO {
 		this.clsStar = clsStar;
 	}
 
-	public Integer getClsHeart() {
+	public int getClsHeart() {
 		return clsHeart;
 	}
 
