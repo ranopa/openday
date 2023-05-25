@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="mapper.announcement">
+	<select id="selectAnnouncement"
+		parameterType="Integer"
+		resultType="com.kosta.openday.announcement.dto.AnnouncementDTO">
+		<![CDATA[
+		SELECT
+			anc_id as ancId,
+			anc_title as ancTitle,
+			anc_content as ancContent,
+			anc_viewCount as ancViewCount,
+			anc_type as ancType,
+			anc_upload_date as ancUploadDate,
+			fil_num as filNum
+		FROM announcement
+		where anc_id = #{ancNum}
+		]]>
+	</select>
+	
+	<select id="selectAnnouncementList"
+		resultType="com.kosta.openday.announcement.dto.AnnouncementDTO">
+		<![CDATA[
+		SELECT
+			anc_id as ancId,
+			anc_title as ancTitle,
+			anc_content as ancContent,
+			anc_viewCount as ancViewCount,
+			anc_type as ancType,
+			anc_upload_date as ancUploadDate,
+			fil_num as filNum
+		FROM announcement
+		]]>
+	</select>
+	
+	<insert id="insertAnnouncement">
+		<![CDATA[
+		INSERT INTO announcement
+		VALUES(
+			#{ancId},
+			#{ancTitle},
+			#{ancContent},
+			#{ancViewCount},
+			#{ancType},
+			#{ancUploadDate},
+			#{filNum}
+		)
+		]]>
+	</insert>
+</mapper>

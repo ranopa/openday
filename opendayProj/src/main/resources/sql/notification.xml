@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="mapper.notification">
+	<select id="selectNotification"
+		parameterType="Integer"
+		resultType="com.kosta.openday.notification.dto.NotificationDTO">
+		<![CDATA[
+		SELECT
+			ntf_num as ntfNum,
+			ntf_title as ntfTitle,
+			ntf_content as ntfContent,
+			ntf_type as ntfType,
+			ntf_created_at as ntfCreatedAt
+			user_num as userNum
+		FROM notification
+		where ntf_num = #{ntfNum}
+		]]>
+	</select>
+	
+	<select id="selectNotificationList"
+		resultType="com.kosta.openday.notification.dto.NotificationDTO">
+		<![CDATA[
+		SELECT
+			ntf_num as ntfNum,
+			ntf_title as ntfTitle,
+			ntf_content as ntfContent,
+			ntf_type as ntfType,
+			ntf_created_at as ntfCreatedAt
+			user_num as userNum
+		FROM notification
+		]]>
+	</select>
+	
+	<insert id="insertNotification">
+		<![CDATA[
+		INSERT INTO notification
+		VALUES(
+			#{ntfNum},
+			#{ntfTitle},
+			#{ntfContent},
+			#{ntfType},
+			#{ntfCreatedAt},
+			#{userNum}
+		)
+		]]>
+	</insert>
+</mapper>
