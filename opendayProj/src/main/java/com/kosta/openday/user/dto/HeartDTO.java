@@ -1,7 +1,5 @@
 package com.kosta.openday.user.dto;
-
-import java.sql.Date;
-
+ 
 //찜
 public class HeartDTO {
 	private Integer userNum; //유저번호

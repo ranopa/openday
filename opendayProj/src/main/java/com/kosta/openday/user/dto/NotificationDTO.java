@@ -1,6 +1,6 @@
 package com.kosta.openday.user.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 //알림
 public class NotificationDTO {

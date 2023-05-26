@@ -1,47 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-						
-<mapper namespace="mapper.oclass">
-<select id="selectClass" parameterType="String"
-	resultType="com.kosta.openday.oclass.dto.OClassDTO">
-	select
-		cls_id as clsId,
-		cls_name as clsName,
-		cls_code as clsCode,
-		cls_description as clsDescription,
-		cls_curri as clsCurri,
-		cls_star as clsStar,
-		cls_heart as clsHeart,
-		cls_status as clsStatus,
-		cls_created_at as clsCreatedAt,
-		cls_open_type as clsOpenType,
-		fil_num as filNum,
-		user_id as userId,
-		req_id as reqId
-	from oclass
-	where cls_id=#{id}
-</select>
 
-<select id="selectClassList" resultType="com.kosta.openday.oclass.dto.OClassDTO">
-	select
-		cls_id as clsId, cls_name as clsName, cls_code as clsCode,
-		cls_description as clsDescription, cls_curri as clsCurri,
-		cls_star as clsStar, as cls_heart as clsHeart, cls_status as clsStatus,
-		cls_created_at as clsCreatedAt, cls_open_type as clsOpenType,
-		fil_num as filNum, user_id as userId, req_id as reqId
-	from oclass
-</select>
-<insert id="insertClass" parameterType="com.kosta.openday.oclass.dto.OClassDTO">
-	insert into oclass(cls_id, cls_name, cls_code,
-						cls_description, cls_curri,
-					   	cls_star, cls_heart, cls_status,
-					   	cls_created_at, cls_open_type,
-					   	fil_num, user_id, req_id)
-				values(#{clsId}, #{clsName},
-						#{clsCode}, #{clsDescription}, #{clsCurri},
-					   	#{clsStar}, #{clsHeart}, #{clsStatus},
-					   	#{clsCreatedAt}, #{clsOpenType},
-					   	#{filNum}, #{userId}, #{reqId})
-</insert>
-</mapper>
+<mapper namespace="mapper.oclass">
+
+	<!-- =========== 클래스 oclass =============================================== -->
+	<!-- 1. 클래스 번호로 클래스 조회 -->s
+	<select id="selectOClassByClsId" parameterType="Integer"
+		resultType="com.kosta.openday.user.dto.OClassDTO">
+		<![CDATA[ 
+			select * from oclass where clsId = #{id}
+		]]>
+	</select>
+
+	<!-- 2. 카테고리로 클래스목록 조회 -->
+	<select id="selectOClassListByCategory" parameterType="String"
+		resultType="com.kosta.openday.user.dto.OClassDTO">
+		<![CDATA[
+			select from oclass where clsCode = #{code} 
+		]]>
+	</select>
+
+	<!-- 3. 전체 클래스목록 조회 -->
+	<select id="selectOClassList"
+		resultType="com.kosta.openday.user.dto.OClassDTO">
+		<![CDATA[
+			select * from oclass
+		]]>
+	</select>
+
+	<!-- 4. 클래스 생성 -->
+	<insert id="insertOClass"
+		parameterType="com.kosta.openday.user.dto.OClassDTO">
+		<![CDATA[
+			insert into oclass values(nextval(oclass_seq),#{clsName},#{clsCode},#{clsDiscription},#{clsCurri},#{clsStar},#{clsHeart},
+									  #{clsStatus},#{clsCreatedAt},#{clsOpenType},#{filNum},#{userId},#{reqId})
+		]]>
+	</insert>
+
+	<!-- =========== 클래스일정 schedule =============================================== -->
+	<!-- 1. 클래스일정번호로 클래스일정조회 -->
+	<select id="selectSchedule" parameterType="Integer"
+		resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+		<![CDATA[ 
+			select * from schedule where scdNum = #{num}
+		]]>
+	</select>
+
+
+	<!-- 2. 클래스번호로 클래스일정목록조회 -->
+	<select id="selectScheduleListByClsId" parameterType="Integer"
+		resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+		<![CDATA[ 
+			select * from schedule where clsId = #{id}
+		]]>
+	</select>
+
+
+	<!-- 3. 일정등록 -->
+
+	<insert id="insertSchedule"
+		parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
+		<![CDATA[ 
+			insert into schedule 
+			values(nextval(schedule_seq),#{scdDate},#{scdTime},#{scdLoc},#{scdPersonnel},#{scdPrice},#{scdDiscount},#{scdUploadDate},#{scdStatus},#{clsId})
+		]]>
+	</insert>
+
+	<!-- =========== 클래스찜 heart =============================================== -->
+	<!-- 1. 유저아이디로 클래스찜 조회 -->
+	<select id="selectHeart" parameterType="String"
+		resultType="com.kosta.openday.user.dto.HeartDTO">
+		<![CDATA[ 
+			select * from heart where userId = #{id}
+		]]>
+	</select>
+
+	<!-- 2. 클래스번호로 찜개수 조회 -->
+	<select id="selectHeartCount" parameterType="Integer"
+		resultType="Integer">
+		<![CDATA[ 
+			select COUNT(*) from heart where clsId = #{clsId}
+		]]>
+	</select>
+
+
+	<!-- 3. 찜하기 -->
+	<insert id="insertHeart"
+		parameterType="com.kosta.openday.user.dto.HeartDTO">
+		<![CDATA[ 
+			insert into heart values(#{userId},#{clsId})
+		]]>
+	</insert>
+
+</mapper> 

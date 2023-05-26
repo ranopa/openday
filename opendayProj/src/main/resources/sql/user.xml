@@ -3,10 +3,47 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.user">
+	<!--회원가입  -->
 	<insert id="insertUser" parameterType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[
-			insert into user(user_id,user_password, user_name,user_nickname, user_tel, user_address, user_email, user_birth, user_joindate) values (#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userTel},#{userAddress}, #{userEmail}, #{userBirth},CURDATE())
-		]]>
-		
+			insert into user values 
+			(#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userTel},#{userAddress}, #{userEmail}, #{userBirth},
+			'1', null, 'y', CURDATE(), null, '1', null)
+		]]> 
 	</insert>
+	<!--선호카테고리 저장 -->
+	<update id="updateUserPrefer" parameterType="java.util.Map">
+		<![CDATA[
+			update user set userPreference = #{prefer} where userId=#{id}  
+			
+		]]> 
+	</update>
+	<!--선호카테고리 받아오기 -->
+	<select id="selectUserPrefer" parameterType="String" resultType="String">
+		<![CDATA[
+			select userPreference from user where userId=#{id} 
+		]]> 
+	</select>
+	
+	<!-- 파일업로드(유저프로필)  -->
+	<insert id="insertUserFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+		insert into file values(nextval(file_seq),${fileClassification},${fileOriginalName},${fileSaveName},${fileSize},CURDATE())
+		]]> 
+	</insert>
+	
+	<!-- 프로필수정 -->
+	<update id="updateUser" parameterType="java.util.Map">
+		<![CDATA[
+		update user set userNickname=${nickname}, userTel=${tel} where userId=${id}
+		]]> 
+	</update> 
+	
+	<!-- select user -->
+	<select id="selectUser" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO">
+		<![CDATA[ 		
+		select * from user where userId=${id}
+		]]> 		 
+	</select>
+	
 </mapper>
