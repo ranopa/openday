@@ -1,6 +1,6 @@
 package com.kosta.openday.user.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserDTO {
 	private String userId; //아이디
@@ -9,9 +9,9 @@ public class UserDTO {
 	private String userNickname; //별명 	
 	private String userTel; //번호
 	private String userAddress; //주소
-	private String emailVal; //이메일  
-	private String domain; //이메일  
-	private String userEmail; 
+	private String emailVal; //입력이메일  
+	private String domain; //도메인
+	private String userEmail;//입력이메일 + 도메인 
 	private String birthVal; //생일
 	private Date userBirth; //생일
 	private String userActive; //활성화
