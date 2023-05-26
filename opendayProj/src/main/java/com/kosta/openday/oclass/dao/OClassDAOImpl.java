@@ -17,24 +17,19 @@ public class OClassDAOImpl implements OClassDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	public List<OClassDTO> selectClassList() throws Exception {
-		return sqlSession.selectList("mapper.oclass.selectClassList");
+		return sqlSession.selectList("mapper.oclass.selectOClassList");
 	}
 	
 	public OClassDTO selectClassById(Integer clsId) throws Exception {
-		return sqlSession.selectOne("mapper.oclass.selectClass", clsId);
+		return sqlSession.selectOne("mapper.oclass.selectOClassByClsId", clsId);
 	}
 	
 	public void insertClass(OClassDTO dto) throws Exception {
-		sqlSession.insert("mapper.oclass.insertClass", dto);
+		sqlSession.insert("mapper.oclass.insertOClass", dto);
 	}
 	
 	public List<ScheduleDTO> selectScheduleByClass(Integer clsId) throws Exception {
-		return sqlSession.selectList("mapper.schedule.selectScheduleByClassId", clsId);
+		return sqlSession.selectList("mapper.schedule.selectScheduleListByClsId", clsId);
 	}
 
-	@Override
-	public List<CodeDTO> selectCategoryList() throws Exception {
-		List<CodeDTO> list = sqlSession.selectList("mapper.oclass.selectCategoryList");
-		return list; 
-	}
 }

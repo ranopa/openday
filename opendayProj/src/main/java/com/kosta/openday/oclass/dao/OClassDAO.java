@@ -19,6 +19,4 @@ public interface OClassDAO {
 	public void insertClass(OClassDTO dto) throws Exception;
 	
 	public List<ScheduleDTO> selectScheduleByClass(Integer clsId) throws Exception;
-
-	List<CodeDTO> selectCategoryList() throws Exception; 
 }

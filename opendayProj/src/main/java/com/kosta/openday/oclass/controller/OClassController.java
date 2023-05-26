@@ -24,13 +24,10 @@ public class OClassController {
 	 * */
 	@RequestMapping(value="/apply")
 	public String applyClass(@RequestParam("clsId") Integer id, Model model) {
-		System.out.println("1 apply controoler");
 		try {
-			System.out.println("2 apply controoler");
 			OClassDTO oclass = oClassService.findOne(id);
 			List<ScheduleDTO> scheduels = oClassService.findScheduleByClassId(oclass.getClsId());
 			
-			// class + schedule:list 긁어와야함
 			model.addAttribute("oclass", oclass);
 			model.addAttribute("schedules", scheduels);
 	

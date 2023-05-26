@@ -6,7 +6,7 @@
 <mapper namespace="mapper.oclass">
 
 	<!-- =========== 클래스 oclass =============================================== -->
-	<!-- 1. 클래스 번호로 클래스 조회 -->s
+	<!-- 1. 클래스 번호로 클래스 조회 -->
 	<select id="selectOClassByClsId" parameterType="Integer"
 		resultType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[ 
