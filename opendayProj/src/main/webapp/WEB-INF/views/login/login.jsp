@@ -10,7 +10,7 @@
 	href="<c:url value="/resources/css/user/login.css"/>">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header.jsp"%>
 	<div class="loginWrapper">
 		<div class="loginContentWrapper">
 			<div class="loginPageTitleWrapper">
@@ -45,6 +45,6 @@
  -->
 		</div>
 	</div>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 </body>
 </html>

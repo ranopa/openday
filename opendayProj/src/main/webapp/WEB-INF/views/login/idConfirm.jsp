@@ -11,7 +11,7 @@
 	href="<c:url value="/resources/css/user/idConfirm.css"/>">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header.jsp"%>
 	<div class="idConfirmWrapper">
 		<div class="idConfirmContentWrapper">
 			<div class="idConfirmPageTitleWrapper">
@@ -21,7 +21,7 @@
 				<li>아이디 찾기</li>
 				<li class="pwFindMenu">비밀번호 찾기</li>
 			</ul>
-			 <div>
+			 <div class="findUserIdInfo">			 
 			 <p>${userName}님의 아이디는 ${userId}입니다.</p>
 			 </div>
 			<div class="idConfirmBtns">
@@ -31,6 +31,6 @@
 
 		</div>
 	</div>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 </body>
 </html>

@@ -52,19 +52,39 @@
 		format('truetype');
 }
 
-.findIdWrapper {
+.idConfirmWrapper {
 	height: 569px;
 }
 
-.findIdContentWrapper {
+.idConfirmContentWrapper {
 	margin: 0 auto;
 	width: 1280px;
 }
 
-.findIdPageTitleWrapper {
+.idConfirmContentWrapper {
+	align-items: center;
+	justify-content: center;
+}
+
+.findUserIdInfo {
+	width: 400px;
+	height: 150px;
+	border: 1px solid #CFCFCF;
+	border-radius: 5px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.findUserIdInfo p {
+	margin: 0 auto;
+}
+
+.idConfirmPageTitleWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 103px;
 }
 
 /* .loginWrapper {
@@ -114,13 +134,20 @@ button {
 
 .idConfirmPageTitle {
 	font-size: 20px;
-	margin-top: 80px;
+
+	/* 	margin: auto;
+	display: table; */
+}
+
+.findUserIdInfo {
+	margin: auto;
+	margin-top: 40px;
 }
 
 .idConfirmBtns {
 	width: 420px;
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 40px;
 }
 
 .loginBtn {

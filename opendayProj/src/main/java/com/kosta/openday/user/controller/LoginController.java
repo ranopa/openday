@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	@RequestMapping(value="/findid", method = RequestMethod.GET)
 	public String findId(){
-		return "findId";
+		return "/login/findId";
 	}
 	
 	@RequestMapping(value="/findpw", method = RequestMethod.GET)
 	public String findPw(){
-		return "findPw";
+		return "/login/findPw";
 	}
 	@RequestMapping(value="/idconfirm", method = RequestMethod.GET)
 	public String idConfirm(){
-		return "idConfirm";
+		return "/login/idConfirm";
 	}
 }

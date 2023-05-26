@@ -11,7 +11,7 @@
 	href="<c:url value="/resources/css/user/findId.css"/>">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header.jsp"%>
 	<div class="findIdWrapper">
 		<div class="findIdContentWrapper">
 			<div class="findIdPageTitleWrapper">
@@ -47,6 +47,6 @@
  -->
 		</div>
 	</div>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 </body>
 </html>

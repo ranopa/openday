@@ -11,7 +11,7 @@
 	href="<c:url value="/resources/css/user/findPw.css"/>">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header.jsp"%>
 	<div class="findPwWrapper">
 		<div class="findPwContentWrapper">
 			<div class="findPwPageTitleWrapper">
@@ -51,6 +51,6 @@
  -->
 		</div>
 	</div>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 </body>
 </html>
