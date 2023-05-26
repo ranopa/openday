@@ -27,6 +27,8 @@ let availableDateTimes = [];
 	});
 </c:forEach>
 
+availableDateTimes.sort((s1, s2) => (s1.time > s2.time) ? 1 : -1)
+
 function textToDateStr(dateText) {
 	let date = new Date(dateText);
 	
@@ -54,7 +56,7 @@ $(function() {
         onSelect: function(dateText, inst) {
         	const selectTime = $("#selectTime");
         	selectTime.empty();
-        	selectTime.append("<option>시간을 선택하세요</option>");
+        	selectTime.append("<option>-- 시간을 선택하세요 --</option>");
         	const selectDate = textToDateStr(dateText);
         	
         	if (availableDays.includes(selectDate)) {
@@ -74,9 +76,6 @@ $(function() {
         		lastSelectedDateTime.date = "";
         	}
         	
-        	$("#lastSelectedDate").val(lastSelectedDateTime.date);
-        	
-        	
         	if (lastSelectedDateTime.date == "") {
         		$("#requestDateSelection").show();
         	} else {
@@ -87,7 +86,9 @@ $(function() {
 	$(".ui-datepicker-current-day").removeClass("ui-datepicker-current-day");
 	
 	$("#btn-proceed-payment").on("click", function(){
+
 		const scdNum = $("#selectTime option:selected").attr("num");
+
 		$("#scdNum").val(scdNum);
 		$("#clsId").val(${oclass.clsId});
 	});
@@ -101,7 +102,7 @@ $(function() {
 <body>
 	<div class="wrapper">
 	<form action="paymentProcess" method="GET">
-		<input type="hidden" id="lastSelectedDate" name="lastSelectedDate" />
+
 		<input type="hidden" id="clsId" name="clsId" />
 		<input type="hidden" id="scdNum" name="scdNum" />
 		
@@ -114,7 +115,8 @@ $(function() {
 					<h4>${oclass.clsName }</h4>
 
 					<div class="detail-bottom">
-						<span>카테고리</span> <span>${oclass.clsCode }</span>
+						<span>${oclass.clsCode }</span>
+						<span>${oclass.clsPrice }</span>
 					</div>
 				</div>
 
@@ -133,7 +135,7 @@ $(function() {
 					<p>시간 선택 - 드롭다운</p>
 
 					<select id="selectTime" name="selectTime">
-`						<option value="none">시간을 선택하세요</option>
+`						<option value="none">-- 시간을 선택하세요 --</option>
 					</select>
 				</div>
 			</div>

@@ -44,22 +44,23 @@ public class OClassController {
 	@RequestMapping(value="/paymentProcess")
 	public String paymentProcess(@RequestParam Map<String, String> map) {
 		try {
+			// 신청한 클래스 정보
 			Integer clsId = Integer.valueOf(map.get("clsId"));
 			OClassDTO oClass = oClassService.findOne(clsId);
+			
+			// 해당 클래스의 일정 정보
+			Integer scdNum = Integer.valueOf(map.get("scdNum"));
+			
+//			ScheduleDTO schedule = teacherService.findSchedule(scdNum);
+			
 			if (oClass == null)
 				throw new Exception("oClass not found");
 			
 			for(String key : map.keySet()) {
-				System.out.println(key + ": " + map.get("key"));
+				System.out.println(key + ": " + map.get(key));
 			}
-			
-			
-			/* // todo: 일정 고르면, 단순 시간이 아니라 스케줄 번호가 넘어와야함
-			 * // 그렇다는건, 스케줄 시간 option으로 보여줄때 해당 스케줄 id를 같이 알수있어야함 
-			 * ScheduleDTO schedule = new ScheduleDTO();
-			 * Integer price = schedule.getScdPrice();
-			 */
-			
+	
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
