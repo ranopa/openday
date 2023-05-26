@@ -1,4 +1,4 @@
-package com.kosta.openday.main.dto;
+package com.kosta.openday.user.service;
 
 import org.springframework.stereotype.Service;
 

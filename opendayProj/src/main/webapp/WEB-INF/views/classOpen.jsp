@@ -15,6 +15,8 @@
 <script	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/>
 
+<!-- 일단 임시로 넣어줌 아이콘 문제임 -->
+<link rel="shortcut icon" href="#">
 </head>
 
 <body>
@@ -44,7 +46,8 @@
 				<input type="radio" id="category6" name="clsCode"><label for="category6">미술</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category7" name="clsCode"><label for="category7">뷰티/미용</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category8" name="clsCode"><label for="category8">애견</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" id="category9" name="clsCode"><label for="category9">유리</label><br><br>
+				<input type="radio" id="category9" name="clsCode"><label for="category9">유리</label>
+				<br><br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category10" name="clsCode"><label for="category10">음악</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category11" name="clsCode"><label for="category11">자수</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -53,7 +56,9 @@
 				<input type="radio" id="category14" name="clsCode"><label for="category14">쿠킹</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category15" name="clsCode"><label for="category15">키즈</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category16" name="clsCode"><label for="category16">플라워/벌룬</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" id="category17" name="clsCode"><label for="category17">핸드메이드</label>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+				<input type="radio" id="category17" name="clsCode"><label for="category17">핸드메이드</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" id="category18" name="clsCode"><label for="category17">기타</label>
+				<br><br>
 				</div>
 			</div>
 

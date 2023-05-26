@@ -1,4 +1,4 @@
-package com.kosta.openday.main.controller;
+package com.kosta.openday.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

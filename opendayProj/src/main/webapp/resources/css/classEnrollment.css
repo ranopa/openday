@@ -204,9 +204,8 @@ textarea {
 
 .btns {
             width: 820px;
-            margin: 40px auto;
-          
-        }
+            margin: 20px auto;
+      }
 
         .submit-btn {
             box-sizing: border-box;

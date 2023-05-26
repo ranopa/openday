@@ -4,4 +4,22 @@
 						
 <mapper namespace="mapper.user">
 
+	<!--회원가입 -->
+	<insert id="join" parameterType="com.kosta.openday.user.dto.UserDTO">
+		 <![CDATA[
+		     insert into user (userId,userPassword,userName,userName,userTel,userAddress,emailVal,
+		     				   domain,userEmail,birthVal,userBirth,userActive,userAccount,
+		     				   userAlarm,userJoindate,userPrefer,authority,userFilenum)
+		     values( #{userId},#{userPassword},#{userName},#{userName},#{userTel},#{userAddress},#{emailVal},
+		     		 #{domain},#{userEmail},#{birthVal},#{userBirth},#{userActive},#{userAccount},#{userAlarm},
+		     		 #{userJoindate},#{userPrefer},#{authority},#{userFilenum})
+	     ]]>
+	</insert>
+	
+	<!--아이디로 가입자 선택 -->
+	<select id="selectUser" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO">
+		 <![CDATA[
+		 	select * from user where userId = #{userId}
+	 	 ]]>
+	</select>
 </mapper>

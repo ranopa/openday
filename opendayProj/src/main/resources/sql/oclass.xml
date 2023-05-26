@@ -4,7 +4,8 @@
 						
 <mapper namespace="mapper.oclass">
 	
-	<insert id="classOpen" parameterType="com.kosta.openday.dto.OclassDTO">
+	<!-- 클래스 오픈 요청 -->
+	<insert id="classOpen" parameterType="com.kosta.openday.oclass.dto.OclassDTO">
 		 <![CDATA[
 		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCarrer,clsCurri)
 		     values( nextval(orderInfo_seq),#{clsName},#{clsCode},#{clsDescription},#{fileId},
@@ -12,9 +13,10 @@
 	     ]]>
 	</insert>
 	
-	<insert id="classEnrollemnt" parameterType="com.kosta.openday.dto.OclassDTO">
+	<!-- 승인된 클래스 등록 -->
+	<insert id="classEnrollemnt" parameterType="com.kosta.openday.oclass.dto.OclassDTO">
 		 <![CDATA[
-		     insert into oclass (scdNum,scdDate,scdPrice,scd,scdTime,scdpersonnel,sdcLocDetial)
+		     insert into schedule (scdNum,scdDate,scdPrice,scd,scdTime,scdpersonnel,sdcLocDetial)
 		     values( nextval(orderInfo_seq),#{scdDate},#{scdPrice},#{scdOperationTime},#{scdTime},
 		     		#{scdpersonnel},#{sdcLocDetial})
 	     ]]>
@@ -24,7 +26,7 @@
 
 
 
-
+	<!-- 파일 넣는거 만들다고 그만둠 -->
 	<!-- <insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
 		<![CDATA[
 			insert into file values (#{num},#{directory},#{name},#{classification},#{originalname},#{savename},#{size},#{newdate})	
