@@ -1,0 +1,182 @@
+@font-face {
+	font-family: 'Cafe24 Ohsquare';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix')
+		format('embedded-opentype'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff')
+		format('woff'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix')
+		format('embedded-opentype'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff')
+		format('woff'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf')
+		format('truetype')
+}
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix')
+		format('embedded-opentype'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff')
+		format('woff'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf')
+		format('truetype');
+}
+
+.idConfirmWrapper {
+	height: 569px;
+}
+
+.idConfirmContentWrapper {
+	margin: 0 auto;
+	width: 1280px;
+}
+
+.idConfirmContentWrapper {
+	align-items: center;
+	justify-content: center;
+}
+
+.findUserIdInfo {
+	width: 400px;
+	height: 150px;
+	border: 1px solid #CFCFCF;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.findUserIdInfo p {
+	margin: 0 auto;
+}
+
+.idConfirmPageTitleWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 103px;
+}
+
+/* .loginWrapper {
+	width: 100%;
+	height: 125px;
+	
+	left: 0;
+	right: 0;
+}
+ */
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'NanumBarunGothic';
+}
+
+//
+ul {
+	list-style: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+.findMenu {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.findMenu li {
+	font-size: 13px;
+	list-style: none;
+	cursor: pointer;
+	color: #A7A7A7;
+}
+
+.pwFindMenu {
+	margin-left: 10px;
+}
+
+.idConfirmPageTitle {
+	font-size: 20px;
+
+	/* 	margin: auto;
+	display: table; */
+}
+
+.findUserIdInfo {
+	margin: auto;
+	margin-top: 40px;
+}
+
+.idConfirmBtns {
+	width: 420px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+.loginBtn {
+	box-sizing: border-box;
+	width: 200px;
+	height: 43px;
+	background: #7C4AFF;
+	border-radius: 7px;
+	color: #fff;
+	font-weight: bold;
+	border-style: none;
+	font-size: 14px;
+	margin-left: 10px;
+}
+
+.findPwBtn {
+	box-sizing: border-box;
+	width: 200px;
+	height: 43px;
+	background: #ffffff;
+	border-radius: 7px;
+	color: #7C4AFF;
+	font-weight: bold;
+	border-style: none;
+	border: #7C4AFF 1px solid;
+	/* margin-right: 10px;  */
+	margin: 0 auto;
+}
+
+.bold {
+	font-weight: bold;
+}
