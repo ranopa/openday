@@ -1,38 +1,87 @@
 package com.kosta.openday.oclass.service;
 
-import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.oclass.dao.OClassDAO;
-import com.kosta.openday.oclass.dto.OclassDTO;
+import com.kosta.openday.user.dto.RequestDTO;
 
 @Service
 public class OClassServiceImpl implements OClassService {
 
-	private OClassDAO oclassDAO;
+	
+	@Autowired
+	private OClassDAO oClassDAO;
 	
 	@Override
-	public void classCreate(OclassDTO dto) throws Exception {
-		oclassDAO.classOpen(dto);
+	public void requestClass(RequestDTO request) throws Exception {
+		oClassDAO.insertRequest(request);
+		
+	}
+
+	@Override
+	public List<RequestDTO> getRequestList() throws Exception {
+		// TODO Auto-generated method stub
+		return oClassDAO.selectRequestList();
+	}
+
+	@Override
+	public RequestDTO getRequest(Integer reqId) throws Exception {
+		// TODO Auto-generated method stub
+		plusViewCount(reqId);
+		return oClassDAO.selectRequest(reqId);
+	}
+
+	@Override
+	public void plusViewCount(Integer reqId) throws Exception {
+		oClassDAO.updateReqViews(reqId);
+	}
+
+	@Override
+	public void modifyRequest(RequestDTO request) throws Exception {
+		oClassDAO.updateRequest(request);
+		
 	}
 
 	
-	// 토스트ui 데이터 까지 가져오는 서비스 
-	/*
-	 * @Override public void classCreate(OclassDTO dto, MultipartFile file) throws
-	 * Exception { if(file!=null && !file.isEmpty()) {
-	 * 
-	 * String dir = ""; FileDTO fileDTO = new FileDTO(); fileDTO.setDirectory(dir);
-	 * fileDTO.setName(file.getOriginalFilename()); fileDTO.setSize(file.getSize());
-	 * fileDTO.setContenttype(file.getContentType());
-	 * fileDTO.setId(oclassDAO.newFileNum()); fileDTO.setsaveName(file.)
-	 * oclassDAO.insertFile(fileDTO);
-	 * 
-	 * File dfile = new File(fileDTO.getDirectory()+fileDTO.getId());
-	 * file.transferTo(dfile); //file upload
-	 * 
-	 * dto.setFileid(fileVO.getId()); } oclassDAO.classOpen(dto); }
-	 */
+	@Override
+	public void removeRequest(Integer reqId) throws Exception {
+		oClassDAO.deleteRequest(reqId);
+		
+	}
+
+	@Override
+	public Integer getPartpaCntByReqId(Integer reqId) throws Exception {
+		return oClassDAO.selectPartpaCntByReqId(reqId);
+	}
+
+	@Override
+	public Integer getPartPaYN(String userId, Integer reqId) throws Exception {
+		Map<String, Object> param = new HashMap<>();
+		param.put("userId", userId);
+		param.put("reqId", reqId);
+		return oClassDAO.selectPartpaYN(param);
+	}
+
+	@Override
+	public Boolean coupleParticipation(String userId, Integer reqId) throws Exception {
+		
+		Integer ys = getPartPaYN(userId, reqId); 
+		Map<String, Object> param = new HashMap<>();
+		param.put("userId", userId);
+		param.put("reqId", reqId);
+		if(ys==1) { //삭제
+			oClassDAO.deleteParticipation(param);
+			return false;
+		} else { //삽입
+			oClassDAO.insertParticipation(param);
+			return true;
+		}
+		
+	}
+
 }

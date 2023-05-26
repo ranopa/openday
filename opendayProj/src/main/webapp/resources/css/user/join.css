@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body{
+	font-family:'NanumSquare';
+}
+* {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            width: 1280px;
+            height: 1200px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h2 {
+            color: rgb(104, 21, 182);
+            text-align: center;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .total-form {
+            margin: 0 auto;
+            width: 600px;
+            margin-top: 10%;
+        }
+
+        .ipcontainer {
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 10px;
+            list-style: none;
+            border-top: 1px solid rgb(214, 214, 214);
+            padding-top: 50px;
+            padding-bottom: 20px;
+            /* border-bottom: 1px solid rgb(214, 214, 214); */
+
+        }
+
+        .ipbox {
+            padding-left: 10px;
+            box-sizing: border-box;
+            width: 300px;
+            height: 43px;
+            border-radius: 7px;
+            margin-bottom: 22px;
+            border: solid 1px rgba(124, 124, 124, 0.5);
+        }
+
+        .idcheck {
+            cursor: pointer;
+            margin-left: 10px;
+            background-color: rgba(236, 236, 236, 0.5);
+            border-style: none;
+            width: 100px;
+            height: 40px;
+            border-radius: 7px;
+        }
+
+        .ck {
+            height: 35px;
+            border: 1px solid #c4c4c4;
+        }
+
+        .ck:hover {
+            background-color: rgba(218, 218, 218, 0.5);
+        }
+
+        .idcheck:click {
+            background-color: darkblue;
+        }
+
+        .select-email {
+            width: 200px;
+        }
+
+        .f-h3 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .s-h3 {
+            margin-top: 60px;
+        }
+
+        .tosbox {
+            padding-top: 50px;
+            border-top: 1px solid rgb(214, 214, 214);
+            margin-top: 10px;
+
+        }
+
+        .tos {
+            padding: 20px;
+            width: 560px;
+            height: 200px;
+            background: #fff;
+            border: 1px solid #d8d9df;
+            font-size: 12px;
+            color: #7f7f85;
+            line-height: 1.6em;
+            overflow: auto;
+            resize: none;
+        }
+
+        .btns {
+            width: 420px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .submit-btn {
+            box-sizing: border-box;
+            width: 200px;
+            height: 43px;
+            background: #7C4AFF;
+            border-radius: 7px;
+            color: #fff;
+            font-weight: bold;
+            border-style: none;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .cancel-btn {
+            box-sizing: border-box;
+            width: 200px;
+            height: 43px;
+            background: #ffffff;
+            border-radius: 7px;
+            color: #7C4AFF;
+            font-weight: bold;
+            border-style: none;
+            border: #7C4AFF 1px solid;
+            /* margin-right: 10px;  */
+            margin: 0 auto;
+        }
+        .right{
+            text-align: end;
+            color:  #414141;
+            margin-top: 5px;
+            font-size: 15px;
+        }
+        .notreq{
+            margin-left: 18px;
+        }

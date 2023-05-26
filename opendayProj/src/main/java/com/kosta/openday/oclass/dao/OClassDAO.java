@@ -1,8 +1,29 @@
 package com.kosta.openday.oclass.dao;
 
-import com.kosta.openday.oclass.dto.OclassDTO;
+import java.util.List;
+import java.util.Map;
+
+import com.kosta.openday.user.dto.RequestDTO;
 
 public interface OClassDAO {
-	public int classOpen(OclassDTO dto) throws Exception;
-	//public void insertFile(FileVO file) throws Exception;
+
+	void insertRequest(RequestDTO request) throws Exception;
+
+	List<RequestDTO> selectRequestList() throws Exception;
+
+	RequestDTO selectRequest(Integer reqId) throws Exception;
+
+	void updateReqViews(Integer reqId) throws Exception;
+
+	void updateRequest(RequestDTO request) throws Exception;
+
+	void deleteRequest(Integer reqId) throws Exception;
+
+	Integer selectPartpaCntByReqId(Integer reqId) throws Exception;
+
+	Integer selectPartpaYN(Map<String, Object> param) throws Exception;
+
+	void insertParticipation(Map<String, Object> param) throws Exception;
+
+	void deleteParticipation(Map<String, Object> param) throws Exception;
 }
