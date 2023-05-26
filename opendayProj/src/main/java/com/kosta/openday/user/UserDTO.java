@@ -1,4 +1,4 @@
-package com.kosta.openday.user.dto;
+package com.kosta.openday.user;
 
 import java.util.Date;
 
