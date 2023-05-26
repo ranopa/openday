@@ -43,9 +43,9 @@ public class OClassController {
 	/**
 	 * 클래스 신청 화면에서, "다음으로" 버튼 클릭 시
 	 * */
-	@RequestMapping(value="/paymentprocess")
+	@RequestMapping(value="/paymentProcess")
 	public String paymentProcess() {
-		return "paymentProcess";
+		return "apply/paymentProcess";
 	}
 	
 	/**
@@ -53,6 +53,6 @@ public class OClassController {
 	 * */
 	@RequestMapping(value="/payment")
 	public String payment() {
-		return "paymentResult";
+		return "apply/paymentResult";
 	}
 }
