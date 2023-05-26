@@ -14,19 +14,19 @@
 	<!--선호카테고리 저장 -->
 	<update id="updateUserPrefer" parameterType="java.util.Map">
 		<![CDATA[
-			update user set user_preference = #{prefer} where user_id=#{id}  
+			update user set userPreference = #{prefer} where userId=#{id}  
 			
 		]]> 
 	</update>
 	<!--선호카테고리 받아오기 -->
 	<select id="selectUserPrefer" parameterType="String" resultType="String">
 		<![CDATA[
-			select user_preference from user where user_id=#{id} 
+			select userPreference from user where userId=#{id} 
 		]]> 
 	</select>
 	
 	<!-- 파일업로드(유저프로필)  -->
-	<insert id="insertUserFile" parameterType="com.kosta.openday.user.dto.UserFileDTO">
+	<insert id="insertUserFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
 		insert into file values(${fileNum},${fileClassification},${fileOriginalName},${fileSaveName},${fileSize},CURDATE())
 		]]> 
@@ -35,15 +35,14 @@
 	<!-- 프로필수정 -->
 	<update id="updateUser" parameterType="java.util.Map">
 		<![CDATA[
-		update user set user_nickname=${nickname}, user_tel=${tel} where user_id=${id}
+		update user set userNickname=${nickname}, userTel=${tel} where userId=${id}
 		]]> 
 	</update> 
 	
 	<!-- select user -->
-	<select id="selectUser" parameterType="String" resultType="com.kosta.openday.user.dto.UserProfileVO">
+	<select id="selectUser" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[ 		
-		select user_id as userId, user_password as userPassword, user_name as userName, user_nickname as userNickname, user_address as userAddress, user_email as userEmail, fil_num as userFileNum 
-		from user where user_id=${id}
+		select * from user where userId=${id}
 		]]> 		 
 	</select>
 	

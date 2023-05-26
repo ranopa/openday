@@ -7,8 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.openday.user.dto.UserDTO;
-import com.kosta.openday.user.dto.UserProfileVO;
+import com.kosta.openday.user.dto.UserDTO; 
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -34,10 +33,9 @@ public class UserDAOImpl implements UserDAO {
 
 
 	@Override
-	public UserProfileVO selectUserVO(String id) throws Exception {
-		UserProfileVO user = sqlSession.selectOne("mapper.user.selectUser", id);
-		System.out.println(user.getUserId());
-		return user;
+	public UserDTO selectUserInfo(String id) throws Exception { 
+		return sqlSession.selectOne("mapper.user.selectUser", id);
+				
 	}
 	
 }

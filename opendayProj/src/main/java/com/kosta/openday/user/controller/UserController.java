@@ -13,17 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kosta.openday.oclass.dto.CategoryDTO;
-import com.kosta.openday.oclass.service.SbCategoryService;
+ 
 import com.kosta.openday.user.dto.UserDTO;
-import com.kosta.openday.user.dto.UserProfileVO;
 import com.kosta.openday.user.service.UserService;
 
 @Controller
 public class UserController {
-
-	@Autowired
-	private SbCategoryService cateService; 
+ 
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -44,7 +40,7 @@ public class UserController {
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinUser(@ModelAttribute UserDTO user) throws Exception {
 		try { 
-			userService.JoinUser(user); 
+			userService.joinUser(user); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,8 +55,7 @@ public class UserController {
 		try {
 			String id = "sbsb";
 			session.setAttribute("id", id); 
-			UserProfileVO user = userService.getUserProfile(id); 
-			System.out.println(user.getUserName());
+			UserDTO user = userService.getUserInfo(id); 
 			mav.addObject("user", user);
 			mav.setViewName("mypage/myPage");
 			
@@ -86,20 +81,20 @@ public class UserController {
 		return mav;
 	}
 	
-	//선호카테고리
-	@RequestMapping("/mypage/myprefer") 
-	public ModelAndView myPrefer() throws Exception{ 
-		ModelAndView mav = new ModelAndView();
-		try {
-			List<CategoryDTO> list = cateService.getCategoryList();
-			mav.addObject("cateNames",list);
-			mav.setViewName("mypage/myPreference");
-			  
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return mav;
-	}
+//	//선호카테고리
+//	@RequestMapping("/mypage/myprefer") 
+//	public ModelAndView myPrefer() throws Exception{ 
+//		ModelAndView mav = new ModelAndView();
+//		try {
+//			List<CodeDTO> list = userService.getCategoryList();
+//			mav.addObject("cateNames",list);
+//			mav.setViewName("mypage/myPreference");
+//			  
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return mav;
+//	}
 	
 	//찜한클래스
 	@RequestMapping("/mypage/myheart")

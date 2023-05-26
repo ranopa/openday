@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.kosta.openday.oclass.dto.CategoryDTO;
-import com.kosta.openday.oclass.service.SbCategoryService; 
+import com.kosta.openday.oclass.dto.CategoryDTO; 
 
 @Controller
 public class OClassController {
