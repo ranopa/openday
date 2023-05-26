@@ -22,7 +22,8 @@ let availableDateTimes = [];
 	availableDays.push("${s.scdDate}");
 	availableDateTimes.push({
 		date: "${s.scdDate}",
-		time: "${s.scdTime}"
+		time: "${s.scdTime}",
+		num: "${s.scdNum}"
 	});
 </c:forEach>
 
@@ -63,7 +64,8 @@ $(function() {
         			if (item.date == lastSelectedDateTime.date) {
         				selectTime.append($('<option>', { 
         				        value: item.time,
-        				        text : item.time 
+        				        text : item.time,
+        				        num: item.num,
         				 }));	
         			}
         		});
@@ -85,7 +87,8 @@ $(function() {
 	$(".ui-datepicker-current-day").removeClass("ui-datepicker-current-day");
 	
 	$("#btn-proceed-payment").on("click", function(){
-		const time= $("#selectTime option:selected").val();
+		const scdNum = $("#selectTime option:selected").attr("num");
+		$("#scdNum").val(scdNum);
 		$("#clsId").val(${oclass.clsId});
 	});
 	
@@ -100,6 +103,8 @@ $(function() {
 	<form action="paymentProcess" method="GET">
 		<input type="hidden" id="lastSelectedDate" name="lastSelectedDate" />
 		<input type="hidden" id="clsId" name="clsId" />
+		<input type="hidden" id="scdNum" name="scdNum" />
+		
 		<div class="header-title">클래스 신청</div>
 		<div class="container">
 		

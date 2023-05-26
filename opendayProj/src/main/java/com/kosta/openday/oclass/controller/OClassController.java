@@ -49,11 +49,13 @@ public class OClassController {
 			if (oClass == null)
 				throw new Exception("oClass not found");
 			
-			String date = map.get("lastSelectedDate");
+			for(String key : map.keySet()) {
+				System.out.println(key + ": " + map.get("key"));
+			}
 			
 			
 			/* // todo: 일정 고르면, 단순 시간이 아니라 스케줄 번호가 넘어와야함
-			 * // 그렇다는건, 스케줄 시간을 뿌려줄때 해당 스케줄 id를 같이 뿌려줘야함 
+			 * // 그렇다는건, 스케줄 시간 option으로 보여줄때 해당 스케줄 id를 같이 알수있어야함 
 			 * ScheduleDTO schedule = new ScheduleDTO();
 			 * Integer price = schedule.getScdPrice();
 			 */
@@ -61,10 +63,6 @@ public class OClassController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	
-		
-		
 
 		return "apply/paymentProcess";
 	}
