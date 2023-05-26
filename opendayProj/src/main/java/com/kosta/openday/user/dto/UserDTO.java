@@ -9,14 +9,16 @@ public class UserDTO {
 	private String userNickname; //별명 	
 	private String userTel; //번호
 	private String userAddress; //주소
-	private String emailVal; //이메일  
-	private String domain; //이메일  
-	private String userEmail; 
+
+	private String emailVal; //입력이메일  
+	private String domain; //도메인
+	private String userEmail;//입력이메일 + 도메인 
 	private String birthVal; //생일
 	private Date userBirth; //생일
 	private String userActive; //활성화
 	private Integer userAccount; //계좌번호
-	private String userAlarm; //알림여부
+	private String userAlarm; //알림허용여부
+
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
 	private String authority; //권한
