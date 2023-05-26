@@ -15,7 +15,7 @@
 
 <c:if test="${schedules ne null and schedules.size() > 0}">
 
- <script>
+<script>
 let availableDays = [];
 let availableDateTimes = [];
 <c:forEach var="s" items="${schedules}">
@@ -51,8 +51,9 @@ $(function() {
 			return [ true, "", "" ];
 		},
         onSelect: function(dateText, inst) {
-        	$('#selectTimes').empty();
-        	$('#selectTimes').append("<option>시간을 선택하세요</option>");
+        	const selectTime = $("#selectTime");
+        	selectTime.empty();
+        	selectTime.append("<option>시간을 선택하세요</option>");
         	const selectDate = textToDateStr(dateText);
         	
         	if (availableDays.includes(selectDate)) {
@@ -60,10 +61,10 @@ $(function() {
         		
         		$.each(availableDateTimes, function (i, item) {
         			if (item.date == lastSelectedDateTime.date) {
-        				 $('#selectTimes').append($('<option>', { 
+        				selectTime.append($('<option>', { 
         				        value: item.time,
         				        text : item.time 
-        				 }));	 
+        				 }));	
         			}
         		});
         	} else {
@@ -72,7 +73,7 @@ $(function() {
         	}
         	
         	$("#lastSelectedDate").val(lastSelectedDateTime.date);
-        	$("#lastSelectedTime").val(lastSelectedDateTime.time);
+        	
         	
         	if (lastSelectedDateTime.date == "") {
         		$("#requestDateSelection").show();
@@ -83,6 +84,11 @@ $(function() {
 	});
 	$(".ui-datepicker-current-day").removeClass("ui-datepicker-current-day");
 	
+	$("#btn-proceed-payment").on("click", function(){
+		const time= $("#selectTime option:selected").val();
+		$("#clsId").val(${oclass.clsId});
+	});
+	
 	
 })
 	
@@ -91,9 +97,12 @@ $(function() {
 
 <body>
 	<div class="wrapper">
+	<form action="paymentProcess" method="GET">
+		<input type="hidden" id="lastSelectedDate" name="lastSelectedDate" />
+		<input type="hidden" id="clsId" name="clsId" />
 		<div class="header-title">클래스 신청</div>
 		<div class="container">
-
+		
 			<div class="box">
 				<div class="class-image-card">이미지</div>
 				<div class="class-detail">
@@ -111,30 +120,31 @@ $(function() {
 					<div class="class-calendar">
 						<div id="datepicker"></div>
 					</div>
-					<input type="hidden" id="lastSelectedDate" name="lastSelectedDate" />
-					<input type="hidden" id="lastSelectedTime" name="lastSelectedTime" />
+
 				</div>
 				<div id="requestDateSelection">날짜를 선택하세요</div>
 				
 				<div class="apply-date-hour">
 					<p>시간 선택 - 드롭다운</p>
 
-					<select id="selectTimes">
+					<select id="selectTime" name="selectTime">
 `						<option value="none">시간을 선택하세요</option>
 					</select>
 				</div>
 			</div>
 			<div class="box">
 				<div class="apply-people-count">
-					신청 인원 수 입력 - 카운터 <input type="number" min="1" max="100" value="1" />
+					신청 인원 수 입력 - 카운터 <input type="number" name="personnel" min="1" max="100" value="1" />
 				</div>
 			</div>
 			<div class="box">
 				<div class="btn-wrapper">
-					<button class="btn-next">다음으로</button>
+					<button class="btn-next" type="submit" id="btn-proceed-payment">다음으로</button>
 				</div>
 			</div>
+			
 		</div>
+		</form>	
 	</div>
 </body>
 </html>
