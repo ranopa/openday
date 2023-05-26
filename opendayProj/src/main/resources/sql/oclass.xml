@@ -11,12 +11,25 @@
 		     		#{clsCarrer},#{clsCurri})
 	     ]]>
 	</insert>
+	
+	<insert id="classEnrollemnt" parameterType="com.kosta.openday.dto.OclassDTO">
+		 <![CDATA[
+		     insert into oclass (scdNum,scdDate,scdPrice,scd,scdTime,scdpersonnel,sdcLocDetial)
+		     values( nextval(orderInfo_seq),#{scdDate},#{scdPrice},#{scdOperationTime},#{scdTime},
+		     		#{scdpersonnel},#{sdcLocDetial})
+	     ]]>
+	</insert>
 
-	<insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
+
+
+
+
+
+	<!-- <insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
 		<![CDATA[
 			insert into file values (#{num},#{directory},#{name},#{classification},#{originalname},#{savename},#{size},#{newdate})	
 		]]>		
-	</insert>
+	</insert> -->
 
 
 </mapper>

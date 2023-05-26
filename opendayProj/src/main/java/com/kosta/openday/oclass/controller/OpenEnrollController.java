@@ -26,18 +26,29 @@ public class OpenEnrollController {
 		return "classEnrollment";
 	}
 	
+	
 	@RequestMapping(value = "/classOpen", method = RequestMethod.POST)
-	public ModelAndView classOpen(@ModelAttribute OclassDTO dto,
-	@RequestPart(value="file",required=false) MultipartFile file) {
+	public ModelAndView classOpen(@ModelAttribute OclassDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			oclassService.classCreate(dto, file);
+			oclassService.classCreate(dto);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		mav.setViewName("redirect:/");
 		return mav;
 	}
+	
+	
+	/*
+	 * @RequestMapping(value = "/classOpen", method = RequestMethod.POST) public
+	 * ModelAndView classOpen(@ModelAttribute OclassDTO dto,
+	 * 
+	 * @RequestPart(value="file",required=false) MultipartFile file) { ModelAndView
+	 * mav = new ModelAndView(); try { oclassService.classCreate(dto, file); }
+	 * catch(Exception e) { e.printStackTrace(); } mav.setViewName("redirect:/");
+	 * return mav; }
+	 */
 	
 	
 	
