@@ -1,6 +1,6 @@
 package com.kosta.openday.user.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserDTO {
 	private String userId; //아이디
