@@ -18,6 +18,7 @@
 			
 		]]> 
 	</update>
+	
 	<!--선호카테고리 받아오기 -->
 	<select id="selectUserPrefer" parameterType="String" resultType="String">
 		<![CDATA[
@@ -28,21 +29,21 @@
 	<!-- 파일업로드(유저프로필)  -->
 	<insert id="insertUserFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-		insert into file values(nextval(file_seq),${fileClassification},${fileOriginalName},${fileSaveName},${fileSize},CURDATE())
+		insert into file values(nextval(file_seq),#{fileClassification},#{fileOriginalName},#{fileSaveName},${fileSize},CURDATE())
 		]]> 
 	</insert>
 	
 	<!-- 프로필수정 -->
 	<update id="updateUser" parameterType="java.util.Map">
 		<![CDATA[
-		update user set userNickname=${nickname}, userTel=${tel} where userId=${id}
+		update user set userNickname=#{nickname}, userTel=#{tel} where userId=#{id}
 		]]> 
 	</update> 
 	
 	<!-- select user -->
 	<select id="selectUser" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[ 		
-		select * from user where userId=${id}
+		select * from user where userId=#{id}
 		]]> 		 
 	</select>
 	

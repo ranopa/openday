@@ -4,4 +4,9 @@
 						
 <mapper namespace="mapper.adm">
 
+<!-- 카테고리 list 받아오기  -->
+<select id="selectCategoryList" resultType="com.kosta.openday.adm.dto.CodeDTO">
+	select * from code where codClassfication='카테고리'
+</select>
+
 </mapper>

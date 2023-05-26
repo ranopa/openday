@@ -41,17 +41,25 @@
 							<p class="txt1 ptxt">계정 ID</p> 
  							<p class="txt2 ptxt">${user.userId}</p> 
 						</div>
-						<div class="e-box">
+						<!-- <div class="e-box">
 							<p class="txt1 ptxt">닉네임</p>
 							<input type="text" class="ipbox" name="nickname">
 							<div class="e-box-tel"> <input type="button"
 									value="중복확인" class="tel-check">
 							</div>
+						</div> -->
+						
+						<div class="e-box">
+							<p class="txt1 ptxt">닉네임</p>
+							<div class="e-box-tel">
+								<input type="text" class="ipbox" name="nickname" placeholder="${user.userNickname}"> <input type="button"
+									value="중복확인" class="tel-check" >
+							</div>
 						</div>
 						<div class="e-box">
 							<p class="txt1 ptxt">전화번호</p>
 							<div class="e-box-tel">
-								<input type="text" class="ipbox" name="tel"> <input type="button"
+								<input type="text" class="ipbox" name="tel" placeholder="${user.userTel}"> <input type="button"
 									value="번호인증" class="tel-check">
 							</div>
 						</div>
@@ -78,11 +86,11 @@
 				<div class="myprofile">
 					<div class="border-bottom">
 						<p class="mymenu1">이메일</p>
-						<p class="mymenu2">tjdqls111@gmail.com</p>
+						<p class="mymenu2">${user.userEmail }</p>
 					</div>
 					<div class="border-bottom">
 						<p class="mymenu1">전화번호</p>
-						<p class="mymenu2">010-5480-6972</p>
+						<p class="mymenu2">${user.userTel }</p>
 					</div>
 					<div>
 						<button id="profile-edit-btn" class="myprofile-btn" type="button">프로필

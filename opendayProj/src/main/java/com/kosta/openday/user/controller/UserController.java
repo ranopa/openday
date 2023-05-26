@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
- 
+import com.kosta.openday.adm.dto.CodeDTO;
+import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
 @Controller
 public class UserController {
- 
+	
+	@Autowired
+	private CodeService codeService; 
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -53,10 +56,10 @@ public class UserController {
 	public ModelAndView myPayge() {
 		ModelAndView mav = new ModelAndView();
 		try {
-//			String id = "sbsb";
-//			session.setAttribute("id", id); 
-//			UserDTO user = userService.getUserInfo(id); 
-//			mav.addObject("user", user);
+			String id = "sbsb";
+			session.setAttribute("id", id); 
+			UserDTO user = userService.getUserInfo(id); 
+			mav.addObject("user", user);
 			mav.setViewName("mypage/myPage");
 			
 		}catch(Exception e) {
@@ -74,27 +77,33 @@ public class UserController {
 		try {
 			String id = (String) session.getAttribute("id");
 			userService.editUserProfile(id,nickname, tel,file);
-		}catch(Exception e) {
-			System.out.println("실패");
+		}catch(Exception e) { 
 			e.printStackTrace();
 		}
 		return mav;
 	}
 	
-//	//선호카테고리
-//	@RequestMapping("/mypage/myprefer") 
-//	public ModelAndView myPrefer() throws Exception{ 
-//		ModelAndView mav = new ModelAndView();
-//		try {
-//			List<CodeDTO> list = userService.getCategoryList();
-//			mav.addObject("cateNames",list);
-//			mav.setViewName("mypage/myPreference");
-//			  
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return mav;
-//	}
+	//선호카테고리
+	@RequestMapping("/myprefer") 
+	public ModelAndView myPrefer(HttpSession session) throws Exception{ 
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CodeDTO> list = codeService.categoryInfoList(); 
+			
+			//+ 유저의 선호카테고리
+			String id = (String) session.getAttribute("id");
+			UserDTO user = userService.getUserInfo(id);
+			if(user.getUserPrefer()!=null) {
+				mav.addObject("user", user); 				
+			}
+			mav.addObject("cateNames",list);
+			mav.setViewName("mypage/myPreference");
+			  
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
 	
 	//찜한클래스
 	@RequestMapping("/mypage/myheart")
@@ -116,15 +125,14 @@ public class UserController {
 	
 	
 	//선호카테고리 수정하기
-	@RequestMapping(value="/mypage/prefer",method=RequestMethod.POST)
-	public ModelAndView preferUpload() {
+	@RequestMapping(value="/prefer",method=RequestMethod.POST)
+//	public ModelAndView preferUpload(HttpSession session, @RequestParam("checkboxGroup") String c1, @RequestParam("checkboxGroup") String c2, @RequestParam("checkboxGroup") String c3) {
+		public ModelAndView preferUpload(HttpSession session, @RequestParam(value="checkboxGroup1", required=false) String c1, @RequestParam(value="checkboxGroup2", required=false) String c2, @RequestParam(value="checkboxGroup3", required=false) String c3) {
 		ModelAndView mav = new ModelAndView();
 		try {
-//			List<CategoryDTO> list = cateService.getCategoryList();
-//			
-//			List<String>
+			System.out.println(c1 + c2 + c3);
 //			mav.addObject("cateNames",user);
-//			mav.setViewName("redirect:/mypage/myPreference");
+			mav.setViewName("redirect:/myprefer");
 			//변경, 받아오고 리다이렉
 			  
 		}catch(Exception e) {
