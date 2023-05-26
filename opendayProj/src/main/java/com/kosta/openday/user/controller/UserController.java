@@ -49,14 +49,14 @@ public class UserController {
 
 	
 	//마이페이지 (테스트용) 
-	@RequestMapping(value = "/mypage/", method=RequestMethod.GET)
+	@RequestMapping(value = "/mypage", method=RequestMethod.GET)
 	public ModelAndView myPayge() {
 		ModelAndView mav = new ModelAndView();
 		try {
-			String id = "sbsb";
-			session.setAttribute("id", id); 
-			UserDTO user = userService.getUserInfo(id); 
-			mav.addObject("user", user);
+//			String id = "sbsb";
+//			session.setAttribute("id", id); 
+//			UserDTO user = userService.getUserInfo(id); 
+//			mav.addObject("user", user);
 			mav.setViewName("mypage/myPage");
 			
 		}catch(Exception e) {

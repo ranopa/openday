@@ -1,20 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="<%=request.getContextPath()%>" />
+<%-- <c:set var="contextPath" value="<%=request.getContextPath()%>" /> --%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- <link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/user/mypage.css"> --%>
 <link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/user/mypage.css">
+	href="resources/css/user/mypage.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/user/mypage.js"></script>
+<%-- <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
+<script src="resources/js/user/mypage.js"></script>
 </head>
 <body>
 	<!--모달  -->
