@@ -2,6 +2,97 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
-<mapper namespace="mapper.noitice">
+<mapper namespace="mapper.notice">
+<!-- =========== 클래스 문의 cls_inquery =============================================== -->
+<!-- 1. 유저 아이디로 문의글 조회 -->
+<select id="selectClsInquiry" parameterType="String" resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
+<![CDATA[
+	select * from cls_inquiry where userId = #{id}
+]]> 
+</select>
 
-</mapper>
+<!-- 2. 문의목록 조회  -->
+<select id="selectClsInquiryList" resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
+<![CDATA[
+	select * from cls_inquiry
+]]> 
+</select>
+
+<!-- 3. 문의글 삽입 -->
+<insert id="insertClsInquiry" parameterType="com.kosta.openday.user.dto.ClsInquiryDTO">
+<![CDATA[
+	insert into cls_inquiry values (#{ciNum},#{ciTitle},#{ciContent},#{ciStatus},#{ciDate},#{ciSecret},#{ciUpdate},#{userId},#{clsId})
+]]> 
+</insert>
+
+
+
+<!-- =========== 공지사항 문의 adm_inquiry  ===============================================-->
+<!-- 1. 문의번호로 조회 -->
+<select id="selectAdmInquiry" parameterType="Integer" resultType="com.kosta.openday.adm.dto.AdmInquiryDTO">
+<![CDATA[
+	select * from adm_inquiry where admNum = #{num}
+]]> 
+</select>
+
+<!-- 2. 문의목록 조회  -->
+<select id="selectAdmInquiryList" resultType="com.kosta.openday.adm.dto.AdmInquiryDTO">
+<![CDATA[
+	select * from adm_inquiry
+]]> 
+</select>
+
+<!-- 3. 문의 삽입 -->
+<insert id="insertAdmInquiry" parameterType="com.kosta.openday.adm.dto.AdmInquiryDTO">
+<![CDATA[
+	insert into adm_inquiry values (#{admNum},#{admTitle},#{admContent},#{admType},
+	#{admUploadDate},#{admAnContent},#{admStatus},#{admAnDate},#{userId})
+]]> 
+</insert>
+
+<!-- =========== 문의 답변 answer =============================================== -->
+
+<!-- 1. 문의번호로 답변 조회 -->
+<select id="selectAnswer" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.AnswerDTO">
+<![CDATA[
+	select * from answer where ansNum = #{num}
+]]> 
+</select>
+
+<!-- 2. 답변 생성 -->
+<insert id="insertAnswer" parameterType="com.kosta.openday.teacher.dto.AnswerDTO">
+<![CDATA[
+	insert into answer values (#{ansNum},#{ansContent},#{ansDate},#{ciNum})
+]]> 
+</insert>
+
+ 
+<!-- 후기 review -->
+
+<!-- 1. 유저 id로 리뷰 조회 -->
+<select id="selectReviewByUserId" parameterType="String" resultType="com.kosta.openday.user.dto.ReviewDTO">
+<![CDATA[
+	select rv_num as rvNum, rv_title as rvTitle, rv_content as rvContent, rv_date as rvDate,
+		   rv_star as rvStar, user_id as userId, scd_num as scdNum 
+	from review where user_id = #{id}
+]]> 
+</select>
+
+<!-- 2. 클래스 일정 번호로 리뷰목록 조회  -->
+<select id="selectReviewByClsNum" parameterType="Integer" resultType="com.kosta.openday.user.dto.ReviewDTO">
+<![CDATA[
+	select rv_num as rvNum, rv_title as rvTitle, rv_content as rvContent, rv_date as rvDate,
+		   rv_star as rvStar, user_id as userId, scd_num as scdNum 
+	from review where scd_num = #{scdNum}
+]]> 
+</select>
+
+<!-- 3. 문의 삽입 -->
+<insert id="insertReview" parameterType="com.kosta.openday.user.dto.ReviewDTO">
+<![CDATA[
+	insert into review values (#{rvNum},#{rvTitle},#{rvContent},#{rvDate},
+	#{rvStar},#{userId},#{scdNum})
+]]> 
+</insert>
+
+</mapper> 
