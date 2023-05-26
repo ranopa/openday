@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href='<c:url value="/resources/css/notice/noticeList.css" />'	rel="stylesheet">
+<link href='<c:url value="/resources/css/adm/noticeList.css" />'	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src='<c:url value="/resources/js/notice/noticeList.js" />'></script>
+<script src='<c:url value="/resources/js/announcement/noticeList.js" />'></script>
 
 <!-- 일단 임시로 넣어줌 아이콘 문제임 -->
 <link rel="shortcut icon" href="#">
@@ -22,10 +22,10 @@
 			<a href="./inquiry" class="atag">문의하기</a>
 			<a href="./inquiryHistoryList" class="atag">문의내역</a>
 			<br><br>
-			<hr>
+
 			<table>
-			<tr><th>번호</th><th>제목</th><th>작성자</th><th>상태</th><th>작성날짜</th></tr>
-		</table>
+			<tr><th class="smallth">번호</th><th id="largeth">제목</th><th>작성자</th><th>상태</th><th>작성날짜</th></tr>
+			</table>
 	</div>
 	<div id="includeFooter" class="includeFooter">
 			<%@ include file="../footer.jsp"%>
