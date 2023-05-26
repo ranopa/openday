@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.openday.notification.dto.NotificationDTO;
+import com.kosta.openday.user.dto.NotificationDTO;
 
 @Repository
 public class NotificationDAOImpl implements NotificationDAO {
@@ -14,8 +14,8 @@ public class NotificationDAOImpl implements NotificationDAO {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public NotificationDTO selectNotification(Integer ntfNum) throws Exception {
-		return sqlSession.selectOne("mapper.notification.selectNotification", ntfNum);
+	public NotificationDTO selectNotification(Integer ntfId) throws Exception {
+		return sqlSession.selectOne("mapper.notification.selectNotification", ntfId);
 	}
 
 	@Override

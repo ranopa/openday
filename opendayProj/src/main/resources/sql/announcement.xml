@@ -5,48 +5,28 @@
 <mapper namespace="mapper.announcement">
 	<select id="selectAnnouncement"
 		parameterType="Integer"
-		resultType="com.kosta.openday.announcement.dto.AnnouncementDTO">
+		resultType="com.kosta.openday.adm.dto.AnnouncementDTO">
 		<![CDATA[
-		SELECT
-			anc_id as ancId,
-			anc_title as ancTitle,
-			anc_content as ancContent,
-			anc_viewCount as ancViewCount,
-			anc_type as ancType,
-			anc_upload_date as ancUploadDate,
-			fil_num as filNum
+		SELECT *
 		FROM announcement
-		where anc_id = #{ancNum}
+		where ancId = #{ancId}
 		]]>
 	</select>
 	
 	<select id="selectAnnouncementList"
-		resultType="com.kosta.openday.announcement.dto.AnnouncementDTO">
+		resultType="com.kosta.openday.adm.dto.AnnouncementDTO">
 		<![CDATA[
-		SELECT
-			anc_id as ancId,
-			anc_title as ancTitle,
-			anc_content as ancContent,
-			anc_viewCount as ancViewCount,
-			anc_type as ancType,
-			anc_upload_date as ancUploadDate,
-			fil_num as filNum
+		SELECT *
 		FROM announcement
 		]]>
 	</select>
 	
 	<insert id="insertAnnouncement">
 		<![CDATA[
-		INSERT INTO announcement
-		VALUES(
-			#{ancId},
-			#{ancTitle},
-			#{ancContent},
-			#{ancViewCount},
-			#{ancType},
-			#{ancUploadDate},
-			#{filNum}
-		)
+		insert into announcement
+		values (announcement_sqe,
+		#{ancTitle}, #{ancContent}, #{ancViewcount},
+		#{ancType}, #{ancUploadDate}, #{filNum}
 		]]>
 	</insert>
 </mapper>

@@ -1,6 +1,6 @@
 package com.kosta.openday.adm.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 //공지사항
 public class AnnouncementDTO {

@@ -29,7 +29,7 @@ public class UserController {
 	public String joinUser(@ModelAttribute UserDTO user) throws Exception {
 		try { 
 			System.out.println("success");
-			userService.JoinUser(user);
+			userService.joinUser(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

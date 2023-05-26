@@ -5,21 +5,34 @@
 <mapper namespace="mapper.schedule">
 <select id="selectScheduleByClassId"
 	parameterType="Integer"
-	resultType="com.kosta.openday.oclass.dto.ScheduleDTO">
-	select
-		scd_num as scdNum,
-		scd_date as scdDate,
-		scd_time as scdTime,
-		scd_loc as scdLoc,
-		scd_personnel as scdPersonnel,
-		scd_price as scdPrice,
-		scd_discount as scdDiscount,
-		scd_upload_date as scdUploadDate,
-		scd_status as scdStatus,
-		cls_id as clsId
+	resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	select *
 	from schedule
-	where cls_id = #{clsId}
+	where clsId = #{clsId}
 </select>
 
+<select id="selectSchedule"
+	parameterType="Integer"
+	resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	select *
+	from schedule
+	where scdNum = #{scdNum}
+</select>
+
+
+<insert id="insertSchedule" parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	insert into schedule
+	values (nextval(schedule_seq),
+		#{scdDate},
+		#{scdTime},
+		#{scdLoc},
+		#{scdPersonnel},
+		#{scdPrice},
+		#{scdDiscount},
+		#{scdUploadDate},
+		#{scdStatus},
+		#{clsId}
+	)
+</insert>
 
 </mapper>

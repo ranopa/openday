@@ -1,6 +1,6 @@
 package com.kosta.openday.user.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserDTO {
 	private String userId; //아이디
@@ -9,7 +9,6 @@ public class UserDTO {
 	private String userNickname; //별명 	
 	private String userTel; //번호
 	private String userAddress; //주소
-
 	private String emailVal; //입력이메일  
 	private String domain; //도메인
 	private String userEmail;//입력이메일 + 도메인 
@@ -18,7 +17,6 @@ public class UserDTO {
 	private String userActive; //활성화
 	private Integer userAccount; //계좌번호
 	private String userAlarm; //알림허용여부
-
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
 	private String authority; //권한
@@ -27,24 +25,9 @@ public class UserDTO {
 	public UserDTO() {}
 
 	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
-			String userAddress, String emailVal, String domain, String birthVal) {
-		super();
-		this.userId = userId;
-		this.userPassword = userPassword;
-		this.userName = userName;
-		this.userNickname = userNickname;
-		this.userTel = userTel;
-		this.userAddress = userAddress;
-		this.emailVal = emailVal;
-		this.domain = domain;
-		this.birthVal = birthVal;
-	}
-
-	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String userEmail, String birthVal, Date userBirth,
 			String userActive, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
 			String authority, Integer userFilenum) {
-		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
@@ -209,6 +192,5 @@ public class UserDTO {
 		this.userFilenum = userFilenum;
 	}
 
-	
 }
 
