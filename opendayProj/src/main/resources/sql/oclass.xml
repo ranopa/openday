@@ -110,25 +110,64 @@
 		]]>
 	</select>
 
-	<!-- 메인에서 찜 누르기 -->
-	<insert id="oClassHeartAdd" parameterType="Integer">
-	<![CDATA[
-			insert into heart values #{userId}, #{clsId}
-	]]>
-	</insert>
-
 	<!-- 메인 검색 필터에서 선택해서 조회 -->
 
 	<select id="searchSelect"
-		resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
-	<![CDATA[
-		select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
-	]]>
+		resultType="com.kosta.openday.teacher.dto.ScheduleDTO" parameterType="java.util.Map">
+		<choose>
+			<when test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+				]]>
+			</when>
+			<when test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where  s.scdDate between #{startDate} and #{endDate}
+				]]>
+			</when>
+			<when test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} 
+				]]>
+			</when>
+			<when test="#{scdLoc}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="#{startDate}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} and and o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="#{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{clsCode}
+				]]>
+			</otherwise>
+		</choose>
 	</select>
-	
+
+
 	<!-- 메인 검색 필터에서 전체 선택해서 조회 -->
-	
-	
+
 
 
 

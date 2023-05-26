@@ -63,8 +63,8 @@
 			<div class="filterUl1">
 				<p class="filterUlTitle">지역</p>
 				<ul>
-					<li>전체</li>
-					<li>서울</li>
+					<li value="all">전체</li>
+					<li value="">서울</li>
 					<li>경기</li>
 					<li>인천</li>
 					<li>강원</li>
