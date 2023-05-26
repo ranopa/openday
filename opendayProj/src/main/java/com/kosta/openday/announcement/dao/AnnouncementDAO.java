@@ -2,7 +2,7 @@ package com.kosta.openday.announcement.dao;
 
 import java.util.List;
 
-import com.kosta.openday.announcement.dto.AnnouncementDTO;
+import com.kosta.openday.adm.dto.AnnouncementDTO;
 
 public interface AnnouncementDAO {
 	public AnnouncementDTO selectAnnouncement(Integer ancId) throws Exception;

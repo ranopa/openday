@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.openday.announcement.dto.AnnouncementDTO;
+import com.kosta.openday.adm.dto.AnnouncementDTO;
 
 @Repository
 public class AnnouncementDAOImpl implements AnnouncementDAO {

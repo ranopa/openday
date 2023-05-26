@@ -2,16 +2,23 @@ package com.kosta.openday.oclass.dao;
 
 import java.util.List;
 
-
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.openday.oclass.dto.CategoryDTO;
-import com.kosta.openday.oclass.dto.OClassDTO;
-import com.kosta.openday.oclass.dto.ScheduleDTO;
+
+import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.adm.dto.CodeDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 
 @Repository
 public interface OClassDAO {
-	List<CategoryDTO> selectCategoryList() throws Exception; 
+	
+	public List<OClassDTO> selectClassList() throws Exception;
+	
+	public OClassDTO selectClassById(Integer clsId) throws Exception;
+	
+	public void insertClass(OClassDTO dto) throws Exception;
+	
+	public List<ScheduleDTO> selectScheduleByClass(Integer clsId) throws Exception;
+
+	List<CodeDTO> selectCategoryList() throws Exception; 
 }

@@ -5,31 +5,17 @@
 <mapper namespace="mapper.notification">
 	<select id="selectNotification"
 		parameterType="Integer"
-		resultType="com.kosta.openday.notification.dto.NotificationDTO">
+		resultType="com.kosta.openday.user.dto.NotificationDTO">
 		<![CDATA[
-		SELECT
-			ntf_num as ntfNum,
-			ntf_title as ntfTitle,
-			ntf_content as ntfContent,
-			ntf_type as ntfType,
-			ntf_created_at as ntfCreatedAt
-			user_num as userNum
-		FROM notification
-		where ntf_num = #{ntfNum}
+		SELECT * FROM notification
+		where ntfId = #{ntfId}
 		]]>
 	</select>
 	
 	<select id="selectNotificationList"
-		resultType="com.kosta.openday.notification.dto.NotificationDTO">
+		resultType="com.kosta.openday.user.dto.NotificationDTO">
 		<![CDATA[
-		SELECT
-			ntf_num as ntfNum,
-			ntf_title as ntfTitle,
-			ntf_content as ntfContent,
-			ntf_type as ntfType,
-			ntf_created_at as ntfCreatedAt
-			user_num as userNum
-		FROM notification
+		SELECT * FROM notification
 		]]>
 	</select>
 	
@@ -37,7 +23,7 @@
 		<![CDATA[
 		INSERT INTO notification
 		VALUES(
-			#{ntfNum},
+			nextval(notification_seq),
 			#{ntfTitle},
 			#{ntfContent},
 			#{ntfType},

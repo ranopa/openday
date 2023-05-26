@@ -22,7 +22,6 @@ public class OClassDTO {
 	public OClassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, String clsCurri,
 			Integer clsStar, Integer clsHeart, String clsStatus, Date clsCreatedAt, String clsOpenType, Integer filNum,
 			String userId, Integer reqId) {
-		super();
 		this.clsId = clsId;
 		this.clsName = clsName;
 		this.clsCode = clsCode;
