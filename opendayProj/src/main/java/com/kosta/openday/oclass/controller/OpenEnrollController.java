@@ -18,12 +18,12 @@ public class OpenEnrollController {
 
 	@RequestMapping(value = "/classOpen", method = RequestMethod.GET)
 	public String classOpenForm() {
-		return "classOpen";
+		return "classOpenEnrollment/classOpen";
 	}
 	
 	@RequestMapping(value = "/classEnrollment", method = RequestMethod.GET)
 	public String classEnrollmentForm() {
-		return "classEnrollment";
+		return "classOpenEnrollment/classEnrollment";
 	}
 	
 	

@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href='<c:url value="/resources/css/classOpen.css" />'	rel="stylesheet">
+<link href='<c:url value="/resources/css/classOpenEnrollment/classOpen.css" />'	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src='<c:url value="/resources/js/classOpen.js" />'></script>
+<script src='<c:url value="/resources/js/classOpenEnrollment/classOpen.js" />'></script>
 
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css" />
 <script	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
@@ -21,7 +21,7 @@
 
 <body>
 	
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header.jsp"%>
 	<section id="./classOpenForm">
 	<div id="div1">
 	<form id="form" action="classOpen" method="post">
@@ -94,6 +94,6 @@
 	</form>
 	</div>
 	</section>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 </body>
 </html>

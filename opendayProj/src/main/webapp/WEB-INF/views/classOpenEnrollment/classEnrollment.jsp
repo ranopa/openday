@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <c:set var="contextPath" value="${pageContext.request.contextPath }"/> --%>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href='<c:url value="/resources/css/classEnrollment.css" />'rel="stylesheet">
+<link href='<c:url value="/resources/css/classOpenEnrollment/classEnrollment.css" />'rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src='<c:url value="/resources/js/classEnrollment.js" />'></script>
+<script src='<c:url value="/resources/js/classOpenEnrollment/classEnrollment.js" />'></script>
 
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css" />
 <script	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
@@ -22,7 +22,7 @@
 <body>
 	<div id="includeWrapper">
 	<div id="includeHeader" class="includeHeader">
-		<%@ include file="header.jsp"%>
+		<%@ include file="../header.jsp"%>
 	</div>
 	<div id="div1">
 	<form id="form" action="classEnrollment" method="post">
@@ -223,7 +223,7 @@
 		</form>
 	</div>
 	<div id="includeFooter" class="includeFooter">
-			<%@ include file="footer.jsp"%>
+			<%@ include file="../footer.jsp"%>
 	</div>
 	</div>	
 </body>
