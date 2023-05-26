@@ -28,7 +28,7 @@
 	<!-- 파일업로드(유저프로필)  -->
 	<insert id="insertUserFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-		insert into file values(${fileNum},${fileClassification},${fileOriginalName},${fileSaveName},${fileSize},CURDATE())
+		insert into file values(nextval(file_seq),${fileClassification},${fileOriginalName},${fileSaveName},${fileSize},CURDATE())
 		]]> 
 	</insert>
 	
