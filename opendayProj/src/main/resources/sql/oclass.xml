@@ -5,6 +5,7 @@
 
 <mapper namespace="mapper.oclass">
 
+
 	<!-- =========== 클래스 oclass =============================================== -->
 	<!-- 1. 클래스 번호로 클래스 조회 -->
 
@@ -98,5 +99,40 @@
 ]]>
 	</insert>
 
-</mapper> 
+
+
+
+	<!-- 메인에서 클래스 리스트 불러오기 -->
+	<select id="oClassList"
+		resultType="com.kosta.openday.user.dto.OClassDTO">
+		<![CDATA[
+			select * from oclass
+		]]>
+	</select>
+
+	<!-- 메인에서 찜 누르기 -->
+	<insert id="oClassHeartAdd" parameterType="Integer">
+	<![CDATA[
+			insert into heart values #{userId}, #{clsId}
+	]]>
+	</insert>
+
+	<!-- 메인 검색 필터에서 선택해서 조회 -->
+
+	<select id="searchSelect"
+		resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	<![CDATA[
+		select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+	]]>
+	</select>
+	
+	<!-- 메인 검색 필터에서 전체 선택해서 조회 -->
+	
+	
+
+
+
+
+
+</mapper>
 
