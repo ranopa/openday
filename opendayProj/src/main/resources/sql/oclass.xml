@@ -1,19 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-						
+
+
 <mapper namespace="mapper.oclass">
-	<!-- <select id="selectCategoryList" resultType="com.kosta.openday.oclass.dto.CategoryDTO">
-	<![CDATA[
-		select cod_num, cod_classfication, cod_name from code where cod_classfication = '카테고리'
-	]]>
-	</select>   -->
-	
-	<select id="selectCategoryList" resultType="com.kosta.openday.oclass.dto.CategoryDTO">
-	<![CDATA[
-		select cod_num as codNum, cod_classfication as codClassfication, cod_name as codName from code where cod_classfication = '카테고리'
-	]]>
-	</select>
-	
-	
-</mapper>
+<!-- =========== 클래스 oclass =============================================== -->
+<!-- 1. 클래스 번호로 클래스 조회 -->
+<select id="selectOClassByClsId" parameterType="Integer" resultType="OClassDTO">
+<![CDATA[ 
+	select cls_id as clsId, cls_name as clsName, cls_code as clsCode, cls_discription as clsDiscription, cls_curri as clsCurri,
+		   cls_star as clsStar, cls_heart as clsHeart, cls_status as clsStatus, cls_created_at as clsCreatedAt, 
+		   cls_open_type as clsOpenType, fil_num as filNum, user_id as userId, req_id as reqId 
+	from oclass 
+	where cls_id = #{id}
+]]> 
+</select>
+
+<!-- 2. 카테고리로 클래스목록 조회 -->
+<select id="selectOClassListByCategory" parameterType="String" resultType="OClassDTO">
+<![CDATA[
+	select cls_id as clsId, cls_name as clsName, cls_code as clsCode, cls_discription as clsDiscription, cls_curri as clsCurri,
+		   cls_star as clsStar, cls_heart as clsHeart, cls_status as clsStatus, cls_created_at as clsCreatedAt, 
+		   cls_open_type as clsOpenType, fil_num as filNum, user_id as userId, req_id as reqId 
+	from oclass where cls_code = #{code} 
+]]> 
+</select>
+
+<!-- 3. 전체 클래스목록 조회 -->
+<select id="selectOClassList" resultType="OClassDTO">
+<![CDATA[
+	select cls_id as clsId, cls_name as clsName, cls_code as clsCode, cls_discription as clsDiscription, cls_curri as clsCurri,
+		   cls_star as clsStar, cls_heart as clsHeart, cls_status as clsStatus, cls_created_at as clsCreatedAt, 
+		   cls_open_type as clsOpenType, fil_num as filNum, user_id as userId, req_id as reqId 
+	from oclass
+]]> 
+</select>
+
+<!-- 4. 클래스 생성 -->
+<insert id="insertOClass" parameterType="OClassDTO">
+<![CDATA[
+	insert into oclass values(#{clsId},#{clsName},#{clsCode},#{clsDiscription},#{clsCurri},#{clsStar},#{clsHeart},
+							  #{clsStatus},#{clsCreatedAt},#{clsOpenType},#{filNum},#{userId},#{reqId})
+]]> 
+</insert>
+
+<!-- =========== 클래스일정 schedule =============================================== -->
+<!-- 1. 클래스일정번호로 클래스일정조회 -->
+<select id="selectSchedule" parameterType="Integer" resultType="ScheduleDTO">
+<![CDATA[ 
+	select scd_num as scdNum, scd_date as scdDate, scd_time as scdTime, scd_loc as scdLoc, scd_personnel as scdPersonnel, 
+		   scd_price as scdPrice, scd_discount as scdDiscount, scd_upload_date as scdUploadDate, scd_status as scdStatus, cls_id as clsId 	   
+	from schedule 
+	where scd_num = #{num}
+]]> 
+</select>
+
+
+<!-- 2. 클래스번호로 클래스일정목록조회 -->
+<select id="selectScheduleListByClsId" parameterType="Integer" resultType="ScheduleDTO">
+<![CDATA[ 
+	select scd_num as scdNum, scd_date as scdDate, scd_time as scdTime, scd_loc as scdLoc, scd_personnel as scdPersonnel, 
+		   scd_price as scdPrice, scd_discount as scdDiscount, scd_upload_date as scdUploadDate, scd_status as scdStatus, cls_id as clsId 	   
+	from schedule 
+	where cls_id = #{id}
+]]> 
+</select>
+
+
+<!-- 3. 일정등록 -->
+<insert id="insertSchedule" parameterType="ScheduleDTO">
+<![CDATA[ 
+	insert into schedule 
+	values(#{scdNum},#{scdDate},#{scdTime},#{scdLoc},#{scdPersonnel},#{scdPrice},#{scdDiscount},#{scdUploadDate},#{scdStatus},#{clsId})
+]]> 
+</insert>
+
+
+
+
+ <!-- =========== 클래스찜 heart =============================================== -->
+ <!-- 1. 유저아이디로 클래스찜 조회 -->
+<select id="selectHeart" parameterType="String" resultType="heartDTO">
+<![CDATA[ 
+	select user_id as userId, cls_id as clsId 
+	from heart where user_id = #{id}
+]]> 
+</select>
+
+
+<!-- 2. 클래스번호로 찜개수 조회-->
+<select id="selectHeartCount" parameterType="Integer" resultType="Integer">
+<![CDATA[ 
+	select COUNT(*) from heart where cls_id = #{clsId}
+]]> 
+</select>
+
+
+<!-- 3. 찜하기 -->
+<insert id="insertHeart" parameterType="HeartDTO">
+<![CDATA[ 
+	insert into heart values(#{userId},#{clsId})
+]]> 
+</insert>
+ 
+ 
+</mapper> 
+
