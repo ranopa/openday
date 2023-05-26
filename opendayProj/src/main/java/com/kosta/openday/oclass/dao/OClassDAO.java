@@ -1,5 +1,10 @@
 package com.kosta.openday.oclass.dao;
 
-public interface OClassDAO {
+import java.util.List;
 
+import com.kosta.openday.oclass.dto.CategoryDTO;
+
+public interface OClassDAO {
+	List<CategoryDTO> selectCategoryList() throws Exception; 
+	
 }
