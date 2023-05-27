@@ -142,6 +142,7 @@
 
 	<!-- 메인 검색 필터에서 선택해서 조회 -->
 <!-- 아직 되는지 안되는지 모름 -->
+<!-- 진행중 -->
 	<select id="searchSelect"
 		resultType="com.kosta.openday.teacher.dto.ScheduleDTO" parameterType="java.util.Map">
 		<choose>
