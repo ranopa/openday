@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.openday.oclass.dao.OClassDAO;
+import com.kosta.openday.oclass.dto.CategoryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 @Service
@@ -16,7 +17,7 @@ public class OClassServiceImpl implements OClassService {
 
 	@Autowired
 	private OClassDAO oClassDAO;
-	
+
 	@Override
 	public List<OClassDTO> getSearchOClass(String loc, Date startDate, Date endDate, String clsCode) throws Exception {
 		Map<String,Object> param = new HashMap<>();
@@ -26,7 +27,9 @@ public class OClassServiceImpl implements OClassService {
 		param.put("clsCode", clsCode);
 		// TODO Auto-generated method stub
 		return oClassDAO.selectOClassList(param);
+	
+	
+		
 	}
-
 
 }

@@ -6,12 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
+<script src="<c:url value="/resources/js/user/jquery-3.3.1.js"/>"></script>
 <script src='<c:url value="/resources/js/user/header.js"/>'></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/header.css"/>">
+<!-- 달력 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
 
 </head>
 <body>
@@ -20,11 +27,16 @@
 		<div class="contentWrapper">
 			<header>
 				<ul class="topButtons">
-					<li class="topButtonColor tB"><a href=#>강사신청</a></li>
 
-					<li class="topButton tB"><a href=#>클래스요청</a></li>
+					<li class="nickname">닉네임</li>
+					<li class="logoutButton"><button>로그아웃</button></li>
 
-					<li class="topButton tB tBLast"><a href=#>고객센터</a></li>
+
+					<li class="topButtonColor tB topButtonsMargin"><a href=#>강사신청</a></li>
+
+					<li class="topButton tB topButtonsMargin"><a href=#>클래스요청</a></li>
+
+					<li class="topButton tB tBLast topButtonsMargin"><a href=#>고객센터</a></li>
 
 				</ul>
 		</div>
@@ -41,6 +53,9 @@
 				</div>
 				<ul class="verticalAlign">
 					<li><a href="#"><span
+							class="material-symbols-outlined alarm"> notifications </span>
+							<p>알림</p></a></li>
+					<li><a href="#"><span
 							class="material-symbols-outlined login"> person </span>
 							<p>로그인</p></a></li>
 					<li id="menu" onclick="disMenu()"><a href="#"><span
@@ -49,13 +64,13 @@
 				</ul>
 			</div>
 
-		
+
 
 
 
 			</header>
 		</div>
-			<hr class="hr2">
+		<hr class="hr2">
 	</div>
 	<div id='dis' class="searchFilterWrapper">
 
@@ -86,29 +101,62 @@
 				<p class="filterUlTitle">카테고리</p>
 				<select name="category" id="category">
 					<option value="all" selected>전체</option>
-					<option value="ceramic">도자기</option>
-					<option value="leather">가죽</option>
-					<option value="carpentry">목공</option>
-					<option value="metal">금속/악세서리</option>
-					<option value="glass">유리</option>
-					<option value="steering">조향/캔들/방향제</option>
-					<option value="ratan">라탄/마크라메</option>
-					<option value="embroidery">자수/재봉/펠트</option>
-					<option value="hobbyLeisure">취미/레저</option>
-					<option value="flowerBalloon">플라워/벌룬</option>
-					<option value="animal">애견</option>
-					<option value="art">미술</option>
-					<option value="music">음악(보컬/악기/프로그램 등)</option>
-					<option value="cooking">뷰티/미용</option>
-					<option value="cooking">쿠킹</option>
-					<option value="handmade">핸드메이드</option>
-					<option value="kids">키즈</option>
-					<option value="etc">기타</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					<option value="codName">${codName}</option>
+					
 
 				</select>
 			</div>
+<!-- 검색 필터 달력 -->
+<div class="filterUl3">
+				<p class="filterUlTitle">요일</p>
+<div class="container px-1 px-sm-5 mx-auto searchDatepicker">
+  <form autocomplete="off searchDatepickerForm">
+    <div class="searchDatepickerDiv">
+      <div class="col-lg-6 col-11">
+        <div class="input-group input-daterange">
+          <input type="text" class="form-control input1" value="startDate" placeholder="Start Date" readonly>
+          <input type="text" class="form-control input2" value="endDate" placeholder="End Date" readonly>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
 
-			<div class="filterUl3">
+
+<!-- <div class="filterUl3">
+				<p class="filterUlTitle">요일</p>
+<div class="container px-1 px-sm-5 mx-auto searchDatepicker">
+  <form autocomplete="off">
+    <div class="flex-row d-flex justify-content-center">
+      <div class="col-lg-6 col-11">
+        <div class="input-group input-daterange">
+          <input type="text" class="form-control input1" placeholder="Start Date" readonly>
+          <input type="text" class="form-control input2" placeholder="End Date" readonly>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>-->
+<!-- 달력코드끝 -->
+			<!-- <div class="filterUl3">
 				<p class="filterUlTitle">요일</p>
 				<button type="button" class="multiSelectButton"
 					onclick="toggleSelection(this)">월</button>
@@ -125,7 +173,7 @@
 				<button type="button" class="multiSelectButton"
 					onclick="toggleSelection(this)">일</button>
 			</div>
-
+ -->
 			<div class="searchFilterButton">
 				<button type="button" class="refresh">
 					<span class="material-symbols-outlined"> refresh </span>

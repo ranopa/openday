@@ -13,10 +13,10 @@
   
   //menu only one click
 window.onload = function() {
-  var categoryButtons = document.querySelectorAll('.categoryButton');
+  var mainCategoryButton = document.querySelectorAll('.categoryButton');
 
   function toggleSelection(button) {
-    categoryButtons.forEach(function(btn) {
+    mainCategoryButton.forEach(function(btn) {
       if (btn !== button) {
         btn.classList.remove("selected");
       }
@@ -25,7 +25,7 @@ window.onload = function() {
     button.classList.toggle("selected");
   }
 
-  categoryButtons.forEach(function(button) {
+  mainCategoryButton.forEach(function(button) {
     button.addEventListener('click', function() {
       toggleSelection(this);
     });
@@ -72,5 +72,13 @@ function disMenu() {
   }
 }
 
-//menu or search
+//검색필터 달력
+$(document).ready(function(){
+
+$('.input-daterange').datepicker({
+    format: 'dd-mm-yyyy',
+   autoclose: true
+});
+
+});
 
