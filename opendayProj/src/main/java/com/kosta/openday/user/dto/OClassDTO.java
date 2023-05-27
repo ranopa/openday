@@ -7,6 +7,7 @@ public class OClassDTO {
 	private String clsName; // 클래스명
 	private String clsCode; // 코드(카테고리)
 	private String clsDescription; // 소개글
+	private Integer clsPrice; // 클래스 수강료
 	private String clsCurri;// 커리큘럼
 	private Integer clsStar; // 별점
 	private Integer clsHeart; // 하트수
@@ -19,7 +20,7 @@ public class OClassDTO {
 
 	public OClassDTO() {}
 
-	public OClassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, String clsCurri,
+	public OClassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, Integer clsPrice, String clsCurri,
 			Integer clsStar, Integer clsHeart, String clsStatus, Date clsCreatedAt, String clsOpenType, Integer filNum,
 			String userId, Integer reqId) {
 		super();
@@ -27,6 +28,7 @@ public class OClassDTO {
 		this.clsName = clsName;
 		this.clsCode = clsCode;
 		this.clsDescription = clsDescription;
+		this.clsPrice = clsPrice;
 		this.clsCurri = clsCurri;
 		this.clsStar = clsStar;
 		this.clsHeart = clsHeart;
@@ -52,6 +54,14 @@ public class OClassDTO {
 
 	public String getClsDescription() {
 		return clsDescription;
+	}
+
+	public Integer getClsPrice() {
+		return clsPrice;
+	}
+
+	public void setClsPrice(Integer clsPrice) {
+		this.clsPrice = clsPrice;
 	}
 
 	public String getClsCurri() {

@@ -6,9 +6,16 @@
 <head>
 <title>Home</title>
 <script src='<c:url value="/resources/js/user/main.js"/>'></script>
+
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/main.css"/>">
 
+
+
+<link rel="stylesheet" href="<c:url value="/resources/css/user/main.css"/>">
+
+<!-- 일단 임시로 넣어줌 아이콘 문제임 -->
+<link rel="shortcut icon" href="#">
 
 </head>
 <body>

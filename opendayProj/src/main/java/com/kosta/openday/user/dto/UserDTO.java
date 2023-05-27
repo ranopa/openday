@@ -206,7 +206,6 @@ public class UserDTO {
 	public void setUserFilenum(Integer userFilenum) {
 		this.userFilenum = userFilenum;
 	}
-
 	
 }
 
