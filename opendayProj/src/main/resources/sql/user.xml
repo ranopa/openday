@@ -36,7 +36,7 @@
 	<!-- 프로필수정 -->
 	<update id="updateUser" parameterType="java.util.Map">
 		<![CDATA[
-		update user set userNickname=#{nickname}, userTel=#{tel} where userId=#{id}
+		update user set userNickname=#{nickname}, userTel=#{tel}, filNum=#{filNum} where userId=#{id}
 		]]> 
 	</update> 
 	
@@ -46,5 +46,12 @@
 		select * from user where userId=#{id}
 		]]> 		 
 	</select>
+	
+	<!-- 회원탈퇴 -->
+	<update id="updateUserDelete" parameterType="String">
+	<![CDATA[
+		update user set userActivation = '0' where userId=#{id}
+	]]>
+	</update>
 	
 </mapper>

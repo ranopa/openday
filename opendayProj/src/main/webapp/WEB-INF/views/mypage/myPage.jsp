@@ -1,7 +1,9 @@
+<%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <c:set var="contextPath" value="<%=request.getContextPath()%>" /> --%>
+
 
 <!DOCTYPE html>
 <html>
@@ -21,25 +23,58 @@
 </head>
 <body>
 	<!--모달  -->
+	<form action="withdraw" method="post">
+	
+	<div class="w-modal">
+		<div class="w-wrap">
+			<h2 class="w-h2">회원탈퇴</h2>
+			<div class="w-txtbox">
+				<h3 class="w-h3">유의사항</h3>
+				<p class="w-p">열어데이 탈퇴시 등록된 클래스, 이용내역이 모두 삭제됩니다.</p>
+
+				<div class="w-check-btn">
+					<input type="checkbox" id="right" required>&nbsp;<label
+						for="right" class="w-span">유의사항을 확인하였으며, 동의합니다.</label>
+				</div>
+			</div>
+			<div class="w-btn-box">
+				<input type="submit" class="w-cancel-btn" value="탈퇴하기" >
+				<button type="button" class="w-submit-btn">돌아가기</button>
+			</div>
+		</div>
+	</div>
+</form>
 	<div class="modal">
-		<form action="editprofile" method="post" enctype="multipart/form-data" name="profileform">
+		<form action="editprofile" method="post" enctype="multipart/form-data"
+			name="profileform">
 			<div class="m-wrap">
 				<div class="m-container">
 					<h2 class="m-h2">프로필 수정</h2>
 					<div class="pf-box">
-						<img id="myImg"  class="picture" src="#" alt="회원 프로필 이미지">
+						<c:choose>
+							<c:when test="${not empty user.filNum} ">
+
+								<img src="img/${user.filNum}" class="picture" id="myImg"
+									alt="회원프로필이미지">
+							</c:when>
+							<c:otherwise>
+								<img src="resources/image/user/basic_profile.png"
+									class="picture" id="myImg" alt="회원프로필기본이미지">
+							</c:otherwise>
+						</c:choose>
+
 						<div class="custom-file-input">
-							<input name="file" type="file"
-						id="myfile" accept="image/*"/>
+							<input name="file" type="file" id="myfile" accept="image/*" />
 						</div>
 						<div class="center-box">
-							<button id="select-file" type="button" class="edit-btn">프로필 사진 변경하기</button>
+							<button id="select-file" type="button" class="edit-btn">프로필
+								사진 변경하기</button>
 						</div>
 					</div>
 					<div class="textbox">
 						<div class="e-box">
-							<p class="txt1 ptxt">계정 ID</p> 
- 							<p class="txt2 ptxt">${user.userId}</p> 
+							<p class="txt1 ptxt">계정 ID</p>
+							<p class="txt2 ptxt">${user.userId}</p>
 						</div>
 						<!-- <div class="e-box">
 							<p class="txt1 ptxt">닉네임</p>
@@ -48,18 +83,21 @@
 									value="중복확인" class="tel-check">
 							</div>
 						</div> -->
-						
+
 						<div class="e-box">
 							<p class="txt1 ptxt">닉네임</p>
 							<div class="e-box-tel">
-								<input type="text" class="ipbox" name="nickname" placeholder="${user.userNickname}"> <input type="button"
-									value="중복확인" class="tel-check" >
+								<input type="text" class="ipbox" name="nickname"
+									placeholder="${user.userNickname}"> <input
+									type="button" value="중복확인" class="tel-check">
+								<p></p>
 							</div>
 						</div>
 						<div class="e-box">
 							<p class="txt1 ptxt">전화번호</p>
 							<div class="e-box-tel">
-								<input type="text" class="ipbox" name="tel" placeholder="${user.userTel}"> <input type="button"
+								<input type="text" class="ipbox" name="tel"
+									placeholder="${user.userTel}"> <input type="button"
 									value="번호인증" class="tel-check">
 							</div>
 						</div>
@@ -79,10 +117,19 @@
 		<h2 class="my-h2">마이페이지</h2>
 		<div class="sec1">
 			<div class="mybox1 square">
-				<div class="myprofile-pic">
-					<p>이미지</p>
-					<P>성빈찡v</P>
-				</div>
+				<img src="resources/image/user/basic_profile.png"
+					class="myprofile-pic">
+				<%-- <c:choose>
+					<c:when test="${user.filNum eq null} ">
+						<img src="resources/image/user/basic_profile.png"
+							class="myprofile-pic">
+					</c:when>
+					<c:otherwise> 
+						  <img src="img/${user.filNum}" class="myprofile-pic">  
+					</c:otherwise>
+				</c:choose> --%>
+
+				<p class="tcen">${user.userNickname}</p>
 				<div class="myprofile">
 					<div class="border-bottom">
 						<p class="mymenu1">이메일</p>
@@ -90,7 +137,14 @@
 					</div>
 					<div class="border-bottom">
 						<p class="mymenu1">전화번호</p>
-						<p class="mymenu2">${user.userTel }</p>
+						<c:choose>
+							<c:when test="${empty user.userTel}">
+								<p class="mymenu2">전화번호를 등록해주세요</p>
+							</c:when>
+							<c:otherwise>
+								<p class="mymenu2">${user.userTel }</p>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div>
 						<button id="profile-edit-btn" class="myprofile-btn" type="button">프로필
@@ -142,7 +196,18 @@
 						<p class="mymenu2">팔로우한 강사님들을 모아보세요</p>
 					</div>
 				</div>
-			</a> <a href="">
+			</a>
+			<!-- 	<button type="button" id="withdraw-a"> -->
+			<!-- <div class="mybox7 square" >
+				<div class="mybox7 square">
+					<div class="mymenu-txt">
+						<span class="material-symbols-outlined"> person_off </span>
+						<p class="mymenu1">회원 탈퇴</p>
+						<p class="mymenu2">열어데이 회id="withdraw-a"원 탈퇴</p>
+					</div>
+				</div>
+			</div> -->
+			</a> <div id="withdraw-a">
 				<div class="mybox7 square">
 					<div class="mymenu-txt">
 						<span class="material-symbols-outlined"> person_off </span>
@@ -150,7 +215,7 @@
 						<p class="mymenu2">열어데이 회원 탈퇴</p>
 					</div>
 				</div>
-			</a>
+			</div>
 		</div>
 	</div>
 

@@ -52,10 +52,10 @@
                         </li>
                       
                         <li>
-                            &nbsp;&nbsp;&nbsp;<input type="text" class="ipbox" id="emailVal" name="emailVal" placeholder="이메일">
+                            <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="emailVal" name="emailVal" placeholder="이메일" required>
                             <span>&nbsp;@&nbsp;</span>
 
-                            <select id="domain" name="domain" class="ipbox select-email" >
+                            <select id="domain" name="domain" class="ipbox select-email" required>
                                 <option>선택</option>
                                 <option value="naver.com">naver.com</option>
                                 <option value="daum.net">gmail.com</option>
@@ -205,7 +205,7 @@
 본 약관은 2017년 07월 1일부터 적용한다.
                               </textarea>
                         </div>
-                        <p class="right"><input type="checkbox">&nbsp;&nbsp;위 약관에 동의합니다 </p>
+                        <p class="right"><input type="checkbox" required>&nbsp;&nbsp;위 약관에 동의합니다 </p>
                     </div>
             </div>
 

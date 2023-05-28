@@ -16,5 +16,14 @@ public class FileDAOImpl implements FileDAO {
 		sqlSession.insert("mapper.adm.insertFile", file);
 
 	}
+	@Override
+	public FileDTO selectFile(Integer fileId) throws Exception { 
+		return sqlSession.selectOne("mapper.adm.selectFile", fileId);
+	}
+	
+	@Override
+	public Integer selectNewFileId() throws Exception {
+		return sqlSession.selectOne("mapper.adm.newFileId");
+	}
 
 }

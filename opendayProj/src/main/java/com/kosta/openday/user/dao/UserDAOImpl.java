@@ -40,8 +40,14 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void updateUser(Map<String, String> map) throws Exception {
+	public void updateUser(Map<String, Object> map) throws Exception {
 		sqlSession.update("mapper.user.updateUser", map);
+		
+	}
+
+	@Override
+	public void updateUserDelete(String id) throws Exception {
+		sqlSession.update("mapper.user.updateUserDelete", id);
 		
 	}
 	

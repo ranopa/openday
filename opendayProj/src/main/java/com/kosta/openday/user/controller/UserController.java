@@ -4,19 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
+import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
@@ -58,8 +62,8 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			String id = "sbsb";
-			session.setAttribute("id", id);
-			UserDTO user = userService.getUserInfo(id);
+			session.setAttribute("id", id); 
+			UserDTO user = userService.getUserInfo(id); 
 			mav.addObject("user", user);
 			mav.setViewName("mypage/myPage");
 
@@ -71,25 +75,34 @@ public class UserController {
 	}
 
 	// 프로필수정
-	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
-
+	@RequestMapping(value = "/editprofile", method = RequestMethod.POST) 
 	public ModelAndView editProfile(HttpSession session,
-			@RequestParam(value = "file", required = false) MultipartFile file,
+			@RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestParam(value = "nickname", required = false) String nickname,
 			@RequestParam(value = "tel", required = false) String tel) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<>();
 		try {
-			if (file != null || nickname != null || tel != null) {
-//				String id = (String) session.getAttribute("id");
-//				Map<String, String> map = new HashMap<>();
-//				map.put("id", id);
-//				map.put("nickname", nickname);
-//				map.put("tel", tel);
-//				userService.editUserProfile(map, file);
-
+			String id = (String) session.getAttribute("id");
+			UserDTO user = userService.getUserInfo(id);
+			
+				map.put("id", id);
+				map.put("nickname", nickname); 
+				map.put("tel", tel);
+				
+				if(nickname.isEmpty()) {
+					map.put("nickname",user.getUserNickname()); 
+				}
+				if(tel.isEmpty()) {
+					map.put("tel",user.getUserTel()); 					
+				} 
+				if(file.isEmpty()) {
+					map.put("filNum",user.getFilNum()); 					
+				} 
+				
+				userService.editUserProfile(map, file); 
 				mav.setViewName("redirect:/mypage");
-
-			}
+ 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,6 +129,16 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return mav;
+	}
+	
+	@RequestMapping(value="/img/{filNum}", method=RequestMethod.GET)
+	public void image(@PathVariable Integer filNum, HttpServletResponse response) {
+		try { 
+			System.out.println("seucess");
+			userService.fileView(filNum, response.getOutputStream());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	// 찜한클래스
@@ -155,5 +178,14 @@ public class UserController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "/withdraw",method=RequestMethod.POST )
+	public String userWithdraw(HttpSession session) throws Exception {
+		String id = (String) session.getAttribute("id");
+		System.out.println("enter");
+		userService.withdrawUser(id); 
+		return "redirect:/";
+	}
+	
 
 }
