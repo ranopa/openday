@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="resources/css/user/join.css">
+<script src="resources/js/user/join.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -24,14 +27,17 @@
                         <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="userId" name="userId"
                             placeholder="아이디" required maxlength="15">
                         <input type="button" class="idcheck ck" id="idCheckBtn" value="중복확인">
+              			  <p id="idMessage"></p>
               			  </li>
                         <li>
                             <span class="red">*</span>&nbsp;&nbsp;<input type="password" class="ipbox" id="userPassword" name="userPassword"
                                 placeholder="비밀번호" required maxlength="15">
+                           
                         </li>
                         <li>
                             <span class="red">*</span>&nbsp;&nbsp;<input type="password" class="ipbox" id="userPw2"
                                 placeholder="비밀번호 확인" required>
+                             <span id="pwMessage"></span>
                         </li>
                         <li>
                             <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="userName" name="userName"

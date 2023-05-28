@@ -13,4 +13,5 @@ public interface UserService {
 	UserDTO getUserInfo(String id) throws Exception;
 	void fileView(Integer id, OutputStream out) throws Exception;
 	void withdrawUser(String id)throws Exception; 
+	int idCheck(String id) throws Exception;
 }

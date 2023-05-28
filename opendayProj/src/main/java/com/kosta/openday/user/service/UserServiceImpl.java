@@ -40,6 +40,18 @@ public class UserServiceImpl implements UserService {
 
 		userDAO.insertUser(user);
 	}
+	
+	//idcheck
+
+	@Override
+	public int idCheck(String id) throws Exception { 
+		UserDTO user = userDAO.selectUserInfo(id);
+		if(user == null) {
+			return 0;
+		}
+		return 0;
+		
+	}
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
@@ -83,4 +95,5 @@ public class UserServiceImpl implements UserService {
 		userDAO.updateUserDelete(id);
 		
 	}
+
 }

@@ -338,8 +338,8 @@ body {
 	border: 1px solid transparent;
 	margin: 0 auto;
 	background-image: linear-gradient(#fff, #fff),
-		linear-gradient(to right, rgba(76, 9, 255, 0.15),
-		rgba(255, 105, 105, 0.15));
+		linear-gradient(to right, rgba(76, 9, 255, 0.3),
+		rgba(255, 105, 105, 0.3));
 	border-radius: 8px;
 	border-image-slice: 1;
 	background-origin: border-box;
@@ -390,7 +390,7 @@ body {
 	height: 39.74px;
 	margin-top: 20px;
 	margin-left: 30px;
-	background: rgba(239, 235, 244, 0.5);
+	background: rgb(225 218 233 / 50%);
 	border-radius: 8px;
 	border-style: none;
 	cursor: pointer;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,7 +56,19 @@ public class UserController {
 		}
 		return "mypage/joinResult";
 	}
-
+	//회원가입 id중복확인
+	@RequestMapping(value="/idCheck", produces = "text/plain;charset=UTF-8")
+	@ResponseBody 
+	public String idCheck(@RequestParam("userId") String id,
+			@RequestParam("userPassword") String pw) throws Exception{
+		int result = userService.idCheck(id); 
+		String mesg = "사용가능한 아이디입니다.";
+		if(result==1) {
+			mesg = "이미 존재하는 아이디입니다.";
+		} 
+		return mesg;		
+	}
+	
 	// 마이페이지 (테스트용)
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPayge() {
