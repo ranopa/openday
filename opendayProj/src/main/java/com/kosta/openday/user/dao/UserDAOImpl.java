@@ -38,5 +38,11 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("mapper.user.selectUser", id); 
 				
 	}
+
+	@Override
+	public void updateUser(Map<String, String> map) throws Exception {
+		sqlSession.update("mapper.user.updateUser", map);
+		
+	}
 	
 }

@@ -9,4 +9,10 @@
 	select * from code where codClassfication='카테고리'
 </select>
 
+<!-- 파일삽입 -->
+<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
+	<![CDATA[
+	insert into file values(nextval(file_seq),#{file},#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
+	]]>
+</insert>
 </mapper>
