@@ -208,6 +208,16 @@ public class UserDTO {
 	public void setUserFilenum(Integer userFilenum) {
 		this.userFilenum = userFilenum;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userNickname=" + userNickname + ", userTel=" + userTel + ", userAddress=" + userAddress
+				+ ", emailVal=" + emailVal + ", domain=" + domain + ", userEmail=" + userEmail + ", birthVal="
+				+ birthVal + ", userBirth=" + userBirth + ", userActivation=" + userActivation + ", userAccount="
+				+ userAccount + ", userAlarm=" + userAlarm + ", userJoindate=" + userJoindate + ", userPrefer="
+				+ userPrefer + ", authority=" + authority + ", userFilenum=" + userFilenum + "]";
+	}
 	
 }
 

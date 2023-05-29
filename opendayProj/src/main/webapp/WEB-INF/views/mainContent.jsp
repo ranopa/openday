@@ -107,31 +107,31 @@
 			</table>
 			<div class="newList">
 
-<%-- <c:forEach items="${collectoDTO}" var="new" > --%>
+<c:forEach items="${nlist}" var="list" >
 			<table class="oclassTable">
 				<tr>
 					<td class="oclass">
-						<div class="ssum-img">${collectoDTO.oclassDTO.filNum}</div>
+						<div class="ssum-img">${list.filNum}</div>
 						<div class="txt-box">
 							<div class="tb1">
 								<div class="t1">
-									<span>지역</span> <span>|</span> <span>${collectoDTO.oclassDTO.clsCode}</span>
+									<span>지역</span> <span>|</span> <span>${list.clsCode}</span>
 								</div>
 								<div class="t2">
 									<span><span class="material-symbols-outlined oclassIcon">
-											star </span>${collectoDTO.oclassDTO.clsStar}</span><span>(${collectoDTO.reviewCount})</span> <span><span
-										class="material-symbols-outlined oclassIcon"> favorite </span>${collectoDTO.oclassDTO.clsHeart}</span>
+											star </span>${list.clsStar}</span><span>(${list.reviewCount})</span> <span><span
+										class="material-symbols-outlined oclassIcon"> favorite </span>${list.clsHeart}</span>
 								</div>
 							</div>
-							<p class="cls-name">${collectoDTO.oclassDTO.clsName}</p>
+							<p class="cls-name">${list.clsName}</p>
 							<div class="tb2">
-								<strike><p>${collectoDTO.oclassDTO.clsPrice}</p></strike> <span>${collectoDTO.scheduleDTO.scdDiscount}</span> <span>${collectoDTO.finalPrice}</span>
+								<p><strike>${list.clsPrice}</strike></p> <span>${list.scdDiscount}</span> <span>${list.finalPrice}</span>
 							</div>
 						</div>
 					</td>
 				</tr>
 			</table>
-<%-- </c:forEach> --%>
+ </c:forEach> 
 </div>
 
 

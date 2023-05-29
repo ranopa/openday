@@ -18,5 +18,5 @@ public interface UserDAO {
 	public UserDTO selectUserLogin(Map<String,String> map) throws Exception;
 	List<OClassDTO> selectOClassList(Map<String, Object> param) throws Exception;
 	public List<CollectDTO> selectmainNewOClassList() throws Exception;
-	CollectDTO collectDTO();
+	
 }

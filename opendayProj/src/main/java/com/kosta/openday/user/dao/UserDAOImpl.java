@@ -13,11 +13,7 @@ import com.kosta.openday.user.dto.UserDTO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-	@Override
-	public CollectDTO collectDTO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;

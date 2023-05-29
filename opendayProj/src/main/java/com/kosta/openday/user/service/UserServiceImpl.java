@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 	public UserDTO userLogin(Map<String, String> map) throws Exception {
 	    UserDTO user = userDAO.selectUserLogin(map);
 
-	    if (user != null || user.getUserActivation().equals("0")) {
+	    if (user == null || user.getUserActivation().equals("0")) {
 	        // 회원 활성화가 0인 경우 로그인 실패 처리
 	    throw new Exception("로그인 실패");
 	    }
@@ -95,4 +95,5 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
 }

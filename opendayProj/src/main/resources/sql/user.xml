@@ -3,65 +3,6 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.user">
-<resultMap type="com.kosta.openday.user.dto.OClassDTO" id="oClassMap">
-<id property="clsId" column="clsId"/>
-<id property="clsName" column="clsName"/>
-<id property="clsCode" column="clsCode"/>
-<id property="clsDescription" column="clsDescription"/>
-<id property="clsPrice" column="clsPrice"/>
-<id property="clsCurri" column="clsCurri"/>
-<id property="clsStar" column="clsStar"/>
-<id property="clsHeart" column="clsHeart"/>
-<id property="clsStatus" column="clsStatus"/>
-<id property="clsCreatedAt" column="clsCreatedAt"/>
-<id property="clsOpenType" column="clsOpenType"/>
-<id property="filNum" column="filNum"/>
-<id property="userId" column="userId"/>
-<id property="reqId" column="reqId"/>
-</resultMap>
-<resultMap type="com.kosta.openday.teacher.dto.ScheduleDTO" id="scheduleMap">
-<id property="scdNum" column="scdNum"/>
-<id property="scdDate" column="scdDate"/>
-<id property="scdTime" column="scdTime"/>
-<id property="scdLoc" column="scdLoc"/>
-<id property="scdPersonnel" column="scdPersonnel"/>
-<id property="scdDiscount" column="scdDiscount"/>
-<id property="scdUploadDate" column="scdUploadDate"/>
-<id property="scdStatus" column="scdStatus"/>
-<id property="clsId" column="clsId"/>
-</resultMap>
-<resultMap type="com.kosta.openday.user.dto.ReviewDTO" id="reviewMap">
-<id property="rvNum" column="rvNum"/>
-<id property="rvTitle" column="rvTitle"/>
-<id property="rvContent" column="rvContent"/>
-<id property="rvDate" column="rvDate"/>
-<id property="rvStar" column="rvStar"/>
-<id property="userId" column="userId"/>
-<id property="scdNum" column="scdNum"/>
-</resultMap>
-<resultMap type="com.kosta.openday.user.dto.UserDTO" id="userMap">
-<id property="userId" column="userId"/>
-<id property="userPassword" column="userPassword"/>
-<id property="userName" column="userName"/>
-<id property="userNickname" column="userNickname"/>
-<id property="userTel" column="userTel"/>
-<id property="userAddress" column="userAddress"/>
-<id property="emailVal" column="emailVal"/>
-<id property="domain" column="domain"/>
-<id property="userEmail" column="userEmail"/>
-<id property="birthVal" column="birthVal"/>
-<id property="userBirth" column="userBirth"/>
-<id property="userActivation" column="userActivation"/>
-
-</resultMap>
-
-<resultMap type="com.kosta.openday.user.dto.CollectDTO" id="CollectMap">
-<collection property="oClass" resultMap="oClassMap"/>
-<collection property="schedule" resultMap="scheduleMap"/>
-<collection property="review" resultMap="reviewMap"/>
-<collection property="user" resultMap="userMap"/>
-</resultMap>
-
 
 	<!--회원가입 -->
 	<insert id="insertUser"
@@ -131,9 +72,11 @@
 	<!-- s.scdLoc, s.scdDiscount, o.clsName, o.clsCode, o.clsPrice, o.clsStar, 
 		o.clsHeart, o.filNum -->
 
-	<select id="collect"
+	<select id="mainNewOClassList"
 		resultType="com.kosta.openday.user.dto.CollectDTO"> 
-		<![CDATA[ SELECT s.*, o.*, u.*, (
+		<![CDATA[ select scdLoc, scdDiscount, clsName, clsCode, clsPrice, clsStar, clsHeart, filNum, reviewCount, finalPrice from ( 
+	SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, o.clsCode AS clsCode, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+		o.clsHeart AS clsHeart, o.filNum AS filNum, (
 			    SELECT COUNT(*) 
 			    FROM review 
 			    WHERE scdNum = s.clsId
@@ -142,8 +85,10 @@
 				FROM schedule s
 				JOIN oclass o ON s.clsId = o.clsId
 				JOIN user u ON u.userId = o.userId
-				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY ]]>
-	</select>
+				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY) AS a]]>
+	</select>	
+	
+
 
 
 </mapper>

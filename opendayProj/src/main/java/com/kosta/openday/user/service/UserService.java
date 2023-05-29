@@ -23,5 +23,7 @@ public interface UserService {
 			throws Exception;
 
 	public List<CollectDTO> getMainNewOClassList() throws Exception;
+	
+	
 
 }
