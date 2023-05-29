@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 		if(user == null) {
 			return 0;
 		}
-		return 0;
+		return 1;
 		
 	}
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 		fileDAO.insertFile(fil);
 		
 		filNum = fileDAO.selectNewFileId(); 
-		File dfile = new File("D:\\HSB\\openday\\opendayProj\\src\\main\\webapp\\resources\\upload\\"+filNum+file.getOriginalFilename()); 
+		File dfile = new File("resources/upload/"+filNum+file.getOriginalFilename()); 
 		file.transferTo(dfile);
 		map.put("filNum", filNum);
 		}   
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
 		FileDTO file = fileDAO.selectFile(id);
-		FileInputStream fis = new FileInputStream("D:\\HSB\\openday\\opendayProj\\src\\main\\webapp\\resources\\upload\\"+file.getFilNum()+file.getFilOrgName());
+		FileInputStream fis = new FileInputStream("resources/upload/"+file.getFilNum()+file.getFilOrgName());
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}

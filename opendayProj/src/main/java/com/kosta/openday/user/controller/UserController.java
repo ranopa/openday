@@ -57,10 +57,11 @@ public class UserController {
 		return "mypage/joinResult";
 	}
 	//회원가입 id중복확인
-	@RequestMapping(value="/idCheck", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value="/idCheck",method=RequestMethod.GET)
 	@ResponseBody 
 	public String idCheck(@RequestParam("userId") String id,
 			@RequestParam("userPassword") String pw) throws Exception{
+		System.out.println("success");
 		int result = userService.idCheck(id); 
 		String mesg = "사용가능한 아이디입니다.";
 		if(result==1) {

@@ -14,7 +14,7 @@ body {
 }
 .w-modal {
 	width: 100%;
-	height: 100%;
+	height: 1200px;
 	background-color: rgba(0, 0, 0, 0.6);
 	margin: 0 auto;  
 	position: fixed;
@@ -251,7 +251,7 @@ body {
 .modal {
 	position: fixed;
 	width: 100%;
-	height: 100%;
+	height: 1200px;
 	background-color: rgba(0, 0, 0, 0.6);
 	opacity: 0;
 	visibility: hidden;
@@ -267,7 +267,7 @@ body {
 #wrap {
 	/* background-color: pink; */
 	width: 1280px;
-	height: 1200px;
+	height: 1000px;
 	position: relative;
 	margin: -50px auto;
 	/* display: inline-flex;

@@ -5,18 +5,18 @@
  //idcheck
  
  var checked="N";
-		//아이디 중복 체크
+		//아이디 중복 체크 
 		$("#idCheckBtn").click(function() {			
 			$.ajax({
 				url : 'idCheck',
 				type : 'get',
 				data : {
-					id : $("#userId").val()
+					userId : $("#userId").val()
 				},
 				dataType : 'text', 
 				success : function(responseData, status, xhr) {	
 					var message = $("#idMessage");
-					if(responseData=="사용가능한 아이디입니다"){
+					if(responseData=="사용가능한 아이디입니다."){
 						message.css("color", "blue");
 						checked = "Y";
 					}else{
