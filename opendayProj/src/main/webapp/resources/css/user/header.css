@@ -419,6 +419,8 @@ select:focus {
 	border-radius: 5px;
 }
 
+
+
 .searchFilterButton button:hover {
 	cursor: pointer;
 }

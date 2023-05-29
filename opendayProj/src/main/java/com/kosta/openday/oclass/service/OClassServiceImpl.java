@@ -27,17 +27,15 @@ public class OClassServiceImpl implements OClassService {
 	@Autowired
 	private OClassDAO oClassDAO;
 
-	@Override
-	public List<OClassDTO> getSearchOClass(String loc, Date startDate, Date endDate, String clsCode) throws Exception {
-		Map<String,Object> param = new HashMap<>();
-		param.put("scdLoc", loc);
-		param.put("startDate", startDate);
-		param.put("endDate", endDate);
-		param.put("clsCode", clsCode);
-		// TODO Auto-generated method stub
-		return oClassDAO.selectOClassList(param);
-	
-	}
+	/*
+	 * @Override public List<OClassDTO> getSearchOClass(String loc, Date startDate,
+	 * Date endDate, String clsCode) throws Exception { Map<String,Object> param =
+	 * new HashMap<>(); param.put("scdLoc", loc); param.put("startDate", startDate);
+	 * param.put("endDate", endDate); param.put("clsCode", clsCode); // TODO
+	 * Auto-generated method stub return oClassDAO.selectOClassList(param);
+	 * 
+	 * }
+	 */
 
 
 	

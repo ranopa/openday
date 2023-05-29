@@ -1,49 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-						
+
 <mapper namespace="mapper.user">
-	<!--회원가입  -->
-	<insert id="insertUser" parameterType="com.kosta.openday.user.dto.UserDTO">
+<resultMap type="com.kosta.openday.user.dto.OClassDTO" id="oClassMap">
+<id property="clsId" column="clsId"/>
+<id property="clsName" column="clsName"/>
+<id property="clsCode" column="clsCode"/>
+<id property="clsDescription" column="clsDescription"/>
+<id property="clsPrice" column="clsPrice"/>
+<id property="clsCurri" column="clsCurri"/>
+<id property="clsStar" column="clsStar"/>
+<id property="clsHeart" column="clsHeart"/>
+<id property="clsStatus" column="clsStatus"/>
+<id property="clsCreatedAt" column="clsCreatedAt"/>
+<id property="clsOpenType" column="clsOpenType"/>
+<id property="filNum" column="filNum"/>
+<id property="userId" column="userId"/>
+<id property="reqId" column="reqId"/>
+</resultMap>
+<resultMap type="com.kosta.openday.teacher.dto.ScheduleDTO" id="scheduleMap">
+<id property="scdNum" column="scdNum"/>
+<id property="scdDate" column="scdDate"/>
+<id property="scdTime" column="scdTime"/>
+<id property="scdLoc" column="scdLoc"/>
+<id property="scdPersonnel" column="scdPersonnel"/>
+<id property="scdDiscount" column="scdDiscount"/>
+<id property="scdUploadDate" column="scdUploadDate"/>
+<id property="scdStatus" column="scdStatus"/>
+<id property="clsId" column="clsId"/>
+</resultMap>
+<resultMap type="com.kosta.openday.user.dto.ReviewDTO" id="reviewMap">
+<id property="rvNum" column="rvNum"/>
+<id property="rvTitle" column="rvTitle"/>
+<id property="rvContent" column="rvContent"/>
+<id property="rvDate" column="rvDate"/>
+<id property="rvStar" column="rvStar"/>
+<id property="userId" column="userId"/>
+<id property="scdNum" column="scdNum"/>
+</resultMap>
+<resultMap type="com.kosta.openday.user.dto.UserDTO" id="userMap">
+<id property="userId" column="userId"/>
+<id property="userPassword" column="userPassword"/>
+<id property="userName" column="userName"/>
+<id property="userNickname" column="userNickname"/>
+<id property="userTel" column="userTel"/>
+<id property="userAddress" column="userAddress"/>
+<id property="emailVal" column="emailVal"/>
+<id property="domain" column="domain"/>
+<id property="userEmail" column="userEmail"/>
+<id property="birthVal" column="birthVal"/>
+<id property="userBirth" column="userBirth"/>
+<id property="userActivation" column="userActivation"/>
+
+</resultMap>
+
+<resultMap type="com.kosta.openday.user.dto.CollectDTO" id="CollectMap">
+<collection property="oClass" resultMap="oClassMap"/>
+<collection property="schedule" resultMap="scheduleMap"/>
+<collection property="review" resultMap="reviewMap"/>
+<collection property="user" resultMap="userMap"/>
+</resultMap>
+
+
+	<!--회원가입 -->
+	<insert id="insertUser"
+		parameterType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[
 			insert into user values 
 			(#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userTel},#{userAddress}, #{userEmail}, #{userBirth},
 			'1', null, 'y', CURDATE(), null, '1', null)
-		]]> 
+		]]>
 	</insert>
 	<!--선호카테고리 저장 -->
 	<update id="updateUserPrefer" parameterType="java.util.Map">
 		<![CDATA[
 			update user set userPreference = #{prefer} where userId=#{id}  
 			
-		]]> 
+		]]>
 	</update>
 	<!--선호카테고리 받아오기 -->
-	<select id="selectUserPrefer" parameterType="String" resultType="String">
+	<select id="selectUserPrefer" parameterType="String"
+		resultType="String">
 		<![CDATA[
 			select userPreference from user where userId=#{id} 
-		]]> 
+		]]>
 	</select>
-	
-	<!-- 파일업로드(유저프로필)  -->
-	<insert id="insertUserFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
+
+	<!-- 파일업로드(유저프로필) -->
+	<insert id="insertUserFile"
+		parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
 		insert into file values(nextval(file_seq),${fileClassification},${fileOriginalName},${fileSaveName},${fileSize},CURDATE())
-		]]> 
+		]]>
 	</insert>
-	
+
 	<!-- 프로필수정 -->
 	<update id="updateUser" parameterType="java.util.Map">
 		<![CDATA[
 		update user set userNickname=${nickname}, userTel=${tel} where userId=${id}
-		]]> 
-	</update> 
-	
+		]]>
+	</update>
+
 	<!-- select user -->
-	<select id="selectUser" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO">
+	<select id="selectUser" parameterType="String"
+		resultType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[ 		
 		select * from user where userId=${id}
-		]]> 		 
+		]]>
 	</select>
-	
+
+	<!-- 로그인 -->
+	<select id="userLogin" parameterType="java.util.Map"
+		resultType="com.kosta.openday.user.dto.UserDTO">
+	<![CDATA[
+	select * from user where userId=#{userId} and userPassword=#{userPassword}
+	]]>
+
+	</select>
+
+	<!-- 아이디찾기폼 -->
+	<!-- <select id="userFindId" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO"> 
+		<![CDATA[ select * from user where userEmail=#{userEmail} ]]> </select> -->
+	<!-- 비밀번호찾기폼 -->
+	<!-- <select id="userFindId" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO"> 
+		<![CDATA[ select * from user where userId=#{userId} and userEmail=#{userEmail} 
+		]]> </select> -->
+
+	<!-- 메인 클래스 신규리스트 -->
+	<!-- s.scdLoc, s.scdDiscount, o.clsName, o.clsCode, o.clsPrice, o.clsStar, 
+		o.clsHeart, o.filNum -->
+
+	<select id="collect"
+		resultType="com.kosta.openday.user.dto.CollectDTO"> 
+		<![CDATA[ SELECT s.*, o.*, u.*, (
+			    SELECT COUNT(*) 
+			    FROM review 
+			    WHERE scdNum = s.clsId
+				) AS reviewCount,
+				(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s
+				JOIN oclass o ON s.clsId = o.clsId
+				JOIN user u ON u.userId = o.userId
+				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY ]]>
+	</select>
+
+
 </mapper>

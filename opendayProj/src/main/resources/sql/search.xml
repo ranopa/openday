@@ -1,8 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-						
+
 <mapper namespace="mapper.search">
 
+	<select id="searchSelect"
+		resultType="com.kosta.openday.teacher.dto.ScheduleDTO"
+		parameterType="java.util.Map">
+		<choose>
+			<!-- <when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId where t.tchcNickname=#{tchcNickname}
+				]]>
+			</when>
+
+			<when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId where t.tchcNickname=#{tchcNickname} and o.clsCode=#{codNum}
+				]]>
+			</when>
+			<when
+				test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdDate between #{startDate} and #{endDate}
+				]]>
+			</when>
+			<when
+				test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc}
+				]]>
+			</when>
+			<when test="#{scdLoc}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="#{startDate}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc} and and o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="#{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}
+				]]>
+			</when>
+
+			<when
+				test="!(#{scdLoc} == 'all' and #{startDate} == 'all' and #{clsCode} == 'all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
+					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{codNum}
+				]]>
+			</when> -->
+
+			<!-- 아래는 선생님 위에는 내가 추가 위에는 검색창에 강사 닉넴쓸때 -->
+			<when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+				]]>
+			</when>
+			<when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where o.clsCode=#{codNum}
+				]]>
+			</when>
+			<when
+				test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where  s.scdDate between #{startDate} and #{endDate}
+				]]>
+			</when>
+			<when
+				test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} 
+				]]>
+			</when>
+			<when test="#{scdLoc}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{codNum}
+				]]>
+			</when>
+			<when test="#{startDate}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} and and o.clsCode=#{codNum}
+				]]>
+			</when>
+			<when test="#{clsCode}.equals('all')">
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{codNum}
+				]]>
+			</otherwise>
+		</choose>
+	</select>
 
 </mapper>

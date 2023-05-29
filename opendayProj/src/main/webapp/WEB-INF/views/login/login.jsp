@@ -14,35 +14,30 @@
 	<div class="loginWrapper">
 		<div class="loginContentWrapper">
 			<div class="loginPageTitleWrapper">
+
 				<p class="loginPageTitle">로그인</p>
 			</div>
-			<ul class="loginContainer">
-				<li><input type="text" class="loginBox" id="loginUserId"
-					name="loginUserId" placeholder="아이디" required maxlength="15">
-					<!-- <input type="button" class="loginIdcheck loginCk" id="idCheckBtn"
-					value="중복확인">
-					 --></li>
-				<li><input type="password" class="loginBox pwBox"
-					id="loginUserPassword" name="loginUserPassword" placeholder="비밀번호"
-					required maxlength="15"></li>
-			</ul>
+			<form id="loginForm" action="login" method="post">
+				<ul class="loginContainer">
+					<li><input type="text" class="loginBox" id="userId"
+						name="userId" placeholder="아이디" required maxlength="15"></li>
+					<li><input type="password" class="loginBox pwBox"
+						id="userPassword" name="userPassword" placeholder="비밀번호" required
+						maxlength="15"></li>
+				</ul>
 
-			<ul class="loginPageFind">
-				<li>아이디 찾기</li>
-				<li>비밀번호 찾기</li>
-			</ul>
+				<ul class="loginPageFind">
+					<li><a href="findid">아이디 찾기</a></li>
+					<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
+				</ul>
 
-			<div class="loginPageBtns">
-				<button type="submit" class="loginBtn">로그인</button>
-				<button type="button" class="joinBtn">회원가입</button>
-			</div>
-			<!-- 
-			<div class="loginBtns">
-				<button type="button" class="cancel-btn">취소</button>
-				<button type="submit" class="submit-btn">가입완료</button>
-			</div>
+				<div class="loginPageBtns">
+					<input type="submit" class="loginBtn" value="로그인"> <input
+						type="button" class="joinBtn" value="회원가입">
+				</div>
 
- -->
+
+			</form>
 		</div>
 	</div>
 	<%@ include file="../footer.jsp"%>

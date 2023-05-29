@@ -7,6 +7,6 @@ import com.kosta.openday.oclass.dto.CategoryDTO;
 
 public interface CategoryDAO {
 
-	List<CategoryDTO> searchCategoryList(Map<String, Object> param) throws Exception;
+	List<CategoryDTO> searchCategoryList() throws Exception;
 	
 }

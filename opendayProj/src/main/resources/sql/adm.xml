@@ -3,5 +3,7 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.adm">
-
+<select id="selectCategoryList" resultType="com.kosta.openday.adm.dto.CodeDTO">
+    select * from code where codClassfication='카테고리'
+</select>
 </mapper>

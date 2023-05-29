@@ -16,7 +16,10 @@ import com.kosta.openday.user.dto.RequestDTO;
 
 public interface OClassService {
 
-	List<OClassDTO> getSearchOClass(String loc, Date startDate, Date endDate, String clsCode) throws Exception;
+	/*
+	 * List<OClassDTO> getSearchOClass(String loc, Date startDate, Date endDate,
+	 * String clsCode) throws Exception;
+	 */
 	
 
 	

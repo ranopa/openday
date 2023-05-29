@@ -82,3 +82,14 @@ $('.input-daterange').datepicker({
 
 });
 
+//검색필터 초기화
+
+ function resetFilters() {
+    // 필터 값을 초기화하는 코드 작성
+    // 예: JavaScript로 필터 값을 변경하거나, 폼을 초기화하거나, URL을 초기값으로 설정 등
+    // 필터 값 초기화 후 검색을 다시 수행하거나, 페이지를 다시 로드할 수 있습니다.
+    var searchForm = document.getElementById('searchForm');
+    searchForm.reset(); // 폼 초기화
+    searchForm.submit(); // 검색 수행
+    // 다른 필터 초기화 코드 작성
+  }

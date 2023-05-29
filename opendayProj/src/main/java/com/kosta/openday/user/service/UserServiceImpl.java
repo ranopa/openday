@@ -2,12 +2,19 @@ package com.kosta.openday.user.service;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.kosta.openday.user.dao.UserDAO;
+import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.OClassDTO;
+
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service
@@ -40,8 +47,52 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO getUserInfo(String id) throws Exception { 
+	public UserDTO getUserInfo(String id) throws Exception {
 		return userDAO.selectUserInfo(id);
 
 	}
+
+	/*
+	 * @Override public UserDTO userLogin(Map<String, String> map) throws Exception
+	 * { return userDAO.selectUserLogin(map);
+	 * 
+	 * }
+	 */
+
+	@Override
+	public UserDTO userLogin(Map<String, String> map) throws Exception {
+	    UserDTO user = userDAO.selectUserLogin(map);
+
+	    if (user != null || user.getUserActivation().equals("0")) {
+	        // 회원 활성화가 0인 경우 로그인 실패 처리
+	    throw new Exception("로그인 실패");
+	    }
+
+	    return user;
+	}
+	
+	@Override
+	public List<OClassDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode) throws Exception {
+		Map<String, Object> param = new HashMap<>();
+		param.put("scdLoc", scdLoc);
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("clsCode", clsCode);
+		
+		// TODO Auto-generated method stub
+		return userDAO.selectOClassList(param);
+
+	}
+
+	/*
+	 * String scdLoc, Integer scdDiscount, String clsName, String clsCode, Integer
+	 * clsPrice, Integer clsStar,Integer clsHeart, Integer filNum
+	 */
+
+	@Override
+	public List<CollectDTO> getMainNewOClassList() throws Exception {
+		return userDAO.selectmainNewOClassList();
+
+	}
+
 }

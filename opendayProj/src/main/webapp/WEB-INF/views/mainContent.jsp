@@ -105,133 +105,38 @@
 
 				</tr>
 			</table>
+			<div class="newList">
 
+<%-- <c:forEach items="${collectoDTO}" var="new" > --%>
 			<table class="oclassTable">
 				<tr>
 					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
+						<div class="ssum-img">${collectoDTO.oclassDTO.filNum}</div>
 						<div class="txt-box">
 							<div class="tb1">
 								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
+									<span>지역</span> <span>|</span> <span>${collectoDTO.oclassDTO.clsCode}</span>
 								</div>
 								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
+									<span><span class="material-symbols-outlined oclassIcon">
+											star </span>${collectoDTO.oclassDTO.clsStar}</span><span>(${collectoDTO.reviewCount})</span> <span><span
+										class="material-symbols-outlined oclassIcon"> favorite </span>${collectoDTO.oclassDTO.clsHeart}</span>
 								</div>
 							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
+							<p class="cls-name">${collectoDTO.oclassDTO.clsName}</p>
+							<div class="tb2">
+								<strike><p>${collectoDTO.oclassDTO.clsPrice}</p></strike> <span>${collectoDTO.scheduleDTO.scdDiscount}</span> <span>${collectoDTO.finalPrice}</span>
+							</div>
 						</div>
 					</td>
 				</tr>
 			</table>
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
-			
-			
-			
+<%-- </c:forEach> --%>
+</div>
+
+
+
+
 
 		</div>
 	</div>

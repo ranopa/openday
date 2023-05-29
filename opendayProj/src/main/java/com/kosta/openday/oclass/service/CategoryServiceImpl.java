@@ -1,13 +1,21 @@
-package com.kosta.openday.oclass.service;
 
+package com.kosta.openday.oclass.service;
 import java.util.List;
 
-import com.kosta.openday.oclass.dto.CategoryDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.kosta.openday.oclass.dao.CategoryDAO;
+import com.kosta.openday.oclass.dto.CategoryDTO;
+@Service
 public class CategoryServiceImpl implements CategoryService {
+	@Autowired
+	private CategoryDAO categoryDAO;
+	
 	@Override
-	public List<CategoryDTO> getCategory(String codNum, String codClassfication, String codName) throws Exception{
-		return null;
+	public List<CategoryDTO> getCategory() throws Exception{
+		
+		return categoryDAO.searchCategoryList();
 		
 	}
 

@@ -14,8 +14,16 @@ public class UserDTO {
 	private String userEmail;//입력이메일 + 도메인 
 	private String birthVal; //생일
 	private Date userBirth; //생일
-	private String userActive; //활성화
-	private Integer userAccount; //계좌번호
+	private String userActivation; //활성화
+	public String getUserActivation() {
+		return userActivation;
+	}
+
+	public void setUserActivation(String userActivation) {
+		this.userActivation = userActivation;
+	}
+
+	private String userAccount; //계좌번호
 	private String userAlarm; //알림여부
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
@@ -40,7 +48,7 @@ public class UserDTO {
 
 	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String userEmail, String birthVal, Date userBirth,
-			String userActive, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
+			String userActive, String userAccount, String userAlarm, Date userJoindate, String userPrefer,
 			String authority, Integer userFilenum) {
 		super();
 		this.userId = userId;
@@ -54,7 +62,7 @@ public class UserDTO {
 		this.userEmail = userEmail;
 		this.birthVal = birthVal;
 		this.userBirth = userBirth;
-		this.userActive = userActive;
+		this.userActivation = userActivation;
 		this.userAccount = userAccount;
 		this.userAlarm = userAlarm;
 		this.userJoindate = userJoindate;
@@ -151,19 +159,13 @@ public class UserDTO {
 		this.userBirth = userBirth;
 	}
 
-	public String getUserActive() {
-		return userActive;
-	}
+	
 
-	public void setUserActive(String userActive) {
-		this.userActive = userActive;
-	}
-
-	public Integer getUserAccount() {
+	public String getUserAccount() {
 		return userAccount;
 	}
 
-	public void setUserAccount(Integer userAccount) {
+	public void setUserAccount(String userAccount) {
 		this.userAccount = userAccount;
 	}
 

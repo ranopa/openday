@@ -12,9 +12,13 @@ import com.kosta.openday.user.dto.RequestDTO;
 
 public interface OClassDAO {
 
-	List<CategoryDTO> selectCategoryList() throws Exception; 
-	List<OClassDTO> selectOClassList(Map<String, Object> param) throws Exception;
-
+	/*
+	 * List<CategoryDTO> selectCategoryList() throws Exception;
+	 */	
+	
+	/*
+	 * List<OClassDTO> selectOClassList(Map<String, Object> param) throws Exception;
+	 */
 
 	void insertRequest(RequestDTO request) throws Exception;
 

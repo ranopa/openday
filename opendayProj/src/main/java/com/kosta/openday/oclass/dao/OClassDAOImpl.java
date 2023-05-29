@@ -25,13 +25,13 @@ public class OClassDAOImpl implements OClassDAO {
 		sqlSession.insert("mapper.oclass.insertRequest", request);
 	}
 
-	@Override
-
-	public List<OClassDTO> selectOClassList(Map<String, Object> param) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.oclass.searchSelect", param);
-	}
-	
+	/*
+	 * @Override
+	 * 
+	 * public List<OClassDTO> selectOClassList(Map<String, Object> param) throws
+	 * Exception { // TODO Auto-generated method stub return
+	 * sqlSession.selectList("mapper.oclass.searchSelect", param); }
+	 */
 
 	public List<RequestDTO> selectRequestList() throws Exception {
 		// TODO Auto-generated method stub
@@ -85,11 +85,10 @@ public class OClassDAOImpl implements OClassDAO {
 
 	}
 
-	@Override
-	public List<CategoryDTO> selectCategoryList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*
+	 * @Override public List<CategoryDTO> selectCategoryList() throws Exception { //
+	 * TODO Auto-generated method stub return null; }
+	 */
 
 
 }
