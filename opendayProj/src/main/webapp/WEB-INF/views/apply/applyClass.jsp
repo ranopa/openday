@@ -92,8 +92,6 @@ $(function() {
 		$("#scdNum").val(scdNum);
 		$("#clsId").val(${oclass.clsId});
 	});
-	
-	
 })
 	
  </script>
@@ -101,7 +99,7 @@ $(function() {
 
 <body>
 	<div class="wrapper">
-	<form action="paymentProcess" method="GET">
+	<form action="paymentProcess" method="POST">
 
 		<input type="hidden" id="clsId" name="clsId" />
 		<input type="hidden" id="scdNum" name="scdNum" />
@@ -141,7 +139,7 @@ $(function() {
 			</div>
 			<div class="box">
 				<div class="apply-people-count">
-					신청 인원 수 입력 - 카운터 <input type="number" name="personnel" min="1" max="100" value="1" />
+					신청 인원 수 입력 - 카운터 <input type="number" name="applyPersonnel" min="1" max="100" value="1" />
 				</div>
 			</div>
 			<div class="box">
