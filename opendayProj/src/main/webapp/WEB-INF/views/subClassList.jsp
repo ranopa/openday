@@ -31,30 +31,37 @@
 
 			</div>
 
-			<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>|</span> <span>카테고리</span>
+			<div class="newList">
+
+				<c:forEach items="${nlist}" var="list">
+					<table class="oclassTable">
+						<tr>
+							<td class="oclass">
+								<div class="ssum-img">${list.filNum}</div>
+								<div class="txt-box">
+									<div class="tb1">
+										<div class="t1">
+											<span>지역</span><span>|</span><span>${list.clsCode}</span>
+										</div>
+										<div class="t2">
+											<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+											<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+										</div>
+									</div>
+									<p class="cls-name">${list.clsName}</p>
+									<div class="tb2">
+										<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+										<div class="price">
+											<span class="disc">${list.scdDiscount}%</span> <span
+												class="fp">${list.finalPrice}원</span>
+										</div>
+									</div>
 								</div>
-								<div class="t2">
-									<span><span class="material-symbols-outlined oclassIcon">
-											star </span>별점수</span><span>(후기수)</span> <span><span
-										class="material-symbols-outlined oclassIcon"> favorite
-									</span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">
-								<strike><p>원래 가격</p></strike> <span>할인율</span> <span>40000원</span>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
+							</td>
+						</tr>
+					</table>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>

@@ -120,22 +120,22 @@
 					<p class="filterUlTitle">지역</p>
 					<ul>
 						<li value="all">전체</li>
-						<li value="${scdLoc == '서울' ? 'selected' : ''}">서울</li>
-						<li value="${scdLoc == '경기' ? 'selected' : ''}">경기</li>
-						<li value="${scdLoc == '인천' ? 'selected' : ''}">인천</li>
-						<li value="${scdLoc == '강원' ? 'selected' : ''}">강원</li>
-						<li value="${scdLoc == '충북' ? 'selected' : ''}">충북</li>
-						<li value="${scdLoc == '충남' ? 'selected' : ''}">충남</li>
-						<li value="${scdLoc == '세종' ? 'selected' : ''}">세종</li>
-						<li value="${scdLoc == '대전' ? 'selected' : ''}">대전</li>
-						<li value="${scdLoc == '광주' ? 'selected' : ''}">광주</li>
-						<li value="${scdLoc == '전북' ? 'selected' : ''}">전북</li>
-						<li value="${scdLoc == '경북' ? 'selected' : ''}">경북</li>
-						<li value="${scdLoc == '대구' ? 'selected' : ''}">대구</li>
-						<li value="${scdLoc == '제주' ? 'selected' : ''}">제주</li>
-						<li value="${scdLoc == '전남' ? 'selected' : ''}">전남</li>
-						<li value="${scdLoc == '경남/울산' ? 'selected' : ''}">경남/울산</li>
-						<li value="${scdLoc == '부산' ? 'selected' : ''}">부산</li>
+						<li value="${oclassList.scdLoc == '서울' ? 'selected' : ''}">서울</li>
+						<li value="${oclassList.scdLoc == '경기' ? 'selected' : ''}">경기</li>
+						<li value="${oclassList.scdLoc == '인천' ? 'selected' : ''}">인천</li>
+						<li value="${oclassList.scdLoc == '강원' ? 'selected' : ''}">강원</li>
+						<li value="${oclassList.scdLoc == '충북' ? 'selected' : ''}">충북</li>
+						<li value="${oclassList.scdLoc == '충남' ? 'selected' : ''}">충남</li>
+						<li value="${oclassList.scdLoc == '세종' ? 'selected' : ''}">세종</li>
+						<li value="${oclassList.scdLoc == '대전' ? 'selected' : ''}">대전</li>
+						<li value="${oclassList.scdLoc == '광주' ? 'selected' : ''}">광주</li>
+						<li value="${oclassList.scdLoc == '전북' ? 'selected' : ''}">전북</li>
+						<li value="${oclassList.scdLoc == '경북' ? 'selected' : ''}">경북</li>
+						<li value="${oclassList.scdLoc == '대구' ? 'selected' : ''}">대구</li>
+						<li value="${oclassList.scdLoc == '제주' ? 'selected' : ''}">제주</li>
+						<li value="${oclassList.scdLoc == '전남' ? 'selected' : ''}">전남</li>
+						<li value="${oclassList.scdLoc == '경남/울산' ? 'selected' : ''}">경남/울산</li>
+						<li value="${oclassList.scdLoc == '부산' ? 'selected' : ''}">부산</li>
 					</ul>
 				</div>
 				<div class="filterUl2">
@@ -143,7 +143,9 @@
 					<select name="category" id="category">
 						<option value="all" selected>전체</option>
 						<c:forEach items="${codeList}" var="code">
-							<option value="${code.codNum}">${code.codName}</option>
+							<option value="${code.codNum}"
+								${code.codNum == oclassList.clsCode ? 'selected' : ''}>${code.codName}</option>
+
 						</c:forEach>
 
 					</select>
@@ -211,7 +213,7 @@
 
 
 					<input type="submit" class="searchButton" value="검색">
-		
+
 				</div>
 			</div>
 		</div>

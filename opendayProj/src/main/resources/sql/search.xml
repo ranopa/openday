@@ -75,7 +75,7 @@
 				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
-					where o.clsCode=#{codNum}
+					where o.clsCode=#{clsCode}
 				]]>
 			</when>
 			<when
@@ -95,13 +95,13 @@
 			<when test="#{scdLoc}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
-					where s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{codNum}
+					where s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{clsCode}
 				]]>
 			</when>
 			<when test="#{startDate}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
-					where s.scdLoc=#{scdLoc} and and o.clsCode=#{codNum}
+					where s.scdLoc=#{scdLoc} and and o.clsCode=#{clsCode}
 				]]>
 			</when>
 			<when test="#{clsCode}.equals('all')">
@@ -113,7 +113,7 @@
 			<otherwise>
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
-					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{codNum}
+					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{clsCode}
 				]]>
 			</otherwise>
 		</choose>

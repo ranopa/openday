@@ -130,24 +130,7 @@ public class UserController {
 		return mav;
 	}
 
-	// 검색필터
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView getSearchOClass(@RequestParam("scdLoc") String scdLoc,
-            @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-            @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
-            @RequestParam("clsCode") String clsCode)
-            {
-		ModelAndView mav = new ModelAndView();
-		try {
-			List<OClassDTO> oclassList = userService.getSearchOClass(scdLoc, startDate, endDate, clsCode);
-			mav.addObject("oclassList", oclassList);
-	        mav.setViewName("subClassList");
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-		  return mav;
-	}
+	
 
 		
 }

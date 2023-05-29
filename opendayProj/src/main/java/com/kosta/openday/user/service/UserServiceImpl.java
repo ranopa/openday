@@ -84,10 +84,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	/*
-	 * String scdLoc, Integer scdDiscount, String clsName, String clsCode, Integer
-	 * clsPrice, Integer clsStar,Integer clsHeart, Integer filNum
-	 */
+	
 
 	@Override
 	public List<CollectDTO> getMainNewOClassList() throws Exception {

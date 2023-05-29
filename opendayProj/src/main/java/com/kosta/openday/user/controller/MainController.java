@@ -45,9 +45,24 @@ public class MainController {
 		return mav;
 	}
 
+	
 	@RequestMapping("/subClassList")
-	public String subClassList() {
-		return "subClassList";
+	public ModelAndView subClassList() {
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CodeDTO> codeList = codeService.categoryInfoList();
+
+			List<CollectDTO> nlist = userService.getMainNewOClassList();
+
+			mav.addObject("nlist", nlist);
+
+			mav.addObject("codeList", codeList);
+			mav.setViewName("subClassList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+		
 	}
 
 }
