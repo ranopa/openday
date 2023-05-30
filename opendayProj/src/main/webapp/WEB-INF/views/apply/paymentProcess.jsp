@@ -180,7 +180,7 @@
 					</tr>
 					<tr>
 						<td>총 금액</td>
-						<td>${data.totalPrice}원</td>
+						<td id="total-price">${data.totalPrice}원</td>
 					</tr>
 				</table>
 			</div>
@@ -189,11 +189,11 @@
 				<table>
 					<tr>
 						<td>포인트 적용</td>
-						<td><span>보유 0</span> <input type="text" />p</td>
+						<td><span>보유 0</span> <input type="text" name="point-to-use" id="point-to-use"/>p</td>
 					</tr>
 					<tr>
 						<td>최종 결제 금액</td>
-						<td>${data.totalPrice} 원</td>
+						<td id="final-price">${data.totalPrice}원</td>
 					</tr>
 				</table>
 			</div>
