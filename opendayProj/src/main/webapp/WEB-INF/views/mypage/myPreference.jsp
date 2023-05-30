@@ -25,7 +25,7 @@
 <script src="${contextPath}/resources/js/user/myPrefer.js"></script>
 <body>
 
-<form action="" method="post">
+<form action="prefer" method="post">
 
 	<div class="pre-wrap">
 		<h2>나의 취향 고르기</h2>
@@ -43,14 +43,10 @@
 				<table class="e-flex">
 					<tr>
 						<td>
-							<button type="button" class="checked" name="prefer">카테고리명</button>
-						</td>
-						<td>
-							<button type="button" class="checked" name="prefer">카테고리명</button>
-						</td>
-						<td>
-							<button type="button" class="checked" name="prefer">카테고리명</button>
-						</td>
+						<%-- <c:forEach items="${userPreferList}" var="upl"> --%>
+							<button type="button" class="checked" name="prefer">${upl.userPrefer}</button>
+						<%-- </c:forEach> --%>
+						</td> 
 					</tr>
 				</table>
 			</div>
@@ -67,7 +63,7 @@
 			<table class="e-flex">
 				<tr>
 					<c:forEach items="${cateNames}" var="ctgr" varStatus="status">
-						<td><button type="button" class="category-btn unchecked" name="checkboxGroup" value="C+${status}">${ctgr.codName}</td>
+						<td><button type="button" class="category-btn unchecked" name="checkboxGroup" value="${ctgr.codName}">${ctgr.codName}</td>
 <%-- 						<td><input type="checkbox" class="unchecked" name="checkboxGroup" value="C+${status}" onclick="return limitCheckboxes('group', 3)">${ctgr.codName}</td> --%>
 						<c:if test="${(status.count % 5 eq 0) and (status.last eq false)}">
 				</tr>

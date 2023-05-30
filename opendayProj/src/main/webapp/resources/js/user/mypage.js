@@ -10,6 +10,7 @@ window.onload=function(){
     })
     
     cancelBtn.addEventListener('click',()=>{
+    	console.log("back");
         if(modalEl.classList.contains('hide')){
         	modalEl.classList.remove('hide');
         }    	
@@ -31,5 +32,30 @@ window.onload=function(){
     reader.readAsDataURL(fileInput.files[0]);
   });
   
+   
+  var wModalBtn = document.querySelector("#withdraw-a");
+  var wModalEl = document.querySelector(".w-modal"); 
+  var wCancelBtn = document.querySelector(".w-cancel-btn");
+  var wSubmitBtn = document.querySelector(".w-submit-btn");
   
+  
+  
+  
+  wModalBtn.addEventListener("click",()=>{
+  	console.log("cleck")
+        if(!wModalEl.classList.contains('w-hide')){
+           wModalEl.classList.add("w-hide"); 
+        }
+    })
+
+  
+   wSubmitBtn.addEventListener('click',()=>{
+        if(wModalEl.classList.contains('w-hide')){
+        	wModalEl.classList.remove('w-hide');
+        }    	
+    })
+    
+
+   
 }
+
