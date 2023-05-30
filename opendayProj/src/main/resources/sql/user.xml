@@ -74,18 +74,18 @@
 
 	<select id="mainNewOClassList"
 		resultType="com.kosta.openday.user.dto.CollectDTO"> 
-		<![CDATA[ select scdLoc, scdDiscount, clsName, clsCode, clsPrice, clsStar, clsHeart, filNum, reviewCount, finalPrice from ( 
-	SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, o.clsCode AS clsCode, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+		<![CDATA[ 
+	SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
 		o.clsHeart AS clsHeart, o.filNum AS filNum, (
 			    SELECT COUNT(*) 
 			    FROM review 
 			    WHERE scdNum = s.clsId
 				) AS reviewCount,
 				(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
-				FROM schedule s
-				JOIN oclass o ON s.clsId = o.clsId
-				JOIN user u ON u.userId = o.userId
-				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY) AS a]]>
+	FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     JOIN code c ON o.clsCode=c.codNum 
+				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY
+		]]>
 	</select>	
 	
 

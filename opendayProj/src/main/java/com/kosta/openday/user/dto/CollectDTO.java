@@ -1,10 +1,5 @@
 package com.kosta.openday.user.dto;
 
-import java.sql.Date;
-
-import com.kosta.openday.teacher.dto.ScheduleDTO;
-
-
 public class CollectDTO {
 	/*
 	 * private ScheduleDTO scheduleDTO; private OClassDTO oclassDTO; private
@@ -13,7 +8,7 @@ public class CollectDTO {
 	private String scdLoc; //장소
 	private Integer scdDiscount; //할인율
 	private String clsName; // 클래스명
-	private String clsCode; // 코드(카테고리)
+	private String codName; // 코드(카테고리)이름
 	private Integer clsPrice; // 클래스 수강료
 	private Integer clsStar; // 별점
 	private Integer clsHeart; // 하트수
@@ -25,13 +20,13 @@ public class CollectDTO {
 	
 	
 
-	public CollectDTO(String scdLoc, Integer scdDiscount, String clsName, String clsCode, Integer clsPrice,
+	public CollectDTO(String scdLoc, Integer scdDiscount, String clsName, String codName, Integer clsPrice,
 			Integer clsStar, Integer clsHeart, Integer filNum, Integer reviewCount, Integer finalPrice) {
 		super();
 		this.scdLoc = scdLoc;
 		this.scdDiscount = scdDiscount;
 		this.clsName = clsName;
-		this.clsCode = clsCode;
+		this.codName = codName;
 		this.clsPrice = clsPrice;
 		this.clsStar = clsStar;
 		this.clsHeart = clsHeart;
@@ -42,12 +37,18 @@ public class CollectDTO {
 
 
 
-	public String getClsCode() {
-		return clsCode;
+	public String getCodName() {
+		return codName;
 	}
-	public void setClsCode(String clsCode) {
-		this.clsCode = clsCode;
+
+
+
+	public void setCodName(String codName) {
+		this.codName = codName;
 	}
+
+
+
 	public String getScdLoc() {
 		return scdLoc;
 	}
@@ -106,7 +107,7 @@ public class CollectDTO {
 
 	@Override
 	public String toString() {
-		return "CollectDTO [clsCode=" + clsCode + ", scdLoc=" + scdLoc + ", clsPrice=" + clsPrice + ", clsName="
+		return "CollectDTO [codName=" + codName + ", scdLoc=" + scdLoc + ", clsPrice=" + clsPrice + ", clsName="
 				+ clsName + ", filNum=" + filNum + ", clsStar=" + clsStar + ", clsHeart=" + clsHeart + ", scdDiscount="
 				+ scdDiscount + ", reviewCount=" + reviewCount + ", finalPrice=" + finalPrice + "]";
 	}

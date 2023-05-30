@@ -26,13 +26,14 @@ public class MainController {
 
 	@Autowired
 	private HttpSession session;
-
+	
+	
 	@RequestMapping("/")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		try {
-			List<CodeDTO> codeList = codeService.categoryInfoList();
 
+			List<CodeDTO> codeList= codeService.categoryInfoList();
 			List<CollectDTO> nlist = userService.getMainNewOClassList();
 
 			mav.addObject("nlist", nlist);

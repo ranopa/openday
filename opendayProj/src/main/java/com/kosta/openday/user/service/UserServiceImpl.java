@@ -73,13 +73,13 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<HeaderSearchFilterDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode) throws Exception {
+	public List<CollectDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode) throws Exception {
 		Map<String, Object> param = new HashMap<>();
 		param.put("scdLoc", scdLoc);
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
 		param.put("clsCode", clsCode);
-		
+		System.out.println(param);
 		// TODO Auto-generated method stub
 		return userDAO.selectOClassList(param);
 

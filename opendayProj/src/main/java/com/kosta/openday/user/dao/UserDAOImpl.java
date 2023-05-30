@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.UserDTO;
@@ -48,14 +47,15 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 
-	public List<HeaderSearchFilterDTO> selectOClassList(Map<String, Object> param) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.search.searchSelect", param);
-	}
 
 	public List<CollectDTO> selectmainNewOClassList() throws Exception {
 		return sqlSession.selectList("mapper.user.mainNewOClassList");
 
 	}
 
+	@Override
+	public List<CollectDTO> selectOClassList(Map<String, Object> param) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.search.searchSelect", param);
+	}
 }

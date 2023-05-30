@@ -5,115 +5,123 @@
 <mapper namespace="mapper.search">
 
 	<select id="searchSelect"
-		resultType="com.kosta.openday.user.dto.HeaderSearchFilterDTO"
+		resultType="com.kosta.openday.user.dto.CollectDTO"
 		parameterType="java.util.Map">
 		<choose>
-			<!-- <when
-				test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
-				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId where t.tchcNickname=#{tchcNickname}
-				]]>
-			</when>
 
 			<when
-				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
+				test="scdLoc=='all' and startDate==null and clsCode=='all'">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId where t.tchcNickname=#{tchcNickname} and o.clsCode=#{codNum}
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
 				]]>
 			</when>
 			<when
-				test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
+				test="scdLoc=='all' and startDate==null">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdDate between #{startDate} and #{endDate}
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+				WHERE o.clsCode=#{clsCode}
 				]]>
 			</when>
 			<when
-				test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
+				test="scdLoc=='all' and clsCode=='all'">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc}
-				]]>
-			</when>
-			<when test="#{scdLoc}.equals('all')">
-				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{clsCode}
-				]]>
-			</when>
-			<when test="#{startDate}.equals('all')">
-				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc} and and o.clsCode=#{clsCode}
-				]]>
-			</when>
-			<when test="#{clsCode}.equals('all')">
-				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}
-				]]>
-			</when>
-
-			<when
-				test="!(#{scdLoc} == 'all' and #{startDate} == 'all' and #{clsCode} == 'all')">
-				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode, t.tchcNickname from schedule s join oclass o ON s.clsId = o.clsId
-					join teacher_channel t on s.clsId = t.userId t.tchcNickname=#{tchcNickname} and s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{codNum}
-				]]>
-			</when> -->
-
-			<!-- 아래는 선생님 위에는 내가 추가 위에는 검색창에 강사 닉넴쓸때 -->
-			<when
-				test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
-				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+				WHERE  s.scdDate between #{startDate} and #{endDate}
 				]]>
 			</when>
 			<when
-				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
+				test="startDate==null and clsCode=='all'">
 				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
-					where o.clsCode=#{clsCode}
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} 
 				]]>
 			</when>
-			<when
-				test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
+			<when test="scdLoc=='all'">
 				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
-					where  s.scdDate between #{startDate} and #{endDate}
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+				WHERE (s.scdDate between #{startDate} and #{endDate}) and o.clsCode=#{clsCode}
 				]]>
 			</when>
-			<when
-				test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
+			<when test="startDate==null">
 				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
-					where s.scdLoc=#{scdLoc} 
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} and o.clsCode=#{clsCode}
 				]]>
 			</when>
-			<when test="#{scdLoc}.equals('all')">
+			<when test="clsCode=='all'">
 				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId  = o.clsId 
-					where s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{clsCode}
-				]]>
-			</when>
-			<when test="#{startDate}.equals('all')">
-				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
-					where s.scdLoc=#{scdLoc} and and o.clsCode=#{clsCode}
-				]]>
-			</when>
-			<when test="#{clsCode}.equals('all')">
-				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
-					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} and (s.scdDate between #{startDate} and #{endDate})
 				]]>
 			</when>
 			<otherwise>
 				<![CDATA[
-					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
-					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{clsCode}
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE scdNum = s.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} and (s.scdDate between #{startDate} and #{endDate}) and o.clsCode=#{clsCode}
 				]]>
 			</otherwise>
 		</choose>

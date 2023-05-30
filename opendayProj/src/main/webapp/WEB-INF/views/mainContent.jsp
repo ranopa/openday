@@ -60,7 +60,7 @@
 								<div class="txt-box">
 									<div class="tb1">
 										<div class="t1">
-											<span>지역</span><span>|</span><span>${list.clsCode}</span>
+											<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
 										</div>
 										<div class="t2">
 											<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>

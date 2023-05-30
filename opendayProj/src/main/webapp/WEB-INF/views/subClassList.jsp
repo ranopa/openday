@@ -9,12 +9,17 @@
 <script src='<c:url value="/resources/js/user/subClassList.js"/>'></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/subClassList.css"/>">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 </head>
 <body>
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
 			<%@ include file="header.jsp"%>
-			<p>${codName}쿠킹</p>
+			<p>${codName}</p>
 			<hr>
 			<div class="tchcsList">
 
@@ -33,7 +38,7 @@
 
 			<div class="newList">
 
-				<c:forEach items="${nlist}" var="list">
+				<c:forEach items="${collectList}" var="list">
 					<table class="oclassTable">
 						<tr>
 							<td class="oclass">
@@ -41,7 +46,7 @@
 								<div class="txt-box">
 									<div class="tb1">
 										<div class="t1">
-											<span>지역</span><span>|</span><span>${list.clsCode}</span>
+											<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
 										</div>
 										<div class="t2">
 											<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
