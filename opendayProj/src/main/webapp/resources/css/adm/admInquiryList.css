@@ -2,7 +2,7 @@
 
 .atag {
 	text-decoration: none;
-	color: black;
+	color: rgba(160, 160, 160, 1);
 	margin-right: 25px;
 	font-size: 22px;
 }
@@ -30,3 +30,7 @@ table {
 #largeth {
 	width: 60%; 
 }
+
+.highlighted {
+      color: blue;
+    }

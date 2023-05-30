@@ -10,4 +10,14 @@ public class AdmController {
 	public String noticeList() {
 		return "announceinquiry/announcementList";
 	}
+
+	@RequestMapping(value = "/admInquiry",method=RequestMethod.GET)
+	public String inquiry() {
+		return "announceinquiry/admInquiry";
+	}
+	
+	@RequestMapping(value = "/admInquiryList",method=RequestMethod.GET)
+	public String inquiryHistoryList() {
+		return "announceinquiry/admInquiryList";
+	}
 }

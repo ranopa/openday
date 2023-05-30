@@ -1,5 +1,6 @@
 package com.kosta.openday.user.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import com.kosta.openday.user.service.classOpenEnrollService;
 @Controller
 public class ClassOpenEnrollController {
 	
+	@Autowired
 	private classOpenEnrollService classopenenrollService;
 	
 	@RequestMapping(value = "/classOpen", method = RequestMethod.GET)
@@ -30,8 +32,10 @@ public class ClassOpenEnrollController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			classopenenrollService.classCreate(dto);
+			System.out.println(11);
 		} catch(Exception e) {
 			e.printStackTrace();
+			System.out.println(22);
 		}
 		mav.setViewName("redirect:/");
 		return mav;

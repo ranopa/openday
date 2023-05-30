@@ -5,33 +5,22 @@
 <mapper namespace="mapper.oclass">
 	
 	<!-- 클래스 오픈 요청 -->
-	<insert id="classOpen" parameterType="com.kosta.openday.oclass.dto.OclassDTO">
+	<insert id="classOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
-		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCarrer,clsCurri)
-		     values( nextval(orderInfo_seq),#{clsName},#{clsCode},#{clsDescription},#{fileId},
-		     		#{clsCarrer},#{clsCurri})
+		     insert into oclass (clsId,clsName,clsCode,clsDescription,clsCurri,clsCareer,clsCreatedAt,filNum)
+		     values( nextval(oclass_seq),#{clsName},#{clsCode},#{clsDescription},#{clsCurri},#{clsCareer},
+		     		curdate(),#{filNum})
 	     ]]>
 	</insert>
 	
 	<!-- 승인된 클래스 등록 -->
-	<insert id="classEnrollemnt" parameterType="com.kosta.openday.oclass.dto.OclassDTO">
+	<insert id="classEnrollemnt" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
-		     insert into schedule (scdNum,scdDate,scdPrice,scd,scdTime,scdpersonnel,sdcLocDetial)
-		     values( nextval(orderInfo_seq),#{scdDate},#{scdPrice},#{scdOperationTime},#{scdTime},
-		     		#{scdpersonnel},#{sdcLocDetial})
+		     insert into schedule (scdNum,scdDate,scdPrice,scdOperationTime,scdTime,scdPersonnel)
+		     values( nextval(schedule_seq),#{scdNum},curdate(),#{scdPrice},#{scdOperationTime},#{scdTime},
+		     		#{scdPersonnel},#{1})
 	     ]]>
 	</insert>
-
-
-
-
-
-	<!-- 파일 넣는거 만들다고 그만둠 -->
-	<!-- <insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
-		<![CDATA[
-			insert into file values (#{num},#{directory},#{name},#{classification},#{originalname},#{savename},#{size},#{newdate})	
-		]]>		
-	</insert> -->
-
+	
 
 </mapper>

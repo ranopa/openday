@@ -30,7 +30,7 @@
 		<div id=opendiv1>
 			
 			<div class="opendiv2">
-				<span class="span">클래스 이름</span> <input type="text" name="clsName" placeholder="클래스 이름을 입력해 주세요(20자 이하)" required autofocus maxlength="20">
+				<span class="span">클래스 이름</span> ${claName }
 			</div>
 
 			<div class="opendiv2">
@@ -63,7 +63,7 @@
 
 			<div class="opendiv2">
 				<span class="span">클래스 소개글</span> 
-				<input type="text"name="clsDescription" id="clsDescription"placeholder="클래스 소개글을 입력해 주세요(200자 이하)" autofocus maxlength="200">
+				${clsDescription }
 			</div>
 
 			<div id="divdouble">
@@ -132,84 +132,121 @@
    							</p>
    							<br>
    							<p>수강 인원 수<p>
-   							<span>최대 <input id="nubmer" style="width:40px;" type="number"> 명 &nbsp;&nbsp; 최소 <input id="nubmer" style="width:40px;" type="number"> 명<span>
+   							<span>최소 <input id="nubmer" style="width:40px;" type="number" min="0"> 명 &nbsp;&nbsp; 최대 <input id="nubmer" style="width:40px;" type="number" min="0"> 명<span>
 						</td>
 
 
 						<td class="detailtd">
-							<table>
-								클래스 장소 설정
-								<tr>
-									<td>주소 입력</td>
-									<td><input type="text" name="scdLoc" id="address"></td>
-									<td><button type="button" id="searchBtn">검색</button></td>
-								</tr>
-								<tr>
-									<td>상세 주소</td>
-									<td><input type="text" name="scdLocDetial"></td>
-									<td></td>
-								</tr>
-							</table>
-							<div id="map"></div> <script type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f123941dd9e33a2fc56e4cff04c0f675&libraries=services"></script>
+							장소 설정
+							<div>
+							지역
+							<select id="select">
+										<option>선택</option>
+										<option>서울</option>
+										<option>경기</option>
+										<option>부산</option>
+										<option>인천</option>
+										<option>대전</option>
+										<option>대구</option>
+										<option>광주</option>
+										<option>경북</option>
+										<option>경남/울산</option>
+										<option>전북</option>
+										<option>전남</option>
+										<option>충북</option>
+										<option>충남</option>
+										<option>세종</option>
+										<option>강원</option>
+										<option>제주</option>										
+							</select>
+							</div>
+							<div>
+							주소 검색 : 
+							<input type="text" name="scdLoc" id="address" placeholder="도로명 주소를 입력해주세요">
+							<button type="button" id="searchBtn">검색</button>		
+							</div>
+							<div>
+							상세 주소 : 
+							<input type="text" name="scdLocDetial" placeholder="상세 주소를 입력해주세요">
+							</div>	
+	
+							<div id="map"></div> 
+							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f123941dd9e33a2fc56e4cff04c0f675&libraries=services"></script>
 							<script>
-								var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-								mapOption = {center : new kakao.maps.LatLng(33.450701,126.570667), // 지도의 중심좌표
-									level : 3// 지도의 확대 레벨
-								};
+							var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+							var mapOption = {
+								center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+								level: 3 // 지도의 확대 레벨
+							};
 
-								// 지도를 생성합니다    
-								var map = new kakao.maps.Map(mapContainer,mapOption);
+							// 지도를 생성합니다
+							var map = new kakao.maps.Map(mapContainer, mapOption);
 
-								// 버튼을 click했을때
-								$('#searchBtn').click(function() {
+							// 마커 변수를 선언합니다
+							var marker = null;
 
-									// 주소-좌표 변환 객체를 생성합니다
-									var geocoder = new kakao.maps.services.Geocoder();
+							// 인포윈도우 변수를 선언합니다
+							var infowindow = null;
 
-									// 주소로 좌표를 검색합니다
-									geocoder.addressSearch($('#address').val(),function(result,status) {
+							// 버튼을 클릭했을 때
+							$('#searchBtn').click(function () {
 
-											// 정상적으로 검색이 완료됐으면 
-											if (status === kakao.maps.services.Status.OK) {
-												var coords = new kakao.maps.LatLng(
-														result[0].y,
-														result[0].x);
+								// 주소-좌표 변환 객체를 생성합니다
+								var geocoder = new kakao.maps.services.Geocoder();
 
-												// 추출한 좌표를 통해 도로명 주소 추출
-												let lat = result[0].y;
-												let lng = result[0].x;
-												getAddr(lat,lng);
-												function getAddr(lat,lng) {
-													let geocoder = new kakao.maps.services.Geocoder();
-													let coord = new kakao.maps.LatLng(lat,lng);
-													let callback = function(result,status) {
-														if (status === kakao.maps.services.Status.OK) {
-															// 추출한 도로명 주소를 해당 input의 value값으로 적용
-															$('#address').val(result[0].road_address.address_name);
-														}
-													}
-													geocoder.coord2Address(coord.getLng(),coord.getLat(),callback);
+								// 주소로 좌표를 검색합니다
+								geocoder.addressSearch($('#address').val(), function (result, status) {
+
+									// 정상적으로 검색이 완료됐으면
+									if (status === kakao.maps.services.Status.OK) {
+										var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+										// 추출한 좌표를 통해 도로명 주소 추출
+										let lat = result[0].y;
+										let lng = result[0].x;
+										getAddr(lat, lng);
+
+										function getAddr(lat, lng) {
+											let geocoder = new kakao.maps.services.Geocoder();
+											let coord = new kakao.maps.LatLng(lat, lng);
+											let callback = function (result, status) {
+												if (status === kakao.maps.services.Status.OK) {
+													// 추출한 도로명 주소를 해당 input의 value값으로 적용
+													$('#address').val(result[0].road_address.address_name);
 												}
+											};
+											geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+										}
 
-												// 결과값으로 받은 위치를 마커로 표시합니다
-												var marker = new kakao.maps.Marker(
-														{
-															map : map,
-															position : coords
-														});
+										// 이전에 생성된 마커가 있다면 제거합니다
+										if (marker !== null) {
+											marker.setMap(null);
+										}
 
-												// 인포윈도우로 장소에 대한 설명을 표시합니다
-												var infowindow = new kakao.maps.InfoWindow(
-														{content : '<div style="width:150px;text-align:center;padding:6px 0;">클래스장소</div>'});
-												infowindow.open(map,marker);
+										// 이전에 생성된 인포윈도우가 있다면 제거합니다
+										if (infowindow !== null) {
+											infowindow.close();
+										}
 
-												// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-												map	.setCenter(coords);
-											}
+										// 결과값으로 받은 위치를 마커로 표시합니다
+										marker = new kakao.maps.Marker({
+											map: map,
+											position: coords
 										});
+
+										// 인포윈도우로 장소에 대한 설명을 표시합니다
+										infowindow = new kakao.maps.InfoWindow({
+											content: '<div style="width:150px;text-align:center;padding:6px 0;">클래스장소</div>'
+										});
+										infowindow.open(map, marker);
+
+										// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+										map.setCenter(coords);
+									}
 								});
+							});
 							</script>
+					
 						</td>
 					</tr>
 				</table>
