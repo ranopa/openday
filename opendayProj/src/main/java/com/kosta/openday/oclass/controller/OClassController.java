@@ -101,6 +101,7 @@ public class OClassController {
 	@RequestMapping(value="/payment", method=RequestMethod.POST)
 	public String payment(PaymentRequestDTO paymentRequestDto, Model model) {
 		// 결제 로직 진행
+		// 결제 기록 삽입
 		// 결제 결과 만들어서 리턴
 		
 		return "apply/paymentResult";

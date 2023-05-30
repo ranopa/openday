@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.payment">
+	<select id="selectApplicationPayment" resultType="">
+		<![CDATA[
+		
+		]]>
+	</select>
+	<select id="selectApplicationPaymentByClsId" resultType="">
+		<![CDATA[
+		
+		]]>
+	</select>
+	<select id="selectApplicationPaymentByUserId" resultType="">
+		<![CDATA[
+		
+		]]>
+	</select>
+
+	<select id="selectApplicationPaymentList" resultType="">
+		<![CDATA[
+		
+		]]>
+	</select>
+	<insert id="insertApplicationPayment"
+		parameterType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
+		<![CDATA[
+		
+		]]>
+	</insert>
+
+
+</mapper>
