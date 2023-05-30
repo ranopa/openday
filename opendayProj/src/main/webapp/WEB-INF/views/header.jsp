@@ -37,11 +37,19 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 에이작스 밑에 쓰기 -->
 <script>
-/* $(function){
+ $(function(){
 	#.ajax({
-		url:category
+		url:'categorylist',
+		type:'get',
+		async:true,
+		success:function(data){
+			let code =JSON.parse(data);
+			for(let cod of code){
+				$('#cselect').append(`<select><option value="${cod.codNum}">${cod.codName}</option></select>`);
+			}
+		}
 	})
-} */
+} 
 </script>
 </head>
 <body>
@@ -125,28 +133,28 @@
 			<div class="contentWrapper">
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
-					
-						<input type="radio" name="scdLoc" value="all" checked/>전체
-						<input type="radio" name="scdLoc" value="서울" />서울
-						<input type="radio" name="scdLoc" value="경기" />경기
-						<input type="radio" name="scdLoc" value="인천" />인천
-						<input type="radio" name="scdLoc" value="강원" />강원
-						<input type="radio" name="scdLoc" value="충북" />충북
-						<input type="radio" name="scdLoc" value="충남" />충남
-						<input type="radio" name="scdLoc" value="세종" />세종
-						<input type="radio" name="scdLoc" value="대전" />대전
-						<input type="radio" name="scdLoc" value="광주" />광주
-						<input type="radio" name="scdLoc" value="전북" />전북
-						<input type="radio" name="scdLoc" value="경북" />경북
-						<input type="radio" name="scdLoc" value="대구" />대구
-						<input type="radio" name="scdLoc" value="제주" />제주
-						<input type="radio" name="scdLoc" value="전남" />전남
-						<input type="radio" name="scdLoc" value="경남/울산" />경남/울산
-						<input type="radio" name="scdLoc" value="부산" />부산
-					
+
+					<input type="radio" name="scdLoc" value="all" checked />전체 
+					<input type="radio" name="scdLoc" value="서울" />서울 
+					<input type="radio" name="scdLoc" value="경기" />경기 
+					<input type="radio" name="scdLoc" value="인천" />인천 
+					<input type="radio" name="scdLoc" value="강원" />강원
+					<input type="radio" name="scdLoc" value="충북" />충북 
+					<input type="radio" name="scdLoc" value="충남" />충남 
+					<input type="radio" name="scdLoc" value="세종" />세종 
+					<input type="radio" name="scdLoc" value="대전" />대전 
+					<input type="radio" name="scdLoc" value="광주" />광주
+					<input type="radio" name="scdLoc" value="전북" />전북 
+					<input type="radio" name="scdLoc" value="경북" />경북 
+					<input type="radio" name="scdLoc" value="대구" />대구 
+					<input type="radio" name="scdLoc" value="제주" />제주 
+					<input type="radio" name="scdLoc" value="전남" />전남
+					<input type="radio" name="scdLoc" value="경남/울산" />경남/울산 
+					<input type="radio" name="scdLoc" value="부산" />부산
+
 
 				</div>
-				 
+
 				<div class="filterUl2">
 					<p class="filterUlTitle">카테고리</p>
 					<select name="clsCode" id="category">
@@ -157,7 +165,10 @@
 						</c:forEach>
 
 					</select>
+					
 				</div>
+					
+				
 				<!-- 검색 필터 달력 -->
 				<div class="filterUl3">
 					<p class="filterUlTitle">요일</p>
@@ -167,8 +178,8 @@
 								<div class="col-lg-6 col-11">
 									<div class="input-group input-daterange">
 										<input type="text" class="form-control input1"
-											name="startDate" placeholder="Start Date" readonly>
-										<input type="text" class="form-control input2" name="endDate"
+											name="startDate" placeholder="Start Date" readonly> <input
+											type="text" class="form-control input2" name="endDate"
 											placeholder="End Date" readonly>
 									</div>
 								</div>

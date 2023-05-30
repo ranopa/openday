@@ -51,10 +51,9 @@
 			</table>
 
 			<div class="newList">
-
-				<c:forEach items="${nlist}" var="list">
-					<table class="oclassTable">
-						<tr>
+				<table class="oclassTable">
+					<tr>
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
 							<td class="oclass">
 								<div class="ssum-img">${list.filNum}</div>
 								<div class="txt-box">
@@ -77,9 +76,13 @@
 									</div>
 								</div>
 							</td>
-						</tr>
-					</table>
-				</c:forEach>
+							<c:if test="${loop.index % 12 == 11 or loop.last}">
+					</tr>
+					<tr>
+						</c:if>
+						</c:forEach>
+					</tr>
+				</table>
 			</div>
 
 

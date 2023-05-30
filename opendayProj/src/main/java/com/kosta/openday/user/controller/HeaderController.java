@@ -88,6 +88,7 @@ public class HeaderController {
 			  List<CodeDTO> codeList= codeService.categoryInfoList();
 			  mav.addObject("codeList", codeList);
 			  mav.setViewName("subClassList");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 
