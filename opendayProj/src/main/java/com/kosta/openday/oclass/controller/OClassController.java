@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kosta.openday.oclass.dto.PageInfo;
 import com.kosta.openday.oclass.service.OClassService;
 import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.user.dto.UserDTO; 
@@ -51,12 +52,16 @@ public class OClassController {
 		
 	}
 	@RequestMapping(value = "/requestlist", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView requestList() {
+	public ModelAndView requestList(@RequestParam(value="page", required = false, defaultValue = "1")
+			Integer page) {
 		ModelAndView mav = new ModelAndView();
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setCurPage(page);
 		mav.setViewName("requestboard/requestList");
 		try {
-			List<RequestDTO> requestList =  oClassService.getRequestList();
+			List<RequestDTO> requestList =  oClassService.getRequestList(pageInfo);
 			mav.addObject("requestList", requestList);
+			mav.addObject("pageInfo", pageInfo);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -119,5 +124,10 @@ public class OClassController {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@RequestMapping(value = "/classinfo", method=RequestMethod.GET)
+	public String ci() {
+		return "classinfo/classInfo";
 	}
 }

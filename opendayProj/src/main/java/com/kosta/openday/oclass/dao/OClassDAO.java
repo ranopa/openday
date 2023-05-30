@@ -9,7 +9,7 @@ import com.kosta.openday.user.dto.RequestDTO;
 public interface OClassDAO {
 	
 	void insertRequest(RequestDTO request) throws Exception ;
-	List<RequestDTO> selectRequestList() throws Exception;
+	List<RequestDTO> selectRequestList(int startRow) throws Exception;
 	RequestDTO selectRequest(Integer reqId) throws Exception;
 	void updateReqViews(Integer reqId) throws Exception;
 	void updateRequest(RequestDTO request) throws Exception;
@@ -18,4 +18,5 @@ public interface OClassDAO {
 	Integer selectPartpaYN(Map<String,Object> param) throws Exception;
 	void insertParticipation(Map<String,Object> param) throws Exception;
 	void deleteParticipation(Map<String,Object> param) throws Exception;
+	Integer selectAllRequestCnt() throws Exception;
 }
