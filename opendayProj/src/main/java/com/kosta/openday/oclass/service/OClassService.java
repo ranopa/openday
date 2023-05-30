@@ -37,4 +37,5 @@ public interface OClassService {
 
 	Boolean coupleParticipation(String userId, Integer reqId) throws Exception;
 
+	ScheduleDTO findScheduleById(Integer scdNum) throws Exception;
 }

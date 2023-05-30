@@ -19,12 +19,10 @@ public class ScheduleDTO {
 	
 	public ScheduleDTO() {}
 	
-
 	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, Integer scdPersonnel,
 			Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
-		this.scdTime = scdTime;
 		this.scdLoc = scdLoc;
 		this.scdPersonnel = scdPersonnel;
 

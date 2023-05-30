@@ -88,19 +88,49 @@
 					</colgroup>
 					<tr>
 						<td>이름(닉네임)</td>
-						<td>코스타코스타</td>
+						<td>${data.userName}(${data.userNickname})</td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td>코스타코스타</td>
+						<td>${data.userEmail}</td>
 					</tr>
 					<tr>
 						<td>휴대폰 번호</td>
-						<td>010-1234-5678</td>
+						<td>${data.userTel}</td>
 					</tr>
 				</table>
 			</div>
 		</div>
+    <!-- 구매한 클래스 정보 -->
+    <div class="inner-container" id="product-info">
+			<div class="inner-container-header">
+				<div class="inner-container-header-left">
+				  <span class="header-title">상품 정보</span>
+				</div>
+			</div>
+			<div class="inner-container-content">
+				<table>
+					<colgroup>
+						<col width="200px">
+						<col width="200px">
+					</colgroup>
+					<tr>
+						<td>클래스 명</td>
+						<td>${data.clsName}</td>
+					</tr>
+					<tr>
+						<td>일정</td>
+						<td>${data.scdDate}, ${data.scdTime}</td>
+					</tr>
+					<tr>
+						<td>장소</td>
+						<td>${data.scdLoc}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
 		<div class="inner-container" id="refund-notice">
 			<div class="inner-container-header">
 				<span class="header-title">취소 및 환불 안내</span>
@@ -142,15 +172,15 @@
 				<table>
 					<tr>
 						<td>선택 상품 금액</td>
-						<td>45,000 원</td>
+						<td>${data.clsPrice} 원</td>
 					</tr>
 					<tr>
 						<td>신청 인원 수</td>
-						<td>3 명</td>
+						<td>${data.applyPersonnel} 명</td>
 					</tr>
 					<tr>
 						<td>총 금액</td>
-						<td>135,000 원</td>
+						<td id="total-price">${data.totalPrice}원</td>
 					</tr>
 				</table>
 			</div>
@@ -159,11 +189,11 @@
 				<table>
 					<tr>
 						<td>포인트 적용</td>
-						<td><span>보유 2,000</span> <input type="text" />p</td>
+						<td><span>보유 0</span> <input type="text" name="point-to-use" id="point-to-use"/>p</td>
 					</tr>
 					<tr>
 						<td>최종 결제 금액</td>
-						<td>133,000 원</td>
+						<td id="final-price">${data.totalPrice}원</td>
 					</tr>
 				</table>
 			</div>

@@ -120,4 +120,12 @@ public class OClassServiceImpl implements OClassService {
 			return true;
 		}
 	}
+
+	@Override
+	public ScheduleDTO findScheduleById(Integer scdNum) throws Exception {
+		// TODO Auto-generated method stub
+		return oClassDAO.selectSchedule(scdNum);
+	}
+	
+	
 }

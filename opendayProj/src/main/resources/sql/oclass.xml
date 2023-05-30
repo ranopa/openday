@@ -54,8 +54,8 @@
 		parameterType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
 			insert into oclass values(nextval(oclass_seq),#{clsName},#{clsCode},#{clsDiscription},
-										#{clsCurri}, #{clsCareer}, #{clsStar},#{clsHeart},
-									  #{clsStatus},#{clsCreatedAt},#{clsOpenType},#{filNum},#{userId},#{reqId})
+										#{clsPrice}, #{clsCurri}, #{clsCareer}, #{clsStar},#{clsHeart},
+									  	#{clsStatus},#{clsCreatedAt}, #{clsOpenType},#{filNum},#{userId},#{reqId})
 		]]>
 	</insert>
 
@@ -83,7 +83,7 @@
 		parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
 		<![CDATA[ 
 			insert into schedule 
-			values(nextval(schedule_seq),#{scdDate},#{scdTime},#{scdLoc},#{scdPersonnel},#{scdPrice},#{scdDiscount},#{scdUploadDate},#{scdStatus},#{clsId})
+			values(nextval(schedule_seq),#{scdDate},#{scdTime},#{scdLoc},#{scdPersonnel},#{scdDiscount},#{scdUploadDate},#{scdStatus},#{clsId})
 		]]>
 	</insert>
 

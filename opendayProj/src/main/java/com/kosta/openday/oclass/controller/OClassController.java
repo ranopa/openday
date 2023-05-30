@@ -2,6 +2,7 @@ package com.kosta.openday.oclass.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -18,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView; 
 
-import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.RequestDTO;
-import com.kosta.openday.user.dto.UserDTO; 
+import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.user.dto.PaymentProcessDTO;
+import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
+import com.kosta.openday.user.dto.UserDTO;
 
+import com.kosta.openday.user.service.UserService; 
 import com.kosta.openday.oclass.service.OClassService;
 
 @Controller
@@ -32,6 +36,9 @@ public class OClassController {
 	
 	@Autowired
 	private OClassService oClassService;
+	
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 *  클래스 상세 화면에서, "신청하기" 버튼 클릭 시
@@ -55,8 +62,34 @@ public class OClassController {
 	/**
 	 * 클래스 신청 화면에서, "다음으로" 버튼 클릭 시
 	 * */
-	@RequestMapping(value="/paymentProcess")
-	public String paymentProcess() {
+	@RequestMapping(value="/paymentProcess", method=RequestMethod.POST)
+	public String paymentProcess(PaymentProcessDTO paymentProcessDto, Model model) {
+		try {
+			// 신청한 클래스 정보
+			Integer clsId = paymentProcessDto.getClsId();
+			OClassDTO oClass = oClassService.findOne(clsId);
+			// 해당 클래스의 일정 정보
+			Integer scdNum = paymentProcessDto.getScdNum();
+			ScheduleDTO schedule = oClassService.findScheduleById(scdNum);
+			
+			if (oClass == null || schedule == null)
+				throw new Exception("oClass or schedule not found");
+			
+			// todo: userid session에서 읽어오는걸로 대체 
+			String userId = "hong";
+			UserDTO user = userService.getUserInfo(userId);
+			
+			Integer applyPersonnel = paymentProcessDto.getApplyPersonnel();
+			
+			PaymentProcessResponseDTO responseDto 
+				= new PaymentProcessResponseDTO(user, oClass, schedule, applyPersonnel);
+			
+			model.addAttribute("data", responseDto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return "apply/paymentProcess";
 	}
 	

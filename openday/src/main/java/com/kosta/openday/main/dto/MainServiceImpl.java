@@ -1,8 +1,0 @@
-package com.kosta.openday.main.dto;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class MainServiceImpl implements MainService {
-
-}

@@ -15,16 +15,19 @@
 
 <c:if test="${schedules ne null and schedules.size() > 0}">
 
- <script>
+<script>
 let availableDays = [];
 let availableDateTimes = [];
 <c:forEach var="s" items="${schedules}">
 	availableDays.push("${s.scdDate}");
 	availableDateTimes.push({
 		date: "${s.scdDate}",
-		time: "${s.scdTime}"
+		time: "${s.scdTime}",
+		num: "${s.scdNum}"
 	});
 </c:forEach>
+
+availableDateTimes.sort((s1, s2) => (s1.time > s2.time) ? 1 : -1)
 
 function textToDateStr(dateText) {
 	let date = new Date(dateText);
@@ -51,8 +54,9 @@ $(function() {
 			return [ true, "", "" ];
 		},
         onSelect: function(dateText, inst) {
-        	$('#selectTimes').empty();
-        	$('#selectTimes').append("<option>시간을 선택하세요</option>");
+        	const selectTime = $("#selectTime");
+        	selectTime.empty();
+        	selectTime.append("<option>-- 시간을 선택하세요 --</option>");
         	const selectDate = textToDateStr(dateText);
         	
         	if (availableDays.includes(selectDate)) {
@@ -60,19 +64,17 @@ $(function() {
         		
         		$.each(availableDateTimes, function (i, item) {
         			if (item.date == lastSelectedDateTime.date) {
-        				 $('#selectTimes').append($('<option>', { 
+        				selectTime.append($('<option>', { 
         				        value: item.time,
-        				        text : item.time 
-        				 }));	 
+        				        text : item.time,
+        				        num: item.num,
+        				 }));	
         			}
         		});
         	} else {
         		$(".ui-datepicker-current-day").css("background-color", "");
         		lastSelectedDateTime.date = "";
         	}
-        	
-        	$("#lastSelectedDate").val(lastSelectedDateTime.date);
-        	$("#lastSelectedTime").val(lastSelectedDateTime.time);
         	
         	if (lastSelectedDateTime.date == "") {
         		$("#requestDateSelection").show();
@@ -83,7 +85,13 @@ $(function() {
 	});
 	$(".ui-datepicker-current-day").removeClass("ui-datepicker-current-day");
 	
-	
+	$("#btn-proceed-payment").on("click", function(){
+
+		const scdNum = $("#selectTime option:selected").attr("num");
+
+		$("#scdNum").val(scdNum);
+		$("#clsId").val(${oclass.clsId});
+	});
 })
 	
  </script>
@@ -91,16 +99,22 @@ $(function() {
 
 <body>
 	<div class="wrapper">
+	<form action="paymentProcess" method="POST">
+
+		<input type="hidden" id="clsId" name="clsId" />
+		<input type="hidden" id="scdNum" name="scdNum" />
+		
 		<div class="header-title">클래스 신청</div>
 		<div class="container">
-
+		
 			<div class="box">
 				<div class="class-image-card">이미지</div>
 				<div class="class-detail">
 					<h4>${oclass.clsName }</h4>
 
 					<div class="detail-bottom">
-						<span>카테고리</span> <span>${oclass.clsCode }</span>
+						<span>${oclass.clsCode }</span>
+						<span>${oclass.clsPrice }</span>
 					</div>
 				</div>
 
@@ -111,30 +125,31 @@ $(function() {
 					<div class="class-calendar">
 						<div id="datepicker"></div>
 					</div>
-					<input type="hidden" id="lastSelectedDate" name="lastSelectedDate" />
-					<input type="hidden" id="lastSelectedTime" name="lastSelectedTime" />
+
 				</div>
 				<div id="requestDateSelection">날짜를 선택하세요</div>
 				
 				<div class="apply-date-hour">
 					<p>시간 선택 - 드롭다운</p>
 
-					<select id="selectTimes">
-`						<option value="none">시간을 선택하세요</option>
+					<select id="selectTime" name="selectTime">
+`						<option value="none">-- 시간을 선택하세요 --</option>
 					</select>
 				</div>
 			</div>
 			<div class="box">
 				<div class="apply-people-count">
-					신청 인원 수 입력 - 카운터 <input type="number" min="1" max="100" value="1" />
+					신청 인원 수 입력 - 카운터 <input type="number" name="applyPersonnel" min="1" max="100" value="1" />
 				</div>
 			</div>
 			<div class="box">
 				<div class="btn-wrapper">
-					<button class="btn-next">다음으로</button>
+					<button class="btn-next" type="submit" id="btn-proceed-payment">다음으로</button>
 				</div>
 			</div>
+			
 		</div>
+		</form>	
 	</div>
 </body>
 </html>
