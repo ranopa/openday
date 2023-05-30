@@ -1,21 +1,57 @@
 package com.kosta.openday.oclass.service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
+import java.util.Map; 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.kosta.openday.oclass.dao.OClassDAO;
-import com.kosta.openday.oclass.dto.PageInfo;
+import org.springframework.stereotype.Service; 
+import com.kosta.openday.oclass.dao.OClassDAO; 
+import com.kosta.openday.oclass.dto.PageInfo;  
+import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO; 
 import com.kosta.openday.user.dto.RequestDTO;
+
 
 @Service
 public class OClassServiceImpl implements OClassService {
 
 	@Autowired
 	private OClassDAO oClassDAO;
+	
+	@Override
+	public OClassDTO findOne(Integer clsId) throws Exception {
+		return oClassDAO.selectOClassById(clsId);
+	}
+	
+	
+
+	@Override
+	public List<OClassDTO> findAll() throws Exception {
+		return oClassDAO.selectOClassList();
+	}
+
+	@Override
+	public void save(OClassDTO dto) throws Exception {
+		oClassDAO.insertOClass(dto);
+	}
+	
+	@Override
+	public List<ScheduleDTO> findScheduleByClassId(Integer clsId) throws Exception {
+		return oClassDAO.selectScheduleByOClass(clsId);
+	}
+
+	@Override
+	public List<OClassDTO> getSearchOClass(String loc, Date startDate, Date endDate, String clsCode) throws Exception {
+		Map<String,Object> param = new HashMap<>();
+		param.put("scdLoc", loc);
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("clsCode", clsCode);
+		// TODO Auto-generated method stub
+		return oClassDAO.selectOClassListByParam(param);
+	}
+
 	
 	@Override
 	public void requestClass(RequestDTO request) throws Exception {
@@ -96,7 +132,13 @@ public class OClassServiceImpl implements OClassService {
 			oClassDAO.insertParticipation(param);
 			return true;
 		}
-		
 	}
 
+	@Override
+	public ScheduleDTO findScheduleById(Integer scdNum) throws Exception {
+		// TODO Auto-generated method stub
+		return oClassDAO.selectSchedule(scdNum);
+	}
+	
+	
 }

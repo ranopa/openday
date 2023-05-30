@@ -30,5 +30,4 @@ public class TeacherFollowDTO {
 		this.userId = userId;
 	}
 	
-	
 }

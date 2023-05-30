@@ -93,5 +93,4 @@ public class TeacherChannelDTO {
 		this.userId = userId;
 	}
 	
-	
 }

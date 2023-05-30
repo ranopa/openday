@@ -17,32 +17,19 @@ public class UserDTO {
 	private String userActive; //활성화
 	private Integer userAccount; //계좌번호
 	private String userAlarm; //알림여부
+
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
 	private String authority; //권한
-	private Integer userFilenum; //파일번호
+	private Integer filNum; //파일번호
 	
 	public UserDTO() {}
 
 	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
-			String userAddress, String emailVal, String domain, String birthVal) {
-		super();
-		this.userId = userId;
-		this.userPassword = userPassword;
-		this.userName = userName;
-		this.userNickname = userNickname;
-		this.userTel = userTel;
-		this.userAddress = userAddress;
-		this.emailVal = emailVal;
-		this.domain = domain;
-		this.birthVal = birthVal;
-	}
-
-	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String userEmail, String birthVal, Date userBirth,
 			String userActive, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
-			String authority, Integer userFilenum) {
-		super();
+
+			String authority, Integer filNum) {
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
@@ -60,7 +47,7 @@ public class UserDTO {
 		this.userJoindate = userJoindate;
 		this.userPrefer = userPrefer;
 		this.authority = authority;
-		this.userFilenum = userFilenum;
+		this.filNum = filNum;
 	}
 
 	public String getUserId() {
@@ -199,14 +186,12 @@ public class UserDTO {
 		this.authority = authority;
 	}
 
-	public Integer getUserFilenum() {
-		return userFilenum;
+	public Integer getFilNum() {
+		return filNum;
 	}
 
-	public void setUserFilenum(Integer userFilenum) {
-		this.userFilenum = userFilenum;
+	public void setFilNum(Integer filNum) {
+		this.filNum = filNum;
 	}
-
-	
 }
 
