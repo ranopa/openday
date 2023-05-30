@@ -114,8 +114,7 @@
 
 <body>
 	<div class="newList">
-
-				<%-- <c:forEach items="${nlist}" var="list"> --%>
+ 
 					<table class="oclassTable">
 						<tr>
 							<td class="oclass">
@@ -142,7 +141,7 @@
 							</td>
 						</tr>
 					</table>
-			<!-- 	</c:forEach> -->
+		
 			</div>
 </body>
 </html>
