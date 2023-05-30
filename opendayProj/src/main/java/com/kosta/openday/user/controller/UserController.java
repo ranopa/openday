@@ -32,8 +32,10 @@ public class UserController {
 
 	@Autowired
 	private CodeService codeService;
+	
 	@Autowired
 	private UserService userService;
+	
 	@Autowired
 	private HttpSession session;
 	@Autowired
@@ -41,10 +43,7 @@ public class UserController {
 	@Autowired
 	private ServletContext servletContext;
 
-	@RequestMapping("/")
-	public String main() {
-		return "main";
-	}
+
 
 	// 회원가입폼
 	@RequestMapping("/joinform")
@@ -62,7 +61,7 @@ public class UserController {
 		}
 		return "mypage/joinResult";
 	}
-
+	
 	// 회원가입 id중복확인
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	@ResponseBody
@@ -78,7 +77,7 @@ public class UserController {
 
 	// 마이페이지 (테스트용)
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public ModelAndView myPayge() {
+	public ModelAndView myPage() {
 		ModelAndView mav = new ModelAndView();
 		String dir = null;
 		try {

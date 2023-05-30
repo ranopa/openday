@@ -76,9 +76,9 @@ public class UserServiceImpl implements UserService {
 			fileDAO.insertFile(fil);
 
 			filNum = fileDAO.selectNewFileId();
-			
+
 			filNum -= 1; // 왜 새로 얻어오는지.. INSERT하고 리턴해야할듯
-			
+
 			// File dfile = new
 			// File("/resources/upload/"+filNum+file.getOriginalFilename());
 			File dfile = new File(dir+filNum + file.getOriginalFilename());

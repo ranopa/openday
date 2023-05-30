@@ -1,16 +1,17 @@
 package com.kosta.openday.teacher.dto;
 
 import java.sql.Date;
+import java.sql.Time;
 
 //클래스 일정등록T
 public class ScheduleDTO {
 
 	private Integer scdNum; //클래스 일정번호 
 	private Date scdDate; //강의일
-	private Date scdTime; //소요시간
+	private Time scdTime; //소요시간
 	private String scdLoc; //장소
 	private Integer scdPersonnel; //모집인원
-	private Integer scdPrice; //수강료
+
 	private Integer scdDiscount; //할인율
 	private Date scdUploadDate; //등록일 
 	private String scdStatus; //강의상태 
@@ -18,15 +19,13 @@ public class ScheduleDTO {
 	
 	public ScheduleDTO() {}
 	
-	public ScheduleDTO(Integer scdNum, Date scdDate, Date scdTime, String scdLoc, Integer scdPersonnel,
-			Integer scdPrice, Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
-		super();
+	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, Integer scdPersonnel,
+			Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
-		this.scdTime = scdTime;
 		this.scdLoc = scdLoc;
 		this.scdPersonnel = scdPersonnel;
-		this.scdPrice = scdPrice;
+
 		this.scdDiscount = scdDiscount;
 		this.scdUploadDate = scdUploadDate;
 		this.scdStatus = scdStatus;
@@ -49,11 +48,11 @@ public class ScheduleDTO {
 		this.scdDate = scdDate;
 	}
 
-	public Date getScdTime() {
+	public Time getScdTime() {
 		return scdTime;
 	}
 
-	public void setScdTime(Date scdTime) {
+	public void setScdTime(Time scdTime) {
 		this.scdTime = scdTime;
 	}
 
@@ -71,14 +70,6 @@ public class ScheduleDTO {
 
 	public void setScdPersonnel(Integer scdPersonnel) {
 		this.scdPersonnel = scdPersonnel;
-	}
-
-	public Integer getScdPrice() {
-		return scdPrice;
-	}
-
-	public void setScdPrice(Integer scdPrice) {
-		this.scdPrice = scdPrice;
 	}
 
 	public Integer getScdDiscount() {
@@ -112,8 +103,4 @@ public class ScheduleDTO {
 	public void setClsId(Integer clsId) {
 		this.clsId = clsId;
 	}
-	
-	
-	
-	
 }

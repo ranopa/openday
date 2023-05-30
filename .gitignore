@@ -142,4 +142,8 @@ buildNumber.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/maven
 pom.properties
+config.properties
 MANIFEST.MF
+
+# mac
+.DS_Store
