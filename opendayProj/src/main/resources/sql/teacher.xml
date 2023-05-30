@@ -4,4 +4,33 @@
 						
 <mapper namespace="mapper.teacher">
 
+	<!-- 강사 채널 생성 -->
+	<insert id="teacherChannel" parameterType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
+		 <![CDATA[
+		     insert into teacherChannel (tchcNum,tchcNickname,tchcIntro,tchcCarrer,tchcRegistDate,tchcFollwer,userId)
+		     values( nextval(orderInfo_seq),#{tchcNickname},#{tchcIntro},#{tchcCarrer},curdate(),
+		     		#{tchcFollwer},#{userId})
+	     ]]>
+	</insert>
+	
+	<!-- 아이디로 강사 채널 선택 -->
+	<select id="selectteacherChannel" parameterType="String" resultType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
+		 <![CDATA[
+		 	select * from teacherChannel where userId = #{userId}
+	 	 ]]>
+	</select>
+	
+	<!-- 강사 팔로우 sql -->
+	<insert id="teacherFollwer" parameterType="com.kosta.openday.teacher.dto.TeacherFollowDTO">
+		 <![CDATA[
+		     insert into teacherFollwer (tchcNum,userId)values(#{tchcNum},#{userId})
+	     ]]>
+	</insert>
+	
+	<!-- 아이디로 팔로우한 강사채널들 선택 -->
+	<select id="selectteacherFollwerList" resultType="com.kosta.openday.teacher.dto.TeacherFollowDTO">
+		 <![CDATA[
+		 	select * from teacherFollwer
+	 	 ]]>
+	</select>
 </mapper>

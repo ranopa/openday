@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="loginWrapper">
-<div class="contentWrapper">
-</div>
-</div>
+
 </body>
 </html>

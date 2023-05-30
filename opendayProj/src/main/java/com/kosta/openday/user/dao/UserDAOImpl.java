@@ -14,18 +14,19 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	//회원가입
 	@Override
 	public void insertUser(UserDTO user) throws Exception {
-		sqlSession.insert("mapper.user.insertUser", user);
-		
+		sqlSession.insert("mapper.user.insertUser", user); 
 	}
 	
-
 	@Override
 	public void updateUserPrefer(Map<String,String> map) throws Exception {
 		sqlSession.update("mapper.user.updateUserPrefer", map);
 	}
 
+	
 	@Override
 	public List<String> selectUserPrefer(String id) throws Exception {
 		return sqlSession.selectList("mapper.user.selectUserPrefer", id);
@@ -34,8 +35,20 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserDTO selectUserInfo(String id) throws Exception { 
-		return sqlSession.selectOne("mapper.user.selectUser", id);
+		return sqlSession.selectOne("mapper.user.selectUser", id); 
 				
+	}
+
+	@Override
+	public void updateUser(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.user.updateUser", map);
+		
+	}
+
+	@Override
+	public void updateUserDelete(String id) throws Exception {
+		sqlSession.update("mapper.user.updateUserDelete", id);
+		
 	}
 	
 }

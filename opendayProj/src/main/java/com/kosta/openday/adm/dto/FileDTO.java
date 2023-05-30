@@ -8,12 +8,12 @@ public class FileDTO {
 	private String filClassification;//파일분류
 	private String filOrgName; //원본파일명
 	private String filSaveName;//저장파일명
-	private Integer filSize; //파일용량
+	private Long filSize; //파일용량
 	private Date filNewDate; //등록일
 	
 	public FileDTO() {}
 	
-	public FileDTO(Integer filNum, String filClassification, String filOrgName, String filSaveName, Integer filSize,
+	public FileDTO(Integer filNum, String filClassification, String filOrgName, String filSaveName, Long filSize,
 			Date filNewDate) {
 		super();
 		this.filNum = filNum;
@@ -40,7 +40,7 @@ public class FileDTO {
 		return filSaveName;
 	}
 
-	public Integer getFilSize() {
+	public Long getFilSize() {
 		return filSize;
 	}
 
@@ -64,7 +64,7 @@ public class FileDTO {
 		this.filSaveName = filSaveName;
 	}
 
-	public void setFilSize(Integer filSize) {
+	public void setFilSize(Long filSize) {
 		this.filSize = filSize;
 	}
 

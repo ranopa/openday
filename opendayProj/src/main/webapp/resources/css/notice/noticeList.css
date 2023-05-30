@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.atag {
+	text-decoration: none;
+	color: black;
+	margin-right: 25px;
+	font-size: 22px;
+}
+
+#noticeWrapper {
+	width:1280px; margin:0 auto;
+	padding-top: 60px;
+}
