@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.UserDTO; 
 
 public interface UserDAO {
@@ -16,7 +17,7 @@ public interface UserDAO {
 	public List<String> selectUserPrefer(String id) throws Exception;
 	public UserDTO selectUserInfo(String id) throws Exception; 
 	public UserDTO selectUserLogin(Map<String,String> map) throws Exception;
-	List<OClassDTO> selectOClassList(Map<String, Object> param) throws Exception;
+	List<HeaderSearchFilterDTO> selectOClassList(Map<String, Object> param) throws Exception;
 	public List<CollectDTO> selectmainNewOClassList() throws Exception;
 	
 }

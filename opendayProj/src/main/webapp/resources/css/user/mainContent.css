@@ -203,3 +203,8 @@ height: 40px;
 .oclassIcon {
 	font-size: 14px;
 }
+
+/* 카드 와 카드 사이 간격조정 */
+.oclass{
+	display:inline-block;
+}

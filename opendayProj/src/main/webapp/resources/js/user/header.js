@@ -13,10 +13,10 @@
   
   //menu only one click
 window.onload = function() {
-  var mainCategoryButton = document.querySelectorAll('.categoryButton');
+  var categoryButton = document.querySelectorAll('.categoryButton');
 
   function toggleSelection(button) {
-    mainCategoryButton.forEach(function(btn) {
+    categoryButton.forEach(function(btn) {
       if (btn !== button) {
         btn.classList.remove("selected");
       }
@@ -25,7 +25,7 @@ window.onload = function() {
     button.classList.toggle("selected");
   }
 
-  mainCategoryButton.forEach(function(button) {
+  categoryButton.forEach(function(button) {
     button.addEventListener('click', function() {
       toggleSelection(this);
     });

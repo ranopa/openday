@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 import com.kosta.openday.user.dto.UserDTO;
@@ -72,7 +73,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<OClassDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode) throws Exception {
+	public List<HeaderSearchFilterDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode) throws Exception {
 		Map<String, Object> param = new HashMap<>();
 		param.put("scdLoc", scdLoc);
 		param.put("startDate", startDate);

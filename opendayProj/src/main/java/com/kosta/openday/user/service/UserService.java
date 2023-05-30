@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
@@ -19,7 +20,7 @@ public interface UserService {
 
 	public UserDTO userLogin(Map<String, String> map) throws Exception;
 
-	List<OClassDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode)
+	List<HeaderSearchFilterDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode)
 			throws Exception;
 
 	public List<CollectDTO> getMainNewOClassList() throws Exception;

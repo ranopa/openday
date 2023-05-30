@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Repository
@@ -47,9 +48,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 
-	public List<OClassDTO> selectOClassList(Map<String, Object> param) throws Exception {
+	public List<HeaderSearchFilterDTO> selectOClassList(Map<String, Object> param) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.oclass.searchSelect", param);
+		return sqlSession.selectList("mapper.search.searchSelect", param);
 	}
 
 	public List<CollectDTO> selectmainNewOClassList() throws Exception {

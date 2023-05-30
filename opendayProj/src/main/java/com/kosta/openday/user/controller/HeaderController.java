@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
@@ -65,7 +66,7 @@ public class HeaderController {
 	            {
 			ModelAndView mav = new ModelAndView();
 			try {
-				List<OClassDTO> oclassList = userService.getSearchOClass(scdLoc, startDate, endDate, clsCode);
+				List<HeaderSearchFilterDTO> oclassList = userService.getSearchOClass(scdLoc, startDate, endDate, clsCode);
 				mav.addObject("oclassList", oclassList);
 		        mav.setViewName("subClassList");
 			} catch (Exception e) {

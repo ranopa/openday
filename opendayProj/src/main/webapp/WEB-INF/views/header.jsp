@@ -221,77 +221,33 @@
 
 	<div id='disMenu' class="menuWrapper">
 		<div class="contentWrapper">
-			<table class="menuTable">
-				<tr>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">전체</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">도자기</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">가죽</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">목공</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">금속/악세서리</button>
-					</td>
-
-				</tr>
-				<tr>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">유리</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">조향/캔들/방향제</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">라탄/마크라메</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">자수/재봉/펠트</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">취미/레저</button>
-					</td>
-
-				</tr>
-				<tr>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">플라워/벌룬</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">애견</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">미술</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">음악(보컬/악기/프로그램
-							등)</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">뷰티/미용</button>
-					</td>
-
-				</tr>
-				<tr>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">쿠킹</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">핸드메이드</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">키즈</button>
-					</td>
-					<td>
-						<button type="button" class="categoryButton" name="categoryButton">기타</button>
-					</td>
-
-				</tr>
+			<table class="mainMenuTable">
+				<c:forEach items="${codeList}" var="code" varStatus="loop">
+					<c:if test="${loop.index % 5 == 0}">
+						<tr>
+					</c:if>
+					<c:if test="${loop.index == 0}">
+						<td>
+							<button type="button" class="mainCategoryButton"
+								name="categoryButton" value="all">전체</button>
+						</td>
+					</c:if>
+					<c:if test="${loop.index > 0 and loop.index <= 4}">
+						<td>
+							<button type="button" class="mainCategoryButton"
+								name="categoryButton" value="${code.codNum}">${code.codName}</button>
+						</td>
+					</c:if>
+					<c:if test="${loop.index > 4}">
+						<td>
+							<button type="button" class="mainCategoryButton"
+								name="categoryButton" value="${code.codNum}">${code.codName}</button>
+						</td>
+					</c:if>
+					<c:if test="${loop.index % 5 == 4 or loop.last}">
+						</tr>
+					</c:if>
+				</c:forEach>
 			</table>
 		</div>
 	</div>

@@ -465,6 +465,8 @@ button {
 
 .categoryButton {
 	margin: 5px;
+	width: 230px;
+height: 40px;
 }
 
 #dis {

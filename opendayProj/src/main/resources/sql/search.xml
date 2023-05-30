@@ -5,7 +5,7 @@
 <mapper namespace="mapper.search">
 
 	<select id="searchSelect"
-		resultType="com.kosta.openday.teacher.dto.ScheduleDTO"
+		resultType="com.kosta.openday.user.dto.HeaderSearchFilterDTO"
 		parameterType="java.util.Map">
 		<choose>
 			<!-- <when
@@ -68,51 +68,51 @@
 			<when
 				test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
 				]]>
 			</when>
 			<when
 				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
 					where o.clsCode=#{clsCode}
 				]]>
 			</when>
 			<when
 				test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
 					where  s.scdDate between #{startDate} and #{endDate}
 				]]>
 			</when>
 			<when
 				test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
 					where s.scdLoc=#{scdLoc} 
 				]]>
 			</when>
 			<when test="#{scdLoc}.equals('all')">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId  = o.clsId 
 					where s.scdDate between #{startDate} and #{endDate} and o.clsCode=#{clsCode}
 				]]>
 			</when>
 			<when test="#{startDate}.equals('all')">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
 					where s.scdLoc=#{scdLoc} and and o.clsCode=#{clsCode}
 				]]>
 			</when>
 			<when test="#{clsCode}.equals('all')">
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
 					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}
 				]]>
 			</when>
 			<otherwise>
 				<![CDATA[
-					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
+					select s.scdLoc as scdLoc, s.scdDate as scdDate, o.clsCode as clsCode from schedule s join oclass o ON s.clsId = o.clsId 
 					where s.scdLoc=#{scdLoc} and s.scdDate between #{startDate} and #{endDate}	and o.clsCode=#{clsCode}
 				]]>
 			</otherwise>
