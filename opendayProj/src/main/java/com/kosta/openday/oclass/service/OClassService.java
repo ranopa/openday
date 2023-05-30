@@ -14,5 +14,6 @@ public interface OClassService {
 	public void save(OClassDTO dto) throws Exception;
 	
 	public List<ScheduleDTO> findScheduleByClassId(Integer clsId) throws Exception;
-	// todo: update, delete
+	
+	public ScheduleDTO findScheduleById(Integer clsId) throws Exception;
 }

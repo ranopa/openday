@@ -88,15 +88,15 @@
 					</colgroup>
 					<tr>
 						<td>이름(닉네임)</td>
-						<td>${user.userName}(${user.userNickname})</td>
+						<td>${data.userName}(${data.userNickname})</td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td>${user.userEmail}</td>
+						<td>${data.userEmail}</td>
 					</tr>
 					<tr>
 						<td>휴대폰 번호</td>
-						<td>${user.userTel}</td>
+						<td>${data.userTel}</td>
 					</tr>
 				</table>
 			</div>
@@ -116,15 +116,15 @@
 					</colgroup>
 					<tr>
 						<td>클래스 명</td>
-						<td>${oClass.clsName}</td>
+						<td>${data.clsName}</td>
 					</tr>
 					<tr>
 						<td>일정</td>
-						<td>${schedule.scdDate}, ${schedule.scdTime}</td>
+						<td>${data.scdDate}, ${data.scdTime}</td>
 					</tr>
 					<tr>
 						<td>장소</td>
-						<td>${schedule.scdLoc}</td>
+						<td>${data.scdLoc}</td>
 					</tr>
 				</table>
 			</div>
@@ -172,15 +172,15 @@
 				<table>
 					<tr>
 						<td>선택 상품 금액</td>
-						<td>${oClass.clsPrice} 원</td>
+						<td>${data.clsPrice} 원</td>
 					</tr>
 					<tr>
 						<td>신청 인원 수</td>
-						<td>${personnel} 명</td>
+						<td>${data.applyPersonnel} 명</td>
 					</tr>
 					<tr>
 						<td>총 금액</td>
-						<td>${totalPrice}원</td>
+						<td>${data.totalPrice}원</td>
 					</tr>
 				</table>
 			</div>
@@ -189,11 +189,11 @@
 				<table>
 					<tr>
 						<td>포인트 적용</td>
-						<td><span>보유 2,000</span> <input type="text" />p</td>
+						<td><span>보유 0</span> <input type="text" />p</td>
 					</tr>
 					<tr>
 						<td>최종 결제 금액</td>
-						<td>${finalPrice} 원</td>
+						<td>${data.totalPrice} 원</td>
 					</tr>
 				</table>
 			</div>

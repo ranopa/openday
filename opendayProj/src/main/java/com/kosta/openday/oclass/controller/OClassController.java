@@ -1,7 +1,5 @@
 package com.kosta.openday.oclass.controller;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +15,7 @@ import com.kosta.openday.oclass.service.OClassService;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.PaymentProcessDTO;
+import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService; 
 
@@ -60,37 +58,23 @@ public class OClassController {
 			// 신청한 클래스 정보
 			Integer clsId = paymentProcessDto.getClsId();
 			OClassDTO oClass = oClassService.findOne(clsId);
-			
 			// 해당 클래스의 일정 정보
 			Integer scdNum = paymentProcessDto.getScdNum();
+			ScheduleDTO schedule = oClassService.findScheduleById(scdNum);
 			
-			Time time = paymentProcessDto.getSelectTime();
-
-			
-			if (oClass == null)
-				throw new Exception("oClass not found");
-			
-			
-			model.addAttribute("oClass", oClass);
-			
-			// todo: 하단의 todo붙은건 일종의 테스트용 더미데이터 코드 
-			
-			// todo: service에서 가져오는걸로 대체  
-			// ScheduleDTO schedule = teacherService.findSchedule(scdNum);
-			
-			ScheduleDTO schedule = new ScheduleDTO();
-			schedule.setScdDate(new Date(2022-1900, 3, 1));
-			schedule.setScdTime(new Time(14,00,00));
-			schedule.setClsId(1);
-			schedule.setScdLoc("seoul");
-			model.addAttribute("schedule", schedule);
-			
+			if (oClass == null || schedule == null)
+				throw new Exception("oClass or schedule not found");
 			
 			// todo: userid session에서 읽어오는걸로 대체 
 			String userId = "hong";
 			UserDTO user = userService.getUserInfo(userId);
-			session.setAttribute("user", user);
 			
+			Integer applyPersonnel = paymentProcessDto.getApplyPersonnel();
+			
+			PaymentProcessResponseDTO responseDto 
+				= new PaymentProcessResponseDTO(user, oClass, schedule, applyPersonnel);
+			
+			model.addAttribute("data", responseDto);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -34,4 +34,12 @@ public class OClassServiceImpl implements OClassService {
 	public List<ScheduleDTO> findScheduleByClassId(Integer clsId) throws Exception {
 		return oClassDAO.selectScheduleByClass(clsId);
 	}
+
+	@Override
+	public ScheduleDTO findScheduleById(Integer scdNum) throws Exception {
+		// TODO Auto-generated method stub
+		return oClassDAO.selectSchedule(scdNum);
+	}
+	
+	
 }
