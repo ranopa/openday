@@ -1,7 +1,7 @@
 package com.kosta.openday.oclass.controller;
 
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.PaymentProcessDTO;
 import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
+import com.kosta.openday.user.dto.PaymentRequestDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 import com.kosta.openday.user.service.UserService; 
@@ -96,8 +98,11 @@ public class OClassController {
 	/**
 	 * 클래스 결제정보 확인 화면에서, "결제하기 버튼 클릭 시
 	 * */
-	@RequestMapping(value="/payment")
-	public String payment() {
+	@RequestMapping(value="/payment", method=RequestMethod.POST)
+	public String payment(PaymentRequestDTO paymentRequestDto, Model model) {
+		// 결제 로직 진행
+		// 결제 결과 만들어서 리턴
+		
 		return "apply/paymentResult";
 	}
 
