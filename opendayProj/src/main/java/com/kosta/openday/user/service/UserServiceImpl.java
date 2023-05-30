@@ -94,7 +94,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
 		FileDTO file = fileDAO.selectFile(id);
-		System.out.println(uploadDir + file.getFilNum() + file.getFilOrgName());
 		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
 		
 		
