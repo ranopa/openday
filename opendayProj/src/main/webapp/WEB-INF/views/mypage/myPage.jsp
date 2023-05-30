@@ -24,26 +24,26 @@
 <body>
 	<!--모달  -->
 	<form action="withdraw" method="post">
-	
-	<div class="w-modal">
-		<div class="w-wrap">
-			<h2 class="w-h2">회원탈퇴</h2>
-			<div class="w-txtbox">
-				<h3 class="w-h3">유의사항</h3>
-				<p class="w-p">열어데이 탈퇴시 등록된 클래스, 이용내역이 모두 삭제됩니다.</p>
 
-				<div class="w-check-btn">
-					<input type="checkbox" id="right" required>&nbsp;<label
-						for="right" class="w-span">유의사항을 확인하였으며, 동의합니다.</label>
+		<div class="w-modal">
+			<div class="w-wrap">
+				<h2 class="w-h2">회원탈퇴</h2>
+				<div class="w-txtbox">
+					<h3 class="w-h3">유의사항</h3>
+					<p class="w-p">열어데이 탈퇴시 등록된 클래스, 이용내역이 모두 삭제됩니다.</p>
+
+					<div class="w-check-btn">
+						<input type="checkbox" id="right" required>&nbsp;<label
+							for="right" class="w-span">유의사항을 확인하였으며, 동의합니다.</label>
+					</div>
+				</div>
+				<div class="w-btn-box">
+					<input type="submit" class="w-cancel-btn" value="탈퇴하기">
+					<button type="button" class="w-submit-btn">돌아가기</button>
 				</div>
 			</div>
-			<div class="w-btn-box">
-				<input type="submit" class="w-cancel-btn" value="탈퇴하기" >
-				<button type="button" class="w-submit-btn">돌아가기</button>
-			</div>
 		</div>
-	</div>
-</form>
+	</form>
 	<div class="modal">
 		<form action="editprofile" method="post" enctype="multipart/form-data"
 			name="profileform">
@@ -51,18 +51,16 @@
 				<div class="m-container">
 					<h2 class="m-h2">프로필 수정</h2>
 					<div class="pf-box">
-						<c:choose>		
-							<c:when test="${not empty user.filNum} ">
-
-								<img src="img/${user.filNum}" class="picture" id="myImg"
-									alt="회원프로필이미지">
-							</c:when>
-							<c:otherwise>
+						<c:choose> 
+							<c:when test="${user.filNum ne null} "> 
 								<img src="resources/image/user/basic_profile.png"
 									class="picture" id="myImg" alt="회원프로필기본이미지">
+							</c:when>
+							<c:otherwise>
+								<img src="img/${user.filNum}" class="picture" id="myImg"
+									alt="회원프로필이미지">
 							</c:otherwise>
 						</c:choose>
-
 						<div class="custom-file-input">
 							<input name="file" type="file" id="myfile" accept="image/*" />
 						</div>
@@ -117,17 +115,16 @@
 		<h2 class="my-h2">마이페이지</h2>
 		<div class="sec1">
 			<div class="mybox1 square">
-				<img src="resources/image/user/basic_profile.png"
-					class="myprofile-pic">
-				<%-- <c:choose>
-					<c:when test="${user.filNum eq null} ">
-						<img src="resources/image/user/basic_profile.png"
-							class="myprofile-pic">
+
+				<c:choose>
+					<c:when test="${user.filNum ne null} "> 
+						<img src="resources/image/user/basic_profile.png" class="myprofile-pic">
 					</c:when>
-					<c:otherwise> 
-						  <img src="img/${user.filNum}" class="myprofile-pic">  
+					<c:otherwise>
+						<img src="img/${user.filNum}" class="myprofile-pic">
+					
 					</c:otherwise>
-				</c:choose> --%>
+				</c:choose>
 
 				<p class="tcen">${user.userNickname}</p>
 				<div class="myprofile">
@@ -207,7 +204,8 @@
 					</div>
 				</div>
 			</div> -->
-			</a> <div id="withdraw-a">
+			</a>
+			<div id="withdraw-a">
 				<div class="mybox7 square">
 					<div class="mymenu-txt">
 						<span class="material-symbols-outlined"> person_off </span>

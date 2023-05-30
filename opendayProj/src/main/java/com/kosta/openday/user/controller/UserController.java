@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
+import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.user.dto.UserDTO;
@@ -34,6 +36,10 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private FileService fileService;
+	@Autowired
+	private ServletContext servletContext;
 
 	@RequestMapping("/")
 	public String main() {
@@ -74,11 +80,22 @@ public class UserController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPayge() {
 		ModelAndView mav = new ModelAndView();
+		String dir = null;
 		try {
 			String id = "sbsb";
 			session.setAttribute("id", id);
 			UserDTO user = userService.getUserInfo(id);
 			mav.addObject("user", user);
+			//파일 디렉토리 찾아오기
+//			if(user.getFilNum()!=null) {
+//				System.out.println(user.getFilNum());
+//				FileDTO file = fileService.searchFile(user.getFilNum());
+//				System.out.println(file.getFilOriginalname());
+//				 dir = servletContext.getRealPath("/resources/upload/")+file.getFilOriginalname();
+//				System.out.println(dir);
+//			}else {
+//				 dir = "resources/image/user/basic_profile.png";
+//			}
 			mav.setViewName("mypage/myPage");
 
 		} catch (Exception e) {
@@ -146,19 +163,21 @@ public class UserController {
 		}
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/img/{filNum}", method = RequestMethod.GET)
-	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response) {
+	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response){
+	 
 		try {
 			System.out.println("seucess");
 			userService.fileView(filNum, response.getOutputStream());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}  
 	}
 
 	// 찜한클래스
-	@RequestMapping("/mypage/myheart")
+	@RequestMapping("/myheart")
 	public String df() {
 		return "mypage/heart";
 	}

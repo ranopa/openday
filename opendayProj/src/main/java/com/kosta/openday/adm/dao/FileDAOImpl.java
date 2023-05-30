@@ -17,8 +17,8 @@ public class FileDAOImpl implements FileDAO {
 
 	}
 	@Override
-	public FileDTO selectFile(Integer fileId) throws Exception { 
-		return sqlSession.selectOne("mapper.adm.selectFile", fileId);
+	public FileDTO selectFile(Integer filNum) throws Exception { 
+		return sqlSession.selectOne("mapper.adm.selectFile", filNum);
 	}
 	
 	@Override

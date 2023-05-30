@@ -12,13 +12,13 @@
 <!-- 파일삽입 -->
 <insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 	<![CDATA[
-	insert into file values(nextval(file_seq),#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
+	insert into file values(nextval(file_seq),#{filClassification},#{filOriginalname},#{filSavename},#{filSize},CURDATE())
 	]]>
 </insert>
 
 <select id="selectFile" parameterType="Integer" resultType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-			select * from file where FilNum=#{fileId} 
+			select * from file where filNum=#{filNum} 
 		]]>				
 	</select>
 	

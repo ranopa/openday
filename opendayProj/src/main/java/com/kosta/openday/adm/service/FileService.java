@@ -4,4 +4,5 @@ import com.kosta.openday.adm.dto.FileDTO;
 
 public interface FileService {
 	void createFile(FileDTO file)throws Exception;
+	FileDTO searchFile(Integer filNum) throws Exception;
 }

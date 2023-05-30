@@ -15,6 +15,9 @@ public class FileServiceImpl implements FileService {
 	public void createFile(FileDTO file) throws Exception {
 		fileDAO.insertFile(file); 
 	}
+	public FileDTO searchFile(Integer filNum) throws Exception{
+		return fileDAO.selectFile(filNum);
+	}
 	
 
 }

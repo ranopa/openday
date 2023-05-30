@@ -7,6 +7,9 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -24,9 +27,11 @@ public class UserServiceImpl implements UserService {
 	private FileDAO fileDAO;
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private ServletContext servletContext;
 
-	private final String uploadDir = String.join(File.separator, System.getProperty("user.dir"), "resources", "upload")
-			+ File.separator;
+//	private final String uploadDir = String.join(File.separator, System.getProperty("user.dir"), "resources", "upload")
+//			+ File.separator;
 
 	// 회원가입 > 데베에 insert
 	@Override
@@ -60,12 +65,13 @@ public class UserServiceImpl implements UserService {
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
 		// 파일 insert
 		Integer filNum = 0;
+		String dir = servletContext.getRealPath("/resources/upload/");
 
 		if (file != null && !file.isEmpty()) {
 			FileDTO fil = new FileDTO();
 			fil.setFilClassification(file.getContentType());
-			fil.setFilOrgName(file.getOriginalFilename());
-			fil.setFilSaveName(file.getName());
+			fil.setFilOrginalname(file.getOriginalFilename());
+			fil.setFilSavename(file.getName());
 			fil.setFilSize(file.getSize());
 			fileDAO.insertFile(fil);
 
@@ -75,7 +81,8 @@ public class UserServiceImpl implements UserService {
 			
 			// File dfile = new
 			// File("/resources/upload/"+filNum+file.getOriginalFilename());
-			File dfile = new File(uploadDir + filNum + file.getOriginalFilename());
+			File dfile = new File(dir+filNum + file.getOriginalFilename());
+		
 
 			file.transferTo(dfile);
 			map.put("filNum", filNum);
@@ -93,14 +100,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
+		String dir = servletContext.getRealPath("/resources/upload/");
 		FileDTO file = fileDAO.selectFile(id);
-		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
-		
-		
-		
+		FileInputStream fis = new FileInputStream(dir + file.getFilNum() + file.getFilOriginalname());
+		  
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}
+//	
+//	@Override
+//	public String fileView(Integer id, HttpServletResponse response) throws Exception {
+//		String dir = servletContext.getRealPath("/resources/upload/");
+//		FileDTO file = fileDAO.selectFile(id);
+//		return dir+""+file.getFilNum()+""+file.getFilOriginalname();
+//		
+//		
+//	}
 
 	@Override
 	public void withdrawUser(String id) throws Exception {
