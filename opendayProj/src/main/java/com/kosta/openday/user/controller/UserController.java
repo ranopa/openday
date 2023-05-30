@@ -56,28 +56,28 @@ public class UserController {
 		}
 		return "mypage/joinResult";
 	}
-	//회원가입 id중복확인
-	@RequestMapping(value="/idCheck",method=RequestMethod.GET)
-	@ResponseBody 
-	public String idCheck(@RequestParam("userId") String id,
-			@RequestParam("userPassword") String pw) throws Exception{
+
+	// 회원가입 id중복확인
+	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String idCheck(@RequestParam("userId") String id, @RequestParam("userPassword") String pw) throws Exception {
 		System.out.println("success");
-		int result = userService.idCheck(id); 
+		int result = userService.idCheck(id);
 		String mesg = "사용가능한 아이디입니다.";
-		if(result==1) {
+		if (result == 1) {
 			mesg = "이미 존재하는 아이디입니다.";
-		} 
-		return mesg;		
+		}
+		return mesg;
 	}
-	
+
 	// 마이페이지 (테스트용)
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPayge() {
 		ModelAndView mav = new ModelAndView();
 		try {
 			String id = "sbsb";
-			session.setAttribute("id", id); 
-			UserDTO user = userService.getUserInfo(id); 
+			session.setAttribute("id", id);
+			UserDTO user = userService.getUserInfo(id);
 			mav.addObject("user", user);
 			mav.setViewName("mypage/myPage");
 
@@ -89,7 +89,7 @@ public class UserController {
 	}
 
 	// 프로필수정
-	@RequestMapping(value = "/editprofile", method = RequestMethod.POST) 
+	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
 	public ModelAndView editProfile(HttpSession session,
 			@RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestParam(value = "nickname", required = false) String nickname,
@@ -99,24 +99,26 @@ public class UserController {
 		try {
 			String id = (String) session.getAttribute("id");
 			UserDTO user = userService.getUserInfo(id);
+
+			map.put("id", id);
+			map.put("nickname", nickname);
+			map.put("tel", tel);
+
+			if (nickname.isEmpty()) {
+				map.put("nickname", user.getUserNickname());
+			}
+			if (tel.isEmpty()) {
+				map.put("tel", user.getUserTel());
+			}
+			if (file.isEmpty()) {
+				map.put("filNum", user.getFilNum());
+			}
+
+			userService.editUserProfile(map, file);
 			
-				map.put("id", id);
-				map.put("nickname", nickname); 
-				map.put("tel", tel);
-				
-				if(nickname.isEmpty()) {
-					map.put("nickname",user.getUserNickname()); 
-				}
-				if(tel.isEmpty()) {
-					map.put("tel",user.getUserTel()); 					
-				} 
-				if(file.isEmpty()) {
-					map.put("filNum",user.getFilNum()); 					
-				} 
-				
-				userService.editUserProfile(map, file); 
-				mav.setViewName("redirect:/mypage");
- 
+			// mav.addObject("user", user);
+			mav.setViewName("redirect:/mypage");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -144,13 +146,13 @@ public class UserController {
 		}
 		return mav;
 	}
-	
-	@RequestMapping(value="/img/{filNum}", method=RequestMethod.GET)
-	public void image(@PathVariable Integer filNum, HttpServletResponse response) {
-		try { 
+
+	@RequestMapping(value = "/img/{filNum}", method = RequestMethod.GET)
+	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response) {
+		try {
 			System.out.println("seucess");
 			userService.fileView(filNum, response.getOutputStream());
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -192,14 +194,13 @@ public class UserController {
 		}
 		return mav;
 	}
-	
-	@RequestMapping(value = "/withdraw",method=RequestMethod.POST )
+
+	@RequestMapping(value = "/withdraw", method = RequestMethod.POST)
 	public String userWithdraw(HttpSession session) throws Exception {
 		String id = (String) session.getAttribute("id");
 		System.out.println("enter");
-		userService.withdrawUser(id); 
+		userService.withdrawUser(id);
 		return "redirect:/";
 	}
-	
 
 }

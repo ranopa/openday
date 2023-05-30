@@ -25,10 +25,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
+	private final String uploadDir = String.join(File.separator, System.getProperty("user.dir"), "resources", "upload")
+			+ File.separator;
+
 	// 회원가입 > 데베에 insert
 	@Override
 	public void joinUser(UserDTO user) throws Exception {
-		user.setUserEmail(user.getEmailVal() + "@" + user.getDomain());  
+		user.setUserEmail(user.getEmailVal() + "@" + user.getDomain());
 		String str = user.getBirthVal();
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -40,44 +43,50 @@ public class UserServiceImpl implements UserService {
 
 		userDAO.insertUser(user);
 	}
-	
-	//idcheck
+
+	// idcheck
 
 	@Override
-	public int idCheck(String id) throws Exception { 
+	public int idCheck(String id) throws Exception {
 		UserDTO user = userDAO.selectUserInfo(id);
-		if(user == null) {
+		if (user == null) {
 			return 0;
 		}
 		return 1;
-		
+
 	}
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
-		//파일 insert
+		// 파일 insert
 		Integer filNum = 0;
-		
-		if(file!=null && !file.isEmpty()) { 
-		FileDTO fil = new FileDTO(); 
-		fil.setFilClassification(file.getContentType());
-		fil.setFilOrgName(file.getOriginalFilename());
-		fil.setFilSaveName(file.getName());
-		fil.setFilSize(file.getSize()); 
-		fileDAO.insertFile(fil);
-		
-		filNum = fileDAO.selectNewFileId(); 
-		File dfile = new File("resources/upload/"+filNum+file.getOriginalFilename()); 
-		file.transferTo(dfile);
-		map.put("filNum", filNum);
-		}   
-		//유저 update
+
+		if (file != null && !file.isEmpty()) {
+			FileDTO fil = new FileDTO();
+			fil.setFilClassification(file.getContentType());
+			fil.setFilOrgName(file.getOriginalFilename());
+			fil.setFilSaveName(file.getName());
+			fil.setFilSize(file.getSize());
+			fileDAO.insertFile(fil);
+
+			filNum = fileDAO.selectNewFileId();
+			
+			filNum -= 1; // 왜 새로 얻어오는지.. INSERT하고 리턴해야할듯
+			
+			// File dfile = new
+			// File("/resources/upload/"+filNum+file.getOriginalFilename());
+			File dfile = new File(uploadDir + filNum + file.getOriginalFilename());
+
+			file.transferTo(dfile);
+			map.put("filNum", filNum);
+		}
+		// 유저 update
 		userDAO.updateUser(map);
 
 	}
 
 	@Override
-	public UserDTO getUserInfo(String id) throws Exception { 
+	public UserDTO getUserInfo(String id) throws Exception {
 		return userDAO.selectUserInfo(id);
 
 	}
@@ -85,7 +94,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
 		FileDTO file = fileDAO.selectFile(id);
-		FileInputStream fis = new FileInputStream("resources/upload/"+file.getFilNum()+file.getFilOrgName());
+		System.out.println(uploadDir + file.getFilNum() + file.getFilOrgName());
+		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
+		
+		
+		
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}
@@ -93,7 +106,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void withdrawUser(String id) throws Exception {
 		userDAO.updateUserDelete(id);
-		
+
 	}
 
 }

@@ -51,7 +51,7 @@
 				<div class="m-container">
 					<h2 class="m-h2">프로필 수정</h2>
 					<div class="pf-box">
-						<c:choose>
+						<c:choose>		
 							<c:when test="${not empty user.filNum} ">
 
 								<img src="img/${user.filNum}" class="picture" id="myImg"
