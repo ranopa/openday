@@ -64,17 +64,17 @@ public class OClassDAOImpl implements OClassDAO {
 
 	@Override
 	public void updateReqViews(Integer reqId) throws Exception {
-		sqlSession.update("mapper.oclass.updateReqViews", reqId);
+		sqlSession.update("mapper.rclass.updateReqViews", reqId);
 	}
 
 	@Override
 	public void updateRequest(RequestDTO request) throws Exception {
-		sqlSession.update("mapper.oclass.updateRequest", request);
+		sqlSession.update("mapper.rclass.updateRequest", request);
 	}
 
 	@Override
 	public void deleteRequest(Integer reqId) throws Exception {
-		sqlSession.delete("mapper.oclass.requestDelete", reqId);
+		sqlSession.delete("mapper.rclass.requestDelete", reqId);
 	}
 
 	@Override
@@ -85,17 +85,17 @@ public class OClassDAOImpl implements OClassDAO {
 
 	@Override
 	public Integer selectPartpaYN(Map<String, Object> param) throws Exception {
-		return sqlSession.selectOne("mapper.oclass.selectPartpaYN", param);
+		return sqlSession.selectOne("mapper.rclass.selectPartpaYN", param);
 	}
 
 	@Override
 	public void insertParticipation(Map<String, Object> param) throws Exception {
-		sqlSession.insert("mapper.oclass.insertParticipation", param);
+		sqlSession.insert("mapper.rclass.insertParticipation", param);
 	}
 
 	@Override
 	public void deleteParticipation(Map<String, Object> param) throws Exception {
-		sqlSession.insert("mapper.oclass.deleteParticipation", param);
+		sqlSession.insert("mapper.rclass.deleteParticipation", param);
 	}
 	@Override
 	public Integer selectAllRequestCnt() throws Exception {

@@ -187,7 +187,6 @@ public class OClassController {
 	@ResponseBody
 	@RequestMapping(value="/participation", method=RequestMethod.POST) 
 	public ResponseEntity<String> participation(@RequestParam("reqId") Integer reqId) {
-		System.out.println(reqId);
 		try {
 			UserDTO user = (UserDTO)session.getAttribute("user");
 			Boolean yn = oClassService.coupleParticipation(user.getUserId(), reqId);

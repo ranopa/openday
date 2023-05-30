@@ -16,8 +16,7 @@ public class UserDTO {
 	private Date userBirth; //생일
 	private String userActive; //활성화
 	private Integer userAccount; //계좌번호
-	private String userAlarm; //알림여부
-
+	private String userAlarm; //알림여부 
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
 	private String authority; //권한

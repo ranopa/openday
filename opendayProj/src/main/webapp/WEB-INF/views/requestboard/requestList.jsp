@@ -136,7 +136,7 @@
 					<c:forEach items="${requestList}" var="request">						
 					<tr>
 						<td>${request.reqId}</td>
-						<td><a href="${contextPath }/requestdetail?reqId=${request.reqId} ">${request.reqTitle}</a></td>
+						<td><a href="${contextPath}/requestdetail?reqId=${request.reqId} ">${request.reqTitle}</a></td>
 						<td>${request.userId}</td>
 						<td>${request.reqDate}</td>
 						<td>${request.reqViews}</td>
