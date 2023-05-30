@@ -3,17 +3,13 @@ package com.kosta.openday.oclass.service;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-
+import java.util.Map; 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.kosta.openday.oclass.dao.OClassDAO;
-
+import org.springframework.stereotype.Service; 
+import com.kosta.openday.oclass.dao.OClassDAO; 
+import com.kosta.openday.oclass.dto.PageInfo;  
 import com.kosta.openday.user.dto.OClassDTO;
-import com.kosta.openday.teacher.dto.ScheduleDTO;
-
+import com.kosta.openday.teacher.dto.ScheduleDTO; 
 import com.kosta.openday.user.dto.RequestDTO;
 
 
@@ -27,6 +23,8 @@ public class OClassServiceImpl implements OClassService {
 	public OClassDTO findOne(Integer clsId) throws Exception {
 		return oClassDAO.selectOClassById(clsId);
 	}
+	
+	
 
 	@Override
 	public List<OClassDTO> findAll() throws Exception {
@@ -62,9 +60,24 @@ public class OClassServiceImpl implements OClassService {
 	}
 
 	@Override
-	public List<RequestDTO> getRequestList() throws Exception {
-		// TODO Auto-generated method stub
-		return oClassDAO.selectRequestList();
+	public List<RequestDTO> getRequestList(PageInfo pageInfo) throws Exception {
+		Integer allCnt = oClassDAO.selectAllRequestCnt();
+		int maxPage = allCnt/10;
+		if(allCnt%10!=0) maxPage+=1;
+		
+		int startPage = pageInfo.getCurPage()/10;
+		if(pageInfo.getCurPage()%10==0) startPage=-1;
+		startPage = startPage*10+1;
+		
+		int endPage = startPage+10-1;
+		if(endPage>maxPage) endPage=maxPage;
+		
+		pageInfo.setAllPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		int startRow = (pageInfo.getCurPage()-1)*10;
+		
+		return oClassDAO.selectRequestList(startRow);
 	}
 
 	@Override

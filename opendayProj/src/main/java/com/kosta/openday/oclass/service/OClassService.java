@@ -2,9 +2,10 @@ package com.kosta.openday.oclass.service;
 
 import java.sql.Date;
 import java.util.List;
-
+ 
+import com.kosta.openday.oclass.dto.PageInfo; 
 import com.kosta.openday.user.dto.OClassDTO;
-import com.kosta.openday.teacher.dto.ScheduleDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO; 
 import com.kosta.openday.user.dto.RequestDTO;
 
 public interface OClassService {
@@ -19,10 +20,8 @@ public interface OClassService {
 
 	List<ScheduleDTO> findScheduleByClassId(Integer clsId) throws Exception;
 
-	void requestClass(RequestDTO request) throws Exception;
-
-	List<RequestDTO> getRequestList() throws Exception;
-
+	void requestClass(RequestDTO request) throws Exception; 
+	List<RequestDTO> getRequestList(PageInfo pageInfo) throws Exception; 
 	RequestDTO getRequest(Integer reqId) throws Exception;
 
 	void plusViewCount(Integer reqId) throws Exception;

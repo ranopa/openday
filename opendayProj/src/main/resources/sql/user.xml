@@ -3,7 +3,8 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.user">
-	<!--회원가입  -->
+
+<!--회원가입  -->
 	<insert id="insertUser" parameterType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[
 			insert into user values 
@@ -29,7 +30,7 @@
 	<!-- 파일업로드(유저프로필)  -->
 	<insert id="insertUserFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-		insert into file values(nextval(file_seq),#{fileClassification},#{fileOriginalName},#{fileSaveName},${fileSize},CURDATE())
+	insert into file values(nextval(file_seq),#{fileClassification},#{fileOriginalName},#{fileSaveName},${fileSize},CURDATE())
 		]]> 
 	</insert>
 	
@@ -46,7 +47,97 @@
 		select * from user where userId=#{id}
 		]]> 		 
 	</select>
+
+
+<!-- 개설요청참여 participation  -->
+
+<select id="selectParticipationList"  resultType="com.kosta.openday.user.dto.ParticipationDTO">
+	<![CDATA[
+		SELECT * FROM participation
+	]]>
+</select>
 	
+<!-- 글번호로 userID 가져오기 -->
+<select id="selectParticipationByUserId" parameterType="Integer" resultType="String">
+	<![CDATA[
+		SELECT userId FROM participation WHERE reqId = #{reqId} 
+	]]>
+</select>
+
+<!-- 클래스개설요청 request  -->
+
+<select id="selectRequestById" parameterType="Integer" resultType="com.kosta.openday.user.dto.RequestDTO">
+  <![CDATA[
+    SELECT * FROM request WHERE reqId = #{reqId}
+  ]]>
+</select>
+
+<insert id="insertRequest" parameterType="com.kosta.openday.user.dto.RequestDTO">
+  <![CDATA[
+    INSERT INTO request 
+    VALUES (nextval(request_seq), #{reqTitle}, #{reqContent}, #{reqDate}, #{reqViews}, #{reqUpdateDate}, #{userId}, #{reqLocation})
+  ]]>
+</insert>
+
+<!-- 참여자와 글번호 삽입 -->
+<insert id="insertParticipation" parameterType="java.util.Map">
+	<![CDATA[
+		INSERT INTO participation (userId, reqId) VALUES (#{userId}, #{reqId})
+	]]>
+</insert>
+	
+
+
+
+
+<update id="updateRequest" parameterType="com.kosta.openday.user.dto.RequestDTO">
+  <![CDATA[
+    UPDATE request SET
+    reqTitle = #{reqTitle},
+    reqContent = #{reqContent},
+    reqDate = #{reqDate},
+    reqViews = #{reqViews},
+    requestUpdateDate = #{reqUpdateDate},
+    userId = #{userId},
+    reqLocation = #{reqLocation}
+    WHERE reqId = #{reqId}
+  ]]>
+</update>
+
+<delete id="deleteRequestById" parameterType="Integer">
+  <![CDATA[
+    DELETE FROM request WHERE reqId = #{requestId}
+  ]]>
+</delete>
+
+
+
+<!-- 댓글 reply  -->
+<!-- 
+<select id="selectReplyByKey" parameterType="int" resultType="ReplyDTO">
+  <![CDATA[
+    SELECT * FROM reply WHERE key = #{replyKey}
+  ]]>
+</select>
+
+<insert id="insertReply" parameterType="ReplyDTO">
+  <![CDATA[
+    INSERT INTO reply (key, re_title, re_content, re_date, req_id)
+    VALUES (#{replyKey}, #{replyTitle}, #{replyContent}, #{replyDate}, #{requestId})
+  ]]>
+</insert>
+
+<update id="updateReply" parameterType="ReplyDTO">
+  <![CDATA[
+    UPDATE reply SET
+    re_title = #{replyTitle},
+    re_content = #{replyContent},
+    re_date = #{replyDate},
+    req_id = #{requestId}
+    WHERE key = #{replyKey}
+  ]]>
+</update> 
+	-->
 	<!-- 회원탈퇴 -->
 	<update id="updateUserDelete" parameterType="String">
 	<![CDATA[
