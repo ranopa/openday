@@ -140,7 +140,6 @@ public class UserServiceImpl implements UserService {
 		FileDTO file = fileDAO.selectFile(id);
 		System.out.println(uploadDir + file.getFilNum() + file.getFilOrgName());
 		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
-
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-heart.jsp입니당
+
 </body>
 </html>
