@@ -1,37 +1,3 @@
-//search day
-  var selectedButtons = [];
-
-  function toggleSelection(button) {
-    button.classList.toggle("selected");
-    var index = selectedButtons.indexOf(button);
-    if (index > -1) {
-      selectedButtons.splice(index, 1);
-    } else {
-      selectedButtons.push(button);
-    }
-  }
-  
-  //menu only one click
-window.onload = function() {
-  var categoryButton = document.querySelectorAll('.categoryButton');
-
-  function toggleSelection(button) {
-    categoryButton.forEach(function(btn) {
-      if (btn !== button) {
-        btn.classList.remove("selected");
-      }
-    });
-
-    button.classList.toggle("selected");
-  }
-
-  categoryButton.forEach(function(button) {
-    button.addEventListener('click', function() {
-      toggleSelection(this);
-    });
-  });
-};
-  
   //local li selected
 document.addEventListener('DOMContentLoaded', function() {
   var filterItems = document.querySelectorAll('.filterUl1 ul li');
@@ -72,15 +38,6 @@ function disMenu() {
   }
 }
 
-//검색필터 달력
-//$(document).ready(function(){
-
-//$('.input-daterange').datepicker({
-//    format: 'dd-mm-yyyy',
-//   autoclose: true
-//});
-
-//});
 
 //검색필터 초기화
 

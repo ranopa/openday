@@ -16,6 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
 
+
 </head>
 <body>
 	<div class="mainContentBigWrapper">
@@ -50,6 +51,7 @@
 				</c:forEach>
 			</table>
 
+			<div class="newListWrapper">
 			<div class="newList">
 				<table class="oclassTable">
 					<tr class=tableTr>
@@ -85,6 +87,7 @@
 						</c:forEach>
 					</tr>
 				</table>
+		</div>
 			</div>
 		</div>
 	</div>

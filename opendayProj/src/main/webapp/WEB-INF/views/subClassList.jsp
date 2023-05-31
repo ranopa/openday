@@ -14,6 +14,9 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+	
+	
+
 </head>
 <body>
 	<div class="mainContentBigWrapper">
