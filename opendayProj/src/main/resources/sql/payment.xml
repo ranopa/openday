@@ -3,31 +3,41 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.payment">
-	<select id="selectApplicationPayment" resultType="">
+	<select id="selectApplicationPayment"
+	parameterType="Integer"
+	resultType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
 		<![CDATA[
-		
+		select * from application_payment where apNum=#{apNum}
 		]]>
 	</select>
-	<select id="selectApplicationPaymentByClsId" resultType="">
+	<select id="selectApplicationPaymentByClsId"
+	parameterType="Integer"
+	resultType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
 		<![CDATA[
-		
+		select * from application_payment where clsId=#{clsId}
 		]]>
 	</select>
-	<select id="selectApplicationPaymentByUserId" resultType="">
+	<select id="selectApplicationPaymentByUserId"
+	parameterType="String"
+	resultType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
 		<![CDATA[
-		
+		select * from application_payment where userId=#{userId}
 		]]>
 	</select>
 
 	<select id="selectApplicationPaymentList" resultType="">
 		<![CDATA[
-		
+		select * from application_payment
 		]]>
 	</select>
 	<insert id="insertApplicationPayment"
 		parameterType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
 		<![CDATA[
-		
+		insert into application_payment
+		values (nextval(application_payment_seq),
+				apPstatus, apAstatus,
+				apMethod, apFinalAmount, apDate,
+				scdNum, userId)
 		]]>
 	</insert>
 
