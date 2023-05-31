@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <c:set var="contextPath" value="<%=request.getContextPath()%>" /> --%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +17,18 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link
+	href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-eco.css"
+	rel="stylesheet">
 <%-- <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
 <script src="resources/js/user/mypage.js"></script>
+
 </head>
+<%-- <jsp:include page="../header.jsp" /> --%>
 <body>
 	<!--모달  -->
+	<%-- 	<%@ include file=”../header.jsp” %> --%>
+
 	<form action="withdraw" method="post">
 
 		<div class="w-modal">
@@ -51,14 +57,17 @@
 				<div class="m-container">
 					<h2 class="m-h2">프로필 수정</h2>
 					<div class="pf-box">
-						<c:choose> 
-							<c:when test="${user.filNum ne null} "> 
+						<c:choose>
+							<c:when test="${user.filNum eq null} ">
+								<p>파일번호 null</p>
 								<img src="resources/image/user/basic_profile.png"
 									class="picture" id="myImg" alt="회원프로필기본이미지">
+
 							</c:when>
 							<c:otherwise>
 								<img src="img/${user.filNum}" class="picture" id="myImg"
 									alt="회원프로필이미지">
+
 							</c:otherwise>
 						</c:choose>
 						<div class="custom-file-input">
@@ -115,16 +124,25 @@
 		<h2 class="my-h2">마이페이지</h2>
 		<div class="sec1">
 			<div class="mybox1 square">
-
-				<c:choose>
-					<c:when test="${user.filNum ne null} "> 
-						<img src="resources/image/user/basic_profile.png" class="myprofile-pic">
+				<%-- <c:choose>
+					<c:when test="${user.filNum eq null }">
+						<img src="resources/image/user/basic_profile.png"
+							class="myprofile-pic">
 					</c:when>
 					<c:otherwise>
 						<img src="img/${user.filNum}" class="myprofile-pic">
-					
 					</c:otherwise>
-				</c:choose>
+				</c:choose> --%>
+				
+				<c:choose>
+					<c:when test="${empty user.filNum}">
+						<img src="resources/image/user/basic_profile.png"
+							class="myprofile-pic">
+					</c:when>
+					<c:otherwise>
+						<img src="img/${user.filNum}" class="myprofile-pic">
+					</c:otherwise>
+				</c:choose> 
 
 				<p class="tcen">${user.userNickname}</p>
 				<div class="myprofile">
@@ -222,3 +240,4 @@
 
 </body>
 </html>
+<%-- <jsp:include page="../footer.jsp" /> --%>

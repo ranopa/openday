@@ -5,10 +5,10 @@ import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.user.dao.UserDAO;
+import com.kosta.openday.user.dto.CCardDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service
@@ -122,5 +123,6 @@ public class UserServiceImpl implements UserService {
 		userDAO.updateUserDelete(id);
 
 	}
+
 
 }

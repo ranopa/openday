@@ -1,12 +1,13 @@
 package com.kosta.openday.user.service;
 
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kosta.openday.user.dto.CCardDTO;
+import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 public interface UserService {

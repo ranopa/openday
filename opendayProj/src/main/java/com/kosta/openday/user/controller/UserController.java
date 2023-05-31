@@ -21,9 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
-import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.adm.service.FileService;
+import com.kosta.openday.user.dto.CCardDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
@@ -84,7 +84,8 @@ public class UserController {
 			String id = "sbsb";
 			session.setAttribute("id", id);
 			UserDTO user = userService.getUserInfo(id);
-			mav.addObject("user", user);
+			System.out.println(user.getFilNum());
+			mav.addObject("user",user);
 			//파일 디렉토리 찾아오기
 //			if(user.getFilNum()!=null) {
 //				System.out.println(user.getFilNum());
@@ -166,8 +167,7 @@ public class UserController {
 	@RequestMapping(value = "/img/{filNum}", method = RequestMethod.GET)
 	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response){
 	 
-		try {
-			System.out.println("seucess");
+		try { 
 			userService.fileView(filNum, response.getOutputStream());
 			
 		} catch (Exception e) {
@@ -177,8 +177,15 @@ public class UserController {
 
 	// 찜한클래스
 	@RequestMapping("/myheart")
-	public String df() {
-		return "mypage/heart";
+	public ModelAndView heartList(HttpSession session) {
+		ModelAndView mav = new ModelAndView("mypage/heart");
+		try {
+//		 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mav;
 	}
 
 	// 팔로우
