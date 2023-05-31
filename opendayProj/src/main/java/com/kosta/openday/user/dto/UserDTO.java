@@ -14,10 +14,10 @@ public class UserDTO {
 	private String userEmail;//입력이메일 + 도메인 
 	private String birthVal; //생일
 	private Date userBirth; //생일
-	private String userActive; //활성화
+	private String userActivation; //활성화
+	
 	private Integer userAccount; //계좌번호
-	private String userAlarm; //알림여부
-
+	private String userAlarm; //알림여부 
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
 	private String authority; //권한
@@ -27,8 +27,7 @@ public class UserDTO {
 
 	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String userEmail, String birthVal, Date userBirth,
-			String userActive, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
-
+			String userActivation, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
 			String authority, Integer filNum) {
 		this.userId = userId;
 		this.userPassword = userPassword;
@@ -41,13 +40,25 @@ public class UserDTO {
 		this.userEmail = userEmail;
 		this.birthVal = birthVal;
 		this.userBirth = userBirth;
-		this.userActive = userActive;
+		this.userActivation = userActivation;
 		this.userAccount = userAccount;
 		this.userAlarm = userAlarm;
 		this.userJoindate = userJoindate;
 		this.userPrefer = userPrefer;
 		this.authority = authority;
 		this.filNum = filNum;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userNickname=" + userNickname + ", userTel=" + userTel + ", userAddress=" + userAddress
+				+ ", emailVal=" + emailVal + ", domain=" + domain + ", userEmail=" + userEmail + ", birthVal="
+				+ birthVal + ", userBirth=" + userBirth + ", userActivation=" + userActivation + ", userAccount="
+				+ userAccount + ", userAlarm=" + userAlarm + ", userJoindate=" + userJoindate + ", userPrefer="
+				+ userPrefer + ", authority=" + authority + ", userFilenum=" + filNum + "]";
 	}
 
 	public String getUserId() {
@@ -138,12 +149,12 @@ public class UserDTO {
 		this.userBirth = userBirth;
 	}
 
-	public String getUserActive() {
-		return userActive;
+	public String getUserActivation() {
+		return userActivation;
 	}
 
-	public void setUserActive(String userActive) {
-		this.userActive = userActive;
+	public void setUserActivation(String userActivation) {
+		this.userActivation = userActivation;
 	}
 
 	public Integer getUserAccount() {
@@ -193,5 +204,10 @@ public class UserDTO {
 	public void setFilNum(Integer filNum) {
 		this.filNum = filNum;
 	}
+	
+	
+	
+	
+	
 }
 

@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
-import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
@@ -36,7 +35,6 @@ public class UserController {
 	
 	@Autowired
 	private HttpSession session;
-
 
 
 	// 회원가입폼
@@ -55,7 +53,7 @@ public class UserController {
 		}
 		return "mypage/joinResult";
 	}
-	
+
 	// 회원가입 id중복확인
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	@ResponseBody
@@ -97,6 +95,7 @@ public class UserController {
 		Map<String, Object> map = new HashMap<>();
 		try {
 			String id = (String) session.getAttribute("id");
+
 			UserDTO user = userService.getUserInfo(id);
 
 			map.put("id", id);
@@ -181,10 +180,12 @@ public class UserController {
 			@RequestParam(value = "checkboxGroup1", required = false) String c1,
 			@RequestParam(value = "checkboxGroup2", required = false) String c2,
 			@RequestParam(value = "checkboxGroup3", required = false) String c3) {
+
 		ModelAndView mav = new ModelAndView();
 		try {
 			System.out.println(c1 + c2 + c3);
 //			mav.addObject("cateNames",user);
+
 			mav.setViewName("redirect:/myprefer");
 			// 변경, 받아오고 리다이렉
 
@@ -193,7 +194,6 @@ public class UserController {
 		}
 		return mav;
 	}
-
 	@RequestMapping(value = "/withdraw", method = RequestMethod.POST)
 	public String userWithdraw(HttpSession session) throws Exception {
 		String id = (String) session.getAttribute("id");

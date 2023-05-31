@@ -18,14 +18,13 @@
 				<p class="findPwPageTitle">아이디/비밀번호 찾기</p>
 			</div>
 			<ul class="findMenu">
-				<li>아이디 찾기</li>
-				<li class="pwFindMenu">비밀번호 찾기</li>
+				<li><a href="findid">아이디 찾기</a></li>
+				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
 			<ul class="findPwContainer">
-				<li><input type="text" class="findPwPIdBox"
-					id="findPwPIdBox" name="findPwPIdBox" placeholder="아이디"
-					required maxlength="15"></li>
-				
+				<li><input type="text" class="findPwPIdBox" id="findPwPIdBox"
+					name="findPwPIdBox" placeholder="아이디" required maxlength="15"></li>
+
 				<li><input type="text" class="findPwPEmailBox"
 					id="findPwEmailBox" name="findPwPEmailBox" placeholder="이메일"
 					required maxlength="15"></li>

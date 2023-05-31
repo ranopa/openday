@@ -11,12 +11,14 @@ import com.kosta.openday.adm.dto.CodeDTO;
 @Repository
 public class CodeDAOImpl implements CodeDAO {
 
-	@Autowired
-	public SqlSessionTemplate sqlSession;
-	
-	@Override
-	public List<CodeDTO> selectCategoryList() throws Exception { 
-		return sqlSession.selectList("mapper.adm.selectCategoryList");
-	}
+
+   @Autowired
+   public SqlSessionTemplate sqlSession;
+   
+   @Override
+   public List<CodeDTO> selectCategoryList() throws Exception { 
+      return sqlSession.selectList("mapper.adm.selectCategoryList");
+   }
 
 }
+

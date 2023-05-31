@@ -6,57 +6,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
+<script src='<c:url value="/resources/js/user/subClassList.js"/>'></script>
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/user/mainContent.css"/>">
+	href="<c:url value="/resources/css/user/subClassList.css"/>">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
-
-
+	
+	
 
 </head>
 <body>
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
+			<%@ include file="header.jsp"%>
+			<p>${codName}</p>
+			<hr>
+			<div class="tchcsList">
 
-			<table class="mainMenuTable">
-				<c:forEach items="${codeList}" var="code" varStatus="loop">
-					<c:if test="${loop.index % 5 == 0}">
-						<tr>
-					</c:if>
-					<c:if test="${loop.index == 0}">
-						<td>
-							<button type="button" class="mainCategoryButton"
-								name="categoryButton" value="all">전체</button>
-						</td>
-					</c:if>
-					<c:if test="${loop.index > 0 and loop.index <= 4}">
-						<td>
-							<button type="button" class="mainCategoryButton"
-								name="categoryButton" value="${code.codNum}">${code.codName}</button>
-						</td>
-					</c:if>
-					<c:if test="${loop.index > 4}">
-						<td>
-							<button type="button" class="mainCategoryButton"
-								name="categoryButton" value="${code.codNum}">${code.codName}</button>
-						</td>
-					</c:if>
-					<c:if test="${loop.index % 5 == 4 or loop.last}">
-						</tr>
-					</c:if>
-				</c:forEach>
-			</table>
+				<div>${filNum}프로필</div>
+				<span>${tchcNickname}닉네임</span>
 
-			<div class="newListWrapper">
+			</div>
+
+			<div>
+				<label><input type="checkbox" name="color" value="blue">인기순</label>
+				<label><input type="checkbox" name="color" value="blue">등록일순</label>
+				<label><input type="checkbox" name="color" value="blue">가격높은순</label>
+				<label><input type="checkbox" name="color" value="blue">가격낮은순</label>
+
+			</div>
+
 			<div class="newList">
-				<table class="oclassTable">
-					<tr class=tableTr>
-						<c:forEach items="${nlist}" var="list" varStatus="loop">
-						 <c:if test="${loop.index < 8}">
+
+				<c:forEach items="${collectList}" var="list">
+					<table class="oclassTable">
+						<tr>
 							<td class="oclass">
 								<div class="ssum-img">${list.filNum}</div>
 								<div class="txt-box">
@@ -79,17 +66,12 @@
 									</div>
 								</div>
 							</td>
-								</c:if>
-							<c:if test="${loop.index == 7}">
-					</tr>
-					<tr>
-						</c:if>
-						</c:forEach>
-					</tr>
-				</table>
-		</div>
+						</tr>
+					</table>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

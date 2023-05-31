@@ -4,7 +4,7 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.oclass">
-	
+
 	<!-- 클래스 오픈 요청 -->
 	<insert id="classOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
@@ -13,17 +13,19 @@
 		     		#{clsCareer},#{clsCurri})
 	     ]]>
 	</insert>
-	
+
+
 
 	<!-- 파일 넣는거 만들다고 그만둠 -->
+
+
 	<!-- <insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
 		<![CDATA[
 			insert into file values (#{num},#{directory},#{name},#{classification},#{originalname},#{savename},#{size},#{newdate})	
 		]]>		
 	</insert> -->
-
-
-
+	
+	
 	<!-- =========== 클래스 oclass =============================================== -->
 	<!-- 1. 클래스 번호로 클래스 조회 -->
 	<select id="selectOClassByClsId" parameterType="Integer"
@@ -114,37 +116,43 @@
 	</insert>
 
 	<!-- 메인에서 클래스 리스트 불러오기 -->
-	<select id="oClassList"
+<!-- 	<select id="oClassList"
 		resultType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
 			select * from oclass
 		]]>
 	</select>
-
+ -->
 	<!-- 메인 검색 필터에서 선택해서 조회 -->
+
 <!-- 아직 되는지 안되는지 모름 -->
 <!-- 진행중 -->
 	<select id="searchSelect"
 		resultType="com.kosta.openday.teacher.dto.ScheduleDTO" parameterType="java.util.Map">
+
 		<choose>
-			<when test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
+			<when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 				]]>
 			</when>
-			<when test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
+			<when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 					where o.clsCode=#{clsCode}
 				]]>
 			</when>
-			<when test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
+			<when
+				test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 					where  s.scdDate between #{startDate} and #{endDate}
 				]]>
 			</when>
-			<when test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
+			<when
+				test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 					where s.scdLoc=#{scdLoc} 
@@ -176,6 +184,19 @@
 			</otherwise>
 		</choose>
 	</select>
+
+	<!-- 검색필터 카테고리 옵션 -->
+
+<!-- 	<select id="categoryList"
+		resultType="com.kosta.openday.user.dto.CategoryDTO">
+		<![CDATA[
+			select * from code
+		]]>
+	</select>
+ -->
+
+
+
 	<!-- 메인 검색 필터에서 전체 선택해서 조회 -->
 </mapper>
 
