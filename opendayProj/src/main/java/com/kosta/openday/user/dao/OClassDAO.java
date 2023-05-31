@@ -1,4 +1,4 @@
-package com.kosta.openday.oclass.dao;
+package com.kosta.openday.user.dao;
 
 import java.util.List;
 import java.util.Map;

@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import com.kosta.openday.oclass.service.OClassService;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dao.PaymentDAO;
 import com.kosta.openday.user.dto.ApplicationPaymentDTO;

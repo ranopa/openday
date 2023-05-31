@@ -1,4 +1,4 @@
-package com.kosta.openday.notification.dao;
+package com.kosta.openday.adm.dao;
 
 import java.util.List;
 

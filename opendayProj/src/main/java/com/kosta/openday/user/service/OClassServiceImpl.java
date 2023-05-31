@@ -1,4 +1,4 @@
-package com.kosta.openday.oclass.service;
+package com.kosta.openday.user.service;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -9,8 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kosta.openday.oclass.dao.OClassDAO;
-
+import com.kosta.openday.user.dao.OClassDAO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 

@@ -1,4 +1,4 @@
-package com.kosta.openday.oclass.controller;
+package com.kosta.openday.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kosta.openday.oclass.service.OClassService;
-import com.kosta.openday.user.dto.OClassDTO; 
+import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.user.service.OClassService; 
 
 @Controller
 public class OpenEnrollController {

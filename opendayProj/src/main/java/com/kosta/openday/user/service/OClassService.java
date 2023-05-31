@@ -1,4 +1,4 @@
-package com.kosta.openday.oclass.service;
+package com.kosta.openday.user.service;
 
 import java.sql.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.kosta.openday.oclass.controller;
+package com.kosta.openday.user.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -29,9 +29,9 @@ import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
 import com.kosta.openday.user.dto.PaymentRequestDTO;
 import com.kosta.openday.user.dto.PaymentResultDTO;
 import com.kosta.openday.user.dto.UserDTO;
+import com.kosta.openday.user.service.OClassService;
 import com.kosta.openday.user.service.PaymentService;
-import com.kosta.openday.user.service.UserService; 
-import com.kosta.openday.oclass.service.OClassService;
+import com.kosta.openday.user.service.UserService;
 
 @Controller
 public class OClassController {
@@ -82,7 +82,7 @@ public class OClassController {
 				throw new Exception("oClass or schedule not found");
 			
 			// todo: userid session에서 읽어오는걸로 대체 
-			String userId = "hong";
+			String userId = "kkm";
 			UserDTO user = userService.getUserInfo(userId);
 			
 			Integer applyPersonnel = paymentProcessDto.getApplyPersonnel();
@@ -110,9 +110,6 @@ public class OClassController {
 			ApplicationPaymentDTO payment = paymentService.findOne(apNum);
 	
 			PaymentResultDTO paymentResult = paymentService.buildPaymentResult(payment);
-			
-			System.out.println("=============================");
-			System.out.println(paymentResult.getApMethod());
 			
 			model.addAttribute("result", paymentResult);
 		} catch (Exception e) {
