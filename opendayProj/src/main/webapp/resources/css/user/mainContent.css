@@ -90,21 +90,26 @@ body {
 } */
 
 /* 슬라이드 화살표 */
-.arrowIcon{
+/* .arrowIcon{
 	
 }
 
 .arrowIcon span {
 	font-size: 30px;
-}
+} */
 
 /* 카드 간격 */
-.oclassListWrapper{
+.oclassListWrapper {
 	display: flex;
+	justify-content: space-between
 }
-.oclassTable{
-	display: flex;
-	justify-content: space-around;
+.classWrapper{
+	margin-top: 55px;
+}
+.mainOclassListTitle{
+	font-size:20px;
+	font-weight: bold;
+	margin-left:50px;
 }
 
 /* 클래스 리스트 카드 정보 */
@@ -115,6 +120,7 @@ body {
 	border-radius: 5px;
 	border: 1px solid rgb(207, 207, 207);
 	margin-bottom: 20px;
+	margin: 0 18px;
 }
 
 .ssum-img {
