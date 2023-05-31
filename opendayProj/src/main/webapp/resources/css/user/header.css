@@ -63,6 +63,9 @@
 
 .logo {
 	font-family: 'Cafe24 Ohsquare';
+	font-size: 35px;
+	padding-top:35px;
+
 }
 
 body {
@@ -176,6 +179,7 @@ h1 a:hover {
 .login {
 	margin-left: 10px;
 	color: #7C4AFF;
+	
 }
 
 .verticalAlign p {
@@ -190,6 +194,7 @@ h1 a:hover {
 .logoMenu {
 	display: flex;
 	justify-content: space-between;
+	
 }
 
 .searchAndIcon {
