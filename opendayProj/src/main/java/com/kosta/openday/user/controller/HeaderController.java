@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
@@ -36,6 +37,19 @@ public class HeaderController {
 		return "/login/login";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/categorylist", method = RequestMethod.POST)
+	public List<CodeDTO> categoryList() {
+		List<CodeDTO> codeList = null;
+		try {
+			codeList = codeService.categoryInfoList();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return codeList;
+	}
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView userLogin(@RequestParam Map<String, String> map, HttpSession session) throws Exception {
 
@@ -74,19 +88,22 @@ public class HeaderController {
 			String[] start = startDate.split("-");
 			String[] end = endDate.split("-");
 			
-			sqlStartDate = Date.valueOf(start[2]+"-"+start[1]+"-"+start[0]);
-			sqlEndDate = Date.valueOf(end[2]+"-"+end[1]+"-"+end[0]);
-			
+			/*
+			 * sqlStartDate = Date.valueOf(start[2]+"-"+start[1]+"-"+start[0]); sqlEndDate =
+			 * Date.valueOf(end[2]+"-"+end[1]+"-"+end[0]);
+			 */
+			sqlStartDate = Date.valueOf(start[0]+"-"+start[1]+"-"+start[2]);
+			sqlEndDate = Date.valueOf(end[0]+"-"+end[1]+"-"+end[2]);
 		}
 		
 		ModelAndView mav = new ModelAndView();
 		try {
 			  List<CollectDTO> collectList = userService.getSearchOClass(scdLoc,
 					  sqlStartDate, sqlEndDate, clsCode); 
-			  System.out.println(collectList.size());
+			 // System.out.println(collectList.size());
 			  mav.addObject("collectList", collectList);
-			  List<CodeDTO> codeList= codeService.categoryInfoList();
-			  mav.addObject("codeList", codeList);
+			//  List<CodeDTO> codeList= codeService.categoryInfoList();
+			//  mav.addObject("codeList", codeList);
 			  mav.setViewName("subClassList");
 			
 		} catch (Exception e) {

@@ -91,9 +91,8 @@ body {
 .mainCategoryButton {
 	margin: 5px;
 	/* margin-right:10px; */
-width: 230px;
-height: 40px;
-
+	width: 230px;
+	height: 40px;
 }
 
 .mainCategoryButton.selected {
@@ -104,16 +103,23 @@ height: 40px;
 	border-radius: 5px;
 }
 
-
-
 /* 클래스 카드 */
+
+.tableTr{
+	display: flex;
+	flex-wrap: wrap;
+}
+            
 .oclass {
-	width: 300px;
+	width: 260px;
 	height: 368.95px;
 	/* background-color: antiquewhite; */
 	border-radius: 5px;
 	border: 1px solid rgb(207, 207, 207);
+	 margin-bottom: 20px;
 }
+
+
 
 .ssum-img {
 	width: 100%;
@@ -165,7 +171,8 @@ height: 40px;
 	font-size: 18px;
 	font-weight: bold;
 	border-bottom: 1px solid rgb(212, 212, 212);
-	width: 95%; margin-bottom : 10px;
+	width: 95%;
+	margin-bottom: 10px;
 	padding-bottom: 10px;
 	margin-left: 5px;
 	margin-bottom: 10px;
@@ -205,6 +212,6 @@ height: 40px;
 }
 
 /* 카드 와 카드 사이 간격조정 */
-.oclass{
-	display:inline-block;
+.oclass {
+	display: inline-block;
 }

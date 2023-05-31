@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.user.dto.CollectDTO;
-import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Repository

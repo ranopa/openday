@@ -33,12 +33,12 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		try {
 
-			List<CodeDTO> codeList= codeService.categoryInfoList();
+			//<CodeDTO> codeList= codeService.categoryInfoList();
 			List<CollectDTO> nlist = userService.getMainNewOClassList();
 
 			mav.addObject("nlist", nlist);
 
-			mav.addObject("codeList", codeList);
+			//mav.addObject("codeList", codeList);
 			mav.setViewName("main");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,13 +51,13 @@ public class MainController {
 	public ModelAndView subClassList() {
 		ModelAndView mav = new ModelAndView();
 		try {
-			List<CodeDTO> codeList = codeService.categoryInfoList();
+			//List<CodeDTO> codeList = codeService.categoryInfoList();
 
 			List<CollectDTO> nlist = userService.getMainNewOClassList();
 
 			mav.addObject("nlist", nlist);
 
-			mav.addObject("codeList", codeList);
+			//mav.addObject("codeList", codeList);
 			mav.setViewName("subClassList");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -3,10 +3,7 @@ package com.kosta.openday.user.dao;
 import java.util.List;
 import java.util.Map;
 
-
-import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.CollectDTO;
-import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
 import com.kosta.openday.user.dto.UserDTO; 
 
 public interface UserDAO {

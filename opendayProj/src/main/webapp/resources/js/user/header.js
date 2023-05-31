@@ -73,14 +73,14 @@ function disMenu() {
 }
 
 //검색필터 달력
-$(document).ready(function(){
+//$(document).ready(function(){
 
-$('.input-daterange').datepicker({
-    format: 'dd-mm-yyyy',
-   autoclose: true
-});
+//$('.input-daterange').datepicker({
+//    format: 'dd-mm-yyyy',
+//   autoclose: true
+//});
 
-});
+//});
 
 //검색필터 초기화
 

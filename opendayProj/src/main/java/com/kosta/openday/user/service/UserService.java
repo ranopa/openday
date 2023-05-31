@@ -7,8 +7,6 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.user.dto.CollectDTO;
-import com.kosta.openday.user.dto.HeaderSearchFilterDTO;
-import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 public interface UserService {
