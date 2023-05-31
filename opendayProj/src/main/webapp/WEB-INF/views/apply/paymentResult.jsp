@@ -43,31 +43,29 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="header-title">결제 완료</div>
+		<div class="header-title">결제 완료(상태:${result.apPstatus})</div>
 		<div class="container">
-
+			<div class="payment-result-summary">
+				<p>신청번호: ${result.apNum }</p>
+				<p>결제일자: ${result.apDate }</p>
+				<p>결제금액: ${result.apFinalAmount }원 </p>
+				<p>결제방식: ${result.apMethod } </p>
+				
+				
+			</div>
 			<div class="class-image-card">이미지</div>
 			<div class="class-detail">
-				<h4>[서울/건대]마카롱 원데이 클래스 스위스머랭&비정제설탕</h4>
-
-				<div class="detail-bottom">
-					<span>카테고리</span> <span>가격</span>
-				</div>
+				<h4>${result.oClass.clsName }</h4>
 			</div>
 
-			<div class="">
-				<h3>결제 금액</h3>
-				133,000원
-			</div>
 			<div class="">
 				<h3>일시</h3>
-				2023년 5월 19일 토요일 14:00~16:00
+				${result.schedule.scdDate }, ${result.schedule.scdTime }
 			</div>
 		
-
 			<div class="">
 				<h3>장소</h3>
-				서울특별시 호서대벤처타워 912호
+				${result.schedule.scdLoc }
 			</div>
 
 			<a href="">메인으로</a>

@@ -1,12 +1,15 @@
 package com.kosta.openday.user.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.kosta.openday.user.dto.ApplicationPaymentDTO;
 import com.kosta.openday.user.dto.PaymentRequestDTO;
 import com.kosta.openday.user.dto.PaymentResultDTO;
 
+
 public interface PaymentService {
 	
-	PaymentResultDTO doPay(PaymentRequestDTO paymentRequestDTO) throws Exception;
+	Integer doPay(PaymentRequestDTO paymentRequestDTO) throws Exception;
+	
+	ApplicationPaymentDTO findOne(Integer apNum) throws Exception;
+
+	PaymentResultDTO buildPaymentResult(ApplicationPaymentDTO payment) throws Exception;
 }

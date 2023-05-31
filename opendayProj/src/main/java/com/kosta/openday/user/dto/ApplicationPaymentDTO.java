@@ -9,6 +9,8 @@ public class ApplicationPaymentDTO {
 	private String apAstatus; //수강상태
 	private String apMethod; //결제방식
 	private Integer apFinalAmount; //최종결제금액
+	
+	// 나중에 Date -> 시,분,초까지 나오는 DateTime으로 바꿔야할듯?
 	private Date apDate; //결제일
 	private Integer scdNum;//클래스일정번호
 	private String userId; //수강생id

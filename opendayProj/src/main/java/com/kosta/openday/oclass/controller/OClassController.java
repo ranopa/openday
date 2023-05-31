@@ -22,12 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.RequestDTO;
+import com.kosta.openday.user.dto.ApplicationPaymentDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.PaymentProcessDTO;
 import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
 import com.kosta.openday.user.dto.PaymentRequestDTO;
+import com.kosta.openday.user.dto.PaymentResultDTO;
 import com.kosta.openday.user.dto.UserDTO;
-
+import com.kosta.openday.user.service.PaymentService;
 import com.kosta.openday.user.service.UserService; 
 import com.kosta.openday.oclass.service.OClassService;
 
@@ -42,6 +44,8 @@ public class OClassController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private PaymentService paymentService;
 	/**
 	 *  클래스 상세 화면에서, "신청하기" 버튼 클릭 시
 	 * */
@@ -99,11 +103,21 @@ public class OClassController {
 	 * 클래스 결제정보 확인 화면에서, "결제하기 버튼 클릭 시
 	 * */
 	@RequestMapping(value="/payment", method=RequestMethod.POST)
-	public String payment(PaymentRequestDTO paymentRequestDto, Model model) {
-		// 결제 로직 진행
-		// 결제 기록 삽입
-		// 결제 결과 만들어서 리턴
-		
+	public String payment(PaymentRequestDTO paymentRequest, Model model) {
+		try {
+			Integer apNum = paymentService.doPay(paymentRequest);		
+			
+			ApplicationPaymentDTO payment = paymentService.findOne(apNum);
+	
+			PaymentResultDTO paymentResult = paymentService.buildPaymentResult(payment);
+			
+			System.out.println("=============================");
+			System.out.println(paymentResult.getApMethod());
+			
+			model.addAttribute("result", paymentResult);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "apply/paymentResult";
 	}
 

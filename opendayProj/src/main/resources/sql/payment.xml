@@ -10,6 +10,7 @@
 		select * from application_payment where apNum=#{apNum}
 		]]>
 	</select>
+	
 	<select id="selectApplicationPaymentByClsId"
 	parameterType="Integer"
 	resultType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
@@ -17,6 +18,7 @@
 		select * from application_payment where clsId=#{clsId}
 		]]>
 	</select>
+	
 	<select id="selectApplicationPaymentByUserId"
 	parameterType="String"
 	resultType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
@@ -25,21 +27,28 @@
 		]]>
 	</select>
 
-	<select id="selectApplicationPaymentList" resultType="">
+	<select id="selectApplicationPaymentList" resultType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
 		<![CDATA[
 		select * from application_payment
 		]]>
 	</select>
+	
 	<insert id="insertApplicationPayment"
 		parameterType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
 		<![CDATA[
 		insert into application_payment
 		values (nextval(application_payment_seq),
-				apPstatus, apAstatus,
-				apMethod, apFinalAmount, apDate,
-				scdNum, userId)
+				#{apPstatus}, #{apAstatus},
+				#{apMethod}, #{apFinalAmount}, CURDATE(),
+				#{scdNum}, #{userId})
 		]]>
 	</insert>
-
-
+	
+	<select id="selectLastInsertedPaymentNum" resultType="Integer">
+		<![CDATA[
+			SELECT apNum
+			FROM application_payment
+			ORDER BY apNum DESC LIMIT 1
+		]]>
+	</select>
 </mapper>

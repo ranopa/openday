@@ -13,4 +13,5 @@ public interface PaymentDAO {
 	List<ApplicationPaymentDTO> selectApplicationPaymentList() throws Exception;
 	
 	void insertApplicationPayment(ApplicationPaymentDTO dto) throws Exception;
+	Integer selectLastInsertedPaymentNum();
 }
