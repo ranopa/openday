@@ -24,7 +24,7 @@
 	<%@ include file="../header.jsp"%>
 	<section id="./classOpenForm">
 	<div id="div1">
-	<form id="form" action="classOpen" method="post">
+	<form id="form" action="classOpen" method="post" enctype="multipart/form-data">
 		<h3>클래스 개설</h3>
 		<div id=opendiv1>
 			
@@ -55,7 +55,7 @@
 				<input type="radio" id="category15" name="clsCode" value="C15"><label for="category15">키즈</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category16" name="clsCode" value="C16"><label for="category16">플라워/벌룬</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category17" name="clsCode" value="C17"><label for="category17">핸드메이드</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" id="category18" name="clsCode" value="C18"><label for="category17">기타</label>
+				<input type="radio" id="category18" name="clsCode" value="C18"><label for="category18">기타</label>
 				<br><br>
 				</div>
 			</div>
@@ -69,7 +69,9 @@
 				<div>
 					<p>클래스 썸네일 설정</p>
 					<div class="thumbnail-container" id="thumbnail-container">
-						<input type="file" name="filNum" class="file-input" id="thumbnail-input"onchange="readURL(this);"> <img id="preview" />
+						<input type="file" name="file" class="file-input" id="thumbnail-input" 
+						
+						onchange="readURL(this);"> <img id="preview" />
 					</div>
 				</div>
 

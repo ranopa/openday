@@ -6,20 +6,20 @@ import java.sql.Date;
 public class FileDTO {
 	private Integer filNum; //파일번호
 	private String filClassification;//파일분류
-	private String filOriginalName; //원본파일명
-	private String filSaveName;//저장파일명
+	private String filOriginalname; //원본파일명
+	private String filSavename;//저장파일명
 	private Integer filSize; //파일용량
 	private Date filNewDate; //등록일
 	
 	public FileDTO() {}
 	
-	public FileDTO(Integer filNum, String filClassification, String filOriginalName, String filSaveName, Integer filSize,
+	public FileDTO(Integer filNum, String filClassification, String filOriginalname, String filSavename, Integer filSize,
 			Date filNewDate) {
 		super();
 		this.filNum = filNum;
 		this.filClassification = filClassification;
-		this.filOriginalName = filOriginalName;
-		this.filSaveName = filSaveName;
+		this.filOriginalname = filOriginalname;
+		this.filSavename = filSavename;
 		this.filSize = filSize;
 		this.filNewDate = filNewDate;
 	}
@@ -28,51 +28,51 @@ public class FileDTO {
 		return filNum;
 	}
 
-	public String getFilClassification() {
-		return filClassification;
-	}
-
-	public String getFilOriginalName() {
-		return filOriginalName;
-	}
-
-	public String getFilSaveName() {
-		return filSaveName;
-	}
-
-	public Integer getFilSize() {
-		return filSize;
-	}
-
-	public Date getFilNewDate() {
-		return filNewDate;
-	}
-
 	public void setFilNum(Integer filNum) {
 		this.filNum = filNum;
+	}
+
+	public String getFilClassification() {
+		return filClassification;
 	}
 
 	public void setFilClassification(String filClassification) {
 		this.filClassification = filClassification;
 	}
 
-	public void setFilOriginalName(String filOriginalName) {
-		this.filOriginalName = filOriginalName;
+	public String getFilOriginalname() {
+		return filOriginalname;
 	}
 
-	public void setFilSaveName(String filSaveName) {
-		this.filSaveName = filSaveName;
+	public void setFilOriginalname(String filOriginalname) {
+		this.filOriginalname = filOriginalname;
+	}
+
+	public String getFilSavename() {
+		return filSavename;
+	}
+
+	public void setFilSavename(String filSavename) {
+		this.filSavename = filSavename;
+	}
+
+	public Integer getFilSize() {
+		return filSize;
 	}
 
 	public void setFilSize(Integer filSize) {
 		this.filSize = filSize;
 	}
 
+	public Date getFilNewDate() {
+		return filNewDate;
+	}
+
 	public void setFilNewDate(Date filNewDate) {
 		this.filNewDate = filNewDate;
 	}
-	
-	
+
+
 	 
 	
 }

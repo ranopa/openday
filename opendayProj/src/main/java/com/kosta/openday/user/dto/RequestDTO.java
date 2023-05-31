@@ -1,6 +1,6 @@
 package com.kosta.openday.user.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class RequestDTO {
 	private Integer reqId; // 요청글번호
