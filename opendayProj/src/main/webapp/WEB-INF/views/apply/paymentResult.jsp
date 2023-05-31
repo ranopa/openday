@@ -30,7 +30,7 @@
 					</div>
 
 					<div class="class-location">
-						<span>장소</span> ${result.schedule.scdLoc }
+						<span>장소</span> [${result.schedule.scdLoc }] ${result.schedule.scdPlace }
 					</div>
 
 				</div>

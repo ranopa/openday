@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
@@ -102,6 +103,10 @@ public class OClassDAOImpl implements OClassDAO {
 	public void deleteParticipation(Map<String, Object> param) throws Exception {
 		sqlSession.insert("mapper.oclass.deleteParticipation", param);
 
+	}
+	@Override
+	public ApplyClassResponseDTO selectClassAndScheduleForApplyClass(Integer clsId) throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectClassAndScheduleForApplyClass", clsId);
 	}
 	
 }

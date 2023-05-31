@@ -1,7 +1,6 @@
 package com.kosta.openday.user.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,24 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView; 
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.teacher.dto.ScheduleDTO;
-import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.user.dto.ApplicationPaymentDTO;
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.PaymentProcessDTO;
 import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
 import com.kosta.openday.user.dto.PaymentRequestDTO;
 import com.kosta.openday.user.dto.PaymentResultDTO;
+import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.OClassService;
 import com.kosta.openday.user.service.PaymentService;
@@ -52,11 +50,15 @@ public class OClassController {
 	@RequestMapping(value="/apply")
 	public String applyClass(@RequestParam("clsId") Integer id, Model model) {
 		try {
-			OClassDTO oclass = oClassService.findOne(id);
-			List<ScheduleDTO> scheduels = oClassService.findScheduleByClassId(oclass.getClsId());
+			ApplyClassResponseDTO applyClassDto = oClassService.getApplyClassResponse(id);
 			
-			model.addAttribute("oclass", oclass);
-			model.addAttribute("schedules", scheduels);
+//			OClassDTO oclass = oClassService.findOne(id);
+//			List<ScheduleDTO> scheduels = oClassService.findScheduleByClassId(oclass.getClsId());
+//			
+//			model.addAttribute("oclass", oclass);
+//			model.addAttribute("schedules", scheduels);
+			
+			model.addAttribute("data", applyClassDto);
 	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,8 +80,10 @@ public class OClassController {
 			Integer scdNum = paymentProcessDto.getScdNum();
 			ScheduleDTO schedule = oClassService.findScheduleById(scdNum);
 			
-			if (oClass == null || schedule == null)
+			if (oClass == null || schedule == null) {
 				throw new Exception("oClass or schedule not found");
+			}
+				
 			
 			// todo: userid session에서 읽어오는걸로 대체 
 			String userId = "kkm";

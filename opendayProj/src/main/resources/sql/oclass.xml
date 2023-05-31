@@ -195,8 +195,50 @@
 	</select>
  -->
 
-
-
 	<!-- 메인 검색 필터에서 전체 선택해서 조회 -->
+	
+	<select id="selectClassAndScheduleForApplyClass"
+	parameterType="Integer"
+	resultMap="applyClassMap">
+		SELECT
+			cls.clsId as clsId,
+			cls.clsName as clsName,
+			cod.codName as codName,
+			cls.clsPrice as clsPrice,
+			cls.filNum as filNum,
+			
+			scd.scdNum as scdNum,
+			scd.scdDate as scdDate,
+			scd.scdTime as scdTime,
+			scd.scdLoc as scdLoc,
+			scd.scdPlace as scdPlace
+		FROM
+			oclass AS cls
+			INNER JOIN
+			schedule AS scd
+			ON
+			cls.clsId = scd.clsId
+			INNER JOIN
+			code as cod
+			ON cls.clsCode = cod.codNum
+		WHERE cls.clsId = #{clsId}
+	</select>
+	
+	<resultMap id="applyClassMap"
+	type="com.kosta.openday.user.dto.ApplyClassResponseDTO">
+		<result column="clsId" property="clsId" />
+		<result column="clsName" property="clsName" />
+		<result column="clsPrice" property="clsPrice" />
+		<result column="filNum" property="filNum" />
+		<result column="codName" property="codName" />
+		
+		<collection property="schedules" ofType="com.kosta.openday.user.dto.ApplyScheduleDTO">
+			<result column="scdNum" property="scdNum" />
+			<result column="scdDate" property="scdDate" />
+			<result column="scdTime" property="scdTime" />
+			<result column="scdLoc" property="scdLoc" />
+			<result column="scdPlace" property="scdPlace" />
+		</collection>
+	</resultMap>
 </mapper>
 

@@ -71,7 +71,7 @@
 					</tr>
 					<tr>
 						<td>장소</td>
-						<td>${data.scdLoc}</td>
+						<td>[${data.scdLoc}] ${data.scdPlace }</td>
 					</tr>
 				</table>
 			</div>

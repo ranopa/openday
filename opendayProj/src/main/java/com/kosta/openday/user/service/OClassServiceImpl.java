@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.openday.user.dao.OClassDAO;
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 
@@ -124,6 +125,12 @@ public class OClassServiceImpl implements OClassService {
 	public ScheduleDTO findScheduleById(Integer scdNum) throws Exception {
 		// TODO Auto-generated method stub
 		return oClassDAO.selectSchedule(scdNum);
+	}
+
+	@Override
+	public ApplyClassResponseDTO getApplyClassResponse(Integer clsId) throws Exception {
+		// TODO Auto-generated method stub
+		return oClassDAO.selectClassAndScheduleForApplyClass(clsId);
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.adm.dto.CodeDTO;
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
@@ -43,4 +44,6 @@ public interface OClassDAO {
 	void insertParticipation(Map<String, Object> param) throws Exception;
 
 	void deleteParticipation(Map<String, Object> param) throws Exception;
+
+	ApplyClassResponseDTO selectClassAndScheduleForApplyClass(Integer clsId) throws Exception;
 }

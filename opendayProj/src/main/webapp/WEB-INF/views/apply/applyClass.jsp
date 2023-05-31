@@ -13,16 +13,17 @@
 	<script src="${contextPath }/resources/js/user/applyClass.js"></script>
 </head>
 
-<c:if test="${schedules ne null and schedules.size() > 0}">
+<c:if test="${data.schedules ne null and data.schedules.size() > 0}">
 
 <script>
 let availableDays = [];
 let availableDateTimes = [];
-<c:forEach var="s" items="${schedules}">
+<c:forEach var="s" items="${data.schedules}">
 	availableDays.push("${s.scdDate}");
 	availableDateTimes.push({
 		date: "${s.scdDate}",
 		time: "${s.scdTime}",
+		timeAndPlace: "[${s.scdTime}] ${s.scdPlace} (${s.scdLoc})",
 		num: "${s.scdNum}"
 	});
 </c:forEach>
@@ -35,6 +36,7 @@ function textToDateStr(dateText) {
 	let offset = date.getTimezoneOffset() * 60000; //ms단위라 60000곱해줌
 	let selectedDate = new Date(date.getTime() - offset);
 	const selectedDateStr = selectedDate.toISOString().substr(0,10);
+	
     return selectedDateStr;
 }
 
@@ -66,8 +68,8 @@ $(function() {
         			if (item.date == lastSelectedDateTime.date) {
         				selectTime.append($('<option>', { 
         				        value: item.time,
-        				        text : item.time,
         				        num: item.num,
+        				        text : item.timeAndPlace
         				 }));	
         			}
         		});
@@ -86,11 +88,9 @@ $(function() {
 	$(".ui-datepicker-current-day").removeClass("ui-datepicker-current-day");
 	
 	$("#btn-proceed-payment").on("click", function(){
-
 		const scdNum = $("#selectTime option:selected").attr("num");
-
 		$("#scdNum").val(scdNum);
-		$("#clsId").val(${oclass.clsId});
+		$("#clsId").val(${data.clsId});
 	});
 })
 	
@@ -112,11 +112,11 @@ $(function() {
 					<img src="resources/image/teacher/cat.jpg" width="100%" height="350px" style="object-fit:fill;"/>
 				</div>
 				<div class="class-detail">
-					<h4>${oclass.clsName }</h4>
+					<h4>${data.clsName }</h4>
 
 					<div class="detail-bottom">
-						<span>${oclass.clsCode }</span>
-						<span>${oclass.clsPrice }</span>
+						<span>${data.codName }</span>
+						<span>${data.clsPrice }</span>
 					</div>
 				</div>
 
@@ -135,7 +135,7 @@ $(function() {
 					<p>시간 선택 - 드롭다운</p>
 
 					<select id="selectTime" name="selectTime">
-`						<option value="none">-- 시간을 선택하세요 --</option>
+						<option value="none">-- 시간을 선택하세요 --</option>
 					</select>
 				</div>
 			</div>

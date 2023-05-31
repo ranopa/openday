@@ -3,6 +3,7 @@ package com.kosta.openday.user.service;
 import java.sql.Date;
 import java.util.List;
 
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.RequestDTO;
@@ -38,4 +39,6 @@ public interface OClassService {
 	Boolean coupleParticipation(String userId, Integer reqId) throws Exception;
 
 	ScheduleDTO findScheduleById(Integer scdNum) throws Exception;
+
+	ApplyClassResponseDTO getApplyClassResponse(Integer id) throws Exception;
 }

@@ -10,6 +10,7 @@ public class ScheduleDTO {
 	private Date scdDate; //강의일
 	private Time scdTime; //소요시간
 	private String scdLoc; //장소
+	private String scdPlace;
 	private Integer scdPersonnel; //모집인원
 
 	private Integer scdDiscount; //할인율
@@ -19,11 +20,12 @@ public class ScheduleDTO {
 	
 	public ScheduleDTO() {}
 	
-	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, Integer scdPersonnel,
+	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, String scdPlace, Integer scdPersonnel,
 			Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
 		this.scdLoc = scdLoc;
+		this.scdPlace = scdPlace;
 		this.scdPersonnel = scdPersonnel;
 
 		this.scdDiscount = scdDiscount;
@@ -62,6 +64,14 @@ public class ScheduleDTO {
 
 	public void setScdLoc(String scdLoc) {
 		this.scdLoc = scdLoc;
+	}
+
+	public String getScdPlace() {
+		return scdPlace;
+	}
+
+	public void setScdPlace(String scdPlace) {
+		this.scdPlace = scdPlace;
 	}
 
 	public Integer getScdPersonnel() {

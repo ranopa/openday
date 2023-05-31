@@ -26,6 +26,7 @@
 		#{scdDate},
 		#{scdTime},
 		#{scdLoc},
+		#{scdPlace},
 		#{scdPersonnel},
 		#{scdPrice},
 		#{scdDiscount},
