@@ -16,7 +16,7 @@
 
 	<!-- 승인된 클래스 등록 -->
 	<insert id="classEnrollemnt"
-		parameterType="com.kosta.openday.oclass.dto.OclassDTO">
+		parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
 		     insert into schedule (scdNum,scdDate,scdPrice,scd,scdTime,scdpersonnel,sdcLocDetial)
 		     values( nextval(orderInfo_seq),#{scdDate},#{scdPrice},#{scdOperationTime},#{scdTime},
