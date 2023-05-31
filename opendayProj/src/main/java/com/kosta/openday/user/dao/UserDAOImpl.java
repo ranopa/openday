@@ -13,14 +13,13 @@ import com.kosta.openday.user.dto.UserDTO;
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	// 회원가입
 	@Override
 	public void insertUser(UserDTO user) throws Exception {
 		sqlSession.insert("mapper.user.insertUser", user);
-
 	}
 
 	@Override
@@ -34,19 +33,15 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public UserDTO selectUserInfo(String id) throws Exception {
-		return sqlSession.selectOne("mapper.user.selectUser", id);
-
-	}
-
-	@Override
 	public UserDTO selectUserLogin(Map<String, String> map) throws Exception {
 		return sqlSession.selectOne("mapper.user.userLogin", map);
 	}
 
+	public UserDTO selectUserInfo(String id) throws Exception {
+		return sqlSession.selectOne("mapper.user.selectUser", id);
+	}
+
 	@Override
-
-
 	public List<CollectDTO> selectmainNewOClassList() throws Exception {
 		return sqlSession.selectList("mapper.user.mainNewOClassList");
 
@@ -57,4 +52,16 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.search.searchSelect", param);
 	}
+
+	public void updateUser(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.user.updateUser", map);
+
+	}
+
+	@Override
+	public void updateUserDelete(String id) throws Exception {
+		sqlSession.update("mapper.user.updateUserDelete", id);
+
+	}
+
 }

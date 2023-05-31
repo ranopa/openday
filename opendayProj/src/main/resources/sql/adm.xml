@@ -3,7 +3,29 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
 <mapper namespace="mapper.adm">
+
+<!-- 카테고리 list 받아오기  -->
 <select id="selectCategoryList" resultType="com.kosta.openday.adm.dto.CodeDTO">
-    select * from code where codClassfication='카테고리'
+	select * from code where codClassfication='카테고리'
 </select>
+
+<!-- 파일삽입 -->
+<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
+	<![CDATA[
+	insert into file values(nextval(file_seq),#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
+	]]>
+</insert>
+
+<select id="selectFile" parameterType="Integer" resultType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+			select * from file where FilNum=#{fileId} 
+		]]>				
+	</select>
+	
+	<select id="newFileId" resultType="Integer">
+		<![CDATA[
+			select ifnull(max(filNum),0)+1 from file
+		]]>				
+	</select>
+	
 </mapper>

@@ -11,6 +11,7 @@ import com.kosta.openday.adm.dto.CodeDTO;
 @Service
 public class CodeServiceImpl implements CodeService {
 
+
    @Autowired
    private CodeDAO codeDAO;
    
@@ -20,3 +21,4 @@ public class CodeServiceImpl implements CodeService {
    }
 
 }
+

@@ -10,8 +10,10 @@ import com.kosta.openday.teacher.dao.TeacherDAO;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
+	
 	@Autowired
 	private TeacherDAO teacherDAO;
+	
 	@Override
 	public List<AnnouncementDTO> tcAnnouncement() throws Exception {
 		return teacherDAO.tcAnnouncement();

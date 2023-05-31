@@ -9,8 +9,10 @@ import com.kosta.openday.teacher.service.TeacherService;
 
 @Controller
 public class TeacherController {
+	
 	@Autowired
 	private TeacherService teacherService;
+	
 	@RequestMapping("/tcHome")
 	public ModelAndView tcHome() {
 		ModelAndView mav = new ModelAndView("teacher/tcHome");
@@ -22,6 +24,7 @@ public class TeacherController {
 		}
 		return mav;
 	}
+	
 	@RequestMapping("/tcClass")
 	public ModelAndView tcClass() {
 		ModelAndView mav = new ModelAndView("teacher/tcClass");

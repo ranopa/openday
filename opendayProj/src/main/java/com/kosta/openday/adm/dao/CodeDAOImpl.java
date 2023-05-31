@@ -11,6 +11,7 @@ import com.kosta.openday.adm.dto.CodeDTO;
 @Repository
 public class CodeDAOImpl implements CodeDAO {
 
+
    @Autowired
    public SqlSessionTemplate sqlSession;
    
@@ -20,3 +21,4 @@ public class CodeDAOImpl implements CodeDAO {
    }
 
 }
+

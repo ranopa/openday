@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="mapper.schedule">
+<select id="selectScheduleListByClsId"
+	parameterType="Integer"
+	resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	select *
+	from schedule
+	where clsId = #{clsId}
+</select>
+
+<select id="selectSchedule"
+	parameterType="Integer"
+	resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	select *
+	from schedule
+	where scdNum = #{scdNum}
+</select>
+
+
+<insert id="insertSchedule" parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	insert into schedule
+	values (nextval(schedule_seq),
+		#{scdDate},
+		#{scdTime},
+		#{scdLoc},
+		#{scdPersonnel},
+		#{scdPrice},
+		#{scdDiscount},
+		#{scdUploadDate},
+		#{scdStatus},
+		#{clsId}
+	)
+</insert>
+
+</mapper>

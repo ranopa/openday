@@ -15,42 +15,20 @@ public class UserDTO {
 	private String birthVal; //생일
 	private Date userBirth; //생일
 	private String userActivation; //활성화
-	public String getUserActivation() {
-		return userActivation;
-	}
-
-	public void setUserActivation(String userActivation) {
-		this.userActivation = userActivation;
-	}
-
-	private String userAccount; //계좌번호
-	private String userAlarm; //알림여부
+	
+	private Integer userAccount; //계좌번호
+	private String userAlarm; //알림여부 
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
 	private String authority; //권한
-	private Integer userFilenum; //파일번호
+	private Integer filNum; //파일번호
 	
 	public UserDTO() {}
 
 	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
-			String userAddress, String emailVal, String domain, String birthVal) {
-		super();
-		this.userId = userId;
-		this.userPassword = userPassword;
-		this.userName = userName;
-		this.userNickname = userNickname;
-		this.userTel = userTel;
-		this.userAddress = userAddress;
-		this.emailVal = emailVal;
-		this.domain = domain;
-		this.birthVal = birthVal;
-	}
-
-	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String userEmail, String birthVal, Date userBirth,
-			String userActive, String userAccount, String userAlarm, Date userJoindate, String userPrefer,
-			String authority, Integer userFilenum) {
-		super();
+			String userActivation, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
+			String authority, Integer filNum) {
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
@@ -68,7 +46,19 @@ public class UserDTO {
 		this.userJoindate = userJoindate;
 		this.userPrefer = userPrefer;
 		this.authority = authority;
-		this.userFilenum = userFilenum;
+		this.filNum = filNum;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userNickname=" + userNickname + ", userTel=" + userTel + ", userAddress=" + userAddress
+				+ ", emailVal=" + emailVal + ", domain=" + domain + ", userEmail=" + userEmail + ", birthVal="
+				+ birthVal + ", userBirth=" + userBirth + ", userActivation=" + userActivation + ", userAccount="
+				+ userAccount + ", userAlarm=" + userAlarm + ", userJoindate=" + userJoindate + ", userPrefer="
+				+ userPrefer + ", authority=" + authority + ", userFilenum=" + filNum + "]";
 	}
 
 	public String getUserId() {
@@ -159,13 +149,19 @@ public class UserDTO {
 		this.userBirth = userBirth;
 	}
 
-	
+	public String getUserActivation() {
+		return userActivation;
+	}
 
-	public String getUserAccount() {
+	public void setUserActivation(String userActivation) {
+		this.userActivation = userActivation;
+	}
+
+	public Integer getUserAccount() {
 		return userAccount;
 	}
 
-	public void setUserAccount(String userAccount) {
+	public void setUserAccount(Integer userAccount) {
 		this.userAccount = userAccount;
 	}
 
@@ -201,23 +197,17 @@ public class UserDTO {
 		this.authority = authority;
 	}
 
-	public Integer getUserFilenum() {
-		return userFilenum;
+	public Integer getFilNum() {
+		return filNum;
 	}
 
-	public void setUserFilenum(Integer userFilenum) {
-		this.userFilenum = userFilenum;
+	public void setFilNum(Integer filNum) {
+		this.filNum = filNum;
 	}
-
-	@Override
-	public String toString() {
-		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
-				+ ", userNickname=" + userNickname + ", userTel=" + userTel + ", userAddress=" + userAddress
-				+ ", emailVal=" + emailVal + ", domain=" + domain + ", userEmail=" + userEmail + ", birthVal="
-				+ birthVal + ", userBirth=" + userBirth + ", userActivation=" + userActivation + ", userAccount="
-				+ userAccount + ", userAlarm=" + userAlarm + ", userJoindate=" + userJoindate + ", userPrefer="
-				+ userPrefer + ", authority=" + authority + ", userFilenum=" + userFilenum + "]";
-	}
+	
+	
+	
+	
 	
 }
 

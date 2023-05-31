@@ -21,10 +21,8 @@ public class ScheduleDTO {
 	
 	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, Integer scdPersonnel,
 			Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
-		super();
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
-		this.scdTime = scdTime;
 		this.scdLoc = scdLoc;
 		this.scdPersonnel = scdPersonnel;
 
@@ -105,8 +103,4 @@ public class ScheduleDTO {
 	public void setClsId(Integer clsId) {
 		this.clsId = clsId;
 	}
-	
-	
-	
-	
 }

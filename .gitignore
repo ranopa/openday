@@ -141,8 +141,9 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/maven
-<<<<<<< HEAD
 pom.properties
+config.properties
 MANIFEST.MF
-=======
->>>>>>> branch 'header_footer' of https://github.com/binunu/openday.git
+
+# mac
+.DS_Store
