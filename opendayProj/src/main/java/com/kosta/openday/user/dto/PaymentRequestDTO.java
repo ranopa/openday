@@ -8,7 +8,7 @@ public class PaymentRequestDTO {
 	private Integer applyPersonnel;
 	private Integer point;
 	
-	public PaymentRequestDTO() {}
+	public PaymentRequestDTO() { }
 	
 	public PaymentRequestDTO(String userId, Integer clsId, Integer scdNum, Integer applyPersonnel, Integer point) {
 		this.userId = userId;

@@ -136,7 +136,7 @@
 				<table>
 					<tr>
 						<td>포인트 적용</td>
-						<td><span>보유 0</span> <input type="text" name="point" id="point-to-use"/>p</td>
+						<td><span>보유 0</span> <input type="text" name="point" id="point-to-use" value="0"/>p</td>
 					</tr>
 					<tr>
 						<td>최종 결제 금액</td>

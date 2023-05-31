@@ -108,7 +108,9 @@ $(function() {
 		<div class="container">
 		
 			<div class="box">
-				<div class="class-image-card">이미지</div>
+				<div class="class-image-card">
+					<img src="resources/image/teacher/cat.jpg" width="100%" height="350px" style="object-fit:fill;"/>
+				</div>
 				<div class="class-detail">
 					<h4>${oclass.clsName }</h4>
 
@@ -139,7 +141,8 @@ $(function() {
 			</div>
 			<div class="box">
 				<div class="apply-people-count">
-					신청 인원 수 입력 - 카운터 <input type="number" name="applyPersonnel" min="1" max="100" value="1" />
+					<span>신청 인원 수</span>
+					<input type="number" name="applyPersonnel" min="1" max="100" value="1" />
 				</div>
 			</div>
 			<div class="box">

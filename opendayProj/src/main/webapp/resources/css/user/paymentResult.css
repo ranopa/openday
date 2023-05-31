@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* ================== </캘린더> ================== */
+.wrapper {
+	width: 880px;
+	margin: 0 auto;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 45% 55%;
+	grid-template-rows: repeat(4, 1fr);
+	height: 60vh;
+}
+
+.box {
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+}
+
+.box:nth-child(1) {
+	margin-right: 20px;
+}
+
+.box:nth-child(2), .box:nth-child(3), .box:nth-child(4) {
+	margin-bottom: 20px;
+}
+
+.box:nth-child(1) {
+	grid-row: span 4;
+	
+}
+
+.box:nth-child(2) {
+	grid-row: span 3;
+}
+.box:nth-child(3) {
+	grid-row: span 1;
+}
+.box:nth-child(1), .box:nth-child(2) {
+	background-color: #f7f5fd;
+}
+
+.box:nth-child(3) {
+	padding-right: 0;
+}
+
+.payment-result-summary {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between
+}
+
+.class-detail {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.header-title {
+	font-weight: bold;
+	font-size: 22px;
+	color: #5a2ece;
+	margin-bottom: 10px;
+}
