@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
-
-import com.kosta.openday.user.dto.CCardDTO;
+ 
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.UserDTO;
 

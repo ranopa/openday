@@ -17,8 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.FileDTO;
-import com.kosta.openday.user.dao.UserDAO;
-import com.kosta.openday.user.dto.CCardDTO;
+import com.kosta.openday.user.dao.UserDAO; 
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service

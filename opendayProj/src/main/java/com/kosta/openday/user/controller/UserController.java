@@ -22,8 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
-import com.kosta.openday.adm.service.FileService;
-import com.kosta.openday.user.dto.CCardDTO;
+import com.kosta.openday.adm.service.FileService; 
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
