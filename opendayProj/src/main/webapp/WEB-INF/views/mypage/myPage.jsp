@@ -118,7 +118,7 @@
 		<div class="sec1">
 			<div class="mybox1 square">
 
-		 	<c:choose>
+		 	<c:choose>	
 				<c:when test="${user.filNum eq null}">
 					<img src = "resources/img/user/basic_profile.png" class="myprofile-pic">
 				</c:when>
