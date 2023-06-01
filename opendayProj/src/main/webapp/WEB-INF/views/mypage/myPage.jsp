@@ -52,16 +52,16 @@
 					<h2 class="m-h2">프로필 수정</h2>
 					<div class="pf-box">
 						<c:choose>		
-							<c:when test="${not empty user.filNum} ">
-
-								<img src="img/${user.filNum}" class="picture" id="myImg"
-									alt="회원프로필이미지">
+							<c:when test="${empty user.filNum} "> 
+								<img src="resources/image/user/basic_profile.png"
+									class="picture" id="myImg" alt="회원프로필기본이미지"/> 
 							</c:when>
 							<c:otherwise>
-								<img src="resources/image/user/basic_profile.png"
-									class="picture" id="myImg" alt="회원프로필기본이미지">
+								<img src="img/${user.filNum}" class="picture" id="myImg"
+									alt="회원프로필이미지"/> 
 							</c:otherwise>
 						</c:choose>
+						
 
 						<div class="custom-file-input">
 							<input name="file" type="file" id="myfile" accept="image/*" />
@@ -117,18 +117,16 @@
 		<h2 class="my-h2">마이페이지</h2>
 		<div class="sec1">
 			<div class="mybox1 square">
-				<img src="resources/image/user/basic_profile.png"
-					class="myprofile-pic">
-				<%-- <c:choose>
-					<c:when test="${user.filNum eq null} ">
-						<img src="resources/image/user/basic_profile.png"
-							class="myprofile-pic">
-					</c:when>
-					<c:otherwise> 
-						  <img src="img/${user.filNum}" class="myprofile-pic">  
-					</c:otherwise>
-				</c:choose> --%>
 
+		 	<c:choose>	
+				<c:when test="${user.filNum eq null}">
+					<img src = "resources/img/user/basic_profile.png" class="myprofile-pic">
+				</c:when>
+				<c:otherwise>
+					<img src = "img/${user.filNum }" class="myprofile-pic">
+				</c:otherwise>
+			</c:choose> 
+				
 				<p class="tcen">${user.userNickname}</p>
 				<div class="myprofile">
 					<div class="border-bottom">
