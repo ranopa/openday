@@ -6,8 +6,8 @@ import java.sql.Date;
 public class ScheduleDTO {
 
 	private Integer scdNum; //클래스 일정번호 
-	private Date scdDate; //강의일
-	private Date scdTime; //소요시간
+	private String scdDate; //강의일
+	private String scdTime; //소요시간
 	private String scdLoc; //장소
 	private Integer scdPersonnel; //모집인원
 	private Integer scdPrice; //수강료
@@ -18,7 +18,7 @@ public class ScheduleDTO {
 	
 	public ScheduleDTO() {}
 	
-	public ScheduleDTO(Integer scdNum, Date scdDate, Date scdTime, String scdLoc, Integer scdPersonnel,
+	public ScheduleDTO(Integer scdNum, String scdDate, String scdTime, String scdLoc, Integer scdPersonnel,
 			Integer scdPrice, Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
 		super();
 		this.scdNum = scdNum;
@@ -41,19 +41,19 @@ public class ScheduleDTO {
 		this.scdNum = scdNum;
 	}
 
-	public Date getScdDate() {
+	public String getScdDate() {
 		return scdDate;
 	}
 
-	public void setScdDate(Date scdDate) {
+	public void setScdDate(String scdDate) {
 		this.scdDate = scdDate;
 	}
 
-	public Date getScdTime() {
+	public String getScdTime() {
 		return scdTime;
 	}
 
-	public void setScdTime(Date scdTime) {
+	public void setScdTime(String scdTime) {
 		this.scdTime = scdTime;
 	}
 

@@ -30,7 +30,7 @@
 		<div id=opendiv1>
 			<div class="opendiv2">
 				<span class="span">클래스 이름</span>
-				<input type="text" id="clsName" name="clsName" readonly="readonly" value="${oclassDTO.clsName }"/>
+				<input type="text" id="clsName" name="clsName" value="${oclassDTO.clsName }"/>
 			</div>
 
 			<div class="opendiv2">
@@ -62,21 +62,22 @@
 			</div>
 
 			<div class="opendiv2">
-				<span class="span">클래스 소개글</span> 
-				${clsDescription }
+				<span class="span">클래스 소개글</span>
+				<input type="text" name="clsDescription" id="clsDescription" value="${oclassDTO.clsDescription }" autofocus maxlength="200"> 
 			</div>
 
 			<div id="divdouble">
 				<div>
 					<p>클래스 썸네일 설정</p>
-					<div class="thumbnail-container" id="thumbnail-container">
-						<input type="file" name="filName" class="file-input" id="thumbnail-input"onchange="readURL(this);"> <img id="preview" />
+					<div class="thumbnail-container">
+						<img class="thumbnail-container" src="./image/${oclassDTO.filNum }" id="preview" />
+						<input type="file" name="filNum" value="" class="file-input" id="thumbnail-input" onchange="readURL(this);"> 
 					</div>
 				</div>
 
 				<div>
 					<p>강사, 강의 경력</p>
-					<textarea placeholder="내용을 입력해 주세요" name="clsCarrer"></textarea>
+					<textarea placeholder="내용을 입력해 주세요" name="clsCarrer">${oclassDTO.clsDescription }</textarea>
 				</div>
 			</div>
 
@@ -89,11 +90,12 @@
 				<p id="detailP">클래스 세부 설정</p>
 
 				<table class="detailT">
+					<input type="hidden" id="scdDate" name="scdDate" value="" />
 					<tr>
 						<td class="detailtd">
 							<p id="cal">
 							<table class="Calendar">
-								&nbsp;&nbsp;일자 설정
+								<p id="detailtd">일자 설정</p>
 								<thead>
 									<tr>
 										<td onClick="prevCalendar();" style="cursor: pointer;">&#60;</td>
@@ -137,10 +139,10 @@
 
 
 						<td class="detailtd">
-							장소 설정
+							<p id="detailtd">장소 설정<p>
 							<div>
-							지역
-							<select id="select">
+							지역 :
+							<select id="select" name="scdLoc")>
 										<option>선택</option>
 										<option>서울</option>
 										<option>경기</option>
@@ -157,95 +159,92 @@
 										<option>충남</option>
 										<option>세종</option>
 										<option>강원</option>
-										<option>제주</option>										
+										<option value="${scheduleDTO.scdLoc }">제주</option>										
 							</select>
 							</div>
 							<div>
 							주소 검색 : 
-							<input type="text" name="scdLoc" id="address" placeholder="도로명 주소를 입력해주세요">
-							<button type="button" id="searchBtn">검색</button>		
+							<input type="text" class="map-input" id="sample5_address" placeholder="검색을 클릭해주세요">
+							<input type="button" id="map-input" onclick="sample5_execDaumPostcode()" value="검색"><br>	
 							</div>
 							<div>
 							상세 주소 : 
-							<input type="text" name="scdLocDetial" placeholder="상세 주소를 입력해주세요">
+							<input type="text" class="map-input" name="scdLocDetial" placeholder="상세 주소를 입력해주세요">
 							</div>	
 	
-							<div id="map"></div> 
+							<div id="map"></div>
+							<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f123941dd9e33a2fc56e4cff04c0f675&libraries=services"></script>
 							<script>
-							var mapContainer = document.getElementById('map'); // 지도를 표시할 div
-							var mapOption = {
-								center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-								level: 3 // 지도의 확대 레벨
-							};
-
-							// 지도를 생성합니다
-							var map = new kakao.maps.Map(mapContainer, mapOption);
-
-							// 마커 변수를 선언합니다
-							var marker = null;
-
-							// 인포윈도우 변수를 선언합니다
-							var infowindow = null;
-
-							// 버튼을 클릭했을 때
-							$('#searchBtn').click(function () {
-
-								// 주소-좌표 변환 객체를 생성합니다
-								var geocoder = new kakao.maps.services.Geocoder();
-
-								// 주소로 좌표를 검색합니다
-								geocoder.addressSearch($('#address').val(), function (result, status) {
-
-									// 정상적으로 검색이 완료됐으면
-									if (status === kakao.maps.services.Status.OK) {
-										var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-										// 추출한 좌표를 통해 도로명 주소 추출
-										let lat = result[0].y;
-										let lng = result[0].x;
-										getAddr(lat, lng);
-
-										function getAddr(lat, lng) {
-											let geocoder = new kakao.maps.services.Geocoder();
-											let coord = new kakao.maps.LatLng(lat, lng);
-											let callback = function (result, status) {
-												if (status === kakao.maps.services.Status.OK) {
-													// 추출한 도로명 주소를 해당 input의 value값으로 적용
-													$('#address').val(result[0].road_address.address_name);
-												}
-											};
-											geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-										}
-
-										// 이전에 생성된 마커가 있다면 제거합니다
-										if (marker !== null) {
-											marker.setMap(null);
-										}
-
-										// 이전에 생성된 인포윈도우가 있다면 제거합니다
-										if (infowindow !== null) {
-											infowindow.close();
-										}
-
-										// 결과값으로 받은 위치를 마커로 표시합니다
-										marker = new kakao.maps.Marker({
-											map: map,
-											position: coords
-										});
-
-										// 인포윈도우로 장소에 대한 설명을 표시합니다
-										infowindow = new kakao.maps.InfoWindow({
-											content: '<div style="width:150px;text-align:center;padding:6px 0;">클래스장소</div>'
-										});
-										infowindow.open(map, marker);
-
-										// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-										map.setCenter(coords);
-									}
-								});
-							});
-							</script>
+							    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+							        mapOption = {
+							            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+							            level: 5 // 지도의 확대 레벨
+							        };
+							
+							    //지도를 미리 생성
+							    var map = new daum.maps.Map(mapContainer, mapOption);
+							    //주소-좌표 변환 객체를 생성
+							    var geocoder = new daum.maps.services.Geocoder();
+							    //마커를 미리 생성
+							    var marker = new daum.maps.Marker({
+							        position: new daum.maps.LatLng(37.537187, 127.005476),
+							        map: map,
+							        draggable: true // 마커를 드래그 가능하도록 설정
+							    });
+							
+							    // 초기에 지도를 보이도록 설정
+							    mapContainer.style.display = "block";
+							    map.relayout();
+							
+							    // 마커 드래그가 끝난 후 이벤트 처리
+							    daum.maps.event.addListener(marker, 'dragend', function() {
+							        var position = marker.getPosition(); // 마커의 현재 위치를 가져옴
+							
+							        // 좌표를 주소로 변환
+							        geocoder.coord2Address(position.getLng(), position.getLat(), function(result, status) {
+							            if (status === daum.maps.services.Status.OK) {
+							                var addr = result[0].address.address_name; // 주소 변수
+							
+							                // 주소 정보를 해당 필드에 넣는다.
+							                document.getElementById("sample5_address").value = addr;
+							            } else {
+							                document.getElementById("sample5_address").value = "주소를 찾을 수 없습니다.";
+							            }
+							        });
+							    });
+							
+							    function sample5_execDaumPostcode() {
+							        new daum.Postcode({
+							            oncomplete: function(data) {
+							                var addr = data.address; // 최종 주소 변수
+							
+							                // 주소 정보를 해당 필드에 넣는다.
+							                document.getElementById("sample5_address").value = addr;
+							                // 주소로 상세 정보를 검색
+							                geocoder.addressSearch(data.address, function(results, status) {
+							                    // 정상적으로 검색이 완료됐으면
+							                    if (status === daum.maps.services.Status.OK) {
+							
+							                        var result = results[0]; //첫번째 결과의 값을 활용
+							
+							                        // 해당 주소에 대한 좌표를 받아서
+							                        var coords = new daum.maps.LatLng(result.y, result.x);
+							                        // 지도를 보여준다.
+							                        mapContainer.style.display = "block";
+							                        map.relayout();
+							                        // 지도 중심을 변경한다.
+							                        map.setCenter(coords);
+							                        // 마커를 결과값으로 받은 위치로 옮긴다.
+							                        marker.setPosition(coords);
+							                    } else {
+							                        document.getElementById("sample5_address").value = "주소를 찾을 수 없습니다.";
+							                    }
+							                });
+							            }
+							        }).open();
+							    }
+							</script> 
 					
 						</td>
 					</tr>
@@ -255,7 +254,7 @@
 		<div class="btns">
 		<button type="button" class="cancel-btn" onClick="window.location.reload()">초기화</button>
       <button type="button" class="cancel-btn">취소</button>
-      <button type="submit" class="submit-btn">클래스 개설</button>
+      <button type="submit" class="submit-btn">클래스 등록</button>
 	</div>
 		</form>
 	</div>

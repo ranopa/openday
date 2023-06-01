@@ -13,6 +13,13 @@
 		     		curdate(),#{filNum})
 	     ]]>
 	</insert>
+			
+	<!-- 클래스 불러오기  -->
+	<select id="selectOclass" parameterType="Integer" resultType="com.kosta.openday.user.dto.OClassDTO">
+		<![CDATA[
+			select * from oclass where clsId=#{clsId}
+		]]> 		
+	</select>
 	
 	<!-- 파일업로드(썸네일)  -->
 	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
@@ -28,23 +35,12 @@
 		]]> 		
 	</select>
 	
-	<!-- 클래스 등록(승인 후) -->
-	<insert id="classEnrollemnt" parameterType="com.kosta.openday.user.dto.OClassDTO">
-		 <![CDATA[
-		     insert into schedule (scdNum,scdDate,scdPrice,scdOperationTime,scdTime,scdPersonnel)
-		     values( nextval(schedule_seq),#{scdNum},curdate(),#{scdPrice},#{scdOperationTime},#{scdTime},
-		     		#{scdPersonnel},#{1})
-	     ]]>
-	</insert>
-	
-	<!-- 데이터 불러오기  -->
-	<select id="selectOclass" parameterType="Integer" resultType="com.kosta.openday.user.dto.OClassDTO">
+	<!-- 파일 불러오기  -->
+	<select id="selectFile" parameterType="Integer" resultType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-			select * from oclass where clsId=#{clsId}
+			select * from file where filNum=#{filNum}
 		]]> 		
 	</select>
-	
-	
 
 	<!-- =========== 클래스 oclass =============================================== -->
 	<!-- 1. 클래스 번호로 클래스 조회 -->

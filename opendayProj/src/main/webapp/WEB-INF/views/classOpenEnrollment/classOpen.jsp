@@ -21,8 +21,10 @@
 
 <body>
 	
-	<%@ include file="../header.jsp"%>
-	<section id="./classOpenForm">
+	<div id="includeWrapper">
+	<div id="includeHeader" class="includeHeader">
+		<%@ include file="../header.jsp"%>
+	</div>
 	<div id="div1">
 	<form id="form" action="classOpen" method="post" enctype="multipart/form-data">
 		<h3>클래스 개설</h3>
@@ -69,9 +71,7 @@
 				<div>
 					<p>클래스 썸네일 설정</p>
 					<div class="thumbnail-container" id="thumbnail-container">
-						<input type="file" name="file" class="file-input" id="thumbnail-input" 
-						
-						onchange="readURL(this);"> <img id="preview" />
+						<input type="file" name="file" class="file-input" id="thumbnail-input" onchange="readURL(this);"> <img id="preview" />
 					</div>
 				</div>
 
@@ -94,7 +94,9 @@
 	</div>
 	</form>
 	</div>
-	</section>
-	<%@ include file="../footer.jsp"%>
+	<div id="includeFooter" class="includeFooter">
+			<%@ include file="../footer.jsp"%>
+	</div>
+	</div>	
 </body>
 </html>

@@ -3,13 +3,52 @@ function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function(e) {
-      document.getElementById('preview').src = "<c:url value='/resources/image/${file.fileId}' />";
+      var preview = document.getElementById('preview');
+      
+       $('#preview').attr('src', e.target.result);
+
+      var image = new Image();
+      image.onload = function() {
+        var maxWidth = 400; // .thumbnail-container의 최대 너비
+        var maxHeight = 300; // .thumbnail-container의 최대 높이
+
+        var width = image.width;
+        var height = image.height;
+
+        var aspectRatio = width / height;
+
+        if (aspectRatio > maxWidth / maxHeight) {
+          width = maxWidth;
+          height = maxWidth / aspectRatio;
+        } else {
+          height = maxHeight;
+          width = maxHeight * aspectRatio;
+        }
+
+        preview.style.width = width + 'px';
+        preview.style.height = height + 'px';
+
+        preview.style.backgroundImage = 'url("' + reader.result + '")';
+        preview.style.backgroundSize = 'cover';
+        preview.style.backgroundPosition = 'center';
+        preview.style.backgroundColor = 'rgba(217, 217, 217, 1)';
+
+        // 미리보기 이미지를 정중앙에 수직 정렬합니다.
+        var marginTop = (maxHeight - height) / 2;
+        preview.style.marginTop = marginTop + 'px';
+      };
+
+      image.src = reader.result;
     };
     reader.readAsDataURL(input.files[0]);
   } else {
-    document.getElementById('preview').src = "";
+    document.getElementById('preview').style.backgroundImage = "";
   }
 }
+
+$('#thumbnail-input').change(function() {
+  readURL(this);
+});
 
 // 토스트 ui
 document.addEventListener("DOMContentLoaded", function() {
@@ -23,13 +62,13 @@ document.addEventListener("DOMContentLoaded", function() {
 });
         
 // 캘린더 api
-// window.onload = function () { buildCalendar(); }    // 웹 페이지가 로드되면 buildCalendar 실행
+ window.onload = function () { buildCalendar(); }    // 웹 페이지가 로드되면 buildCalendar 실행
 
     let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
     let today = new Date();     // 페이지를 로드한 날짜를 저장
     today.setHours(0, 0, 0, 0);    // 비교 편의를 위해 today의 시간을 초기화
 
-    let selectedDates = [];  // 선택된 날짜를 저장할 배열
+    let scdDate = [];  // 선택된 날짜를 저장할 배열
 
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
     function buildCalendar() {
@@ -76,26 +115,37 @@ document.addEventListener("DOMContentLoaded", function() {
                 newDIV.onclick = function () { choiceDate(this); }
             }
 
-            if (selectedDates.includes(nowDay.getTime())) {  // 선택된 날짜인 경우
+            if (scdDate.includes(nowDay.getTime())) {  // 선택된 날짜인 경우
                 newDIV.classList.add("choiceDay");
             }
         }
     }
 
-    // 날짜 선택
-    function choiceDate(newDIV) {
-        let selectedDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), parseInt(newDIV.innerHTML));
-        let selectedTime = selectedDate.getTime();
+    // 날짜 선택 및 저장
+function choiceDate(newDIV) {
+  let selectedDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), parseInt(newDIV.innerHTML));
 
-        if (selectedDates.includes(selectedTime)) {  // 이미 선택된 날짜인 경우
-            selectedDates = selectedDates.filter(date => date !== selectedTime);  // 선택된 날짜 배열에서 제거
-            newDIV.classList.remove("choiceDay");  // 선택된 날짜의 "choiceDay" class 제거
-        } else {  // 새로운 날짜를 선택한 경우
-            selectedDates.push(selectedTime);  // 선택된 날짜 배열에 추가
-            newDIV.classList.add("choiceDay");  // 선택된 날짜에 "choiceDay" class 추가
-        }
-    }
+  // 선택된 날짜와 동일한 날짜가 선택되었는지 확인
+  let selectedIndex = scdDate.findIndex(date => date.getTime() === selectedDate.getTime());
+
+  if (selectedIndex !== -1) {  // 이미 선택된 날짜인 경우
+    scdDate.splice(selectedIndex, 1);  // 선택된 날짜 배열에서 제거
+    newDIV.classList.remove("choiceDay");  // 선택된 날짜의 "choiceDay" class 제거
+  } else {  // 새로운 날짜를 선택한 경우
+    scdDate.push(selectedDate);  // 선택된 날짜 배열에 추가
+    newDIV.classList.add("choiceDay");  // 선택된 날짜에 "choiceDay" class 추가
+  } 
+
+  // hidden input 태그 업데이트
+  let scdDateInput = document.getElementById("scdDate");
+  scdDateInput.value = JSON.stringify(scdDate.map(date => date.toISOString().substring(0, 10)));  // 선택된 날짜들을 YYYY-MM-DD 형식의 문자열로 변환하여 입력
+  console.log(scdDate);
+}
     
+	
+	
+	
+
     
     // 이전달 버튼 클릭
     function prevCalendar() {
@@ -116,8 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return value;
     }
-
-
+	
 //취소 버튼
 $(function() {
 	buildCalendar();
@@ -126,4 +175,10 @@ $(function() {
 	});
 });
 
-// 라디오
+// 셀렉트
+document.addEventListener("DOMContentLoaded", function() {
+  var scdLocValueFromDB = "${scheduleDTO.scdLoc }";
+  var selectElement = document.getElementById("select");
+  selectElement.value = scdLocValueFromDB;
+  console.log("${scheduleDTO.scdLoc }");
+});

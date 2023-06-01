@@ -33,4 +33,19 @@
 		 	select * from teacherFollwer
 	 	 ]]>
 	</select>
+	
+	<!-- 클래스 등록(승인 후) -->
+	<insert id="classEnrollemnt" parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
+		 <![CDATA[
+		     insert into schedule (scdNum,scdDate,scdLoc,scdUploadDate,clsId)
+		     values( nextval(schedule_seq),#{scdDate},#{scdLoc},curdate(),#{clsId})
+	     ]]>
+	</insert>
+	
+	<!-- 스케쥴 불러오기 -->
+	<select id="selectSchedule" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+		 <![CDATA[
+		 	select * from schedule where clsId = #{clsId}
+	 	 ]]>
+	</select>
 </mapper>

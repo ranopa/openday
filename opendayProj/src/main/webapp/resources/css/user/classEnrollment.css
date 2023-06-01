@@ -199,7 +199,7 @@ textarea {
 }
 
 #detailtd {
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .detailtd{
@@ -208,7 +208,18 @@ textarea {
 
 #detailtd > p {
 	margin: 5px 0;
-} 
+}
+ 
+.map-input {
+	width: 250px;
+	height: 21px;
+	margin: 3px;
+}
+
+#map-input {
+	width: 45px;
+	height: 25px;
+}
 
 .btns {
             width: 820px;
@@ -241,6 +252,7 @@ textarea {
 }
 
 #select {
-	width: 130px;	
-	height: 20px;
+	width: 100px;	
+	height: 23px;
+	padding: 0 5px;
 }

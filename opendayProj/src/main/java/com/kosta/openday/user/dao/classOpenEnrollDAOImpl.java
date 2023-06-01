@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 @Repository
@@ -31,6 +32,21 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	@Override
 	public OClassDTO selectOclass(Integer clsId) throws Exception {
 		return sqlSession.selectOne("mapper.oclass.selectOclass",clsId);
+	}
+
+	@Override
+	public FileDTO selectFile(Integer filNum) throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectFile",filNum);
+	}
+
+	@Override
+	public int classEnrollment(ScheduleDTO dto) throws Exception {
+		return sqlSession.insert("mapper.teacher.classEnrollemnt",dto);
+	}
+
+	@Override
+	public ScheduleDTO selectSchedule(Integer clsId) throws Exception {
+		return sqlSession.selectOne("mapper.teacher.selectSchedule", clsId);
 	}
 
 }
