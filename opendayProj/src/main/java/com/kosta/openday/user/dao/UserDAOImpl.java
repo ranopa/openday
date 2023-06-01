@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Repository
@@ -63,5 +64,21 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.update("mapper.user.updateUserDelete", id);
 
 	}
+	
+	@Override
+	public List<HeartDTO> selectHeartList(String userId) throws Exception {
+		List<HeartDTO> list = sqlSession.selectList("mapper.user.selectHeartList",userId);
+		System.out.println(list.get(0).getUserId());
+		System.out.println(list.get(0).getScdNum());
+		return list;
+	}
+
+	@Override
+	public CollectDTO selectHeartOClass(Integer scdNum) throws Exception {
+		return sqlSession.selectOne("mapper.user.selectHeartOClass",scdNum);
+		
+	}
+
+	
 
 }

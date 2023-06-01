@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +19,7 @@ import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service
@@ -140,7 +141,6 @@ public class UserServiceImpl implements UserService {
 		FileDTO file = fileDAO.selectFile(id);
 		System.out.println(uploadDir + file.getFilNum() + file.getFilOrgName());
 		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
-
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}
@@ -149,6 +149,20 @@ public class UserServiceImpl implements UserService {
 	public void withdrawUser(String id) throws Exception {
 		userDAO.updateUserDelete(id);
 
+	}
+
+	@Override
+	public List<CollectDTO> HeartOClass(String userId) throws Exception {  
+		List<CollectDTO> list = new ArrayList<>();  
+		List<HeartDTO> hearts = userDAO.selectHeartList(userId);
+		
+		for(HeartDTO h:hearts) {  
+			CollectDTO collect = userDAO.selectHeartOClass(h.getScdNum());
+			list.add(collect);
+			System.out.println(collect.toString());
+		} 
+		return list;
+				
 	}
 
 }

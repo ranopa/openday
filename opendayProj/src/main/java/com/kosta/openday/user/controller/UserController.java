@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
+import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
@@ -156,9 +157,19 @@ public class UserController {
 	}
 
 	// 찜한클래스
-	@RequestMapping("/mypage/myheart")
-	public String df() {
-		return "mypage/heart";
+	@RequestMapping("/myheart")
+	public ModelAndView heart(){
+		ModelAndView mav = new ModelAndView();
+		try {
+			String userId = (String)session.getAttribute("id");
+			List<CollectDTO> list = userService.HeartOClass(userId);
+			System.out.println("list size = "+list.size());
+			mav.addObject("heartList",list);
+			mav.setViewName("mypage/heart");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
 	}
 
 	// 팔로우
@@ -195,9 +206,8 @@ public class UserController {
 		return mav;
 	}
 	@RequestMapping(value = "/withdraw", method = RequestMethod.POST)
-	public String userWithdraw(HttpSession session) throws Exception {
+	public String userWithdraw() throws Exception {
 		String id = (String) session.getAttribute("id");
-		System.out.println("enter");
 		userService.withdrawUser(id);
 		return "redirect:/";
 	}

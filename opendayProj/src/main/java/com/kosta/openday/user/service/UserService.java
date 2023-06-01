@@ -34,4 +34,6 @@ public interface UserService {
 	void withdrawUser(String id) throws Exception;
 
 	int idCheck(String id) throws Exception; 
+	
+	List<CollectDTO> HeartOClass(String userId) throws Exception;
 }

@@ -178,6 +178,27 @@
   ]]>
 </update> 
 	-->
+	
+	<select id="selectHeartList" parameterType = "String" resultType="com.kosta.openday.user.dto.HeartDTO">
+	<![CDATA[
+		select * from heart where userId=#{userId}
+		]]>
+	</select>
+	
+	<select id="selectHeartOClass" parameterType="Integer" resultType="com.kosta.openday.user.dto.CollectDTO">
+	<![CDATA[
+				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, (
+			    			SELECT COUNT(*) 
+			    			FROM review 
+			    			WHERE s.clsId = o.clsId
+							) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     			JOIN code c ON o.clsCode=c.codNum 
+	     			where s.scdNum= #{scdNum}
+				]]>
+	</select>
 	<!-- 회원탈퇴 -->
 	<update id="updateUserDelete" parameterType="String">
 	<![CDATA[
