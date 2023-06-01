@@ -2,16 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="<%=request.getContextPath() %>" />
+
+<c:import url="/WEB-INF/views/header.jsp" />
 <html>
 <head>
+	<link rel="stylesheet" href="${contextPath}/resources/css/user/applyClass.css">
+	<script src="${contextPath }/resources/js/user/applyClass.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	
-	<link rel="stylesheet" href="${contextPath}/resources/css/user/applyClass.css">
-	<script src="${contextPath }/resources/js/user/applyClass.js"></script>
-</head>
+
 
 <c:if test="${data.schedules ne null and data.schedules.size() > 0}">
 
@@ -96,8 +98,9 @@ $(function() {
 	
  </script>
 </c:if>
-
+</head>
 <body>
+
 	<div class="wrapper">
 	<form action="paymentProcess" method="POST">
 

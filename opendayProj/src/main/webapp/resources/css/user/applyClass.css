@@ -48,7 +48,7 @@
 /* ================== </캘린더> ================== */
 .wrapper {
 	width: 880px;
-	margin: 0 auto;
+	margin: 30px auto;
 }
 
 .container {
@@ -142,5 +142,6 @@ select {
 	font-weight: bold;
 	font-size: 22px;
 	color: #5a2ece;
+	margin-top: 30px;
 	margin-bottom: 10px;
 }

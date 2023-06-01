@@ -2,15 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+
+<c:import url="/WEB-INF/views/header.jsp" />
 <html>
 <head>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 <link rel="stylesheet"
 	href="${contextPath}/resources/css/user/paymentResult.css">
 
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -25,7 +24,7 @@
 					<h4>${result.oClass.clsName }</h4>
 
 					<div class="class-datetime">
-						<span>일시<span> ${result.schedule.scdDate },
+						<span>일시</span> ${result.schedule.scdDate },
 								${result.schedule.scdTime } 
 					</div>
 
@@ -49,5 +48,7 @@
 				<a href="">메인으로</a>
 			</div>
 		</div>
+	</div>
+	<c:import url="/WEB-INF/views/footer.jsp" />
 </body>
 </html>
