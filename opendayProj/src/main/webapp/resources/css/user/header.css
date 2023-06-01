@@ -292,7 +292,7 @@ h1 a:hover {
 	padding-right: -50px;
 	padding-top: 5px;
 	height: 30px;
-	width: 60px;
+	width: 70px;
 	background-color: white;
 	border: 0.5px solid #9E9E9E;
 	border-radius: 5px;
@@ -300,6 +300,7 @@ h1 a:hover {
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
+	margin-left:10px;
 }
 
 .searchFilterWrapper {
@@ -529,6 +530,20 @@ button {
 	margin-left: 20px;
 	color: #7C4AFF;
 }
+
+.admPageLinkButton button{
+	padding-right: -50px;
+	padding-top: 5px;
+	height: 30px;
+	width: 180px;
+	background-color: white;
+	border: 0.5px solid #9E9E9E;
+	border-radius: 5px;
+	background-color: #F8F8F8;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+} 
 
 /* 검색필터 달력 */
 .input-group input {

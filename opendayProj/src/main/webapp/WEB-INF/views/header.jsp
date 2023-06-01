@@ -39,20 +39,23 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/header.css"/>">
 <!-- 제이쿼리달력-->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
-<!--datepicer 버튼 롤오버 시 손가락 모양 표시-->
-.ui-datepicker-trigger{cursor: pointer;}
+<!--
+datepicer 버튼 롤오버 시 손가락 모양 표시-->.ui-datepicker-trigger {
+	cursor: pointer;
+}
 
-<!--datepicer input 롤오버 시 손가락 모양 표시-->
-
-.hasDatepicker{cursor: pointer;}
-
+<!--
+datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
+	cursor: pointer;
+}
 </style>
 
- <script>
+<script>
 /*   $.datepicker.setDefaults({
     dateFormat: 'yy-mm',
     prevText: '이전 달',
@@ -189,11 +192,23 @@ $(function() {
 							class="material-symbols-outlined searchIcon">search</span></a>
 					</div>
 				</form>
+
+
+
 				<ul class="verticalAlign">
+					<c:set var="authority" value="${userId.authority }" />
+					<c:choose>
+
+						<c:when test="${authority eq 0}">
+							<li class="admPageLinkButton"><a href="#"><button>관리자
+										페이지로 이동</button></a></li>
+						</c:when>
+					</c:choose>
 					<li><a href="#"><span
 							class="material-symbols-outlined alarm"> notifications </span>
 							<p>알림</p></a></li>
 					<c:set var="userId" value="${sessionScope.userId }" />
+
 					<c:choose>
 						<c:when test="${userId eq null}">
 							<li><a href="loginform"><span
@@ -250,7 +265,7 @@ $(function() {
 				<div class="filterUl2">
 					<p class="filterUlTitle">카테고리</p>
 					<select name="clsCode" id="category">
-						<option value="all" selected>전체</option>
+						<!-- 		<option value="all" selected>전체</option> -->
 					</select>
 
 				</div>
@@ -277,10 +292,11 @@ $(function() {
 
 				<div class="filterUl3">
 					<p class="filterUlTitle">요일</p>
-<p>
-    <input type="date" id="datepicker1" name="startDate" placeholder="yyyy-mm-dd"> ~
-    <input type="date" id="datepicker2" name="endDate" placeholder="yyyy-mm-dd">
-</p>
+					<p>
+						<input type="date" id="datepicker1" name="startDate"
+							placeholder="yyyy-mm-dd"> ~ <input type="date"
+							id="datepicker2" name="endDate" placeholder="yyyy-mm-dd">
+					</p>
 				</div>
 
 				<div class="searchFilterButton">

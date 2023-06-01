@@ -27,7 +27,7 @@ public interface UserService {
 
 	public List<CollectDTO> getMainNewOClassList() throws Exception;
 	
-
+	public List<CollectDTO> getMainHotOClassList() throws Exception;
 
 	void fileView(Integer id, OutputStream out) throws Exception;
 

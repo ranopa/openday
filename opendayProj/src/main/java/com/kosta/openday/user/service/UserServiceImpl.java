@@ -104,18 +104,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO userLogin(Map<String, String> map) throws Exception {
-	    UserDTO user = userDAO.selectUserLogin(map);
+		UserDTO user = userDAO.selectUserLogin(map);
 
-	    if (user == null || user.getUserActivation().equals("0")) {
-	        // 회원 활성화가 0인 경우 로그인 실패 처리
-	    throw new Exception("로그인 실패");
-	    }
+		if (user == null || user.getUserActivation().equals("0")) {
+			// 회원 활성화가 0인 경우 로그인 실패 처리
+			throw new Exception("로그인 실패");
+		}
 
-	    return user;
+		return user;
 	}
-	
+
 	@Override
-	public List<CollectDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode) throws Exception {
+	public List<CollectDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode)
+			throws Exception {
 		Map<String, Object> param = new HashMap<>();
 		param.put("scdLoc", scdLoc);
 		param.put("startDate", startDate);
@@ -126,8 +127,6 @@ public class UserServiceImpl implements UserService {
 		return userDAO.selectOClassList(param);
 
 	}
-
-	
 
 	@Override
 	public List<CollectDTO> getMainNewOClassList() throws Exception {
@@ -151,4 +150,8 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public List<CollectDTO> getMainHotOClassList() throws Exception {
+		return userDAO.selectmainHotOClassList();
+	}
 }

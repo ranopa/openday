@@ -70,24 +70,72 @@
 		]]> </select> -->
 
 	<!-- 메인 클래스 신규리스트 -->
-	<!-- s.scdLoc, s.scdDiscount, o.clsName, o.clsCode, o.clsPrice, o.clsStar, 
-		o.clsHeart, o.filNum -->
 
 	<select id="mainNewOClassList"
 		resultType="com.kosta.openday.user.dto.CollectDTO"> 
 		<![CDATA[ 
-	SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
-		o.clsHeart AS clsHeart, o.filNum AS filNum, (
-			    SELECT COUNT(*) 
-			    FROM review 
-			    WHERE scdNum = s.clsId
-				) AS reviewCount,
-				(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+		SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+		o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+		(SELECT COUNT(*)
+		FROM review r
+		JOIN 
+		schedule s ON r.scdNum = s.scdNum
+		WHERE s.clsId = o.clsId
+	) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
 	FROM schedule s JOIN oclass o ON s.clsId = o.clsId
 	     JOIN code c ON o.clsCode=c.codNum 
-				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY
+				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY;
 		]]>
 	</select>	
+
+	<!-- 핫한 클래스 신규리스트 -->
+ 
+	<select id="mainHotOClassList"
+		resultType="com.kosta.openday.user.dto.CollectDTO"> 
+		<![CDATA[ 
+	 SELECT distinct 
+	  o.clsId 		AS clsId,
+	  o.clsName 	AS clsName,
+	  c.codName 	AS codName,
+	  o.clsPrice 	AS clsPrice,
+	  o.clsStar 	AS clsStar, 
+	  o.clsHeart 	AS clsHeart,
+	  o.filNum 		AS filNum,
+	(SELECT COUNT(*)
+		FROM review r
+		JOIN 
+		schedule s ON r.scdNum = s.scdNum
+		WHERE s.clsId = o.clsId
+	) AS reviewCount,
+	(SELECT scdLoc
+		FROM schedule s
+		WHERE s.clsId = o.clsId AND s.scdDate >= CURDATE()
+		ORDER BY s.scdDate
+		LIMIT 1) as clsLoc,
+	(SELECT scdDiscount
+		FROM schedule s
+		WHERE s.clsId = o.clsId AND s.scdDate >= CURDATE()
+		ORDER BY s.scdDate
+		LIMIT 1) as clsDiscount,
+	ROUND(clsPrice * (1 - (SELECT scdDiscount
+		FROM schedule s
+		WHERE s.clsId = o.clsId AND s.scdDate >= CURDATE()
+		ORDER BY s.scdDate
+		LIMIT 1)/100)) AS finalPrice
+	FROM schedule s
+	JOIN oclass o ON s.clsId = o.clsId
+	JOIN code c ON o.clsCode=c.codNum
+	WHERE o.clsId IN (
+		SELECT clsId
+		FROM schedule
+		WHERE
+		  scdDate >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)
+		GROUP BY clsId
+		HAVING COUNT(*) >= 2)	]]>
+	</select>	
+ 
+
 
 <!-- 개설요청참여 participation  -->
 
