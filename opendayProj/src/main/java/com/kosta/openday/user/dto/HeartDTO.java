@@ -3,31 +3,32 @@ package com.kosta.openday.user.dto;
 //찜
 public class HeartDTO {
 	private String userId; //유저번호
-	private Integer scdNum; //클래스번호
+	private Integer clsId; //클래스번호
 	
 	public HeartDTO() {}
-
-	public HeartDTO(String userId, Integer scdNum) {
-		super();
-		this.userId = userId;
-		this.scdNum = scdNum;
-	}
 
 	public String getUserId() {
 		return userId;
 	}
 
-	public Integer getScdNum() {
-		return scdNum;
+	public Integer getClsId() {
+		return clsId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-	public void setScdNum(Integer scdNum) {
-		this.scdNum = scdNum;
+	public void setClsId(Integer clsId) {
+		this.clsId = clsId;
 	}
+
+	public HeartDTO(String userId, Integer clsId) {
+		super();
+		this.userId = userId;
+		this.clsId = clsId;
+	}
+
 	
 	
 	

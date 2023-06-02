@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
 		List<HeartDTO> hearts = userDAO.selectHeartList(userId);
 		
 		for(HeartDTO h:hearts) {  
-			CollectDTO collect = userDAO.selectHeartOClass(h.getScdNum());
+			CollectDTO collect = userDAO.selectHeartOClass(h.getClsId());
 			list.add(collect);
 			System.out.println(collect.toString());
 		} 
