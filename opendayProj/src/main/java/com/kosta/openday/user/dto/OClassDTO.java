@@ -6,7 +6,10 @@ public class OClassDTO {
 	private Integer clsId;// 클래스번호 
 	private String clsName; // 클래스명
 	private String clsCode; // 코드(카테고리)
-	private String clsDescription; // 소개글
+	private String clsDescription; // 소개글 
+	
+	private String clsLoc; //지역
+	private Integer clsDiscount; //할인율
 	
 	private Integer clsPrice; // 클래스 수강료
 	private String clsCurri;// 커리큘럼
@@ -22,28 +25,8 @@ public class OClassDTO {
 	
 	private String userId; // 아이디
 	private Integer reqId; // 글번호
-
-	public OClassDTO() {}
-
-	public OClassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, Integer clsPrice, String clsCurri,
-			String clsCareer, Integer clsStar, Integer clsHeart, String clsStatus, Date clsCreatedAt, String clsOpenType, Integer filNum,
-			String userId, Integer reqId) {
-		this.clsId = clsId;
-		this.clsName = clsName;
-		this.clsCode = clsCode;
-		this.clsDescription = clsDescription;
-		this.clsPrice = clsPrice;
-		this.clsCurri = clsCurri;
-		this.clsCareer = clsCareer;
-		this.clsStar = clsStar;
-		this.clsHeart = clsHeart;
-		this.clsStatus = clsStatus;
-		this.clsCreatedAt = clsCreatedAt;
-		this.clsOpenType = clsOpenType;
-		this.filNum = filNum;
-		this.userId = userId;
-		this.reqId = reqId;
-	}
+	
+	
 
 	public Integer getClsId() {
 		return clsId;
@@ -61,12 +44,16 @@ public class OClassDTO {
 		return clsDescription;
 	}
 
-	public Integer getClsPrice() {
-		return clsPrice;
+	public String getClsLoc() {
+		return clsLoc;
 	}
 
-	public void setClsPrice(Integer clsPrice) {
-		this.clsPrice = clsPrice;
+	public Integer getClsDiscount() {
+		return clsDiscount;
+	}
+
+	public Integer getClsPrice() {
+		return clsPrice;
 	}
 
 	public String getClsCurri() {
@@ -75,10 +62,6 @@ public class OClassDTO {
 
 	public String getClsCareer() {
 		return clsCareer;
-	}
-
-	public void setClsCareer(String clsCareer) {
-		this.clsCareer = clsCareer;
 	}
 
 	public Integer getClsStar() {
@@ -129,8 +112,24 @@ public class OClassDTO {
 		this.clsDescription = clsDescription;
 	}
 
+	public void setClsLoc(String clsLoc) {
+		this.clsLoc = clsLoc;
+	}
+
+	public void setClsDiscount(Integer clsDiscount) {
+		this.clsDiscount = clsDiscount;
+	}
+
+	public void setClsPrice(Integer clsPrice) {
+		this.clsPrice = clsPrice;
+	}
+
 	public void setClsCurri(String clsCurri) {
 		this.clsCurri = clsCurri;
+	}
+
+	public void setClsCareer(String clsCareer) {
+		this.clsCareer = clsCareer;
 	}
 
 	public void setClsStar(Integer clsStar) {
@@ -164,8 +163,33 @@ public class OClassDTO {
 	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
-	
-	
+
+	public OClassDTO() {}
+
+	public OClassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, String clsLoc,
+			Integer clsDiscount, Integer clsPrice, String clsCurri, String clsCareer, Integer clsStar, Integer clsHeart,
+			String clsStatus, Date clsCreatedAt, String clsOpenType, Integer filNum, String userId, Integer reqId) {
+		super();
+		this.clsId = clsId;
+		this.clsName = clsName;
+		this.clsCode = clsCode;
+		this.clsDescription = clsDescription;
+		this.clsLoc = clsLoc;
+		this.clsDiscount = clsDiscount;
+		this.clsPrice = clsPrice;
+		this.clsCurri = clsCurri;
+		this.clsCareer = clsCareer;
+		this.clsStar = clsStar;
+		this.clsHeart = clsHeart;
+		this.clsStatus = clsStatus;
+		this.clsCreatedAt = clsCreatedAt;
+		this.clsOpenType = clsOpenType;
+		this.filNum = filNum;
+		this.userId = userId;
+		this.reqId = reqId;
+	}
+
+
 	
 	
 

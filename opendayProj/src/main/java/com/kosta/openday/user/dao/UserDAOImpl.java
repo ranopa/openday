@@ -67,10 +67,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public List<HeartDTO> selectHeartList(String userId) throws Exception {
-		List<HeartDTO> list = sqlSession.selectList("mapper.user.selectHeartList",userId);
-		System.out.println(list.get(0).getUserId());
-		System.out.println(list.get(0).getScdNum());
-		return list;
+		return  sqlSession.selectList("mapper.user.selectHeartList",userId);
 	}
 
 	@Override
