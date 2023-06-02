@@ -51,17 +51,15 @@
 				<div class="m-container">
 					<h2 class="m-h2">프로필 수정</h2>
 					<div class="pf-box">
-						<c:choose>		
-							<c:when test="${empty user.filNum} "> 
-								<img src="resources/image/user/basic_profile.png"
-									class="picture" id="myImg" alt="회원프로필기본이미지"/> 
-							</c:when>
-							<c:otherwise>
-								<img src="img/${user.filNum}" class="picture" id="myImg"
-									alt="회원프로필이미지"/> 
-							</c:otherwise>
-						</c:choose>
-						
+
+		 	<c:choose>	
+				<c:when test="${user.filNum eq null}">
+					<img src='<c:url value='/resources/image/user/basic_profile.png'/>' class="picture">
+				</c:when>
+				<c:otherwise>
+					<img src = "img/${user.filNum }" class="picture">
+				</c:otherwise>
+			</c:choose>			
 
 						<div class="custom-file-input">
 							<input name="file" type="file" id="myfile" accept="image/*" />
@@ -120,7 +118,7 @@
 
 		 	<c:choose>	
 				<c:when test="${user.filNum eq null}">
-					<img src = "resources/img/user/basic_profile.png" class="myprofile-pic">
+					<img src='<c:url value='/resources/image/user/basic_profile.png'/>' class="myprofile-pic">
 				</c:when>
 				<c:otherwise>
 					<img src = "img/${user.filNum }" class="myprofile-pic">
