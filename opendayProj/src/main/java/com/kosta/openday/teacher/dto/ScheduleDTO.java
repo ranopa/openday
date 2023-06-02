@@ -9,32 +9,16 @@ public class ScheduleDTO {
 	private Integer scdNum; //클래스 일정번호 
 	private Date scdDate; //강의일
 	private Time scdTime; //소요시간
-	private String scdLoc; //지역
 	private String scdPlace; //장소
 	private String scdPlaceDetail; //세부장소
 	
 	private Integer scdPersonnel; //모집인원
  
 	private Date scdUploadDate; //등록일 
-	private String scdStatus; //강의상태 
+	private String scdStatus; //강의상태 (예정/폐강/완료)
 	private Integer clsId; //클래스번호
 	
 	public ScheduleDTO() {}
-
-	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, String scdPlace,
-			String scdPlaceDetail, Integer scdPersonnel, Date scdUploadDate, String scdStatus, Integer clsId) {
-		super();
-		this.scdNum = scdNum;
-		this.scdDate = scdDate;
-		this.scdTime = scdTime;
-		this.scdLoc = scdLoc;
-		this.scdPlace = scdPlace;
-		this.scdPlaceDetail = scdPlaceDetail;
-		this.scdPersonnel = scdPersonnel;
-		this.scdUploadDate = scdUploadDate;
-		this.scdStatus = scdStatus;
-		this.clsId = clsId;
-	}
 
 	public Integer getScdNum() {
 		return scdNum;
@@ -46,10 +30,6 @@ public class ScheduleDTO {
 
 	public Time getScdTime() {
 		return scdTime;
-	}
-
-	public String getScdLoc() {
-		return scdLoc;
 	}
 
 	public String getScdPlace() {
@@ -88,10 +68,6 @@ public class ScheduleDTO {
 		this.scdTime = scdTime;
 	}
 
-	public void setScdLoc(String scdLoc) {
-		this.scdLoc = scdLoc;
-	}
-
 	public void setScdPlace(String scdPlace) {
 		this.scdPlace = scdPlace;
 	}
@@ -113,6 +89,20 @@ public class ScheduleDTO {
 	}
 
 	public void setClsId(Integer clsId) {
+		this.clsId = clsId;
+	}
+
+	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdPlace, String scdPlaceDetail,
+			Integer scdPersonnel, Date scdUploadDate, String scdStatus, Integer clsId) {
+		super();
+		this.scdNum = scdNum;
+		this.scdDate = scdDate;
+		this.scdTime = scdTime;
+		this.scdPlace = scdPlace;
+		this.scdPlaceDetail = scdPlaceDetail;
+		this.scdPersonnel = scdPersonnel;
+		this.scdUploadDate = scdUploadDate;
+		this.scdStatus = scdStatus;
 		this.clsId = clsId;
 	}
 

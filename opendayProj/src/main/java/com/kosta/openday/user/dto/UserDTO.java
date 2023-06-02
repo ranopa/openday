@@ -14,13 +14,13 @@ public class UserDTO {
 	private String userEmail;//입력이메일 + 도메인 
 	private String birthVal; //생일
 	private Date userBirth; //생일
-	private String userActivation; //활성화
+	private String userActivation; //활성화  ("0": 탈퇴상태, "1":활성화)
 	
 	private Integer userAccount; //계좌번호
 	private String userAlarm; //알림여부 
 	private Date userJoindate; //가입일
 	private String userPrefer; //선호카테고리
-	private String authority; //권한
+	private String authority; //권한 ("0": 관리자,"1":일반회원,"2":강사)
 	private Integer filNum; //파일번호
 	
 	public UserDTO() {}

@@ -18,7 +18,7 @@ public class PaymentProcessResponseDTO {
 	private Integer scdNum;
 	private Date scdDate;
 	private Time scdTime;
-	private String scdLoc;
+	// private String scdLoc;
 	
 	private Integer clsPrice;
 	private Integer applyPersonnel;
@@ -39,7 +39,6 @@ public class PaymentProcessResponseDTO {
 			schedule.getScdNum(),
 			schedule.getScdDate(),
 			schedule.getScdTime(),
-			schedule.getScdLoc(),
 			
 			oClass.getClsPrice(),
 			applyPersonnel,
@@ -48,7 +47,7 @@ public class PaymentProcessResponseDTO {
 	}
 
 	public PaymentProcessResponseDTO(String userId, String userName, String userNickname, String userTel, String userEmail, Integer clsId,
-			String clsName, Integer scdNum, Date scdDate, Time scdTime, String scdLoc, Integer clsPrice,
+			String clsName, Integer scdNum, Date scdDate, Time scdTime, Integer clsPrice,
 			Integer applyPersonnel, Integer totalPrice) {
 		this.userId = userId;
 		this.userName = userName;
@@ -60,7 +59,7 @@ public class PaymentProcessResponseDTO {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
 		this.scdTime = scdTime;
-		this.scdLoc = scdLoc;
+		
 		this.clsPrice = clsPrice;
 		this.applyPersonnel = applyPersonnel;
 		this.totalPrice = totalPrice;
@@ -146,13 +145,7 @@ public class PaymentProcessResponseDTO {
 		this.scdTime = scdTime;
 	}
 
-	public String getScdLoc() {
-		return scdLoc;
-	}
-
-	public void setScdLoc(String scdLoc) {
-		this.scdLoc = scdLoc;
-	}
+	
 
 	public Integer getClsPrice() {
 		return clsPrice;
