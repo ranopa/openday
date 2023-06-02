@@ -69,15 +69,15 @@ public class UserController {
 	}
 
 	// 마이페이지 (테스트용)
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	@RequestMapping(value = "/mymain", method = RequestMethod.GET)
 	public ModelAndView myPage() {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
 			String id = "sbsb";
 			session.setAttribute("id", id);
 			UserDTO user = userService.getUserInfo(id);
 			mav.addObject("user", user);
-			mav.setViewName("mypage/myPage");
+			mav.addObject("page","myPage");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,13 +159,13 @@ public class UserController {
 	// 찜한클래스
 	@RequestMapping("/myheart")
 	public ModelAndView heart(){
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("mypage/myPage");
 		try {
 			String userId = (String)session.getAttribute("id");
 			List<CollectDTO> list = userService.HeartOClass(userId);
 			System.out.println("list size = "+list.size());
 			mav.addObject("heartList",list);
-			mav.setViewName("mypage/heart");
+			mav.addObject("page","mypage/heart");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

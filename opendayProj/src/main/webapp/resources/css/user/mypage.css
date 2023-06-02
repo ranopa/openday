@@ -22,6 +22,7 @@ body {
 	visibility: hidden;
 	transition: all .3s;
 	z-index: 10;
+	top: 0;
 }
 .w-modal.w-hide {
 	opacity: 1;
@@ -257,6 +258,7 @@ body {
 	visibility: hidden;
 	transition: all .3s;
 	z-index: 10;
+	top: 0;
 }
 
 .modal.hide {
