@@ -77,28 +77,7 @@ body {
 	font-family: 'NanumBarunGothic';
 }
 
-.mainMenuTable {
-	margin-top: 23px;
-}
 
-.mainMenuTable button {
-	background-color: #FFFFFF;
-	color: #5F5F5F;
-	border: 0.5px solid #9E9E9E;
-	border-radius: 5px;
-}
-
-.mainCategoryButton {
-	margin: 5px;
-}
-
-.mainCategoryButton.selected {
-	background-color: #8556FF;
-	color: #FFFFFF;
-	border-color: none;
-	border: none;
-	border-radius: 5px;
-}
 
 .oclass {
 	width: 300px;

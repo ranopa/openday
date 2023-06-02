@@ -14,6 +14,8 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
 </head>
@@ -50,42 +52,265 @@
 				</c:forEach>
 			</table>
 
-			<div class="newList">
-				<table class="oclassTable">
-					<tr class=tableTr>
+			<!-- 		<div class="newListWrapper">
+			<div class="newList"> -->
+			<div class="myList classWrapper">
+			<p class="mainOclassListTitle">내가 선호하는 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
 						<c:forEach items="${nlist}" var="list" varStatus="loop">
-						 <c:if test="${loop.index < 8}">
-							<td class="oclass">
-								<div class="ssum-img">${list.filNum}</div>
-								<div class="txt-box">
-									<div class="tb1">
-										<div class="t1">
-											<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
 										</div>
-										<div class="t2">
-											<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-											<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
 										</div>
 									</div>
-									<p class="cls-name">${list.clsName}</p>
-									<div class="tb2">
-										<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-										<div class="price">
-											<span class="disc">${list.scdDiscount}%</span> <span
-												class="fp">${list.finalPrice}원</span>
-										</div>
-									</div>
-								</div>
-							</td>
-								</c:if>
-							<c:if test="${loop.index == 7}">
-					</tr>
-					<tr>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
 						</c:if>
 						</c:forEach>
-					</tr>
-				</table>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
 			</div>
+			</div>
+			<!-- 	</div>
+	
+			</div> -->
+			
+			<div class="hotClass classWrapper">
+				<p class="mainOclassListTitle">핫한 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${hlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.clsDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
+			
+			<div class="banner">이미지</div>
+			
+			<div class="newClass classWrapper">
+				<p class="mainOclassListTitle">신규 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
+			
+			
+			<div class="imminentDeadlineClass classWrapper">
+				<p class="mainOclassListTitle">마감임박 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
+			
+			<div class="requestClass classWrapper">
+				<p class="mainOclassListTitle">요청 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
+			
+			
 		</div>
 	</div>
 </body>

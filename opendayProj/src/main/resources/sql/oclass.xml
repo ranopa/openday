@@ -14,15 +14,6 @@
 	     ]]>
 	</insert>
 
-	<!-- 승인된 클래스 등록 -->
-	<insert id="classEnrollemnt"
-		parameterType="com.kosta.openday.user.dto.OClassDTO">
-		 <![CDATA[
-		     insert into schedule (scdNum,scdDate,scdPrice,scd,scdTime,scdpersonnel,sdcLocDetial)
-		     values( nextval(orderInfo_seq),#{scdDate},#{scdPrice},#{scdOperationTime},#{scdTime},
-		     		#{scdpersonnel},#{sdcLocDetial})
-	     ]]>
-	</insert>
 
 	<!-- 파일 넣는거 만들다고 그만둠 -->
 
@@ -135,7 +126,7 @@
 
 <!-- 아직 되는지 안되는지 모름 -->
 <!-- 진행중 -->
-	<select id="searchSelect"
+	<!-- <select id="searchSelect"
 		resultType="com.kosta.openday.teacher.dto.ScheduleDTO" parameterType="java.util.Map">
 
 		<choose>
@@ -191,7 +182,7 @@
 				]]>
 			</otherwise>
 		</choose>
-	</select>
+	</select> -->
 
 	<!-- 검색필터 카테고리 옵션 -->
 

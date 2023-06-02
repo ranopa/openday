@@ -63,6 +63,9 @@
 
 .logo {
 	font-family: 'Cafe24 Ohsquare';
+	font-size: 35px;
+	padding-top:35px;
+
 }
 
 body {
@@ -176,6 +179,7 @@ h1 a:hover {
 .login {
 	margin-left: 10px;
 	color: #7C4AFF;
+	
 }
 
 .verticalAlign p {
@@ -190,6 +194,7 @@ h1 a:hover {
 .logoMenu {
 	display: flex;
 	justify-content: space-between;
+	
 }
 
 .searchAndIcon {
@@ -287,7 +292,7 @@ h1 a:hover {
 	padding-right: -50px;
 	padding-top: 5px;
 	height: 30px;
-	width: 60px;
+	width: 70px;
 	background-color: white;
 	border: 0.5px solid #9E9E9E;
 	border-radius: 5px;
@@ -295,10 +300,11 @@ h1 a:hover {
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
+	margin-left:10px;
 }
 
 .searchFilterWrapper {
-/* 	border-top: 1px solid #FFD8E4; */
+	/* 	border-top: 1px solid #FFD8E4; */
 	border-bottom: 1px solid #E1E1E1;
 	height: 213px;
 }
@@ -316,7 +322,7 @@ h1 a:hover {
 .filterUlTitle {
 	font-size: 18px;
 	font-weight: 600;
-	margin-right:15px;
+	margin-right: 15px;
 }
 
 .filterUl1 li {
@@ -367,11 +373,12 @@ select:focus {
 	border-radius: 5px;
 }
 
-.filterUl3{
+.filterUl3 {
 	display: flex;
 }
-.filterUl3 p{
-/* 	display: flex; */
+
+.filterUl3 p {
+	/* 	display: flex; */
 	margin-top: 15px;
 }
 
@@ -419,8 +426,6 @@ select:focus {
 	border-radius: 5px;
 }
 
-
-
 .searchFilterButton button:hover {
 	cursor: pointer;
 }
@@ -446,15 +451,39 @@ button {
 	cursor: pointer;
 }
 
-.menuTable button {
+/* .menuTable button {
 	width: 40px;
 	height: 27px;
 	background-color: #FFFFFF;
 	color: #5F5F5F;
 	border: 0.5px solid #9E9E9E;
 	border-radius: 5px;
+} */
+.mainMenuTable {
+	margin-top: 23px;
 }
 
+.mainMenuTable button {
+	background-color: #FFFFFF;
+	color: #5F5F5F;
+	border: 0.5px solid #9E9E9E;
+	border-radius: 5px;
+}
+
+/* .mainCategoryButton {
+	margin: 5px;
+	margin-right:10px;
+	width: 230px;
+	height: 40px;
+}
+
+.mainCategoryButton.selected {
+	background-color: #8556FF;
+	color: #FFFFFF;
+	border-color: none;
+	border: none;
+	border-radius: 5px;
+} */
 .categoryButton.selected {
 	background-color: #8556FF;
 	color: #FFFFFF;
@@ -466,7 +495,7 @@ button {
 .categoryButton {
 	margin: 5px;
 	width: 230px;
-height: 40px;
+	height: 40px;
 }
 
 #dis {
@@ -479,7 +508,7 @@ height: 40px;
 
 .menuWrapper {
 	background-color: #FFFFFF;
-/* 	border-top: 1px solid #FFD8E4; */
+	/* 	border-top: 1px solid #FFD8E4; */
 	border-bottom: 1px solid #E1E1E1;
 	height: 213px;
 }
@@ -502,8 +531,21 @@ height: 40px;
 	color: #7C4AFF;
 }
 
-/* 검색필터 달력 */
+.admPageLinkButton button{
+	padding-right: -50px;
+	padding-top: 5px;
+	height: 30px;
+	width: 180px;
+	background-color: white;
+	border: 0.5px solid #9E9E9E;
+	border-radius: 5px;
+	background-color: #F8F8F8;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+} 
 
+/* 검색필터 달력 */
 .input-group input {
 	padding: 15px 15px !important;
 	border: 1px solid lightgrey !important;
@@ -562,7 +604,7 @@ height: 40px;
 
 .datepicker-dropdown {
 	top: 0;
-/* 	left: calc(50% - 161px) !important; */
+	/* 	left: calc(50% - 161px) !important; */
 }
 
 .datepicker-dropdown.datepicker-orient-left:before {
@@ -648,4 +690,3 @@ thead tr:nth-child(3) th {
 		right: calc(50% - 5px) !important;
 	}
 }
-

@@ -81,4 +81,8 @@ public class UserDAOImpl implements UserDAO {
 
 	
 
+	@Override
+	public List<CollectDTO> selectmainHotOClassList() throws Exception {
+		return sqlSession.selectList("mapper.user.mainHotOClassList");
+	}
 }
