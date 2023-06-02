@@ -14,64 +14,143 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
-	
-	
+
+
 
 </head>
+<%@ include file="header.jsp"%>
 <body>
+
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
-			<%@ include file="header.jsp"%>
-			<p>${codName}</p>
+
+			<p class="subTitle">${codName}쿠킹</p>
 			<hr>
-			<div class="tchcsList">
-
-				<div>${filNum}프로필</div>
+			
+<div class="tchcsList">
+			<div class="tBox">
+				<div class="tFil">${filNum}프로필</div>
 				<span>${tchcNickname}닉네임</span>
+			</div>			
+			</div>
+			<div class="subOption">
+				<label class="checkLabel"><input type="checkbox" name="color" value="blue">인기순</label>
+				<label class="checkLabel"><input type="checkbox" name="color" value="blue">등록일순</label>
+				<label class="checkLabel"><input type="checkbox" name="color" value="blue">가격높은순</label>
+				<label class="checkLabel"><input type="checkbox" name="color" value="blue">가격낮은순</label>
 
 			</div>
-
-			<div>
-				<label><input type="checkbox" name="color" value="blue">인기순</label>
-				<label><input type="checkbox" name="color" value="blue">등록일순</label>
-				<label><input type="checkbox" name="color" value="blue">가격높은순</label>
-				<label><input type="checkbox" name="color" value="blue">가격낮은순</label>
-
-			</div>
-
-			<div class="newList">
-
-				<c:forEach items="${collectList}" var="list">
-					<table class="oclassTable">
-						<tr>
-							<td class="oclass">
-								<div class="ssum-img">${list.filNum}</div>
-								<div class="txt-box">
-									<div class="tb1">
-										<div class="t1">
-											<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+			
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<%-- <div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${collectList}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
 										</div>
-										<div class="t2">
-											<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-											<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
-										</div>
-									</div>
-									<p class="cls-name">${list.clsName}</p>
-									<div class="tb2">
-										<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-										<div class="price">
-											<span class="disc">${list.scdDiscount}%</span> <span
-												class="fp">${list.finalPrice}원</span>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.clsDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
 										</div>
 									</div>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</c:forEach>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+ --%>
+
+<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${collectList}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+
+			<%-- 	<div class="newList">
+
+					<c:forEach items="${collectList}" var="list">
+						<table class="oclassTable">
+							<tr>
+								<td class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</c:forEach>
+				</div> --%>
 			</div>
 		</div>
-	</div>
-	<%@ include file="footer.jsp"%>
+		<%@ include file="footer.jsp"%>
 </body>
 </html>

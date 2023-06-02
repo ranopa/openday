@@ -168,6 +168,13 @@ public class UserServiceImpl implements UserService {
 		return list;
 				
 	}
+	
+	/*
+	 * public void func() { String preference = "C1_C3_C15"; String[] code =
+	 * preference.split("_");
+	 * 
+	 * }
+	 */
 
 
 }

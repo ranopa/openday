@@ -170,11 +170,11 @@ $(function() {
 					</c:choose>
 
 
-					<li class="topButtonColor tB topButtonsMargin"><a href=#>강사신청</a></li>
+					<li class="topButtonColor tB topButtonsMargin"><a href=#><span>강사신청</span></a></li>
 
-					<li class="topButton tB topButtonsMargin"><a href=#>클래스요청</a></li>
+					<li class="topButton tB topButtonsMargin"><a href=#><span>클래스요청</span></a></li>
 
-					<li class="topButton tB tBLast topButtonsMargin"><a href=#>고객센터</a></li>
+					<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
 
 				</ul>
 		</div>
@@ -182,7 +182,7 @@ $(function() {
 		<div class="contentWrapper">
 			<div class="logoMenu">
 				<h1 class="logo">
-					<a href="#">열어데이</a>
+					<a href="./">열어데이</a>
 				</h1>
 				<form type="text" action="search" method="get">
 					<div class="searchAndIcon">
@@ -243,22 +243,57 @@ $(function() {
 			<div class="contentWrapper">
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
-
-					<input type="radio" name="scdLoc" value="all" checked />전체 <input
-						type="radio" name="scdLoc" value="서울" />서울 <input type="radio"
-						name="scdLoc" value="경기" />경기 <input type="radio" name="scdLoc"
-						value="인천" />인천 <input type="radio" name="scdLoc" value="강원" />강원
-					<input type="radio" name="scdLoc" value="충북" />충북 <input
-						type="radio" name="scdLoc" value="충남" />충남 <input type="radio"
-						name="scdLoc" value="세종" />세종 <input type="radio" name="scdLoc"
-						value="대전" />대전 <input type="radio" name="scdLoc" value="광주" />광주
-					<input type="radio" name="scdLoc" value="전북" />전북 <input
-						type="radio" name="scdLoc" value="경북" />경북 <input type="radio"
-						name="scdLoc" value="대구" />대구 <input type="radio" name="scdLoc"
-						value="제주" />제주 <input type="radio" name="scdLoc" value="전남" />전남
-					<input type="radio" name="scdLoc" value="경남/울산" />경남/울산 <input
-						type="radio" name="scdLoc" value="부산" />부산
-
+  					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="all" checked />전체 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="서울" />서울 
+					</label>
+						<label class="radio-label">
+						<input type="radio" name="scdLoc" value="경기" />경기 
+					</label>
+					<label class="radio-label">
+						<input type="radio" name="scdLoc" value="인천" />인천 
+					</label>
+					<label class="radio-label">
+						<input type="radio" name="scdLoc" value="강원" />강원
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="충북" />충북 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="충남" />충남 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="세종" />세종 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="대전" />대전 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="광주" />광주
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="전북" />전북 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="경북" />경북 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="대구" />대구 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="제주" />제주 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="전남" />전남
+					</label>					
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="경남/울산" />경남/울산 
+					</label>					
+					<label class="radio-label">
+					<input type="radio" name="scdLoc" value="부산" />부산
+					</label>					
 
 				</div>
 
@@ -302,7 +337,7 @@ $(function() {
 				<div class="searchFilterButton">
 					<button type="button" class="refresh" onclick="resetFilters()">
 						<span class="material-symbols-outlined"> refresh </span>
-						<p>초기화</p>
+						초기화
 					</button>
 					<input type="submit" class="searchButton" value="검색">
 
