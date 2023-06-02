@@ -90,4 +90,10 @@ public class ClassOpenEnrollController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
+	public String calendar() {
+		return "classOpenEnrollment/calendar";
+	}
+	
 }
