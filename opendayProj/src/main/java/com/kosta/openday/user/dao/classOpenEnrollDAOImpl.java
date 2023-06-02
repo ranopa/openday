@@ -1,5 +1,7 @@
 package com.kosta.openday.user.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,7 +47,7 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	}
 
 	@Override
-	public ScheduleDTO selectSchedule(Integer clsId) throws Exception {
+	public Map<String, Object> selectSchedule(Integer clsId) throws Exception {
 		return sqlSession.selectOne("mapper.teacher.selectSchedule", clsId);
 	}
 

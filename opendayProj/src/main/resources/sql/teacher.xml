@@ -43,9 +43,9 @@
 	</insert>
 	
 	<!-- 스케쥴 불러오기 -->
-	<select id="selectSchedule" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	<select id="selectSchedule" parameterType="Integer" resultType="java.util.Map">
 		 <![CDATA[
-		 	select * from schedule where clsId = #{clsId}
+		 	select * from schedule s join oclass o ON s.clsId = o.clsId WHERE s.clsId=#{clsId};
 	 	 ]]>
 	</select>
 </mapper>

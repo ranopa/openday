@@ -1,5 +1,7 @@
 package com.kosta.openday.user.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,13 +54,11 @@ public class ClassOpenEnrollController {
 
 	
 	@RequestMapping(value = "/classEnrollment", method = RequestMethod.GET)
-	public ModelAndView classEnrollmentForm(@RequestParam(value="clsId", required = false) Integer clsId) {
+	public ModelAndView classEnrollmentForm(@RequestParam Map<String, Object> map, Integer clsId) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			OClassDTO oclassDTO = classopenenrollService.getOclass(clsId);
-			ScheduleDTO scheduleDTO = classopenenrollService.getSchedule(clsId);
-			mav.addObject("oclassDTO", oclassDTO);
-			mav.addObject("scheduleDTO", scheduleDTO);
+			Map<String, Object> scheduleDeatil = classopenenrollService.getSchedule(clsId);
+			mav.addObject("scheduleDeatil", scheduleDeatil);
 			mav.setViewName("classOpenEnrollment/classEnrollment");
 		} catch (Exception e) {
 			e.printStackTrace();

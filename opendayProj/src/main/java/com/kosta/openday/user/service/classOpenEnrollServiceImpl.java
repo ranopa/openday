@@ -3,6 +3,7 @@ package com.kosta.openday.user.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +62,7 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	}
 
 	@Override
-	public ScheduleDTO getSchedule(Integer clsId) throws Exception {
+	public Map<String, Object> getSchedule(Integer clsId) throws Exception {
 		return classopenenrollDAO.selectSchedule(clsId);
 	}
 }

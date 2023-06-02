@@ -1,5 +1,7 @@
 package com.kosta.openday.user.dao;
 
+import java.util.Map;
+
 import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.OClassDTO;
@@ -11,5 +13,5 @@ public interface classOpenEnrollDAO {
 	OClassDTO selectOclass(Integer clsId) throws Exception;
 	FileDTO selectFile(Integer filNum) throws Exception;
 	public int classEnrollment(ScheduleDTO dto) throws Exception;
-	ScheduleDTO selectSchedule(Integer clsId) throws Exception;
+	Map<String, Object> selectSchedule(Integer clsId) throws Exception;
 }

@@ -114,6 +114,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 newDIV.className = "futureDay";
                 newDIV.onclick = function () { choiceDate(this); }
             }
+            
+            let dbDate = new Date("${scheduleDeatil.scdDate}");  // DB에서 가져온 날짜를 Date 객체로 변환
+
+    if (nowDay.getFullYear() == dbDate.getFullYear() && nowDay.getMonth() == dbDate.getMonth() && nowDay.getDate() == dbDate.getDate()) {
+      newDIV.classList.add("choiceDay");
+    }
 
             if (scdDate.includes(nowDay.getTime())) {  // 선택된 날짜인 경우
                 newDIV.classList.add("choiceDay");
@@ -141,12 +147,7 @@ function choiceDate(newDIV) {
   scdDateInput.value = JSON.stringify(scdDate.map(date => date.toISOString().substring(0, 10)));  // 선택된 날짜들을 YYYY-MM-DD 형식의 문자열로 변환하여 입력
   console.log(scdDate);
 }
-    
-	
-	
-	
-
-    
+        
     // 이전달 버튼 클릭
     function prevCalendar() {
         nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
@@ -175,10 +176,3 @@ $(function() {
 	});
 });
 
-// 셀렉트
-document.addEventListener("DOMContentLoaded", function() {
-  var scdLocValueFromDB = "${scheduleDTO.scdLoc }";
-  var selectElement = document.getElementById("select");
-  selectElement.value = scdLocValueFromDB;
-  console.log("${scheduleDTO.scdLoc }");
-});
