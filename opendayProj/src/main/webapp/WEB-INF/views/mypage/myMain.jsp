@@ -19,7 +19,7 @@
 
 			<jsp:include page="../header.jsp" />
 	
-			<jsp:include page='${contentPage}.jsp' />
+			<jsp:include page='${contentPage}.jsp'/>
 		
 			<jsp:include page="../footer.jsp" />
 		

@@ -159,13 +159,12 @@ public class UserController {
 	// 찜한클래스
 	@RequestMapping("/myheart")
 	public ModelAndView heart(){
-		ModelAndView mav = new ModelAndView("mypage/myPage");
+		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
 			String userId = (String)session.getAttribute("id");
-			List<CollectDTO> list = userService.HeartOClass(userId);
-			System.out.println("list size = "+list.size());
+			List<CollectDTO> list = userService.HeartOClass(userId);  
 			mav.addObject("heartList",list);
-			mav.addObject("page","mypage/heart");
+			mav.addObject("page","heart");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

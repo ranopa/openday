@@ -244,16 +244,25 @@
 	<select id="selectHeartOClass" parameterType="Integer"
 		resultType="com.kosta.openday.user.dto.CollectDTO">
 	<![CDATA[
-				SELECT s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
-					o.clsHeart AS clsHeart, o.filNum AS filNum, (
-			    			SELECT COUNT(*) 
-			    			FROM review 
-			    			WHERE s.clsId = o.clsId
-							) AS reviewCount,
-							(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
-				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
-	     			JOIN code c ON o.clsCode=c.codNum 
-	     			where s.scdNum= #{scdNum}
+	SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
+					o.filNum AS filNum, 
+					IFNULL((SELECT COUNT(r.rvStar)
+				FROM oclass o
+				JOIN schedule s ON o.clsId = s.clsId
+				JOIN review r ON s.scdNum = r.scdNum 
+				GROUP BY o.clsId HAVING o.clsId = #{clsId}),0) AS reviewCount,
+							(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
+							IFNULL((SELECT AVG(r.rvStar)
+							FROM review r JOIN schedule s
+							WHERE r.scdNum = s.scdNum
+							),0)AS avgStar , IFNULL((
+							select COUNT(*)
+							from heart h
+							WHERE h.clsId = o.clsId
+							),0) AS heartCnt
+				FROM oclass o JOIN code c ON o.clsCode=c.codNum 
+	     			where o.clsId= #{clsId};
+	     			
 				]]>
 	</select>
 	<!-- 회원탈퇴 -->
