@@ -47,12 +47,11 @@
 		font-size: 24px;
 		color: #5A2ECE;
 		margin-bottom: 20px;
-		text-align: center;
-        margin-right: 655px;
+		margin-left: 220px;
 	}
 	
 	td {
-		text-align:center;
+		text-align: center;
 	}
 	
 	.button {
@@ -109,11 +108,13 @@
         background-color: #D9D9D9;
         color: black;
         text-decoration: none;
+        font-size: 14px;
     }
     
     .pagination a.active {
         background-color: black;
         color: #D9D9D9;
+        font-size: 14px;
     }
 </style>
 </head>
@@ -146,7 +147,7 @@
 			<div class="pagination">
   				<c:choose>
   					<c:when test="${pageInfo.startPage eq 1 }">
-  						<a href="#">&laquo; 이전</a>
+  						<a href="#">＜ 이전</a>
   					</c:when>
   					<c:otherwise>
   						<a href="${contextPath }/requestlist?page=${pageInfo.startPage-1}">&laquo; 이전</a>
@@ -164,7 +165,7 @@
                 </c:forEach>
     			<c:choose>
     				<c:when test="${pageInfo.endPage eq pageInfo.allPage }">
-    					<a href="#" >다음 &raquo;</a>
+    					<a href="#" >다음 ＞</a>
     				</c:when>
     				<c:otherwise>
     					<a href="${contextPath}/requestlist?page=${pageInfo.endPage+1 }">다음 &raquo;</a>    		

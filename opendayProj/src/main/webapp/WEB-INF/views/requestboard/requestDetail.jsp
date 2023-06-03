@@ -55,7 +55,7 @@
         font-size: 24px;
         color: #5A2ECE;
         margin-bottom: 20px;
-        margin-left: 200px;
+        margin-left: 150px;
     }
 
     table {
@@ -128,7 +128,7 @@
     input[type="submit"] {
         background-color: #5A2ECE;
         color: white;
-        height:30px;
+        height: 30px;
         font-size: 14px;
         padding: 5px 15px;
         border-radius: 5px;

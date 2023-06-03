@@ -38,6 +38,8 @@
 	
 	#wrap {
 		width: 1280px;
+		margin: 0 auto;
+		margin-left: -50px;
 	}
 	
     h1 {
@@ -45,7 +47,7 @@
         color: #5A2ECE;
         margin-bottom: 20px;
         text-align: center;
-        margin-right: 320px;
+        margin-right: 340px;
     }
 
     table {
