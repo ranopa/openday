@@ -8,17 +8,17 @@ public class ClsInquiryDTO {
 	private String ciTitle;// 제목
 	private String ciContent; // 내용
 	private Boolean ciStatus; // 상태
-	private Date ciDate; // 작성일
+	private String ciDate; // 작성일
 	private Boolean ciSecret; // 비밀글
-	private Date ciUpdateDate; // 수정일
+	private String ciUpdateDate; // 수정일
 	private String userId; // 아이디
 	private Integer clsId; // 클래스번호
 
 	public ClsInquiryDTO() {
 	}
 
-	public ClsInquiryDTO(Integer ciNum, String ciTitle, String ciContent, Boolean ciStatus, Date ciDate,
-			Boolean ciSecret, Date ciUpdateDate, String userId, Integer clsId) {
+	public ClsInquiryDTO(Integer ciNum, String ciTitle, String ciContent, Boolean ciStatus, String ciDate,
+			Boolean ciSecret, String ciUpdateDate, String userId, Integer clsId) {
 		super();
 		this.ciNum = ciNum;
 		this.ciTitle = ciTitle;
@@ -35,73 +35,74 @@ public class ClsInquiryDTO {
 		return ciNum;
 	}
 
-	public String getCiTitle() {
-		return ciTitle;
-	}
-
-	public String getCiContent() {
-		return ciContent;
-	}
-
-	public Boolean getCiStatus() {
-		return ciStatus;
-	}
-
-	public Date getCiDate() {
-		return ciDate;
-	}
-
-	public Boolean getCiSecret() {
-		return ciSecret;
-	}
-
-	public Date getCiUpdateDate() {
-		return ciUpdateDate;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public Integer getClsId() {
-		return clsId;
-	}
-
 	public void setCiNum(Integer ciNum) {
 		this.ciNum = ciNum;
+	}
+
+	public String getCiTitle() {
+		return ciTitle;
 	}
 
 	public void setCiTitle(String ciTitle) {
 		this.ciTitle = ciTitle;
 	}
 
+	public String getCiContent() {
+		return ciContent;
+	}
+
 	public void setCiContent(String ciContent) {
 		this.ciContent = ciContent;
+	}
+
+	public Boolean getCiStatus() {
+		return ciStatus;
 	}
 
 	public void setCiStatus(Boolean ciStatus) {
 		this.ciStatus = ciStatus;
 	}
 
-	public void setCiDate(Date ciDate) {
+	public String getCiDate() {
+		return ciDate;
+	}
+
+	public void setCiDate(String ciDate) {
 		this.ciDate = ciDate;
+	}
+
+	public Boolean getCiSecret() {
+		return ciSecret;
 	}
 
 	public void setCiSecret(Boolean ciSecret) {
 		this.ciSecret = ciSecret;
 	}
 
-	public void setCiUpdateDate(Date ciUpdateDate) {
+	public String getCiUpdateDate() {
+		return ciUpdateDate;
+	}
+
+	public void setCiUpdateDate(String ciUpdateDate) {
 		this.ciUpdateDate = ciUpdateDate;
+	}
+
+	public String getUserId() {
+		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
+	public Integer getClsId() {
+		return clsId;
+	}
+
 	public void setClsId(Integer clsId) {
 		this.clsId = clsId;
 	}
+
 
 	
 

@@ -16,7 +16,8 @@ public class OClassDTO {
 	private Integer filNum; // 클래스이미지 	
 	private String userId; // 아이디
 	private Integer reqId; // 글번호
-
+	private Integer clsInquiry; // 문의 갯수
+	
 	public OClassDTO() {}
 
 	public OClassDTO(Integer clsId, String clsName, String clsCode, String clsDescription, String clsCurri,
@@ -140,6 +141,14 @@ public class OClassDTO {
 
 	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
+	}
+
+	public Integer getClsInquiry() {
+		return clsInquiry;
+	}
+
+	public void setClsInquiry(Integer clsInquiry) {
+		this.clsInquiry = clsInquiry;
 	}
 	
 	
