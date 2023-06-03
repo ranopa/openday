@@ -78,7 +78,7 @@ public class HeaderController {
 
 	// 검색필터
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView getSearchOClass(@RequestParam("scdLoc") String scdLoc,
+	public ModelAndView getSearchOClass(@RequestParam("clsLoc") String clsLoc,
 			@RequestParam(value="startDate", required = false, defaultValue = "all") String startDate,
 			@RequestParam(value="endDate", required = false, defaultValue = "all") String endDate,
 			@RequestParam("clsCode") String clsCode) {
@@ -99,7 +99,7 @@ public class HeaderController {
 		
 		ModelAndView mav = new ModelAndView();
 		try {
-			  List<CollectDTO> collectList = userService.getSearchOClass(scdLoc,
+			  List<CollectDTO> collectList = userService.getSearchOClass(clsLoc,
 					  sqlStartDate, sqlEndDate, clsCode); 
 			 // System.out.println(collectList.size());
 			  mav.addObject("collectList", collectList);

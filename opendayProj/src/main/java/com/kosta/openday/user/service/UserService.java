@@ -22,7 +22,7 @@ public interface UserService {
 
 	public UserDTO userLogin(Map<String, String> map) throws Exception;
 
-	List<CollectDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode)
+	List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode)
 			throws Exception;
 
 	public List<CollectDTO> getMainNewOClassList() throws Exception;
