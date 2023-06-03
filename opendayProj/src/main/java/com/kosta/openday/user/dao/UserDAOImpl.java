@@ -89,6 +89,12 @@ public class UserDAOImpl implements UserDAO {
 		 sqlSession.delete("mapper.user.deleteHeart",map);
 			
 	}
+	
+	@Override
+	public void insertHeart(Map<String, Object> map) throws Exception {
+		sqlSession.insert("mapper.user.insertHeart",map);
+		
+	}
 
 	
 }

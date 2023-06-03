@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,7 +60,7 @@ public class UserController {
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String id, @RequestParam("userPassword") String pw) throws Exception {
-		System.out.println("success");
+  
 		int result = userService.idCheck(id);
 		String mesg = "사용가능한 아이디입니다.";
 		if (result == 1) {
@@ -81,8 +81,7 @@ public class UserController {
 			mav.addObject("page","myPage");
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+			e.printStackTrace(); 
 		}
 		return mav;
 	}
@@ -149,8 +148,7 @@ public class UserController {
 
 	@RequestMapping(value = "/img/{filNum}", method = RequestMethod.GET)
 	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response) {
-		try {
-			System.out.println("seucess");
+		try { 
 			userService.fileView(filNum, response.getOutputStream());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -197,12 +195,25 @@ public class UserController {
 //		return mav;
 //	}
 	//찜 제거
-	@RequestMapping("/removeheart")
-	public String removeHeart(@RequestParam("clsId") Integer clsId) {
-		
+	@RequestMapping(value = "/removeheart", method=RequestMethod.POST)
+	public String removeHeart(@RequestParam("clsId") String clsIdStr) {  
 		try {
+			Integer clsId = Integer.parseInt(clsIdStr);
 			String userId = (String)session.getAttribute("id");
 			userService.removeHeart(clsId,userId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/myheart";
+	}
+	
+	//찜 추가
+	@RequestMapping(value = "/addheart", method=RequestMethod.POST)
+	public String addHeart(@RequestParam("clsId") String clsIdStr) {  
+		try {
+			Integer clsId = Integer.parseInt(clsIdStr);
+			String userId = (String)session.getAttribute("id");
+			userService.addHeart(clsId,userId);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

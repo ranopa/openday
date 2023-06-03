@@ -38,5 +38,6 @@ public interface UserService {
 	List<CollectDTO> HeartOClass(String userId) throws Exception;
 	
 	public void removeHeart(Integer clsId,String userId)throws Exception;
+	public void addHeart(Integer clsId,String userId)throws Exception;
 
 }

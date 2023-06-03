@@ -122,8 +122,7 @@ public class UserServiceImpl implements UserService {
 		param.put("scdLoc", scdLoc);
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
-		param.put("clsCode", clsCode);
-		System.out.println(param);
+		param.put("clsCode", clsCode); 
 		// TODO Auto-generated method stub
 		return userDAO.selectOClassList(param);
 
@@ -137,8 +136,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
-		FileDTO file = fileDAO.selectFile(id);
-		System.out.println(uploadDir + file.getFilNum() + file.getFilOrgName());
+		FileDTO file = fileDAO.selectFile(id); 
 		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
 		FileCopyUtils.copy(fis, out);
 		out.flush();
@@ -175,6 +173,16 @@ public class UserServiceImpl implements UserService {
 		map.put("userId", userId);
 		
 		userDAO.deleteHeart(map);
+		
+		
+	}
+	@Override
+	public void addHeart(Integer clsId, String userId) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("clsId", clsId);
+		map.put("userId", userId);
+		
+		userDAO.insertHeart(map);
 		
 		
 	}

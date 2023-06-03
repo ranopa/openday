@@ -27,5 +27,6 @@ public interface UserDAO {
 	public void updateUserDelete(String id) throws Exception;
 	
 	public void deleteHeart(Map<String,Object> map)throws Exception;
+	public void insertHeart(Map<String,Object> map)throws Exception;
 	
 }
