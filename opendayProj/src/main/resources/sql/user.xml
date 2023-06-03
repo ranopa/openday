@@ -273,6 +273,14 @@
 	     			
 				]]>
 	</select>
+	
+	
+	<!-- 찜삭제 -->
+	<delete id="deleteHeart" parameterType="java.util.Map">
+	<![CDATA[
+		delete from heart where userId=#{userId} and clsId=#{clsId}	
+	]]>
+	</delete>
 	<!-- 회원탈퇴 -->
 	<update id="updateUserDelete" parameterType="String">
 	<![CDATA[

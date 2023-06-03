@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -196,6 +197,18 @@ public class UserController {
 //		return mav;
 //	}
 	//찜 제거
+	@RequestMapping("/removeheart")
+	public String removeHeart(@RequestParam("clsId") Integer clsId) {
+		
+		try {
+			String userId = (String)session.getAttribute("id");
+			userService.removeHeart(clsId,userId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/myheart";
+	}
+	
 	
 	// 선호카테고리 수정하기
 	@RequestMapping(value = "/prefer", method = RequestMethod.POST)

@@ -1,5 +1,6 @@
 package com.kosta.openday.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,4 +83,12 @@ public class UserDAOImpl implements UserDAO {
 	public List<CollectDTO> selectmainHotOClassList() throws Exception {
 		return sqlSession.selectList("mapper.user.mainHotOClassList");
 	}
+
+	@Override
+	public void deleteHeart(Map<String, Object> map) throws Exception {
+		 sqlSession.delete("mapper.user.deleteHeart",map);
+			
+	}
+
+	
 }

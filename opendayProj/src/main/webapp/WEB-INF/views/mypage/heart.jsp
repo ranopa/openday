@@ -27,8 +27,8 @@
 					<c:forEach items="${heartList}" var="list" varStatus="status">
 					
 						<td class="oclass">
-<!-- 						<a href="#" class="h-link"> -->
-						<a href="/classinfo/${list.clsId}">
+						<a href="#" class="h-link">
+					<%-- 	<a href="/classinfo/${list.clsId}"> --%>
 							<img src="img/${list.filNum}"
 							class="h-ssum-img">
 							<div class="txt-box">

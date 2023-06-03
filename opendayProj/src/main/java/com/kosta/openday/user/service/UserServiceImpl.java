@@ -167,6 +167,17 @@ public class UserServiceImpl implements UserService {
 		return list;
 				
 	}
+	
+	@Override
+	public void removeHeart(Integer clsId, String userId) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("clsId", clsId);
+		map.put("userId", userId);
+		
+		userDAO.deleteHeart(map);
+		
+		
+	}
 
 
 }
