@@ -179,10 +179,24 @@ public class UserController {
 
 	// 예약결제내역
 	@RequestMapping("/mypage/reservedrecord")
-	public String fdsdf() {
+	public String sdfsdf() {
 		return "mypage/reservedRecord";
 	}
-
+	
+	//찜목록 -> 클래스 상세 
+//	@RequestMapping(" /classinfo/{clsId}")
+//	public ModelAndView classInfoFromHeart(@PathVariable("clsId") Integer clsId) {
+//		ModelAndView mav = new ModelAndView("mypage/myMain");
+//		try {
+//			
+//		}catch(){
+//			
+//		}
+//		
+//		return mav;
+//	}
+	//찜 제거
+	
 	// 선호카테고리 수정하기
 	@RequestMapping(value = "/prefer", method = RequestMethod.POST)
 //	public ModelAndView preferUpload(HttpSession session, @RequestParam("checkboxGroup") String c1, @RequestParam("checkboxGroup") String c2, @RequestParam("checkboxGroup") String c3) {
@@ -210,5 +224,7 @@ public class UserController {
 		userService.withdrawUser(id);
 		return "redirect:/";
 	}
+	
+
 
 }
