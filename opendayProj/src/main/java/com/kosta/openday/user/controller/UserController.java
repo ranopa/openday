@@ -69,7 +69,7 @@ public class UserController {
 	}
 
 	// 마이페이지 (테스트용)
-	@RequestMapping(value = "/mymain", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPage() {
 		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
