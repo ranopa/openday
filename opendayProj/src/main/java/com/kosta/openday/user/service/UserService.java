@@ -25,10 +25,12 @@ public interface UserService {
 	List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode)
 			throws Exception;
 
-	public List<CollectDTO> getMainNewOClassList() throws Exception;
 	
-	public List<CollectDTO> getMainHotOClassList() throws Exception;
-
+	  public List<CollectDTO> getMainNewOClassList() throws Exception;
+	 
+	/*
+	 * public List<CollectDTO> getMainHotOClassList() throws Exception;
+	 */
 	void fileView(Integer id, OutputStream out) throws Exception;
 
 	void withdrawUser(String id) throws Exception;

@@ -92,18 +92,18 @@
 									<div class="txt-box">
 										<div class="tb1">
 											<div class="t1">
-												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 											</div>
 											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
 											</div>
 										</div>
 										<p class="cls-name">${list.clsName}</p>
 										<div class="tb2">
 											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
 											<div class="price">
-												<span class="disc">${list.scdDiscount}%</span> <span
+												<span class="disc">${list.clsDiscount}%</span> <span
 													class="fp">${list.finalPrice}원</span>
 											</div>
 										</div>

@@ -41,12 +41,12 @@ public class UserDAOImpl implements UserDAO {
 	public UserDTO selectUserInfo(String id) throws Exception {
 		return sqlSession.selectOne("mapper.user.selectUser", id);
 	}
-
-	@Override
-	public List<CollectDTO> selectmainNewOClassList() throws Exception {
-		return sqlSession.selectList("mapper.user.mainNewOClassList");
-
-	}
+	
+	  @Override public List<CollectDTO> selectmainNewOClassList() throws Exception
+	  { return sqlSession.selectList("mapper.user.mainNewOClassList");
+	  
+	  }
+	 
 
 	@Override
 	public List<CollectDTO> selectOClassList(Map<String, Object> param) throws Exception {
@@ -78,8 +78,8 @@ public class UserDAOImpl implements UserDAO {
 
 	
 
-	@Override
-	public List<CollectDTO> selectmainHotOClassList() throws Exception {
-		return sqlSession.selectList("mapper.user.mainHotOClassList");
-	}
+	/*
+	 * @Override public List<CollectDTO> selectmainHotOClassList() throws Exception
+	 * { return sqlSession.selectList("mapper.user.mainHotOClassList"); }
+	 */
 }

@@ -12,183 +12,64 @@
 
 
 			<when
-				test="scdLoc=='all' and startDate==null and clsCode=='all'">
-				<![CDATA[
-	SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-
-				]]>
+				test="clsLoc=='all' and startDate==null and clsCode=='all'">
+				
+	   <include refid="search"></include>
+	
 			</when>
-			<when test="scdLoc=='all' and startDate==null">
-				<![CDATA[
-				SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-				WHERE o.clsCode=#{clsCode}
-				]]>
+			<when test="clsLoc=='all' and startDate==null">
+				<include refid="search"></include>
+				WHERE clsCode=#{clsCode}
+				
 			</when>
-			<when test="scdLoc=='all' and clsCode=='all'">
-				<![CDATA[
-			SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-				WHERE  s.scdDate between #{startDate} and #{endDate}
-				]]>
+			<when test="clsLoc=='all' and clsCode=='all'">
+					<include refid="search"></include>
+				WHERE  scdDate between #{startDate} and #{endDate}
+				
 			</when>
 			<when test="startDate==null and clsCode=='all'">
-				<![CDATA[
-				SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-				WHERE s.clsLoc=#{clsLoc} 
-				]]>
+					<include refid="search"></include>
+				WHERE clsLoc=#{clsLoc} 
+				
 			</when>
-			<when test="scdLoc=='all'">
-				<![CDATA[
-				SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-				WHERE (s.scdDate between #{startDate} and #{endDate}) and o.clsCode=#{clsCode}
-				]]>
+			<when test="clsLoc=='all'">
+					<include refid="search"></include>
+				WHERE (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode}
+				
 			</when>
 			<when test="startDate==null">
-				<![CDATA[
-				SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-				WHERE s.clsLoc=#{clsLoc} and o.clsCode=#{clsCode}
-				]]>
+					<include refid="search"></include>
+				WHERE clsLoc=#{clsLoc} and clsCode=#{clsCode}
+				
 			</when>
 			<when test="clsCode=='all'">
-				<![CDATA[
-				SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-				WHERE s.clsLoc=#{clsLoc} and (s.scdDate between #{startDate} and #{endDate})
-				]]>
+					<include refid="search"></include>
+				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate})
+				
 			</when>
 			<otherwise>
-				<![CDATA[
-				SELECT o.clsId As clsId , o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-               o.filNum AS filNum, 
-               IFNULL((SELECT COUNT(r.rvStar)
-            FROM oclass o
-            JOIN schedule s ON o.clsId = s.clsId
-            JOIN review r ON s.scdNum = r.scdNum 
-            GROUP BY o.clsId HAVING o.clsId = 3),0) AS reviewCount,
-                     (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
-                     IFNULL((SELECT AVG(r.rvStar)
-                     FROM review r JOIN schedule s
-                     WHERE r.scdNum = s.scdNum
-                     ),0)AS avgStar , IFNULL((
-                     select COUNT(*)
-                     from heart h
-                     WHERE h.clsId = o.clsId
-                     ),0) AS heartCnt
-            FROM oclass o JOIN code c ON o.clsCode=c.codNum 
-				WHERE s.clsLoc=#{clsLoc} and (s.scdDate between #{startDate} and #{endDate}) and o.clsCode=#{clsCode}
-				]]>
+					<include refid="search"></include>
+				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode}
+				
 			</otherwise>
 		</choose>
 	</select>
-
+  <!-- include -->
+   <sql id="search">
+     <![CDATA[
+    SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCode, scdDate FROM (
+SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
+   o.filNum AS filNum, COUNT(r.rvNum) AS reviewCount, o.clsCode as clsCode, s.scdDate as scdDate, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
+         IFNULL((
+      SELECT COUNT(*)
+      FROM heart h
+      WHERE h.clsId = o.clsId
+   ), 0) AS heartCnt
+FROM oclass o 
+LEFT join schedule s on o.clsId = s.clsId
+LEFT join review r on r.scdNum = s.scdNum
+JOIN code c ON o.clsCode=c.codNum
+GROUP BY o.clsId) AS oc
+     ]]>
+   </sql>
 </mapper>

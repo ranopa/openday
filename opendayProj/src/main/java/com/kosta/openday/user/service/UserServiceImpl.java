@@ -116,9 +116,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode)
+	public List<CollectDTO> getSearchOClass( String clsLoc, Date startDate, Date endDate, String clsCode)
 			throws Exception {
 		Map<String, Object> param = new HashMap<>();
+		
 		param.put("clsLoc", clsLoc);
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
@@ -129,11 +130,12 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-	public List<CollectDTO> getMainNewOClassList() throws Exception {
-		return userDAO.selectmainNewOClassList();
-
-	}
+	
+	  @Override public List<CollectDTO> getMainNewOClassList() throws Exception {
+	  return userDAO.selectmainNewOClassList();
+	  
+	  }
+	 
 
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
@@ -150,11 +152,12 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-
-	public List<CollectDTO> getMainHotOClassList() throws Exception {
-		return userDAO.selectmainHotOClassList();
-	}
+	/*
+	 * @Override
+	 * 
+	 * public List<CollectDTO> getMainHotOClassList() throws Exception { return
+	 * userDAO.selectmainHotOClassList(); }
+	 */
 
 	public List<CollectDTO> HeartOClass(String userId) throws Exception {  
 		List<CollectDTO> list = new ArrayList<>();  
