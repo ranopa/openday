@@ -18,7 +18,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<%-- <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
+<%--  <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
 <script src="resources/js/user/mypage.js"></script>
 </head>
 <body>
@@ -58,7 +58,7 @@
 									class="picture">
 							</c:when>
 							<c:otherwise>
-								<img src="img/${user.filNum }" class="picture">
+								<img src="img/${user.filNum }" class="picture" id="myImg">
 							</c:otherwise>
 						</c:choose>
 

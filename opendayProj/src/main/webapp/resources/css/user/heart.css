@@ -59,24 +59,47 @@
 * {
 	padding: 0;
 	margin: 0;
+	
 }
-.wrap{ 
+#heart { 
 	width:1280px;
-	margin:0 auto;
-	
-	
+	margin:0 auto; 
 }
-body {
-	font-family: 'NanumBarunGothic';
+#heart *{
+	
+	font-family: 'NanumBarunGothic', sans-serif;
 }
 
+ 
 /* 클래스 카드 */
 
 /* .tableTr{
 	display: flex;
 	flex-wrap: wrap;
 } */
-            
+.heart-content{
+	display: flex;
+    width: 100%;  
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#heart .heart-h2{
+	font-size : 24px;
+    color: rgb(104, 21, 182);
+	margin-bottom: 30px; 
+	margin-left:70px;
+	margin-top : 30px;
+	font-weight: bold;
+
+}
+#heart .h-link{
+	width:100%;
+	height:100%;
+	text-decoration: none;
+	color: black;
+}
+
 .oclass {
 	width: 260px; 
 	/* background-color: antiquewhite; */
@@ -96,13 +119,11 @@ td{
 td:nth-child(4n) {
 	margin-right:0;
 }
-.ssum-img {
-	width: 100%;
-	height: 260px;
-	background-color: rgb(218, 218, 218);
-	margin-bottom: 10px;
-}
-
+#heart .h-ssum-img {
+	width: 100%; 
+	height:260px;
+    margin-bottom: 10px; 
+} 
 .txt-box {
 	padding-right: 10px;
 	padding-left: 10px; 
