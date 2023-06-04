@@ -35,9 +35,9 @@ public class MainController {
 
 			//<CodeDTO> codeList= codeService.categoryInfoList();
 			List<CollectDTO> nlist = userService.getMainNewOClassList();
-			/* List<CollectDTO> hlist = userService.getMainHotOClassList(); */
+			 List<CollectDTO> hlist = userService.getMainHotOClassList(); 
 			mav.addObject("nlist", nlist);
-			/* mav.addObject("hlist", hlist); */
+			 mav.addObject("hlist", hlist); 
 			//mav.addObject("codeList", codeList);
 			mav.setViewName("main");
 		} catch (Exception e) {

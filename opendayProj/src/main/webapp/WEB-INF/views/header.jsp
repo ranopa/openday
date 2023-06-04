@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,11 +146,15 @@ $(function() {
  				$(".categoryButton").removeClass("selected");
  				console.log($(this).val());
  				$(this).addClass("selected");
+ 				
+ 			
+ 		
  			})
 		}
 	})
 })
 </script>
+
 </head>
 <body>
 
@@ -185,12 +190,12 @@ $(function() {
 				<h1 class="logo">
 					<a href="./">열어데이</a>
 				</h1>
-				<form type="text" action="search" method="get">
+				<form type="text" action="search" method="get" class="searchAndMenu">
 					<div class="searchAndIcon">
 
 						<input class="search" type="text" onclick="dis()"
-							placeholder="검색어 입력" name="keyword"> <a href="subClassList"><input
-							type="submit" class="material-symbols-outlined searchIcon" >search</input></a>
+							placeholder="검색어 입력" name="keyword"> <a href="subClassList"><span
+							type="submit" class="material-symbols-outlined searchIcon" >search</span></a>
 					</div>
 				<!-- </form> -->
 

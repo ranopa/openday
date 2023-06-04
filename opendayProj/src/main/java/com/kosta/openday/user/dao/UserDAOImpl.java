@@ -75,11 +75,32 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("mapper.user.selectHeartOClass",scdNum);
 		
 	}
-
+	@Override
+	public List<CollectDTO> selectInputOClassList(String keyword) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.search.searchInputSelect");
+	}
 	
-
-	/*
-	 * @Override public List<CollectDTO> selectmainHotOClassList() throws Exception
-	 * { return sqlSession.selectList("mapper.user.mainHotOClassList"); }
-	 */
+	@Override
+	public UserDTO selectUserFindId(String userEmail) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.user.userFindId", userEmail);
+	}
+	
+	@Override
+	public UserDTO selectUserFindPw(Map<String, Object> param) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.user.userFindPw", param);
+	}
+	
+	@Override
+	public void resetPassword(UserDTO user) throws Exception {
+		sqlSession.selectOne("mapper.user.userFindPw",  user);
+		
+	}
+	
+	
+	  @Override public List<CollectDTO> selectmainHotOClassList() throws Exception
+	  { return sqlSession.selectList("mapper.user.mainHotOClassList"); }
+	 
 }

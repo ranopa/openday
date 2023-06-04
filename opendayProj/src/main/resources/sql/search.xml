@@ -74,7 +74,7 @@ GROUP BY o.clsId) AS oc
    </sql> -->
    
 <!-- 아래는 강사닉넴과 클래스명 검색 합친거 근데 기존거가 안됨 -->
-   <!--  <when test="clsLoc=='all' and startDate==null and clsCode=='all'">			
+    <when test="clsLoc=='all' and startDate==null and clsCode=='all'">			
 	   <include refid="search"></include>
 	where tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
 			</when>
@@ -110,10 +110,10 @@ GROUP BY o.clsId) AS oc
 			</when>
 			<when test="clsLoc=='nll' and clsCode=='nll'">
 				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode} and tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%") 
-			</when> -->
+			</when>
 <!--    위가 추가 -->
    
-   <when test="clsLoc=='all' and startDate==null and clsCode=='all'">
+   <!-- <when test="clsLoc=='all' and startDate==null and clsCode=='all'">
 				
 	   <include refid="search"></include>
 	
@@ -152,12 +152,12 @@ GROUP BY o.clsId) AS oc
 					<include refid="search"></include>
 				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode}
 				
-			</otherwise>
+			</otherwise> -->
 		</choose>
 	</select>
 	
 	
-	
+<!-- 	아래는 해보려다 실패 -->
 		<!--   <when test="clsLoc=='all' and startDate==null and clsCode=='all' and keyword==null">
 				 <include refid="search"></include>
 	 </when>
@@ -181,7 +181,7 @@ GROUP BY o.clsId) AS oc
 			<when test="clsLoc=='all' and clsCode=='all'">
 					<include refid="search"></include>
 				WHERE  scdDate between #{startDate} and #{endDate}
-				and tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
+				and (tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%"))
 			</when>
 			
 			<when test="clsLoc=='all' and clsCode=='all' and keyword==null">
@@ -205,7 +205,7 @@ GROUP BY o.clsId) AS oc
 			<when test="clsLoc=='all'">
 					<include refid="search"></include>
 				WHERE (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode}
-			and tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
+			and (tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%"))
 			</when>
 			
 			<when test="clsLoc=='all' and keyword==null">
@@ -217,7 +217,7 @@ GROUP BY o.clsId) AS oc
 			<when test="startDate==null">
 					<include refid="search"></include>
 				WHERE clsLoc=#{clsLoc} and clsCode=#{clsCode}
-				and tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
+				and (tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%"))
 			</when>
 			
 			<when test="startDate==null and keyword==null">
@@ -229,7 +229,7 @@ GROUP BY o.clsId) AS oc
 			<when test="clsCode=='all'">
 					<include refid="search"></include>
 				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate})
-			and tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
+			and (tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%"))
 			</when>
 			
 			<when test="clsCode=='all' and keyword==null">
@@ -244,11 +244,11 @@ GROUP BY o.clsId) AS oc
 			<otherwise>
 					<include refid="search"></include>
 				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode}
-			 and tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
+			 and (tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%"))
 			</otherwise>
 		</choose>
-	</select>  -->
-	
+	</select> 
+	 -->
 	
 	
 	
@@ -330,4 +330,28 @@ GROUP BY o.clsId) AS oc
 	
 	</sql> -->
 	        
+	        
+	        
+	      <select id="searchInputSelect"
+		parameterType="String" resultType="com.kosta.openday.user.dto.CollectDTO"
+		>  
+		
+	         <![CDATA[
+	        SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCode, scdDate, tchcNickname, tFilNum FROM (
+SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
+   o.filNum AS filNum, COUNT(r.rvNum) AS reviewCount, o.clsCode as clsCode, s.scdDate as scdDate, t.tchcNickname as tchcNickname, t.filNum as tFilNum, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
+         IFNULL((
+      SELECT COUNT(*)
+      FROM heart h
+      WHERE h.clsId = o.clsId
+   ), 0) AS heartCnt
+FROM oclass o 
+LEFT join schedule s on o.clsId = s.clsId
+LEFT join review r on r.scdNum = s.scdNum
+JOIN code c ON o.clsCode=c.codNum
+join teacher_channel t on t.userId = o.userId
+GROUP BY o.clsId) AS oc
+	       where tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
+	        ]]>
+	        </select>
 </mapper>

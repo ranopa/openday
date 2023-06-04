@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,28 +23,19 @@
 
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
-			
-			<p class="subTitle">${clsCode}</p>
-			
 
+			<p class="subTitle">${codName}쿠킹</p>
 			<hr>
 			
 <div class="tchcsList">
-			
-			<c:set var="previousNickname" value="" />
-
-<c:forEach items="${collectList}" var="list" varStatus="loop">
-	<c:if test="${loop.index < 4}">
-	<c:if test="${list.tchcNickname != previousNickname}">
 			<div class="tBox">
+			<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+				<c:if test="${loop.index < 4}">
 				<div class="tFil">${list.tFilNum}프로필</div>
 				<span>${list.tchcNickname}닉네임</span>
-			</div>
-			<c:set var="previousNickname" value="${list.tchcNickname}" />
-		</c:if>
-	</c:if>
-</c:forEach>
-			
+					</c:if>
+						</c:forEach>
+			</div>			
 			</div>
 			<div class="subOption">
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">인기순</label>
@@ -99,7 +89,7 @@
 
 <div class="oclassTable">
 					<ul class="tableTr">
-						<c:forEach items="${collectList}" var="list" varStatus="loop">
+						<c:forEach items="${searchInputList}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
 								<li class="oclass">
 									<div class="ssum-img">${list.filNum}</div>

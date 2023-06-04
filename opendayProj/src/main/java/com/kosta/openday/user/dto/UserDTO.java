@@ -16,6 +16,8 @@ public class UserDTO {
 	private Date userBirth; //생일
 	private String userActivation; //활성화  ("0": 탈퇴상태, "1":활성화)
 	
+
+	
 	private Integer userAccount; //계좌번호
 	private String userAlarm; //알림여부 
 	private Date userJoindate; //가입일
@@ -61,6 +63,8 @@ public class UserDTO {
 				+ userPrefer + ", authority=" + authority + ", userFilenum=" + filNum + "]";
 	}
 
+	 
+	
 	public String getUserId() {
 		return userId;
 	}

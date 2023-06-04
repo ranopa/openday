@@ -272,6 +272,17 @@ body {
 	font-weight: 600;
 }
 
+.tchcsList{
+	display: flex;
+}
+.tBox{
+	
+	margin-right:20px;
+}
+
+.tBox span{
+	margin-right:10px;
+}
 .oclassIcon {
 	font-size: 14px;
 }

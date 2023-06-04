@@ -76,6 +76,22 @@ public class HeaderController {
 		return "redirect:/";
 	}
 
+	//강사 클래스 검색
+	@RequestMapping(value = "/searchinput", method = RequestMethod.GET)
+	public ModelAndView getSearchInputOClass(@RequestParam("keyword") String keyword) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CollectDTO> searchInputList = userService.getSearchInputOClass(keyword);
+			mav.addObject("searchInputList",searchInputList);
+			 mav.setViewName("toSubClassList");
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return mav;
+	}
+	
+	
 	// 검색필터
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView getSearchOClass(@RequestParam("clsLoc") String clsLoc,
@@ -104,8 +120,12 @@ public class HeaderController {
 					  sqlStartDate, sqlEndDate, clsCode, keyword); 
 			 // System.out.println(collectList.size());
 			  mav.addObject("collectList", collectList);
-			//  List<CodeDTO> codeList= codeService.categoryInfoList();
-			//  mav.addObject("codeList", codeList);
+			 
+			  
+			 mav.addObject("clsCode", clsCode);
+			  
+			 // List<CodeDTO> codeList= codeService.categoryInfoList();
+			  //mav.addObject("codeList", codeList);
 			  mav.setViewName("subClassList");
 			
 		} catch (Exception e) {

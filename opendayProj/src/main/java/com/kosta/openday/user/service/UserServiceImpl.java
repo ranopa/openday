@@ -132,6 +132,11 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public List<CollectDTO> getSearchInputOClass(String keyword)
+			throws Exception {
+	return userDAO.selectInputOClassList(keyword);
+	}
 	
 	  @Override public List<CollectDTO> getMainNewOClassList() throws Exception {
 	  return userDAO.selectmainNewOClassList();
@@ -154,12 +159,12 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	/*
-	 * @Override
-	 * 
-	 * public List<CollectDTO> getMainHotOClassList() throws Exception { return
-	 * userDAO.selectmainHotOClassList(); }
-	 */
+	
+	  @Override
+	  
+	  public List<CollectDTO> getMainHotOClassList() throws Exception { return
+	  userDAO.selectmainHotOClassList(); }
+	 
 
 	public List<CollectDTO> HeartOClass(String userId) throws Exception {  
 		List<CollectDTO> list = new ArrayList<>();  
@@ -181,5 +186,23 @@ public class UserServiceImpl implements UserService {
 	 * }
 	 */
 
+	@Override
+	public UserDTO getUserFindId(String userEmail) throws Exception {
+		// TODO Auto-generated method stub
+	
+		return userDAO.selectUserFindId(userEmail);
+	}
 
+	@Override
+	public UserDTO getUserFindPw(String userId, String userEmail) throws Exception {
+		 Map<String, Object> param = new HashMap<>();
+		 param.put("userId", userId);
+		 param.put("userEmail",userEmail);
+		 return userDAO.selectUserFindPw(param);
+	}
+	@Override
+	public void getResetPassword(UserDTO user) throws Exception {
+		 userDAO.resetPassword(user);
+		
+	}
 }
