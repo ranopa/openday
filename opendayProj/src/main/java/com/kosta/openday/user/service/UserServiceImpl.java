@@ -20,6 +20,7 @@ import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service
@@ -166,6 +167,7 @@ public class UserServiceImpl implements UserService {
 				
 	}
 	
+	//찜취소
 	@Override
 	public void removeHeart(Integer clsId, String userId) throws Exception {
 		Map<String, Object> map = new HashMap<>();
@@ -176,6 +178,7 @@ public class UserServiceImpl implements UserService {
 		
 		
 	}
+	//찜하기
 	@Override
 	public void addHeart(Integer clsId, String userId) throws Exception {
 		Map<String, Object> map = new HashMap<>();
@@ -185,6 +188,23 @@ public class UserServiceImpl implements UserService {
 		userDAO.insertHeart(map);
 		
 		
+	}
+	//신청내역
+	@Override
+	public List<MyRecordDTO> getReservedList(String userId, String text) throws Exception {
+		Map<String , String> map = new HashMap<>(); 
+		map.put("userId", userId);
+		map.put("text", text); 
+		List<MyRecordDTO> list =  userDAO.selectReserveList(map);
+		for(MyRecordDTO mr : list) {
+			Date sqlDate = mr.getScdDate();
+			java.util.Date uDate = new java.util.Date(sqlDate.getDate());
+			
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+			mr.setStrDate(simpleDate.format(uDate)); 
+		}
+		 
+		return list;
 	}
 
 

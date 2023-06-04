@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 public interface UserService {
@@ -36,8 +37,12 @@ public interface UserService {
 	int idCheck(String id) throws Exception; 
 	
 	List<CollectDTO> HeartOClass(String userId) throws Exception;
-	
+
+	//찜하기, 찜취소
 	public void removeHeart(Integer clsId,String userId)throws Exception;
 	public void addHeart(Integer clsId,String userId)throws Exception;
+
+	//마이페이지 클래스 신청 내역
+	public List<MyRecordDTO> getReservedList(String userId,String text)throws Exception;
 
 }

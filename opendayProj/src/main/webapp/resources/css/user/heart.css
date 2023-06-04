@@ -51,10 +51,7 @@
 		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf')
 		format('truetype');
 }
-
-.nanumbarungothic * {
-	font-family: 'NanumBarunGothic', sans-serif;
-}
+ 
 
 * {
 	padding: 0;

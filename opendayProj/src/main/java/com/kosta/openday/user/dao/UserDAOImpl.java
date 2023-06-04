@@ -1,6 +1,5 @@
 package com.kosta.openday.user.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Repository
@@ -95,6 +95,15 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.insert("mapper.user.insertHeart",map);
 		
 	}
+
+	@Override
+	public List<MyRecordDTO> selectReserveList(Map<String, String> map) throws Exception {
+		return sqlSession.selectList("mapper.user.selectReserveList", map); 
+		
+		
+	}
+	
+	
 
 	
 }

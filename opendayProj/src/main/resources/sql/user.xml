@@ -289,6 +289,24 @@
 	]]>
 	</delete>
 	
+	<!-- 예약/결제/환불내역 조회  -->
+	<select id = "selectReserveList" parameterType="java.util.Map" resultType="com.kosta.openday.user.dto.MyRecordDTO">
+	<![CDATA[
+		SELECT apNum, apPstatus, apAstatus, apFinalAmount, scdNum,
+		    (SELECT s.scdDate
+		    FROM schedule s
+		    WHERE a.scdNum = s.scdNum) AS scdDate,
+		    (SELECT o.clsName
+		    FROM oclass o JOIN schedule s ON o.clsId = s.clsId
+		    WHERE s.scdNum = a.scdNum) AS clsName,
+		    (SELECT o.filNum
+		    FROM oclass o JOIN schedule s ON o.clsId = s.clsId
+		    WHERE s.scdNum = a.scdNum) AS filNum
+		FROM application_payment a
+		WHERE userId = #{userId} AND apAstatus = #{text}
+	]]>
+	</select>
+	
 	<!-- 회원탈퇴 -->
 	<update id="updateUserDelete" parameterType="String">
 	<![CDATA[
