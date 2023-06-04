@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@
 				<tr class=tableTr>
 					<c:forEach items="${heartList}" var="list" varStatus="status">
 
-						<td class="oclass"><a href="#" class="h-link"> <%-- 	<a href="/classinfo/${list.clsId}"> --%>
+						<td class="oclass"><a href="javascript:void(0)" class="h-link"> <%-- 	<a href="/classinfo/${list.clsId}"> --%>
 								<img src="img/${list.filNum}" class="h-ssum-img"> 
 							 <button class="h-btn" value="${list.clsId}"><span class=" material-symbols-outlined fill icon-custom">favorite</span></button> 
 								<div class="txt-box">

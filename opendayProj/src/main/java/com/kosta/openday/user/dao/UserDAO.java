@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO; 
 
 public interface UserDAO {
@@ -29,4 +30,5 @@ public interface UserDAO {
 	public void deleteHeart(Map<String,Object> map)throws Exception;
 	public void insertHeart(Map<String,Object> map)throws Exception;
 	
+	public List<MyRecordDTO> selectReserveList(Map<String, String> map)throws Exception; 
 }

@@ -1,5 +1,6 @@
 package com.kosta.openday.user.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
@@ -177,10 +180,40 @@ public class UserController {
 	}
 
 	// 예약결제내역
-	@RequestMapping("/mypage/reservedrecord")
-	public String sdfsdf() {
-		return "mypage/reservedRecord";
+	@RequestMapping(value = "/reservedrecord", method=RequestMethod.GET)
+	public ModelAndView reservedList() {
+		 ModelAndView mav = new  ModelAndView("mypage/myMain");
+		 try {
+			 String userId = (String)session.getAttribute("id");
+			 String text = "수강예정"; 
+			 List<MyRecordDTO> list = userService.getReservedList(userId,text);
+			 mav.addObject("page","reservedRecord");
+			 mav.addObject("reservedList",list);
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }
+		return mav; 
 	}
+	//ajax로 받아온 신청/수강/환불내역 요청   
+	@RequestMapping(value = "/reservedmenuselect",  method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+    public List<MyRecordDTO> getData(@RequestParam(value="h2Text") String h2Text) {
+		String userId = (String)session.getAttribute("id");
+		String text = null;
+		List<MyRecordDTO> reservedList = null; 
+		try {
+			if(h2Text.equals("신청내역")) text = "수강예정";
+			else if(h2Text.equals("수강내역")) text ="수강완료";
+			else text="수강취소"; 
+			reservedList= userService.getReservedList(userId,text); 
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		} 
+        return reservedList;
+    }
+ 
+	
 	
 	//찜목록 -> 클래스 상세 
 //	@RequestMapping(" /classinfo/{clsId}")
