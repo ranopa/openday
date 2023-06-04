@@ -63,8 +63,8 @@
 			<table class="e-flex">
 				<tr>
 					<c:forEach items="${cateNames}" var="ctgr" varStatus="status">
-						<td><button type="button" class="category-btn unchecked" name="checkboxGroup" value="${ctgr.codName}">${ctgr.codName}</td>
-<%-- 						<td><input type="checkbox" class="unchecked" name="checkboxGroup" value="C+${status}" onclick="return limitCheckboxes('group', 3)">${ctgr.codName}</td> --%>
+						<%--  <td><button type="button" class="category-btn unchecked" name="checkboxGroup" value="${ctgr.codName}">${ctgr.codName}</td>  --%>
+					 <td><input type="checkbox" class="category-btn unchecked" name="checkboxGroup" value="category-btn" onclick="return limitCheckboxes('group', 3)">${ctgr.codName}</td> 
 						<c:if test="${(status.count % 5 eq 0) and (status.last eq false)}">
 				</tr>
 				<tr>

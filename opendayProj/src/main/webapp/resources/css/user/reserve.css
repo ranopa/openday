@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix')
+		format('embedded-opentype'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff')
+		format('woff'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf')
+		format('truetype');
+}
+
+#reserve #heart button:focus,button:active {
+	outline: none;
+	box-shadow: none;
+}
+
+#reserve  * {
+	padding: 0;
+	margin: 0;
+}
+
+#reserve {
+	width: 1280px;
+	margin: 0 auto;
+	font-family: 'NanumBarunGothic', sans-serif;
+}
+
+#reserve .menu-text {
+	display: flex;
+}
+
+#reserve .r-btn {
+	border: none;
+	background-color: transparent;
+}
+
+/* 클래스 카드 */
+#reserve tr {
+	display: flex;
+	margin: 0 auto;
+}
+
+#reserve td {
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 100px;
+	display: inline-block;
+}
+
+#reserve .reserve-content {
+	display: flex;
+	width: 100%;
+	margin: 0 auto;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+#reserve .reserve-h2 {
+	font-size: 24px;
+	color: rgb(198, 191, 204);
+	margin-bottom: 30px;
+	margin-left: 35px;
+	margin-top: 100px;
+	font-weight: bold;
+	
+}
+
+#reserve .reserve-h2:hover {
+	color: rgb(104, 21, 182);
+}
+
+#reserve .reserve-h2.pick {
+	color: rgb(104, 21, 182);
+}
+
+#reserve .r-link {
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: black;
+	display: block;
+	position: relative;
+}
+
+#reserve .oclass {
+	width: 260px;
+	/* background-color: antiquewhite; */
+	border-radius: 5px;
+	border: 1px solid rgb(207, 207, 207);
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+#reserve .icon-custom {
+	font-size: 50px;
+	color: #FF729D;
+	font-weight: 200;
+}
+
+.material-symbols-outlined.fill {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
+
+#reserve .re-box {
+	margin: 0 auto;
+}
+
+/* #reserve td:nth-child(4n) {
+            margin-right: 0;
+        } */
+#reserve .h-ssum-img {
+	width: 100%;
+	height: 260px;
+	margin-bottom: 10px;
+	background-color: #dfdfdf;
+}
+
+#reserve .txt-box {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+#reserve .t1 {
+	font-size: 13px;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 7px;
+}
+
+#reserve .t1 span {
+	margin-right: 3px;
+	color: #7A7A7A;
+	font-weight: bold;
+	display: block;
+}
+
+#reserve .cls-name {
+	font-size: 18px;
+	font-weight: bold;
+	border-bottom: 1px solid rgb(212, 212, 212);
+	width: 95%;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+
+#reserve .oclass p {
+	margin-top: 7px;
+}
+
+#reserve .tb2 {
+	display: flex;
+	font-size: 18px;
+	padding-bottom: 15px;
+	margin: 0 7px;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#reserve .oriPrice {
+	color: #B4B4B4;
+	font-size: 15px;
+	margin-right: 5px;
+	margin-top: 3px;
+}
+
+#reserve .fp {
+	font-weight: 600;
+}
+
+#reserve .reserve-badge {
+	color: #ff00bf;
+}
+
+#reserve .record-badge {
+	color: #5270d3;
+}
+
+#reserve .cancel-badge {
+	color: #ff0000;
+}

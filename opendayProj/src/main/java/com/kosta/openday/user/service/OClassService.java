@@ -3,10 +3,12 @@ package com.kosta.openday.user.service;
 import java.sql.Date;
 import java.util.List;
 
+import java.util.Map;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.RequestDTO;
+import com.kosta.openday.user.dto.PageInfo;
 
 public interface OClassService {
 
@@ -22,7 +24,7 @@ public interface OClassService {
 
 	void requestClass(RequestDTO request) throws Exception;
 
-	List<RequestDTO> getRequestList() throws Exception;
+	List<RequestDTO> getRequestList(PageInfo pageInfo) throws Exception;
 
 	RequestDTO getRequest(Integer reqId) throws Exception;
 
@@ -41,4 +43,9 @@ public interface OClassService {
 	ScheduleDTO findScheduleById(Integer scdNum) throws Exception;
 
 	ApplyClassResponseDTO getApplyClassResponse(Integer id) throws Exception;
+
+	Map<String, Object> getScheduleDetail(Integer scdNum, String userId) throws Exception;
+
+	Integer toggleHeartSchedule(Integer scdNum, String userId) throws Exception;
+
 }

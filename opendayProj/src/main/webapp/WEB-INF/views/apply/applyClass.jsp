@@ -25,7 +25,7 @@ let availableDateTimes = [];
 	availableDateTimes.push({
 		date: "${s.scdDate}",
 		time: "${s.scdTime}",
-		timeAndPlace: "[${s.scdTime}] ${s.scdPlace} (${s.scdLoc})",
+		timeAndPlace: "[${s.scdTime}] ${s.scdPlace} (${s.scdPlaceDetail})",
 		num: "${s.scdNum}"
 	});
 </c:forEach>
@@ -119,7 +119,8 @@ $(function() {
 
 					<div class="detail-bottom">
 						<span>${data.codName }</span>
-						<span>${data.clsPrice }</span>
+						<del>${data.clsPrice}</del> ${data.clsDiscount}%
+            <span>${data.clsPrice * (1 - (data.clsDiscount/100))}
 					</div>
 				</div>
 

@@ -73,7 +73,7 @@
 					</tr>
 					<tr>
 						<td>장소</td>
-						<td>[${data.scdLoc}] ${data.scdPlace }</td>
+						<td>[${data.clsLoc}] ${data.scdPlace }(${data.scdPlaceDetail})</td>
 					</tr>
 				</table>
 			</div>
@@ -121,7 +121,10 @@
 				<table>
 					<tr>
 						<td>선택 상품 금액</td>
-						<td>${data.clsPrice} 원</td>
+						<td>
+              <del>${data.clsPrice}</del> ${data.clsDiscount}%
+              <span>${data.clsPrice * (1 - (data.clsDiscount/100))}원
+            </td>
 					</tr>
 					<tr>
 						<td>신청 인원 수</td>
@@ -129,7 +132,7 @@
 					</tr>
 					<tr>
 						<td>총 금액</td>
-						<td id="total-price">${data.totalPrice}원</td>
+						<td id="total-price">${data.clsPrice * (1 - (data.clsDiscount/100))}원</td>
 					</tr>
 				</table>
 			</div>

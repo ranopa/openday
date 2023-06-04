@@ -1,5 +1,6 @@
 package com.kosta.openday.user.controller;
 
+import java.util.Map;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,7 @@ import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.OClassService;
 import com.kosta.openday.user.service.PaymentService;
 import com.kosta.openday.user.service.UserService;
+import com.kosta.openday.user.dto.PageInfo;
 
 @Controller
 public class OClassController {
@@ -51,12 +53,6 @@ public class OClassController {
 	public String applyClass(@RequestParam("clsId") Integer id, Model model) {
 		try {
 			ApplyClassResponseDTO applyClassDto = oClassService.getApplyClassResponse(id);
-			
-//			OClassDTO oclass = oClassService.findOne(id);
-//			List<ScheduleDTO> scheduels = oClassService.findScheduleByClassId(oclass.getClsId());
-//			
-//			model.addAttribute("oclass", oclass);
-//			model.addAttribute("schedules", scheduels);
 			
 			model.addAttribute("data", applyClassDto);
 	
@@ -122,6 +118,8 @@ public class OClassController {
 		return "apply/paymentResult";
 	}
 
+
+
 	@RequestMapping(value = "/requestwrite", method=RequestMethod.GET)
 	public String requestWriteForm() {
 		return "requestboard/requestWrite";
@@ -144,12 +142,16 @@ public class OClassController {
 		
 	}
 	@RequestMapping(value = "/requestlist", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView requestList() {
+	public ModelAndView requestList(@RequestParam(value="page", required = false, defaultValue = "1")
+			Integer page) {
 		ModelAndView mav = new ModelAndView();
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setCurPage(page);
 		mav.setViewName("requestboard/requestList");
 		try {
-			List<RequestDTO> requestList =  oClassService.getRequestList();
+			List<RequestDTO> requestList =  oClassService.getRequestList(pageInfo);
 			mav.addObject("requestList", requestList);
+			mav.addObject("pageInfo", pageInfo);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -203,7 +205,6 @@ public class OClassController {
 	@ResponseBody
 	@RequestMapping(value="/participation", method=RequestMethod.POST) 
 	public ResponseEntity<String> participation(@RequestParam("reqId") Integer reqId) {
-		System.out.println(reqId);
 		try {
 			UserDTO user = (UserDTO)session.getAttribute("user");
 			Boolean yn = oClassService.coupleParticipation(user.getUserId(), reqId);
@@ -212,5 +213,29 @@ public class OClassController {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@RequestMapping(value = "/classinfo", method=RequestMethod.GET)
+	public ModelAndView classInfo(@RequestParam(value="scdNum") Integer scdNum) {
+		ModelAndView mav = new ModelAndView("classinfo/classInfo");
+		try {
+//			UserDTO user = (UserDTO)session.getAttribute("user");
+//			Map<String,Object> result = oClassService.getScheduleDetail(scdNum, user.getUserId());
+			Map<String,Object> result = oClassService.getScheduleDetail(scdNum, "jane");
+			mav.addObject("res", result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+
+	@RequestMapping(value = "/reviewwrite", method=RequestMethod.GET)
+	public String mp() {
+		return "mypage/reviewWrite";
+	}
+	
+	@RequestMapping(value = "/test2", method=RequestMethod.GET)
+	public String ci() {
+		return "classinfo/test2";
 	}
 }

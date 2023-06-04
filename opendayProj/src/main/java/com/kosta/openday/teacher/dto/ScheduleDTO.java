@@ -9,30 +9,33 @@ public class ScheduleDTO {
 	private Integer scdNum; //클래스 일정번호 
 	private Date scdDate; //강의일
 	private Time scdTime; //소요시간
-	private String scdLoc; //장소
-	private String scdPlace;
-	private Integer scdPersonnel; //모집인원
 
-	private Integer scdDiscount; //할인율
+	private String scdPlace; //장소
+	private String scdPlaceDetail; //세부장소
+
+	private Integer scdMinPersonnel; //모집인원
+	private Integer scdMaxPersonnel; //모집인원
+	
 	private Date scdUploadDate; //등록일 
-	private String scdStatus; //강의상태 
+	private String scdStatus; //강의상태 (예정/폐강/완료)
 	private Integer clsId; //클래스번호
 	
 	public ScheduleDTO() {}
-	
-	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, String scdPlace, Integer scdPersonnel,
-			Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
+
+	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdPlace, String scdPlaceDetail,
+			Integer scdMinPersonnel, Integer scdMaxPersonnel, Date scdUploadDate, String scdStatus, Integer clsId) {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
-		this.scdLoc = scdLoc;
+		this.scdTime = scdTime;
 		this.scdPlace = scdPlace;
-		this.scdPersonnel = scdPersonnel;
-
-		this.scdDiscount = scdDiscount;
+		this.scdPlaceDetail = scdPlaceDetail;
+		this.scdMinPersonnel = scdMinPersonnel;
+		this.scdMaxPersonnel = scdMaxPersonnel;
 		this.scdUploadDate = scdUploadDate;
 		this.scdStatus = scdStatus;
 		this.clsId = clsId;
 	}
+
 
 	public Integer getScdNum() {
 		return scdNum;
@@ -58,14 +61,6 @@ public class ScheduleDTO {
 		this.scdTime = scdTime;
 	}
 
-	public String getScdLoc() {
-		return scdLoc;
-	}
-
-	public void setScdLoc(String scdLoc) {
-		this.scdLoc = scdLoc;
-	}
-
 	public String getScdPlace() {
 		return scdPlace;
 	}
@@ -74,20 +69,28 @@ public class ScheduleDTO {
 		this.scdPlace = scdPlace;
 	}
 
-	public Integer getScdPersonnel() {
-		return scdPersonnel;
+	public String getScdPlaceDetail() {
+		return scdPlaceDetail;
 	}
 
-	public void setScdPersonnel(Integer scdPersonnel) {
-		this.scdPersonnel = scdPersonnel;
+	public void setScdPlaceDetail(String scdPlaceDetail) {
+		this.scdPlaceDetail = scdPlaceDetail;
 	}
 
-	public Integer getScdDiscount() {
-		return scdDiscount;
+	public Integer getScdMinPersonnel() {
+		return scdMinPersonnel;
 	}
 
-	public void setScdDiscount(Integer scdDiscount) {
-		this.scdDiscount = scdDiscount;
+	public void setScdMinPersonnel(Integer scdMinPersonnel) {
+		this.scdMinPersonnel = scdMinPersonnel;
+	}
+
+	public Integer getScdMaxPersonnel() {
+		return scdMaxPersonnel;
+	}
+
+	public void setScdMaxPersonnel(Integer scdMaxPersonnel) {
+		this.scdMaxPersonnel = scdMaxPersonnel;
 	}
 
 	public Date getScdUploadDate() {
@@ -113,4 +116,6 @@ public class ScheduleDTO {
 	public void setClsId(Integer clsId) {
 		this.clsId = clsId;
 	}
+	
+	
 }

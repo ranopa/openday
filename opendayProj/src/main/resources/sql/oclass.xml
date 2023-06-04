@@ -15,7 +15,6 @@
 	</insert>
 
 
-
 	<!-- 파일 넣는거 만들다고 그만둠 -->
 
 
@@ -55,12 +54,26 @@
 	<insert id="insertOClass"
 		parameterType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
-			insert into oclass values(nextval(oclass_seq),#{clsName},#{clsCode},#{clsDiscription},
-										#{clsPrice}, #{clsCurri}, #{clsCareer}, #{clsStar},#{clsHeart},
-									  	#{clsStatus},#{clsCreatedAt}, #{clsOpenType},#{filNum},#{userId},#{reqId})
+			insert into oclass values(
+				nextval(oclass_seq),
+				#{clsName},
+				#{clsCode},
+				#{clsDiscription},
+				#{clsPrice}, 
+				#{clsCurri}, 
+				#{clsCareer}, 
+				#{clsStatus},
+				#{clsLoc},
+				#{clsDiscount},
+				#{clsCreatedAt},
+				#{clsOpenType},
+				#{filNum},
+				#{userId},
+				#{reqId}
+			)
 		]]>
 	</insert>
-
+	
 	<!-- =========== 클래스일정 schedule =============================================== -->
 	<!-- 1. 클래스일정번호로 클래스일정조회 -->
 	<select id="selectSchedule" parameterType="Integer"
@@ -85,9 +98,22 @@
 		parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
 		<![CDATA[ 
 			insert into schedule 
-			values(nextval(schedule_seq),#{scdDate},#{scdTime},#{scdLoc},#{scdPersonnel},#{scdDiscount},#{scdUploadDate},#{scdStatus},#{clsId})
+			values(
+				nextval(schedule_seq),
+				#{scdDate},
+				#{scdTime}, 
+				#{scdPlace},
+				#{scdPlaceDetail},
+				#{scdMinPersonnel},
+				#{scdMaxPersonnel},
+				#{scdDiscount},
+				#{scdUploadDate},
+				#{scdStatus},
+				#{clsId}
+			)
 		]]>
 	</insert>
+	
 
 	<!-- =========== 클래스찜 heart =============================================== -->
 	<!-- 1. 유저아이디로 클래스찜 조회 -->
@@ -127,7 +153,7 @@
 
 <!-- 아직 되는지 안되는지 모름 -->
 <!-- 진행중 -->
-	<select id="searchSelect"
+	<!-- <select id="searchSelect"
 		resultType="com.kosta.openday.teacher.dto.ScheduleDTO" parameterType="java.util.Map">
 
 		<choose>
@@ -183,7 +209,7 @@
 				]]>
 			</otherwise>
 		</choose>
-	</select>
+	</select> -->
 
 	<!-- 검색필터 카테고리 옵션 -->
 
@@ -206,12 +232,13 @@
 			cod.codName as codName,
 			cls.clsPrice as clsPrice,
 			cls.filNum as filNum,
+			cls.clsLoc as clsLoc,
 			
 			scd.scdNum as scdNum,
 			scd.scdDate as scdDate,
 			scd.scdTime as scdTime,
-			scd.scdLoc as scdLoc,
-			scd.scdPlace as scdPlace
+			scd.scdPlace as scdPlace,
+			scd.scdPlaceDetail as scdPlaceDetail,
 		FROM
 			oclass AS cls
 			INNER JOIN
@@ -236,8 +263,9 @@
 			<result column="scdNum" property="scdNum" />
 			<result column="scdDate" property="scdDate" />
 			<result column="scdTime" property="scdTime" />
-			<result column="scdLoc" property="scdLoc" />
+			<result column="clsLoc" property="clsLoc" />
 			<result column="scdPlace" property="scdPlace" />
+			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 		</collection>
 	</resultMap>
 </mapper>

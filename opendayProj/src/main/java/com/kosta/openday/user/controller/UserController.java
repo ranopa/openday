@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
@@ -58,7 +62,7 @@ public class UserController {
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String id, @RequestParam("userPassword") String pw) throws Exception {
-		System.out.println("success");
+  
 		int result = userService.idCheck(id);
 		String mesg = "사용가능한 아이디입니다.";
 		if (result == 1) {
@@ -70,17 +74,16 @@ public class UserController {
 	// 마이페이지 (테스트용)
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPage() {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
 			String id = "sbsb";
 			session.setAttribute("id", id);
 			UserDTO user = userService.getUserInfo(id);
 			mav.addObject("user", user);
-			mav.setViewName("mypage/myPage");
+			mav.addObject("page","myPage");
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+			e.printStackTrace(); 
 		}
 		return mav;
 	}
@@ -147,8 +150,7 @@ public class UserController {
 
 	@RequestMapping(value = "/img/{filNum}", method = RequestMethod.GET)
 	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response) {
-		try {
-			System.out.println("seucess");
+		try { 
 			userService.fileView(filNum, response.getOutputStream());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,9 +158,18 @@ public class UserController {
 	}
 
 	// 찜한클래스
-	@RequestMapping("/mypage/myheart")
-	public String df() {
-		return "mypage/heart";
+	@RequestMapping("/myheart")
+	public ModelAndView heart(){
+		ModelAndView mav = new ModelAndView("mypage/myMain");
+		try {
+			String userId = (String)session.getAttribute("id");
+			List<CollectDTO> list = userService.HeartOClass(userId);  
+			mav.addObject("heartList",list);
+			mav.addObject("page","heart");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
 	}
 
 	// 팔로우
@@ -168,11 +179,96 @@ public class UserController {
 	}
 
 	// 예약결제내역
-	@RequestMapping("/mypage/reservedrecord")
-	public String fdsdf() {
-		return "mypage/reservedRecord";
+	@RequestMapping(value = "/reservedrecord", method=RequestMethod.GET)
+	public ModelAndView reservedList() {
+		 ModelAndView mav = new  ModelAndView("mypage/myMain");
+		 try {
+			 String userId = (String)session.getAttribute("id");
+			 String text = "수강예정"; 
+			 List<MyRecordDTO> list = userService.getReservedList(userId,text);
+			 mav.addObject("page","reservedRecord");
+			 mav.addObject("reservedList",list);
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }
+		return mav; 
 	}
-
+	//ajax로 받아온 신청/수강/환불내역 요청   
+	@RequestMapping(value = "/reservedmenuselect",  method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+    public List<MyRecordDTO> getData(@RequestParam(value="h2Text") String h2Text) {
+		String userId = (String)session.getAttribute("id");
+		String text = null;
+		List<MyRecordDTO> reservedList = null; 
+		try {
+			if(h2Text.equals("신청내역")) text = "수강예정";
+			else if(h2Text.equals("수강내역")) text ="수강완료";
+			else text="수강취소"; 
+			reservedList= userService.getReservedList(userId,text); 
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		} 
+        return reservedList;
+    }
+ 
+	
+	
+	//찜목록 -> 클래스 상세 
+//	@RequestMapping(" /classinfo/{clsId}")
+//	public ModelAndView classInfoFromHeart(@PathVariable("clsId") Integer clsId) {
+//		ModelAndView mav = new ModelAndView("mypage/myMain");
+//		try {
+//			
+//		}catch(){
+//			
+//		}
+//		
+//		return mav;
+//	}
+	//찜 제거
+	@RequestMapping(value = "/removeheart", method=RequestMethod.POST)
+	public String removeHeart(@RequestParam("clsId") String clsIdStr) {  
+		try {
+			Integer clsId = Integer.parseInt(clsIdStr);
+			String userId = (String)session.getAttribute("id");
+			userService.removeHeart(clsId,userId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/myheart";
+	}
+	
+	//찜 추가
+	@RequestMapping(value = "/addheart", method=RequestMethod.POST)
+	public String addHeart(@RequestParam("clsId") String clsIdStr) {  
+		try {
+			Integer clsId = Integer.parseInt(clsIdStr);
+			String userId = (String)session.getAttribute("id");
+			userService.addHeart(clsId,userId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/myheart";
+	}
+	
+	//follow 강사 목록 보기
+	@RequestMapping(value = "/myfollow", method = RequestMethod.GET)
+	public ModelAndView followList() {
+		ModelAndView mav = new ModelAndView("mypage/myMain");
+		String userId = (String)session.getAttribute("id");
+		try {
+			List<TeacherChannelDTO> tchcList = userService.getTchcList(userId); 
+			mav.addObject("tchcList",tchcList);
+			mav.addObject("page","follow");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	
+	
 	// 선호카테고리 수정하기
 	@RequestMapping(value = "/prefer", method = RequestMethod.POST)
 //	public ModelAndView preferUpload(HttpSession session, @RequestParam("checkboxGroup") String c1, @RequestParam("checkboxGroup") String c2, @RequestParam("checkboxGroup") String c3) {
@@ -195,11 +291,12 @@ public class UserController {
 		return mav;
 	}
 	@RequestMapping(value = "/withdraw", method = RequestMethod.POST)
-	public String userWithdraw(HttpSession session) throws Exception {
+	public String userWithdraw() throws Exception {
 		String id = (String) session.getAttribute("id");
-		System.out.println("enter");
 		userService.withdrawUser(id);
 		return "redirect:/";
 	}
+	
+
 
 }

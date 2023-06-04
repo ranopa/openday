@@ -93,6 +93,4 @@ public class PaymentResultDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
-	
 }

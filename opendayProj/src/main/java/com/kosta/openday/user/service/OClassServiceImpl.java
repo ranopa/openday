@@ -9,12 +9,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kosta.openday.user.dao.OClassDAO;
-import com.kosta.openday.user.dto.ApplyClassResponseDTO;
-import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
-
+import com.kosta.openday.user.dto.ClsInquiryDTO;
+import com.kosta.openday.user.dao.OClassDAO;
+import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.user.dto.PageInfo;
 import com.kosta.openday.user.dto.RequestDTO;
+import com.kosta.openday.user.dto.ReviewDTO;
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 
 
 @Service
@@ -62,7 +64,7 @@ public class OClassServiceImpl implements OClassService {
 	}
 
 	@Override
-	public List<RequestDTO> getRequestList() throws Exception {
+	public List<RequestDTO> getRequestList(PageInfo pageInfo) throws Exception {
 		// TODO Auto-generated method stub
 		return oClassDAO.selectRequestList();
 	}
@@ -133,5 +135,45 @@ public class OClassServiceImpl implements OClassService {
 		return oClassDAO.selectClassAndScheduleForApplyClass(clsId);
 	}
 	
-	
+	@Override
+	public Map<String, Object> getScheduleDetail(Integer scdNum, String userId) throws Exception {
+		//클래스번호,클래스명,파일명,가격,소개,커리,장소
+		Map<String, Object> clsInfo = oClassDAO.selectScheduleDetail(scdNum);
+		//후기
+		List<ReviewDTO> reviewList = oClassDAO.selectReviewByStdNum(scdNum);
+		//문의
+		List<ClsInquiryDTO> inquiryList = oClassDAO.selectInquiryByStdNum(scdNum);
+		//찜수
+		Integer heartCnt = oClassDAO.selectHeartCntByStdNum(scdNum);
+		//찜여부
+		Map<String,Object> param = new HashMap<>();
+		param.put("scdNum", scdNum);
+		param.put("userId", userId);
+		Integer heart = oClassDAO.selectHeartByStdNumAndUser(param);
+		System.out.println(heart);
+		Map<String, Object> result = new HashMap<>();
+		result.put("clsInfo", clsInfo);
+		result.put("reviewList", reviewList);
+		result.put("inquiryList", inquiryList);
+		result.put("heartCnt", heartCnt);
+		result.put("heart", heart);
+		return result;
+	}
+
+	@Override
+	public Integer toggleHeartSchedule(Integer scdNum, String userId) throws Exception {
+		Map<String, Object> param = new HashMap<>();
+		param.put("scdNum", scdNum);
+		param.put("userId", userId);
+		
+		Integer heartYN = oClassDAO.selectHeartByStdNumAndUser(param);
+		if(heartYN==1) {
+			oClassDAO.deleteHeartByStdNumAndUser(param);
+		} else {
+			oClassDAO.insertHeartByStdNumAndUser(param);
+		}
+		
+		return oClassDAO.selectHeartByStdNumAndUser(param);
+	}
+
 }

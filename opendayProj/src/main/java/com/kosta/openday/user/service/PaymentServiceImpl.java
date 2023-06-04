@@ -22,13 +22,19 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	private Integer calculateFinalAmount(PaymentRequestDTO request) throws Exception {
 		OClassDTO oClass = oClassService.findOne(request.getClsId());
-		Integer clsPrice = oClass.getClsPrice();
-		Integer personnel = request.getApplyPersonnel();
-		
-		return applyDiscount(request, (clsPrice * personnel));
+
+		return applyDiscount(request, oClass);
 	}
 	
-	private Integer applyDiscount(PaymentRequestDTO request, Integer amount) {
+	private Integer applyDiscount(PaymentRequestDTO request, OClassDTO oClass) {
+		Double discountedPrice = 
+				(double)oClass.getClsPrice()
+				* (1 -  ((double)oClass.getClsDiscount())/100);
+		
+		return applyPoint(request, (int)Math.round(discountedPrice));
+	}
+	
+	private Integer applyPoint(PaymentRequestDTO request, Integer amount) {
 		return amount - request.getPoint();
 	}
 	
@@ -44,9 +50,9 @@ public class PaymentServiceImpl implements PaymentService {
 		ApplicationPaymentDTO payment = new ApplicationPaymentDTO();
 	
 		// todo: 결제성공/실패 별도 코드 추가
-		payment.setApPstatus("SUCCESS"); // 결제상태
-		payment.setApAstatus("READY"); // 수강상태
-		payment.setApMethod("KOSTABANK");
+		payment.setApPstatus("정상"); // 결제상태
+		payment.setApAstatus("예정"); // 수강상태
+		payment.setApMethod("카드");
 		payment.setApFinalAmount(finalAmount);
 		payment.setScdNum(paymentRequest.getScdNum());
 		payment.setUserId(userId);
