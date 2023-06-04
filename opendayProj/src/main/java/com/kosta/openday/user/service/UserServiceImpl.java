@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchOClass( String clsLoc, Date startDate, Date endDate, String clsCode)
+	public List<CollectDTO> getSearchOClass( String clsLoc, Date startDate, Date endDate, String clsCode, String keyword)
 			throws Exception {
 		Map<String, Object> param = new HashMap<>();
 		
@@ -124,6 +124,8 @@ public class UserServiceImpl implements UserService {
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
 		param.put("clsCode", clsCode);
+		param.put("keyword", keyword);
+		
 		System.out.println(param);
 		// TODO Auto-generated method stub
 		return userDAO.selectOClassList(param);

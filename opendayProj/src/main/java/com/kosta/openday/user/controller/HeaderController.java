@@ -81,7 +81,8 @@ public class HeaderController {
 	public ModelAndView getSearchOClass(@RequestParam("clsLoc") String clsLoc,
 			@RequestParam(value="startDate", required = false, defaultValue = "all") String startDate,
 			@RequestParam(value="endDate", required = false, defaultValue = "all") String endDate,
-			@RequestParam("clsCode") String clsCode) {
+			@RequestParam("clsCode") String clsCode, 
+			@RequestParam("keyword") String keyword) {
 		
 		Date sqlStartDate = null;
 		Date sqlEndDate = null;
@@ -100,7 +101,7 @@ public class HeaderController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			  List<CollectDTO> collectList = userService.getSearchOClass(clsLoc,
-					  sqlStartDate, sqlEndDate, clsCode); 
+					  sqlStartDate, sqlEndDate, clsCode, keyword); 
 			 // System.out.println(collectList.size());
 			  mav.addObject("collectList", collectList);
 			//  List<CodeDTO> codeList= codeService.categoryInfoList();

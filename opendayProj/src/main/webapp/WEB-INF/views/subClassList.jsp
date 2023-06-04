@@ -29,8 +29,12 @@
 			
 <div class="tchcsList">
 			<div class="tBox">
-				<div class="tFil">${filNum}프로필</div>
-				<span>${tchcNickname}닉네임</span>
+			<c:forEach items="${collectList}" var="list" varStatus="loop">
+				<c:if test="${loop.index < 4}">
+				<div class="tFil">${list.tFilNum}프로필</div>
+				<span>${list.tchcNickname}닉네임</span>
+					</c:if>
+						</c:forEach>
 			</div>			
 			</div>
 			<div class="subOption">

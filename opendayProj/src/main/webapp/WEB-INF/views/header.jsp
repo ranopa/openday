@@ -44,13 +44,14 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
-<!--
-datepicer 버튼 롤오버 시 손가락 모양 표시-->.ui-datepicker-trigger {
+/* datepicer 버튼 롤오버 시 손가락 모양 표시 */
+.ui-datepicker-trigger {
 	cursor: pointer;
 }
 
-<!--
-datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
+
+/* datepicer input 롤오버 시 손가락 모양 표시 */
+.hasDatepicker {
 	cursor: pointer;
 }
 </style>
@@ -188,10 +189,10 @@ $(function() {
 					<div class="searchAndIcon">
 
 						<input class="search" type="text" onclick="dis()"
-							placeholder="검색어 입력"> <a href="subClassList"><span
-							class="material-symbols-outlined searchIcon">search</span></a>
+							placeholder="검색어 입력" name="keyword"> <a href="subClassList"><input
+							type="submit" class="material-symbols-outlined searchIcon" >search</input></a>
 					</div>
-				</form>
+				<!-- </form> -->
 
 
 
@@ -237,7 +238,7 @@ $(function() {
 		</div>
 		<hr class="hr2">
 	</div>
-	<form type="text" action="search" method="get">
+	<!-- <form type="text" action="search" method="post"> -->
 		<div id='dis' class="searchFilterWrapper">
 
 			<div class="contentWrapper">
