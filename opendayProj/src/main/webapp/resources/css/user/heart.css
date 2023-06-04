@@ -66,7 +66,10 @@
 	
 	font-family: 'NanumBarunGothic', sans-serif;
 }
-
+#heart button:focus,button:active {
+  outline: none;
+  box-shadow: none;
+}
  
 /* 클래스 카드 */
 

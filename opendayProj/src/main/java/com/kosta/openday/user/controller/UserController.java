@@ -1,6 +1,5 @@
 package com.kosta.openday.user.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
@@ -252,6 +251,22 @@ public class UserController {
 		}
 		return "redirect:/myheart";
 	}
+	
+	//follow 강사 목록 보기
+	@RequestMapping(value = "/myfollow", method = RequestMethod.GET)
+	public ModelAndView followList() {
+		ModelAndView mav = new ModelAndView("mypage/myMain");
+		String userId = (String)session.getAttribute("id");
+		try {
+			List<TeacherChannelDTO> tchcList = userService.getTchcList(userId); 
+			mav.addObject("tchcList",tchcList);
+			mav.addObject("page","follow");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
 	
 	
 	// 선호카테고리 수정하기
