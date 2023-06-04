@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
@@ -207,5 +209,15 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
+	@Override
+	public List<TeacherChannelDTO> getTchcList(String userId) throws Exception {
+		List<TeacherFollowDTO> followList = userDAO.selectFollowList(userId);
+		List<TeacherChannelDTO> channelList = new ArrayList<>();
+		for(TeacherFollowDTO f : followList) { 
+			channelList.add(userDAO.selectTchcChannel(f.getTchcNum()));
+		}
+		return channelList;
+	}
+	
 
 }

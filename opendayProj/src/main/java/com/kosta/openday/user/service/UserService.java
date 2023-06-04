@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
@@ -44,5 +45,8 @@ public interface UserService {
 
 	//마이페이지 클래스 신청 내역
 	public List<MyRecordDTO> getReservedList(String userId,String text)throws Exception;
+	
+	//팔로우강사목록보기
+	List<TeacherChannelDTO> getTchcList(String userId)throws Exception;
 
 }

@@ -307,6 +307,20 @@
 	]]>
 	</select>
 	
+	<!-- 팔로우목록조회 -->
+	<select id="selectFollowList" parameterType="String" resultType="com.kosta.openday.teacher.dto.TeacherFollowDTO">
+	<![CDATA[
+		select * from teacher_follow where userId = #{userId}
+	]]>
+	</select>
+	
+	<!-- 강사채널목록조회 -->
+	<select id="selectChannelOne" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
+	<![CDATA[
+		select * from teacher_channel where tchcNum = #{tchcNum}
+	]]>
+	</select>
+	
 	<!-- 회원탈퇴 -->
 	<update id="updateUserDelete" parameterType="String">
 	<![CDATA[

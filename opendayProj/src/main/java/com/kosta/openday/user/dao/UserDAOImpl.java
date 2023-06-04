@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
@@ -101,6 +103,16 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList("mapper.user.selectReserveList", map); 
 		
 		
+	}
+
+	@Override
+	public List<TeacherFollowDTO> selectFollowList(String userId) throws Exception { 
+		return sqlSession.selectList("mapper.user.selectFollowList",userId);
+	}
+
+	@Override
+	public TeacherChannelDTO selectTchcChannel(Integer tchcNum) throws Exception { 
+		return sqlSession.selectOne("mapper.user.selectChannelOne",tchcNum);
 	}
 	
 	
