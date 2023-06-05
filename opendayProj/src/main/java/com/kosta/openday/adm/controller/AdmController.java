@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.adm.service.AdmService;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.service.OClassService;
@@ -82,6 +83,19 @@ public class AdmController {
 		}
 		return "admin/adminWatingDetail";
 	}
+	
+	@RequestMapping(value="/adm/adminclasslist")
+	public String classlist(Model model) {
+		try {
+			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
+			 model.addAttribute("list", list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/adminClassList";
+	}
+	
 
 	@RequestMapping(value = "/admInquiry", method = RequestMethod.GET)
 	public String inquiry() {

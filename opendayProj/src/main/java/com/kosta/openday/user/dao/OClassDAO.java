@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.adm.dto.CodeDTO;
+import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.RequestDTO;
@@ -70,6 +71,8 @@ public interface OClassDAO {
 	List<RequestDTO> selectRequestList() throws Exception;
 
 	ApplyClassResponseDTO selectOClassAndScheduleForApplyClass(Integer clsId) throws Exception;
+
+	List<OClassAndScheduleDTO> selectOClassAndSchedules() throws Exception;
 	
 
 }
