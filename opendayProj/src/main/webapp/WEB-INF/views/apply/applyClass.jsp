@@ -6,14 +6,12 @@
 <c:import url="/WEB-INF/views/header.jsp" />
 <html>
 <head>
-	<link rel="stylesheet" href="${contextPath}/resources/css/user/applyClass.css">
-	<script src="${contextPath }/resources/js/user/applyClass.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	
-
+	<link rel="stylesheet" href="${contextPath}/resources/css/user/applyClass.css">
+	<script src="${contextPath }/resources/js/user/applyClass.js"></script>
 
 <c:if test="${data.schedules ne null and data.schedules.size() > 0}">
 
@@ -118,7 +116,7 @@ $(function() {
 					<h4>${data.clsName }</h4>
 
 					<div class="detail-bottom">
-						<span>${data.codName }</span>
+						<span>카테고리: ${data.codName }</span>
 						<del>${data.clsPrice}</del> ${data.clsDiscount}%
             <span>${data.clsPrice * (1 - (data.clsDiscount/100))}
 					</div>

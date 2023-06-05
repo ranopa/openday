@@ -9,8 +9,14 @@
 	<insert id="classOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
 		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCareer,clsCurri)
-		     values( nextval(oclass_seq),#{clsName},#{clsCode},#{clsDescription},#{fileId},
-		     		#{clsCareer},#{clsCurri})
+		     values(
+		     nextval('oclass_seq'),
+		     #{clsName},
+		     #{clsCode},
+		     #{clsDescription},
+		     #{fileId},
+		     #{clsCareer},
+		     #{clsCurri})
 	     ]]>
 	</insert>
 
@@ -55,7 +61,7 @@
 		parameterType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
 			insert into oclass values(
-				nextval(oclass_seq),
+				nextval('oclass_seq'),
 				#{clsName},
 				#{clsCode},
 				#{clsDiscription},
@@ -99,7 +105,7 @@
 		<![CDATA[ 
 			insert into schedule 
 			values(
-				nextval(schedule_seq),
+				nextval('schedule_seq'),
 				#{scdDate},
 				#{scdTime}, 
 				#{scdPlace},
@@ -238,7 +244,7 @@
 			scd.scdDate as scdDate,
 			scd.scdTime as scdTime,
 			scd.scdPlace as scdPlace,
-			scd.scdPlaceDetail as scdPlaceDetail,
+			scd.scdPlaceDetail as scdPlaceDetail
 		FROM
 			oclass AS cls
 			INNER JOIN
@@ -256,6 +262,7 @@
 		<result column="clsId" property="clsId" />
 		<result column="clsName" property="clsName" />
 		<result column="clsPrice" property="clsPrice" />
+		<result column="clsLoc" property="clsLoc" />
 		<result column="filNum" property="filNum" />
 		<result column="codName" property="codName" />
 		
@@ -263,7 +270,6 @@
 			<result column="scdNum" property="scdNum" />
 			<result column="scdDate" property="scdDate" />
 			<result column="scdTime" property="scdTime" />
-			<result column="clsLoc" property="clsLoc" />
 			<result column="scdPlace" property="scdPlace" />
 			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 		</collection>

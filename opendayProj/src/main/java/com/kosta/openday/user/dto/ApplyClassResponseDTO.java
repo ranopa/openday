@@ -8,20 +8,33 @@ public class ApplyClassResponseDTO {
 	private String clsName;
 	private String codName;
 	private Integer filNum;
+	private String clsLoc;
 	private Integer clsPrice;
+	private Integer clsDiscount;
 	
 	List<ApplyScheduleDTO> schedules = new ArrayList<>();
 
 	public ApplyClassResponseDTO() {}
 	
-	public ApplyClassResponseDTO(Integer clsId, String clsName, String codName, Integer filNum, Integer clsPrice,
-			List<ApplyScheduleDTO> schedules) {
+	public ApplyClassResponseDTO(Integer clsId, String clsName, String codName, Integer filNum,
+			String clsLoc, Integer clsPrice,
+			Integer clsDiscount, List<ApplyScheduleDTO> schedules) {
 		this.clsId = clsId;
 		this.clsName = clsName;
 		this.codName = codName;
 		this.filNum = filNum;
+		this.clsLoc = clsLoc;
 		this.clsPrice = clsPrice;
+		this.clsDiscount = clsDiscount;
 		this.schedules = schedules;
+	}
+
+	public Integer getClsDiscount() {
+		return clsDiscount;
+	}
+
+	public void setClsDiscount(Integer clsDiscount) {
+		this.clsDiscount = clsDiscount;
 	}
 
 	public Integer getClsId() {
@@ -54,6 +67,14 @@ public class ApplyClassResponseDTO {
 
 	public void setFilNum(Integer filNum) {
 		this.filNum = filNum;
+	}
+
+	public String getClsLoc() {
+		return clsLoc;
+	}
+
+	public void setClsLoc(String clsLoc) {
+		this.clsLoc = clsLoc;
 	}
 
 	public Integer getClsPrice() {
