@@ -33,8 +33,16 @@
 		<![CDATA[
 			select *
 			from oclass
-			where status = #{status}
+			where clsStatus = #{status}
 		]]>
 	</select>
+	
+	<update id="updateOClassStatus" parameterType="java.util.Map">
+		<![CDATA[
+			update oclass
+			set clsStatus = #{status}
+			where clsId = #{clsId}
+		]]>
+	</update>
 	
 </mapper>
