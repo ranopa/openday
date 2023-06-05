@@ -15,5 +15,4 @@ public class AdmController {
 		return "admin/admMain"; 
 	}
 
-
 }

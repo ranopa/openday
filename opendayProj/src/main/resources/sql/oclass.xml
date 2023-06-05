@@ -9,8 +9,14 @@
 	<insert id="classOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
 		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCareer,clsCurri)
-		     values( nextval(oclass_seq),#{clsName},#{clsCode},#{clsDescription},#{fileId},
-		     		#{clsCareer},#{clsCurri})
+		     values(
+		     nextval(oclass_seq),
+		     #{clsName},
+		     #{clsCode},
+		     #{clsDescription},
+		     #{fileId},
+		     #{clsCareer},
+		     #{clsCurri})
 	     ]]>
 	</insert>
 
@@ -54,12 +60,26 @@
 	<insert id="insertOClass"
 		parameterType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
-			insert into oclass values(nextval(oclass_seq),#{clsName},#{clsCode},#{clsDiscription},
-										#{clsPrice}, #{clsCurri}, #{clsCareer}, #{clsStar},#{clsHeart},
-									  	#{clsStatus},#{clsCreatedAt}, #{clsOpenType},#{filNum},#{userId},#{reqId})
+			insert into oclass values(
+				nextval(oclass_seq),
+				#{clsName},
+				#{clsCode},
+				#{clsDiscription},
+				#{clsPrice}, 
+				#{clsCurri}, 
+				#{clsCareer}, 
+				#{clsStatus},
+				#{clsLoc},
+				#{clsDiscount},
+				#{clsCreatedAt},
+				#{clsOpenType},
+				#{filNum},
+				#{userId},
+				#{reqId}
+			)
 		]]>
 	</insert>
-
+	
 	<!-- =========== 클래스일정 schedule =============================================== -->
 	<!-- 1. 클래스일정번호로 클래스일정조회 -->
 	<select id="selectSchedule" parameterType="Integer"
@@ -84,9 +104,22 @@
 		parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
 		<![CDATA[ 
 			insert into schedule 
-			values(nextval(schedule_seq),#{scdDate},#{scdTime},#{scdLoc},#{scdPersonnel},#{scdDiscount},#{scdUploadDate},#{scdStatus},#{clsId})
+			values(
+				nextval(schedule_seq),
+				#{scdDate},
+				#{scdTime}, 
+				#{scdPlace},
+				#{scdPlaceDetail},
+				#{scdMinPersonnel},
+				#{scdMaxPersonnel},
+				#{scdDiscount},
+				#{scdUploadDate},
+				#{scdStatus},
+				#{clsId}
+			)
 		]]>
 	</insert>
+	
 
 	<!-- =========== 클래스찜 heart =============================================== -->
 	<!-- 1. 유저아이디로 클래스찜 조회 -->
@@ -194,8 +227,54 @@
 	</select>
  -->
 
-
-
 	<!-- 메인 검색 필터에서 전체 선택해서 조회 -->
+	
+	<select id="selectClassAndScheduleForApplyClass"
+	parameterType="Integer"
+	resultMap="applyClassMap">
+		SELECT
+			cls.clsId as clsId,
+			cls.clsName as clsName,
+			cod.codName as codName,
+			cls.clsPrice as clsPrice,
+			cls.filNum as filNum,
+			cls.clsLoc as clsLoc,
+			cls.clsDiscount as clsDiscount,
+			
+			scd.scdNum as scdNum,
+			scd.scdDate as scdDate,
+			scd.scdTime as scdTime,
+			scd.scdPlace as scdPlace,
+			scd.scdPlaceDetail as scdPlaceDetail
+		FROM
+			oclass AS cls
+			INNER JOIN
+			schedule AS scd
+			ON
+			cls.clsId = scd.clsId
+			INNER JOIN
+			code as cod
+			ON cls.clsCode = cod.codNum
+		WHERE cls.clsId = #{clsId}
+	</select>
+	
+	<resultMap id="applyClassMap"
+	type="com.kosta.openday.user.dto.ApplyClassResponseDTO">
+		<result column="clsId" property="clsId" />
+		<result column="clsName" property="clsName" />
+		<result column="clsPrice" property="clsPrice" />
+		<result column="clsLoc" property="clsLoc" />
+		<result column="filNum" property="filNum" />
+		<result column="codName" property="codName" />
+		<result column="clsDiscount" property="clsDiscount" />
+		
+		<collection property="schedules" ofType="com.kosta.openday.user.dto.ApplyScheduleDTO">
+			<result column="scdNum" property="scdNum" />
+			<result column="scdDate" property="scdDate" />
+			<result column="scdTime" property="scdTime" />
+			<result column="scdPlace" property="scdPlace" />
+			<result column="scdPlaceDetail" property="scdPlaceDetail" />
+		</collection>
+	</resultMap>
 </mapper>
 

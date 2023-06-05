@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
@@ -74,10 +75,13 @@
 												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 											</div>
 											<div class="t2">
+
 												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
 												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+
 											</div>
 										</div>
+
 										<p class="cls-name">${list.clsName}</p>
 										<div class="tb2">
 											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
@@ -101,6 +105,7 @@
 						<a href="#">arrow_forward_ios</a>
 					</div>
 				</div> -->
+
 			</div>
 			</div>
 			<!-- 	</div>

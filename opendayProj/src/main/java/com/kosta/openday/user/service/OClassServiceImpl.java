@@ -5,16 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.openday.teacher.dto.ScheduleDTO;
-import com.kosta.openday.user.dao.OClassDAO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
+import com.kosta.openday.user.dao.OClassDAO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.PageInfo;
 import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.user.dto.ReviewDTO;
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 
 
 @Service
@@ -23,12 +25,13 @@ public class OClassServiceImpl implements OClassService {
 	@Autowired
 	private OClassDAO oClassDAO;
 	
+	@Autowired
+	private PaymentService paymentService;
+	
 	@Override
 	public OClassDTO findOne(Integer clsId) throws Exception {
 		return oClassDAO.selectOClassById(clsId);
 	}
-	
-	
 
 	@Override
 	public List<OClassDTO> findAll() throws Exception {
@@ -65,23 +68,8 @@ public class OClassServiceImpl implements OClassService {
 
 	@Override
 	public List<RequestDTO> getRequestList(PageInfo pageInfo) throws Exception {
-		Integer allCnt = oClassDAO.selectAllRequestCnt();
-		int maxPage = allCnt/10;
-		if(allCnt%10!=0) maxPage+=1;
-		
-		int startPage = pageInfo.getCurPage()/10;
-		if(pageInfo.getCurPage()%10==0) startPage=-1;
-		startPage = startPage*10+1;
-		
-		int endPage = startPage+10-1;
-		if(endPage>maxPage) endPage=maxPage;
-		
-		pageInfo.setAllPage(maxPage);
-		pageInfo.setStartPage(startPage);
-		pageInfo.setEndPage(endPage);
-		int startRow = (pageInfo.getCurPage()-1)*10;
-		
-		return oClassDAO.selectRequestList(startRow);
+		// TODO Auto-generated method stub
+		return oClassDAO.selectRequestList();
 	}
 
 	@Override
@@ -145,6 +133,16 @@ public class OClassServiceImpl implements OClassService {
 	}
 
 	@Override
+	public ApplyClassResponseDTO getApplyClassResponse(Integer clsId) throws Exception {
+		ApplyClassResponseDTO dto = oClassDAO.selectClassAndScheduleForApplyClass(clsId);
+		Integer discountedPrice = paymentService.applyDiscount(dto.getClsPrice(), dto.getClsDiscount());
+		
+		dto.setDiscountedPrice(discountedPrice);
+		
+		return dto;
+	}
+	
+	@Override
 	public Map<String, Object> getScheduleDetail(Integer scdNum, String userId) throws Exception {
 		//클래스번호,클래스명,파일명,가격,소개,커리,장소
 		Map<String, Object> clsInfo = oClassDAO.selectScheduleDetail(scdNum);
@@ -184,8 +182,5 @@ public class OClassServiceImpl implements OClassService {
 		
 		return oClassDAO.selectHeartByStdNumAndUser(param);
 	}
-
-
-
 
 }

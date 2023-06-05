@@ -18,12 +18,19 @@ public class PaymentProcessResponseDTO {
 	private Integer scdNum;
 	private Date scdDate;
 	private Time scdTime;
-	// private String scdLoc;
+
+	private String clsLoc;
+	private String scdPlace;
+	private String scdPlaceDetail;
 	
 	private Integer clsPrice;
+	private Integer clsDiscount;
+	
 	private Integer applyPersonnel;
 	
 	private Integer totalPrice;
+
+	public PaymentProcessResponseDTO() {}
 	
 	public PaymentProcessResponseDTO(UserDTO user, OClassDTO oClass, ScheduleDTO schedule, Integer applyPersonnel) {
 		this(
@@ -40,15 +47,20 @@ public class PaymentProcessResponseDTO {
 			schedule.getScdDate(),
 			schedule.getScdTime(),
 			
+			oClass.getClsLoc(),
+			schedule.getScdPlace(),
+			schedule.getScdPlaceDetail(),
+			
 			oClass.getClsPrice(),
+			oClass.getClsDiscount(),
 			applyPersonnel,
 			oClass.getClsPrice() * applyPersonnel
 		);
 	}
 
-	public PaymentProcessResponseDTO(String userId, String userName, String userNickname, String userTel, String userEmail, Integer clsId,
-			String clsName, Integer scdNum, Date scdDate, Time scdTime, Integer clsPrice,
-			Integer applyPersonnel, Integer totalPrice) {
+	public PaymentProcessResponseDTO(String userId, String userName, String userNickname, String userTel,
+			String userEmail, Integer clsId, String clsName, Integer scdNum, Date scdDate, Time scdTime, String clsLoc,
+			String scdPlace, String scdPlaceDetail, Integer clsPrice, Integer clsDiscount, Integer applyPersonnel, Integer totalPrice) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userNickname = userNickname;
@@ -59,12 +71,23 @@ public class PaymentProcessResponseDTO {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
 		this.scdTime = scdTime;
-		
+		this.clsLoc = clsLoc;
+		this.scdPlace = scdPlace;
+		this.scdPlaceDetail = scdPlaceDetail;
 		this.clsPrice = clsPrice;
+		this.clsDiscount = clsDiscount;
 		this.applyPersonnel = applyPersonnel;
 		this.totalPrice = totalPrice;
 	}
-	
+
+	public Integer getClsDiscount() {
+		return clsDiscount;
+	}
+
+	public void setClsDiscount(Integer clsDiscount) {
+		this.clsDiscount = clsDiscount;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -145,7 +168,29 @@ public class PaymentProcessResponseDTO {
 		this.scdTime = scdTime;
 	}
 
-	
+	public String getClsLoc() {
+		return clsLoc;
+	}
+
+	public void setClsLoc(String clsLoc) {
+		this.clsLoc = clsLoc;
+	}
+
+	public String getScdPlace() {
+		return scdPlace;
+	}
+
+	public void setScdPlace(String scdPlace) {
+		this.scdPlace = scdPlace;
+	}
+
+	public String getScdPlaceDetail() {
+		return scdPlaceDetail;
+	}
+
+	public void setScdPlaceDetail(String scdPlaceDetail) {
+		this.scdPlaceDetail = scdPlaceDetail;
+	}
 
 	public Integer getClsPrice() {
 		return clsPrice;
@@ -170,5 +215,5 @@ public class PaymentProcessResponseDTO {
 	public void setTotalPrice(Integer totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-
+	
 }
