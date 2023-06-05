@@ -33,7 +33,7 @@
 		<![CDATA[
 			select *
 			from oclass
-			where status = #{status}
+			where clsStatus = #{status}
 		]]>
 	</select>
 	
