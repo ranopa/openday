@@ -34,7 +34,7 @@
 		parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
 
-	insert into file values(nextval(file_seq),#{fileClassification},#{fileOriginalName},#{fileSaveName},${fileSize},CURDATE())
+	insert into file values(nextval('file_seq'),#{fileClassification},#{fileOriginalName},#{fileSaveName},${fileSize},CURDATE())
 		]]>
 	</insert>
 
@@ -250,7 +250,7 @@ WHERE oc.codNum=#{codNum}]]> </select>
 		parameterType="com.kosta.openday.user.dto.RequestDTO">
   <![CDATA[
     INSERT INTO request 
-    VALUES (nextval(request_seq), #{reqTitle}, #{reqContent}, #{reqDate}, #{reqViews}, #{reqUpdateDate}, #{userId}, #{reqLocation})
+    VALUES (nextval('request_seq'), #{reqTitle}, #{reqContent}, #{reqDate}, #{reqViews}, #{reqUpdateDate}, #{userId}, #{reqLocation})
   ]]>
 	</insert>
 
