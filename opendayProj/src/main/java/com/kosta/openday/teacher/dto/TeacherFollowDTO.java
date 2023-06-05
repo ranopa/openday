@@ -3,23 +3,23 @@ package com.kosta.openday.teacher.dto;
 //강사팔로우
 public class TeacherFollowDTO {
 
-	private Integer tchfNum; //프로필번호
+	private Integer tchcNum; //프로필번호
 	private String userId; //유저아이디
 	
 	public TeacherFollowDTO() {}
 
-	public TeacherFollowDTO(Integer tchfNum, String userId) {
+	public TeacherFollowDTO(Integer tchcNum, String userId) {
 		super();
-		this.tchfNum = tchfNum;
+		this.tchcNum = tchcNum;
 		this.userId = userId;
 	}
 
-	public Integer getTchfNum() {
-		return tchfNum;
+	public Integer getTchcNum() {
+		return tchcNum;
 	}
 
-	public void setTchfNum(Integer tchfNum) {
-		this.tchfNum = tchfNum;
+	public void setTchcNum(Integer tchcNum) {
+		this.tchcNum = tchcNum;
 	}
 
 	public String getUserId() {
