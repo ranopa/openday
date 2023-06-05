@@ -88,7 +88,7 @@
     </c:if>
     <a href="classinfo/${list.clsId}">
     <li class="oclass">
-      <div class="ssum-img">${list.filNum}</div>
+     <img src="img/${list.filNum}" class="ssum-img">
       <div class="txt-box">
         <div class="tb1">
           <div class="t1">

@@ -98,6 +98,15 @@ body {
 	font-size: 30px;
 } */
 
+.smallBanner{
+	width: 1280px;
+	height:168px;
+}
+.bigBanner{
+	width: 1440px;
+	height:412px;
+}
+
 /* 카드 간격 */
 .oclassListWrapper {
 	display: flex;

@@ -183,7 +183,9 @@ button {
 	cursor: pointer;
 	
 }
-
+.loginPageBtns a{
+	text-decoration: none;
+}
 .loginPageTitle {
 	font-size: 20px;
 	margin-top: 80px;

@@ -35,7 +35,8 @@
 					<c:if test="${loop.index < 5}">
 						<c:if test="${list.tchcNickname != previousNickname}">
 							<div class="tBox">
-								<div class="tFil">${list.tFilNum}</div>
+							<img src="img/${list.tFilNum}" class="tFil">
+								
 								<span>${list.tchcNickname}</span>
 							</div>
 							<c:set var="previousNickname" value="${list.tchcNickname}" />
@@ -101,7 +102,7 @@
 						<c:forEach items="${searchInputList}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
 								<li class="oclass">
-									<div class="ssum-img">${list.filNum}</div>
+									<img src="img/${list.filNum}" class="ssum-img">
 									<div class="txt-box">
 										<div class="tb1">
 											<div class="t1">

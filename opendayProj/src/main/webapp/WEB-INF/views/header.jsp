@@ -117,6 +117,12 @@
 	})
 
 </script>
+<script>
+  function closeSearchFilterWrapper() {
+    var searchFilterWrapper = document.querySelector(".searchFilterWrapper");
+    searchFilterWrapper.style.display = "none";
+  }
+</script>
 
 </head>
 <body>
@@ -172,8 +178,11 @@
 					<c:choose>
 
 						<c:when test="${authority eq 0}">
-							<li class="admPageLinkButton"><a href="#"><button>관리자
-										페이지로 이동</button></a></li>
+
+							<li class="admPageLinkButton"><a href="#"> <span
+									class="material-symbols-outlined admin">engineering</span>
+									<p>관리자</p></a></li>
+
 						</c:when>
 					</c:choose>
 					<li><a href="#"><span
@@ -204,11 +213,12 @@
 
 
 
-
-			</header>
 		</div>
-		<hr class="hr2">
+				<hr class="hr2">
 	</div>
+		</header>
+
+
 	<form type="text" action="search" method="get">
 		<div id='dis' class="searchFilterWrapper">
 
@@ -294,7 +304,8 @@
 				<div class="searchFilterButton">
 
 					<input type="submit" class="searchButton" value="검색">
-					<button type="button" class="refresh" onclick="closePopup()">
+					<button type="button" class="refresh"
+						onclick="closeSearchFilterWrapper()">
 						<!-- <span class="material-symbols-outlined"> refresh </span> -->
 						닫기
 					</button>

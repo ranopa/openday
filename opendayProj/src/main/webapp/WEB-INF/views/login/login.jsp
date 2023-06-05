@@ -31,8 +31,10 @@
 				</ul>
 
 				<div class="loginPageBtns">
-					<input type="submit" class="loginBtn" value="로그인"> <input
-						type="button" class="joinBtn" value="회원가입">
+					<input type="submit" class="loginBtn" value="로그인">
+					
+					<a href="joinform"> <input
+						type="button" class="joinBtn" value="회원가입"></a>
 				</div>
 
 
