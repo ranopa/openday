@@ -26,24 +26,24 @@ public class PaymentProcessResponseDTO {
 	private Integer totalPrice;
 	
 	public PaymentProcessResponseDTO(UserDTO user, OClassDTO oClass, ScheduleDTO schedule, Integer applyPersonnel) {
-//		this(
-//			user.getUserId(),
-//			user.getUserName(),
-//			user.getUserNickname(),
-//			user.getUserTel(),
-//			user.getUserEmail(),
-//			
-//			oClass.getClsId(),
-//			oClass.getClsName(),
-//			
-//			schedule.getScdNum(),
-//			schedule.getScdDate(),
-//			schedule.getScdTime(),
-//			
-//			oClass.getClsPrice(),
-//			applyPersonnel,
-//			oClass.getClsPrice() * applyPersonnel
-//		);
+		this(
+			user.getUserId(),
+			user.getUserName(),
+			user.getUserNickname(),
+			user.getUserTel(),
+			user.getUserEmail(),
+			
+			oClass.getClsId(),
+			oClass.getClsName(),
+			
+			schedule.getScdNum(),
+			schedule.getScdDate(),
+			schedule.getScdTime(),
+			
+			oClass.getClsPrice(),
+			applyPersonnel,
+			oClass.getClsPrice() * applyPersonnel
+		);
 	}
 
 	public PaymentProcessResponseDTO(String userId, String userName, String userNickname, String userTel, String userEmail, Integer clsId,
