@@ -115,7 +115,7 @@ body {
 /* 클래스 리스트 카드 정보 */
 .oclass {
 	width: 260px;
-	height: 368.95px;
+/* 	height: 368.95px; */
 	/* background-color: antiquewhite; */
 	border-radius: 5px;
 	border: 1px solid rgb(207, 207, 207);

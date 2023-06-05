@@ -15,9 +15,9 @@
 			<li class="tc-nav-list"><a href="#">클래스 개설</a></li>
 			<li class="tc-nav-list"><a href="tcHome">대시보드</a></li>
 			<li class="tc-nav-list"><a href="tcClass">클래스 관리</a></li>
-			<li class="tc-nav-list"><a href="#">수강생 관리</a></li>
-			<li class="tc-nav-list"><a href="#">수강생 문의</a></li>
-			<li class="tc-nav-list"><a href="#">일정 관리</a></li>
+			<li class="tc-nav-list"><a href="tcClassUser">수강생 관리</a></li>
+			<li class="tc-nav-list"><a href="tcClassInquiry">수강생 문의</a></li>
+			<li class="tc-nav-list"><a href="tcClassSchedule">일정 관리</a></li>
 			<li class="tc-nav-list"><a href="#">매출 현황</a></li>
 			<li class="tc-nav-list"><a href="#">정산신청 및 내역</a></li>
 		</ul>

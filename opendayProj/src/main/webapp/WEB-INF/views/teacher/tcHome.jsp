@@ -62,14 +62,17 @@
 					<c:forEach items="${tcAnlist }" var="tcAnlist">
 						<tr>
 							<td>공지</td>
-							<td>${tcAnlist.anc_title }</td>
-							<td>${tcAnlist.anc_upload_date }</td>
+							<td>${tcAnlist.ancTitle }</td>
+							<td>${tcAnlist.ancUploadDate }</td>
 						</tr>
 					</c:forEach>
 				</table>
+				<div class="dataNon">${err }</div>
 			</div>
 		</div>
 
 	</div>
+	
+	
 </body>
 </html>

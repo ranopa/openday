@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,28 +23,19 @@
 
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
-			
-			<p class="subTitle">검색결과</p>
-			
 
+			<p class="subTitle">${codName}쿠킹</p>
 			<hr>
 			
 <div class="tchcsList">
-			
-			<c:set var="previousNickname" value="" />
-
-<c:forEach items="${collectList}" var="list" varStatus="loop">
-	<c:if test="${loop.index < 5}">
-	<c:if test="${list.tchcNickname != previousNickname}">
 			<div class="tBox">
-				<div class="tFil">${list.tFilNum}</div>
-				<span>${list.tchcNickname}</span>
-			</div>
-			<c:set var="previousNickname" value="${list.tchcNickname}" />
-		</c:if>
-	</c:if>
-</c:forEach>
-			
+			<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+				<c:if test="${loop.index < 4}">
+				<div class="tFil">${list.tFilNum}프로필</div>
+				<span>${list.tchcNickname}닉네임</span>
+					</c:if>
+						</c:forEach>
+			</div>			
 			</div>
 			<div class="subOption">
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">인기순</label>
@@ -98,36 +88,39 @@
  --%>
 
 <div class="oclassTable">
-  <c:forEach items="${collectList}" var="list" varStatus="loop">
-    <c:if test="${loop.index % 4 == 0}">
-      <ul class="tableTr">
-    </c:if>
-    <li class="oclass">
-      <div class="ssum-img">${list.filNum}</div>
-      <div class="txt-box">
-        <div class="tb1">
-          <div class="t1">
-            <span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
-          </div>
-          <div class="t2">
-            <span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
-            <span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
-          </div>
-        </div>
-        <p class="cls-name">${list.clsName}</p>
-        <div class="tb2">
-          <span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-          <div class="price">
-            <span class="disc">${list.clsDiscount}%</span> <span class="fp">${list.finalPrice}원</span>
-          </div>
-        </div>
-      </div>
-    </li>
-    <c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
-      </ul>
-    </c:if>
-  </c:forEach>
-</div>
+					<ul class="tableTr">
+						<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.clsDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
 
 			<%-- 	<div class="newList">
 

@@ -21,23 +21,26 @@
 				<li><a href="findid">아이디 찾기</a></li>
 				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
+			<form type="text" action="findid" method="post">
 			<ul class="findIdContainer">
 				<li><input type="text" class="findIdPEmailBox"
-					id="findIdEmailBox" name="findIdPEmailBox" placeholder="이메일"
+					id="findIdEmailBox" name="userEmail" placeholder="이메일"
 					required maxlength="15"></li>
 				<div class="AuthenticationNumberWrapper">
 					<li><input type="text" class="AuthenticationNumberBox"
 						id="AuthenticationNumberBox" name="AuthenticationNumberBox"
 						placeholder="인증번호" required maxlength="15"> <input
 						type="button" class="AuthenticationNumber"
-						id="AuthenticationNumber" value="인증번호 전송"></li>
+						id="AuthenticationNumber" value="인증번호 전송"></li> 
 				</div>
 			</ul>
 
 
 			<div class="findIdBtns">
-				<button type="submit" class="findIdBtn">확인</button>
+				<input type="submit" class="findIdBtn" value="확인">
 			</div>
+			
+			</form>
 			<!-- 
 			<div class="loginBtns">
 				<button type="button" class="cancel-btn">취소</button>

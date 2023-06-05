@@ -75,8 +75,9 @@
 												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 											</div>
 											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
 
 											</div>
 										</div>
@@ -131,8 +132,8 @@
 												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 											</div>
 											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
 											</div>
 										</div>
 										<p class="cls-name">${list.clsName}</p>
@@ -183,8 +184,8 @@
 												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 											</div>
 											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
 											</div>
 										</div>
 										<p class="cls-name">${list.clsName}</p>
@@ -224,7 +225,7 @@
 				</div> -->
 				<div class="oclassTable">
 					<ul class="tableTr">
-						<c:forEach items="${nlist}" var="list" varStatus="loop">
+						<c:forEach items="${dlist}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
 								<li class="oclass">
 									<div class="ssum-img">${list.filNum}</div>
@@ -234,8 +235,8 @@
 												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 											</div>
 											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
 											</div>
 										</div>
 										<p class="cls-name">${list.clsName}</p>
@@ -274,7 +275,7 @@
 				</div> -->
 				<div class="oclassTable">
 					<ul class="tableTr">
-						<c:forEach items="${nlist}" var="list" varStatus="loop">
+						<c:forEach items="${rlist}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
 								<li class="oclass">
 									<div class="ssum-img">${list.filNum}</div>
@@ -284,8 +285,8 @@
 												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 											</div>
 											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
 											</div>
 										</div>
 										<p class="cls-name">${list.clsName}</p>

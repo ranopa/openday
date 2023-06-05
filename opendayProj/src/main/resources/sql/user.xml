@@ -118,40 +118,15 @@ WHERE
 	<!-- 핫한 클래스 신규리스트 -->
 
 	<select id="mainHotOClassList" resultType="com.kosta.openday.user.dto.CollectDTO"> 
-		<![CDATA[ 
-		
-SELECT 
-		clsId, 
-		clsLoc, 
-		clsPrice, 
-		clsDiscount, 
-		clsName, 
-		codName, 
-		filNum, 
-		reviewCount, 
-		finalPrice, 
-		avgStar, 
-		clsCreatedAt, 
-		scdNum
+		<![CDATA[ SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCreatedAt, scdNum
 FROM (
-    SELECT 
-    o.clsId AS clsId, 
-    o.clsLoc AS clsLoc,
-    o.clsPrice AS clsPrice, 
-    o.clsDiscount AS clsDiscount, 
-    o.clsName AS clsName, 
-    c.codName AS codName, 
-    o.filNum AS filNum, 
-    o.clsCreatedAt AS clsCreatedAt, 
-    s.scdNum AS scdNum, 
-    COUNT(r.rvNum) AS reviewCount, 
-    round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, 
-    IFNULL(AVG(r.rvStar),0) AS avgStar, 
-    IFNULL((
+    SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
+        o.filNum AS filNum, o.clsCreatedAt AS clsCreatedAt, s.scdNum AS scdNum, COUNT(r.rvNum) AS reviewCount, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
+        IFNULL((
             SELECT COUNT(*)
             FROM heart h
             WHERE h.clsId = o.clsId
-    ), 0) AS heartCnt
+        ), 0) AS heartCnt
     FROM oclass o 
     LEFT JOIN schedule s ON o.clsId = s.clsId
     LEFT JOIN review r ON r.scdNum = s.scdNum
@@ -159,9 +134,7 @@ FROM (
     GROUP BY o.clsId 
 ) AS oc
 WHERE oc.clsId IN (
-    SELECT clsId
-    FROM schedule
-    WHERE scdDate >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH) GROUP BY clsId HAVING COUNT(*) >= 2
+    SELECT clsId FROM schedule WHERE scdDate >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH) GROUP BY clsId HAVING COUNT(*) >= 2
 ) ]]> </select>
 
 <!-- 선호클래스 -->

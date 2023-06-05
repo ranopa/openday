@@ -175,6 +175,11 @@ button {
 .findIdPageTitle {
 	font-size: 20px;
 	margin-top: 80px;
+	
+}
+
+.findMenu a{
+	color: #8A8A8A;
 }
 
 .AuthenticationNumber {

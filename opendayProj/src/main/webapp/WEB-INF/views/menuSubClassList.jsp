@@ -25,26 +25,11 @@
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
 			
-			<p class="subTitle">검색결과</p>
+			<p class="subTitle" value="${code.codNum}">${code.codName}</p>
 			
 
 			<hr>
 			
-<div class="tchcsList">
-			
-			<c:set var="previousNickname" value="" />
-
-<c:forEach items="${collectList}" var="list" varStatus="loop">
-	<c:if test="${loop.index < 5}">
-	<c:if test="${list.tchcNickname != previousNickname}">
-			<div class="tBox">
-				<div class="tFil">${list.tFilNum}</div>
-				<span>${list.tchcNickname}</span>
-			</div>
-			<c:set var="previousNickname" value="${list.tchcNickname}" />
-		</c:if>
-	</c:if>
-</c:forEach>
 			
 			</div>
 			<div class="subOption">
@@ -98,7 +83,7 @@
  --%>
 
 <div class="oclassTable">
-  <c:forEach items="${collectList}" var="list" varStatus="loop">
+  <c:forEach items="${hMenuList}" var="list" varStatus="loop">
     <c:if test="${loop.index % 4 == 0}">
       <ul class="tableTr">
     </c:if>

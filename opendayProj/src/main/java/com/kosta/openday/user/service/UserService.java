@@ -24,13 +24,21 @@ public interface UserService {
 
 	public UserDTO userLogin(Map<String, String> map) throws Exception;
 
-	List<CollectDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode)
+	List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode, String keyword)
 			throws Exception;
 
-	public List<CollectDTO> getMainNewOClassList() throws Exception;
+	public List<CollectDTO> getSearchInputOClass(String keyword)
+			throws Exception;
 	
-	public List<CollectDTO> getMainHotOClassList() throws Exception;
-
+	  public List<CollectDTO> getMainNewOClassList() throws Exception;
+	 
+		
+		  public List<CollectDTO> getMainHotOClassList() throws Exception;
+		 
+		  public List<CollectDTO> getMainRequestOClassList() throws Exception;
+		  public List<CollectDTO> getMainDeadlineOClassList() throws Exception;
+		  public List<CollectDTO> getMainMenuOClassList(String codNum) throws Exception;
+		  
 	void fileView(Integer id, OutputStream out) throws Exception;
 
 	void withdrawUser(String id) throws Exception;
@@ -38,6 +46,12 @@ public interface UserService {
 	int idCheck(String id) throws Exception; 
 	
 	List<CollectDTO> HeartOClass(String userId) throws Exception;
+
+	
+	UserDTO getUserFindId(String userEmail) throws Exception;
+	UserDTO getUserFindPw(String userId, String userEmail) throws Exception; 
+	void getResetPassword(UserDTO user) throws Exception;
+
 
 	//찜하기, 찜취소
 	public void removeHeart(Integer clsId,String userId)throws Exception;
@@ -48,5 +62,6 @@ public interface UserService {
 	
 	//팔로우강사목록보기
 	List<TeacherChannelDTO> getTchcList(String userId)throws Exception;
+
 
 }
