@@ -134,7 +134,7 @@ public class OClassServiceImpl implements OClassService {
 
 	@Override
 	public ApplyClassResponseDTO getApplyClassResponse(Integer clsId) throws Exception {
-		ApplyClassResponseDTO dto = oClassDAO.selectClassAndScheduleForApplyClass(clsId);
+		ApplyClassResponseDTO dto = oClassDAO.selectOClassAndScheduleForApplyClass(clsId);
 		Integer discountedPrice = paymentService.applyDiscount(dto.getClsPrice(), dto.getClsDiscount());
 		
 		dto.setDiscountedPrice(discountedPrice);

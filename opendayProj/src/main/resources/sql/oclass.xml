@@ -240,7 +240,7 @@
 
 	<!-- 메인 검색 필터에서 전체 선택해서 조회 -->
 	
-	<select id="selectClassAndScheduleForApplyClass"
+	<select id="selectOClassAndScheduleForApplyClass"
 	parameterType="Integer"
 	resultMap="applyClassMap">
 		SELECT
@@ -287,5 +287,6 @@
 			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 		</collection>
 	</resultMap>
+
 </mapper>
 

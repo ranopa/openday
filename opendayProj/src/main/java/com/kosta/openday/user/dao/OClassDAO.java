@@ -69,6 +69,7 @@ public interface OClassDAO {
 
 	List<RequestDTO> selectRequestList() throws Exception;
 
-	ApplyClassResponseDTO selectClassAndScheduleForApplyClass(Integer clsId) throws Exception;
+	ApplyClassResponseDTO selectOClassAndScheduleForApplyClass(Integer clsId) throws Exception;
+	
 
 }
