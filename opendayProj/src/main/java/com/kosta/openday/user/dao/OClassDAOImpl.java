@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
@@ -110,7 +111,7 @@ public class OClassDAOImpl implements OClassDAO {
 
 	@Override
 	public void deleteParticipation(Map<String, Object> param) throws Exception {
-		sqlSession.insert("mapper.oclass.deleteParticipation", param);
+		sqlSession.delete("mapper.oclass.deleteParticipation", param);
 
 	}
 	@Override
@@ -150,8 +151,7 @@ public class OClassDAOImpl implements OClassDAO {
 
 	@Override
 	public Integer selectHeartByStdNumAndUser(Map<String, Object> param) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println(param);
+
 		return sqlSession.selectOne("mapper.rclass.selectHeartByStdNumAndUser", param);
 	}
 
@@ -163,12 +163,16 @@ public class OClassDAOImpl implements OClassDAO {
 
 	@Override
 	public void insertHeartByStdNumAndUser(Map<String,Object> param) throws Exception {
-		sqlSession.selectOne("mapper.rclass.insertHeartByStdNumAndUser", param);		
+		sqlSession.insert("mapper.rclass.insertHeartByStdNumAndUser", param);		
 	}
 
 	@Override
 	public void deleteHeartByStdNumAndUser(Map<String,Object> param) throws Exception {
-		sqlSession.selectOne("mapper.rclass.deleteHeartByStdNumAndUser", param);		
+		sqlSession.delete("mapper.rclass.deleteHeartByStdNumAndUser", param);		
 	}
 	
+	@Override
+	public List<OClassAndScheduleDTO> selectOClassAndSchedules() throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectOClassAndSchedules");
+	}
 }

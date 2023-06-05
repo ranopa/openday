@@ -287,6 +287,64 @@
 			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 		</collection>
 	</resultMap>
-
+	
+	
+	<!-- 클래스 및 스케줄 전체조회 for admin -->
+	<select id="selectOClassAndSchedules"
+	resultMap="oClassAndScheduleMap">
+		SELECT
+			cls.clsId as clsId,
+			cls.clsName as clsName,
+			cod.codName as codName,
+			cls.clsLoc as clsLoc,
+			cls.clsCreatedAt as clsCreatedAt,
+			cls.userId as teacherId,
+			u.userTel as teacherTel,
+			
+			scd.scdNum as scdNum,
+			scd.scdDate as scdDate,
+			scd.scdTime as scdTime,
+			scd.scdPlace as scdPlace,
+			scd.scdPlaceDetail as scdPlaceDetail,
+			scd.scdMinPersonnel as scdMinPersonnel,
+			scd.scdMaxPersonnel as scdMaxPersonnel,
+			scd.scdStatus as scdStatus
+		FROM
+			oclass AS cls
+			INNER JOIN
+				schedule AS scd
+			ON
+				cls.clsId = scd.clsId
+			INNER JOIN
+				code as cod
+			ON
+				cls.clsCode = cod.codNum
+			INNER JOIN
+				user as u
+			ON
+				cls.userId = u.userId
+	</select>
+	
+	<resultMap id="oClassAndScheduleMap"
+	type="com.kosta.openday.adm.dto.OClassAndScheduleDTO">
+		<result column="clsId" property="clsId" />
+		<result column="clsName" property="clsName" />
+		<result column="clsCode" property="clsCode" />
+		<result column="teacherId" property="teacherId" />
+		<result column="teacherTel" property="teacherTel" />
+		<result column="clsCreatedAt" property="clsCreatedAt" />
+		<result column="clsLoc" property="clsLoc" />
+		
+		<collection property="schedules" ofType="com.kosta.openday.teacher.dto.ScheduleDTO">
+			<result column="scdNum" property="scdNum" />
+			<result column="scdDate" property="scdDate" />
+			<result column="scdTime" property="scdTime" />
+			<result column="scdPlace" property="scdPlace" />
+			<result column="scdPlaceDetail" property="scdPlaceDetail" />
+			<result column="scdMinPersonnel" property="scdMinPersonnel" />
+			<result column="scdMaxPersonnel" property="scdMaxPersonnel" />
+			<result column="scdStatus" property="scdStatus" />
+		</collection>
+	</resultMap>
 </mapper>
 
