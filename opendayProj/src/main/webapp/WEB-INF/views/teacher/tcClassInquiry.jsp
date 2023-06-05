@@ -50,8 +50,8 @@
 								<tr  onclick="classInquiryList(${tcCllist.clsId })">
 									<td>${tcCllist.clsId }</td>
 									<td>${tcCllist.clsName }</td>
-									<td>${tcCllist.clsStar }</td>
-									<td>${tcCllist.clsHeart }</td>
+									<td><%-- ${tcCllist.clsStar } --%></td>
+									<td><%-- ${tcCllist.clsHeart } --%></td>
 									<td>${tcCllist.clsInquiry  }</td>
 									<td>${tcCllist.clsCreatedAt }</td>
 								</tr>

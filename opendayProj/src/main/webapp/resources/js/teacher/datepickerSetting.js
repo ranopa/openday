@@ -118,12 +118,19 @@ function dateFunc(obj) {
 			if (nmonth < 10) {
 				nmonth = "0" + nmonth;
 			}
+			if (ndate < 10) {
+				ndate = "0" + ndate;
+			}
 			datepicker1.value = nyear + '-' + nmonth + '-' + ndate;
 			datepicker2.value = year + '-' + month + '-' + date;
 		} else if (obj.name == "date_range_6Mon") {
 			const newDate = new Date(year, month - 6, date);
 			let nyear = newDate.getFullYear();
 			let nmonth = newDate.getMonth();
+			if(nmonth == 0) {
+				nyear = nyear -1;
+				nmonth = 12;
+			}
 			let ndate = newDate.getDate();
 			let lastDayofLastMonth = ( new Date( year, month - 6, 0) ).getDate();
 			if(ndate > lastDayofLastMonth) {
@@ -131,6 +138,9 @@ function dateFunc(obj) {
 			}
 			if (nmonth < 10) {
 				nmonth = "0" + nmonth;
+			}
+			if (ndate < 10) {
+				ndate = "0" + ndate;
 			}
 			datepicker1.value = nyear + '-' + nmonth + '-' + ndate;
 			datepicker2.value = year + '-' + month + '-' + date;

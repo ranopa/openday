@@ -7,7 +7,10 @@
 	<!-- 클래스 리스트 -->
 	<select id="tcClassList" parameterType="hashmap"
 		resultType="com.kosta.openday.user.dto.OClassDTO">
-		SELECT *,(select COUNT(*) from cls_inquiry c WHERE o.clsId = c.clsId ) AS clsInquiry 
+		SELECT *,(select COUNT(*) 
+				from cls_inquiry c , schedule s
+				WHERE c.scdNum = s.scdNum
+				AND s.clsId = o.clsId ) AS clsInquiry 
 		FROM oclass o
 		WHERE userId = #{userId}
 		<include refid="search"></include>
@@ -52,9 +55,9 @@
 		SELECT s.scdNum as scdNum, 
 				o.clsName as clsName,
 				CONCAT(DATE_FORMAT(s.scdDate,'%Y-%m-%e')," ",TIME_FORMAT(s.scdTime,'%H:%i')) as scdTime,
-				s.scdLoc as scdLoc, 
-				s.scdPersonnel as scdPersonnel, 
-				FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice,
+				<!-- s.scdLoc as scdLoc,  -->
+				<!-- s.scdPersonnel as scdPersonnel,  -->
+				<!-- FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice, -->
 				s.scdUploadDate as scdUploadDate
 		FROM schedule s, oclass o
 		where s.clsId = o.clsId
@@ -67,9 +70,9 @@
 		resultType="int">
 		select NVL(count(*),0) cnt from (SELECT s.scdNum as scdNum, 
 										CONCAT(s.scdDate," ",s.scdTime) as scdTime,
-										s.scdLoc as scdLoc, 
-										s.scdPersonnel as scdPersonnel, 
-										FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice,
+										<!-- s.scdLoc as scdLoc,  -->
+										<!-- s.scdPersonnel as scdPersonnel, --> 
+										<!-- FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice, -->
 										s.scdUploadDate as scdUploadDate
 								FROM schedule s, oclass o
 								where s.clsId = o.clsId
@@ -95,8 +98,10 @@
 	<select id="tcClassInquiryList" parameterType="Integer"
 		resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
 		SELECT *
-		FROM cls_inquiry
-		where clsId = #{clsId}
+		FROM cls_inquiry c, schedule s
+		WHERE c.scdNum = s.scdNum
+		AND s.clsId = #{clsId}
+		
 	</select>
 	
 	<select id="tcScheduleList"  parameterType="hashmap" resultType="com.kosta.openday.teacher.dto.TeacherScheduleDTO">

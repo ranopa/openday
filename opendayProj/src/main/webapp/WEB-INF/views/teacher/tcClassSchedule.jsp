@@ -65,10 +65,11 @@
 			events : [ 
 				<c:forEach items="${tcScheduleList }" var="tcScheduleList">
 				 {
-		            	title : '${tcScheduleList.scdTime} ${tcScheduleList.clsName}',
+		            	title : '· ${tcScheduleList.scdTime} ${tcScheduleList.clsName}',
 		                start : '${tcScheduleList.scdDate}',
 		                end : '${tcScheduleList.scdDate}',
-		                color : '#' + Math.round(Math.random() * 0xffffff).toString(16)
+		                color : 'white',//'#' + Math.round(Math.random() * 0xffffff).toString(16),
+		                textColor : 'black'
 		             },
 				</c:forEach> 
 			]

@@ -323,7 +323,7 @@ a {
 	width: 350px;
 }
 .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
-	min-height: 5em !important;
+	min-height: 4em !important;
 }
 .fc-toolbar-title {
 	float: left;
