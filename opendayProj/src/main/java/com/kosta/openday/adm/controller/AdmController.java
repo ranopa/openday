@@ -70,6 +70,18 @@ public class AdmController {
 		}
 		return "admin/adminWatingList";
 	}
+	
+	@RequestMapping(value="/adm/adminwaitingdetail")
+	public String watingDetail(@RequestParam Integer clsId, Model model) {
+		try {
+			OClassDTO oClass = oClassService.findOne(clsId);
+			
+			model.addAttribute("oClass", oClass);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/adminWatingDetail";
+	}
 
 	@RequestMapping(value = "/admInquiry", method = RequestMethod.GET)
 	public String inquiry() {
