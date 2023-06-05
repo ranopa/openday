@@ -3,8 +3,11 @@ package com.kosta.openday.user.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO; 
 
 public interface UserDAO {
@@ -28,7 +31,18 @@ public interface UserDAO {
 	public void updateUser(Map<String, Object> map)throws Exception;
 	public void updateUserDelete(String id) throws Exception;
 
+
 	public UserDTO selectUserFindId(String userEmail) throws Exception; 
 	public UserDTO selectUserFindPw(Map<String, Object> param) throws Exception; 
 	 void resetPassword(UserDTO user) throws Exception;
+
+	
+	public void deleteHeart(Map<String,Object> map)throws Exception;
+	public void insertHeart(Map<String,Object> map)throws Exception;
+	
+	public List<MyRecordDTO> selectReserveList(Map<String, String> map)throws Exception; 
+	
+	public List<TeacherFollowDTO> selectFollowList(String userId) throws Exception; 
+	public TeacherChannelDTO selectTchcChannel(Integer tchcNum) throws Exception;
+
 }

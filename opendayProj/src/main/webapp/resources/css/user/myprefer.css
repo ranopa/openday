@@ -121,3 +121,49 @@ body{
         .e-flex td {
             padding-bottom: 10px;
         }
+        
+        
+        
+        
+        
+        
+        
+        /*이예림의 작업장*/
+        
+        input[type="checkbox"] {
+        display: none;
+    	}
+ 
+	    input[type="checkbox"] + span {
+	        display: inline-block;
+	        width: 118px;
+            height: 35px;
+            border-radius: 5px;
+            border: solid 1px rgba(214, 214, 214, 1);
+            text-align: center;
+            margin-top: 2px;
+            font-size: 14px;
+            
+            background-color: #fff;
+	    }
+ 
+	    input[type="checkbox"]:checked + span {
+	        background-color: #113a6b;
+	        color: rgba(129, 129, 129, 1);
+	        line-height: 35px;
+	    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

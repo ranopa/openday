@@ -7,8 +7,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Repository
@@ -82,6 +85,7 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.search.searchInputSelect");
 	}
+
 	
 	@Override
 	public UserDTO selectUserFindId(String userEmail) throws Exception {
@@ -105,4 +109,39 @@ public class UserDAOImpl implements UserDAO {
 	  @Override public List<CollectDTO> selectmainHotOClassList() throws Exception
 	  { return sqlSession.selectList("mapper.user.mainHotOClassList"); }
 	 
+
+
+	@Override
+	public void deleteHeart(Map<String, Object> map) throws Exception {
+		 sqlSession.delete("mapper.user.deleteHeart",map);
+			
+	}
+	
+	@Override
+	public void insertHeart(Map<String, Object> map) throws Exception {
+		sqlSession.insert("mapper.user.insertHeart",map);
+		
+	}
+
+	@Override
+	public List<MyRecordDTO> selectReserveList(Map<String, String> map) throws Exception {
+		return sqlSession.selectList("mapper.user.selectReserveList", map); 
+		
+		
+	}
+
+	@Override
+	public List<TeacherFollowDTO> selectFollowList(String userId) throws Exception { 
+		return sqlSession.selectList("mapper.user.selectFollowList",userId);
+	}
+
+	@Override
+	public TeacherChannelDTO selectTchcChannel(Integer tchcNum) throws Exception { 
+		return sqlSession.selectOne("mapper.user.selectChannelOne",tchcNum);
+	}
+	
+	
+
+	
+
 }

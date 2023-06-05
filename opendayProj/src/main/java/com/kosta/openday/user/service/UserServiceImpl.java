@@ -17,9 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
+import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service
@@ -123,10 +126,14 @@ public class UserServiceImpl implements UserService {
 		param.put("clsLoc", clsLoc);
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
+
 		param.put("clsCode", clsCode);
 		param.put("keyword", keyword);
 		
 		System.out.println(param);
+
+	
+
 		// TODO Auto-generated method stub
 		return userDAO.selectOClassList(param);
 
@@ -146,8 +153,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
-		FileDTO file = fileDAO.selectFile(id);
-		System.out.println(uploadDir + file.getFilNum() + file.getFilOrgName());
+		FileDTO file = fileDAO.selectFile(id); 
 		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
 		FileCopyUtils.copy(fis, out);
 		out.flush();
@@ -172,13 +178,13 @@ public class UserServiceImpl implements UserService {
 		
 		for(HeartDTO h:hearts) {  
 			CollectDTO collect = userDAO.selectHeartOClass(h.getClsId());
-			list.add(collect);
-			System.out.println(collect.toString());
+			list.add(collect); 
 		} 
 		return list;
 				
 	}
 	
+
 	/*
 	 * public void func() { String preference = "C1_C3_C15"; String[] code =
 	 * preference.split("_");
@@ -186,12 +192,65 @@ public class UserServiceImpl implements UserService {
 	 * }
 	 */
 
+	//찜취소
 	@Override
+	public void removeHeart(Integer clsId, String userId) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("clsId", clsId);
+		map.put("userId", userId);
+		
+		userDAO.deleteHeart(map);
+		
+		
+	}
+	//찜하기
+	@Override
+	public void addHeart(Integer clsId, String userId) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("clsId", clsId);
+		map.put("userId", userId);
+		
+		userDAO.insertHeart(map);
+		
+		
+	}
+	//신청내역
+	@Override
+	public List<MyRecordDTO> getReservedList(String userId, String text) throws Exception {
+		Map<String , String> map = new HashMap<>(); 
+		map.put("userId", userId);
+		map.put("text", text); 
+		List<MyRecordDTO> list =  userDAO.selectReserveList(map);
+		for(MyRecordDTO mr : list) {
+			Date sqlDate = mr.getScdDate();
+			java.util.Date uDate = new java.util.Date(sqlDate.getDate());
+			
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+			mr.setStrDate(simpleDate.format(uDate)); 
+		}
+		 
+		return list;
+	}
+
+
+	@Override
+
 	public UserDTO getUserFindId(String userEmail) throws Exception {
 		// TODO Auto-generated method stub
 	
 		return userDAO.selectUserFindId(userEmail);
 	}
+
+	public List<TeacherChannelDTO> getTchcList(String userId) throws Exception {
+		List<TeacherFollowDTO> followList = userDAO.selectFollowList(userId);
+		List<TeacherChannelDTO> channelList = new ArrayList<>();
+		for(TeacherFollowDTO f : followList) { 
+			channelList.add(userDAO.selectTchcChannel(f.getTchcNum()));
+		}
+		return channelList;
+	}
+	
+
 
 	@Override
 	public UserDTO getUserFindPw(String userId, String userEmail) throws Exception {
