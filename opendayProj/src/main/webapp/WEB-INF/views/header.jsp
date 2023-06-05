@@ -135,7 +135,7 @@ $(function() {
 				$('#category').append(`<option value="\${code.codNum}">\${code.codName}</option>`);
  				if(idx%5==0) tablestr+='<tr>';
  				tablestr += `<td><button type="button" class="categoryButton"
-					name="categoryButton" value="\${code.codNum}">\${code.codName}</button></td>`;
+					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=${code.codNum}'">\${code.codName}</button></td>`;
  				if(idx%5==0) tablestr+='<\tr>';	
  				idx++;
  			} 

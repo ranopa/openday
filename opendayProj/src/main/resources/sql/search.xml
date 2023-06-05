@@ -113,7 +113,7 @@ GROUP BY o.clsId) AS oc
 			</when>
 <!--    위가 추가 -->
    
-   <!-- <when test="clsLoc=='all' and startDate==null and clsCode=='all'">
+   <when test="clsLoc=='all' and startDate==null and clsCode=='all'">
 				
 	   <include refid="search"></include>
 	
@@ -152,7 +152,7 @@ GROUP BY o.clsId) AS oc
 					<include refid="search"></include>
 				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode}
 				
-			</otherwise> -->
+			</otherwise>
 		</choose>
 	</select>
 	

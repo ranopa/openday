@@ -35,6 +35,10 @@ public interface UserService {
 		
 		  public List<CollectDTO> getMainHotOClassList() throws Exception;
 		 
+		  public List<CollectDTO> getMainRequestOClassList() throws Exception;
+		  public List<CollectDTO> getMainDeadlineOClassList() throws Exception;
+		  public List<CollectDTO> getMainMenuOClassList(String codNum) throws Exception;
+		  
 	void fileView(Integer id, OutputStream out) throws Exception;
 
 	void withdrawUser(String id) throws Exception;
