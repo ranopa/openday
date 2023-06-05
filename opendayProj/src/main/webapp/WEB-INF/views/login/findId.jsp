@@ -18,8 +18,8 @@
 				<p class="findIdPageTitle">아이디/비밀번호 찾기</p>
 			</div>
 			<ul class="findMenu">
-				<li>아이디 찾기</li>
-				<li class="pwFindMenu">비밀번호 찾기</li>
+				<li><a href="findid">아이디 찾기</a></li>
+				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
 			<ul class="findIdContainer">
 				<li><input type="text" class="findIdPEmailBox"

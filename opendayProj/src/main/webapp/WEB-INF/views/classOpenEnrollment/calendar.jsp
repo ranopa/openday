@@ -21,81 +21,80 @@ html, body {
 }
 </style>
 
-<link href='<c:url value="/resources/css/user/calendar.css" />'rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src='<c:url value="/resources/js/user/calendar.js" />'></script>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
-
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
-
+<link href='<c:url value="/resources/lib/main.min.css" />'rel="stylesheet">
+<script src='<c:url value="/resources/lib/main.js" />'></script>
+ 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-	var calendarEl = document.getElementById('calendar');
-	
-	var calendar = new FullCalendar.Calendar(calendarEl, {
-		initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
-		headerToolbar : { // 헤더에 표시할 툴 바
-			start : 'prev next today',
-			center : 'title',
-			end : 'dayGridMonth,dayGridWeek,dayGridDay'
-		},
-		titleFormat : function(date) {
-			return date.date.year + '년 ' + (parseInt(date.date.month) + 1) + '월';
-		},
-		//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
-		selectable : true, // 달력 일자 드래그 설정가능
-		droppable : true,
-		editable : true,
-		nowIndicator: true, // 현재 시간 마크
-		navLinks: true,
-		//날짜클릭
-		navLinkDayClick: function(date, jsEvent) {
-		// 뭐가 나옴
-    	console.log('day', date.toISOString());
-    	console.log('coords', jsEvent.pageX, jsEvent.pageY);
-  },
-  // 특정 이벤트	드래그해서 일정 넣음	
-  selectable: true,
-  selectMirror: true,
-  select: function(arg) {
-    var title = prompt('Event Title:');
-    if (title) {
-      calendar.addEvent({
-        title: title,
-        start: arg.start,
-        end: arg.end,
-        allDay: arg.allDay
-      })
-    }
-    calendar.unselect()
-  },
-  // 일정 취소 기능
-  eventClick: function(arg) {
-      if (confirm('Are you sure you want to delete this event?')) {
-        arg.event.remove()
-      }
-    },
-    editable: true,
-    dayMaxEvents: true, // allow "more" link when too many events
-    
-    
-		locale: 'ko' // 한국어 설정
-		
-		
-		
-		
-		
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
+	  locale: 'ko', // 한국어 설정
+	  navLinks: true, // 날짜 선택
+      selectable: true,
+      selectMirror: true,
+      select: function(info) {
+          var title = prompt('일정 입력:');          
+          if (title) {
+            calendar.addEvent({
+              title: title,
+              start: info.startStr,
+              end: info.endStr,
+              allDay: info.allDay
+            })
+          }
+          calendar.unselect()
+        },
+        eventClick: function(info) {
+        	/*   
+            if (confirm('Are you sure you want to delete this event?')) {
+              arg.event.remove()
+            }
+             */
+        	var eventElement = info.el;
 
-	});
-	calendar.render();
-});
+            // 기존의 삭제 버튼 제거
+            var deleteButton = eventElement.querySelector('.delete-button');
+            if (deleteButton) {
+              deleteButton.remove();
+            }
 
+            var deleteButton = document.createElement('button');
+            deleteButton.innerText = '삭제';
+            deleteButton.classList.add('delete-button');
+            deleteButton.addEventListener('click', function() {
+              if (confirm('정말로 이 일정을 삭제하시겠습니까?')) {
+                info.event.remove();
+              }
+            });
+            eventElement.appendChild(deleteButton);
 
+            var action = prompt('일정 수정:', info.event.title);
+            if (action) {
+              info.event.setProp('title', action);
+              calendar.updateEvent(info.event);
+            }
+          },
+        editable: true,
+      
+     /*  dateClick: function(info) {
+        alert('clicked ' + info.dateStr);
+      },
+      select: function(info) {
+        alert('selected ' + info.startStr + ' to ' + info.endStr);
+      } */
+      
+    });
+    calendar.render();
+  });
 
 </script>
 

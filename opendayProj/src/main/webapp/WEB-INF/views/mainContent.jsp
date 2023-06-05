@@ -9,230 +9,308 @@
 <script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/mainContent.css"/>">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
 </head>
 <body>
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
+
 			<table class="mainMenuTable">
-				<tr>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">전체</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">도자기</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">가죽</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">목공</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">금속/악세서리</button>
-					</td>
-
-				</tr>
-				<tr>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">유리</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">조향/캔들/방향제</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">라탄/마크라메</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">자수/재봉/펠트</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">취미/레저</button>
-					</td>
-
-				</tr>
-				<tr>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">플라워/벌룬</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">애견</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">미술</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">음악(보컬/악기/프로그램 등)</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">뷰티/미용</button>
-					</td>
-
-				</tr>
-				<tr>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">쿠킹</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">핸드메이드</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">키즈</button>
-					</td>
-					<td>
-						<button type="button" class="mainCategoryButton"
-							name="categoryButton">기타</button>
-					</td>
-
-				</tr>
+				<c:forEach items="${codeList}" var="code" varStatus="loop">
+					<c:if test="${loop.index % 5 == 0}">
+						<tr>
+					</c:if>
+					<c:if test="${loop.index == 0}">
+						<td>
+							<button type="button" class="mainCategoryButton"
+								name="categoryButton" value="all">전체</button>
+						</td>
+					</c:if>
+					<c:if test="${loop.index > 0 and loop.index <= 4}">
+						<td>
+							<button type="button" class="mainCategoryButton"
+								name="categoryButton" value="${code.codNum}">${code.codName}</button>
+						</td>
+					</c:if>
+					<c:if test="${loop.index > 4}">
+						<td>
+							<button type="button" class="mainCategoryButton"
+								name="categoryButton" value="${code.codNum}">${code.codName}</button>
+						</td>
+					</c:if>
+					<c:if test="${loop.index % 5 == 4 or loop.last}">
+						</tr>
+					</c:if>
+				</c:forEach>
 			</table>
 
-			<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
+			<!-- 		<div class="newListWrapper">
+			<div class="newList"> -->
+			<div class="myList classWrapper">
+			<p class="mainOclassListTitle">내가 선호하는 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
+			<!-- 	</div>
+	
+			</div> -->
 			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
+			<div class="hotClass classWrapper">
+				<p class="mainOclassListTitle">핫한 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${hlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.clsDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
 			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
+			<div class="banner">이미지</div>
 			
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
-			
-				<table class="oclassTable">
-				<tr>
-					<td class="oclass">
-						<div class="ssum-img">이미지넣는곳</div>
-						<div class="txt-box">
-							<div class="tb1">
-								<div class="t1">
-									<span>지역</span> <span>카테고리</span>
-								</div>
-								<div class="t2">
-									<span>별점수</span> <span>하트수</span>
-								</div>
-							</div>
-							<p class="cls-name">클래스 이름</p>
-							<div class="tb2">40000원</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			
+			<div class="newClass classWrapper">
+				<p class="mainOclassListTitle">신규 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
 			
 			
+			<div class="imminentDeadlineClass classWrapper">
+				<p class="mainOclassListTitle">마감임박 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
 			
-
+			<div class="requestClass classWrapper">
+				<p class="mainOclassListTitle">요청 클래스</p>
+			<div class="oclassListWrapper">
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined">
+						<a href="#"> arrow_back_ios </a>
+					</div>
+				</div> -->
+				<div class="oclassTable">
+					<ul class="tableTr">
+						<c:forEach items="${nlist}" var="list" varStatus="loop">
+							<c:if test="${loop.index < 4}">
+								<li class="oclass">
+									<div class="ssum-img">${list.filNum}</div>
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.scdLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.clsStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.clsHeart}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.scdDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							<c:if test="${loop.index == 3}">
+					</ul>
+					<ul>
+						</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- <div class="arrowIcon">
+					<div class="material-symbols-outlined arrow">
+						<a href="#">arrow_forward_ios</a>
+					</div>
+				</div> -->
+			</div>
+			</div>
+			
+			
 		</div>
 	</div>
 </body>

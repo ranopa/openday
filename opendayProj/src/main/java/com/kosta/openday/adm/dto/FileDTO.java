@@ -6,20 +6,20 @@ import java.sql.Date;
 public class FileDTO {
 	private Integer filNum; //파일번호
 	private String filClassification;//파일분류
-	private String filOriginalname; //원본파일명
-	private String filSavename;//저장파일명
-	private Integer filSize; //파일용량
+	private String filOrgName; //원본파일명
+	private String filSaveName;//저장파일명
+	private Long filSize; //파일용량
 	private Date filNewDate; //등록일
 	
 	public FileDTO() {}
-	
-	public FileDTO(Integer filNum, String filClassification, String filOriginalname, String filSavename, Integer filSize,
+
+	public FileDTO(Integer filNum, String filClassification, String filOrgName, String filSaveName, Long filSize,
 			Date filNewDate) {
 		super();
 		this.filNum = filNum;
 		this.filClassification = filClassification;
-		this.filOriginalname = filOriginalname;
-		this.filSavename = filSavename;
+		this.filOrgName = filOrgName;
+		this.filSaveName = filSaveName;
 		this.filSize = filSize;
 		this.filNewDate = filNewDate;
 	}
@@ -40,27 +40,27 @@ public class FileDTO {
 		this.filClassification = filClassification;
 	}
 
-	public String getFilOriginalname() {
-		return filOriginalname;
+	public String getFilOrgName() {
+		return filOrgName;
 	}
 
-	public void setFilOriginalname(String filOriginalname) {
-		this.filOriginalname = filOriginalname;
+	public void setFilOrgName(String filOrgName) {
+		this.filOrgName = filOrgName;
 	}
 
-	public String getFilSavename() {
-		return filSavename;
+	public String getFilSaveName() {
+		return filSaveName;
 	}
 
-	public void setFilSavename(String filSavename) {
-		this.filSavename = filSavename;
+	public void setFilSaveName(String filSaveName) {
+		this.filSaveName = filSaveName;
 	}
 
-	public Integer getFilSize() {
+	public Long getFilSize() {
 		return filSize;
 	}
 
-	public void setFilSize(Integer filSize) {
+	public void setFilSize(Long filSize) {
 		this.filSize = filSize;
 	}
 
@@ -71,6 +71,7 @@ public class FileDTO {
 	public void setFilNewDate(Date filNewDate) {
 		this.filNewDate = filNewDate;
 	}
+
 
 
 	 

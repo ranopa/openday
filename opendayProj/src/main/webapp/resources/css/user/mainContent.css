@@ -56,7 +56,6 @@
 	font-family: 'NanumBarunGothic', sans-serif;
 }
 
-
 .mainContentWrapper {
 	margin: 0 auto;
 	width: 1280px;
@@ -64,8 +63,7 @@
 
 .mainContentBigWrapper {
 	width: 100%;
-	height: 125px;
-	
+	/* height: 100%; */
 	left: 0;
 	right: 0;
 }
@@ -79,83 +77,143 @@ body {
 	font-family: 'NanumBarunGothic';
 }
 
-.mainMenuTable button {
-	width: 240px;
-	height: 28px;
+/* 클래스 카드 */
+/* .newList{
+	
+	display: flex;
+	
 }
 
-.mainMenuTable {
-	margin-top: 23px;
+.tableTr{
+	display: flex;
+	flex-wrap: wrap;
+} */
+
+/* 슬라이드 화살표 */
+/* .arrowIcon{
+	
 }
 
-.mainMenuTable button {
-	width: 40px;
-	height: 27px;
-	background-color: #FFFFFF;
-	color: #5F5F5F;
-	border: 0.5px solid #9E9E9E;
+.arrowIcon span {
+	font-size: 30px;
+} */
+
+/* 카드 간격 */
+.oclassListWrapper {
+	display: flex;
+	justify-content: space-between
+}
+.classWrapper{
+	margin-top: 55px;
+}
+.mainOclassListTitle{
+	font-size:20px;
+	font-weight: bold;
+	margin-left:50px;
+}
+
+/* 클래스 리스트 카드 정보 */
+.oclass {
+	width: 260px;
+	height: 368.95px;
+	/* background-color: antiquewhite; */
 	border-radius: 5px;
+	border: 1px solid rgb(207, 207, 207);
+	margin-bottom: 20px;
+	margin: 0 18px;
 }
 
-
-.mainCategoryButton {
-	margin: 5px;
-}
-.mainCategoryButton.selected {
-	background-color: #8556FF;
-	color: #FFFFFF;
-	border-color: none;
-	border: none;
-	border-radius: 5px;
+.ssum-img {
+	width: 100%;
+	height: 260px;
+	background-color: rgb(218, 218, 218);
+	margin-bottom: 10px;
 }
 
-.oclass{
-      
-      width: 300px;
-      height: 368.95px;
-      /* background-color: antiquewhite; */
-      border-radius: 5px;
-      border: 1px solid rgb(207, 207, 207);
+.txt-box {
+	padding-right: 10px;
+	padding-left: 10px;
+}
 
-  }
-  .ssum-img{  
-      width: 100%;
-      height: 260px; 
-      background-color: rgb(218, 218, 218); 
-      margin-bottom: 10px;
-  }
-  .txt-box{
-      padding-right: 10px;
-      padding-left: 10px;
-  }
-  .tb1{
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 5px;
-  }
-  .t1 span{
-      margin-left: 8px; 
-      
-      
-  }
-  .t2 span{ 
-      margin-right: 8px;
-  }
-  
-  .cls-name{
-      font-size: 18px;
-      font-weight: bold;
-      border-bottom: 1px solid rgb(212, 212, 212);
-      width: 95%; 
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      margin-left: 5px; 
-  }
-  .tb2{
-      font-size: 18px;
-      padding-bottom: 15px;
-      margin-right: 10px;
-      text-align: end;
-      
-  }
+.tb1 {
+	display: flex;
+	justify-content: space-between;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+.t1 {
+	margin-left: 6px;
+}
+
+.t1 span {
+	margin-right: 3px;
+	color: #7A7A7A;
+	font-weight: bold;
+}
+
+.t2 {
+	margin-right: 6px;
+}
+
+.t2 span {
+	margin-right: 3px;
+}
+
+.heart {
+	font-size: 12px;
+	color: #FF729D;
+}
+
+.star {
+	color: #FFD029;
+}
+
+.cls-name {
+	font-size: 18px;
+	font-weight: bold;
+	border-bottom: 1px solid rgb(212, 212, 212);
+	width: 95%;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+
+.oclass p {
+	margin-top: 7px;
+}
+
+.tb2 {
+	display: flex;
+	font-size: 18px;
+	padding-bottom: 15px;
+	margin-right: 10px;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.oriPrice {
+	color: #B4B4B4;
+	font-size: 15px;
+	margin-right: 5px;
+	margin-top: 3px;
+}
+
+.disc {
+	color: #8556FF;
+	font-weight: 600;
+}
+
+.fp {
+	font-weight: 600;
+}
+
+.oclassIcon {
+	font-size: 14px;
+}
+
+/* 카드 와 카드 사이 간격조정 */
+.oclass {
+	display: inline-block;
+}

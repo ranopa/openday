@@ -1,37 +1,3 @@
-//search day
-  var selectedButtons = [];
-
-  function toggleSelection(button) {
-    button.classList.toggle("selected");
-    var index = selectedButtons.indexOf(button);
-    if (index > -1) {
-      selectedButtons.splice(index, 1);
-    } else {
-      selectedButtons.push(button);
-    }
-  }
-  
-  //menu only one click
-window.onload = function() {
-  var categoryButtons = document.querySelectorAll('.categoryButton');
-
-  function toggleSelection(button) {
-    categoryButtons.forEach(function(btn) {
-      if (btn !== button) {
-        btn.classList.remove("selected");
-      }
-    });
-
-    button.classList.toggle("selected");
-  }
-
-  categoryButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      toggleSelection(this);
-    });
-  });
-};
-  
   //local li selected
 document.addEventListener('DOMContentLoaded', function() {
   var filterItems = document.querySelectorAll('.filterUl1 ul li');
@@ -72,5 +38,15 @@ function disMenu() {
   }
 }
 
-//menu or search
 
+//검색필터 초기화
+
+ function resetFilters() {
+    // 필터 값을 초기화하는 코드 작성
+    // 예: JavaScript로 필터 값을 변경하거나, 폼을 초기화하거나, URL을 초기값으로 설정 등
+    // 필터 값 초기화 후 검색을 다시 수행하거나, 페이지를 다시 로드할 수 있습니다.
+    var searchForm = document.getElementById('searchForm');
+    searchForm.reset(); // 폼 초기화
+    searchForm.submit(); // 검색 수행
+    // 다른 필터 초기화 코드 작성
+  }

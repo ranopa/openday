@@ -30,8 +30,8 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 			
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setFilNum(fileNum);
-			fileDTO.setFilOriginalname(file.getOriginalFilename());
-			fileDTO.setFilSize((int) file.getSize());
+			fileDTO.setFilOrgName(file.getOriginalFilename());
+			fileDTO.setFilSize((long) file.getSize());
 			fileDTO.setFilClassification(file.getContentType());
 			classopenenrollDAO.insertFile(fileDTO);
 			
