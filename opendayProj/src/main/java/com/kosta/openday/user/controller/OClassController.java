@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -195,8 +196,8 @@ public class OClassController {
 		}
 	}
 	
-	@RequestMapping(value = "/classinfo", method=RequestMethod.GET)
-	public ModelAndView classInfo(@RequestParam(value="scdNum") Integer scdNum) {
+	@RequestMapping(value = "/classinfo/{clsId}", method=RequestMethod.GET)
+	public ModelAndView classInfo(@PathVariable(value="clsId") Integer scdNum) {
 		ModelAndView mav = new ModelAndView("classinfo/classInfo");
 		try {
 //			UserDTO user = (UserDTO)session.getAttribute("user");

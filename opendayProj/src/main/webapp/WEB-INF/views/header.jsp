@@ -223,7 +223,7 @@ $(function() {
 						</c:when>
 						<c:otherwise>
 
-							<li><a href="mymain"><span
+							<li><a href="mypage"><span
 									class="material-symbols-outlined login"> person </span>
 									<p>마이</p></a></li>
 						</c:otherwise>

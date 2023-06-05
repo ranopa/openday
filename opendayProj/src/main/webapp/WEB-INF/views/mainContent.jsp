@@ -119,6 +119,7 @@
 					<ul class="tableTr">
 						<c:forEach items="${hlist}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
+							<a href="classinfo/${list.clsId}">
 								<li class="oclass">
 									<div class="ssum-img">${list.filNum}</div>
 									<div class="txt-box">
@@ -141,6 +142,7 @@
 										</div>
 									</div>
 								</li>
+							</a>
 							</c:if>
 							<c:if test="${loop.index == 3}">
 					</ul>
