@@ -24,7 +24,7 @@
 	<insert id="insertAnnouncement">
 		<![CDATA[
 		insert into announcement
-		values (announcement_sqe,
+		values (nextval(announcement_seq),
 		#{ancTitle}, #{ancContent}, #{ancViewcount},
 		#{ancType}, #{ancUploadDate}, #{filNum}
 		]]>
