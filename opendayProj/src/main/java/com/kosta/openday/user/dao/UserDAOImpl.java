@@ -51,6 +51,8 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<CollectDTO> selectOClassList(Map<String, Object> param) throws Exception {
 		// TODO Auto-generated method stub
+		
+	
 		return sqlSession.selectList("mapper.search.searchSelect", param);
 	}
 

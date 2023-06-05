@@ -99,7 +99,7 @@ public class HeaderController {
 			@RequestParam(value="endDate", required = false, defaultValue = "all") String endDate,
 			@RequestParam("clsCode") String clsCode, 
 			@RequestParam("keyword") String keyword) {
-		
+
 		Date sqlStartDate = null;
 		Date sqlEndDate = null;
 		if(!startDate.equals("all")) {
