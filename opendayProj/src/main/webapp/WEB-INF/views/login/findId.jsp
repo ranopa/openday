@@ -27,11 +27,11 @@
 					id="findIdEmailBox" name="userEmail" placeholder="이메일"
 					required maxlength="15"></li>
 				<div class="AuthenticationNumberWrapper">
-				<!-- 	<li><input type="text" class="AuthenticationNumberBox"
+					<li><input type="text" class="AuthenticationNumberBox"
 						id="AuthenticationNumberBox" name="AuthenticationNumberBox"
 						placeholder="인증번호" required maxlength="15"> <input
 						type="button" class="AuthenticationNumber"
-						id="AuthenticationNumber" value="인증번호 전송"></li> -->
+						id="AuthenticationNumber" value="인증번호 전송"></li> 
 				</div>
 			</ul>
 

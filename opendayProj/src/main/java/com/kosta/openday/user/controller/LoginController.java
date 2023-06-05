@@ -38,14 +38,14 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping(value="findid", method=RequestMethod.POST)
+	@RequestMapping(value="/findid", method=RequestMethod.POST)
 	public ModelAndView getUserFindId(@RequestParam("userEmail") String userEmail) {
 		ModelAndView mav = new ModelAndView();
 		try {
 			
 			UserDTO findId = userService.getUserFindId(userEmail);
 			mav.addObject("findId",findId);
-			mav.setViewName("idConfirm");
+			mav.setViewName("/login/idConfirm");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,14 +54,15 @@ public class LoginController {
 		return mav;
 	}
 	
-	@RequestMapping(value="findpw", method=RequestMethod.POST)
+	@RequestMapping(value="/findpw", method=RequestMethod.POST)
 	public ModelAndView getUserFindPw(@RequestParam("userId") String userId,@RequestParam("userEmail") String userEmail) {
+		System.out.println(userEmail);
 		ModelAndView mav = new ModelAndView();
 		try {
 			UserDTO findPw = userService.getUserFindPw(userId, userEmail);
 			
 			mav.addObject("findPw",findPw);
-			mav.setViewName("pwConfirm");
+			mav.setViewName("/login/pwConfirm");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

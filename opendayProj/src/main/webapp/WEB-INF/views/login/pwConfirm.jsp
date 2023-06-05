@@ -21,6 +21,12 @@
 				<li><a href="findid">아이디 찾기</a></li>
 				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
+			
+			
+			<div class="findUserIdInfo">
+					<p>${findPw.userName}님의 비밀번호는 ${findPw.userPassword} 입니다.</p>
+				</div>
+			<%-- 
 			 <c:choose>
         <c:when test="${not empty user}">
             <p>비밀번호가 성공적으로 변경되었습니다.</p>
@@ -31,7 +37,7 @@
             <p>유효한 이메일 주소를 입력하였는지 확인해주세요.</p>
         </c:otherwise>
     </c:choose>
-
+ --%>
 			<div class="idConfirmBtns">
 				<button type="button" class="loginBtn">로그인하기</button>
 				<button type="button" class="findPwBtn">비밀번호찾기</button>

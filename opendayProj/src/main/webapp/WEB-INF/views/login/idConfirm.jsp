@@ -23,7 +23,7 @@
 			</ul>
 			
 			<div class="findUserIdInfo">
-					<p>${findId.userName}님의아이디는${findId.userId}입니다.</p>
+					<p>${findId.userName}님의 아이디는 ${findId.userId} 입니다.</p>
 				</div>
 			
 			<%-- 아이디 찾기 결과 --%>
