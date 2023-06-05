@@ -116,16 +116,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchOClass( String clsLoc, Date startDate, Date endDate, String clsCode, String keyword)
+	public List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode, String keyword)
 			throws Exception {
 		Map<String, Object> param = new HashMap<>();
-		
+
 		param.put("clsLoc", clsLoc);
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
 		param.put("clsCode", clsCode);
 		param.put("keyword", keyword);
-		
+
 		System.out.println(param);
 		// TODO Auto-generated method stub
 		return userDAO.selectOClassList(param);
@@ -133,16 +133,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchInputOClass(String keyword)
-			throws Exception {
-	return userDAO.selectInputOClassList(keyword);
+	public List<CollectDTO> getSearchInputOClass(String keyword) throws Exception {
+		return userDAO.selectInputOClassList(keyword);
 	}
-	
-	  @Override public List<CollectDTO> getMainNewOClassList() throws Exception {
-	  return userDAO.selectmainNewOClassList();
-	  
-	  }
-	 
+
+	@Override
+	public List<CollectDTO> getMainNewOClassList() throws Exception {
+		return userDAO.selectmainNewOClassList();
+
+	}
 
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
@@ -159,26 +158,43 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	
-	  @Override
-	  
-	  public List<CollectDTO> getMainHotOClassList() throws Exception { return
-	  userDAO.selectmainHotOClassList(); }
-	 
+	@Override
 
-	public List<CollectDTO> HeartOClass(String userId) throws Exception {  
-		List<CollectDTO> list = new ArrayList<>();  
+	public List<CollectDTO> getMainHotOClassList() throws Exception {
+		return userDAO.selectmainHotOClassList();
+	}
+
+	@Override
+	public List<CollectDTO> getMainRequestOClassList() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.selectMainRequestOClassList();
+	}
+
+	@Override
+	public List<CollectDTO> getMainDeadlineOClassList() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.selectMainDeadlineOClassList();
+	}
+	
+	@Override
+	public List<CollectDTO> getMainMenuOClassList(String codNum) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.selectMainMenuOClassList(codNum);
+	}
+	
+	public List<CollectDTO> HeartOClass(String userId) throws Exception {
+		List<CollectDTO> list = new ArrayList<>();
 		List<HeartDTO> hearts = userDAO.selectHeartList(userId);
-		
-		for(HeartDTO h:hearts) {  
+
+		for (HeartDTO h : hearts) {
 			CollectDTO collect = userDAO.selectHeartOClass(h.getClsId());
 			list.add(collect);
 			System.out.println(collect.toString());
-		} 
+		}
 		return list;
-				
+
 	}
-	
+
 	/*
 	 * public void func() { String preference = "C1_C3_C15"; String[] code =
 	 * preference.split("_");
@@ -189,20 +205,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO getUserFindId(String userEmail) throws Exception {
 		// TODO Auto-generated method stub
-	
+
 		return userDAO.selectUserFindId(userEmail);
 	}
 
 	@Override
 	public UserDTO getUserFindPw(String userId, String userEmail) throws Exception {
-		 Map<String, Object> param = new HashMap<>();
-		 param.put("userId", userId);
-		 param.put("userEmail",userEmail);
-		 return userDAO.selectUserFindPw(param);
+		Map<String, Object> param = new HashMap<>();
+		param.put("userId", userId);
+		param.put("userEmail", userEmail);
+		return userDAO.selectUserFindPw(param);
 	}
+
 	@Override
 	public void getResetPassword(UserDTO user) throws Exception {
-		 userDAO.resetPassword(user);
-		
+		userDAO.resetPassword(user);
+
 	}
 }

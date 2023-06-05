@@ -91,6 +91,24 @@ public class HeaderController {
 		return mav;
 	}
 	
+	/* 메인 매뉴 클릭시 */
+	
+	@RequestMapping(value = "/menu", method = RequestMethod.GET)
+	public ModelAndView getMainMenuOClassList(@RequestParam("codNum") String codNum) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CollectDTO> hMenuList = userService.getMainMenuOClassList(codNum);
+			
+			mav.addObject("hMenuList",hMenuList);
+			 mav.setViewName("menuSubClassList");
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return mav;
+	}
+	
+	
 	
 	// 검색필터
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -122,7 +140,6 @@ public class HeaderController {
 			  mav.addObject("collectList", collectList);
 			 
 			  
-			 mav.addObject("clsCode", clsCode);
 			  
 			 // List<CodeDTO> codeList= codeService.categoryInfoList();
 			  //mav.addObject("codeList", codeList);

@@ -220,7 +220,7 @@
 				</div> -->
 				<div class="oclassTable">
 					<ul class="tableTr">
-						<c:forEach items="${nlist}" var="list" varStatus="loop">
+						<c:forEach items="${dlist}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
 								<li class="oclass">
 									<div class="ssum-img">${list.filNum}</div>
@@ -270,7 +270,7 @@
 				</div> -->
 				<div class="oclassTable">
 					<ul class="tableTr">
-						<c:forEach items="${nlist}" var="list" varStatus="loop">
+						<c:forEach items="${rlist}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
 								<li class="oclass">
 									<div class="ssum-img">${list.filNum}</div>

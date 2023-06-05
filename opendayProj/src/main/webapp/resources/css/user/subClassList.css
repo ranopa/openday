@@ -96,7 +96,7 @@ body {
  font-size: 20px;}
  
  .subOption{
- margin-bottom: 20px;
+ margin-bottom: 50px;
  }
 .tBox{
 	border: 1px solid #E6E6E6;
@@ -177,6 +177,9 @@ body {
 	font-size: 14px;
 } */
 
+ .oclassTable .tableTr {
+    margin-bottom:50px; /* 행과 행 사이의 마진 조정 */
+ }
 /* 클래스 카드 */
 .oclass {
 	width: 300px;
