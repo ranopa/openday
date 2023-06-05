@@ -1,7 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-						
+
 <mapper namespace="mapper.search">
+
+	<select id="searchSelect"
+		resultType="com.kosta.openday.user.dto.CollectDTO"
+		parameterType="java.util.Map">
+		<choose>
+
+
+
+			<when
+				test="scdLoc=='all' and startDate==null and clsCode=='all'">
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+		o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+		(SELECT COUNT(*)
+		FROM review r
+		JOIN 
+		schedule s ON r.scdNum = s.scdNum
+		WHERE s.clsId = o.clsId
+	) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+	FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	     JOIN code c ON o.clsCode=c.codNum 
+				]]>
+			</when>
+			<when test="scdLoc=='all' and startDate==null">
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+				o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+				(SELECT COUNT(*)
+				FROM review r
+				JOIN 
+				schedule s ON r.scdNum = s.scdNum
+				WHERE s.clsId = o.clsId
+				) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+	  		   JOIN code c ON o.clsCode=c.codNum 
+				WHERE o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="scdLoc=='all' and clsCode=='all'">
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+				o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+				(SELECT COUNT(*)
+				FROM review r
+				JOIN 
+				schedule s ON r.scdNum = s.scdNum
+				WHERE s.clsId = o.clsId
+				) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+				     JOIN code c ON o.clsCode=c.codNum 
+				WHERE  s.scdDate between #{startDate} and #{endDate}
+				]]>
+			</when>
+			<when test="startDate==null and clsCode=='all'">
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+					(SELECT COUNT(*)
+					FROM review r
+					JOIN 
+					schedule s ON r.scdNum = s.scdNum
+					WHERE s.clsId = o.clsId
+				) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+				     JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} 
+				]]>
+			</when>
+			<when test="scdLoc=='all'">
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+					(SELECT COUNT(*)
+					FROM review r
+					JOIN 
+					schedule s ON r.scdNum = s.scdNum
+					WHERE s.clsId = o.clsId
+				) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+				     JOIN code c ON o.clsCode=c.codNum 
+				WHERE (s.scdDate between #{startDate} and #{endDate}) and o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="startDate==null">
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+					(SELECT COUNT(*)
+					FROM review r
+					JOIN 
+					schedule s ON r.scdNum = s.scdNum
+					WHERE s.clsId = o.clsId
+				) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+				     JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} and o.clsCode=#{clsCode}
+				]]>
+			</when>
+			<when test="clsCode=='all'">
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+					o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+					(SELECT COUNT(*)
+					FROM review r
+					JOIN 
+					schedule s ON r.scdNum = s.scdNum
+					WHERE s.clsId = o.clsId
+				) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+				     JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} and (s.scdDate between #{startDate} and #{endDate})
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar AS clsStar, 
+				o.clsHeart AS clsHeart, o.filNum AS filNum, 	
+				(SELECT COUNT(*)
+				FROM review r
+				JOIN 
+				schedule s ON r.scdNum = s.scdNum
+				WHERE s.clsId = o.clsId
+			) AS reviewCount,
+				round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) AS finalPrice
+				FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+				     JOIN code c ON o.clsCode=c.codNum 
+				WHERE s.scdLoc=#{scdLoc} and (s.scdDate between #{startDate} and #{endDate}) and o.clsCode=#{clsCode}
+				]]>
+			</otherwise>
+		</choose>
+	</select>
 
 </mapper>

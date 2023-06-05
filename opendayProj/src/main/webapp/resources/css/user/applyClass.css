@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+/* ================== <캘린더> ================== */
+.ui-datepicker {
+	width: 80%;
+	padding: 10px 10px;
+	text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-title {
+	margin: 0 0;
+	line-height: 2em;
+	text-align: center;
+}
+
+/* 날짜 영역 높이 */
+.ui-state-default {
+	height: 2.2em;
+	line-height: 2.2em;
+	padding: 0;
+}
+
+/* 전체 셀 기본 적용 */
+.ui-widget-header, .ui-widget-header .ui-state-default,
+	.ui-widget-content .ui-state-default, .ui-button.ui-state-disabled:active
+	{
+	border: none;
+	background: #ffffff;
+	color: #050505;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* 오늘 날짜 -- 기능롤백 */
+/* .ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	border: none;
+	background: #edbaed;
+} */
+
+/* 선택한 날짜 & 가능  */
+.ui-datepicker-current-day.available {
+	background-color: blue;
+}
+
+/*  과거 날짜 */
+.past-date .ui-state-default {
+	background-color: #dddddd;
+	color: #aaaaaa;
+}
+/* 스케줄 */
+.available:not([class="ui-datepicker-current-day"]) .ui-state-default {
+	background-color: #bbeebb;
+}
+/* ================== </캘린더> ================== */
+.wrapper {
+	width: 880px;
+	margin: 0 auto;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 45% 55%;
+	grid-template-rows: repeat(5, 1fr);
+	height: 70vh;
+}
+
+.box {
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.box:nth-child(1), .box:nth-child(3) {
+	margin-right: 20px;
+}
+
+.box:nth-child(1), .box:nth-child(2) {
+	margin-bottom: 20px;
+}
+
+.box:nth-child(1), .box:nth-child(2) {
+	grid-row: span 4;
+}
+
+.box:nth-child(3), .box:nth-child(4) {
+	grid-row: span 1;
+}
+
+.box:nth-child(1), .box:nth-child(2), .box:nth-child(3) {
+	background-color: #f7f5fd;
+}
+
+.btn-next {
+	width: 120px;
+	height: 60px;
+	background-color: #5a2ece;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	border-radius: 5px;
+	float: right;
+}
+.box:nth-child(4) {
+	padding-right: 0;
+}
+.class-detail {
+	display: flex;
+	flex-direction: column;
+}
+
+.class-detail .detail-bottom {
+	display: flex;
+	justify-content: space-between;
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button
+	{
+	opacity: 1;
+	background-color: red;
+}
+
+input[type="number"], select {
+	padding: 5px 10px;
+	border: none; /* 테두리 제거 */
+	outline: none; /* 포커스 시 나타나는 외곽선 제거 */
+}
+
+select {
+	width: 80%;
+}
+
+.header-title {
+	font-weight: bold;
+	font-size: 22px;
+	color: #5a2ece;
+	margin-bottom:10px;
+}

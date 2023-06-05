@@ -2,8 +2,10 @@ package com.kosta.openday.adm.service;
 
 import java.util.List;
 
-import com.kosta.openday.adm.dao.CodeDAO;
+import com.kosta.openday.adm.dto.CodeDTO;
 
 public interface CodeService {
-	public List<CodeDAO> codeList(String codClassfication) throws Exception;
+	public List<CodeDTO> codeList(String codClassfication) throws Exception;
+
+	public List<CodeDTO> categoryInfoList() throws Exception;
 }

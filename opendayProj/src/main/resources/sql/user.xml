@@ -1,6 +1,331 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-						
+
 <mapper namespace="mapper.user">
+
+	<!--회원가입 -->
+	<insert id="insertUser"
+		parameterType="com.kosta.openday.user.dto.UserDTO">
+		<![CDATA[
+			insert into user values 
+			(#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userTel},#{userAddress}, #{userEmail}, #{userBirth},
+			'1', null, 'y', CURDATE(), null, '1', null)
+		]]>
+	</insert>
+	<!--선호카테고리 저장 -->
+	<update id="updateUserPrefer" parameterType="java.util.Map">
+		<![CDATA[
+			update user set userPreference = #{prefer} where userId=#{id}  
+			
+		]]>
+	</update>
+
+	<!--선호카테고리 받아오기 -->
+	<select id="selectUserPrefer" parameterType="String"
+		resultType="String">
+		<![CDATA[
+			select userPreference from user where userId=#{id} 
+		]]>
+	</select>
+
+	<!-- 파일업로드(유저프로필) -->
+	<insert id="insertUserFile"
+		parameterType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+
+	insert into file values(nextval(file_seq),#{fileClassification},#{fileOriginalName},#{fileSaveName},${fileSize},CURDATE())
+		]]>
+	</insert>
+
+	<!-- 프로필수정 -->
+	<update id="updateUser" parameterType="java.util.Map">
+		<![CDATA[
+		update user set userNickname=#{nickname}, userTel=#{tel}, filNum=#{filNum} where userId=#{id}
+		]]>
+	</update>
+
+	<!-- select user -->
+	<select id="selectUser" parameterType="String"
+		resultType="com.kosta.openday.user.dto.UserDTO">
+		<![CDATA[ 		
+		select * from user where userId=#{id}
+		]]>
+	</select>
+
+	<!-- 로그인 -->
+	<select id="userLogin" parameterType="java.util.Map"
+		resultType="com.kosta.openday.user.dto.UserDTO">
+	<![CDATA[
+	select * from user where userId=#{userId} and userPassword=#{userPassword}
+	]]>
+
+	</select>
+
+	<!-- 아이디찾기폼 -->
+	<!-- <select id="userFindId" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO"> 
+		<![CDATA[ select * from user where userEmail=#{userEmail} ]]> </select> -->
+	<!-- 비밀번호찾기폼 -->
+	<!-- <select id="userFindId" parameterType="String" resultType="com.kosta.openday.user.dto.UserDTO"> 
+		<![CDATA[ select * from user where userId=#{userId} and userEmail=#{userEmail} 
+		]]> </select> -->
+
+	<!-- 메인 클래스 신규리스트 -->
+	<!-- 대격변 후 > 평균별점이랑 찜개수 괄호 안에 채워야함 -->
+	<select id="mainNewOClassList"
+		resultType="com.kosta.openday.user.dto.CollectDTO"> 
+		<![CDATA[ 
+		SELECT 
+		 o.clsId AS clsId,
+		 o.clsLoc AS clsLoc, 
+		 o.clsPrice AS clsPrice,
+		 o.clsDiscount AS clsDiscount, 
+		 o.clsName AS clsName, 
+		 c.codName AS codName, 
+		 o.filNum AS filNum, 
+		 (평균별점) AS avgStar,
+		 (찜개수) AS heartCnt, 	
+			(SELECT COUNT(*)
+			FROM review r
+			JOIN 
+			schedule s ON r.scdNum = s.scdNum
+			WHERE s.clsId = o.clsId
+			) AS reviewCount,
+						round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice
+		FROM schedule s JOIN oclass o ON s.clsId = o.clsId
+			   JOIN code c ON o.clsCode=c.codNum 
+				WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 7 DAY AND COUNT(s.scdNum)>0
+		]]>
+	</select>
+	<!-- 대격변이전버전 -->
+	<!-- <select id="mainNewOClassList" resultType="com.kosta.openday.user.dto.CollectDTO"> 
+		<![CDATA[ SELECT o.clsId AS clsId, s.scdLoc AS scdLoc, s.scdDiscount AS scdDiscount, 
+		o.clsName AS clsName, c.codName AS codName, o.clsPrice AS clsPrice, o.clsStar 
+		AS clsStar, o.clsHeart AS clsHeart, o.filNum AS filNum, (SELECT COUNT(*) 
+		FROM review r JOIN schedule s ON r.scdNum = s.scdNum WHERE s.clsId = o.clsId 
+		) AS reviewCount, round(o.clsPrice - (o.clsPrice * (s.scdDiscount / 100))) 
+		AS finalPrice FROM schedule s JOIN oclass o ON s.clsId = o.clsId JOIN code 
+		c ON o.clsCode=c.codNum WHERE o.clsCreatedAt >= CURRENT_DATE() - INTERVAL 
+		7 DAY; ]]> </select> -->
+
+	<!-- 핫한 클래스 신규리스트 -->
+
+	<select id="mainHotOClassList"
+		resultType="com.kosta.openday.user.dto.CollectDTO"> 
+		<![CDATA[ 
+	 SELECT distinct 
+	  o.clsId 		AS clsId,
+	  o.clsName 	AS clsName,
+	  c.codName 	AS codName,
+	  o.clsPrice 	AS clsPrice,
+	  o.clsStar 	AS clsStar, 
+	  o.clsHeart 	AS clsHeart,
+	  o.filNum 		AS filNum,
+	(SELECT COUNT(*)
+		FROM review r
+		JOIN 
+		schedule s ON r.scdNum = s.scdNum
+		WHERE s.clsId = o.clsId
+	) AS reviewCount,
+	(SELECT scdLoc
+		FROM schedule s
+		WHERE s.clsId = o.clsId AND s.scdDate >= CURDATE()
+		ORDER BY s.scdDate
+		LIMIT 1) as clsLoc,
+	(SELECT scdDiscount
+		FROM schedule s
+		WHERE s.clsId = o.clsId AND s.scdDate >= CURDATE()
+		ORDER BY s.scdDate
+		LIMIT 1) as clsDiscount,
+	ROUND(clsPrice * (1 - (SELECT scdDiscount
+		FROM schedule s
+		WHERE s.clsId = o.clsId AND s.scdDate >= CURDATE()
+		ORDER BY s.scdDate
+		LIMIT 1)/100)) AS finalPrice
+	FROM schedule s
+	JOIN oclass o ON s.clsId = o.clsId
+	JOIN code c ON o.clsCode=c.codNum
+	WHERE o.clsId IN (
+		SELECT clsId
+		FROM schedule
+		WHERE
+		  scdDate >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)
+		GROUP BY clsId
+		HAVING COUNT(*) >= 2)	]]>
+	</select>
+
+
+
+	<!-- 개설요청참여 participation -->
+
+	<select id="selectParticipationList"
+		resultType="com.kosta.openday.user.dto.ParticipationDTO">
+	<![CDATA[
+		SELECT * FROM participation
+	]]>
+	</select>
+
+	<!-- 글번호로 userID 가져오기 -->
+	<select id="selectParticipationByUserId" parameterType="Integer"
+		resultType="String">
+	<![CDATA[
+		SELECT userId FROM participation WHERE reqId = #{reqId} 
+	]]>
+	</select>
+
+	<!-- 클래스개설요청 request -->
+
+	<select id="selectRequestById" parameterType="Integer"
+		resultType="com.kosta.openday.user.dto.RequestDTO">
+  <![CDATA[
+    SELECT * FROM request WHERE reqId = #{reqId}
+  ]]>
+	</select>
+
+	<insert id="insertRequest"
+		parameterType="com.kosta.openday.user.dto.RequestDTO">
+  <![CDATA[
+    INSERT INTO request 
+    VALUES (nextval(request_seq), #{reqTitle}, #{reqContent}, #{reqDate}, #{reqViews}, #{reqUpdateDate}, #{userId}, #{reqLocation})
+  ]]>
+	</insert>
+
+	<!-- 참여자와 글번호 삽입 -->
+	<insert id="insertParticipation" parameterType="java.util.Map">
+	<![CDATA[
+		INSERT INTO participation (userId, reqId) VALUES (#{userId}, #{reqId})
+	]]>
+	</insert>
+
+
+
+
+
+	<update id="updateRequest"
+		parameterType="com.kosta.openday.user.dto.RequestDTO">
+  <![CDATA[
+    UPDATE request SET
+    reqTitle = #{reqTitle},
+    reqContent = #{reqContent},
+    reqDate = #{reqDate},
+    reqViews = #{reqViews},
+    requestUpdateDate = #{reqUpdateDate},
+    userId = #{userId},
+    reqLocation = #{reqLocation}
+    WHERE reqId = #{reqId}
+  ]]>
+	</update>
+
+	<delete id="deleteRequestById" parameterType="Integer">
+  <![CDATA[
+    DELETE FROM request WHERE reqId = #{requestId}
+  ]]>
+	</delete>
+
+
+
+	<!-- 댓글 reply -->
+	<!-- <select id="selectReplyByKey" parameterType="int" resultType="ReplyDTO"> 
+		<![CDATA[ SELECT * FROM reply WHERE key = #{replyKey} ]]> </select> <insert 
+		id="insertReply" parameterType="ReplyDTO"> <![CDATA[ INSERT INTO reply (key, 
+		re_title, re_content, re_date, req_id) VALUES (#{replyKey}, #{replyTitle}, 
+		#{replyContent}, #{replyDate}, #{requestId}) ]]> </insert> <update id="updateReply" 
+		parameterType="ReplyDTO"> <![CDATA[ UPDATE reply SET re_title = #{replyTitle}, 
+		re_content = #{replyContent}, re_date = #{replyDate}, req_id = #{requestId} 
+		WHERE key = #{replyKey} ]]> </update> -->
+
+	<select id="selectHeartList" parameterType="String"
+		resultType="com.kosta.openday.user.dto.HeartDTO">
+	<![CDATA[
+		select * from heart where userId=#{userId}
+		]]>
+	</select>
+
+	<select id="selectHeartOClass" parameterType="Integer"
+		resultType="com.kosta.openday.user.dto.CollectDTO">
+	<![CDATA[
+		SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
+		o.filNum AS filNum,
+		IFNULL((
+			SELECT COUNT(r.rvStar)
+			FROM oclass o
+			JOIN SCHEDULE s ON o.clsId = s.clsId
+			LEFT JOIN review r ON s.scdNum = r.scdNum
+			GROUP BY o.clsId
+			HAVING o.clsId = #{clsId}
+		), 0) AS reviewCount,
+		(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice,
+		IFNULL((
+			SELECT ROUND(AVG(IFNULL(r.rvStar, 0)), 1)
+			FROM review r
+			JOIN schedule s ON s.scdNum = r.scdNum
+			JOIN oclass o ON o.clsId = s.clsId
+			WHERE o.clsId = #{clsId}
+		), 0) AS avgStar,
+		IFNULL((
+			SELECT COUNT(*)
+			FROM heart h
+			WHERE h.clsId = o.clsId
+		), 0) AS heartCnt
+		FROM oclass o
+		JOIN code c ON o.clsCode=c.codNum
+		WHERE o.clsId = #{clsId};
+	     			
+				]]>
+	</select>
+	
+	
+	<!-- 찜하기 -->
+	<insert id="insertHeart" parameterType="java.util.Map">
+	<![CDATA[
+		insert into heart values(#{userId},#{clsId})
+	]]>
+	</insert>
+	
+	<!-- 찜삭제 -->
+	<delete id="deleteHeart" parameterType="java.util.Map">
+	<![CDATA[
+		delete from heart where userId=#{userId} and clsId=#{clsId}	
+	]]>
+	</delete>
+	
+	<!-- 예약/결제/환불내역 조회  -->
+	<select id = "selectReserveList" parameterType="java.util.Map" resultType="com.kosta.openday.user.dto.MyRecordDTO">
+	<![CDATA[
+		SELECT apNum, apPstatus, apAstatus, apFinalAmount, scdNum,
+		    (SELECT s.scdDate
+		    FROM schedule s
+		    WHERE a.scdNum = s.scdNum) AS scdDate,
+		    (SELECT o.clsName
+		    FROM oclass o JOIN schedule s ON o.clsId = s.clsId
+		    WHERE s.scdNum = a.scdNum) AS clsName,
+		    (SELECT o.filNum
+		    FROM oclass o JOIN schedule s ON o.clsId = s.clsId
+		    WHERE s.scdNum = a.scdNum) AS filNum
+		FROM application_payment a
+		WHERE userId = #{userId} AND apAstatus = #{text}
+	]]>
+	</select>
+	
+	<!-- 팔로우목록조회 -->
+	<select id="selectFollowList" parameterType="String" resultType="com.kosta.openday.teacher.dto.TeacherFollowDTO">
+	<![CDATA[
+		select * from teacher_follow where userId = #{userId}
+	]]>
+	</select>
+	
+	<!-- 강사채널목록조회 -->
+	<select id="selectChannelOne" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
+	<![CDATA[
+		select * from teacher_channel where tchcNum = #{tchcNum}
+	]]>
+	</select>
+	
+	<!-- 회원탈퇴 -->
+	<update id="updateUserDelete" parameterType="String">
+	<![CDATA[
+		update user set userActivation = '0' where userId=#{id}
+	]]>
+	</update>
+
 </mapper>

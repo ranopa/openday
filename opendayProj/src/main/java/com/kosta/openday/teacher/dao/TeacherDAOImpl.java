@@ -49,4 +49,6 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public List<TeacherScheduleDTO> tcScheduleList(HashMap<String, Object> map) throws Exception {
 		return sqlSession.selectList("mapper.teacherClass.tcScheduleList", map);
 	}
+	
+	
 }

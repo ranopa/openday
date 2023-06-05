@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kosta.openday.adm.dao.CodeDAO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
+import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.teacher.dto.ClassScdUserDTO;
 import com.kosta.openday.teacher.dto.ClassScheduleDTO;
@@ -24,10 +24,13 @@ import com.kosta.openday.user.dto.OClassDTO;
 
 @Controller
 public class TeacherController {
+	
 	@Autowired
 	private TeacherService teacherService;
+
 	@Autowired
 	private CodeService codeService;
+
 	@RequestMapping("/tcHome")
 	public ModelAndView tcHome() {
 		ModelAndView mav = new ModelAndView("teacher/tcHome");
@@ -43,11 +46,12 @@ public class TeacherController {
 		}
 		return mav;
 	}
+	
 	@RequestMapping("/tcClass")
 	public ModelAndView tcClass(@RequestParam(value="pageNum",defaultValue = "1")int pageNum, @RequestParam HashMap<String, Object> map) {
 		ModelAndView mav = new ModelAndView("teacher/tcClass");
 		try {
-			List<CodeDAO> codeList = codeService.codeList("클래스상태");
+			List<CodeDTO> codeList = codeService.codeList("클래스상태");
 			mav.addObject("codeList",codeList);
 			
 			map.put("userId", "hong");
