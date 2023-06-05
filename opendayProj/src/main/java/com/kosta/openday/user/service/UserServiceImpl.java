@@ -119,23 +119,37 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchOClass(String scdLoc, Date startDate, Date endDate, String clsCode)
+	public List<CollectDTO> getSearchOClass( String clsLoc, Date startDate, Date endDate, String clsCode, String keyword)
 			throws Exception {
 		Map<String, Object> param = new HashMap<>();
-		param.put("scdLoc", scdLoc);
+		
+		param.put("clsLoc", clsLoc);
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
-		param.put("clsCode", clsCode); 
+
+		param.put("clsCode", clsCode);
+		param.put("keyword", keyword);
+		
+		System.out.println(param);
+
+	
+
 		// TODO Auto-generated method stub
 		return userDAO.selectOClassList(param);
 
 	}
 
 	@Override
-	public List<CollectDTO> getMainNewOClassList() throws Exception {
-		return userDAO.selectmainNewOClassList();
-
+	public List<CollectDTO> getSearchInputOClass(String keyword)
+			throws Exception {
+	return userDAO.selectInputOClassList(keyword);
 	}
+	
+	  @Override public List<CollectDTO> getMainNewOClassList() throws Exception {
+	  return userDAO.selectmainNewOClassList();
+	  
+	  }
+	 
 
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
@@ -151,11 +165,12 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-
-	public List<CollectDTO> getMainHotOClassList() throws Exception {
-		return userDAO.selectmainHotOClassList();
-	}
+	
+	  @Override
+	  
+	  public List<CollectDTO> getMainHotOClassList() throws Exception { return
+	  userDAO.selectmainHotOClassList(); }
+	 
 
 	public List<CollectDTO> HeartOClass(String userId) throws Exception {  
 		List<CollectDTO> list = new ArrayList<>();  
@@ -169,6 +184,14 @@ public class UserServiceImpl implements UserService {
 				
 	}
 	
+
+	/*
+	 * public void func() { String preference = "C1_C3_C15"; String[] code =
+	 * preference.split("_");
+	 * 
+	 * }
+	 */
+
 	//찜취소
 	@Override
 	public void removeHeart(Integer clsId, String userId) throws Exception {
@@ -209,7 +232,15 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
+
 	@Override
+
+	public UserDTO getUserFindId(String userEmail) throws Exception {
+		// TODO Auto-generated method stub
+	
+		return userDAO.selectUserFindId(userEmail);
+	}
+
 	public List<TeacherChannelDTO> getTchcList(String userId) throws Exception {
 		List<TeacherFollowDTO> followList = userDAO.selectFollowList(userId);
 		List<TeacherChannelDTO> channelList = new ArrayList<>();
@@ -220,4 +251,17 @@ public class UserServiceImpl implements UserService {
 	}
 	
 
+
+	@Override
+	public UserDTO getUserFindPw(String userId, String userEmail) throws Exception {
+		 Map<String, Object> param = new HashMap<>();
+		 param.put("userId", userId);
+		 param.put("userEmail",userEmail);
+		 return userDAO.selectUserFindPw(param);
+	}
+	@Override
+	public void getResetPassword(UserDTO user) throws Exception {
+		 userDAO.resetPassword(user);
+		
+	}
 }

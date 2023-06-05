@@ -76,13 +76,30 @@ public class HeaderController {
 		return "redirect:/";
 	}
 
+	//강사 클래스 검색
+	@RequestMapping(value = "/searchinput", method = RequestMethod.GET)
+	public ModelAndView getSearchInputOClass(@RequestParam("keyword") String keyword) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CollectDTO> searchInputList = userService.getSearchInputOClass(keyword);
+			mav.addObject("searchInputList",searchInputList);
+			 mav.setViewName("toSubClassList");
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return mav;
+	}
+	
+	
 	// 검색필터
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView getSearchOClass(@RequestParam("scdLoc") String scdLoc,
+	public ModelAndView getSearchOClass(@RequestParam("clsLoc") String clsLoc,
 			@RequestParam(value="startDate", required = false, defaultValue = "all") String startDate,
 			@RequestParam(value="endDate", required = false, defaultValue = "all") String endDate,
-			@RequestParam("clsCode") String clsCode) {
-		
+			@RequestParam("clsCode") String clsCode, 
+			@RequestParam("keyword") String keyword) {
+
 		Date sqlStartDate = null;
 		Date sqlEndDate = null;
 		if(!startDate.equals("all")) {
@@ -99,12 +116,16 @@ public class HeaderController {
 		
 		ModelAndView mav = new ModelAndView();
 		try {
-			  List<CollectDTO> collectList = userService.getSearchOClass(scdLoc,
-					  sqlStartDate, sqlEndDate, clsCode); 
+			  List<CollectDTO> collectList = userService.getSearchOClass(clsLoc,
+					  sqlStartDate, sqlEndDate, clsCode, keyword); 
 			 // System.out.println(collectList.size());
 			  mav.addObject("collectList", collectList);
-			//  List<CodeDTO> codeList= codeService.categoryInfoList();
-			//  mav.addObject("codeList", codeList);
+			 
+			  
+			 mav.addObject("clsCode", clsCode);
+			  
+			 // List<CodeDTO> codeList= codeService.categoryInfoList();
+			  //mav.addObject("codeList", codeList);
 			  mav.setViewName("subClassList");
 			
 		} catch (Exception e) {

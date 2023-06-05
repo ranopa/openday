@@ -22,37 +22,22 @@
 				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
 			
+			
 			<div class="findUserIdInfo">
-					<p>${findId.userName}님의 아이디는 ${findId.userId} 입니다.</p>
+					<p>${findPw.userName}님의 비밀번호는 ${findPw.userPassword} 입니다.</p>
 				</div>
-			
-			<%-- 아이디 찾기 결과 --%>
-			<%-- <c:if test="${requestScope.menu eq 'id'}">
-				<div class="findUserIdInfo">
-					<p>${findId.userName}님의아이디는${findId.userId}입니다.</p>
-				</div>
-			</c:if>
+			<%-- 
+			 <c:choose>
+        <c:when test="${not empty user}">
+            <p>비밀번호가 성공적으로 변경되었습니다.</p>
+            <p>새 비밀번호는 이메일로 전송되었습니다.</p>
+        </c:when>
+        <c:otherwise>
+            <p>비밀번호 변경에 실패하였습니다.</p>
+            <p>유효한 이메일 주소를 입력하였는지 확인해주세요.</p>
+        </c:otherwise>
+    </c:choose>
  --%>
-			<%-- 비밀번호 찾기 결과 --%>
-				
-	<%-- 		<c:if test="${requestScope.menu eq 'pw'}">
-		
-				<div class="findUserIdInfo">
-					<p>${findId.userName}님의비밀번호는${userPassword}입니다.</p>
-				</div>
-			</c:if>
-
- --%>			<!-- 아래부분 낫이퀄로 바꾸기 -->
-	<%-- 		<c:if test="${requestScope.menu eq 'pw'}">
-				<div class="findUserIdInfo">
-				
-					<p>해당하는 정보를 찾을 수 없습니다.</p>
-			
-			
-				</div>
-			</c:if>
- --%>
-
 			<div class="idConfirmBtns">
 				<button type="button" class="loginBtn">로그인하기</button>
 				<button type="button" class="findPwBtn">비밀번호찾기</button>

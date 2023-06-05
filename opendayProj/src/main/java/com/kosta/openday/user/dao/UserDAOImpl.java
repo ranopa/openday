@@ -44,16 +44,18 @@ public class UserDAOImpl implements UserDAO {
 	public UserDTO selectUserInfo(String id) throws Exception {
 		return sqlSession.selectOne("mapper.user.selectUser", id);
 	}
-
-	@Override
-	public List<CollectDTO> selectmainNewOClassList() throws Exception {
-		return sqlSession.selectList("mapper.user.mainNewOClassList");
-
-	}
+	
+	  @Override public List<CollectDTO> selectmainNewOClassList() throws Exception
+	  { return sqlSession.selectList("mapper.user.mainNewOClassList");
+	  
+	  }
+	 
 
 	@Override
 	public List<CollectDTO> selectOClassList(Map<String, Object> param) throws Exception {
 		// TODO Auto-generated method stub
+		
+	
 		return sqlSession.selectList("mapper.search.searchSelect", param);
 	}
 
@@ -78,13 +80,36 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("mapper.user.selectHeartOClass",scdNum);
 		
 	}
+	@Override
+	public List<CollectDTO> selectInputOClassList(String keyword) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.search.searchInputSelect");
+	}
 
 	
-
 	@Override
-	public List<CollectDTO> selectmainHotOClassList() throws Exception {
-		return sqlSession.selectList("mapper.user.mainHotOClassList");
+	public UserDTO selectUserFindId(String userEmail) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.user.userFindId", userEmail);
 	}
+	
+	@Override
+	public UserDTO selectUserFindPw(Map<String, Object> param) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.user.userFindPw", param);
+	}
+	
+	@Override
+	public void resetPassword(UserDTO user) throws Exception {
+		sqlSession.selectOne("mapper.user.userFindPw",  user);
+		
+	}
+	
+	
+	  @Override public List<CollectDTO> selectmainHotOClassList() throws Exception
+	  { return sqlSession.selectList("mapper.user.mainHotOClassList"); }
+	 
+
 
 	@Override
 	public void deleteHeart(Map<String, Object> map) throws Exception {
@@ -118,4 +143,5 @@ public class UserDAOImpl implements UserDAO {
 	
 
 	
+
 }
