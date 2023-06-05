@@ -26,25 +26,34 @@
 
 			<p class="subTitle">${codName}쿠킹</p>
 			<hr>
-			
-<div class="tchcsList">
-			<div class="tBox">
-			<c:forEach items="${searchInputList}" var="list" varStatus="loop">
-				<c:if test="${loop.index < 4}">
-				<div class="tFil">${list.tFilNum}프로필</div>
-				<span>${list.tchcNickname}닉네임</span>
+
+			<div class="tchcsList">
+
+				<c:set var="previousNickname" value="" />
+
+				<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+					<c:if test="${loop.index < 5}">
+						<c:if test="${list.tchcNickname != previousNickname}">
+							<div class="tBox">
+								<div class="tFil">${list.tFilNum}</div>
+								<span>${list.tchcNickname}</span>
+							</div>
+							<c:set var="previousNickname" value="${list.tchcNickname}" />
+						</c:if>
 					</c:if>
-						</c:forEach>
-			</div>			
-			</div>
-			<div class="subOption">
-				<label class="checkLabel"><input type="checkbox" name="color" value="blue">인기순</label>
-				<label class="checkLabel"><input type="checkbox" name="color" value="blue">등록일순</label>
-				<label class="checkLabel"><input type="checkbox" name="color" value="blue">가격높은순</label>
-				<label class="checkLabel"><input type="checkbox" name="color" value="blue">가격낮은순</label>
+				</c:forEach>
 
 			</div>
-			
+			<div class="subOption">
+				<label class="checkLabel"><input type="checkbox"
+					name="color" value="blue">인기순</label> <label class="checkLabel"><input
+					type="checkbox" name="color" value="blue">등록일순</label> <label
+					class="checkLabel"><input type="checkbox" name="color"
+					value="blue">가격높은순</label> <label class="checkLabel"><input
+					type="checkbox" name="color" value="blue">가격낮은순</label>
+
+			</div>
+
 			<div class="oclassListWrapper">
 				<!-- <div class="arrowIcon">
 					<div class="material-symbols-outlined">
@@ -87,7 +96,7 @@
 				</div>
  --%>
 
-<div class="oclassTable">
+				<div class="oclassTable">
 					<ul class="tableTr">
 						<c:forEach items="${searchInputList}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
@@ -122,7 +131,7 @@
 					</ul>
 				</div>
 
-			<%-- 	<div class="newList">
+				<%-- 	<div class="newList">
 
 					<c:forEach items="${collectList}" var="list">
 						<table class="oclassTable">

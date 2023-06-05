@@ -140,9 +140,9 @@
 					</c:choose>
 
 
-					<li class="topButtonColor tB topButtonsMargin"><a href=#><span>강사신청</span></a></li>
+					<li class="topButtonColor tB topButtonsMargin"><a href="classOpen"><span>강사신청</span></a></li>
 
-					<li class="topButton tB topButtonsMargin"><a href=#><span>클래스요청</span></a></li>
+					<li class="topButton tB topButtonsMargin"><a href="requestlist"><span>클래스요청</span></a></li>
 
 					<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
 
@@ -154,14 +154,13 @@
 				<h1 class="logo">
 					<a href="./">열어데이</a>
 				</h1>
-				<form type="text" action="search" method="get" class="searchAndMenu">
+				<form type="text" action="searchinput" method="get" class="searchAndMenu">
 					<div class="searchAndIcon">
 
 						<input class="search" type="text" onclick="dis()"
-							placeholder="검색어 입력" name="keyword"> <a href="subClassList"><span
-							type="submit" class="material-symbols-outlined searchIcon" >search</span></a>
+							placeholder="검색어 입력" name="keyword"><input type="submit" class="searchIcon" value="검색">
 					</div>
-				<!-- </form> -->
+				</form>
 
 
 
@@ -207,7 +206,7 @@
 		</div>
 		<hr class="hr2">
 	</div>
-	<!-- <form type="text" action="search" method="post"> -->
+	<form type="text" action="search" method="get">
 		<div id='dis' class="searchFilterWrapper">
 
 			<div class="contentWrapper">
@@ -296,7 +295,7 @@
 				</div> -->
 
 				<div class="filterUl3">
-					<p class="filterUlTitle">요일</p>
+					<p class="filterUlTitle">기간</p>
 
 					<p>
 						<input type="date" id="datepicker1" name="startDate"

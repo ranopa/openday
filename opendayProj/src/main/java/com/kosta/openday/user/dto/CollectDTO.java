@@ -10,6 +10,8 @@ public class CollectDTO {
 	private String codName; // 코드(카테고리)이름
 	private Integer filNum; // 클래스이미지  
 	
+	private String keyword;
+	
 	private Double avgStar; // 별점
 	private Integer heartCnt; // 하트수 
 	private Integer reviewCount; //후기수  
@@ -18,13 +20,16 @@ public class CollectDTO {
 	private String tchcNickname;
 	private Integer tFilNum;
 	
+	private Integer codNum;
+	
 	public CollectDTO() {}
 
+
 	
-	
+
 	public CollectDTO(Integer clsId, String clsLoc, Integer clsPrice, Integer clsDiscount, String clsName,
-			String codName, Integer filNum, Double avgStar, Integer heartCnt, Integer reviewCount, Integer finalPrice,
-			String tchcNickname, Integer tFilNum) {
+			String codName, Integer filNum, String keyword, Double avgStar, Integer heartCnt, Integer reviewCount,
+			Integer finalPrice, String tchcNickname, Integer tFilNum, Integer codNum) {
 		super();
 		this.clsId = clsId;
 		this.clsLoc = clsLoc;
@@ -33,14 +38,41 @@ public class CollectDTO {
 		this.clsName = clsName;
 		this.codName = codName;
 		this.filNum = filNum;
+		this.keyword = keyword;
 		this.avgStar = avgStar;
 		this.heartCnt = heartCnt;
 		this.reviewCount = reviewCount;
 		this.finalPrice = finalPrice;
 		this.tchcNickname = tchcNickname;
 		this.tFilNum = tFilNum;
+		this.codNum = codNum;
 	}
 
+
+
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+
+
+
+	public Integer getCodNum() {
+		return codNum;
+	}
+
+
+	public void setCodNum(Integer codNum) {
+		this.codNum = codNum;
+	}
 
 
 	public Integer getClsId() {
@@ -149,20 +181,18 @@ public class CollectDTO {
 
 
 
+
 	@Override
 	public String toString() {
 		return "CollectDTO [clsId=" + clsId + ", clsLoc=" + clsLoc + ", clsPrice=" + clsPrice + ", clsDiscount="
-				+ clsDiscount + ", clsName=" + clsName + ", codName=" + codName + ", filNum=" + filNum + ", avgStar="
-				+ avgStar + ", heartCnt=" + heartCnt + ", reviewCount=" + reviewCount + ", finalPrice=" + finalPrice
-				+ ", tchcNickname=" + tchcNickname + ", tFilNum=" + tFilNum + "]";
+				+ clsDiscount + ", clsName=" + clsName + ", codName=" + codName + ", filNum=" + filNum + ", keyword="
+				+ keyword + ", avgStar=" + avgStar + ", heartCnt=" + heartCnt + ", reviewCount=" + reviewCount
+				+ ", finalPrice=" + finalPrice + ", tchcNickname=" + tchcNickname + ", tFilNum=" + tFilNum + ", codNum="
+				+ codNum + "]";
 	}
-	
+
 
 	
 
-	
-	
-
-	
 
 }

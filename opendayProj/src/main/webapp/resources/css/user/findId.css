@@ -177,6 +177,10 @@ button {
 	margin-top: 80px;
 	
 }
+.findIdBtns input{
+	cursor: pointer;
+}
+
 
 .findMenu a{
 	color: #8A8A8A;

@@ -86,7 +86,9 @@ body {
 .findMenu a{
 	color: #8A8A8A;
 }
-
+.findPwBtns input{
+	cursor: pointer;
+}
 
 .findPwBtns {
 	width: 420px;

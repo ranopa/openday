@@ -30,23 +30,7 @@
 
 			<hr>
 			
-<div class="tchcsList">
-			
-			<c:set var="previousNickname" value="" />
 
-<c:forEach items="${collectList}" var="list" varStatus="loop">
-	<c:if test="${loop.index < 5}">
-	<c:if test="${list.tchcNickname != previousNickname}">
-			<div class="tBox">
-				<div class="tFil">${list.tFilNum}</div>
-				<span>${list.tchcNickname}</span>
-			</div>
-			<c:set var="previousNickname" value="${list.tchcNickname}" />
-		</c:if>
-	</c:if>
-</c:forEach>
-			
-			</div>
 			<div class="subOption">
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">인기순</label>
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">등록일순</label>
@@ -102,6 +86,7 @@
     <c:if test="${loop.index % 4 == 0}">
       <ul class="tableTr">
     </c:if>
+    <a href="classinfo/${list.clsId}">
     <li class="oclass">
       <div class="ssum-img">${list.filNum}</div>
       <div class="txt-box">
@@ -123,6 +108,7 @@
         </div>
       </div>
     </li>
+    </a>
     <c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
       </ul>
     </c:if>

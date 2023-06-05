@@ -25,7 +25,7 @@
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
 			
-			<p class="subTitle" value="${code.codNum}">${code.codName}</p>
+			<p class="subTitle">${hcn}</p>
 			
 
 			<hr>
@@ -87,6 +87,7 @@
     <c:if test="${loop.index % 4 == 0}">
       <ul class="tableTr">
     </c:if>
+    <a href="classinfo/${list.clsId}">
     <li class="oclass">
       <div class="ssum-img">${list.filNum}</div>
       <div class="txt-box">
@@ -108,6 +109,7 @@
         </div>
       </div>
     </li>
+    </a>
     <c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
       </ul>
     </c:if>
