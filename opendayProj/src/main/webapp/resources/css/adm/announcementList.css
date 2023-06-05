@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.atag {
+	text-decoration: none;
+	color: rgba(160, 160, 160, 1);
+	margin-right: 25px;
+	font-size: 22px;
+}
+
+#noticeWrapper {
+	width:1280px; margin:0 auto;
+	padding-top: 60px;
+}
+
+table {
+    width: 100%;
+    border-top: 1px thin #444444;
+    border-collapse: collapse;
+  }
+ th, td {
+    border-bottom: 1px thin;
+    padding: 10px;
+  }
+ th {
+ 	background: #F4F4F4;
+ } 
+.smallth {
+	width: 10%; 
+}
+#largeth {
+	width: 60%; 
+}
+
+.highlighted {
+      color: blue;
+    }

@@ -19,17 +19,28 @@
 		     #{clsCurri})
 	     ]]>
 	</insert>
-
-
-	<!-- 파일 넣는거 만들다고 그만둠 -->
-
-
-	<!-- <insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
+			
+	<!-- 클래스 불러오기  -->
+	<select id="selectOclass" parameterType="Integer" resultType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
-			insert into file values (#{num},#{directory},#{name},#{classification},#{originalname},#{savename},#{size},#{newdate})	
-		]]>		
-	</insert> -->
+			select * from oclass where clsId=#{clsId}
+		]]> 		
+	</select>
 	
+	<!-- 파일업로드(썸네일)  -->
+	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+		insert into file values(#{filNum},#{filClassification},#{filOriginalname},#{filSavename},#{filSize},CURDATE())
+		]]> 
+	</insert>
+	
+	<!-- 파일 불러오기  -->
+	<select id="selectFile" parameterType="Integer" resultType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+			select * from file where filNum=#{filNum}
+		]]> 		
+	</select>
+
 	
 	<!-- =========== 클래스 oclass =============================================== -->
 	<!-- 1. 클래스 번호로 클래스 조회 -->

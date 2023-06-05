@@ -15,4 +15,13 @@ public class AdmController {
 		return "admin/admMain"; 
 	}
 
+	@RequestMapping(value = "/admInquiry",method=RequestMethod.GET)
+	public String inquiry() {
+		return "announceinquiry/admInquiry";
+	}
+	
+	@RequestMapping(value = "/admInquiryList",method=RequestMethod.GET)
+	public String inquiryHistoryList() {
+		return "announceinquiry/admInquiryList";
+	}
 }
