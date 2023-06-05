@@ -74,17 +74,15 @@
 							<col width="20%" />
 							<col width="10%" />
 							<col width="10%" />
-							<col width="10%" />
-							<col width="7%" />
-							<col width="7%" />
+							<col width="4%" />
+							<col width="4%" />
 						</colgroup>
 						<thead>
 							<tr>
 								<th>ㅁ</th>
 								<th>개설 상태</th>
 								<th>클래스명</th>
-								<th>검수상태</th>
-								<th>현재 상태</th>
+								<th>수강료</th>
 								<th>개설일</th>
 								<th></th>
 								<th></th>
@@ -96,8 +94,7 @@
 									<td>${tcCllist.clsId }</td>
 									<td>${tcCllist.clsStatus }</td>
 									<td>${tcCllist.clsName }</td>
-									<td>검토중</td>
-									<td>오픈</td>
+									<td>${tcCllist.clsPrice }원</td>
 									<td>${tcCllist.clsCreatedAt }</td>
 									<td><button>취소</button></td>
 									<td><button>폐강</button></td>

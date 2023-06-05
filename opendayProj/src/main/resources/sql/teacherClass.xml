@@ -55,9 +55,9 @@
 		SELECT s.scdNum as scdNum, 
 				o.clsName as clsName,
 				CONCAT(DATE_FORMAT(s.scdDate,'%Y-%m-%e')," ",TIME_FORMAT(s.scdTime,'%H:%i')) as scdTime,
-				<!-- s.scdLoc as scdLoc,  -->
-				<!-- s.scdPersonnel as scdPersonnel,  -->
-				<!-- FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice, -->
+				s.scdPlaceDetail as scdPlaceDetail, 
+				s.scdMinPersonnel as scdMinPersonnel, 
+				s.scdMaxPersonnel as scdMaxPersonnel, 
 				s.scdUploadDate as scdUploadDate
 		FROM schedule s, oclass o
 		where s.clsId = o.clsId
@@ -80,7 +80,7 @@
 		<include refid="search"></include>
 	</select>
 
-	<!-- 클래스 일정 유저 리스트 -->
+	<!-- 클래스 유저 리스트 -->
 	<select id="tcClassUserList" parameterType="Integer"
 		resultType="com.kosta.openday.teacher.dto.ClassScdUserDTO">
 		SELECT a.apNum AS apNum,
