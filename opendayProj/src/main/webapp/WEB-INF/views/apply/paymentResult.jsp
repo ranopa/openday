@@ -45,7 +45,7 @@
 			</div>
 
 			<div class="box">
-				<a href="">메인으로</a>
+				<a href="${contextPath}/">메인으로</a>
 			</div>
 		</div>
 	</div>

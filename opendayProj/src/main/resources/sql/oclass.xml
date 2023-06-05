@@ -10,7 +10,7 @@
 		 <![CDATA[
 		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCareer,clsCurri)
 		     values(
-		     nextval(oclass_seq),
+		     nextval('oclass_seq'),
 		     #{clsName},
 		     #{clsCode},
 		     #{clsDescription},
@@ -61,7 +61,7 @@
 		parameterType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
 			insert into oclass values(
-				nextval(oclass_seq),
+				nextval('oclass_seq'),
 				#{clsName},
 				#{clsCode},
 				#{clsDiscription},
@@ -105,7 +105,7 @@
 		<![CDATA[ 
 			insert into schedule 
 			values(
-				nextval(schedule_seq),
+				nextval('schedule_seq'),
 				#{scdDate},
 				#{scdTime}, 
 				#{scdPlace},

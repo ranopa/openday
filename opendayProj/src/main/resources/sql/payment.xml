@@ -37,7 +37,7 @@
 		parameterType="com.kosta.openday.user.dto.ApplicationPaymentDTO">
 		<![CDATA[
 		insert into application_payment
-		values (nextval(application_payment_seq),
+		values (nextval(application_payment_seq)',
 				#{apPstatus}, #{apAstatus},
 				#{apMethod}, #{apFinalAmount}, CURDATE(),
 				#{scdNum}, #{userId})
