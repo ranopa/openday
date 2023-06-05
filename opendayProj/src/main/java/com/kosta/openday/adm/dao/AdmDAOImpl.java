@@ -1,6 +1,7 @@
 package com.kosta.openday.adm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,10 @@ public class AdmDAOImpl implements AdmDAO {
 	@Override
 	public List<OClassDTO> selectOClassByStatus(String status) throws Exception {
 		return sqlSession.selectList("mapper.adm.selectOClassByStatus", status);
+	}
+
+	@Override
+	public void updateOClassStatus(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.adm.updateOClassStatus", map);
 	}
 }
