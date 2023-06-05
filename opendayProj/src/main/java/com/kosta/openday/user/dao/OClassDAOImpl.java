@@ -114,8 +114,8 @@ public class OClassDAOImpl implements OClassDAO {
 
 	}
 	@Override
-	public ApplyClassResponseDTO selectClassAndScheduleForApplyClass(Integer clsId) throws Exception {
-		return sqlSession.selectOne("mapper.oclass.selectClassAndScheduleForApplyClass", clsId);
+	public ApplyClassResponseDTO selectOClassAndScheduleForApplyClass(Integer clsId) throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectOClassAndScheduleForApplyClass", clsId);
 	}
 	
 
