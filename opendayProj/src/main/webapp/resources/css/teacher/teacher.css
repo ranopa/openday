@@ -10,14 +10,28 @@ button {
 	border: none;
 	background-color: #5A2ECE;
 	color: white;
-	width: 50px;
 	border-radius: 5px;
 }
-input[type="submit"], input[type="reset"], input[type="button"]{
+
+table {
+	text-align: center;
+	border-collapse: separate;
+	border-spacing: 0 10px;
+	width: 100%;
+}
+
+input[type="submit"], input[type="reset"], input[type="button"] {
 	border: none;
 	width: 50px;
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+input, select {
+	width: 150px;
+	height: 30px;
+	box-sizing: border-box;
+	margin: 10px 0;
 }
 
 a {
@@ -39,6 +53,7 @@ a {
 	border: 1px solid;
 	flex-basis: 25%;
 	text-align: center;
+	box-sizing: border-box;
 }
 
 .tc-logo {
@@ -76,6 +91,7 @@ a {
 .tc-container {
 	border: 1px solid;
 	flex-basis: 75%;
+	box-sizing: border-box;
 }
 
 .tc-nav {
@@ -111,11 +127,13 @@ a {
 .tc-nav-item>li:first-child>a {
 	color: white;
 }
+
 .tc-nav-list>a {
 	display: inline-block;
-    width: 150px;
-    height: 30px;
+	width: 150px;
+	height: 30px;
 }
+
 .tc-maintop {
 	display: flex;
 	flex-basis: (n)%;
@@ -212,12 +230,18 @@ a {
 	padding: 20px;
 }
 
+.tc-classFilter>form>input[type="date"] {
+	margin-right: 20px;
+}
+
 .tc-classBoard {
 	margin: 20px 0;
 }
+
 .tc-classBoardList {
-	width: 100%;	
+	width: 100%;
 }
+
 .tc-classBoardList th {
 	font-size: 15px;
 }
@@ -241,4 +265,66 @@ a {
 	border: none;
 	color: white;
 	background-color: #5A2ECE;
+}
+
+.tc-openStatus {
+	float: left;
+	width: 150px;
+	margin-right: 20px;
+}
+
+.tc-keywordInput {
+	width: 500px;
+}
+
+.tc-paging {
+	text-align: center;
+}
+
+.filterBtn {
+	width: 70px;
+	height: 30px;
+}
+
+.filterBtn:first-of-type {
+	margin-left: 20px;
+}
+
+.tc-classSchedule {
+	border: 1px solid;
+	height: 400px;
+}
+
+.tc-classScheduleUser {
+	border: 1px solid;
+	height: 400px;
+}
+
+.tc-classTable>tbody>tr:hover {
+	background-color: gainsboro;
+	cursor: pointer;
+}
+
+.tc-paging {
+	margin: 10px 0;
+}
+
+.fc .fc-view-harness {
+	height: 750px !important;
+}
+
+.tc-CalenderList>h2 {
+	margin: 20px 10px;
+}
+.fc-header-toolbar {
+	margin: 5px 10px;
+}
+.fc-header-toolbar>.fc-toolbar-chunk:first-child {
+	width: 350px;
+}
+.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+	min-height: 4em !important;
+}
+.fc-toolbar-title {
+	float: left;
 }

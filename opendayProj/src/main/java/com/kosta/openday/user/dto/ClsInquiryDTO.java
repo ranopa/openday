@@ -1,24 +1,22 @@
 package com.kosta.openday.user.dto;
 
-import java.sql.Date;
-
 //클래스문의 T
 public class ClsInquiryDTO {
 	private Integer ciNum; // 문의번호
 	private String ciTitle;// 제목
 	private String ciContent; // 내용
 	private Boolean ciStatus; // 상태
-	private Date ciDate; // 작성일
+	private String ciDate; // 작성일
 	private Boolean ciSecret; // 비밀글
-	private Date ciUpdateDate; // 수정일
+	private String ciUpdateDate; // 수정일
 	private String userId; // 아이디
-	private Integer scdNum; // 클래스번호
+	private Integer clsId; // 클래스번호
 
 	public ClsInquiryDTO() {
 	}
 
-	public ClsInquiryDTO(Integer ciNum, String ciTitle, String ciContent, Boolean ciStatus, Date ciDate,
-			Boolean ciSecret, Date ciUpdateDate, String userId, Integer scdNum) {
+	public ClsInquiryDTO(Integer ciNum, String ciTitle, String ciContent, Boolean ciStatus, String ciDate,
+			Boolean ciSecret, String ciUpdateDate, String userId, Integer clsId) {
 		super();
 		this.ciNum = ciNum;
 		this.ciTitle = ciTitle;
@@ -28,7 +26,7 @@ public class ClsInquiryDTO {
 		this.ciSecret = ciSecret;
 		this.ciUpdateDate = ciUpdateDate;
 		this.userId = userId;
-		this.scdNum = scdNum;
+		this.clsId = clsId;
 	}
 
 	public Integer getCiNum() {
@@ -63,11 +61,11 @@ public class ClsInquiryDTO {
 		this.ciStatus = ciStatus;
 	}
 
-	public Date getCiDate() {
+	public String getCiDate() {
 		return ciDate;
 	}
 
-	public void setCiDate(Date ciDate) {
+	public void setCiDate(String ciDate) {
 		this.ciDate = ciDate;
 	}
 
@@ -79,11 +77,11 @@ public class ClsInquiryDTO {
 		this.ciSecret = ciSecret;
 	}
 
-	public Date getCiUpdateDate() {
+	public String getCiUpdateDate() {
 		return ciUpdateDate;
 	}
 
-	public void setCiUpdateDate(Date ciUpdateDate) {
+	public void setCiUpdateDate(String ciUpdateDate) {
 		this.ciUpdateDate = ciUpdateDate;
 	}
 
@@ -95,13 +93,15 @@ public class ClsInquiryDTO {
 		this.userId = userId;
 	}
 
-	public Integer getScdNum() {
-		return scdNum;
+	public Integer getClsId() {
+		return clsId;
 	}
 
-	public void setScdNum(Integer scdNum) {
-		this.scdNum = scdNum;
+	public void setClsId(Integer clsId) {
+		this.clsId = clsId;
 	}
 
+
+	
 
 }

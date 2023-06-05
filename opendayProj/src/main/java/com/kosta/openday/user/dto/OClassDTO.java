@@ -23,6 +23,7 @@ public class OClassDTO {
 
 	private String userId; // 아이디
 	private Integer reqId; // 글번호
+	private Integer clsInquiry; // 문의 갯수
 	
 
 	public OClassDTO() {
@@ -202,5 +203,17 @@ public class OClassDTO {
 	
 	
 
+
+	public Integer getClsInquiry() {
+		return clsInquiry;
+	}
+
+	public void setClsInquiry(Integer clsInquiry) {
+		this.clsInquiry = clsInquiry;
+	}
+	
+	
+	
+	
 
 }

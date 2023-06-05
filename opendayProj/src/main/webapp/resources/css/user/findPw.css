@@ -83,6 +83,10 @@
 body {
 	font-family: 'NanumBarunGothic';
 }
+.findMenu a{
+	color: #8A8A8A;
+}
+
 
 .findPwBtns {
 	width: 420px;

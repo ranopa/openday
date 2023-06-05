@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,13 +46,14 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
-<!--
-datepicer 버튼 롤오버 시 손가락 모양 표시-->.ui-datepicker-trigger {
+/* datepicer 버튼 롤오버 시 손가락 모양 표시 */
+.ui-datepicker-trigger {
 	cursor: pointer;
 }
 
-<!--
-datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
+
+/* datepicer input 롤오버 시 손가락 모양 표시 */
+.hasDatepicker {
 	cursor: pointer;
 }
 </style>
@@ -92,17 +94,31 @@ datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
  			for(let code of data){
 				$('#category').append(`<option value="\${code.codNum}">\${code.codName}</option>`);
  				if(idx%5==0) tablestr+='<tr>';
- 				tablestr += `<td><button type="button" class="mainCategoryButton"
-					name="categoryButton" value="\${code.codNum}">\${code.codName}</button></td>`;
+
+ 				tablestr += `<td><button type="button" class="categoryButton"
+					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=${code.codNum}'">\${code.codName}</button></td>`;
+
  				if(idx%5==0) tablestr+='<\tr>';	
  				idx++;
  			} 
 			
  			$('#categoryTable').append(tablestr);
+
+ 			
+ 			$(".categoryButton").click(function(e) {
+ 				$(".categoryButton").removeClass("selected");
+ 				console.log($(this).val());
+ 				$(this).addClass("selected");
+ 				
+ 			
+ 		
+ 			})
+
 		}
 	})
 
 </script>
+
 </head>
 <body>
 
@@ -124,11 +140,11 @@ datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
 					</c:choose>
 
 
-					<li class="topButtonColor tB topButtonsMargin"><a href=#>강사신청</a></li>
+					<li class="topButtonColor tB topButtonsMargin"><a href=#><span>강사신청</span></a></li>
 
-					<li class="topButton tB topButtonsMargin"><a href=#>클래스요청</a></li>
+					<li class="topButton tB topButtonsMargin"><a href=#><span>클래스요청</span></a></li>
 
-					<li class="topButton tB tBLast topButtonsMargin"><a href=#>고객센터</a></li>
+					<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
 
 				</ul>
 		</div>
@@ -136,16 +152,16 @@ datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
 		<div class="contentWrapper">
 			<div class="logoMenu">
 				<h1 class="logo">
-					<a href="#">열어데이</a>
+					<a href="./">열어데이</a>
 				</h1>
-				<form type="text" action="search" method="get">
+				<form type="text" action="search" method="get" class="searchAndMenu">
 					<div class="searchAndIcon">
 
 						<input class="search" type="text" onclick="dis()"
-							placeholder="검색어 입력"> <a href="subClassList"><span
-							class="material-symbols-outlined searchIcon">search</span></a>
+							placeholder="검색어 입력" name="keyword"> <a href="subClassList"><span
+							type="submit" class="material-symbols-outlined searchIcon" >search</span></a>
 					</div>
-				</form>
+				<!-- </form> -->
 
 
 
@@ -191,28 +207,63 @@ datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
 		</div>
 		<hr class="hr2">
 	</div>
-	<form type="text" action="search" method="get">
+	<!-- <form type="text" action="search" method="post"> -->
 		<div id='dis' class="searchFilterWrapper">
 
 			<div class="contentWrapper">
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
-
-					<input type="radio" name="scdLoc" value="all" checked />전체 <input
-						type="radio" name="scdLoc" value="서울" />서울 <input type="radio"
-						name="scdLoc" value="경기" />경기 <input type="radio" name="scdLoc"
-						value="인천" />인천 <input type="radio" name="scdLoc" value="강원" />강원
-					<input type="radio" name="scdLoc" value="충북" />충북 <input
-						type="radio" name="scdLoc" value="충남" />충남 <input type="radio"
-						name="scdLoc" value="세종" />세종 <input type="radio" name="scdLoc"
-						value="대전" />대전 <input type="radio" name="scdLoc" value="광주" />광주
-					<input type="radio" name="scdLoc" value="전북" />전북 <input
-						type="radio" name="scdLoc" value="경북" />경북 <input type="radio"
-						name="scdLoc" value="대구" />대구 <input type="radio" name="scdLoc"
-						value="제주" />제주 <input type="radio" name="scdLoc" value="전남" />전남
-					<input type="radio" name="scdLoc" value="경남/울산" />경남/울산 <input
-						type="radio" name="scdLoc" value="부산" />부산
-
+  					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="all" checked />전체 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="서울" />서울 
+					</label>
+						<label class="radio-label">
+						<input type="radio" name="clsLoc" value="경기" />경기 
+					</label>
+					<label class="radio-label">
+						<input type="radio" name="clsLoc" value="인천" />인천 
+					</label>
+					<label class="radio-label">
+						<input type="radio" name="clsLoc" value="강원" />강원
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="충북" />충북 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="충남" />충남 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="세종" />세종 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="대전" />대전 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="광주" />광주
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="전북" />전북 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="경북" />경북 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="대구" />대구 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="제주" />제주 
+					</label>
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="전남" />전남
+					</label>					
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="경남/울산" />경남/울산 
+					</label>					
+					<label class="radio-label">
+					<input type="radio" name="clsLoc" value="부산" />부산
+					</label>					
 
 				</div>
 
@@ -257,7 +308,7 @@ datepicer input 롤오버 시 손가락 모양 표시-->.hasDatepicker {
 				<div class="searchFilterButton">
 					<button type="button" class="refresh" onclick="resetFilters()">
 						<span class="material-symbols-outlined"> refresh </span>
-						<p>초기화</p>
+						초기화
 					</button>
 					<input type="submit" class="searchButton" value="검색">
 

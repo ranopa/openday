@@ -22,12 +22,29 @@ public interface UserDAO {
 	public UserDTO selectUserInfo(String id) throws Exception; 
 	public UserDTO selectUserLogin(Map<String,String> map) throws Exception;
 	List<CollectDTO> selectOClassList(Map<String, Object> param) throws Exception;
-	public List<CollectDTO> selectmainNewOClassList() throws Exception;
-	public List<CollectDTO> selectmainHotOClassList() throws Exception;
+
+	 public List<CollectDTO> selectmainNewOClassList() throws Exception; 
 	
-	
+		 public List<CollectDTO> selectmainHotOClassList() throws Exception; 
+		 public List<CollectDTO> selectMainRequestOClassList() throws Exception;
+		 public List<CollectDTO> selectMainMenuOClassList(String codNum) throws Exception;
+		 
+		 public List<CollectDTO> selectMainDeadlineOClassList() throws Exception;
+		 
+	 public List<CollectDTO> selectInputOClassList(String keyword) throws Exception;
 	public void updateUser(Map<String, Object> map)throws Exception;
 	public void updateUserDelete(String id) throws Exception;
+
+
+	public UserDTO selectUserFindId(String userEmail) throws Exception; 
+	public UserDTO selectUserFindPw(Map<String, Object> param) throws Exception; 
+	 void resetPassword(UserDTO user) throws Exception;
+
+	 
+	 
+	 
+
+
 	
 	public void deleteHeart(Map<String,Object> map)throws Exception;
 	public void insertHeart(Map<String,Object> map)throws Exception;
@@ -36,4 +53,5 @@ public interface UserDAO {
 	
 	public List<TeacherFollowDTO> selectFollowList(String userId) throws Exception; 
 	public TeacherChannelDTO selectTchcChannel(Integer tchcNum) throws Exception;
+
 }

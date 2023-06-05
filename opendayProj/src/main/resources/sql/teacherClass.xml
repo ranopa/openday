@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.teacherClass">
+
+	<!-- 클래스 리스트 -->
+	<select id="tcClassList" parameterType="hashmap"
+		resultType="com.kosta.openday.user.dto.OClassDTO">
+		SELECT *,(select COUNT(*) 
+				from cls_inquiry c , schedule s
+				WHERE c.scdNum = s.scdNum
+				AND s.clsId = o.clsId ) AS clsInquiry 
+		FROM oclass o
+		WHERE userId = #{userId}
+		<include refid="search"></include>
+		limit #{endRow} offset #{startRow}
+	</select>
+
+	<!-- 클래스 리스트 카운트 -->
+	<select id="tcClassListCount" parameterType="hashmap"
+		resultType="int">
+		select NVL(count(*),0) cnt from oclass
+		WHERE userId = #{userId}
+		<include refid="search"></include>
+	</select>
+
+	<!-- 클래스 필터 검색 -->
+	<sql id="search">
+		<if test="prevDate!=null and prevDate!=''">
+		<![CDATA[ 
+			and clsCreatedAt >=  #{prevDate}
+		]]>
+		</if>
+		<if test="nextDate!=null and nextDate!=''">
+		<![CDATA[ 
+			and clsCreatedAt  <=  #{nextDate}
+		]]>
+		</if>
+		<if test="clsStatus!=null and clsStatus!=''">
+		 <![CDATA[
+			AND clsStatus = #{clsStatus}
+			]]>
+		</if>
+		<if test="keyword!=null and keyword!=''">
+		 <![CDATA[
+			and clsName like CONCAT("%",#{keyword},"%") 
+			]]>
+		</if>
+	</sql>
+
+	<!-- 클래스 일정 리스트 -->
+	<select id="tcClassScheduleList" parameterType="hashmap"
+		resultType="com.kosta.openday.teacher.dto.ClassScheduleDTO">
+		SELECT s.scdNum as scdNum, 
+				o.clsName as clsName,
+				CONCAT(DATE_FORMAT(s.scdDate,'%Y-%m-%e')," ",TIME_FORMAT(s.scdTime,'%H:%i')) as scdTime,
+				<!-- s.scdLoc as scdLoc,  -->
+				<!-- s.scdPersonnel as scdPersonnel,  -->
+				<!-- FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice, -->
+				s.scdUploadDate as scdUploadDate
+		FROM schedule s, oclass o
+		where s.clsId = o.clsId
+		and userId = #{userId}
+		order by s.scdUploadDate desc
+		limit #{endRow} offset #{startRow}
+	</select>
+	<!-- 클래스 일정 리스트 카운트 -->
+	<select id="tcClassScheduleListCount" parameterType="hashmap"
+		resultType="int">
+		select NVL(count(*),0) cnt from (SELECT s.scdNum as scdNum, 
+										CONCAT(s.scdDate," ",s.scdTime) as scdTime,
+										<!-- s.scdLoc as scdLoc,  -->
+										<!-- s.scdPersonnel as scdPersonnel, --> 
+										<!-- FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice, -->
+										s.scdUploadDate as scdUploadDate
+								FROM schedule s, oclass o
+								where s.clsId = o.clsId
+								and userId = #{userId}) AS x
+		<include refid="search"></include>
+	</select>
+
+	<!-- 클래스 일정 유저 리스트 -->
+	<select id="tcClassUserList" parameterType="Integer"
+		resultType="com.kosta.openday.teacher.dto.ClassScdUserDTO">
+		SELECT a.apNum AS apNum,
+				u.userName AS userName,
+				u.userTel AS userTel,
+				u.userAddress AS userAddress,
+				u.userEmail AS userEamil,
+				a.apDate AS apDate 
+		FROM application_payment a, user u
+		WHERE a.userId = u.userId
+		and scdNum = #{scdNum}
+	</select>
+	
+	<!-- 클래스 일정 유저 리스트 -->
+	<select id="tcClassInquiryList" parameterType="Integer"
+		resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
+		SELECT *
+		FROM cls_inquiry c, schedule s
+		WHERE c.scdNum = s.scdNum
+		AND s.clsId = #{clsId}
+		
+	</select>
+	
+	<select id="tcScheduleList"  parameterType="hashmap" resultType="com.kosta.openday.teacher.dto.TeacherScheduleDTO">
+		SELECT DISTINCT o.clsName AS clsName,
+				DATE_FORMAT(s.scdDate,'%Y-%m-%e') AS scdDate,
+				TIME_FORMAT(s.scdTime,'%H:%i') as scdTime
+		FROM oclass o, schedule s
+		WHERE o.clsId = s.clsId
+		AND userId = #{userId}
+		ORDER BY scdTime
+	</select>
+	
+</mapper>
