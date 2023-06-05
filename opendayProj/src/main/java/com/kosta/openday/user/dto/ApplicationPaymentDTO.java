@@ -8,6 +8,7 @@ public class ApplicationPaymentDTO {
 	private String apPstatus; //결제상태
 	private String apAstatus; //수강상태
 	private String apMethod; //결제방식
+
 	private Integer apFinalAmount; //최종결제금액
 	
 	// 나중에 Date -> 시,분,초까지 나오는 DateTime으로 바꿔야할듯?

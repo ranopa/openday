@@ -25,6 +25,9 @@ public class OClassServiceImpl implements OClassService {
 	@Autowired
 	private OClassDAO oClassDAO;
 	
+	@Autowired
+	private PaymentService paymentService;
+	
 	@Override
 	public OClassDTO findOne(Integer clsId) throws Exception {
 		return oClassDAO.selectOClassById(clsId);
@@ -131,8 +134,12 @@ public class OClassServiceImpl implements OClassService {
 
 	@Override
 	public ApplyClassResponseDTO getApplyClassResponse(Integer clsId) throws Exception {
-		// TODO Auto-generated method stub
-		return oClassDAO.selectClassAndScheduleForApplyClass(clsId);
+		ApplyClassResponseDTO dto = oClassDAO.selectClassAndScheduleForApplyClass(clsId);
+		Integer discountedPrice = paymentService.applyDiscount(dto.getClsPrice(), dto.getClsDiscount());
+		
+		dto.setDiscountedPrice(discountedPrice);
+		
+		return dto;
 	}
 	
 	@Override

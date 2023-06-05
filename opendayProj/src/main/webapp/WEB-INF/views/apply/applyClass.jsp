@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <c:set var="contextPath" value="<%=request.getContextPath() %>" />
 
 <c:import url="/WEB-INF/views/header.jsp" />
@@ -23,7 +25,7 @@ let availableDateTimes = [];
 	availableDateTimes.push({
 		date: "${s.scdDate}",
 		time: "${s.scdTime}",
-		timeAndPlace: "[${s.scdTime}] ${s.scdPlace} (${s.scdPlaceDetail})",
+		timeAndPlace: "[${s.scdTime}] 장소: ${s.scdPlace} (${s.scdPlaceDetail})",
 		num: "${s.scdNum}"
 	});
 </c:forEach>
@@ -117,8 +119,8 @@ $(function() {
 
 					<div class="detail-bottom">
 						<span>카테고리: ${data.codName }</span>
-						<del>${data.clsPrice}</del> ${data.clsDiscount}%
-            <span>${data.clsPrice * (1 - (data.clsDiscount/100))}
+						<del> <fmt:formatNumber value="${data.clsPrice }" /></del> ${data.clsDiscount}%
+            <span><fmt:formatNumber value="${data.discountedPrice }" /> </span>
 					</div>
 				</div>
 

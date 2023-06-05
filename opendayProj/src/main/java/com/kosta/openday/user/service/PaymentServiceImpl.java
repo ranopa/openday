@@ -20,23 +20,22 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	private OClassService oClassService;
 	
-	private Integer calculateFinalAmount(PaymentRequestDTO request) throws Exception {
+	@Override
+	public Integer calculateFinalAmount(PaymentRequestDTO request) throws Exception {
 		OClassDTO oClass = oClassService.findOne(request.getClsId());
-
-		return applyDiscount(request, oClass);
-	}
-	
-	private Integer applyDiscount(PaymentRequestDTO request, OClassDTO oClass) {
-		Double discountedPrice = 
-				(double)oClass.getClsPrice()
-				* (1 -  ((double)oClass.getClsDiscount())/100);
 		
-		return applyPoint(request, (int)Math.round(discountedPrice));
+		Integer discounted = applyDiscount(oClass.getClsPrice(), oClass.getClsDiscount());
+		return discounted - request.getPoint();
 	}
 	
-	private Integer applyPoint(PaymentRequestDTO request, Integer amount) {
-		return amount - request.getPoint();
+	@Override
+	public Integer applyDiscount(Integer baseAmount, Integer discountPercent) {
+		Double discountedPrice = 
+				(double)baseAmount * (1 - (double)discountPercent/100);
+		
+		return Math.toIntExact(Math.round(discountedPrice));
 	}
+
 	
 	@Transactional
 	@Override

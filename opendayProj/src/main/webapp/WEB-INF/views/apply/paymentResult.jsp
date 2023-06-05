@@ -29,7 +29,7 @@
 					</div>
 
 					<div class="class-location">
-						<span>장소</span> [${result.oclass.scdLoc }] ${result.schedule.scdPlace } (${result.schedule.scdPlaceDetail})
+						<span>장소</span> [${result.oClass.clsLoc }] ${result.schedule.scdPlace } (${result.schedule.scdPlaceDetail})
 					</div>
 
 				</div>
