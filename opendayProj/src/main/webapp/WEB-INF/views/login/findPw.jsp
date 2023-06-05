@@ -22,27 +22,33 @@
 				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
 			<form type="text" action="findpw" method="post">
-			<ul class="findPwContainer">
-				<li><input type="text" class="findPwPIdBox" id="findPwPIdBox"
-					name="userId" placeholder="아이디" required maxlength="15"></li>
+				<ul class="findPwContainer">
+						<li>
+							<input type="text" class="findPwPIdBox" id="findPwPIdBox"
+							name="userId" placeholder="아이디">
+						</li>
 
-				<li><input type="text" class="findPwPEmailBox"
-					id="findPwEmailBox" name="userEmail" placeholder="이메일"
-					required maxlength="15"></li>
-				<div class="AuthenticationNumberWrapper">
-				 <li><input type="text" class="AuthenticationNumberBox"
-						id="AuthenticationNumberBox" name="AuthenticationNumberBox"
-						placeholder="인증번호" required maxlength="15"> <input
-						type="button" class="AuthenticationNumber"
-						id="AuthenticationNumber" value="인증번호 전송"></li>
+						<li>
+							<input type="text" class="findPwPEmailBox"
+							id="findPwEmailBox" name="userEmail" placeholder="이메일">
+						</li>
+					<div class="AuthenticationNumberWrapper">
+						<li>
+							<input type="text" class="AuthenticationNumberBox"
+							id="AuthenticationNumberBox" name="AuthenticationNumberBox"
+							placeholder="인증번호"> 
+							<input type="button"
+							class="AuthenticationNumber" id="AuthenticationNumber"
+							value="인증번호 전송">
+						</li>
+					</div>
+				</ul>
+
+
+
+				<div class="findPwBtns">
+					<input type="submit" class="findPwBtn" value="확인">
 				</div>
-			</ul>
-			
-
-
-			<div class="findPwBtns">
-				<input type="submit" class="findPwBtn" value="확인">
-			</div>
 			</form>
 			<!-- 
 			<div class="loginBtns">

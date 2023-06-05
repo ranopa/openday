@@ -20,10 +20,9 @@
 			<form id="loginForm" action="login" method="post">
 				<ul class="loginContainer">
 					<li><input type="text" class="loginBox" id="userId"
-						name="userId" placeholder="아이디" required maxlength="15"></li>
+						name="userId" placeholder="아이디"></li>
 					<li><input type="password" class="loginBox pwBox"
-						id="userPassword" name="userPassword" placeholder="비밀번호" required
-						maxlength="15"></li>
+						id="userPassword" name="userPassword" placeholder="비밀번호" ></li>
 				</ul>
 
 				<ul class="loginPageFind">

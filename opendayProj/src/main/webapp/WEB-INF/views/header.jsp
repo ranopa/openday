@@ -51,7 +51,6 @@
 	cursor: pointer;
 }
 
-
 /* datepicer input 롤오버 시 손가락 모양 표시 */
 .hasDatepicker {
 	cursor: pointer;
@@ -140,9 +139,11 @@
 					</c:choose>
 
 
-					<li class="topButtonColor tB topButtonsMargin"><a href="classOpen"><span>강사신청</span></a></li>
+					<li class="topButtonColor tB topButtonsMargin"><a
+						href="classOpen"><span>강사신청</span></a></li>
 
-					<li class="topButton tB topButtonsMargin"><a href="requestlist"><span>클래스요청</span></a></li>
+					<li class="topButton tB topButtonsMargin"><a
+						href="requestlist"><span>클래스요청</span></a></li>
 
 					<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
 
@@ -154,11 +155,13 @@
 				<h1 class="logo">
 					<a href="./">열어데이</a>
 				</h1>
-				<form type="text" action="searchinput" method="get" class="searchAndMenu">
+				<form type="text" action="searchinput" method="get"
+					class="searchAndMenu">
 					<div class="searchAndIcon">
 
 						<input class="search" type="text" onclick="dis()"
-							placeholder="검색어 입력" name="keyword"><input type="submit" class="searchIcon" value="검색">
+							placeholder="강사닉네임/클래스명으로 검색" name="keyword"><input
+							type="submit" class="searchIcon" value="검색">
 					</div>
 				</form>
 
@@ -212,57 +215,41 @@
 			<div class="contentWrapper">
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
-  					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="all" checked />전체 
+					<label class="radio-label"> <input type="radio"
+						name="clsLoc" value="all" checked />전체
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="서울" />서울
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="경기" />경기
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="인천" />인천
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="강원" />강원
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="충북" />충북
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="충남" />충남
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="세종" />세종
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="대전" />대전
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="광주" />광주
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="전북" />전북
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="경북" />경북
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="대구" />대구
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="제주" />제주
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="전남" />전남
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="경남/울산" />경남/울산
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="부산" />부산
 					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="서울" />서울 
-					</label>
-						<label class="radio-label">
-						<input type="radio" name="clsLoc" value="경기" />경기 
-					</label>
-					<label class="radio-label">
-						<input type="radio" name="clsLoc" value="인천" />인천 
-					</label>
-					<label class="radio-label">
-						<input type="radio" name="clsLoc" value="강원" />강원
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="충북" />충북 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="충남" />충남 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="세종" />세종 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="대전" />대전 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="광주" />광주
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="전북" />전북 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="경북" />경북 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="대구" />대구 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="제주" />제주 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="전남" />전남
-					</label>					
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="경남/울산" />경남/울산 
-					</label>					
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="부산" />부산
-					</label>					
 
 				</div>
 
@@ -305,12 +292,12 @@
 				</div>
 
 				<div class="searchFilterButton">
-					<button type="button" class="refresh" onclick="resetFilters()">
-						<span class="material-symbols-outlined"> refresh </span>
-						초기화
-					</button>
-					<input type="submit" class="searchButton" value="검색">
 
+					<input type="submit" class="searchButton" value="검색">
+					<button type="button" class="refresh" onclick="closePopup()">
+						<!-- <span class="material-symbols-outlined"> refresh </span> -->
+						닫기
+					</button>
 				</div>
 			</div>
 		</div>
