@@ -1,0 +1,238 @@
+@charset "UTF-8";
+
+#cls-list button:focus, button:active {
+	outline: none;
+	box-shadow: none;
+}
+
+#cls-list {
+	width: 100vw;
+	height: 100vw;
+	background-color: rgb(240, 240, 240);
+}
+
+#cls-list .sr-container {
+	/* width: calc(1280-245)px;  */
+	width: 1035px;
+	padding: 20px;
+	margin: 0 auto;
+	margin-left: 245px;
+}
+
+#cls-list h2 {
+	font-size: 24px;
+	color: #7C4AFF;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	margin-left: 70px;
+}
+
+#cls-list .table {
+	width: 950px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+}
+
+#cls-list tr {
+	margin-bottom: 15px;
+	display: inline-block;
+	background-color: rgb(255, 255, 255);
+	border-radius: 7px;
+}
+
+#cls-list th {
+	height: 50px;
+	color: rgb(68, 59, 59);
+}
+
+#cls-list .th-color {
+	background-color: rgb(223, 223, 223);
+}
+
+#cls-list td {
+	height: 60px;
+}
+
+#cls-list .td1 {
+	width: 90px;
+}
+
+#cls-list .td2 {
+	width: 300px;
+}
+
+#cls-list .td3 {
+	width: 180px;
+}
+
+#cls-list .td4 {
+	width: 130px;
+}
+
+#cls-list .td5 {
+	width: 130px;
+}
+
+#cls-list .td6 {
+	width: 120px;
+}
+
+#cls-list .td7 {
+	width: 80px;
+}
+
+#cls-list .ellipsis {
+	text-overflow: ellipsis;
+	width: 90%;
+	margin: 0 auto;
+	color: black;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	height: 1.1em;
+}
+
+#cls-list .a-box {
+	width: 100%;
+	height: 100%;
+}
+
+#cls-list .search-box {
+	background-color: rgb(228, 228, 228);
+	width: 949.99px;
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	margin: 0 auto;
+	border-bottom: 2px solid #d1d1d1;
+}
+
+#cls-list .search1 {
+	display: flex;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+#cls-list .s-p {
+	color: black;
+	font-size: 15px;
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	width: 150px;
+}
+
+#cls-list .ip-box:focus, .ip-box:active {
+	outline: none;
+	box-shadow: none;
+	border: 1px solid #8251ff;
+}
+
+#cls-list .ip-box {
+	height: 33px;
+	width: 140px;
+	text-align: center;
+	border-radius: 7px;
+	border: 1px solid rgb(211, 211, 211);
+	transition: all 0.5s;
+}
+
+#cls-list .ipt {
+	width: 400px;
+	margin: 0 auto;
+	text-align: left;
+	padding-left: 20px;
+}
+
+#cls-list .sub-btn {
+	background-color: #7C4AFF;
+	width: 40px;
+	height: 35px;
+	margin-left: 25px;
+	border-radius: 7px;
+	border: none;
+	padding-top: 5px;
+	text-align: center;
+}
+
+#cls-list .detail-btn {
+	border: none;
+	background-color: transparent;
+}
+
+#cls-list .material-symbols-outlined {
+	color: white;
+}
+
+#cls-list .material-symbols-outlined.icon2 {
+	color: black;
+}
+
+/* 서브테이블(클래스일정) css */
+#cls-list .sub-table {
+	background-color: rgb(255, 255, 255);
+	width: 946px;
+	margin: 0 auto;
+	font-size: 14px;
+	border-radius: 0 0 7px 7px;
+}
+
+#cls-list .ul1 {
+	border-bottom: 1px solid rgb(238, 238, 238);
+	border-top: 1px solid rgb(238, 238, 238);
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#cls-list .sub-ul {
+	display: flex;
+}
+
+#cls-list .sub-table li {
+	display: flex;
+	width: 280px;
+	color: black;
+	height: 40px;
+	justify-content: center;
+	align-items: center;
+}
+
+#cls-list .sub-toggle {
+	visibility: hidden;
+	position: absolute;
+}
+
+#cls-list .sub-toggle.show {
+	animation: slideDown 0.2s ease-in-out;
+	visibility: visible;
+	position: relative;
+	top: -20px;
+}
+
+@ keyframes slideDown { 
+	0% {
+	opacity: 0;
+	transform: translateY(-30%);
+	}
+
+	100 % {
+	opacity : 1;
+	transform : translateY(0);
+	}
+}
+@ keyframes slideUp { 
+	0% {
+	opacity: 1;
+	transform: translateY(0);
+	}
+	100 % {
+	opacity : 0;
+	transform : translateY(-30%);
+	}
+}

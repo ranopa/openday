@@ -21,25 +21,28 @@ public class AdmController {
 	@Autowired
 	private OClassService oClassService;
 
-	@RequestMapping(value = "/adm/", method = RequestMethod.GET)
+	@RequestMapping(value = "/adm", method = RequestMethod.GET)
 	public String main(@RequestParam(value = "page", required = false) String page, Model model) {
 		model.addAttribute("page", page);
 		return "admin/admMain";
 	}
 
 	// 개설신청 목록 조회
-	@RequestMapping(value = "/adm/adminWatingList", method = RequestMethod.GET)
+	@RequestMapping(value = "/admwaitinglist", method = RequestMethod.GET)
 	public String watingList(Model model) {
 		String status = "승인대기";
 		try {
 			List<OClassDTO> watingOClassList = admService.findOClassByStatus(status);
 			model.addAttribute("list", watingOClassList);
+			model.addAttribute("page","admWaitingList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "admin/adminWaitingList";
+		return "admin/admMain";
 	}
+	
+	
 
 	// 개설 승낙
 	@RequestMapping(value = "/adm/adminallow", method = RequestMethod.POST)
@@ -80,5 +83,38 @@ public class AdmController {
 	public String inquiryHistoryList() {
 		return "announceinquiry/admInquiryList";
 	}
+	
+	//클래스리스트목록
+	@RequestMapping(value = "/admclasslist", method = RequestMethod.GET)
+	public String classList(Model model) { 
+		try {
+			model.addAttribute("page","admClassList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		return "admin/admMain";
+	}
+	
+	//정산대기목록
+	@RequestMapping(value = "/admsettlewaitinglist", method = RequestMethod.GET)
+	public String settleWaitingList(Model model) { 
+		try {
+			model.addAttribute("page","admSettleWaitingList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+	
+	//정산내역목록
+	@RequestMapping(value = "/amdsettlerecordlist", method = RequestMethod.GET)
+	public String settleRecordList(Model model) { 
+		try {
+			model.addAttribute("page","admSettleRecordList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
 }
