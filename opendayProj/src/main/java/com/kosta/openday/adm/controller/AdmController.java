@@ -95,6 +95,7 @@ public class AdmController {
 	@RequestMapping(value = "/admuserlist", method = RequestMethod.GET)
 	public String admUserList(Model model) { 
 		try {
+			
 			model.addAttribute("page","admUserList");
 		} catch (Exception e) {
 			e.printStackTrace();

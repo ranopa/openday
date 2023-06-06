@@ -45,4 +45,25 @@
 		]]>
 	</update>
 	
+	<select id="selectAllUserWithTeacherInfo" resultType="AdmUserViewDTO">
+		select
+			u.userId as userId,
+			u.userNickname as userNickname,
+			u.userName as userName,
+			u.userTel as userTel,
+			u.userEmail as userEmail,
+			u.userAccount as userAccount,
+			u.userJoindate as userJoindate,
+			
+			t.tchcNum, as tchcNum,
+			t.tchcNickname as tchcNickname,
+			t.tchcRegistDate
+		from 
+			user u
+		left join
+			teacher_channel.t
+		on
+			u.userId = t.userId
+	</select>
+	
 </mapper>
