@@ -172,5 +172,16 @@ public class AdmController {
 		return "admin/admMain";
 	}
 	
+	//매출확인
+	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
+	public String admSalesList(Model model) { 
+		try {
+			model.addAttribute("page","admSalesList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+	
 	
 }

@@ -10,7 +10,7 @@
   
   
   wModalBtn.addEventListener("click",()=>{
-  	console.log("cleck")
+  	console.log("click")
         if(!wModalEl.classList.contains('w-hide')){
            wModalEl.classList.add("w-hide"); 
         }

@@ -52,7 +52,7 @@
                             <a href="admsettlerecordlist" class="h-atag">
                                 <li class="s-li">정산 내역 조회</li>
                             </a>
-                            <a href="">
+                            <a href="admsaleslist">
                                 <div class="s-li-div" class="h-atag">
                                     <li class="s-li">매출 확인</li>
                                 </div>
