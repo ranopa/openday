@@ -36,20 +36,40 @@ public class AdmInquiryDTO {
 		return admNum;
 	}
 
+	public void setAdmNum(Integer admNum) {
+		this.admNum = admNum;
+	}
+
 	public String getAdmTitle() {
 		return admTitle;
+	}
+
+	public void setAdmTitle(String admTitle) {
+		this.admTitle = admTitle;
 	}
 
 	public String getAdmContent() {
 		return admContent;
 	}
 
+	public void setAdmContent(String admContent) {
+		this.admContent = admContent;
+	}
+
 	public String getAdmType() {
 		return admType;
 	}
 
+	public void setAdmType(String admType) {
+		this.admType = admType;
+	}
+
 	public Date getAdmUploadDate() {
 		return admUploadDate;
+	}
+
+	public void setAdmUploadDate(Date admUploadDate) {
+		this.admUploadDate = admUploadDate;
 	}
 
 	public String getAdmAnTitle() {
@@ -64,54 +84,34 @@ public class AdmInquiryDTO {
 		return admAnContent;
 	}
 
-	public boolean isAdmStatus() {
-		return admStatus;
-	}
-
-	public Date getAdmAnDate() {
-		return admAnDate;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setAdmNum(Integer admNum) {
-		this.admNum = admNum;
-	}
-
-	public void setAdmTitle(String admTitle) {
-		this.admTitle = admTitle;
-	}
-
-	public void setAdmContent(String admContent) {
-		this.admContent = admContent;
-	}
-
-	public void setAdmType(String admType) {
-		this.admType = admType;
-	}
-
-	public void setAdmUploadDate(Date admUploadDate) {
-		this.admUploadDate = admUploadDate;
-	}
-
 	public void setAdmAnContent(String admAnContent) {
 		this.admAnContent = admAnContent;
+	}
+
+	public boolean isAdmStatus() {
+		return admStatus;
 	}
 
 	public void setAdmStatus(boolean admStatus) {
 		this.admStatus = admStatus;
 	}
 
+	public Date getAdmAnDate() {
+		return admAnDate;
+	}
+
 	public void setAdmAnDate(Date admAnDate) {
 		this.admAnDate = admAnDate;
+	}
+
+	public String getUserId() {
+		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
-	
-	
+
+
+		
 }

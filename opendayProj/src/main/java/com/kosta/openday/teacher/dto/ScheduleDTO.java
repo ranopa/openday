@@ -12,10 +12,8 @@ public class ScheduleDTO {
 
 	private String scdPlace; //장소
 	private String scdPlaceDetail; //세부장소
-
 	private Integer scdMinPersonnel; //모집인원
 	private Integer scdMaxPersonnel; //모집인원
-	
 	private Date scdUploadDate; //등록일 
 	private String scdStatus; //강의상태 (예정/폐강/완료)
 	private Integer clsId; //클래스번호

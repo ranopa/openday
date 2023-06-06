@@ -9,7 +9,7 @@ import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO; 
-
+//test
 public interface UserDAO {
 
 	void insertUser(UserDTO user) throws Exception;

@@ -1,0 +1,234 @@
+@charset "UTF-8";
+ #settle-record {
+        width: 100vw;
+        height: 100vw;
+        background-color: rgb(240, 240, 240);
+    }
+
+    #settle-record .sr-container {
+        /* width: calc(1280-245)px;  */
+        width: 1035px;
+        padding: 20px;
+        margin: 0 auto;
+        margin-left: 245px;
+    }
+
+    #settle-record h2 {
+        font-size: 24px;
+        color: #7C4AFF;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        margin-left: 70px;
+    }
+
+    #settle-record .table {
+        width: 950px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    #settle-record tr {
+        margin-bottom: 15px;
+        display: inline-block;
+        background-color: rgb(255, 255, 255);
+        border-radius: 7px;
+    }
+
+    #settle-record th {
+        height: 50px;
+        color: rgb(68, 59, 59);
+        padding-right: 14px;
+    }
+
+    #settle-record .th-color {
+        background-color: rgb(223, 223, 223);
+    }
+
+    #settle-record td {
+        height: 60px; 
+    }
+
+    #settle-record .td1 {
+        width: 100px;
+    }
+
+    #settle-record .td2 {
+        width: 450px;
+    }
+
+    #settle-record .td3 {
+        width: 150px;
+    }
+
+    #settle-record .td4 {
+        width: 150px;
+    }
+
+    #settle-record .td5 {
+        width: 150px;
+    }
+
+    #settle-record .td6 {
+        width: 130px;
+        padding-right: 5px;
+    }
+
+    #settle-record .ellipsis {
+        text-overflow: ellipsis;
+        width: 90%;
+        margin: 0 auto;
+        color: black;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        height: 1.1em;
+    }
+
+    #settle-record .a-box {
+        width: 100%;
+        height: 100%;
+    }
+
+    #settle-record .search-box {
+        background-color: rgb(228, 228, 228);
+        width: 949.99px;
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0 auto;
+        border-bottom: 2px solid #d1d1d1;
+    }
+
+    #settle-record .search1 {
+        display: flex;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+
+    #settle-record .s-p {
+        color: black;
+        font-size: 15px;
+        margin-left: 50px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        width: 150px;
+    }
+
+    #settle-record .ip-box:focus,
+    .ip-box:active {
+        outline: none;
+        box-shadow: none;
+        border: 1px solid #8251ff;
+
+    }
+
+    #settle-record .ip-box {
+        height: 33px;
+        width: 140px;
+        text-align: center;
+        border-radius: 7px;
+        border: 1px solid rgb(211, 211, 211);
+        transition: all 0.5s;
+    }
+
+    #settle-record .ipt {
+        width: 400px;
+        margin: 0 auto;
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    /*           
+        #settle-record .icon{  
+            background-color: #7C4AFF;
+            width: 120px; 
+            color: white; 
+            text-align: center; 
+            margin-left: 50px;
+            border-radius: 7px; 
+            display: flex;
+        } */
+
+    
+    #settle-record .sub-btn {
+        background-color: #7C4AFF;
+        width: 40px;
+        height: 35px;
+        margin-left: 25px;
+        border-radius: 7px;
+        border: none;
+        padding-top: 5px;
+        text-align: center;
+    }
+    #settle-record .material-symbols-outlined {
+        color: white;  
+    }
+
+
+    /* 데이트피커 css */
+
+    .ui-datepicker {
+        background-color: #ffffff;
+        border-radius: 7px;
+        padding: 5px;
+    }
+
+    .ui-datepicker-header {
+        background-color: #ffffff;
+        padding-bottom: 5px;
+
+    }
+
+    .ui-datepicker-prev,
+    .ui-datepicker-next {
+        background-color: #ffffff !important;
+        color: #ffffff !important;
+
+    }
+
+    .ui-datepicker-calendar {
+        margin: 0 auto !important;
+        padding: 5px !important;
+    }
+
+    .ui-datepicker-week-end {
+        color: rgb(170, 106, 255);
+    }
+
+    .ui-datepicker-current-day {
+        background-color: #cbcbcb;
+        border-radius: 50% !important;
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .ui-datepicker-calendar td {
+        text-align: center;
+    }
+
+    .ui-datepicker-calendar td a {
+        border-radius: 50%;
+        border: none !important;
+        background-color: transparent !important;
+        width: 30px !important;
+        height: 30px !important;
+        /* width: 30px !important;
+  height: 30px; */
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        /* 수직 정렬 */
+        justify-content: center;
+        /* 수평 정렬 */
+    }
+
+    .ui-datepicker-calendar td a:hover {
+        background-color: #7C4AFF !important;
+        color: white;
+    }

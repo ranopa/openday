@@ -11,6 +11,7 @@ public class OClassDTO {
 
 	private Integer clsPrice; // 클래스 수강료
 	private String clsCurri;// 커리큘럼
+
 	private String clsCareer; // 강사 커리어
 	private String clsStatus; // 상태 ("승인","승인대기","승인거절")
 	
@@ -42,6 +43,7 @@ public class OClassDTO {
 		this.clsDiscount = clsDiscount;
 		this.clsPrice = clsPrice;
 		this.clsCurri = clsCurri;
+
 		this.clsCareer = clsCareer;
 		this.clsStatus = clsStatus;
 		this.clsCreatedAt = clsCreatedAt;
@@ -92,26 +94,6 @@ public class OClassDTO {
 	}
 
 
-	public String getClsLoc() {
-		return clsLoc;
-	}
-
-
-	public void setClsLoc(String clsLoc) {
-		this.clsLoc = clsLoc;
-	}
-
-
-	public Integer getClsDiscount() {
-		return clsDiscount;
-	}
-
-
-	public void setClsDiscount(Integer clsDiscount) {
-		this.clsDiscount = clsDiscount;
-	}
-
-
 	public Integer getClsPrice() {
 		return clsPrice;
 	}
@@ -149,6 +131,26 @@ public class OClassDTO {
 
 	public void setClsStatus(String clsStatus) {
 		this.clsStatus = clsStatus;
+	}
+
+
+	public String getClsLoc() {
+		return clsLoc;
+	}
+
+
+	public void setClsLoc(String clsLoc) {
+		this.clsLoc = clsLoc;
+	}
+
+
+	public Integer getClsDiscount() {
+		return clsDiscount;
+	}
+
+
+	public void setClsDiscount(Integer clsDiscount) {
+		this.clsDiscount = clsDiscount;
 	}
 
 
@@ -200,20 +202,16 @@ public class OClassDTO {
 	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
-	
-	
 
 
 	public Integer getClsInquiry() {
 		return clsInquiry;
 	}
 
+
 	public void setClsInquiry(Integer clsInquiry) {
 		this.clsInquiry = clsInquiry;
 	}
-	
-	
-	
-	
 
+	
 }

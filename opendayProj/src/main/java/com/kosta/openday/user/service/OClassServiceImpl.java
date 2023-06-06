@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dao.OClassDAO;
@@ -134,7 +135,7 @@ public class OClassServiceImpl implements OClassService {
 
 	@Override
 	public ApplyClassResponseDTO getApplyClassResponse(Integer clsId) throws Exception {
-		ApplyClassResponseDTO dto = oClassDAO.selectClassAndScheduleForApplyClass(clsId);
+		ApplyClassResponseDTO dto = oClassDAO.selectOClassAndScheduleForApplyClass(clsId);
 		Integer discountedPrice = paymentService.applyDiscount(dto.getClsPrice(), dto.getClsDiscount());
 		
 		dto.setDiscountedPrice(discountedPrice);
@@ -181,6 +182,11 @@ public class OClassServiceImpl implements OClassService {
 		}
 		
 		return oClassDAO.selectHeartByStdNumAndUser(param);
+	}
+
+	@Override
+	public List<OClassAndScheduleDTO> findClassAndSchedules() throws Exception {
+		return oClassDAO.selectOClassAndSchedules();
 	}
 
 }
