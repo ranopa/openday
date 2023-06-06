@@ -75,6 +75,7 @@ public class AdmController {
 		return "admin/adminWatingList";
 	}
 	
+	//개설신청 디테일
 	@RequestMapping(value="/adm/adminwaitingdetail")
 	public String watingDetail(@RequestParam Integer clsId, Model model) {
 		try {
@@ -87,38 +88,32 @@ public class AdmController {
 		return "admin/adminWatingDetail";
 	}
 	
-	@RequestMapping(value="/adm/adminclasslist")
-	public String classlist(Model model) {
+	
+
+	
+	//유저리스트
+	@RequestMapping(value = "/admuserlist", method = RequestMethod.GET)
+	public String admUserList(Model model) { 
 		try {
-			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
-			 model.addAttribute("list", list);
-			
+			model.addAttribute("page","admUserList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/adminClassList";
+
+		return "admin/admMain";
 	}
 	
-
-	@RequestMapping(value = "/admInquiry", method = RequestMethod.GET)
-	public String inquiry() {
-		return "announceinquiry/admInquiry";
-	}
-
-	@RequestMapping(value = "/admInquiryList", method = RequestMethod.GET)
-	public String inquiryHistoryList() {
-		return "announceinquiry/admInquiryList";
-	}
-	
-	//클래스리스트목록
+	//클래스리스트
 	@RequestMapping(value = "/admclasslist", method = RequestMethod.GET)
 	public String classList(Model model) { 
 		try {
+//			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
+//			 model.addAttribute("list", list);
 			model.addAttribute("page","admClassList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return "admin/admMain";
 	}
 	
@@ -134,7 +129,7 @@ public class AdmController {
 	}
 	
 	//정산내역목록
-	@RequestMapping(value = "/amdsettlerecordlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/admsettlerecordlist", method = RequestMethod.GET)
 	public String settleRecordList(Model model) { 
 		try {
 			model.addAttribute("page","admSettleRecordList");
@@ -143,4 +138,17 @@ public class AdmController {
 		} 
 		return "admin/admMain";
 	}
+	
+	//유저문의목록
+	@RequestMapping(value = "/adminquirylist", method = RequestMethod.GET)
+	public String admInquiryList(Model model) { 
+		try {
+			model.addAttribute("page","admInquiryList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+	
+	
 }

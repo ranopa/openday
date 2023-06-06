@@ -9,7 +9,7 @@
                     } else {
                         hiddenUl.classList.add('show');
 
-                    }
+                    } 
                 });
             });
         };

@@ -1,37 +1,17 @@
 @charset "UTF-8";
-@keyframes slideDown { 
-	0% {
-	opacity: 0;
-	transform: translateY(-30%);
-	}
 
-	100 % {
-	opacity : 1;
-	transform : translateY(0);
-	}
-}
-@keyframes slideUp { 
-	0% {
-	opacity: 1;
-	transform: translateY(0);
-	}
-	100 % {
-	opacity : 0;
-	transform : translateY(-30%);
-	}
-}
-#cls-list button:focus, button:active {
+#user-list button:focus, button:active {
 	outline: none;
 	box-shadow: none;
 }
 
-#cls-list {
+#user-list {
 	width: 100vw;
 	height: 100vw;
 	background-color: rgb(240, 240, 240);
 }
 
-#cls-list .sr-container {
+#user-list .sr-container {
 	/* width: calc(1280-245)px;  */
 	width: 1035px;
 	padding: 20px;
@@ -39,7 +19,7 @@
 	margin-left: 245px;
 }
 
-#cls-list h2 {
+#user-list h2 {
 	font-size: 24px;
 	color: #7C4AFF;
 	margin-top: 100px;
@@ -47,62 +27,64 @@
 	margin-left: 70px;
 }
 
-#cls-list .table {
+#user-list .table {
 	width: 950px;
 	margin: 0 auto;
 	text-align: center;
 	font-size: 14px;
 }
 
-#cls-list tr {
+#user-list tr {
 	margin-bottom: 15px;
 	display: inline-block;
 	background-color: rgb(255, 255, 255);
 	border-radius: 7px;
+	width: 950px;
 }
 
-#cls-list th {
+#user-list th {
 	height: 50px;
 	color: rgb(68, 59, 59);
+	width: 950px;
 }
 
-#cls-list .th-color {
+#user-list .th-color {
 	background-color: rgb(223, 223, 223);
 }
 
-#cls-list td {
+#user-list td {
 	height: 60px;
 }
 
-#cls-list .td1 {
-	width: 90px;
+#user-list .td1 {
+	width: 100px;
 }
 
-#cls-list .td2 {
-	width: 300px;
+#user-list .td2 {
+	width: 200px;
 }
 
-#cls-list .td3 {
-	width: 180px;
+#user-list .td3 {
+	width: 250px;
 }
 
-#cls-list .td4 {
-	width: 130px;
+#user-list .td4 {
+	width: 280px;
 }
 
-#cls-list .td5 {
-	width: 130px;
+#user-list .td5 {
+	width: 250px;
 }
 
-#cls-list .td6 {
-	width: 120px;
+#user-list .td6 {
+	width: 200px;
 }
 
-#cls-list .td7 {
-	width: 80px;
+#user-list .td7 {
+	width: 100px;
 }
 
-#cls-list .ellipsis {
+#user-list .ellipsis {
 	text-overflow: ellipsis;
 	width: 90%;
 	margin: 0 auto;
@@ -115,12 +97,12 @@
 	height: 1.1em;
 }
 
-#cls-list .a-box {
+#user-list .a-box {
 	width: 100%;
 	height: 100%;
 }
 
-#cls-list .search-box {
+#user-list .search-box {
 	background-color: rgb(228, 228, 228);
 	width: 949.99px;
 	height: 120px;
@@ -132,28 +114,28 @@
 	border-bottom: 2px solid #d1d1d1;
 }
 
-#cls-list .search1 {
+#user-list .search1 {
 	display: flex;
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
 
-#cls-list .s-p {
+#user-list .s-p {
 	color: black;
 	font-size: 15px;
 	margin-left: 50px;
 	margin-top: 10px;
 	margin-bottom: 5px;
-	width: 150px;
+	width: 105px;
 }
 
-#cls-list .ip-box:focus, .ip-box:active {
+#user-list .ip-box:focus, .ip-box:active {
 	outline: none;
 	box-shadow: none;
 	border: 1px solid #8251ff;
 }
 
-#cls-list .ip-box {
+#user-list .ip-box {
 	height: 33px;
 	width: 140px;
 	text-align: center;
@@ -162,14 +144,14 @@
 	transition: all 0.5s;
 }
 
-#cls-list .ipt {
+#user-list .ipt {
 	width: 400px;
 	margin: 0 auto;
 	text-align: left;
 	padding-left: 20px;
 }
 
-#cls-list .sub-btn {
+#user-list .sub-btn {
 	background-color: #7C4AFF;
 	width: 40px;
 	height: 35px;
@@ -180,21 +162,21 @@
 	text-align: center;
 }
 
-#cls-list .detail-btn {
+#user-list .detail-btn {
 	border: none;
 	background-color: transparent;
 }
 
-#cls-list .material-symbols-outlined {
+#user-list .material-symbols-outlined {
 	color: white;
 }
 
-#cls-list .material-symbols-outlined.icon2 {
+#user-list .material-symbols-outlined.icon2 {
 	color: black;
 }
 
 /* 서브테이블(클래스일정) css */
-#cls-list .sub-table {
+#user-list .sub-table {
 	background-color: rgb(255, 255, 255);
 	width: 946px;
 	margin: 0 auto;
@@ -202,7 +184,7 @@
 	border-radius: 0 0 7px 7px;
 }
 
-#cls-list .ul1 {
+#user-list .ul1 {
 	border-bottom: 1px solid rgb(238, 238, 238);
 	border-top: 1px solid rgb(238, 238, 238);
 	font-weight: bold;
@@ -210,11 +192,11 @@
 	margin-bottom: 5px;
 }
 
-#cls-list .sub-ul {
+#user-list .sub-ul {
 	display: flex;
 }
 
-#cls-list .sub-table li {
+#user-list .sub-table li {
 	display: flex;
 	width: 280px;
 	color: black;
@@ -223,15 +205,93 @@
 	align-items: center;
 }
 
-#cls-list .sub-toggle {
+#user-list .sub-toggle {
 	visibility: hidden;
 	position: absolute;
 }
 
-#cls-list .sub-toggle.show {
+#user-list .sub-toggle.show {
 	animation: slideDown 0.2s ease-in-out;
 	visibility: visible;
 	position: relative;
 	top: -20px;
 }
 
+@
+keyframes slideDown { 0% {
+	opacity: 0;
+	transform: translateY(-30%);
+}
+
+100
+%
+{
+opacity
+:
+1;
+transform
+:
+translateY(
+0
+);
+}
+}
+@
+keyframes slideUp { 0% {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+100
+%
+{
+opacity
+:
+0;
+transform
+:
+translateY(
+-30%
+);
+}
+}
+#user-list .host-badge {
+	font-weight: 900;
+	height: 15px;
+	display: inline-flex;
+	margin-right: 7px;
+	border-radius: 5px;
+	background-color: rgb(255, 217, 0);
+	width: 15px;
+	font-size: 14;
+	color: #7C4AFF;
+	align-items: center;
+	justify-content: center;
+	padding: 2px;
+	padding-top: 4px;
+}
+
+#user-list .tu-btn {
+	width: 70px;
+	text-align: center;
+	background-color: #d4d4d4;
+	border: none;
+	color: #ffffff;
+	border-radius: 5px;
+	margin-right: 10px;
+}
+
+#user-list .tu-both-btn {
+	margin-left: 40px;
+	width: 60px;
+}
+
+#user-list .tu-btn:hover {
+	color: #ffffff;
+	background-color: #7C4AFF;
+}
+
+#user-list .tu-btn.purple {
+	color: #ffffff;
+	background-color: #7C4AFF;
+}

@@ -1,5 +1,6 @@
 @charset "UTF-8";
     
+           
         #waiting {
             width: 100vw;
             height: 100vw;
@@ -24,13 +25,13 @@
             width:900px;
             margin: 0 auto;
             text-align: center; 
+            border-collapse: separate;
+         border-spacing: 0px 20px;
             font-size: 14px;  
         } 
-        #waiting tr{   
-            margin-bottom: 15px;
-            display: inline-block; 
-            background-color: rgb(255, 255, 255);
-            border-radius: 7px;      
+        #waiting tr{    
+            background-color: rgb(255, 255, 255);    
+          
         }
         #waiting th{  
             height: 50px; 
@@ -39,24 +40,37 @@
         #waiting .th-color{
             background-color: rgb(223, 223, 223);
         }
-      
+        #waiting td:first-child{
+        border-radius: 7px 0px 0px 7px ; 
+    }
+    #waiting td:last-child{
+        border-radius: 0px 7px 7px 0px ; 
+    }
+    #waiting th:first-child{
+        border-radius: 7px 0px 0px 7px ; 
+    }
+     #waiting th:last-child{
+        border-radius: 0px 7px 7px 0px ; 
+    }
+
         #waiting td{ 
             height: 60px;   
         } 
-        #waiting .td1{
-            width: 100px;
+        #waiting .td1{ 
+            width: 100px;   
         }
         #waiting .td2{
             width: 500px;   
         }
         #waiting .td3{
-            width: 250px;
+            width: 300px;   
+            
         }
-        #waiting .td4{
-            width: 150px;
+        #waiting .td4{ 
+            width: 200px;   
         }
-        #waiting .td5{
-            width: 200px;
+        #waiting .td5{ 
+            width: 200px;   
         }
         #waiting .ellipsis{
             text-overflow: ellipsis;
@@ -77,4 +91,5 @@
         #waiting .a-box:hover{
             text-decoration: underline;
         }
+        
         

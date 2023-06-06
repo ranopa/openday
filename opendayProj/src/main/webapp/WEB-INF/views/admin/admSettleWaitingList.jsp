@@ -19,7 +19,7 @@
                     <tr>
                         <td class="td1" >41</td>
                         <td class="td2"><p class="ellipsis">성빈의베이킹쿠킹오만거다하는엄청난클래스입니다킹오만거다하는엄청난</p></td>
-                        <td class="td3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ttjdj121</td>
+                        <td class="td3">ttjdj121</td>
                         <td class="td4">1,000,000</td>
                         <td class="td5">2023-05-07</td>
                         <th class="td6"><button id="set-btn" class="s-btn">정산하기</button></th> 
