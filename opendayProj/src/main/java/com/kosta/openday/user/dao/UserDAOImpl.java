@@ -85,7 +85,10 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<CollectDTO> selectInputOClassList(String keyword) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.search.searchInputSelect");
+		List<CollectDTO> list = sqlSession.selectList("mapper.search.searchInputSelect",keyword);
+		 int count = list.size();
+		    System.out.println("Map의 갯수: " + count);
+		return list;
 	}
 
 	
@@ -126,8 +129,12 @@ public class UserDAOImpl implements UserDAO {
 	  @Override
 	public List<CollectDTO> selectMainMenuOClassList(String codNum) throws Exception {
 		// TODO Auto-generated method stub
-		  return sqlSession.selectList("mapper.user.mainMenuOClassList");
-	}
+		  
+		  List<CollectDTO> list = sqlSession.selectList("mapper.user.mainMenuOClassList", codNum);
+		  System.out.println(list.isEmpty());
+		  System.out.println(list.get(0).getCodName());
+		  return list;
+	  }
 
 
 

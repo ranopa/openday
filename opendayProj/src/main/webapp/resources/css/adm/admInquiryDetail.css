@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+#adm-inquiry-detail {
+	width: 100vw;
+	height: 100vw;
+	background-color: rgb(240, 240, 240);
+}
+
+#adm-inquiry-detail .container {
+	width: 1035px;
+	padding: 20px;
+	margin: 0 auto;
+	margin-left: 245px;
+}
+
+#adm-inquiry-detail h2 {
+	font-size: 24px;
+	color: #7C4AFF;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	margin-left: 70px;
+}
+
+#adm-inquiry-detail .txt-ip:focus, .txt-ip:active {
+	outline: none;
+}
+
+#adm-inquiry-detail .txt-ip {
+	width: 92%;
+	height: 250px;
+	min-height: 150px;
+	background-color: transparent;
+	border: none;
+	font-size: 13px;
+	color: rgb(104, 104, 104);
+}
+
+#adm-inquiry-detail .btn-par {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+#adm-inquiry-detail .submit-btn {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 130px;
+	height: 45px;
+	border: none;
+	border-radius: 5px;
+}
+
+#adm-inquiry-detail .btn1 {
+	color: #7C4AFF;
+	border: 1px solid #7C4AFF;
+	background-color: white;
+}
+
+#adm-inquiry-detail .btn1:hover {
+	color: #7C4AFF;
+	border: 1px solid #7C4AFF;
+	background-color: rgb(250, 250, 250);
+}
+
+#adm-inquiry-detail .btn2 {
+	color: white;
+	background-color: #7C4AFF;
+}
+
+#adm-inquiry-detail .btn2:hover {
+	color: white;
+	background-color: #6c32ff;
+}
+
+#adm-inquiry-detail .page {
+	width: 750px;
+	background-color: rgb(255, 255, 255);
+	padding: 10px;
+	margin-left: 60px;
+	padding-top: 45px;
+}
+
+#adm-inquiry-detail .table {
+	margin: 0 auto;
+	text-align: center;
+	border-collapse: separate;
+	border-spacing: 0px 20px;
+	font-size: 12px;
+}
+
+#adm-inquiry-detail tr {
+	width: 900px;
+	height: 40px;
+}
+
+#adm-inquiry-detail td {
+	border: 1px solid rgb(233, 233, 233);
+}
+
+#adm-inquiry-detail .bold {
+	font-weight: 200;
+}
+
+#adm-inquiry-detail .td1 {
+	width: 100px;
+	background-color: rgb(233, 233, 233);
+}
+
+#adm-inquiry-detail .td2 {
+	width: 200px;
+	font-size: 13px;
+	color: rgb(104, 104, 104);
+	background-color: white;
+}
+
+#adm-inquiry-detail .t22 {
+	text-align: left;
+	padding-left: 20px;
+}
+
+#adm-inquiry-detail .txtbox {
+	height: 150px;
+	min-height: 150px;
+}
+
+#adm-inquiry-detail .txtarea {
+	padding: 20px;
+	line-height: 1.8em;
+	text-align: left;
+}
+
+#adm-inquiry-detail td:first-child {
+	border-radius: 7px 0px 0px 7px;
+}
+
+#adm-inquiry-detail td:last-child {
+	border-radius: 0px 7px 7px 0px;
+}
+
+#adm-inquiry-detail th:first-child {
+	border-radius: 7px 0px 0px 7px;
+}
+
+#adm-inquiry-detail th:last-child {
+	border-radius: 0px 7px 7px 0px;
+}

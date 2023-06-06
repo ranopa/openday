@@ -79,6 +79,7 @@ public class HeaderController {
 	//강사 클래스 검색
 	@RequestMapping(value = "/searchinput", method = RequestMethod.GET)
 	public ModelAndView getSearchInputOClass(@RequestParam("keyword") String keyword) {
+		System.out.println(keyword);
 		ModelAndView mav = new ModelAndView();
 		try {
 			List<CollectDTO> searchInputList = userService.getSearchInputOClass(keyword);
@@ -95,12 +96,17 @@ public class HeaderController {
 	
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public ModelAndView getMainMenuOClassList(@RequestParam("codNum") String codNum) {
+	
 		ModelAndView mav = new ModelAndView();
 		try {
-			List<CollectDTO> hMenuList = userService.getMainMenuOClassList(codNum);
 			
+			List<CollectDTO> hMenuList = userService.getMainMenuOClassList(codNum);
+			String hcn = hMenuList.get(0).getCodName();
+			System.out.println(hcn);
+		
+			mav.addObject("hcn", hcn);
 			mav.addObject("hMenuList",hMenuList);
-			 mav.setViewName("menuSubClassList");
+			 mav.setViewName("menu");
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -115,8 +121,8 @@ public class HeaderController {
 	public ModelAndView getSearchOClass(@RequestParam("clsLoc") String clsLoc,
 			@RequestParam(value="startDate", required = false, defaultValue = "all") String startDate,
 			@RequestParam(value="endDate", required = false, defaultValue = "all") String endDate,
-			@RequestParam("clsCode") String clsCode, 
-			@RequestParam("keyword") String keyword) {
+			@RequestParam("clsCode") String clsCode 
+			) {
 
 		Date sqlStartDate = null;
 		Date sqlEndDate = null;
@@ -135,7 +141,7 @@ public class HeaderController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			  List<CollectDTO> collectList = userService.getSearchOClass(clsLoc,
-					  sqlStartDate, sqlEndDate, clsCode, keyword); 
+					  sqlStartDate, sqlEndDate, clsCode); 
 			 // System.out.println(collectList.size());
 			  mav.addObject("collectList", collectList);
 			 

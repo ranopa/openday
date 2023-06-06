@@ -4,28 +4,66 @@
 						
 <mapper namespace="mapper.adm">
 
-<!-- 카테고리 list 받아오기  -->
-<select id="selectCategoryList" resultType="com.kosta.openday.adm.dto.CodeDTO">
-	select * from code where codClassfication='카테고리'
-</select>
-
-<!-- 파일삽입 -->
-<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
-	<![CDATA[
-	insert into file values(nextval(file_seq),#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
-	]]>
-</insert>
-
-<select id="selectFile" parameterType="Integer" resultType="com.kosta.openday.adm.dto.FileDTO">
-		<![CDATA[
-			select * from file where FilNum=#{fileId} 
-		]]>				
+	<!-- 카테고리 list 받아오기  -->
+	<select id="selectCategoryList" resultType="com.kosta.openday.adm.dto.CodeDTO">
+		select * from code where codClassfication='카테고리'
 	</select>
+	
+	<!-- 파일삽입 -->
+	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+		insert into file values(nextval(file_seq),#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
+		]]>
+	</insert>
+	
+	<select id="selectFile" parameterType="Integer" resultType="com.kosta.openday.adm.dto.FileDTO">
+			<![CDATA[
+				select * from file where FilNum=#{fileId} 
+			]]>				
+		</select>
 	
 	<select id="newFileId" resultType="Integer">
 		<![CDATA[
 			select ifnull(max(filNum),0)+1 from file
 		]]>				
+	</select>
+	
+	<!-- 클래스 신청 목록  -->
+	<select id="selectOClassByStatus" parameterType="String" resultType="com.kosta.openday.user.dto.OClassDTO">
+		<![CDATA[
+			select *
+			from oclass
+			where clsStatus = #{status}
+		]]>
+	</select>
+	
+	<update id="updateOClassStatus" parameterType="java.util.Map">
+		<![CDATA[
+			update oclass
+			set clsStatus = #{status}
+			where clsId = #{clsId}
+		]]>
+	</update>
+	
+	<select id="selectAllUserWithTeacherInfo" resultType="com.kosta.openday.adm.dto.AdmUserViewDTO">
+		select
+			u.userId as userId,
+			u.userNickname as userNickname,
+			u.userName as userName,
+			u.userTel as userTel,
+			u.userEmail as userEmail,
+			u.userAccount as userAccount,
+			u.userJoindate as userJoindate,
+			
+			t.tchcNum as tchcNum,
+			t.tchcNickname as tchcNickname,
+			t.tchcRegistDate as tchcRegistDate
+		from 
+			user u
+		left join
+			teacher_channel t
+		on
+			u.userId = t.userId
 	</select>
 	
 </mapper>

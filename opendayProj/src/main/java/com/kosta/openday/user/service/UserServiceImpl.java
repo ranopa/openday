@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode, String keyword)
+	public List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode)
 			throws Exception {
 		Map<String, Object> param = new HashMap<>();
 
@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
 		param.put("endDate", endDate);
 
 		param.put("clsCode", clsCode);
-		param.put("keyword", keyword);
+		
 
 		System.out.println(param);
 

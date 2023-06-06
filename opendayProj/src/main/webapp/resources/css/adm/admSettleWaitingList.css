@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+#settle {
+	width: 100vw;
+	height: 100vw;
+	background-color: rgb(240, 240, 240);
+}
+
+#settle .s-container {
+	/* width: calc(1280-245)px;  */
+	width: 1035px;
+	padding: 20px;
+	margin: 0 auto;
+	margin-left: 245px;
+}
+
+#settle h2 {
+	font-size: 24px;
+	color: #7C4AFF;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	margin-left: 70px;
+}
+
+#settle .table {
+	width: 950px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+	border-collapse: separate;
+	border-spacing: 0px 20px;
+}
+
+#settle tr {
+	background-color: rgb(255, 255, 255);
+}
+
+#settle th {
+	height: 50px;
+	color: rgb(68, 59, 59);
+}
+
+#settle .th-color {
+	background-color: rgb(223, 223, 223);
+}
+
+#settle td {
+	height: 60px;
+}
+
+#settle td:first-child {
+	border-radius: 7px 0px 0px 7px;
+}
+
+#settle td:last-child {
+	border-radius: 0px 7px 7px 0px;
+}
+
+#settle th:first-child {
+	border-radius: 7px 0px 0px 7px;
+}
+
+#settle th:last-child {
+	border-radius: 0px 7px 7px 0px;
+}
+
+#settle .td1 {
+	width: 100px;
+}
+
+#settle .td2 {
+	width: 500px;
+}
+
+#settle .td3 {
+	width: 250px;
+}
+
+#settle .td4 {
+	width: 150px;
+}
+
+#settle .td5 {
+	width: 200px;
+}
+
+#settle .td6 {
+	width: 120px;
+}
+
+#settle .ellipsis {
+	text-overflow: ellipsis;
+	width: 90%;
+	margin: 0 auto;
+	color: black;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	height: 1.1em;
+}
+
+#settle .a-box {
+	width: 100%;
+	height: 100%;
+}
+
+#settle .a-box:hover {
+	text-decoration: underline;
+}
+
+#settle .s-btn {
+	background-color: #7C4AFF;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	color: white;
+	font-size: 11px;
+}
+
+#settle .s-btn:hover {
+	background-color: #633bc7;
+}

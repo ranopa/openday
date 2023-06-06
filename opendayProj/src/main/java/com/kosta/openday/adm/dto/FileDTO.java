@@ -12,7 +12,7 @@ public class FileDTO {
 	private Date filNewDate; //등록일
 	
 	public FileDTO() {}
-	
+
 	public FileDTO(Integer filNum, String filClassification, String filOrgName, String filSaveName, Long filSize,
 			Date filNewDate) {
 		super();
@@ -28,51 +28,52 @@ public class FileDTO {
 		return filNum;
 	}
 
-	public String getFilClassification() {
-		return filClassification;
-	}
-
-	public String getFilOrgName() {
-		return filOrgName;
-	}
-
-	public String getFilSaveName() {
-		return filSaveName;
-	}
-
-	public Long getFilSize() {
-		return filSize;
-	}
-
-	public Date getFilNewDate() {
-		return filNewDate;
-	}
-
 	public void setFilNum(Integer filNum) {
 		this.filNum = filNum;
+	}
+
+	public String getFilClassification() {
+		return filClassification;
 	}
 
 	public void setFilClassification(String filClassification) {
 		this.filClassification = filClassification;
 	}
 
+	public String getFilOrgName() {
+		return filOrgName;
+	}
+
 	public void setFilOrgName(String filOrgName) {
 		this.filOrgName = filOrgName;
+	}
+
+	public String getFilSaveName() {
+		return filSaveName;
 	}
 
 	public void setFilSaveName(String filSaveName) {
 		this.filSaveName = filSaveName;
 	}
 
+	public Long getFilSize() {
+		return filSize;
+	}
+
 	public void setFilSize(Long filSize) {
 		this.filSize = filSize;
+	}
+
+	public Date getFilNewDate() {
+		return filNewDate;
 	}
 
 	public void setFilNewDate(Date filNewDate) {
 		this.filNewDate = filNewDate;
 	}
-	
-	
+
+
+
 	 
 	
 }

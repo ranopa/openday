@@ -169,6 +169,10 @@ button {
 	margin-bottom: 35px;
 }
 
+.loginPageBtns input{
+	cursor: pointer;
+}
+
 .loginPageFind a{
 	color: #8A8A8A;
 	
@@ -179,7 +183,9 @@ button {
 	cursor: pointer;
 	
 }
-
+.loginPageBtns a{
+	text-decoration: none;
+}
 .loginPageTitle {
 	font-size: 20px;
 	margin-top: 80px;
