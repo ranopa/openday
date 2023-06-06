@@ -7,6 +7,7 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/mainContent.css"/>">
@@ -19,13 +20,26 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
+
+
+
+<style>
+/* .mainContentWrapper {
+	white-space: nowrap;
+}
+ */
+</style>
+
+
+
 </head>
 <body>
 	<div class="mainContentBigWrapper">
-	<img src="resources/image/user/cookbigbanner.jpg" alt="이미지" style="width: 100%;">
+		<img src="resources/image/user/cookbigbanner.jpg" alt="이미지"
+			style="width: 100%;">
 		<div class="mainContentWrapper">
 
-			<table class="mainMenuTable">
+			<%-- <table class="mainMenuTable">
 				<c:forEach items="${codeList}" var="code" varStatus="loop">
 					<c:if test="${loop.index % 5 == 0}">
 						<tr>
@@ -52,7 +66,9 @@
 						</tr>
 					</c:if>
 				</c:forEach>
-			</table>
+			</table> --%>
+
+
 
 			<!-- 		<div class="newListWrapper">
 			<div class="newList"> -->
@@ -165,17 +181,13 @@
 				</div>
 			</div>
 
-			
-				
-			
+
+
+
 			<div class="newClass classWrapper">
 				<p class="mainOclassListTitle">신규 클래스</p>
 				<div class="oclassListWrapper">
-					<!-- <div class="arrowIcon">
-					<div class="material-symbols-outlined">
-						<a href="#"> arrow_back_ios </a>
-					</div>
-				</div> -->
+
 					<div class="oclassTable">
 						<ul class="tableTr">
 							<c:forEach items="${nlist}" var="list" varStatus="loop">
@@ -211,15 +223,11 @@
 							</c:forEach>
 						</ul>
 					</div>
-					<!-- <div class="arrowIcon">
-					<div class="material-symbols-outlined arrow">
-						<a href="#">arrow_forward_ios</a>
-					</div>
-				</div> -->
+
 				</div>
 			</div>
-
-<img src="resources/image/user/cooksmallbanner.jpg" alt="이미지" class="smallBanner">
+			<img src="resources/image/user/cooksmallbanner.jpg" alt="이미지"
+				class="smallBanner">
 
 			<div class="imminentDeadlineClass classWrapper">
 				<p class="mainOclassListTitle">마감임박 클래스</p>

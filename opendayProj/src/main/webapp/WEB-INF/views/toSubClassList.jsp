@@ -101,38 +101,39 @@ margin-top:60px;
  --%>
 
 					<div class="oclassTable">
-						<ul class="tableTr">
-							<c:forEach items="${searchInputList}" var="list" varStatus="loop">
-								<c:if test="${loop.index < 4}">
-									<li class="oclass"><img src="img/${list.filNum}"
-										class="ssum-img">
-										<div class="txt-box">
-											<div class="tb1">
-												<div class="t1">
-													<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
-												</div>
-												<div class="t2">
-													<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
-													<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
-												</div>
-											</div>
-											<p class="cls-name">${list.clsName}</p>
-											<div class="tb2">
-												<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-												<div class="price">
-													<span class="disc">${list.clsDiscount}%</span> <span
-														class="fp">${list.finalPrice}원</span>
-												</div>
-											</div>
-										</div></li>
-								</c:if>
-								<c:if test="${loop.index == 3}">
-						</ul>
-						<ul>
+						<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+							<c:if test="${loop.index % 4 == 0}">
+								<ul class="tableTr">
 							</c:if>
-							</c:forEach>
-						</ul>
+							<a href="classinfo/${list.clsId}">
+								<li class="oclass"><img src="img/${list.filNum}"
+									class="ssum-img">
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.clsDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div></li>
+							</a>
+							<c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
+								</ul>
+							</c:if>
+						</c:forEach>
 					</div>
+
 
 					<%-- 	<div class="newList">
 

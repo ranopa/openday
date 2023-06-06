@@ -402,4 +402,7 @@ WHERE oc.codNum=#{codNum} AND scdNum > 0]]> </select>
 	]]>
 	</update>
 
+	
+
+
 </mapper>

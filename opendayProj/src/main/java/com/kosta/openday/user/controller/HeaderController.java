@@ -103,7 +103,7 @@ public class HeaderController {
 			List<CollectDTO> hMenuList = userService.getMainMenuOClassList(codNum);
 			String hcn = hMenuList.get(0).getCodName();
 			System.out.println(hcn);
-		
+			
 			mav.addObject("hcn", hcn);
 			mav.addObject("hMenuList",hMenuList);
 			 mav.setViewName("menu");
