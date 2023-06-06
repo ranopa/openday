@@ -150,5 +150,27 @@ public class AdmController {
 		return "admin/admMain";
 	}
 	
+	//공지목록
+	@RequestMapping(value = "/admnoticelist", method = RequestMethod.GET)
+	public String admNoticeList(Model model) { 
+		try {
+			model.addAttribute("page","admNoticeList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+	
+	//공지작성
+	@RequestMapping(value = "/admnoticewrite", method = RequestMethod.GET)
+	public String admNoticeWrtie(Model model) { 
+		try {
+			model.addAttribute("page","admNoticeWrite");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+	
 	
 }

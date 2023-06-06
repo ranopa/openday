@@ -51,13 +51,18 @@
 <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/adm/admUserList.css"/>'>
 <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/adm/admInquiryList.css"/>'>
 <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/adm/admInquiryDetail.css"/>'>
- 
+ <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/adm/admNoticeList.css"/>'>
+ <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/adm/admNoticeWrite.css"/>'>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/adm/admNoticeDetail.css"/>'>
 <!-- js -->  
 <script src="<c:url value="/resources/js/adm/admHeader.js"/>"></script>
 <script src="<c:url value="/resources/js/adm/admSettleRecordList.js"/>"></script>
 <script src="<c:url value="/resources/js/adm/admClassList.js"/>"></script>
 <script src="<c:url value="/resources/js/adm/admUserList.js"/>"></script>
 <script src="<c:url value="/resources/js/adm/admUserList.js"/>"></script>
+<script src="<c:url value="/resources/js/adm/admNoticeList.js"/>"></script>
+<script src="<c:url value="/resources/js/adm/admNoticeWrite.js"/>"></script>
+<script src="<c:url value="/resources/js/adm/admNoticeDetail.js"/>"></script>
 <style>
 * {
 padding:0; margin:0;}

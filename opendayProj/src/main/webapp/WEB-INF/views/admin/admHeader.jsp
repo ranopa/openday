@@ -38,7 +38,7 @@
                             <a href="adminquirylist" class="h-atag">
                                 <li class="s-li">문의</li>
                             </a>
-                            <a href="#" class="h-atag">
+                            <a href="admnoticelist" class="h-atag">
                                 <li class="s-li">공지</li>
                             </a>
                         </ul>
