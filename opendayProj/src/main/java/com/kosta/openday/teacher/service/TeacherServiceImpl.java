@@ -10,6 +10,7 @@ import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.teacher.dao.TeacherDAO;
 import com.kosta.openday.teacher.dto.ClassScdUserDTO;
 import com.kosta.openday.teacher.dto.ClassScheduleDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 import com.kosta.openday.teacher.dto.TeacherScheduleDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
@@ -51,6 +52,18 @@ public class TeacherServiceImpl implements TeacherService {
 	@Override
 	public List<TeacherScheduleDTO> tcScheduleList(HashMap<String, Object> map) throws Exception {
 		return teacherDAO.tcScheduleList(map);
+	}
+	@Override
+	public List<OClassDTO> tcClassSalesList(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcClassSalesList(map);
+	}
+	@Override
+	public int tcClassSalesListCount(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcClassSalesListCount(map);
+	}
+	@Override
+	public List<SettlementAmountDTO> tcSalesList(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcSalesList(map);
 	}
 
 }

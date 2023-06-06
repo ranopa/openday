@@ -7,10 +7,10 @@
 	<!-- 클래스 리스트 -->
 	<select id="tcClassList" parameterType="hashmap"
 		resultType="com.kosta.openday.user.dto.OClassDTO">
-		SELECT *,(select COUNT(*) 
-				from cls_inquiry c , schedule s
-				WHERE c.scdNum = s.scdNum
-				AND s.clsId = o.clsId ) AS clsInquiry 
+		SELECT *,(select COUNT(*)
+		from cls_inquiry c , schedule s
+		WHERE c.scdNum = s.scdNum
+		AND s.clsId = o.clsId ) AS clsInquiry
 		FROM oclass o
 		WHERE userId = #{userId}
 		<include refid="search"></include>
@@ -52,31 +52,33 @@
 	<!-- 클래스 일정 리스트 -->
 	<select id="tcClassScheduleList" parameterType="hashmap"
 		resultType="com.kosta.openday.teacher.dto.ClassScheduleDTO">
-		SELECT s.scdNum as scdNum, 
-				o.clsName as clsName,
-				CONCAT(DATE_FORMAT(s.scdDate,'%Y-%m-%e')," ",TIME_FORMAT(s.scdTime,'%H:%i')) as scdTime,
-				s.scdPlaceDetail as scdPlaceDetail, 
-				s.scdMinPersonnel as scdMinPersonnel, 
-				s.scdMaxPersonnel as scdMaxPersonnel, 
-				s.scdUploadDate as scdUploadDate
+		SELECT s.scdNum as scdNum,
+		o.clsName as clsName,
+		CONCAT(DATE_FORMAT(s.scdDate,'%Y-%m-%e')," ",TIME_FORMAT(s.scdTime,'%H:%i')) as scdTime,
+		s.scdPlaceDetail as scdPlaceDetail,
+		s.scdMinPersonnel as scdMinPersonnel,
+		s.scdMaxPersonnel as scdMaxPersonnel,
+		s.scdUploadDate as scdUploadDate
 		FROM schedule s, oclass o
 		where s.clsId = o.clsId
-		and userId = #{userId}
+		and
+		userId = #{userId}
 		order by s.scdUploadDate desc
-		limit #{endRow} offset #{startRow}
+		limit #{endRow} offset
+		#{startRow}
 	</select>
 	<!-- 클래스 일정 리스트 카운트 -->
 	<select id="tcClassScheduleListCount" parameterType="hashmap"
 		resultType="int">
-		select NVL(count(*),0) cnt from (SELECT s.scdNum as scdNum, 
-										CONCAT(s.scdDate," ",s.scdTime) as scdTime,
-										<!-- s.scdLoc as scdLoc,  -->
-										<!-- s.scdPersonnel as scdPersonnel, --> 
-										<!-- FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice, -->
-										s.scdUploadDate as scdUploadDate
-								FROM schedule s, oclass o
-								where s.clsId = o.clsId
-								and userId = #{userId}) AS x
+		select NVL(count(*),0) cnt from (SELECT s.scdNum as scdNum,
+		CONCAT(s.scdDate," ",s.scdTime) as scdTime,
+		<!-- s.scdLoc as scdLoc, -->
+		<!-- s.scdPersonnel as scdPersonnel, -->
+		<!-- FORMAT(s.scdPrice*(1-(s.scdDiscount/100)), 0) as scdPrice, -->
+		s.scdUploadDate as scdUploadDate
+		FROM schedule s, oclass o
+		where s.clsId = o.clsId
+		and userId = #{userId}) AS x
 		<include refid="search"></include>
 	</select>
 
@@ -84,34 +86,107 @@
 	<select id="tcClassUserList" parameterType="Integer"
 		resultType="com.kosta.openday.teacher.dto.ClassScdUserDTO">
 		SELECT a.apNum AS apNum,
-				u.userName AS userName,
-				u.userTel AS userTel,
-				u.userAddress AS userAddress,
-				u.userEmail AS userEamil,
-				a.apDate AS apDate 
+		u.userName AS userName,
+		u.userTel AS userTel,
+		u.userAddress AS userAddress,
+		u.userEmail AS userEamil,
+		a.apDate AS apDate
 		FROM application_payment a, user u
 		WHERE a.userId = u.userId
-		and scdNum = #{scdNum}
+		and scdNum =
+		#{scdNum}
 	</select>
-	
+
 	<!-- 클래스 일정 유저 리스트 -->
 	<select id="tcClassInquiryList" parameterType="Integer"
 		resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
 		SELECT *
 		FROM cls_inquiry c, schedule s
-		WHERE c.scdNum = s.scdNum
+		WHERE c.scdNum =
+		s.scdNum
 		AND s.clsId = #{clsId}
-		
+
 	</select>
-	
-	<select id="tcScheduleList"  parameterType="hashmap" resultType="com.kosta.openday.teacher.dto.TeacherScheduleDTO">
+
+	<select id="tcScheduleList" parameterType="hashmap"
+		resultType="com.kosta.openday.teacher.dto.TeacherScheduleDTO">
 		SELECT DISTINCT o.clsName AS clsName,
-				DATE_FORMAT(s.scdDate,'%Y-%m-%e') AS scdDate,
-				TIME_FORMAT(s.scdTime,'%H:%i') as scdTime
+		DATE_FORMAT(s.scdDate,'%Y-%m-%e') AS scdDate,
+		TIME_FORMAT(s.scdTime,'%H:%i') as scdTime
 		FROM oclass o, schedule s
 		WHERE o.clsId = s.clsId
 		AND userId = #{userId}
 		ORDER BY scdTime
 	</select>
-	
+
+
+	<!-- 클래스 정산 내역 리스트 -->
+	<select id="tcClassSalesList" parameterType="hashmap"
+		resultType="com.kosta.openday.user.dto.OClassDTO">
+
+		SELECT *,
+		IFNULL((SELECT SUM(apFinalAmount)
+		FROM application_payment a, schedule s
+		WHERE a.scdNum = s.scdNum
+		AND s.clsId = o.clsId
+		),0) AS totprice,
+		IFNULL((SELECT sum(sa.saSettleAmount)
+		FROM settlement_amount sa, schedule s
+		WHERE sa.scdNum = s.scdNum
+		AND s.clsId = o.clsId
+		),0) AS amountPaid,
+		IFNULL((SELECT SUM(apFinalAmount)
+		FROM application_payment a, schedule s
+		WHERE a.scdNum = s.scdNum
+		AND s.clsId = o.clsId
+		)-(SELECT sum(sa.saPayment)
+		FROM settlement_amount sa, schedule s
+		WHERE sa.scdNum = s.scdNum
+		AND s.clsId = o.clsId),0) AS amountOutstanding,
+		IFNULL((SELECT sum(sa.saFee)
+		FROM settlement_amount sa, schedule s
+		WHERE sa.scdNum = s.scdNum
+		AND s.clsId = o.clsId
+		),0) AS saFee
+		FROM oclass o
+		WHERE userId = #{userId}
+		AND clsStatus = "승인"
+		<include refid="search"></include>
+		GROUP BY o.clsId
+		limit #{endRow} offset #{startRow}
+	</select>
+
+	<!-- 클래스 정산 리스트 카운트 -->
+	<select id="tcClassSalesListCount" parameterType="hashmap"
+		resultType="int">
+		select NVL(count(*),0) cnt from oclass
+		WHERE userId = #{userId}
+		<include refid="SalesSearch"></include>
+	</select>
+
+	<!-- 클래스 필터 검색 -->
+	<sql id="SalesSearch">
+		<if test="prevDate!=null and prevDate!=''"> 
+			<![CDATA[ and clsCreatedAt >= #{prevDate} ]]> 
+		</if> 
+		<if test="nextDate!=null and nextDate!=''"> 
+			<![CDATA[ and clsCreatedAt <= #{nextDate} ]]> 
+		</if>
+		 <if test="keyword!=null and keyword!=''"> 
+		 	<![CDATA[ and clsName like CONCAT("%",#{keyword},"%") ]]> 
+		</if>
+	</sql>
+
+	<!-- 정산 리스트 -->
+	<select id="tcSalesList" parameterType="hashmap"
+		resultType="com.kosta.openday.teacher.dto.SettlementAmountDTO">
+		SELECT sa.saStatus, sa.saSettleAmount as saSettleAmount, sa.saAppDate as
+		saAppDate, sa.saAppDate + INTERVAL 7 DAY AS estimatedPaymentDate,
+		u.userName as userName, u.userAccount as userAccount
+		FROM
+		settlement_amount sa, user u
+		WHERE sa.userId = u.userId
+		and u.userId = #{userId}
+	</select>
+
 </mapper>

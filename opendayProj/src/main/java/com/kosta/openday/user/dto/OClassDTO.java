@@ -23,9 +23,13 @@ public class OClassDTO {
 
 	private String userId; // 아이디
 	private Integer reqId; // 글번호
+	
 	private Integer clsInquiry; // 문의 갯수
 	
-
+	private Integer totPrice; // 클래스 결제 통합 금액
+	private Integer amountPaid; // 클래스 지급 금액
+	private Integer amountOutstanding; // 클래스 미지급 금액
+	private Integer  saFee;
 	public OClassDTO() {
 	}
 
@@ -211,9 +215,46 @@ public class OClassDTO {
 	public void setClsInquiry(Integer clsInquiry) {
 		this.clsInquiry = clsInquiry;
 	}
-	
-	
-	
-	
 
+
+	public Integer getTotPrice() {
+		return totPrice;
+	}
+
+
+	public void setTotPrice(Integer totPrice) {
+		this.totPrice = totPrice;
+	}
+
+
+	public Integer getAmountPaid() {
+		return amountPaid;
+	}
+
+
+	public void setAmountPaid(Integer amountPaid) {
+		this.amountPaid = amountPaid;
+	}
+
+
+	public Integer getAmountOutstanding() {
+		return amountOutstanding;
+	}
+
+
+	public void setAmountOutstanding(Integer amountOutstanding) {
+		this.amountOutstanding = amountOutstanding;
+	}
+
+
+	public Integer getSaFee() {
+		return saFee;
+	}
+
+
+	public void setSaFee(Integer saFee) {
+		this.saFee = saFee;
+	}
+
+	
 }
