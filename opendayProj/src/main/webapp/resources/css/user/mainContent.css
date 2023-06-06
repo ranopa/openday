@@ -77,6 +77,11 @@ body {
 	font-family: 'NanumBarunGothic';
 }
 
+
+.smallBanner{
+	margin: 80px 0 80px 0;
+}
+
 /* 클래스 카드 */
 /* .newList{
 	
@@ -96,6 +101,15 @@ body {
 
 .arrowIcon span {
 	font-size: 30px;
+} */
+
+/* .smallBanner{
+	width: 1280px;
+	height:168px;
+} */
+/* .bigBanner{
+	width: 1440px;
+	height:412px;
 } */
 
 /* 카드 간격 */
@@ -216,4 +230,14 @@ body {
 /* 카드 와 카드 사이 간격조정 */
 .oclass {
 	display: inline-block;
+}
+
+.tableTr a{
+color: inherit;
+  text-decoration: none;
+}
+
+.tableTr a:hover{
+color: inherit;
+  text-decoration: none;
 }

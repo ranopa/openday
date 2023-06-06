@@ -17,11 +17,11 @@
 			<div class="idConfirmPageTitleWrapper">
 				<p class="idConfirmPageTitle">아이디/비밀번호 찾기</p>
 			</div>
-			<ul class="findMenu">
+			<!-- <ul class="findMenu">
 				<li><a href="findid">아이디 찾기</a></li>
 				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
-			
+			 -->
 			
 			<div class="findUserIdInfo">
 					<p>${findPw.userName}님의 비밀번호는 ${findPw.userPassword} 입니다.</p>
@@ -39,8 +39,8 @@
     </c:choose>
  --%>
 			<div class="idConfirmBtns">
-				<button type="button" class="loginBtn">로그인하기</button>
-				<button type="button" class="findPwBtn">비밀번호찾기</button>
+				<a href="loginform"><button type="button" class="loginBtn">로그인하기</button></a>
+				<a href="findid"><button type="button" class="findPwBtn">아이디찾기</button></a>
 			</div>
 
 		</div>
