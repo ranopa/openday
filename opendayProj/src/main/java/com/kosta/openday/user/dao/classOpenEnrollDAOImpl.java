@@ -28,7 +28,7 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	@Override
 	public Integer selectFileNum() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("mapper.oclass.selectFileNum");
+		return sqlSession.selectOne("mapper.adm.newFileId");
 	}
 
 	@Override

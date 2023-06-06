@@ -8,7 +8,8 @@ public class ScheduleDTO {
 
 	private Integer scdNum; //클래스 일정번호 
 	private Date scdDate; //강의일
-	private Time scdTime; //소요시간
+	private Integer scdRunTime; //소요시간
+	private Time scdTime; //클래스 시간
 
 	private String scdPlace; //장소
 	private String scdPlaceDetail; //세부장소
@@ -20,10 +21,11 @@ public class ScheduleDTO {
 	
 	public ScheduleDTO() {}
 
-	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdPlace, String scdPlaceDetail,
+	public ScheduleDTO(Integer scdNum, Date scdDate, Integer scdRunTime,Time scdTime, String scdPlace, String scdPlaceDetail,
 			Integer scdMinPersonnel, Integer scdMaxPersonnel, Date scdUploadDate, String scdStatus, Integer clsId) {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
+		this.scdRunTime = scdRunTime;
 		this.scdTime = scdTime;
 		this.scdPlace = scdPlace;
 		this.scdPlaceDetail = scdPlaceDetail;
@@ -33,6 +35,7 @@ public class ScheduleDTO {
 		this.scdStatus = scdStatus;
 		this.clsId = clsId;
 	}
+
 
 
 	public Integer getScdNum() {
@@ -51,6 +54,14 @@ public class ScheduleDTO {
 		this.scdDate = scdDate;
 	}
 
+	public Integer getScdRunTime() {
+		return scdRunTime;
+	}
+	
+	public void setScdRunTime(Integer scdRunTime) {
+		this.scdRunTime = scdRunTime;
+	}
+	
 	public Time getScdTime() {
 		return scdTime;
 	}

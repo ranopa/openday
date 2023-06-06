@@ -24,7 +24,7 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	@Override
 	public void classCreate(OClassDTO dto, MultipartFile file) throws Exception {
 		if(file!=null && !file.isEmpty()) {
-			String dir = "D:/MJS/openday_file/";
+			String dir = "C:/openday_file/";
 			
 			Integer fileNum = classopenenrollDAO.selectFileNum();
 			
@@ -49,7 +49,7 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 
 	@Override
 	public void fileView(Integer filNum, OutputStream out) throws Exception {
-		String dir = "D:/MJS/openday_file/";
+		String dir = "C:/openday_file/";
 		FileDTO fileDTO = classopenenrollDAO.selectFile(filNum);
 		FileInputStream fis = new FileInputStream(dir+filNum);
 		FileCopyUtils.copy(fis, out);

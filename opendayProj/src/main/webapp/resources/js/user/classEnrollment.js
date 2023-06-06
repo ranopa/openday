@@ -64,113 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
  
 });
-        
-// 캘린더 api
- window.onload = function () { buildCalendar(); }    // 웹 페이지가 로드되면 buildCalendar 실행
 
-    let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
-    let today = new Date();     // 페이지를 로드한 날짜를 저장
-    today.setHours(0, 0, 0, 0);    // 비교 편의를 위해 today의 시간을 초기화
-
-    let scdDate = [];  // 선택된 날짜를 저장할 배열
-
-    // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
-    function buildCalendar() {
-
-        let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);     // 이번달 1일
-        let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0);  // 이번달 마지막날
-
-        let tbody_Calendar = document.querySelector(".Calendar > tbody");
-        document.getElementById("calYear").innerText = nowMonth.getFullYear();             // 연도 숫자 갱신
-        document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1);  // 월 숫자 갱신
-
-        while (tbody_Calendar.rows.length > 0) {                        // 이전 출력결과가 남아있는 경우 초기화
-            tbody_Calendar.deleteRow(tbody_Calendar.rows.length - 1);
-        }
-
-        let nowRow = tbody_Calendar.insertRow();        // 첫번째 행 추가           
-
-        for (let j = 0; j < firstDate.getDay(); j++) {  // 이번달 1일의 요일만큼
-            let nowColumn = nowRow.insertCell();        // 열 추가
-        }
-
-        for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {   // day는 날짜를 저장하는 변수, 이번달 마지막날까지 증가시키며 반복  
-
-            let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
-
-
-            let newDIV = document.createElement("p");
-            newDIV.innerHTML = leftPad(nowDay.getDate());        // 추가한 열에 날짜 입력
-            nowColumn.appendChild(newDIV);
-
-            if (nowDay.getDay() == 6) {                 // 토요일인 경우
-                nowRow = tbody_Calendar.insertRow();    // 새로운 행 추가
-            }
-
-            if (nowDay < today) {                       // 지난날인 경우
-                newDIV.className = "pastDay";
-            }
-            else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우           
-                newDIV.className = "today";
-                newDIV.onclick = function () { choiceDate(this); }
-            }
-            else {                                      // 미래인 경우
-                newDIV.className = "futureDay";
-                newDIV.onclick = function () { choiceDate(this); }
-            }
-            
-            let dbDate = new Date("${scheduleDeatil.scdDate}");  // DB에서 가져온 날짜를 Date 객체로 변환
-
-    if (nowDay.getFullYear() == dbDate.getFullYear() && nowDay.getMonth() == dbDate.getMonth() && nowDay.getDate() == dbDate.getDate()) {
-      newDIV.classList.add("choiceDay");
-    }
-
-            if (scdDate.includes(nowDay.getTime())) {  // 선택된 날짜인 경우
-                newDIV.classList.add("choiceDay");
-            }
-        }
-    }
-
-    // 날짜 선택 및 저장
-function choiceDate(newDIV) {
-  let selectedDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), parseInt(newDIV.innerHTML));
-
-  // 선택된 날짜와 동일한 날짜가 선택되었는지 확인
-  let selectedIndex = scdDate.findIndex(date => date.getTime() === selectedDate.getTime());
-
-  if (selectedIndex !== -1) {  // 이미 선택된 날짜인 경우
-    scdDate.splice(selectedIndex, 1);  // 선택된 날짜 배열에서 제거
-    newDIV.classList.remove("choiceDay");  // 선택된 날짜의 "choiceDay" class 제거
-  } else {  // 새로운 날짜를 선택한 경우
-    scdDate.push(selectedDate);  // 선택된 날짜 배열에 추가
-    newDIV.classList.add("choiceDay");  // 선택된 날짜에 "choiceDay" class 추가
-  } 
-
-  // hidden input 태그 업데이트
-  let scdDateInput = document.getElementById("scdDate");
-  scdDateInput.value = JSON.stringify(scdDate.map(date => date.toISOString().substring(0, 10)));  // 선택된 날짜들을 YYYY-MM-DD 형식의 문자열로 변환하여 입력
-  console.log(scdDate);
-}
-        
-    // 이전달 버튼 클릭
-    function prevCalendar() {
-        nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
-        buildCalendar();    // 달력 다시 생성
-    }
-    // 다음달 버튼 클릭
-    function nextCalendar() {
-        nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
-        buildCalendar();    // 달력 다시 생성
-    }
-
-    // input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
-    function leftPad(value) {
-        if (value < 10) {
-            value = "0" + value;
-            return value;
-        }
-        return value;
-    }
 	
 //취소 버튼
 $(function() {
@@ -179,4 +73,73 @@ $(function() {
 		location.href = './';
 	});
 });
+	
+// 풀 캘린더
+var calendar = null;
+var initialLocaleCode = 'ko';
+var localeSelectorEl = document.getElementById('locale-selector');
 
+    $(document).ready(function (){
+
+            var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+            	locale: 'ko', // 한국어 설정
+                initialView: 'timeGridWeek',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                  },
+                navLinks: true,
+                editable: true,
+                selectable: true,
+                droppable: true, // this allows things to be dropped onto the calendar
+
+                eventAdd: function () { // 이벤트가 추가되면 발생하는 이벤트
+                    console.log()
+                },
+
+                select: function (arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+                    var title = prompt('일정을 입력해주세요.');
+                    if (title) {
+                        calendar.addEvent({
+                            title: title,
+                            start: arg.start,
+                            end: arg.end,
+                            allDay: arg.allDay,
+                        })
+                    }
+                    var allEvent = calendar.getEvents(); // .getEvents() 함수로 모든 이벤트를 Array 형식으로 가져온다. (FullCalendar 기능 참조)
+                    var events = new Array(); // Json 데이터를 받기 위한 배열 선언
+                    
+                    for (var i = 0; i < allEvent.length; i++) {
+                        var obj = new Object();     // Json 을 담기 위해 Object 선언
+                        // alert(allEvent[i]._def.title); // 이벤트 명칭 알람
+                        obj.title = allEvent[i]._def.title; // 이벤트 명칭  ConsoleLog 로 확인 가능.
+                        obj.start = allEvent[i]._instance.range.start; // 시작
+                        obj.end = allEvent[i]._instance.range.end; // 끝
+
+                        events.push(obj);
+                    }
+                    var jsondata = JSON.stringify(events);
+                    console.log(jsondata); // 데이터 콘솔 확인
+                    // saveData(jsondata);
+                },
+                // 삭제 기능
+                eventClick: function (info){
+                    if(confirm("'"+ info.event.title +"' 일정을 삭제하시겠습니까 ?")){
+                        // 확인 클릭 시
+                        info.event.remove();
+                    console.log(info.event);
+                    var events = new Array(); // Json 데이터를 받기 위한 배열 선언
+                    var obj = new Object();
+                        obj.title = info.event._def.title;
+                        obj.start = info.event._instance.range.start;
+                        obj.end = info.event._instance.range.end;
+                        events.push(obj);
+
+                    }
+                },
+            });
+            calendar.render();
+});

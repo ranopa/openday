@@ -8,13 +8,14 @@
 	<!-- 클래스 오픈 요청 -->
 	<insert id="classOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
-		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCareer,clsCurri)
+		     insert into oclass (clsId,clsName,clsLoc,clsCode,clsDescription,filNum,clsCareer,clsCurri)
 		     values(
 		     nextval(oclass_seq),
 		     #{clsName},
+		     #{clsLoc},
 		     #{clsCode},
 		     #{clsDescription},
-		     #{fileId},
+		     #{filNum},
 		     #{clsCareer},
 		     #{clsCurri})
 	     ]]>
@@ -30,7 +31,7 @@
 	<!-- 파일업로드(썸네일)  -->
 	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-		insert into file values(#{filNum},#{filClassification},#{filOriginalname},#{filSavename},#{filSize},CURDATE())
+		insert into file values(nextval(file_seq),#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
 		]]> 
 	</insert>
 	
@@ -40,7 +41,7 @@
 			select * from file where filNum=#{filNum}
 		]]> 		
 	</select>
-
+	
 	
 	<!-- =========== 클래스 oclass =============================================== -->
 	<!-- 1. 클래스 번호로 클래스 조회 -->

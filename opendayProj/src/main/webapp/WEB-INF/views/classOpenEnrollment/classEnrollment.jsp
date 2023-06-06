@@ -17,15 +17,18 @@
 
 <!-- 일단 임시로 넣어줌 아이콘 문제임 -->
 <link rel="shortcut icon" href="#">
+
+<!-- 캘린더 css, js  -->
+<link href='<c:url value="/resources/lib/main.min.css" />'rel="stylesheet">
+<script src='<c:url value="/resources/lib/main.js" />'></script>
 </head>
 
 <body>
 	<div id="includeWrapper">
-	<div id="includeHeader" class="includeHeader">
 		<%@ include file="../header.jsp"%>
-	</div>
 	<div id="div1">
-	<form id="form" action="classEnrollment" method="post">
+	<form id="form" action="classEnrollment" method="post" enctype="multipart/form-data">
+		<input type="hidden" id="" name="clsId" value="${scheduleDeatil.clsId }" />
 		<h3>클래스 개설</h3>
 		<div id=opendiv1>
 			<div class="opendiv2">
@@ -45,7 +48,7 @@
 				<input type="radio" id="category6" name="clsCode" value="C6" ${scheduleDeatil.clsCode eq 'C6' ? 'checked' : ''}><label for="category6">미술</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category7" name="clsCode" value="C7" ${scheduleDeatil.clsCode eq 'C7' ? 'checked' : ''}><label for="category7">뷰티/미용</label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category8" name="clsCode" value="C8" ${scheduleDeatil.clsCode eq 'C8' ? 'checked' : ''}><label for="category8">애견</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" id="category9" name="clsCode" value="C9" ${scheduleDeatil.clsCode eq 'C9' ? 'checked' : ''}><label for="category9">유리.
+				<input type="radio" id="category9" name="clsCode" value="C9" ${scheduleDeatil.clsCode eq 'C9' ? 'checked' : ''}><label for="category9">유리</label>
 				<br><br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" id="category10" name="clsCode" value="C10" ${scheduleDeatil.clsCode eq 'C10' ? 'checked' : ''}><label for="category10">음악</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -68,7 +71,7 @@
 
 			<div id="divdouble">
 				<div>
-					<p>클래스 썸네일 설정</p>
+					<p style="font-size:18px;">클래스 썸네일 설정</p>
 					<div class="thumbnail-container">
 						<img class="thumbnail-container" src="./image/${scheduleDeatil.filNum }" id="preview" />
 						<input type="file" name="filNum" value="" class="file-input" id="thumbnail-input" onchange="readURL(this);"> 
@@ -76,100 +79,71 @@
 				</div>
 
 				<div>
-					<p>강사, 강의 경력</p>
+					<p style="font-size:18px;">강사, 강의 경력</p>
 					<textarea placeholder="내용을 입력해 주세요" name="clsCarrer">${scheduleDeatil.clsDescription }</textarea>
 				</div>
 			</div>
 
 			<div id=curri class="opendiv2">
-				<p>커리큘럼 작성</p>
+				<p style="font-size:18px;">커리큘럼 작성</p>
 				<div id="editor" name="clsCurri">${scheduleDeatil.clsCurri}</div>
 			</div>
 
 			<div class="opendiv2">
-				<p id="detailP">클래스 세부 설정</p>
-
 				<table class="detailT">
-					<input type="hidden" id="scdDate" name="scdDate" value="" />
 					<tr>
-						<td class="detailtd">
-							<p id="cal">
-							<table class="Calendar">
-								<p id="detailtd">일자 설정</p>
-								<thead>
-									<tr>
-										<td onClick="prevCalendar();" style="cursor: pointer;">&#60;</td>
-										<td colspan="5"><span id="calYear"></span>년 
-										<span id="calMonth"></span>월</td>
-										<td onClick="nextCalendar();" style="cursor: pointer;">&#62;</td>
-									</tr>
-									<tr>
-										<td>일</td>
-										<td>월</td>
-										<td>화</td>
-										<td>수</td>
-										<td>목</td>
-										<td>금</td>
-										<td>토</td>
-									</tr>
-								</thead>
-
-								<tbody>
-								</tbody>
-							</table>
-							</p>
-						</td>
-
 						<td class="detailtd" id="detailtd">
+						  	<p id="detailP">클래스 세부 설정</p><br><br>
 							<p>수강료(인당)</p> 
-							<p><input type="text" name="scdPrice"> 원</input><p>
-							<br>
-							<p>클래스 운영시간</p> 
-							<p><input type="time"> - <input type="time"></p>
+							<p>
+							<input type="text" id="clsPrice" name="clsPrice" value="${scheduleDeatil.clsPrice }" min="0" required autofocus>원</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							할인률 : &nbsp;<input type="number" id="clsDiscount" name="clsDiscount" value="${scheduleDeatil.clsDiscount }" min="0" max="100" autofocus>%
+							<p>
 							<br>
 							<p>클래스 소요시간	</p> 
 							<p>
-							<input type="number" name="" id="hour" min="0" max="23" required><label for="hour"> 시</label>&nbsp;&nbsp;
-   							<input type="number" id="minute" min="0" max="59" required><label for="minute"> 분</label>
+   							<input type="number" id="minute" name="scdRunTime" value="${scheduleDeatil.scdRunTime }" min="0" class="detailI" required><label for="minute"> &nbsp;분</label>
    							</p>
    							<br>
    							<p>수강 인원 수<p>
-   							<span>최소 <input id="nubmer" style="width:40px;" type="number" min="0"> 명 &nbsp;&nbsp; 최대 <input id="nubmer" style="width:40px;" type="number" min="0"> 명<span>
+   							<br>
+   							<span>
+   							최소 &nbsp;&nbsp;<input id="nubmer" name="scdMinPersonnel" value="${scheduleDeatil.scdMinPersonnel }" style="width:40px;" class="detailI" type="number" min="0"> 명 &nbsp;&nbsp; 
+   							최대 &nbsp;&nbsp;<input id="nubmer" name="scdMaxPersonnel" value="${scheduleDeatil.scdMaxPersonnel }" style="width:40px;" class="detailI" type="number" min="0"> 명
+   							</span>
 						</td>
 
 
 						<td class="detailtd">
-							<p id="detailtd">장소 설정<p>
-							<div>
-							지역 :
-							<select id="select" name="scdLoc")>
+							<p id="detailtdP">장소 설정
+							<select id="select" name="scdLoc">
 										<option>선택</option>
-										<option ${scheduleDeatil.scdLoc eq '서울' ? 'selected' : ''}>서울</option>
-										<option ${scheduleDeatil.scdLoc eq '경기' ? 'selected' : ''}>경기</option>
-										<option ${scheduleDeatil.scdLoc eq '부산' ? 'selected' : ''}>부산</option>
-										<option ${scheduleDeatil.scdLoc eq '인천' ? 'selected' : ''}>인천</option>
-										<option ${scheduleDeatil.scdLoc eq '대전' ? 'selected' : ''}>대전</option>
-										<option ${scheduleDeatil.scdLoc eq '대구' ? 'selected' : ''}>대구</option>
-										<option ${scheduleDeatil.scdLoc eq '광주' ? 'selected' : ''}>광주</option>
-										<option ${scheduleDeatil.scdLoc eq '경북' ? 'selected' : ''}>경북</option>
-										<option ${scheduleDeatil.scdLoc eq '경남/울산' ? 'selected' : ''}>경남/울산</option>
-										<option ${scheduleDeatil.scdLoc eq '전북' ? 'selected' : ''}>전북</option>
-										<option ${scheduleDeatil.scdLoc eq '전남' ? 'selected' : ''}>전남</option>
-										<option ${scheduleDeatil.scdLoc eq '충북' ? 'selected' : ''}>충북</option>
-										<option ${scheduleDeatil.scdLoc eq '충남' ? 'selected' : ''}>충남</option>
-										<option ${scheduleDeatil.scdLoc eq '세종' ? 'selected' : ''}>세종</option>
-										<option ${scheduleDeatil.scdLoc eq '강원' ? 'selected' : ''}>강원</option>
-										<option ${scheduleDeatil.scdLoc eq '제주' ? 'selected' : ''}>제주</option>										
+										<option ${scheduleDeatil.clsLoc eq '서울' ? 'selected' : ''}>서울</option>
+										<option ${scheduleDeatil.clsLoc eq '경기' ? 'selected' : ''}>경기</option>
+										<option ${scheduleDeatil.clsLoc eq '부산' ? 'selected' : ''}>부산</option>
+										<option ${scheduleDeatil.clsLoc eq '인천' ? 'selected' : ''}>인천</option>
+										<option ${scheduleDeatil.clsLoc eq '대전' ? 'selected' : ''}>대전</option>
+										<option ${scheduleDeatil.clsLoc eq '대구' ? 'selected' : ''}>대구</option>
+										<option ${scheduleDeatil.clsLoc eq '광주' ? 'selected' : ''}>광주</option>
+										<option ${scheduleDeatil.clsLoc eq '경북' ? 'selected' : ''}>경북</option>
+										<option ${scheduleDeatil.clsLoc eq '경남/울산' ? 'selected' : ''}>경남/울산</option>
+										<option ${scheduleDeatil.clsLoc eq '전북' ? 'selected' : ''}>전북</option>
+										<option ${scheduleDeatil.clsLoc eq '전남' ? 'selected' : ''}>전남</option>
+										<option ${scheduleDeatil.clsLoc eq '충북' ? 'selected' : ''}>충북</option>
+										<option ${scheduleDeatil.clsLoc eq '충남' ? 'selected' : ''}>충남</option>
+										<option ${scheduleDeatil.clsLoc eq '세종' ? 'selected' : ''}>세종</option>
+										<option ${scheduleDeatil.clsLoc eq '강원' ? 'selected' : ''}>강원</option>
+										<option ${scheduleDeatil.clsLoc eq '제주' ? 'selected' : ''}>제주</option>										
 							</select>
-							</div>
+							</p>
 							<div>
 							주소 검색 : 
-							<input type="text" class="map-input" id="sample5_address" placeholder="검색을 클릭해주세요">
-							<input type="button" id="map-input" onclick="sample5_execDaumPostcode()" value="검색"><br>	
+							<input type="text" class="map-input" id="sample5_address" name="scdPlace" value="${scheduleDeatil.scdPlace }" placeholder="검색을 클릭해주세요">
+							<input type="button" id="map-input" onclick="sample5_execDaumPostcode()" value="검색"><br>
 							</div>
 							<div>
 							상세 주소 : 
-							<input type="text" class="map-input" name="scdLocDetial" placeholder="상세 주소를 입력해주세요">
+							<input type="text" class="map-input" name="scdPlaceDetail" value="${scheduleDeatil.scdPlaceDetail }" placeholder="상세 주소를 입력해주세요">
 							</div>	
 	
 							<div id="map"></div>
@@ -244,8 +218,37 @@
 							            }
 							        }).open();
 							    }
+							    
+							 // 값이 주소값으로 주어질 변수
+							    var addressValue = "${scheduleDeatil.scdPlace}";
+
+							    // 주어진 주소값으로 좌표를 검색하고, 지도에 표시한다.
+							    geocoder.addressSearch(addressValue, function(results, status) {
+							        // 정상적으로 검색이 완료됐으면
+							        if (status === daum.maps.services.Status.OK) {
+
+							            var result = results[0]; //첫번째 결과의 값을 활용
+
+							            // 해당 주소에 대한 좌표를 받아서
+							            var coords = new daum.maps.LatLng(result.y, result.x);
+							            // 지도를 보여준다.
+							            mapContainer.style.display = "block";
+							            map.relayout();
+							            // 지도 중심을 변경한다.
+							            map.setCenter(coords);
+							            // 마커를 결과값으로 받은 위치로 옮긴다.
+							            marker.setPosition(coords);
+							        } else {
+							            document.getElementById("sample5_address").value = "주소를 찾을 수 없습니다.";
+							        }
+							    });
 							</script> 
-					
+						</td>
+					</tr>	
+					<tr>
+						<td id='cal' colspan="2">
+							<p id="calP">클래스 일정 설정</p>
+							<div id='calendar'></div>
 						</td>
 					</tr>
 				</table>
@@ -256,11 +259,8 @@
       <button type="button" class="cancel-btn">취소</button>
       <button type="submit" class="submit-btn">클래스 등록</button>
 	</div>
-		</form>
+	</form>
 	</div>
-	<div id="includeFooter" class="includeFooter">
-			<%@ include file="../footer.jsp"%>
-	</div>
-	</div>	
+<%@ include file="../footer.jsp"%>
 </body>
 </html>
