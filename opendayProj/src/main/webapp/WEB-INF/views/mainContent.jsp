@@ -68,7 +68,6 @@
 				</c:forEach>
 			</table> --%>
 
-<!-- test -->
 
 			<!-- 		<div class="newListWrapper">
 			<div class="newList"> -->
