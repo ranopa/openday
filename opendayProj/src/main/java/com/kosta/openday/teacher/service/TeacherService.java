@@ -6,6 +6,7 @@ import java.util.List;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.teacher.dto.ClassScdUserDTO;
 import com.kosta.openday.teacher.dto.ClassScheduleDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 import com.kosta.openday.teacher.dto.TeacherScheduleDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
@@ -19,4 +20,7 @@ public interface TeacherService {
 	int tcClassScheduleListCount(HashMap<String, Object> map) throws Exception;
 	List<ClsInquiryDTO> tcClassInquiryList(Integer clsId) throws Exception;
 	List<TeacherScheduleDTO> tcScheduleList(HashMap<String, Object> map) throws Exception;
+	List<OClassDTO> tcClassSalesList(HashMap<String, Object> map) throws Exception;
+	int tcClassSalesListCount(HashMap<String, Object> map) throws Exception;
+	List<SettlementAmountDTO> tcSalesList(HashMap<String, Object> map) throws Exception;
 }

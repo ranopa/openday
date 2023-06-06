@@ -34,7 +34,6 @@
 							<col width="10%" />
 							<col width="10%" />
 							<col width="10%" />
-							<col width="10%" />
 						</colgroup>
 						<thead>
 							<tr>
@@ -43,7 +42,6 @@
 								<th>일정</th>
 								<th>장소</th>
 								<th>수강인원</th>
-								<th>수강료(할인)</th>
 								<th>등록일</th>
 
 							</tr>
@@ -54,9 +52,8 @@
 									<td>${tcClScdlist.scdNum }</td>
 									<td>${tcClScdlist.clsName }</td>
 									<td>${tcClScdlist.scdTime }</td>
-									<td>${tcClScdlist.scdLoc }</td>
-									<td>${tcClScdlist.scdPersonnel }</td>
-									<td>${tcClScdlist.scdPrice }원</td>
+									<td>${tcClScdlist.scdPlaceDetail }</td>
+									<td>0/${tcClScdlist.scdMinPersonnel }</td>
 									<td>${tcClScdlist.scdUploadDate }</td>
 								</tr>
 							</c:forEach>
