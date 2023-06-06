@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
+import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.service.AdmService;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.service.OClassService;
@@ -95,7 +95,9 @@ public class AdmController {
 	@RequestMapping(value = "/admuserlist", method = RequestMethod.GET)
 	public String admUserList(Model model) { 
 		try {
+			List<AdmUserViewDTO> users = admService.findAllUser();
 			
+			model.addAttribute("users", users);
 			model.addAttribute("page","admUserList");
 		} catch (Exception e) {
 			e.printStackTrace();

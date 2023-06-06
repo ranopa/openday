@@ -45,7 +45,7 @@
 		]]>
 	</update>
 	
-	<select id="selectAllUserWithTeacherInfo" resultType="AdmUserViewDTO">
+	<select id="selectAllUserWithTeacherInfo" resultType="com.kosta.openday.adm.dto.AdmUserViewDTO">
 		select
 			u.userId as userId,
 			u.userNickname as userNickname,
@@ -55,13 +55,13 @@
 			u.userAccount as userAccount,
 			u.userJoindate as userJoindate,
 			
-			t.tchcNum, as tchcNum,
+			t.tchcNum as tchcNum,
 			t.tchcNickname as tchcNickname,
-			t.tchcRegistDate
+			t.tchcRegistDate as tchcRegistDate
 		from 
 			user u
 		left join
-			teacher_channel.t
+			teacher_channel t
 		on
 			u.userId = t.userId
 	</select>

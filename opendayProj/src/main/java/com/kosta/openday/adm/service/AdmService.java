@@ -2,6 +2,7 @@ package com.kosta.openday.adm.service;
 
 import java.util.List;
 
+import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 public interface AdmService {
@@ -10,4 +11,6 @@ public interface AdmService {
 	void allowOClass(Integer clsId) throws Exception;
 	
 	void refuseOClass(Integer clsId) throws Exception;
+	
+	List<AdmUserViewDTO> findAllUser() throws Exception;
 }
