@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.service.AdmService;
 import com.kosta.openday.user.dto.OClassDTO;
@@ -42,7 +43,6 @@ public class AdmController {
 
 		return "admin/admMain";
 	}
-	
 	
 
 	// 개설 승낙
@@ -146,6 +146,8 @@ public class AdmController {
 	@RequestMapping(value = "/adminquirylist", method = RequestMethod.GET)
 	public String admInquiryList(Model model) { 
 		try {
+			List<AdmInquiryDTO> inquiryList = admService.findAllAdmInquiryList();
+			model.addAttribute("inquiryList", inquiryList);
 			model.addAttribute("page","admInquiryList");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -153,5 +155,18 @@ public class AdmController {
 		return "admin/admMain";
 	}
 	
+	//유저문의디테일 
+	@RequestMapping(value = "/adminquirydetail", method = RequestMethod.GET)
+	public String admInquiryDetail(@RequestParam Integer admNum, Model model) { 
+		try {
+			AdmInquiryDTO inquiry = admService.findAdmInquiry(admNum);
+			model.addAttribute("inquiry", inquiry);
+			model.addAttribute("page","admInquiryDetail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+
 	
 }
