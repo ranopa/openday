@@ -95,7 +95,7 @@
  				if(idx%5==0) tablestr+='<tr>';
 
  				tablestr += `<td><button type="button" class="categoryButton"
-					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=${code.codNum}'">\${code.codName}</button></td>`;
+					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=\${code.codNum}'">\${code.codName}</button></td>`;
 
  				if(idx%5==0) tablestr+='<\tr>';	
  				idx++;
@@ -123,39 +123,58 @@
     searchFilterWrapper.style.display = "none";
   }
 </script>
+<style>
 
+
+.topBA2 {
+	margin-top: 10px;
+}
+
+.topButtonColor {
+	margin-left: 10px;
+}
+
+</style>
 </head>
 <body>
 
 	<div class="headerWrapper">
 		<div class="contentWrapper">
 			<header>
-				<ul class="topButtons">
-					<c:set var="userId" value="${sessionScope.userId}" />
-					<!-- <li class="nickname">닉네임</li> -->
-					<c:choose>
-						<c:when test="${userId eq null}">
-							<li class="logoutButton"></li>
-						</c:when>
-						<c:otherwise>
-							<b><c:out value="${userId.userNickname}" /></b>
+				<div class="topBA0">
+					<div class="topBA">
+						<div class="topBA2">
+							<ul class="topButtons">
+								<c:set var="userId" value="${sessionScope.userId}" />
+								<!-- <li class="nickname">닉네임</li> -->
+								<c:choose>
+									<c:when test="${userId eq null}">
+										<li class="logoutButton"></li>
+									</c:when>
+									<c:otherwise>
+										<b><c:out value="${userId.userNickname}" /></b>
 
-							<li class="logoutButton"><a href="logout"><button>로그아웃</button></a></li>
-						</c:otherwise>
-					</c:choose>
+										<li class="logoutButton"><a href="logout"><button>
+													<span>로그아웃</span>
+												</button></a></li>
+									</c:otherwise>
+								</c:choose>
 
 
-					<li class="topButtonColor tB topButtonsMargin"><a
-						href="classOpen"><span>강사신청</span></a></li>
+								<li class="topButtonColor tB topButtonsMargin"><a
+									href="classOpen"><span>강사신청</span></a></li>
 
-					<li class="topButton tB topButtonsMargin"><a
-						href="requestlist"><span>클래스요청</span></a></li>
+								<li class="topButton tB topButtonsMargin"><a
+									href="requestlist"><span>클래스요청</span></a></li>
 
-					<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
+								<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
 
-				</ul>
+							</ul>
+						</div>
+					</div>
+				</div>
 		</div>
-		<hr class="hr1">
+		<div class="hr1"></div>
 		<div class="contentWrapper">
 			<div class="logoMenu">
 				<h1 class="logo">
@@ -163,60 +182,86 @@
 				</h1>
 				<form type="text" action="searchinput" method="get"
 					class="searchAndMenu">
-					<div class="searchAndIcon">
 
-						<input class="search" type="text" onclick="dis()"
-							placeholder="강사닉네임/클래스명으로 검색" name="keyword"><input
-							type="submit" class="searchIcon" value="검색">
+					<div class="searchAndIconBox">
+						<div>
+
+							<input class="search" type="text" onclick="dis()"
+								placeholder="강사닉네임/클래스명으로 검색" name="keyword">
+						</div>
+						<div>
+							<button type="submit" class="rSearchIcon">
+								<span class="material-symbols-outlined">search</span>
+							</button>
+							<!-- <input
+							type="submit" class="searchIcon" value="검색"> -->
+						</div>
 					</div>
+
 				</form>
 
 
 
-				<ul class="verticalAlign">
+				<div class="verticalAlign">
 					<c:set var="authority" value="${userId.authority }" />
 					<c:choose>
 
 						<c:when test="${authority eq 0}">
 
-							<li class="admPageLinkButton"><a href="#"> <span
-									class="material-symbols-outlined admin">engineering</span>
-									<p>관리자</p></a></li>
+							<div class="IconColorAdmin">
+								<a href="#"><div class="IconBoxAdmin">
+										<div class="material-symbols-outlined">engineering</div>
+										<div class="IconTextAdmin">관리자</div>
+									</div></a>
+							</div>
 
 						</c:when>
 					</c:choose>
-					<li><a href="#"><span
-							class="material-symbols-outlined alarm"> notifications </span>
-							<p>알림</p></a></li>
+					<div class="IconColor">
+						<a href="#"><div class="IconBox">
+								<div class="material-symbols-outlined">notifications</div>
+								<div class="IconText">알림</div>
+							</div></a>
+					</div>
 					<c:set var="userId" value="${sessionScope.userId }" />
 
 					<c:choose>
 						<c:when test="${userId eq null}">
-							<li><a href="loginform"><span
-									class="material-symbols-outlined login"> person </span>
-									<p>로그인</p></a></li>
+							<div class="IconColor">
+								<a href="loginform"><div class="IconBox">
+										<div class="material-symbols-outlined">person</div>
+										<div class="IconText">로그인</div>
+									</div></a>
+							</div>
 						</c:when>
 						<c:otherwise>
 
-							<li><a href="mypage"><span
-									class="material-symbols-outlined login"> person </span>
-									<p>마이</p></a></li>
+							<div class="IconColor">
+								<a href="mypage"><div class="IconBox">
+										<div class="material-symbols-outlined">person</div>
+										<div class="IconText">마이</div>
+									</div></a>
+							</div>
 						</c:otherwise>
 					</c:choose>
 
-					<li id="menu" onclick="disMenu()"><a href="#"><span
-							class="material-symbols-outlined menu"> menu </span>
-							<p>카테고리</p></a></li>
-				</ul>
+					<div class="IconColor">
+						<a href="#"><div class="IconBox">
+								<div class="material-symbols-outlined" id="menu"
+									onclick="disMenu()">menu</div>
+								<div class="IconText">카테고리</div>
+							</div></a>
+					</div>
+				</div>
 			</div>
 
 
 
 
 		</div>
-				<hr class="hr2">
+		<div class="hr2"></div>
 	</div>
-		</header>
+	</header>
 
 
 	<form type="text" action="search" method="get">

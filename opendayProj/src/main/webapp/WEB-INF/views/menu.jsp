@@ -9,22 +9,32 @@
 <title>Insert title here</title>
 <script src='<c:url value="/resources/js/user/subClassList.js"/>'></script>
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/user/subClassList.css"/>">
+	href="<c:url value="/resources/css/user/menu.css"/>">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
-
+<style>
+.menuContentW{
+margin-top:60px;
+width: 1280px;
+margin-left:auto;
+margin-right:auto;
+}
+.oclassListWrapper{
+margin-top: 55px;
+}
+</style>
 
 </head>
-<%@ include file="header.jsp"%>
-<body>
 
-	<div class="mainContentBigWrapper">
-		<div class="mainContentWrapper">
-			
+<body>
+<%@ include file="header.jsp"%>
+	<div class="menuContentBigWrapper">
+		<div class="menuContentWrapper">
+	<div class="menuContentW">
 			<p class="subTitle">${hcn}</p>
 			
 
@@ -148,7 +158,10 @@
 					</c:forEach>
 				</div> --%>
 			</div>
+			
 		</div>
+		</div>
+		
 		<%@ include file="footer.jsp"%>
 </body>
 </html>

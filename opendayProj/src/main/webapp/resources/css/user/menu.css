@@ -56,12 +56,12 @@
 	font-family: 'NanumBarunGothic', sans-serif;
 }
 
-.mainContentWrapper {
+.menuContentWrapper {
 	margin: 0 auto;
 	width: 1280px;
 }
 
-.mainContentBigWrapper {
+.menuContentBigWrapper {
 	width: 100%;
 	/* height: 100%; */
 	left: 0;
@@ -77,120 +77,59 @@ body {
 	font-family: 'NanumBarunGothic';
 }
 
-
-
-
-
-.checkLabel{
-	margin-right:10px;
-}
-
-.checkLabel input{
-	margin-right:3px;
-}
-.tchcsList{
-	margin-bottom: 20px;
-}
-/* .subOption{
-	display: flex;
-	justify-content: flex-end;
-}
- */
- .subTitle{
- font-size: 20px;}
- 
- .subOption{
- margin-bottom: 50px;
- }
-.tBox{
-	border: 1px solid #E6E6E6;
-	display: flex;
-	white-space: nowrap; /* 닉네임이 길어져도 한 줄로 유지되도록 설정 */
-  overflow: hidden; /* 넘치는 내용을 숨김 */
-  text-overflow: ellipsis; /* 넘치는 내용을 ...으로 표시 */
-  max-width: 200px; /* 최대 너비 설정 */
-  height: 70px;
+/* 클래스 카드 */
+/* .newList{
 	
-	align-items: center;
-	border-radius: 10px;
+	display: flex;
 	
 }
-.tBox span{
-	margin-left:10px;
-	
-}
-.tFil{
-	margin-left:10px;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #F3F3F3;
-}
-/* .oclass {
-	width: 300px;
-	height: 368.95px;
-	background-color: antiquewhite;
-	border-radius: 5px;
-	border: 1px solid rgb(207, 207, 207);
-}
 
-.ssum-img {
-	width: 100%;
-	height: 260px;
-	background-color: rgb(218, 218, 218);
-	margin-bottom: 10px;
-}
-
-.txt-box {
-	padding-right: 10px;
-	padding-left: 10px;
-}
-
-.tb1 {
+.tableTr{
 	display: flex;
-	justify-content: space-between;
-	font-size: 13px;
-	margin-bottom: 5px;
-}
-
-.t1 span {
-	margin-left: 1px;
-}
-
-.t2 span {
-	margin-right: 1px;
-}
-
-.cls-name {
-	font-size: 18px;
-	font-weight: bold;
-	border-bottom: 1px solid rgb(212, 212, 212);
-	width: 95%;
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	margin-left: 5px;
-}
-
-.tb2 {
-	font-size: 18px;
-	padding-bottom: 15px;
-	margin-right: 10px;
-}
-
-.oclassIcon {
-	font-size: 14px;
+	flex-wrap: wrap;
 } */
 
- .oclassTable .tableTr {
-    margin-bottom:50px; /* 행과 행 사이의 마진 조정 */
- }
-/* 클래스 카드 */
+/* 슬라이드 화살표 */
+/* .arrowIcon{
+	
+}
+
+.arrowIcon span {
+	font-size: 30px;
+} */
+
+/* .smallBanner{
+	width: 1280px;
+	height:168px;
+} */
+/* .bigBanner{
+	width: 1440px;
+	height:412px;
+} */
+
+/* 카드 간격 */
+.oclassListWrapper {
+	display: flex;
+	justify-content: space-between
+}
+.classWrapper{
+	margin-top: 55px;
+}
+.mainOclassListTitle{
+	font-size:20px;
+	font-weight: bold;
+	margin-left:50px;
+}
+
+/* 클래스 리스트 카드 정보 */
 .oclass {
-	width: 300px;
-	/* height: 368.95px; */
+	width: 260px;
+/* 	height: 368.95px; */
 	/* background-color: antiquewhite; */
 	border-radius: 5px;
 	border: 1px solid rgb(207, 207, 207);
+	margin-bottom: 20px;
+	margin: 0 18px;
 }
 
 .ssum-img {
@@ -279,17 +218,21 @@ body {
 	font-weight: 600;
 }
 
-.tchcsList{
-	display: flex;
-}
-.tBox{
-	
-	margin-right:20px;
-}
-
-.tBox span{
-	margin-right:10px;
-}
 .oclassIcon {
 	font-size: 14px;
+}
+
+/* 카드 와 카드 사이 간격조정 */
+.oclass {
+	display: inline-block;
+}
+
+.tableTr a{
+color: inherit;
+  text-decoration: none;
+}
+
+.tableTr a:hover{
+color: inherit;
+  text-decoration: none;
 }

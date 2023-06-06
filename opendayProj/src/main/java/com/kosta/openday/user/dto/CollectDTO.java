@@ -20,16 +20,13 @@ public class CollectDTO {
 	private String tchcNickname;
 	private Integer tFilNum;
 	
-	private Integer codNum;
+	private String codNum;
 	
 	public CollectDTO() {}
 
-
-	
-
 	public CollectDTO(Integer clsId, String clsLoc, Integer clsPrice, Integer clsDiscount, String clsName,
 			String codName, Integer filNum, String keyword, Double avgStar, Integer heartCnt, Integer reviewCount,
-			Integer finalPrice, String tchcNickname, Integer tFilNum, Integer codNum) {
+			Integer finalPrice, String tchcNickname, Integer tFilNum, String codNum) {
 		super();
 		this.clsId = clsId;
 		this.clsLoc = clsLoc;
@@ -47,33 +44,6 @@ public class CollectDTO {
 		this.tFilNum = tFilNum;
 		this.codNum = codNum;
 	}
-
-
-
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-
-
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
-
-
-
-	public Integer getCodNum() {
-		return codNum;
-	}
-
-
-	public void setCodNum(Integer codNum) {
-		this.codNum = codNum;
-	}
-
 
 	public Integer getClsId() {
 		return clsId;
@@ -131,6 +101,14 @@ public class CollectDTO {
 		this.filNum = filNum;
 	}
 
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	public Double getAvgStar() {
 		return avgStar;
 	}
@@ -179,8 +157,13 @@ public class CollectDTO {
 		this.tFilNum = tFilNum;
 	}
 
+	public String getCodNum() {
+		return codNum;
+	}
 
-
+	public void setCodNum(String codNum) {
+		this.codNum = codNum;
+	}
 
 	@Override
 	public String toString() {
@@ -190,6 +173,9 @@ public class CollectDTO {
 				+ ", finalPrice=" + finalPrice + ", tchcNickname=" + tchcNickname + ", tFilNum=" + tFilNum + ", codNum="
 				+ codNum + "]";
 	}
+
+
+	
 
 
 	

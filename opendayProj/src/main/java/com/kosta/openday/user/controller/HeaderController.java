@@ -106,7 +106,7 @@ public class HeaderController {
 		
 			mav.addObject("hcn", hcn);
 			mav.addObject("hMenuList",hMenuList);
-			 mav.setViewName("menuSubClassList");
+			 mav.setViewName("menu");
 		} catch (Exception e) {
 			e.printStackTrace();
 

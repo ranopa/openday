@@ -14,54 +14,57 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+<style>
+.contentTopMargin{
+margin-top:60px;
+}
 
+</style>
 
 
 </head>
-<%@ include file="header.jsp"%>
-<body>
 
+<body>
+	<%@ include file="header.jsp"%>
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
+			<div class="contentTopMargin">
+				<p class="subTitle">검색결과</p>
+				<hr>
 
-			<p class="subTitle">${codName}쿠킹</p>
-			<hr>
+				<div class="tchcsList">
 
-			<div class="tchcsList">
+					<c:set var="previousNickname" value="" />
 
-				<c:set var="previousNickname" value="" />
-
-				<c:forEach items="${searchInputList}" var="list" varStatus="loop">
-					<c:if test="${loop.index < 5}">
-						<c:if test="${list.tchcNickname != previousNickname}">
-							<div class="tBox">
-							<img src="img/${list.tFilNum}" class="tFil">
-								
-								<span>${list.tchcNickname}</span>
-							</div>
-							<c:set var="previousNickname" value="${list.tchcNickname}" />
+					<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+						<c:if test="${loop.index < 5}">
+							<c:if test="${list.tchcNickname != previousNickname}">
+								<div class="tBox">
+									<img src="img/${list.tFilNum}" class="tFil"> <span>${list.tchcNickname}</span>
+								</div>
+								<c:set var="previousNickname" value="${list.tchcNickname}" />
+							</c:if>
 						</c:if>
-					</c:if>
-				</c:forEach>
+					</c:forEach>
 
-			</div>
-			<div class="subOption">
-				<label class="checkLabel"><input type="checkbox"
-					name="color" value="blue">인기순</label> <label class="checkLabel"><input
-					type="checkbox" name="color" value="blue">등록일순</label> <label
-					class="checkLabel"><input type="checkbox" name="color"
-					value="blue">가격높은순</label> <label class="checkLabel"><input
-					type="checkbox" name="color" value="blue">가격낮은순</label>
+				</div>
+				<div class="subOption">
+					<label class="checkLabel"><input type="checkbox"
+						name="color" value="blue">인기순</label> <label class="checkLabel"><input
+						type="checkbox" name="color" value="blue">등록일순</label> <label
+						class="checkLabel"><input type="checkbox" name="color"
+						value="blue">가격높은순</label> <label class="checkLabel"><input
+						type="checkbox" name="color" value="blue">가격낮은순</label>
 
-			</div>
+				</div>
 
-			<div class="oclassListWrapper">
-				<!-- <div class="arrowIcon">
+				<div class="oclassListWrapper">
+					<!-- <div class="arrowIcon">
 					<div class="material-symbols-outlined">
 						<a href="#"> arrow_back_ios </a>
 					</div>
 				</div> -->
-				<%-- <div class="oclassTable">
+					<%-- <div class="oclassTable">
 					<ul class="tableTr">
 						<c:forEach items="${collectList}" var="list" varStatus="loop">
 							<c:if test="${loop.index < 4}">
@@ -97,42 +100,41 @@
 				</div>
  --%>
 
-				<div class="oclassTable">
-					<ul class="tableTr">
-						<c:forEach items="${searchInputList}" var="list" varStatus="loop">
-							<c:if test="${loop.index < 4}">
-								<li class="oclass">
-									<img src="img/${list.filNum}" class="ssum-img">
-									<div class="txt-box">
-										<div class="tb1">
-											<div class="t1">
-												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+					<div class="oclassTable">
+						<ul class="tableTr">
+							<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+								<c:if test="${loop.index < 4}">
+									<li class="oclass"><img src="img/${list.filNum}"
+										class="ssum-img">
+										<div class="txt-box">
+											<div class="tb1">
+												<div class="t1">
+													<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+												</div>
+												<div class="t2">
+													<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+													<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+												</div>
 											</div>
-											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+											<p class="cls-name">${list.clsName}</p>
+											<div class="tb2">
+												<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+												<div class="price">
+													<span class="disc">${list.clsDiscount}%</span> <span
+														class="fp">${list.finalPrice}원</span>
+												</div>
 											</div>
-										</div>
-										<p class="cls-name">${list.clsName}</p>
-										<div class="tb2">
-											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-											<div class="price">
-												<span class="disc">${list.clsDiscount}%</span> <span
-													class="fp">${list.finalPrice}원</span>
-											</div>
-										</div>
-									</div>
-								</li>
+										</div></li>
+								</c:if>
+								<c:if test="${loop.index == 3}">
+						</ul>
+						<ul>
 							</c:if>
-							<c:if test="${loop.index == 3}">
-					</ul>
-					<ul>
-						</c:if>
-						</c:forEach>
-					</ul>
-				</div>
+							</c:forEach>
+						</ul>
+					</div>
 
-				<%-- 	<div class="newList">
+					<%-- 	<div class="newList">
 
 					<c:forEach items="${collectList}" var="list">
 						<table class="oclassTable">
@@ -163,8 +165,12 @@
 						</table>
 					</c:forEach>
 				</div> --%>
+				</div>
 			</div>
 		</div>
-		<%@ include file="footer.jsp"%>
+
+	</div>
+
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

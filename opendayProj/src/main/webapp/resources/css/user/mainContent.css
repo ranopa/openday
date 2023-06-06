@@ -77,6 +77,11 @@ body {
 	font-family: 'NanumBarunGothic';
 }
 
+
+.smallBanner{
+	margin: 80px 0 80px 0;
+}
+
 /* 클래스 카드 */
 /* .newList{
 	
@@ -98,14 +103,14 @@ body {
 	font-size: 30px;
 } */
 
-.smallBanner{
+/* .smallBanner{
 	width: 1280px;
 	height:168px;
-}
-.bigBanner{
+} */
+/* .bigBanner{
 	width: 1440px;
 	height:412px;
-}
+} */
 
 /* 카드 간격 */
 .oclassListWrapper {

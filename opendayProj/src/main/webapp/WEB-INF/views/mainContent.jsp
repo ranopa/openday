@@ -166,7 +166,7 @@
 			</div>
 
 			
-				<img src="resources/image/user/cooksmallbanner.jpg" alt="이미지" class="smallBanner">
+				
 			
 			<div class="newClass classWrapper">
 				<p class="mainOclassListTitle">신규 클래스</p>
@@ -219,6 +219,7 @@
 				</div>
 			</div>
 
+<img src="resources/image/user/cooksmallbanner.jpg" alt="이미지" class="smallBanner">
 
 			<div class="imminentDeadlineClass classWrapper">
 				<p class="mainOclassListTitle">마감임박 클래스</p>
