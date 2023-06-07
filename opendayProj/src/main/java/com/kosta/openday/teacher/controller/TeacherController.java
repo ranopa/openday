@@ -76,7 +76,6 @@ public class TeacherController {
 			if(list.isEmpty()) {
 				mav.addObject("err","데이터가 존재하지 않습니다.");
 			}
-			System.out.println(list);
 			mav.addObject("tcCllist",list);
 		} catch (Exception e) {
 			e.printStackTrace();
