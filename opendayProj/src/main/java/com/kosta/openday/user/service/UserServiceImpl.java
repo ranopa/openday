@@ -67,7 +67,6 @@ public class UserServiceImpl implements UserService {
 			return 0;
 		}
 		return 1;
-
 	}
 
 	@Override

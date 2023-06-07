@@ -46,7 +46,7 @@
 				success : function(responseData) {	
 					var message = $("#nickMessage");
 					var resultMessage = null;
-					if(responseData==="0"){
+					if(responseData === "0"){
 						message.css("color", "blue"); 
 						resultMessage = "사용가능한 닉네임입니다.";
 						nickCheckIndex="Y";
@@ -58,7 +58,7 @@
 					message.text(resultMessage);					
 				},
 				error : function(xhr, status, error) {
-				console.log('fail');
+					console.log('fail');
 				}
 			});			
 		});
@@ -74,10 +74,10 @@
 			}
 		});
 		
-		$('#join-check-btn').click(()=>{ 
-			if("idCheckIndex"==="N"||"nickCheckIndex"==="N"){
-			e.preventDefault();
-			alert('항목을 다시 확인하세요');
+		$('#join-check-btn').click((e)=>{
+			if(idCheckIndex === "N"|| nickCheckIndex === "N"){
+				e.preventDefault();
+				alert('항목을 다시 확인하세요');
 			}
 		})
 }
