@@ -65,15 +65,32 @@ public class UserController {
 	// 회원가입 id중복확인
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	@ResponseBody
-	public String idCheck(@RequestParam("userId") String id, @RequestParam("userPassword") String pw) throws Exception {
-  
+	public String idCheck(@RequestParam("userId") String id) throws Exception {
+		 
+		
 		int result = userService.idCheck(id);
-		String mesg = "사용가능한 아이디입니다.";
+		String mesg = "0";
 		if (result == 1) {
-			mesg = "이미 존재하는 아이디입니다.";
+			mesg = "1";
 		}
+		System.out.println(mesg);
 		return mesg;
 	}
+	
+	// 회원가입 닉네임 중복확인
+		@RequestMapping(value = "/nicknamecheck", method = RequestMethod.GET)
+		@ResponseBody
+		public String nickNameCheck(@RequestParam("userNickname") String userNickname) throws Exception {
+			String mesg = null;
+			UserDTO user = userService.getUserInfo(userNickname);
+			if (user.getUserNickname().equals(userNickname)==true) {
+				mesg = "1"; //불가능
+			} else { 
+				mesg = "0"; //가능
+			}
+			System.out.println(mesg);
+			return mesg;
+		}
 
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
