@@ -1,5 +1,6 @@
 package com.kosta.openday.user.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -43,7 +44,7 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 
 	@Override
 	public int classEnrollment(ScheduleDTO dto) throws Exception {
-		return sqlSession.insert("mapper.teacher.classEnrollemnt",dto);
+		return sqlSession.insert("mapper.teacher.classEnrollemnt", dto);
 	}
 
 	@Override

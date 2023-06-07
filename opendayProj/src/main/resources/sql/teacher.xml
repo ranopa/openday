@@ -37,12 +37,24 @@
 	<!-- 클래스 등록(승인 후) -->
 	<insert id="classEnrollemnt" parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
 		 <![CDATA[
-		     insert into schedule (scdNum,scdDate,scdRunTime,scdTime,scdPlace,scdPlaceDetail,scdMinPersonnel,
+		     insert into schedule (scdNum,scdDate,scdRunTime,scdStartTime,scdEndTime,scdPlace,scdPlaceDetail,scdMinPersonnel,
 		     scdMaxPersonnel,scdUploadDate,scdStatus,clsId)
-		     values(nextval(schedule_seq),#{scdDate},#{scdRunTime},#{scdTime},#{scdPlace},#{scdPlaceDetail},#{scdMinPersonnel},
+		     values(nextval(schedule_seq),#{scdDate},#{scdRunTime},#{scdStartTime},#{scdEndTime},#{scdPlace},#{scdPlaceDetail},#{scdMinPersonnel},
 		     #{scdMaxPersonnel},curdate(),#{scdStatus},#{clsId})
 	     ]]>
 	</insert>
+<!-- 	<insert id="classEnrollemnt" parameterType="java.util.ArrayList">
+		 <![CDATA[
+		     insert into schedule (scdNum,scdDate,scdRunTime,scdStartTime,scdEndTime,scdPlace,scdPlaceDetail,scdMinPersonnel,
+		     scdMaxPersonnel,scdUploadDate,scdStatus,clsId)
+		     values
+		     <foreach collection="list" item="item" separator=",">
+		     (nextval(schedule_seq),#{scdDate},#{scdRunTime},#{scdStartTime},#{scdEndTime},#{scdPlace},#{scdPlaceDetail},#{scdMinPersonnel},
+		     #{scdMaxPersonnel},curdate(),#{scdStatus},#{clsId})
+		     </foreach>
+	     ]]>
+	</insert> -->
+	
 	
 	<!-- 스케쥴 불러오기 -->
 	<select id="selectSchedule" parameterType="Integer" resultType="java.util.Map">

@@ -19,8 +19,8 @@
 	</div>
 	<div id="noticeWrapper">	
 			<a href="announcementList" class="atag">공지사항</a>
-			<a href="admInquiry" class="atag">문의하기</a>
-			<a href="admInquiryList" class="atag">문의내역</a>
+			<a href="inquiry" class="atag">문의하기</a>
+			<a href="inquiryList" class="atag">문의내역</a>
 			<br><br>
 
 			<table>

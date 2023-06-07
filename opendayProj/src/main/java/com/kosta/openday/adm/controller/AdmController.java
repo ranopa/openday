@@ -15,13 +15,23 @@ public class AdmController {
 		return "admin/admMain"; 
 	}
 
-	@RequestMapping(value = "/admInquiry",method=RequestMethod.GET)
+	@RequestMapping(value = "/inquiry",method=RequestMethod.GET)
 	public String inquiry() {
-		return "announceinquiry/admInquiry";
+		return "announceinquiry/inquiry";
 	}
 	
-	@RequestMapping(value = "/admInquiryList",method=RequestMethod.GET)
+	@RequestMapping(value = "/inquiryList",method=RequestMethod.GET)
 	public String inquiryHistoryList() {
-		return "announceinquiry/admInquiryList";
+		return "announceinquiry/inquiryList";
+	}
+	
+	@RequestMapping(value = "/inquiryDetail",method=RequestMethod.GET)
+	public String inquiryHistoryDetial() {
+		return "announceinquiry/inquiryDetail";
+	}
+	
+	@RequestMapping(value = "/announcementList",method=RequestMethod.GET)
+	public String announcementList() {
+		return "announceinquiry/announcementList";
 	}
 }

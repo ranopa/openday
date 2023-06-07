@@ -1,7 +1,7 @@
 package com.kosta.openday.user.controller;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,6 +23,7 @@ import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplicationPaymentDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.user.dto.PageInfo;
 import com.kosta.openday.user.dto.PaymentProcessDTO;
 import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
 import com.kosta.openday.user.dto.PaymentRequestDTO;
@@ -32,7 +33,6 @@ import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.OClassService;
 import com.kosta.openday.user.service.PaymentService;
 import com.kosta.openday.user.service.UserService;
-import com.kosta.openday.user.dto.PageInfo;
 
 @Controller
 public class OClassController {

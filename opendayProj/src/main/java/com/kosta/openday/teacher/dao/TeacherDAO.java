@@ -7,7 +7,6 @@ import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.teacher.dto.ClassScdUserDTO;
 import com.kosta.openday.teacher.dto.ClassScheduleDTO;
 import com.kosta.openday.teacher.dto.TeacherScheduleDTO;
-import com.kosta.openday.user.dto.ApplicationPaymentDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 public interface TeacherDAO {

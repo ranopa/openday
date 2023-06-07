@@ -9,8 +9,8 @@ public class ScheduleDTO {
 	private Integer scdNum; //클래스 일정번호 
 	private Date scdDate; //강의일
 	private Integer scdRunTime; //소요시간
-	private Time scdTime; //클래스 시간
-
+	private Time scdStartTime; //클래스 시작 시간
+	private Time scdEndTime; //클래스 끝 시간
 	private String scdPlace; //장소
 	private String scdPlaceDetail; //세부장소
 	private Integer scdMinPersonnel; //모집인원
@@ -21,12 +21,13 @@ public class ScheduleDTO {
 	
 	public ScheduleDTO() {}
 
-	public ScheduleDTO(Integer scdNum, Date scdDate, Integer scdRunTime,Time scdTime, String scdPlace, String scdPlaceDetail,
-			Integer scdMinPersonnel, Integer scdMaxPersonnel, Date scdUploadDate, String scdStatus, Integer clsId) {
+	public ScheduleDTO(Integer scdNum, Date scdDate, Integer scdRunTime,Time scdStartTime, Time scdEndTime, String scdPlace, 
+			String scdPlaceDetail,Integer scdMinPersonnel, Integer scdMaxPersonnel, Date scdUploadDate, String scdStatus, Integer clsId) {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
 		this.scdRunTime = scdRunTime;
-		this.scdTime = scdTime;
+		this.scdStartTime = scdStartTime;
+		this.scdEndTime = scdEndTime;
 		this.scdPlace = scdPlace;
 		this.scdPlaceDetail = scdPlaceDetail;
 		this.scdMinPersonnel = scdMinPersonnel;
@@ -35,8 +36,6 @@ public class ScheduleDTO {
 		this.scdStatus = scdStatus;
 		this.clsId = clsId;
 	}
-
-
 
 	public Integer getScdNum() {
 		return scdNum;
@@ -57,17 +56,25 @@ public class ScheduleDTO {
 	public Integer getScdRunTime() {
 		return scdRunTime;
 	}
-	
+
 	public void setScdRunTime(Integer scdRunTime) {
 		this.scdRunTime = scdRunTime;
 	}
-	
-	public Time getScdTime() {
-		return scdTime;
+
+	public Time getScdStartTime() {
+		return scdStartTime;
 	}
 
-	public void setScdTime(Time scdTime) {
-		this.scdTime = scdTime;
+	public void setScdStartTime(Time scdStartTime) {
+		this.scdStartTime = scdStartTime;
+	}
+
+	public Time getScdEndTime() {
+		return scdEndTime;
+	}
+
+	public void setScdEndTime(Time scdEndTime) {
+		this.scdEndTime = scdEndTime;
 	}
 
 	public String getScdPlace() {
@@ -125,6 +132,41 @@ public class ScheduleDTO {
 	public void setClsId(Integer clsId) {
 		this.clsId = clsId;
 	}
-	
-	
+
+	public void setScdDate(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setScdStartTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setScdEndTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setStart(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTitle(Object title) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object getTitle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setEnd(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
