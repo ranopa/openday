@@ -7,6 +7,7 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/mainContent.css"/>">
@@ -19,13 +20,36 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
+
+
+
+<style>
+  /*   .mainContentWrapper {
+	white-space: nowrap;
+}      */
+
+
+
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+
+
+
+
+
+
+
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	<div class="mainContentBigWrapper">
-	<img src="resources/image/user/cookbigbanner.jpg" alt="이미지" style="width: 100%;">
+		<img src="resources/image/user/cookbigbanner.jpg" alt="이미지"
+			style="width: 100%;">
 		<div class="mainContentWrapper">
 
-			<table class="mainMenuTable">
+			<%-- <table class="mainMenuTable">
 				<c:forEach items="${codeList}" var="code" varStatus="loop">
 					<c:if test="${loop.index % 5 == 0}">
 						<tr>
@@ -52,18 +76,16 @@
 						</tr>
 					</c:if>
 				</c:forEach>
-			</table>
+			</table> --%>
+
 
 			<!-- 		<div class="newListWrapper">
 			<div class="newList"> -->
+				
 			<div class="myList classWrapper">
 				<p class="mainOclassListTitle">내가 선호하는 클래스</p>
 				<div class="oclassListWrapper">
-					<!-- <div class="arrowIcon">
-					<div class="material-symbols-outlined">
-						<a href="#"> arrow_back_ios </a>
-					</div>
-				</div> -->
+				
 					<div class="oclassTable">
 						<ul class="tableTr">
 							<c:forEach items="${nlist}" var="list" varStatus="loop">
@@ -77,13 +99,10 @@
 														<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
 													</div>
 													<div class="t2">
-
 														<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
 														<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
-
 													</div>
 												</div>
-
 												<p class="cls-name">${list.clsName}</p>
 												<div class="tb2">
 													<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
@@ -102,17 +121,16 @@
 							</c:forEach>
 						</ul>
 					</div>
-					<!-- <div class="arrowIcon">
-					<div class="material-symbols-outlined arrow">
-						<a href="#">arrow_forward_ios</a>
-					</div>
-				</div> -->
+			
 
 				</div>
 			</div>
 			<!-- 	</div>
 	
 			</div> -->
+
+ 
+
 
 			<div class="hotClass classWrapper">
 				<p class="mainOclassListTitle">핫한 클래스</p>
@@ -165,17 +183,13 @@
 				</div>
 			</div>
 
-			
-				
-			
+
+
+
 			<div class="newClass classWrapper">
 				<p class="mainOclassListTitle">신규 클래스</p>
 				<div class="oclassListWrapper">
-					<!-- <div class="arrowIcon">
-					<div class="material-symbols-outlined">
-						<a href="#"> arrow_back_ios </a>
-					</div>
-				</div> -->
+
 					<div class="oclassTable">
 						<ul class="tableTr">
 							<c:forEach items="${nlist}" var="list" varStatus="loop">
@@ -211,15 +225,11 @@
 							</c:forEach>
 						</ul>
 					</div>
-					<!-- <div class="arrowIcon">
-					<div class="material-symbols-outlined arrow">
-						<a href="#">arrow_forward_ios</a>
-					</div>
-				</div> -->
+
 				</div>
 			</div>
-
-<img src="resources/image/user/cooksmallbanner.jpg" alt="이미지" class="smallBanner">
+			<img src="resources/image/user/cooksmallbanner.jpg" alt="이미지"
+				class="smallBanner">
 
 			<div class="imminentDeadlineClass classWrapper">
 				<p class="mainOclassListTitle">마감임박 클래스</p>
@@ -326,5 +336,7 @@
 
 		</div>
 	</div>
+
+
 </body>
 </html>
