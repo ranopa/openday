@@ -17,6 +17,7 @@ public class CollectDTO {
 	private Integer reviewCount; //후기수  
 	private Integer finalPrice;//최종가격
 	
+	private Integer tchcNum;
 	private String tchcNickname;
 	private Integer tFilNum;
 	
@@ -26,7 +27,7 @@ public class CollectDTO {
 
 	public CollectDTO(Integer clsId, String clsLoc, Integer clsPrice, Integer clsDiscount, String clsName,
 			String codName, Integer filNum, String keyword, Double avgStar, Integer heartCnt, Integer reviewCount,
-			Integer finalPrice, String tchcNickname, Integer tFilNum, String codNum) {
+			Integer finalPrice, Integer tchcNum, String tchcNickname, Integer tFilNum, String codNum) {
 		super();
 		this.clsId = clsId;
 		this.clsLoc = clsLoc;
@@ -40,6 +41,7 @@ public class CollectDTO {
 		this.heartCnt = heartCnt;
 		this.reviewCount = reviewCount;
 		this.finalPrice = finalPrice;
+		this.tchcNum = tchcNum;
 		this.tchcNickname = tchcNickname;
 		this.tFilNum = tFilNum;
 		this.codNum = codNum;
@@ -141,6 +143,14 @@ public class CollectDTO {
 		this.finalPrice = finalPrice;
 	}
 
+	public Integer getTchcNum() {
+		return tchcNum;
+	}
+
+	public void setTchcNum(Integer tchcNum) {
+		this.tchcNum = tchcNum;
+	}
+
 	public String getTchcNickname() {
 		return tchcNickname;
 	}
@@ -170,9 +180,11 @@ public class CollectDTO {
 		return "CollectDTO [clsId=" + clsId + ", clsLoc=" + clsLoc + ", clsPrice=" + clsPrice + ", clsDiscount="
 				+ clsDiscount + ", clsName=" + clsName + ", codName=" + codName + ", filNum=" + filNum + ", keyword="
 				+ keyword + ", avgStar=" + avgStar + ", heartCnt=" + heartCnt + ", reviewCount=" + reviewCount
-				+ ", finalPrice=" + finalPrice + ", tchcNickname=" + tchcNickname + ", tFilNum=" + tFilNum + ", codNum="
-				+ codNum + "]";
+				+ ", finalPrice=" + finalPrice + ", tchcNum=" + tchcNum + ", tchcNickname=" + tchcNickname
+				+ ", tFilNum=" + tFilNum + ", codNum=" + codNum + "]";
 	}
+
+	
 
 
 	
