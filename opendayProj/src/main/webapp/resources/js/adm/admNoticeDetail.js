@@ -1,6 +1,6 @@
 
     window.onload=()=>{
-    
+    	console.log("okk")
   var wModalBtn = document.querySelector("#del-btn");
   var wModalEl = document.querySelector(".w-modal"); 
   var wCancelBtn = document.querySelector(".w-cancel-btn");

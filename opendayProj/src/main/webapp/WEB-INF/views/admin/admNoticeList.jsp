@@ -42,19 +42,19 @@
                 <tbody>
                     <tr>
                         <td class="td1">1123</td>
-                        <td class="td2"><a href=""><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예라이나쁜넘아~</p></a></td>
+                        <td class="td2"><a href="admnoticedetail"><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예라이나쁜넘아~</p></a></td>
                         <td class="td3">123354</td>
                         <td class="td4">2023-05-24</td>
                     </tr>
                     <tr>
                         <td class="td1">1123</td>
-                        <td class="td2"><a href=""><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예 그런것입니다</p></a></td>
+                        <td class="td2"><a href="admnoticedetail"><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예 그런것입니다</p></a></td>
                         <td class="td3">123354</td>
                         <td class="td4">2023-05-24</td>
                     </tr>
                     <tr>
                         <td class="td1">1123</td>
-                        <td class="td2"><a href=""><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예</p></a></td>
+                        <td class="td2"><a href="admnoticedetail"><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예</p></a></td>
                         <td class="td3">123354</td>
                         <td class="td4">2023-05-24</td>
                     </tr>

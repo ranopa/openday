@@ -35,6 +35,13 @@
 	href='<c:url value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>'>
 	 
 <!-- jQuery UI CSS 임포트 -->
+
+<script src="resources/js/teacher/jquery-3.1.1.min.js"></script>
+<!-- Air datepicker css -->
+<script src="resources/js/teacher/datepicker.js"></script>
+<script src="resources/js/teacher/datepickerSetting.js"></script>
+<!-- Air datepicker js -->
+<script src="resources/js/teacher/datepicker.ko.js"></script>
 <link rel="stylesheet"
 	href='<c:url value="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>'>
 
@@ -42,6 +49,7 @@
 <script src="<c:url value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>"></script>   
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/css/adm/admHeader.css"/>'>

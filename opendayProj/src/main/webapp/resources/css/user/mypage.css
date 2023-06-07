@@ -462,3 +462,19 @@ body {
 	font-size: 32px;
 	color: rgba(66, 40, 77, 0.7);
 }
+
+#mypage .host-badge {
+	font-weight: 900;
+	height: 15px;
+	display: inline-flex;
+	margin-right: 7px;
+	border-radius: 5px;
+	background-color: rgb(255, 217, 0);
+	width: 15px;
+	font-size: 14;
+	color: #7C4AFF;
+	align-items: center;
+	justify-content: center;
+	padding: 2px;
+	padding-top: 4px;
+}

@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -33,8 +35,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
-	private final String uploadDir = String.join(File.separator, System.getProperty("user.dir"), "resources", "upload")
-			+ File.separator;
+	@Autowired
+	private ServletContext servletContext;
+
+	private final String uploadDir = "/resources/upload/";
 
 	// 회원가입 > 데베에 insert
 	@Override
@@ -66,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
-		// 파일 insert
+
 		Integer filNum = 0;
 
 		if (file != null && !file.isEmpty()) {
@@ -75,15 +79,13 @@ public class UserServiceImpl implements UserService {
 			fil.setFilOrgName(file.getOriginalFilename());
 			fil.setFilSaveName(file.getName());
 			fil.setFilSize(file.getSize());
-			fileDAO.insertFile(fil);
-
 			filNum = fileDAO.selectNewFileId();
-
-			filNum -= 1; // 왜 새로 얻어오는지.. INSERT하고 리턴해야할듯
+			fil.setFilNum(filNum);
+			fileDAO.insertFile(fil);
 
 			// File dfile = new
 			// File("/resources/upload/"+filNum+file.getOriginalFilename());
-			File dfile = new File(uploadDir + filNum + file.getOriginalFilename());
+			File dfile = new File(servletContext.getRealPath(uploadDir) + filNum);
 
 			file.transferTo(dfile);
 			map.put("filNum", filNum);
@@ -132,8 +134,6 @@ public class UserServiceImpl implements UserService {
 
 		System.out.println(param);
 
-	
-
 		// TODO Auto-generated method stub
 		return userDAO.selectOClassList(param);
 
@@ -152,8 +152,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
-		FileDTO file = fileDAO.selectFile(id); 
-		FileInputStream fis = new FileInputStream(uploadDir + file.getFilNum() + file.getFilOrgName());
+		FileInputStream fis = new FileInputStream(servletContext.getRealPath(uploadDir) + id);
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}
@@ -181,13 +180,13 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDAO.selectMainDeadlineOClassList();
 	}
-	
+
 	@Override
 	public List<CollectDTO> getMainMenuOClassList(String codNum) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.selectMainMenuOClassList(codNum);
 	}
-	
+
 	public List<CollectDTO> HeartOClass(String userId) throws Exception {
 		List<CollectDTO> list = new ArrayList<>();
 		List<HeartDTO> hearts = userDAO.selectHeartList(userId);
@@ -195,13 +194,12 @@ public class UserServiceImpl implements UserService {
 		for (HeartDTO h : hearts) {
 			CollectDTO collect = userDAO.selectHeartOClass(h.getClsId());
 
-			list.add(collect); 
-		} 
+			list.add(collect);
+		}
 
 		return list;
 
 	}
-
 
 	/*
 	 * public void func() { String preference = "C1_C3_C15"; String[] code =
@@ -210,46 +208,45 @@ public class UserServiceImpl implements UserService {
 	 * }
 	 */
 
-	//찜취소
+	// 찜취소
 	@Override
 	public void removeHeart(Integer clsId, String userId) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 		map.put("clsId", clsId);
 		map.put("userId", userId);
-		
+
 		userDAO.deleteHeart(map);
-		
-		
+
 	}
-	//찜하기
+
+	// 찜하기
 	@Override
 	public void addHeart(Integer clsId, String userId) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 		map.put("clsId", clsId);
 		map.put("userId", userId);
-		
+
 		userDAO.insertHeart(map);
-		
-		
-	}
-	//신청내역
-	@Override
-	public List<MyRecordDTO> getReservedList(String userId, String text) throws Exception {
-		Map<String , String> map = new HashMap<>(); 
-		map.put("userId", userId);
-		map.put("text", text); 
-		List<MyRecordDTO> list =  userDAO.selectReserveList(map);
-		for(MyRecordDTO mr : list) {
-			Date sqlDate = mr.getScdDate();
-			java.util.Date uDate = new java.util.Date(sqlDate.getDate());
-			
-			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-			mr.setStrDate(simpleDate.format(uDate)); 
-		}
-		 
-		return list;
+
 	}
 
+	// 신청내역
+	@Override
+	public List<MyRecordDTO> getReservedList(String userId, String text) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("text", text);
+		List<MyRecordDTO> list = userDAO.selectReserveList(map);
+		for (MyRecordDTO mr : list) {
+			Date sqlDate = mr.getScdDate();
+			java.util.Date uDate = new java.util.Date(sqlDate.getDate());
+
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+			mr.setStrDate(simpleDate.format(uDate));
+		}
+
+		return list;
+	}
 
 	@Override
 
@@ -262,13 +259,11 @@ public class UserServiceImpl implements UserService {
 	public List<TeacherChannelDTO> getTchcList(String userId) throws Exception {
 		List<TeacherFollowDTO> followList = userDAO.selectFollowList(userId);
 		List<TeacherChannelDTO> channelList = new ArrayList<>();
-		for(TeacherFollowDTO f : followList) { 
+		for (TeacherFollowDTO f : followList) {
 			channelList.add(userDAO.selectTchcChannel(f.getTchcNum()));
 		}
 		return channelList;
 	}
-	
-
 
 	@Override
 	public UserDTO getUserFindPw(String userId, String userEmail) throws Exception {

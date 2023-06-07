@@ -31,7 +31,7 @@
 				<tr class=tableTr>
 					<c:forEach items="${heartList}" var="list" varStatus="status">
 
-						<td class="oclass"><a href="javascript:void(0)" class="h-link"> <%-- 	<a href="/classinfo/${list.clsId}"> --%>
+						<td class="oclass"><a href="toclassinfofrommy/${list.clsId}" class="h-link">
 								<img src="img/${list.filNum}" class="h-ssum-img"> 
 							 <button class="h-btn" value="${list.clsId}"><span class=" material-symbols-outlined fill icon-custom">favorite</span></button> 
 								<div class="txt-box">
