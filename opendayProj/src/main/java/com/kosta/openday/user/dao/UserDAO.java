@@ -1,5 +1,6 @@
 package com.kosta.openday.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public interface UserDAO {
 
 	public UserDTO selectUserLogin(Map<String, String> map) throws Exception;
 
-	List<CollectDTO> selectOClassList(Map<String, Object> param) throws Exception;
+	List<CollectDTO> selectOClassList(HashMap<String, Object> param) throws Exception;
 
 	public List<CollectDTO> selectmainNewOClassList() throws Exception;
 
@@ -36,7 +37,7 @@ public interface UserDAO {
 
 	public List<CollectDTO> selectMainRequestOClassList() throws Exception;
 
-	public List<CollectDTO> selectMainMenuOClassList(String codNum) throws Exception;
+	public List<CollectDTO> selectMainMenuOClassList(HashMap<String, Object> map) throws Exception;
 
 	public List<CollectDTO> selectMainDeadlineOClassList() throws Exception;
 
@@ -64,4 +65,5 @@ public interface UserDAO {
 	
 	public CodeDTO selectCode(String codNum) throws Exception;
 
+	public int searchOClassCount(HashMap<String, Object> map) throws Exception;
 }

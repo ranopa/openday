@@ -91,38 +91,37 @@ margin-top:60px;
  --%>
 
 					<div class="oclassTable">
-						<c:forEach items="${collectList}" var="list" varStatus="loop">
-							<c:if test="${loop.index % 4 == 0}">
-								<ul class="tableTr">
-							</c:if>
-							<a href="classinfo/${list.clsId}">
-								<li class="oclass"><img src="img/${list.filNum}"
-									class="ssum-img">
-									<div class="txt-box">
-										<div class="tb1">
-											<div class="t1">
-												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
-											</div>
-											<div class="t2">
-												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
-												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
-											</div>
-										</div>
-										<p class="cls-name">${list.clsName}</p>
-										<div class="tb2">
-											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-											<div class="price">
-												<span class="disc">${list.clsDiscount}%</span> <span
-													class="fp">${list.finalPrice}원</span>
-											</div>
-										</div>
-									</div></li>
-							</a>
-							<c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
-								</ul>
-							</c:if>
-						</c:forEach>
-					</div>
+  <c:forEach items="${collectList}" var="list" varStatus="loop">
+    <c:if test="${loop.index % 4 == 0}">
+      <ul class="tableTr">
+    </c:if>
+    <a href="classinfo/${list.clsId}">
+      <li class="oclass"><img src="img/${list.filNum}" class="ssum-img">
+        <div class="txt-box">
+          <div class="tb1">
+            <div class="t1">
+              <span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+            </div>
+            <div class="t2">
+              <span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+              <span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+            </div>
+          </div>
+          <p class="cls-name">${list.clsName}</p>
+          <div class="tb2">
+            <span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+            <div class="price">
+              <span class="disc">${list.clsDiscount}%</span> <span class="fp">${list.finalPrice}원</span>
+            </div>
+          </div>
+        </div>
+      </li>
+    </a>
+    <c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
+      </ul>
+    </c:if>
+  </c:forEach>
+</div>
 
 					<%-- 	<div class="newList">
 
@@ -158,7 +157,7 @@ margin-top:60px;
 				</div>
 			</div>
 			
-			<nav aria-label="Page navigation example">
+			<!-- <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -166,8 +165,32 @@ margin-top:60px;
     <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
-</nav>
-			
+</nav> -->
+			<div class="tc-paging">
+						<c:if test="${pu.startPageNum>5 }">
+							<a href="search?pageNum=${pu.startPageNum-1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">이전</a>
+						</c:if>
+
+						<c:forEach var="i" begin="${pu.startPageNum }"
+							end="${pu.endPageNum }">
+							<c:choose>
+								<c:when test="${pu.pageNum==i }">
+									<!-- 현재페이지 -->
+									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span
+										style='color: blue; font-weight: bold'>[${i }]</span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span style='color: gray;'>[${i }]</span>
+									</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test="${pu.endPageNum<pu.totalPageCount }">
+							<a href="search?pageNum=${pu.endPageNum+1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">다음</a>
+						</c:if>
+					</div>
 		</div>
 		</div>
 		

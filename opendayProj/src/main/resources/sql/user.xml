@@ -317,7 +317,7 @@ FROM (
 
 
 	<!-- 헤더 메뉴 카테고리 클릭 -->
-	<select id="mainMenuOClassList" parameterType="String" resultType="com.kosta.openday.user.dto.CollectDTO">
+	<select id="mainMenuOClassList" parameterType="hashmap" resultType="com.kosta.openday.user.dto.CollectDTO">
 		<![CDATA[
 			SELECT 
 				clsId, 
@@ -361,8 +361,13 @@ FROM (
 			    JOIN code c ON o.clsCode = c.codNum
 			    GROUP BY o.clsId
 			) AS oc
-			WHERE oc.codNum=#{codNum} AND scdNum > 0;
+			WHERE scdNum > 0
 		]]> 
+			<if test="codNum != null and codNum != ''">
+				and oc.codNum=#{codNum}
+			</if>			
+			  
+
 	</select>
 
 

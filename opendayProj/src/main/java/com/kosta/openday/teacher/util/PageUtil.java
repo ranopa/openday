@@ -25,6 +25,8 @@ public class PageUtil {
 		this.totalRowCount=totalRowCount;
 		startRow=(pageNum-1)*rowBlockCount;
 		endRow = rowBlockCount;
+		System.out.println(startRow);
+		System.out.println(endRow);
 		totalPageCount=(int)Math.ceil(totalRowCount/(double)rowBlockCount);
 		startPageNum=(pageNum-1)/pageBlockCount*pageBlockCount+1;
 		endPageNum=startPageNum+pageBlockCount-1;

@@ -126,20 +126,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode)
+	public List<CollectDTO> getSearchOClass(HashMap<String, Object> map)
 			throws Exception {
-		Map<String, Object> param = new HashMap<>();
 
-		param.put("clsLoc", clsLoc);
-		param.put("startDate", startDate);
-		param.put("endDate", endDate);
-
-		param.put("clsCode", clsCode);
-
-		System.out.println(param);
-
-		// TODO Auto-generated method stub
-		return userDAO.selectOClassList(param);
+		return userDAO.selectOClassList(map);
 
 	}
 
@@ -186,9 +176,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getMainMenuOClassList(String codNum) throws Exception {
+	public List<CollectDTO> getMainMenuOClassList(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return userDAO.selectMainMenuOClassList(codNum);
+		return userDAO.selectMainMenuOClassList(map);
 	}
 
 	public List<CollectDTO> HeartOClass(String userId) throws Exception {
@@ -286,5 +276,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public CodeDTO getCode(String codNum) throws Exception {
 		return userDAO.selectCode(codNum);
+	}
+	
+	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
+		return userDAO.searchOClassCount(map);
 	}
 }

@@ -87,7 +87,7 @@
 		dataType:'json',
 		contentType:'application/json;charset=utf-8',
 		success:function(data){
-			data.unshift({codNum: 'all', codClassfication: '카테고리', codName: '전체', codNewdate: 1684854000000});
+			data.unshift({codNum: '', codClassfication: '카테고리', codName: '전체', codNewdate: 1684854000000});
 			let tablestr = '';
 			let idx = 0
  			for(let code of data){
@@ -209,7 +209,7 @@
 						<c:when test="${authority eq 0}">
 
 							<div class="IconColorAdmin">
-								<a href="#"><div class="IconBoxAdmin">
+								<a href="adm"><div class="IconBoxAdmin">
 										<div class="material-symbols-outlined">engineering</div>
 										<div class="IconTextAdmin">관리자</div>
 									</div></a>
@@ -271,7 +271,7 @@
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
 					<label class="radio-label"> <input type="radio"
-						name="clsLoc" value="all" checked />전체
+						name="clsLoc" value="" checked />전체
 					</label> <label class="radio-label"> <input type="radio"
 						name="clsLoc" value="서울" />서울
 					</label> <label class="radio-label"> <input type="radio"
