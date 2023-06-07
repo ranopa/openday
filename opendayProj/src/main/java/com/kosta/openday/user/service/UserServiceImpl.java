@@ -18,6 +18,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
+import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
@@ -34,11 +35,12 @@ public class UserServiceImpl implements UserService {
 	private FileDAO fileDAO;
 	@Autowired
 	private UserDAO userDAO;
-
+	
 	@Autowired
 	private ServletContext servletContext;
-
+	
 	private final String uploadDir = "/resources/upload/";
+  
 
 	// 회원가입 > 데베에 insert
 	@Override
@@ -130,7 +132,6 @@ public class UserServiceImpl implements UserService {
 		param.put("endDate", endDate);
 
 		param.put("clsCode", clsCode);
-		
 
 		System.out.println(param);
 
@@ -277,5 +278,10 @@ public class UserServiceImpl implements UserService {
 	public void getResetPassword(UserDTO user) throws Exception {
 		userDAO.resetPassword(user);
 
+	}
+
+	@Override
+	public CodeDTO getCode(String codNum) throws Exception {
+		return userDAO.selectCode(codNum);
 	}
 }

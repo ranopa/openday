@@ -45,7 +45,6 @@ public class UserController {
 	@Autowired
 	private OClassService oClassService;
 
-
 	// 회원가입폼
 	@RequestMapping("/joinform")
 	public String joinForm() {
