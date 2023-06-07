@@ -17,14 +17,19 @@
 <style>
 .contentTopMargin{
 margin-top:60px;
+.tBox a{
+color:#404040;
+text-decoration: none;
+}
 }
 
 </style>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 </head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	<%@ include file="header.jsp"%>
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
@@ -40,7 +45,9 @@ margin-top:60px;
 						<c:if test="${loop.index < 5}">
 							<c:if test="${list.tchcNickname != previousNickname}">
 								<div class="tBox">
+								<a href="tchcinfo/${list.tchcNum}">
 									<img src="img/${list.tFilNum}" class="tFil"> <span>${list.tchcNickname}</span>
+								</a>
 								</div>
 								<c:set var="previousNickname" value="${list.tchcNickname}" />
 							</c:if>
@@ -168,6 +175,17 @@ margin-top:60px;
 				</div> --%>
 				</div>
 			</div>
+			
+				<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+			
 		</div>
 
 	</div>

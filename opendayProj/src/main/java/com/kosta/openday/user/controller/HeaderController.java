@@ -95,16 +95,17 @@ public class HeaderController {
 	/* 메인 매뉴 클릭시 */
 	
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
-	public ModelAndView getMainMenuOClassList(@RequestParam("codNum") String codNum) {
+	public ModelAndView getMainMenuOClassList(@RequestParam("codNum") String codNum, 
+			@RequestParam("codName") String codName) {
 	
 		ModelAndView mav = new ModelAndView();
 		try {
 			
 			List<CollectDTO> hMenuList = userService.getMainMenuOClassList(codNum);
-			String hcn = hMenuList.get(0).getCodName();
-			System.out.println(hcn);
+//			String hcn = userService.getCode(codNum).getCodName();
+//			System.out.println("codName:"+hcn);
 			
-			mav.addObject("hcn", hcn);
+			mav.addObject("hcn", codName);
 			mav.addObject("hMenuList",hMenuList);
 			 mav.setViewName("menu");
 		} catch (Exception e) {

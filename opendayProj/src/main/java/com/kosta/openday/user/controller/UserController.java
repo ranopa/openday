@@ -39,8 +39,7 @@ public class UserController {
 	
 	@Autowired
 	private HttpSession session;
-
-
+	
 	// 회원가입폼
 	@RequestMapping("/joinform")
 	public String joinForm() {
