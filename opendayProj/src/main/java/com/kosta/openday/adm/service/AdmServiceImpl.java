@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.openday.adm.dao.AdmDAO;
+import com.kosta.openday.adm.dto.AdmInquiryDTO;
+import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 @Service
@@ -37,7 +39,22 @@ public class AdmServiceImpl implements AdmService {
 		map.put("clsId", clsId);
 		
 		admDAO.updateOClassStatus(map);
-		
 	}
+	
+	@Override
+	public List<AdmUserViewDTO> findAllUser() throws Exception {
+		return admDAO.selectUserList();
+	}
+
+	@Override
+	public List<AdmInquiryDTO> findAllAdmInquiryList() throws Exception {
+		return admDAO.selectAdmInquiryList();
+	}
+
+	@Override
+	public AdmInquiryDTO findAdmInquiry(Integer admNum) throws Exception {
+		return admDAO.selectAdmInquiry(admNum);
+	}
+	
 	
 }

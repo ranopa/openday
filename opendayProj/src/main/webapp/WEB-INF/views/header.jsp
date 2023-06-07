@@ -51,7 +51,6 @@
 	cursor: pointer;
 }
 
-
 /* datepicer input 롤오버 시 손가락 모양 표시 */
 .hasDatepicker {
 	cursor: pointer;
@@ -96,7 +95,7 @@
  				if(idx%5==0) tablestr+='<tr>';
 
  				tablestr += `<td><button type="button" class="categoryButton"
-					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=${code.codNum}'">\${code.codName}</button></td>`;
+					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=\${code.codNum}'">\${code.codName}</button></td>`;
 
  				if(idx%5==0) tablestr+='<\tr>';	
  				idx++;
@@ -118,152 +117,194 @@
 	})
 
 </script>
+<script>
+  function closeSearchFilterWrapper() {
+    var searchFilterWrapper = document.querySelector(".searchFilterWrapper");
+    searchFilterWrapper.style.display = "none";
+  }
+</script>
+<style>
 
+
+.topBA2 {
+	margin-top: 10px;
+}
+
+.topButtonColor {
+	margin-left: 10px;
+}
+
+</style>
 </head>
 <body>
 
 	<div class="headerWrapper">
 		<div class="contentWrapper">
 			<header>
-				<ul class="topButtons">
-					<c:set var="userId" value="${sessionScope.userId}" />
-					<!-- <li class="nickname">닉네임</li> -->
-					<c:choose>
-						<c:when test="${userId eq null}">
-							<li class="logoutButton"></li>
-						</c:when>
-						<c:otherwise>
-							<b><c:out value="${userId.userNickname}" /></b>
+				<div class="topBA0">
+					<div class="topBA">
+						<div class="topBA2">
+							<ul class="topButtons">
+								<c:set var="userId" value="${sessionScope.userId}" />
+								<!-- <li class="nickname">닉네임</li> -->
+								<c:choose>
+									<c:when test="${userId eq null}">
+										<li class="logoutButton"></li>
+									</c:when>
+									<c:otherwise>
+										<b><c:out value="${userId.userNickname}" /></b>
 
-							<li class="logoutButton"><a href="logout"><button>로그아웃</button></a></li>
-						</c:otherwise>
-					</c:choose>
+										<li class="logoutButton"><a href="logout"><button>
+													<span>로그아웃</span>
+												</button></a></li>
+									</c:otherwise>
+								</c:choose>
 
 
-					<li class="topButtonColor tB topButtonsMargin"><a href=#><span>강사신청</span></a></li>
+								<li class="topButtonColor tB topButtonsMargin"><a
+									href="classOpen"><span>강사신청</span></a></li>
 
-					<li class="topButton tB topButtonsMargin"><a href=#><span>클래스요청</span></a></li>
+								<li class="topButton tB topButtonsMargin"><a
+									href="requestlist"><span>클래스요청</span></a></li>
 
-					<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
+								<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
 
-				</ul>
+							</ul>
+						</div>
+					</div>
+				</div>
 		</div>
-		<hr class="hr1">
+		<div class="hr1"></div>
 		<div class="contentWrapper">
 			<div class="logoMenu">
 				<h1 class="logo">
 					<a href="./">열어데이</a>
 				</h1>
-				<form type="text" action="search" method="get" class="searchAndMenu">
-					<div class="searchAndIcon">
+				<form type="text" action="searchinput" method="get"
+					class="searchAndMenu">
 
-						<input class="search" type="text" onclick="dis()"
-							placeholder="검색어 입력" name="keyword"> <a href="subClassList"><span
-							type="submit" class="material-symbols-outlined searchIcon" >search</span></a>
+					<div class="searchAndIconBox">
+						<div>
+
+							<input class="search" type="text" onclick="dis()"
+								placeholder="강사닉네임/클래스명으로 검색" name="keyword">
+						</div>
+						<div>
+							<button type="submit" class="rSearchIcon">
+								<span class="material-symbols-outlined">search</span>
+							</button>
+							<!-- <input
+							type="submit" class="searchIcon" value="검색"> -->
+						</div>
 					</div>
-				<!-- </form> -->
+
+				</form>
 
 
 
-				<ul class="verticalAlign">
+				<div class="verticalAlign">
 					<c:set var="authority" value="${userId.authority }" />
 					<c:choose>
 
 						<c:when test="${authority eq 0}">
-							<li class="admPageLinkButton"><a href="#"><button>관리자
-										페이지로 이동</button></a></li>
+
+							<div class="IconColorAdmin">
+								<a href="#"><div class="IconBoxAdmin">
+										<div class="material-symbols-outlined">engineering</div>
+										<div class="IconTextAdmin">관리자</div>
+									</div></a>
+							</div>
+
 						</c:when>
 					</c:choose>
-					<li><a href="#"><span
-							class="material-symbols-outlined alarm"> notifications </span>
-							<p>알림</p></a></li>
+					<div class="IconColor">
+						<a href="#"><div class="IconBox">
+								<div class="material-symbols-outlined">notifications</div>
+								<div class="IconText">알림</div>
+							</div></a>
+					</div>
 					<c:set var="userId" value="${sessionScope.userId }" />
 
 					<c:choose>
 						<c:when test="${userId eq null}">
-							<li><a href="loginform"><span
-									class="material-symbols-outlined login"> person </span>
-									<p>로그인</p></a></li>
+							<div class="IconColor">
+								<a href="loginform"><div class="IconBox">
+										<div class="material-symbols-outlined">person</div>
+										<div class="IconText">로그인</div>
+									</div></a>
+							</div>
 						</c:when>
 						<c:otherwise>
 
-							<li><a href="mypage"><span
-									class="material-symbols-outlined login"> person </span>
-									<p>마이</p></a></li>
+							<div class="IconColor">
+								<a href="mypage"><div class="IconBox">
+										<div class="material-symbols-outlined">person</div>
+										<div class="IconText">마이</div>
+									</div></a>
+							</div>
 						</c:otherwise>
 					</c:choose>
 
-					<li id="menu" onclick="disMenu()"><a href="#"><span
-							class="material-symbols-outlined menu"> menu </span>
-							<p>카테고리</p></a></li>
-				</ul>
+					<div class="IconColor">
+						<a href="#"><div class="IconBox">
+								<div class="material-symbols-outlined" id="menu"
+									onclick="disMenu()">menu</div>
+								<div class="IconText">카테고리</div>
+							</div></a>
+					</div>
+				</div>
 			</div>
 
 
 
 
-
-			</header>
 		</div>
-		<hr class="hr2">
+		<div class="hr2"></div>
 	</div>
-	<!-- <form type="text" action="search" method="post"> -->
+	</header>
+
+
+	<form type="text" action="search" method="get">
 		<div id='dis' class="searchFilterWrapper">
 
 			<div class="contentWrapper">
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
-  					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="all" checked />전체 
+					<label class="radio-label"> <input type="radio"
+						name="clsLoc" value="all" checked />전체
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="서울" />서울
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="경기" />경기
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="인천" />인천
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="강원" />강원
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="충북" />충북
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="충남" />충남
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="세종" />세종
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="대전" />대전
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="광주" />광주
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="전북" />전북
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="경북" />경북
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="대구" />대구
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="제주" />제주
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="전남" />전남
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="경남/울산" />경남/울산
+					</label> <label class="radio-label"> <input type="radio"
+						name="clsLoc" value="부산" />부산
 					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="서울" />서울 
-					</label>
-						<label class="radio-label">
-						<input type="radio" name="clsLoc" value="경기" />경기 
-					</label>
-					<label class="radio-label">
-						<input type="radio" name="clsLoc" value="인천" />인천 
-					</label>
-					<label class="radio-label">
-						<input type="radio" name="clsLoc" value="강원" />강원
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="충북" />충북 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="충남" />충남 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="세종" />세종 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="대전" />대전 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="광주" />광주
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="전북" />전북 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="경북" />경북 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="대구" />대구 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="제주" />제주 
-					</label>
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="전남" />전남
-					</label>					
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="경남/울산" />경남/울산 
-					</label>					
-					<label class="radio-label">
-					<input type="radio" name="clsLoc" value="부산" />부산
-					</label>					
 
 				</div>
 
@@ -296,7 +337,7 @@
 				</div> -->
 
 				<div class="filterUl3">
-					<p class="filterUlTitle">요일</p>
+					<p class="filterUlTitle">기간</p>
 
 					<p>
 						<input type="date" id="datepicker1" name="startDate"
@@ -306,12 +347,13 @@
 				</div>
 
 				<div class="searchFilterButton">
-					<button type="button" class="refresh" onclick="resetFilters()">
-						<span class="material-symbols-outlined"> refresh </span>
-						초기화
-					</button>
-					<input type="submit" class="searchButton" value="검색">
 
+					<input type="submit" class="searchButton" value="검색">
+					<button type="button" class="refresh"
+						onclick="closeSearchFilterWrapper()">
+						<!-- <span class="material-symbols-outlined"> refresh </span> -->
+						닫기
+					</button>
 				</div>
 			</div>
 		</div>

@@ -45,4 +45,41 @@
 		]]>
 	</update>
 	
+	<select id="selectAllUserWithTeacherInfo" resultType="com.kosta.openday.adm.dto.AdmUserViewDTO">
+		<![CDATA[
+			select
+				u.userId as userId,
+				u.userNickname as userNickname,
+				u.userName as userName,
+				u.userTel as userTel,
+				u.userEmail as userEmail,
+				u.userAccount as userAccount,
+				u.userJoindate as userJoindate,
+				
+				t.tchcNum as tchcNum,
+				t.tchcNickname as tchcNickname,
+				t.tchcRegistDate as tchcRegistDate
+			from 
+				user u
+			left join
+				teacher_channel t
+			on
+				u.userId = t.userId
+		]]>
+	</select>
+	
+	<!-- 관리자 문의 디테일 -->
+	<select id="selectAdmInquiry" parameterType="Integer" resultType="com.kosta.openday.adm.dto.AdmInquiryDTO">
+		<![CDATA[
+			select * from adm_inquiry where admNum=#{admNum}
+		]]>
+	</select>
+	
+	<!-- 관리자 문의 목록 -->
+	<select id="selectAdmInquiryList" resultType="com.kosta.openday.adm.dto.AdmInquiryDTO">
+		<![CDATA[
+			select * from adm_inquiry
+		]]>
+	</select>
+	
 </mapper>

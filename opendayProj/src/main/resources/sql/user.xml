@@ -315,6 +315,7 @@ FROM (
 	</select>
 
 
+
 	<!-- 헤더 메뉴 카테고리 클릭 -->
 	<select id="mainMenuOClassList" parameterType="String" resultType="com.kosta.openday.user.dto.CollectDTO">
 		<![CDATA[
@@ -363,6 +364,7 @@ FROM (
 			WHERE oc.codNum=#{codNum}
 		]]> 
 	</select>
+
 
 
 	<!-- 개설요청참여 participation -->

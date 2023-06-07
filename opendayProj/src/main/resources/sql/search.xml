@@ -74,7 +74,7 @@ GROUP BY o.clsId) AS oc
    </sql> -->
    
 <!-- 아래는 강사닉넴과 클래스명 검색 합친거 근데 기존거가 안됨 -->
-    <when test="clsLoc=='all' and startDate==null and clsCode=='all'">			
+   <!--  <when test="clsLoc=='all' and startDate==null and clsCode=='all'">			
 	   <include refid="search"></include>
 	where tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
 			</when>
@@ -110,7 +110,7 @@ GROUP BY o.clsId) AS oc
 			</when>
 			<when test="clsLoc=='nll' and clsCode=='nll'">
 				WHERE clsLoc=#{clsLoc} and (scdDate between #{startDate} and #{endDate}) and clsCode=#{clsCode} and tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%") 
-			</when>
+			</when> -->
 <!--    위가 추가 -->
    
    <when test="clsLoc=='all' and startDate==null and clsCode=='all'">
@@ -337,9 +337,9 @@ GROUP BY o.clsId) AS oc
 		>  
 		
 	         <![CDATA[
-	        SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCode, scdDate, tchcNickname, tFilNum FROM (
+	         SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCode, scdDate, tchcNickname, tFilNum, scdNum FROM (
 SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-   o.filNum AS filNum, COUNT(r.rvNum) AS reviewCount, o.clsCode as clsCode, s.scdDate as scdDate, t.tchcNickname as tchcNickname, t.filNum as tFilNum, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
+   o.filNum AS filNum, COUNT(r.rvNum) AS reviewCount, o.clsCode as clsCode, s.scdDate as scdDate, t.tchcNickname as tchcNickname, t.filNum as tFilNum, s.scdNum AS scdNum, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
          IFNULL((
       SELECT COUNT(*)
       FROM heart h
@@ -351,7 +351,8 @@ LEFT join review r on r.scdNum = s.scdNum
 JOIN code c ON o.clsCode=c.codNum
 join teacher_channel t on t.userId = o.userId
 GROUP BY o.clsId) AS oc
-	       where tchcNickname like CONCAT("%",#{keyword},"%") or clsName like CONCAT("%",#{keyword},"%")
+	      WHERE (oc.tchcNickname LIKE CONCAT('%', #{keyword}, '%') AND oc.scdNum >= 0)
+    OR (oc.clsName LIKE CONCAT('%', #{keyword}, '%') AND oc.scdNum > 0)
 	        ]]>
 	        </select>
 </mapper>
