@@ -8,22 +8,24 @@ public class ClassScheduleDTO {
 	private Integer scdNum; // 클래스 일정번호
 	private String clsName; // 강의 시간
 	private String scdTime; // 강의 시간
-	private String scdLoc; // 장소
-	private Integer scdPersonnel; // 모집인원
+	private String scdPlaceDetail; // 장소
+	private Integer scdMinPersonnel; // 최대수강인원
+	private Integer scdMaxPersonnel; // 최소수강인원
 	private String scdPrice; // 최종수강료(할인적용)
 	private Date scdUploadDate; // 등록일
 
 	public ClassScheduleDTO() {
 	}
 
-	public ClassScheduleDTO(Integer scdNum, String clsName, String scdTime, String scdLoc, Integer scdPersonnel,
-			String scdPrice, Date scdUploadDate) {
+	public ClassScheduleDTO(Integer scdNum, String clsName, String scdTime, String scdPlaceDetail,
+			Integer scdMinPersonnel, Integer scdMaxPersonnel, String scdPrice, Date scdUploadDate) {
 		super();
 		this.scdNum = scdNum;
 		this.clsName = clsName;
 		this.scdTime = scdTime;
-		this.scdLoc = scdLoc;
-		this.scdPersonnel = scdPersonnel;
+		this.scdPlaceDetail = scdPlaceDetail;
+		this.scdMinPersonnel = scdMinPersonnel;
+		this.scdMaxPersonnel = scdMaxPersonnel;
 		this.scdPrice = scdPrice;
 		this.scdUploadDate = scdUploadDate;
 	}
@@ -52,20 +54,28 @@ public class ClassScheduleDTO {
 		this.scdTime = scdTime;
 	}
 
-	public String getScdLoc() {
-		return scdLoc;
+	public String getScdPlaceDetail() {
+		return scdPlaceDetail;
 	}
 
-	public void setScdLoc(String scdLoc) {
-		this.scdLoc = scdLoc;
+	public void setScdPlaceDetail(String scdPlaceDetail) {
+		this.scdPlaceDetail = scdPlaceDetail;
 	}
 
-	public Integer getScdPersonnel() {
-		return scdPersonnel;
+	public Integer getScdMinPersonnel() {
+		return scdMinPersonnel;
 	}
 
-	public void setScdPersonnel(Integer scdPersonnel) {
-		this.scdPersonnel = scdPersonnel;
+	public void setScdMinPersonnel(Integer scdMinPersonnel) {
+		this.scdMinPersonnel = scdMinPersonnel;
+	}
+
+	public Integer getScdMaxPersonnel() {
+		return scdMaxPersonnel;
+	}
+
+	public void setScdMaxPersonnel(Integer scdMaxPersonnel) {
+		this.scdMaxPersonnel = scdMaxPersonnel;
 	}
 
 	public String getScdPrice() {
@@ -84,6 +94,7 @@ public class ClassScheduleDTO {
 		this.scdUploadDate = scdUploadDate;
 	}
 
+	
 
 	
 

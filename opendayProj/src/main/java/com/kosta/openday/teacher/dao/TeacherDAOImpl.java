@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.teacher.dto.ClassScdUserDTO;
 import com.kosta.openday.teacher.dto.ClassScheduleDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 import com.kosta.openday.teacher.dto.TeacherScheduleDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
@@ -48,6 +49,18 @@ public class TeacherDAOImpl implements TeacherDAO {
 	@Override
 	public List<TeacherScheduleDTO> tcScheduleList(HashMap<String, Object> map) throws Exception {
 		return sqlSession.selectList("mapper.teacherClass.tcScheduleList", map);
+	}
+	@Override
+	public List<OClassDTO> tcClassSalesList(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectList("mapper.teacherClass.tcClassSalesList", map);
+	}
+	@Override
+	public int tcClassSalesListCount(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherClass.tcClassSalesListCount", map);
+	}
+	@Override
+	public List<SettlementAmountDTO> tcSalesList(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectList("mapper.teacherClass.tcSalesList", map);
 	}
 	
 	

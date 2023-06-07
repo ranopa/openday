@@ -14,10 +14,17 @@ button {
 }
 
 table {
-	text-align: center;
+	text-align: left;
 	border-collapse: separate;
 	border-spacing: 0 10px;
 	width: 100%;
+	table-layout:fixed;
+	padding: 0 15px;
+}
+table>tbody>tr>td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 input[type="submit"], input[type="reset"], input[type="button"] {
@@ -45,20 +52,20 @@ a {
 	height: 100%;
 	border: 1px solid;
 	margin: 0 auto;
-	display: flex;
-	flex-basis: (n)%;
 }
 
 .tc-haeder {
-	border: 1px solid;
-	flex-basis: 25%;
-	text-align: center;
-	box-sizing: border-box;
+    text-align: center;
+    box-sizing: border-box;
+    position: fixed;
+    min-height: 1000px;
+    width: 250px;
 }
 
 .tc-logo {
 	background-color: #5A2ECE;
 	text-align: center;
+	padding: 2px;
 }
 
 .tc-logoLink {
@@ -90,8 +97,9 @@ a {
 
 .tc-container {
 	border: 1px solid;
-	flex-basis: 75%;
-	box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 23%;
+    min-height: 1000px;
 }
 
 .tc-nav {
@@ -316,15 +324,80 @@ a {
 .tc-CalenderList>h2 {
 	margin: 20px 10px;
 }
+
 .fc-header-toolbar {
 	margin: 5px 10px;
 }
+
 .fc-header-toolbar>.fc-toolbar-chunk:first-child {
 	width: 350px;
 }
+
 .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
 	min-height: 4em !important;
 }
+
 .fc-toolbar-title {
 	float: left;
+}
+
+.tc-sales {
+	width: 100%;
+	height: 150px;
+}
+
+.tc-sales-tot {
+	width: 200px;
+	padding: 10px 30px;
+	background-color: lightgray;
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+.tc-sales>h3 {
+	margin: 10px;
+}
+
+.tc-sales-tot>div {
+	margin: 9px;
+}
+
+.tc-sales-tot>div:last-of-type {
+	text-align: right;
+}
+
+.tc-sales-list {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	height: 150px;
+	background-color: lightgray;
+	border-radius: 5px;
+	margin: 15px 0;
+}
+
+.tc-sales-list>div:first-of-type {
+	width: 40%;
+    margin: 40px 0;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+.tc-sales-list>div>span:first-of-type {
+	background-color: #5A2ECE;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 3px;
+    margin-right: 20px;
+}
+.tc-sales-list>div:nth-of-type(2), .tc-sales-list>div:nth-of-type(3){
+	width: 30%;
+	text-align: center;
+}
+.tc-sales-list>div:nth-of-type(2)>div, .tc-sales-list>div:nth-of-type(3)>div {
+    padding: 15px;
+}
+.tc-sales-list>div:last-of-type {
+	width: 100%;
+	margin: 10px 0;
+	padding: 0 20px;
 }
