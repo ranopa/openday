@@ -246,9 +246,9 @@
 					</c:choose>
 
 					<div class="IconColor">
-						<a href="#"><div class="IconBox">
+						<a href="#"><div class="IconBox" onclick="disMenu()">
 								<div class="material-symbols-outlined" id="menu"
-									onclick="disMenu()">menu</div>
+									>menu</div>
 								<div class="IconText">카테고리</div>
 							</div></a>
 					</div>
