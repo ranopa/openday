@@ -6,20 +6,69 @@
 <c:import url="/WEB-INF/views/header.jsp" />
 <html>
 <head>
-	<link rel="stylesheet"
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- 결제 -->
+  <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+  <link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@36,400,0,0" />
 	<link rel="stylesheet"
 		href="${contextPath}/resources/css/user/paymentProcess.css" />
+  <script>
+// call only once
+  IMP.init('${storeIdCode}');
+
+//주문번호, 아이템이름, 가격, 이메일, 이름, 전화번호, 상점아이디, 포스트코
+function requestPay() {
+  alert('request button')
+  const merchant_uid = ""+Math.random();
+  console.log(merchant_uid);
+  console.log('${storeIdCode}');
+  // const pg_kakao = `kakaopay.${storeIdCode}`;
+  const pg_kakao = 'kakaopay';
+	IMP.request_pay({
+		pg: pg_kakao,
+		pay_method: "card",
+		merchant_uid: "" + Math.random(), // 주문번호
+		name: "${data.clsName}",
+		amount: ${data.clsPrice * (1 - (data.clsDiscount/100))},
+		buyer_email: "${data.userEmail}",
+		buyer_name: "${data.userName}",
+		buyer_tel: "${data.userTel}",
+		buyer_postcode: "00000"
+		
+	}, function(resp) {
+		// callback
+    console.log(resp);
+    if(resp.success) {
+      $('input[name="paymentMethod"]').val(resp.pay_method);
+      $('input[name="pgProvider"]').val(resp.pg_provider);
+      $( '#payment-form' ).submit();
+
+    }
+	});
+}
+
+$(function() {
+  $("#payment-btn").on("click", function(e) {
+    requestPay();
+  })
+})
+
+</script>
 </head>
+
 <body>
 	<div class="container">
-		<form action="payment" method="POST">
+		<form action="payment" method="POST" id="payment-form">
 		
 		<input type="hidden" name="userId" value="${data.userId }" />
 		<input type="hidden" name="clsId" value="${data.clsId }" />
 		<input type="hidden" name="scdNum" value="${data.scdNum }" />
 		<input type="hidden" name="applyPersonnel" value="${data.applyPersonnel }" />
-		<div class="inner-container" id="customer-info">
+		<input type="hidden" name="pgProvider" />
+    <input type="hidden" name="paymentMethod" />
+    
+    <div class="inner-container" id="customer-info">
 			<div class="inner-container-header">
 				<div class="inner-container-header-left">
 					<span class="material-symbols-outlined"> arrow_back_ios </span> <span
@@ -150,10 +199,11 @@
 				</table>
 			</div>
 		</div>
-		<div class="btn-wrapper">
-			<button class="btn-last">결제하기</button>
-		</div>
+	
 		</form>
+    <div class="btn-wrapper">
+			<button type="button" class="btn-last" id="payment-btn">결제하기</button>
+		</div>
 	</div>
 	<c:import url="/WEB-INF/views/footer.jsp" />
 </body>

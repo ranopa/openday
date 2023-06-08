@@ -40,7 +40,7 @@
 					<p>신청번호: ${result.apNum }</p>
 					<p>결제일자: ${result.apDate }</p>
 					<p>결제금액: ${result.apFinalAmount }원</p>
-					<p>결제방식: ${result.apMethod }</p>
+					<p>결제방식: ${result.apPgProvider} - ${result.apMethod }</p>
 				</div>
 			</div>
 

@@ -7,6 +7,8 @@ import com.kosta.openday.teacher.dto.ScheduleDTO;
 public class PaymentResultDTO {
 	private Integer apNum; //수강신청번호
 	private String apPstatus; //결제상태
+	
+	private String apPgProvider;
 	private String apMethod; //결제방식
 	
 	// todo: 단순 최종금액이 아니라, 적용한 할인정보까지 포함해서
@@ -18,16 +20,25 @@ public class PaymentResultDTO {
 
 	public PaymentResultDTO() {}
 
-	public PaymentResultDTO(Integer apNum, String apPstatus, String apMethod, Integer apFinalAmount, Date apDate,
+	public PaymentResultDTO(Integer apNum, String apPstatus, String apPgProvider, String apMethod, Integer apFinalAmount, Date apDate,
 			OClassDTO oClass, ScheduleDTO schedule, String userId) {
 		this.apNum = apNum;
 		this.apPstatus = apPstatus;
+		this.apPgProvider = apPgProvider;
 		this.apMethod = apMethod;
 		this.apFinalAmount = apFinalAmount;
 		this.apDate = apDate;
 		this.oClass = oClass;
 		this.schedule = schedule;
 		this.userId = userId;
+	}
+
+	public String getApPgProvider() {
+		return apPgProvider;
+	}
+
+	public void setApPgProvider(String apPgProvider) {
+		this.apPgProvider = apPgProvider;
 	}
 
 	public Integer getApNum() {
