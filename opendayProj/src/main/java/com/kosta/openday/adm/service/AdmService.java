@@ -1,9 +1,11 @@
 package com.kosta.openday.adm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
+import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 public interface AdmService {
@@ -18,4 +20,11 @@ public interface AdmService {
 	List<AdmInquiryDTO> findAllAdmInquiryList() throws Exception;
 	
 	AdmInquiryDTO findAdmInquiry(Integer admNum) throws Exception;
+
+	List<AnnouncementDTO> findAnnouncementList() throws Exception;
+
+	AnnouncementDTO findAnnouncement(Integer ancId) throws Exception;
+
+	void writeAdmAnnouncement(Map<String, Object> map) throws Exception;
+
 }

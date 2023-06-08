@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dao.UserDAO;
@@ -33,6 +34,10 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private FileDAO fileDAO;
+	
+	@Autowired
+	private FileService fileService;;
+	
 	@Autowired
 	private UserDAO userDAO;
 	
@@ -67,33 +72,38 @@ public class UserServiceImpl implements UserService {
 			return 0;
 		}
 		return 1;
+
 	}
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
 
-		Integer filNum = 0;
-
-		if (file != null && !file.isEmpty()) {
-			FileDTO fil = new FileDTO();
-			fil.setFilClassification(file.getContentType());
-			fil.setFilOrgName(file.getOriginalFilename());
-			fil.setFilSaveName(file.getName());
-			fil.setFilSize(file.getSize());
-			filNum = fileDAO.selectNewFileId();
-			fil.setFilNum(filNum);
-			fileDAO.insertFile(fil);
+//		Integer filNum = 0;
+//
+//		if (file != null && !file.isEmpty()) {
+//			FileDTO fil = new FileDTO();
+//			fil.setFilClassification(file.getContentType());
+//			fil.setFilOrgName(file.getOriginalFilename());
+//			fil.setFilSaveName(file.getName());
+//			fil.setFilSize(file.getSize());
+//			filNum = fileDAO.selectNewFileId();
+//			fil.setFilNum(filNum);
+//			fileDAO.insertFile(fil);
 
 			// File dfile = new
 			// File("/resources/upload/"+filNum+file.getOriginalFilename());
-			File dfile = new File(servletContext.getRealPath(uploadDir) + filNum);
-
-			file.transferTo(dfile);
-			map.put("filNum", filNum);
+//			File dfile = new File(servletContext.getRealPath(uploadDir) + filNum);
+//
+//			file.transferTo(dfile);
+//			map.put("filNum", filNum); 
+		Integer fileNum = 0;
+		try {
+			fileNum = fileService.createFile(file);
+			map.put("filNum", fileNum);
+			userDAO.updateUser(map);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		// 유저 update
-		userDAO.updateUser(map);
-
 	}
 
 	@Override
