@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
+import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 @Repository
@@ -42,4 +43,20 @@ public class AdmDAOImpl implements AdmDAO {
 	public AdmInquiryDTO selectAdmInquiry(Integer admNum) throws Exception {
 		return sqlSession.selectOne("mapper.adm.selectAdmInquiry", admNum);
 	}
+
+	@Override
+	public List<AnnouncementDTO> selectAnnouncementList() throws Exception {
+		return sqlSession.selectList("mapper.announcement.selectAnnouncementList");
+	}
+
+	@Override
+	public AnnouncementDTO selectAnnouncement(Integer ancId) throws Exception {
+		return sqlSession.selectOne("mapper.announcement.selectAnnouncement", ancId);
+	}
+	
+	@Override
+	public void insertAnnouncement(Map map) throws Exception {
+		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
+	}
+	
 }
