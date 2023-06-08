@@ -18,6 +18,11 @@
 <!-- 일단 임시로 넣어줌 아이콘 문제임 -->
 <link rel="shortcut icon" href="#">
 
+<!-- 제이쿼리 문제 -->
+<script type="text/javascript">
+      $.noConflict();
+</script>
+
 <!-- 캘린더 css, js  -->
 <link href='<c:url value="/resources/lib/main.min.css" />'rel="stylesheet">
 <script src='<c:url value="/resources/lib/main.js" />'></script>
