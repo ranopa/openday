@@ -137,29 +137,29 @@ textarea {
           
         }
 
-        .submit-btn {
-            box-sizing: border-box;
-            width: 200px;
-            height: 43px;
-            background: #7C4AFF;
-            border-radius: 7px;
-            color: #fff;
-            font-weight: bold;
-            border-style: none;
-            font-size: 14px;
-        }
+.submit-btn {
+    box-sizing: border-box;
+    width: 200px;
+    height: 43px;
+    background: #7C4AFF;
+    border-radius: 7px;
+    color: #fff;
+    font-weight: bold;
+    border-style: none;
+    font-size: 14px;
+}
 
-        .cancel-btn {
-            box-sizing: border-box;
-            width: 200px;
-            height: 43px;
-            background: #ffffff;
-            border-radius: 7px;
-            color: #7C4AFF;
-            font-weight: bold;
-            border-style: none;
-            border: #7C4AFF 1px solid;
-            margin-right: 40px;
-        }
+.cancel-btn {
+    box-sizing: border-box;
+    width: 200px;
+    height: 43px;
+    background: #ffffff;
+    border-radius: 7px;
+    color: #7C4AFF;
+    font-weight: bold;
+    border-style: none;
+    border: #7C4AFF 1px solid;
+    margin-right: 40px;
+}
         
     

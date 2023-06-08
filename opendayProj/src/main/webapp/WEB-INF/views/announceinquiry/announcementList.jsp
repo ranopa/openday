@@ -11,6 +11,11 @@
 
 <!-- 일단 임시로 넣어줌 아이콘 문제임 -->
 <link rel="shortcut icon" href="#">
+
+<!-- 제이쿼리 문제 -->
+<script type="text/javascript">
+      $.noConflict();
+</script>
 </head>
 <body>
 	<div id="includeWrapper">

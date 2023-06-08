@@ -34,4 +34,9 @@ public class AdmController {
 	public String announcementList() {
 		return "announceinquiry/announcementList";
 	}
+	
+	@RequestMapping(value = "/announcementDetail",method=RequestMethod.GET)
+	public String announcementDetail() {
+		return "announceinquiry/announcementDetail";
+	}
 }

@@ -46,7 +46,11 @@ input:focus{
     outline: none;
 }
 
-    
+#content {
+	height:380px; 
+	width:818px;
+}
+
 .list-btn {
 	box-sizing: border-box;
 	width: 200px;
@@ -57,17 +61,6 @@ input:focus{
 	font-weight: bold;
 	border-style: none;
 	font-size: 14px;
-}
+	margin-left:540px;
+} 
 
-.edit-btn {
-    box-sizing: border-box;
-    width: 200px;
-    height: 43px;
-    background: rgba(188, 188, 188, 1);
-    border-radius: 7px;
-    font-weight: bold;
-    border-style: none;
-    margin-right: 40px;
-    margin-left: 420px;
-    color:white;
-}

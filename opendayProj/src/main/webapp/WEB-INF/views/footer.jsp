@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/user/footer.css">
+<link rel="stylesheet" href='<c:url value="/resources/css/user/footer.css" />' >
 </head>
 <body>
 	<div class="footerWrapper">
