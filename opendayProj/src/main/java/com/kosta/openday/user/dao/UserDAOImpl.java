@@ -167,4 +167,18 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("mapper.user.selectCode", codNum);
 	}
 
+	@Override
+	public UserDTO selectUserByNickName(String userNickname) throws Exception { 
+		System.out.println(userNickname);
+		UserDTO user =  sqlSession.selectOne("mapper.user.selectUserByNickname",userNickname);
+		if(user==null) {
+			System.out.println("yes");
+		}else {
+			System.out.println("no");
+		}
+		System.out.println(user);
+		System.out.println(user.getUserNickname());
+		return user;
+	}
+
 }

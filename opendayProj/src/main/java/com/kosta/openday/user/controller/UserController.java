@@ -81,8 +81,9 @@ public class UserController {
 		@RequestMapping(value = "/nicknamecheck", method = RequestMethod.GET)
 		@ResponseBody
 		public String nickNameCheck(@RequestParam("userNickname") String userNickname) throws Exception {
+			System.out.println(userNickname);
 			String mesg = null;
-			UserDTO user = userService.getUserInfo(userNickname);
+			UserDTO user = userService.userByNickname(userNickname); 
 			if (user.getUserNickname().equals(userNickname)==true) {
 				mesg = "1"; //불가능
 			} else { 

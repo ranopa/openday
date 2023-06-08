@@ -62,5 +62,8 @@ public interface UserService {
 	List<TeacherChannelDTO> getTchcList(String userId) throws Exception;
 	
 	public CodeDTO getCode(String codNum) throws Exception; 
+	
+	//닉네임중복확인
+	public UserDTO userByNickname(String userNickname) throws Exception;
 
 }
