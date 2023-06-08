@@ -24,12 +24,12 @@ text-decoration: none;
 }
 
 </style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 
 </head>
 
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 	<%@ include file="header.jsp"%>
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
@@ -176,15 +176,33 @@ text-decoration: none;
 				</div>
 			</div>
 			
-				<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
+
+			
+			<div class="tc-paging">
+						<c:if test="${pu.startPageNum>5 }">
+							<a href="search?pageNum=${pu.startPageNum-1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">이전</a>
+						</c:if>
+
+						<c:forEach var="i" begin="${pu.startPageNum }"
+							end="${pu.endPageNum }">
+							<c:choose>
+								<c:when test="${pu.pageNum==i }">
+									<!-- 현재페이지 -->
+									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span
+										style='color: blue; font-weight: bold'>[${i }]</span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span style='color: gray;'>[${i }]</span>
+									</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test="${pu.endPageNum<pu.totalPageCount }">
+							<a href="search?pageNum=${pu.endPageNum+1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">다음</a>
+						</c:if>
+					</div>
 			
 		</div>
 
