@@ -139,8 +139,8 @@
 	        },
 	        success : function(data) {
 	        	if(data == '' || data == null) {
-		        	$("#profile_file_add").attr("src","resources/image/user/basic_profile.png");
-		        	$("#profile_file_add1").attr("src","resources/image/user/basic_profile.png");
+		        	$("#profile_file_add").attr("src","resources/image/user/basic_tchc.png");
+		        	$("#profile_file_add1").attr("src","resources/image/user/basic_tchc.png");
 	        	}else {
 		        	$("#profile_file_add").attr("src","resources/upload/" + data.filSaveName);
 		        	$("#profile_file_add1").attr("src","resources/upload/" + data.filSaveName);
