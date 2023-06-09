@@ -209,7 +209,7 @@
 						<c:when test="${authority eq 0}">
 
 							<div class="IconColorAdmin">
-								<a href="#"><div class="IconBoxAdmin">
+								<a href="adm"><div class="IconBoxAdmin">
 										<div class="material-symbols-outlined">engineering</div>
 										<div class="IconTextAdmin">관리자</div>
 									</div></a>

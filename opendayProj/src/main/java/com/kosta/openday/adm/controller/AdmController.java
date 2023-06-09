@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
+import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.adm.service.AdmService;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.service.OClassService;
@@ -115,8 +116,8 @@ public class AdmController {
 	@RequestMapping(value = "/admclasslist", method = RequestMethod.GET)
 	public String classList(Model model) { 
 		try {
-//			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
-//			 model.addAttribute("list", list);
+			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
+			 model.addAttribute("list", list);
 			model.addAttribute("page","admClassList");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,7 +173,19 @@ public class AdmController {
 		} 
 		return "admin/admMain";
 	}
+
 	
+	//매출확인
+	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
+	public String admSalesList(Model model) { 
+		try {
+			model.addAttribute("page","admSalesList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+
 	// 공지사항 목록
 	@RequestMapping(value="/adminannouncementlist")
 	public String adminAnnouncementList(Model model) {
@@ -229,7 +242,5 @@ public class AdmController {
 		
 	
 	}
-	
-
 	
 }
