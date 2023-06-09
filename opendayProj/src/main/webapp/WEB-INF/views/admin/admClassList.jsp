@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="cls-list">
 	<div class="sr-container">
 		<h2>전체 클래스 목록</h2>
@@ -40,11 +41,13 @@
 					<td class="td4">${cas.teacherId}</td>
 					<td class="td5">${cas.teacherTel}</td>
 					<td class="td6">${cas.clsCreatedAt}</td>
-					<td class="td7"><button type="button" id="detail-btn"
-							class="detail-btn">
-							<span class="material-symbols-outlined icon2"> expand_more
+					<td class="td7">
+						<button type="button" id="detail-btn" class="detail-btn">
+							<span class="material-symbols-outlined icon2">
+								expand_more
 							</span>
-						</button></td>
+						</button>
+					</td>
 				</tr>
 				<tr class="sub-toggle">
 					<td>
@@ -57,14 +60,14 @@
 								<li>수강인원</li>
 								<li>강의상태</li>
 							</ul>
-							<c:forEach items="${cas.schedules} var="scd">
+							<c:forEach items="${cas.schedules}" var="scd">
 								<ul class="sub-ul">
-									<li>${cas.scd.scdNum}</li>
-									<li>${cas.scd.scdDate}</li>
-									<li>${cas.scd.scdTime}</li>
-									<li>${cas.scd.scdPlace}</li>
-									<li>${cas.scd.scdMaxPersonnel}</li>
-									<li>${cas.scd.scdStatus}</li>
+									<li>${scd.scdNum}</li>
+									<li>${scd.scdDate}</li>
+									<li>${scd.scdTime}</li>
+									<li>${scd.scdPlace}</li>
+									<li>${scd.scdMaxPersonnel}</li>
+									<li>${scd.scdStatus}</li>
 								</ul>
 							</c:forEach>
 
