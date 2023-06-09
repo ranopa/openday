@@ -8,14 +8,35 @@ public class PaymentRequestDTO {
 	private Integer applyPersonnel;
 	private Integer point;
 	
+	private String pgProvider;
+	private String paymentMethod;
+	
 	public PaymentRequestDTO() { }
 	
-	public PaymentRequestDTO(String userId, Integer clsId, Integer scdNum, Integer applyPersonnel, Integer point) {
+	public PaymentRequestDTO(String userId, Integer clsId, Integer scdNum, Integer applyPersonnel, Integer point, String pgProvider, String paymentMethod) {
 		this.userId = userId;
 		this.clsId = clsId;
 		this.scdNum = scdNum;
 		this.applyPersonnel = applyPersonnel;
 		this.point = point;
+		this.pgProvider = pgProvider;
+		this.paymentMethod = paymentMethod;
+	}
+
+	public String getPgProvider() {
+		return pgProvider;
+	}
+
+	public void setPgProvider(String pgProvider) {
+		this.pgProvider = pgProvider;
+	}
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 	public String getUserId() {
@@ -48,6 +69,12 @@ public class PaymentRequestDTO {
 	public void setPoint(Integer point) {
 		this.point = point;
 	}
+	
+	public String getPaymentMethodName() {
+		if (this.paymentMethod.equals("point"))
+			return "포인트";
+		return "카드";
+	} 
 	
 	
 }
