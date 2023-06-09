@@ -32,9 +32,14 @@
                         </tbody>
                     </table>
                     <div class="btn-par">
-                        <button type="button" class="submit-btn btn1">취소</button>
+                        <button type="button" id="notice-write-cancel-btn" class="submit-btn btn1">취소</button>
                         <button type="submit" class="submit-btn btn2">등록</button>
                     </div>
+                    <script>
+                    	$('#notice-write-cancel-btn').click(()=>{
+                    		location.href="admnoticelist";
+                    	})
+                    </script>
 
                 </form>
             </div>

@@ -54,10 +54,10 @@
 			</tbody>
 		</table>
 		<div class="write-box">
-		<button type="button" id="write-btn" class="write-btn">공지작성</button> 
+		<button type="button" id="writeform-btn" class="write-btn">공지작성</button> 
 			<script>
-				var btn = document.querySelector('#write-btn');
-				btn.addEventListener('click',()=>{
+				var btn = document.querySelector('#writeform-btn');
+				btn.addEventListener('click',()=>{ 
 					location.href="admannouncementwriteform";
 				})
 			</script>

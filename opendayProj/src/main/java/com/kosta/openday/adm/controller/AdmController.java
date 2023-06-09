@@ -31,7 +31,10 @@ public class AdmController {
 	private OClassService oClassService;
 
 	@RequestMapping(value = "/adm", method = RequestMethod.GET)
-	public String main(@RequestParam(value = "page", required = false) String page, Model model) {
+	public String main(@RequestParam(value = "page", required = false) String page, Model model) throws Exception {
+		String status = "승인대기";
+		List<OClassDTO> watingOClassList = admService.findOClassByStatus(status);
+		model.addAttribute("list", watingOClassList);
 		model.addAttribute("page", page);
 		return "admin/admMain";
 	}
@@ -152,7 +155,7 @@ public class AdmController {
 	//유저문의목록
 	@RequestMapping(value = "/adminquirylist", method = RequestMethod.GET)
 	public String admInquiryList(Model model) { 
-		try {
+		try { 
 			List<AdmInquiryDTO> inquiryList = admService.findAllAdmInquiryList();
 			model.addAttribute("inquiryList", inquiryList);
 			model.addAttribute("page","admInquiryList");
@@ -163,8 +166,8 @@ public class AdmController {
 	}
 	
 	//유저문의디테일 
-	@RequestMapping(value = "/adminquirydetail", method = RequestMethod.GET)
-	public String admInquiryDetail(@RequestParam Integer admNum, Model model) { 
+	@RequestMapping(value = "/adminquirydetail/{admNum}", method = RequestMethod.GET)
+	public String admInquiryDetail(@PathVariable Integer admNum, Model model) { 
 		try {
 			AdmInquiryDTO inquiry = admService.findAdmInquiry(admNum);
 			model.addAttribute("inquiry", inquiry);
@@ -204,8 +207,7 @@ public class AdmController {
 	// 공지사항 디테일
 	@RequestMapping(value="/admnoticedetail/{ancId}")
 	public String adminAnnouncementDetail(@PathVariable Integer ancId,  Model model) {
-		try {
-			System.out.println(ancId);
+		try { 
 			AnnouncementDTO anc = admService.findAnnouncement(ancId); 
 			model.addAttribute("anc", anc); 
 			model.addAttribute("page","admNoticeDetail");
@@ -216,9 +218,9 @@ public class AdmController {
 	}
 	// 공지사항 작성 폼
 	@RequestMapping(value="/admannouncementwriteform", method=RequestMethod.GET)
-	public String writeAdmAnnouncementForm(Model model) {
+	public String writeAdmAnnouncementForm(Model model) { 
 		model.addAttribute("page","admNoticeWrite");
-	 return "adm/admMain";
+	 return "admin/admMain";
 		
 	}
 	// 공지사항 작성
@@ -244,7 +246,7 @@ public class AdmController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "adm/admMain";
+		return "admin/admMain";
 		
 	
 	}

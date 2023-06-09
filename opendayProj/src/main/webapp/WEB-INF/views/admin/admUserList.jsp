@@ -37,7 +37,7 @@
 					<c:when test="${user.tchcNum eq null}">
 						<tr>
 							<td class="td2">${user.userId }</td>
-							<td class="td3"><span class="host-badge">H</span>${user.userNickname }</td>
+							<td class="td3">${user.userNickname }</td>
 							<td class="td4">${user.userEmail }</td>
 							<td class="td5">${user.userTel }</td>
 							<td class="td6">${user.userJoindate }</td>
@@ -46,7 +46,7 @@
 					<c:otherwise>
 						<tr>
 							<td class="td2">${user.userId }</td>
-							<td class="td3">${user.userNickname }</td>
+							<td class="td3"><span class="host-badge">H</span>${user.userNickname }</td> 
 							<td class="td4">${user.userEmail }</td>
 							<td class="td5">${user.userTel }</td>
 							<td class="td6">${user.userJoindate }</td>
