@@ -17,6 +17,7 @@
 	</select>
 	
 	<select id="selectRequestList" resultType="com.kosta.openday.user.dto.RequestDTO"  parameterType="Integer">
+ 
 		<![CDATA[
 			select *
 			from request  limit #{startRow},10
@@ -75,55 +76,84 @@
 		]]>	
 	</delete>
 	
-	<select id="selectScheduleDetail" parameterType="Integer" resultType="java.util.Map">
+	<select id="selectOclassDetail" parameterType="Integer" resultType="java.util.Map">
 		<![CDATA[
-			SELECT o.clsId, o.clsName, o.filNum, o.clsDescription, o.clsCurri,
- 				round(o.clsPrice*(1-s.scdDiscount/100),0) AS price, s.scdLoc, s.scdPlace
-			FROM schedule s JOIN oclass o ON(s.clsId=o.clsId) 	
-			WHERE s.scdNum = #{scdNum}
+			SELECT clsId, clsName, filNum, clsDescription, clsCurri,
+ 				round(clsPrice*(1-clsDiscount/100),0) AS price
+			FROM oclass 	
+			WHERE clsId = #{clsId}
+		]]>	
+	</select>
+	
+
+	<select id="selectReviewByClsId" parameterType="Integer" resultType="com.kosta.openday.user.dto.ReviewDTO">
+		<![CDATA[
+			SELECT * FROM review WHERE clsId = #{clsId}
 		]]>	
 	</select>
 
-	<select id="selectReviewByStdNum" parameterType="Integer" resultType="com.kosta.openday.user.dto.ReviewDTO">
+	<select id="selectInquiryByClsId" parameterType="Integer" resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
 		<![CDATA[
-			SELECT * FROM review WHERE scdNum = #{scdNum}
-		]]>	
-	</select>
-
-	<select id="selectInquiryByStdNum" parameterType="Integer" resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
-		<![CDATA[
-			SELECT * FROM cls_inquiry WHERE scdNum = #{scdNum}
+			SELECT * FROM cls_inquiry WHERE clsId = #{clsId}
 		]]>	
 	</select>
 	
-	<select id="selectHeartByStdNumAndUser" parameterType="java.util.Map" resultType="Integer">
+	<select id="selectHeartByClsIdAndUser" parameterType="java.util.Map" resultType="Integer">
 		<![CDATA[
-			SELECT COUNT(*) FROM heart WHERE scdNum=#{scdNum} and userId=#{userId}
+			SELECT COUNT(*) FROM heart WHERE clsId=#{clsId} and userId=#{userId}
 		]]>	
 	</select>	
 	
-	<select id="selectHeartCntByStdNum" parameterType="Integer" resultType="Integer">
+	<select id="selectHeartCntByClsId" parameterType="Integer" resultType="Integer">
 		<![CDATA[
-			SELECT COUNT(*) FROM heart WHERE scdNum=#{scdNum}
+			SELECT COUNT(*) FROM heart WHERE clsId=#{clsId}
 		]]>	
 	</select>	
 	
-	<insert id="insertHeartByStdNumAndUser" parameterType="java.util.Map">
+	<insert id="insertHeartByClsIdAndUser" parameterType="java.util.Map">
 		<![CDATA[
-			insert into heart (userId, stdNum) values (#{userId}, #{stdNum})
+			insert into heart (userId, clsId) values (#{userId}, #{clsId})
 		]]>	
 	</insert>
 	
-	<delete id="deleteHeartByStdNumAndUser" parameterType="java.util.Map">
+	<delete id="deleteHeartByClsIdAndUser" parameterType="java.util.Map">
 		<![CDATA[
-			delete from heart where userId=#{userId} and stdNum=#{stdNum}
+			delete from heart where userId=#{userId} and clsId=#{clsId}
 		]]>		
 	</delete>
 	
-	<insert id="selectTeacherChannel" parameterType="String">
+	<select id="selectTeacherChannel" parameterType="String">
 		<![CDATA[
 			SELECT tchcNum, filNum 
 			FROM teacher_channel WHERE userId=#{teacherId} 	
 		]]>		
+	</select>
+	
+	<select id="selectReviewByCiNum" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.AnswerDTO">
+		<![CDATA[
+			SELECT * FROM answer where ciNum = #{ciNum}
+		]]>	
+	</select>
+
+	<insert id="insertClsInquiry" parameterType="java.util.Map">
+		<![CDATA[
+			insert cls_inquiry 
+			values(nextval(cls_inquiry_seq),null,#{ciContent},0,curdate(),#{ciSecret},curdate(),#{userId},#{clsId}); 	
+		]]>		
 	</insert>
+	
+	<update id="updateClsInquiry" parameterType="java.util.Map">
+		<![CDATA[
+			update cls_inquiry 
+			set ciContent=#{ciContent}, ciSecret=#{ciSecret}
+			where ciNum=#{ciNum}
+		]]>	
+	</update>
+	
+	<delete id="deleteReview" parameterType="Integer">
+		<![CDATA[
+			delete from review where rvNum=#{rvNum} 	
+		]]>		
+	</delete>
+	
 </mapper>
