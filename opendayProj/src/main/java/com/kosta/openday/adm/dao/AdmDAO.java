@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
+import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 public interface AdmDAO {
@@ -18,4 +19,10 @@ public interface AdmDAO {
 	List<AdmInquiryDTO> selectAdmInquiryList() throws Exception;
 	
 	AdmInquiryDTO selectAdmInquiry(Integer admNum) throws Exception;
+
+	List<AnnouncementDTO> selectAnnouncementList() throws Exception;
+
+	AnnouncementDTO selectAnnouncement(Integer ancId) throws Exception;
+
+	void insertAnnouncement(Map map) throws Exception;
 }

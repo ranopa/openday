@@ -6,8 +6,7 @@
 	background-color: rgb(240, 240, 240);
 }
 
-#settle .s-container {
-	/* width: calc(1280-245)px;  */
+#settle .s-container { 
 	width: 1035px;
 	padding: 20px;
 	margin: 0 auto;

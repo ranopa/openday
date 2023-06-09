@@ -7,26 +7,32 @@
 		parameterType="Integer"
 		resultType="com.kosta.openday.adm.dto.AnnouncementDTO">
 		<![CDATA[
-		SELECT *
-		FROM announcement
-		where ancId = #{ancId}
+			SELECT *
+			FROM announcement
+			where ancId = #{ancId}
 		]]>
 	</select>
 	
 	<select id="selectAnnouncementList"
 		resultType="com.kosta.openday.adm.dto.AnnouncementDTO">
 		<![CDATA[
-		SELECT *
-		FROM announcement
+			SELECT *
+			FROM announcement
 		]]>
 	</select>
 	
-	<insert id="insertAnnouncement">
+	<insert id="insertAnnouncement" parameterType="java.util.Map">
 		<![CDATA[
 		insert into announcement
-		values (nextval(announcement_seq),
-		#{ancTitle}, #{ancContent}, #{ancViewcount},
-		#{ancType}, #{ancUploadDate}, #{filNum}
+		values (
+			nextval(announcement_seq),
+			#{ancTitle}, 
+			#{ancContent}, 
+			0,
+			#{ancType}, 
+			CURDATE(), 
+			#{filNum}
+		)
 		]]>
 	</insert>
 </mapper>
