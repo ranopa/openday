@@ -196,31 +196,61 @@
 	</select>
 
 <!-- 선호클래스 -->
-<!-- <select id="mainPreferenceOClassList" resultType="com.kosta.openday.user.dto.CollectDTO"> 
-	
- <![CDATA[ SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCreatedAt, scdNum
-FROM (
-    SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
-        o.filNum AS filNum, o.clsCreatedAt AS clsCreatedAt, s.scdNum AS scdNum, COUNT(r.rvNum) AS reviewCount, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
-        IFNULL((
-            SELECT COUNT(*)
-            FROM heart h
-            WHERE h.clsId = o.clsId
-        ), 0) AS heartCnt
-    FROM oclass o 
-    LEFT JOIN schedule s ON o.clsId = s.clsId
-    LEFT JOIN review r ON r.scdNum = s.scdNum
-    JOIN code c ON o.clsCode = c.codNum
-    GROUP BY o.clsId 
-) AS oc
-    WHERE s.scdDate >= CURDATE() AND o.clsCode IN
+<select id="mainPreferenceOClassList" parameterType="java.util.List" resultType="com.kosta.openday.user.dto.CollectDTO"> 
+ 		SELECT 
+			clsId, 
+			clsLoc, 
+			clsPrice, 
+			clsDiscount, 
+			clsName, 
+			codName, 
+			filNum, 
+			reviewCount, 
+			finalPrice, 
+			avgStar, 
+			clsCreatedAt, 
+			scdNum, 
+			clsOpenType 
+		FROM (
+			SELECT 
+				o.clsId AS clsId,
+				o.clsLoc AS clsLoc, 
+				o.clsPrice AS clsPrice, 
+				o.clsDiscount AS clsDiscount, 
+				o.clsName AS clsName, 
+				c.codName AS codName,
+				o.filNum AS filNum, 
+				o.clsCreatedAt AS clsCreatedAt, 
+				s.scdNum AS scdNum,
+				(	select inners.scdDate
+					from schedule inners
+					where inners.clsId=o.clsId
+					order by inners.scdDate desc
+					limit 1
+				) as scdDate,
+				o.clsCode as clsCode,
+				o.clsOpenType AS clsOpenType, 
+				COUNT(r.rvNum) AS reviewCount, 
+				round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, 
+				IFNULL(AVG(r.rvStar),0) AS avgStar, 
+				IFNULL((
+					SELECT COUNT(*)
+					FROM heart h
+					WHERE h.clsId = o.clsId
+				), 0) AS heartCnt
+			FROM oclass o 
+			LEFT join schedule s on o.clsId = s.clsId
+			LEFT join review r on r.scdNum = s.scdNum
+			JOIN code c ON o.clsCode=c.codNum
+			GROUP BY o.clsId
+		) AS oc
+    WHERE oc.scdDate >= CURDATE()
+    AND oc.clsCode IN
     <foreach collection='list' item='code' open='(' separator=',' close=')'>
         #{code}
     </foreach>
-    ORDER BY s.scdDate DESC
+    ORDER BY oc.scdDate DESC
 </select>
-]]> </select> -->
-
 <!-- 요청클래스리스트 -->
 	<select id="mainRequestOClassList" resultType="com.kosta.openday.user.dto.CollectDTO"> 
 	<![CDATA[ 

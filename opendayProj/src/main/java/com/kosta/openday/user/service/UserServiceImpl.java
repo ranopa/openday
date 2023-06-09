@@ -6,9 +6,11 @@ import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 
@@ -201,12 +203,21 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception {
+		String userPreferStr = userDAO.selectUserPrefer(userId);
+		String[] prefers = userPreferStr.split("_");
+		
+		List<String> preferList = Arrays.asList(prefers);
+
+		return userDAO.mainPreferenceOClassList(preferList);
+	}
 	/*
 	 * public void func() { String preference = "C1_C3_C15"; String[] code =
 	 * preference.split("_");
 	 * 
 	 * }
-	 */
+	 */	 
 
 	// 찜취소
 	@Override

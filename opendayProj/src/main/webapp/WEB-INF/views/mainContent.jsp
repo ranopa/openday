@@ -24,11 +24,39 @@
 
 
 <style>
-  /*   .mainContentWrapper {
+   /*   .mainContentWrapper {
 	white-space: nowrap;
 }      */
 
+.slider-container {
+  position: relative;
+  overflow: hidden;
+}
 
+.slider-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-list li {
+  flex: 0 0 260px; /* 각 아이템의 너비 */
+  list-style: none;
+}
+
+.slider-next-btn {
+  position: absolute;
+  right: 260px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider-prev-btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 
 </style>
 
@@ -36,7 +64,28 @@
 <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 
 
+<script type="text/javascript">
 
+document.addEventListener("DOMContentLoaded", function() {
+	  const sliderList = document.querySelector(".slider-list");
+	  const prevBtn = document.querySelector(".slider-prev-btn");
+	  const nextBtn = document.querySelector(".slider-next-btn");
+
+	  const itemWidth = sliderList.querySelector(".oclass").offsetWidth;
+	  let currentPosition = 0; // 현재 위치
+
+	  nextBtn.addEventListener("click", function() {
+	    currentPosition += itemWidth;
+	    sliderList.style.transform = `translateX(-${currentPosition}px)`;
+	  });
+
+	  prevBtn.addEventListener("click", function() {
+	    currentPosition -= itemWidth;
+	    sliderList.style.transform = `translateX(-${currentPosition}px)`;
+	  });
+	});
+
+</script>
 
 
 
@@ -81,50 +130,58 @@
 
 			<!-- 		<div class="newListWrapper">
 			<div class="newList"> -->
-				
-			<div class="myList classWrapper">
-				<p class="mainOclassListTitle">내가 선호하는 클래스</p>
-				<div class="oclassListWrapper">
-				
-					<div class="oclassTable">
-						<ul class="tableTr">
-							<c:forEach items="${nlist}" var="list" varStatus="loop">
-								<c:if test="${loop.index < 4}">
-									<a href="classinfo/${list.clsId}">
-										<li class="oclass"><img src="img/${list.filNum}"
-											class="ssum-img">
-											<div class="txt-box">
-												<div class="tb1">
-													<div class="t1">
-														<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
-													</div>
-													<div class="t2">
-														<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
-														<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
-													</div>
-												</div>
-												<p class="cls-name">${list.clsName}</p>
-												<div class="tb2">
-													<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-													<div class="price">
-														<span class="disc">${list.clsDiscount}%</span> <span
-															class="fp">${list.finalPrice}원</span>
-													</div>
-												</div>
-											</div></li>
-									</a>
-								</c:if>
-								<c:if test="${loop.index == 3}">
-						</ul>
-						<ul>
-							</c:if>
-							</c:forEach>
-						</ul>
-					</div>
 			
-
+			
+				<button class="slider-prev-btn">이전</button>
+				<button class="slider-next-btn">다음</button>
+			
+			
+			<c:if test="${plist.size() > 0 }">
+				<div class="myList classWrapper">
+					<p class="mainOclassListTitle">내가 선호하는 클래스</p>
+					<div class="oclassListWrapper">
+					
+					
+						<div class="oclassTable slider-container">
+							<ul class="tableTr slider-list" >
+								<c:forEach items="${plist}" var="list" varStatus="loop">
+									<c:if test="${loop.index < 12}">
+										<a href="classinfo/${list.clsId}">
+											<li class="oclass"><img src="img/${list.filNum}"
+												class="ssum-img">
+												<div class="txt-box">
+													<div class="tb1">
+														<div class="t1">
+															<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+														</div>
+														<div class="t2">
+															<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+															<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+														</div>
+													</div>
+													<p class="cls-name">${list.clsName}</p>
+													<div class="tb2">
+														<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+														<div class="price">
+															<span class="disc">${list.clsDiscount}%</span> <span
+																class="fp">${list.finalPrice}원</span>
+														</div>
+													</div>
+												</div></li>
+										</a>
+									</c:if>
+									<c:if test="${loop.index ==11}">
+							</ul>
+							<ul>
+								</c:if>
+								</c:forEach>
+							</ul>
+						</div>
+				
+	
+					</div>
 				</div>
-			</div>
+			</c:if>
 			<!-- 	</div>
 	
 			</div> -->
@@ -184,14 +241,13 @@
 			</div>
 
 
-
-
+		
 			<div class="newClass classWrapper">
 				<p class="mainOclassListTitle">신규 클래스</p>
 				<div class="oclassListWrapper">
 
 					<div class="oclassTable">
-						<ul class="tableTr">
+						<ul class="tableTr" style="overflow: hidden;">
 							<c:forEach items="${nlist}" var="list" varStatus="loop">
 								<c:if test="${loop.index < 4}">
 									<a href="classinfo/${list.clsId}">

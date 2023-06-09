@@ -54,29 +54,26 @@ public class LoginController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/findpw", method=RequestMethod.POST)
-	public ModelAndView getUserFindPw(@RequestParam("userId") String userId,@RequestParam("userEmail") String userEmail) {
-		System.out.println(userEmail);
-		ModelAndView mav = new ModelAndView();
-		try {
-			UserDTO findPw = userService.getUserFindPw(userId, userEmail);
-			
-			mav.addObject("findPw",findPw);
-			mav.setViewName("/login/pwConfirm");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-		return mav;
-	}
+	
+	  @RequestMapping(value="/findpw", method=RequestMethod.POST) public
+	  ModelAndView getUserFindPw(@RequestParam("userId") String
+	  userId,@RequestParam("userEmail") String userEmail) {
+	  System.out.println(userEmail); ModelAndView mav = new ModelAndView(); try {
+	  UserDTO findPw = userService.getUserFindPw(userId, userEmail);
+	  
+	  mav.addObject("findPw",findPw); mav.setViewName("/login/pwConfirm");
+	  
+	  } catch (Exception e) { e.printStackTrace();
+	  
+	  } return mav; }
+	 
 	
 	
 	/*
 	 * @RequestMapping(value="findpw", method=RequestMethod.POST) public
 	 * ModelAndView getUserFindPw(@RequestParam("userId") String
 	 * userId,@RequestParam("userEmail") String userEmail) { ModelAndView mav = new
-	 * ModelAndView(); try { UserDTO user = userService.getUserFindPw(userId,
+	 * ModelAndView(); } try { UserDTO user = userService.getUserFindPw(userId,
 	 * userEmail); if (user != null) { // If user exists, generate a new password
 	 * String newPassword = UUID.randomUUID().toString().substring(0, 8); // Or use
 	 * a better password generation method user.setPassword(newPassword);
@@ -95,6 +92,7 @@ public class LoginController {
 	 * 
 	 * } return mav; }
 	 */
+	 
 
 
 }	

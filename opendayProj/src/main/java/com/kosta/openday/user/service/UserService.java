@@ -72,4 +72,6 @@ public interface UserService {
 	
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
 	
+	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;
+	
 }
