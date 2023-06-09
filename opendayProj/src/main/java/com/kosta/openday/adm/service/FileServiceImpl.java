@@ -35,7 +35,7 @@ public class FileServiceImpl implements FileService {
 
 		fileNum = fileDAO.selectNewFileId() - 1;
 
-		File dfile = new File(uploadDir + fileNum + file.getOriginalFilename());
+		File dfile = new File(uploadDir + fileNum);
 
 		file.transferTo(dfile);
 		

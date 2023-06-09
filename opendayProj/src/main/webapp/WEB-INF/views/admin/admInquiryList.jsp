@@ -17,24 +17,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${inquiryList} var="inquiry">
                     <tr>
-                        <td class="td1">1123</td>
-                        <td class="td2">강사</td>
-                        <td class="td3">ghdtjdqls</td>
-                        <td class="td4"><a href=""><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예</p></a></td>
-                        <td class="td5">2023-05-24</td>
-                        <td class="td6">2023-05-25</td>
-                        <td class="td7 "><p class="waiting clear">완료</p></td>
-                    </tr>
-                    <tr>
-                        <td class="td1">1123</td>
-                        <td class="td2">일반</td>
-                        <td class="td3">ghdtjdqls</td>
-                        <td class="td4"><a href=""><p class="ellipsis">제가 원데이 클래스를 개설하려고 하는데요 어쩌고 저쩌고 그런데 말입니다 예</p></a></td>
-                        <td class="td5">2023-05-24</td>
+                        <td class="td1">${inquiry.admNum}</td>
+                        <td class="td2">${inquiry.admType}</td>
+                        <td class="td3">${inquiry.userId}</td>
+                        <td class="td4"><a href=""><p class="ellipsis">${inquiry.admTitle}</p></a></td>
+                        <td class="td5">${inquiry.admUploadDate}</td>
+                        <c:choose>
+                        <c:when test="${inquiry.admAnDate ne null}">
+                        <td class="td6">${inquiry.admAnDate}</td>
+                        </c:when> 
+                        <c:otherwise>
                         <td class="td6">-</td>
-                        <td class="td7 "><p class="waiting">대기</p></td>
-                    </tr>
+                        </c:otherwise>
+                        
+                        </c:choose>
+                        <td class="td7 "><p class="waiting clear">${inquiry.admStatus}</p></td>
+                    </tr>                   
+                </c:forEach>
                 </tbody>
             </table>
         </div>

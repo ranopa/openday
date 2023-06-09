@@ -37,6 +37,7 @@
 			</tr>
 		</thead>
 		<tbody>
+		<c:forEach items="settleList" var="settle">
 			<tr>
 				<td class="td1">41</td>
 				<td class="td2">
@@ -46,8 +47,8 @@
 				<td class="td4">100,000</td>
 				<td class="td5">900,000</td>
 				<td class="td6">2023-05-07</td>
-			</tr>
-
+			</tr> 
+		</c:forEach>
 		</tbody>
 	</table>
 </div>
