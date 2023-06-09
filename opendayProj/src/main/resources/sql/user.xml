@@ -39,7 +39,7 @@
 
 	<!-- 프로필수정 -->
 	<update id="updateUser" parameterType="java.util.Map">
-		<![CDATA[
+		<![CDATA[ 
 			update user set userNickname=#{nickname}, userTel=#{tel}, filNum=#{filNum} where userId=#{id}
 		]]>
 	</update>

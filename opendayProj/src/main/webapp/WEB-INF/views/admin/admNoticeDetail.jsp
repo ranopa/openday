@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="notice-detail">
 	<form action="admnoticedelete" method="get">
 		<div class="w-modal">
@@ -17,25 +18,25 @@
 	<div class="container">
 		<h2>공지</h2>
 		<div class="page">
-			<form action="" , method="post">
+			<form action="" method="post">
 				<table class="table">
 					<tbody>
 						<tr>
 							<td class="td1 bold">유형</td>
-							<td colspan="2" class="radios t22">강사채널 공지</td>
+							<td colspan="2" class="radios t22">${anc.ancType}</td>
 						</tr>
 						<tr>
 							<td class="td1 bold">제목</td>
-							<td colspan="3" class="td2 t22">안녕하시렵니까?</td>
+							<td colspan="3" class="td2 t22">${anc.ancTitle}</td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td class="td1 bold">첨부파일</td>
 							<td colspan="3"><a href="#" download class="file-down"></a>
-									첨부파일이름 </td>
-						</tr>
+								첨부파일이름</td>
+						</tr> -->
 						<tr class="txtbox">
 							<td class="td1 bold">내용</td>
-							<td colspan="3" class="td2 txt-content">아무노래나일단틀어아무렇게나춤춰</td>
+							<td colspan="3" class="td2 txt-content">${anc.ancContent}</td>
 						</tr>
 
 					</tbody>

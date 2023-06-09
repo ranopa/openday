@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -187,12 +188,13 @@ public class AdmController {
 	}
 
 	// 공지사항 목록
-	@RequestMapping(value="/adminannouncementlist")
+	@RequestMapping(value="/admnoticelist")
 	public String adminAnnouncementList(Model model) {
 		try {
 			List<AnnouncementDTO> ancList = admService.findAnnouncementList();
+			System.out.println(ancList.isEmpty());
 			model.addAttribute("ancList", ancList);
-			model.addAttribute("page","admAnnouncementList");
+			model.addAttribute("page","admNoticeList");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -200,21 +202,25 @@ public class AdmController {
 	}
 	
 	// 공지사항 디테일
-	@RequestMapping(value="/admannouncementdetail")
-	public String adminAnnouncementDetail(@RequestParam Integer ancId,  Model model) {
+	@RequestMapping(value="/admnoticedetail/{ancId}")
+	public String adminAnnouncementDetail(@PathVariable Integer ancId,  Model model) {
 		try {
-			AnnouncementDTO anc = admService.findAnnouncement(ancId);
-			model.addAttribute("anc", anc);
-			
-			List<AdmInquiryDTO> inquiryList = admService.findAllAdmInquiryList();
-			model.addAttribute("inquiryList", inquiryList);
-			model.addAttribute("page","admInquiryList");
+			System.out.println(ancId);
+			AnnouncementDTO anc = admService.findAnnouncement(ancId); 
+			model.addAttribute("anc", anc); 
+			model.addAttribute("page","admNoticeDetail");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return "admin/admMain";
 	}
-	
+	// 공지사항 작성 폼
+	@RequestMapping(value="/admannouncementwriteform", method=RequestMethod.GET)
+	public String writeAdmAnnouncementForm(Model model) {
+		model.addAttribute("page","admNoticeWrite");
+	 return "adm/admMain";
+		
+	}
 	// 공지사항 작성
 	@RequestMapping(value="/admannouncementwrite", method=RequestMethod.POST)
 	public String writeAdmAnnouncement(

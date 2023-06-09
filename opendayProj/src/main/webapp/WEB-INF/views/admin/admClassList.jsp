@@ -30,12 +30,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${list}" var="cas">
-
+			<c:forEach items="${list}" var="cas"> 
 				<tr>
 					<td class="td1">${cas.clsId }</td>
 					<td class="td2">
-						<p class="ellipsis">${cas.clsName }</p>
+						<p class="ellipsis">${cas.clsName}</p>
 					</td>
 					<td class="td3">${cas.clsCode}</td>
 					<td class="td4">${cas.teacherId}</td>
