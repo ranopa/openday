@@ -14,7 +14,7 @@
 	</select>
 	
 	<!-- 강사 프로필 파일넘버 강사채널에 넣기 -->
-	<update id="tcProfileUserUpdate" parameterType="TeacherChannelDTO">
+	<update id="tcProfileUserUpdate" parameterType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
 		<![CDATA[
 			update teacher_channel set tchcNickname = #{tchcNickname}, tchcIntro = #{tchcIntro}, filNum = nextval(file_seq) WHERE userId = #{userId}
 	   ]]>
