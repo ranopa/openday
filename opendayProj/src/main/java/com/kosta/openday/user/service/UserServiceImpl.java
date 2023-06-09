@@ -283,6 +283,11 @@ public class UserServiceImpl implements UserService {
 	public CodeDTO getCode(String codNum) throws Exception {
 		return userDAO.selectCode(codNum);
 	}
+
+	@Override
+	public UserDTO userByNickname(String userNickname) throws Exception { 
+		return userDAO.selectUserByNickName(userNickname);
+	}
 	
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
 		return userDAO.searchOClassCount(map);

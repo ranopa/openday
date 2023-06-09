@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
+
 import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
+
 import com.kosta.openday.adm.service.AdmService;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.service.OClassService;
@@ -174,7 +176,6 @@ public class AdmController {
 		return "admin/admMain";
 	}
 
-	
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
 	public String admSalesList(Model model) { 
@@ -242,5 +243,7 @@ public class AdmController {
 		
 	
 	}
+	
+
 	
 }
