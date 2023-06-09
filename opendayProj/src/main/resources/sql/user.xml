@@ -317,54 +317,46 @@ FROM (
 
 
 	<!-- 헤더 메뉴 카테고리 클릭 -->
-	<select id="mainMenuOClassList" parameterType="String" resultType="com.kosta.openday.user.dto.CollectDTO">
-		<![CDATA[
-			SELECT 
-				clsId, 
-				clsLoc, 
-				clsPrice, 
-				clsDiscount, 
-				clsName, 
-				codName, 
-				filNum, 
-				reviewCount, 
-				finalPrice, 
-				avgStar, 
-				clsCreatedAt, 
-				scdNum,
-				scdDate, 
-				codNum
-			FROM (
-			    SELECT 
-				o.clsId AS clsId, 
-				o.clsLoc AS clsLoc, 
-				o.clsPrice AS clsPrice, 
-				o.clsDiscount AS clsDiscount, 
-				o.clsName AS clsName, 
-				c.codName AS codName,
-				o.filNum AS filNum, 
-				o.clsCreatedAt AS clsCreatedAt, 
-				s.scdNum AS scdNum,
-				s.scdDate AS scdDate,
-				c.codNum AS codNum,
-				COUNT(r.rvNum) AS reviewCount, 
-				ROUND(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, 
-				IFNULL(AVG(r.rvStar), 0) AS avgStar,
-				IFNULL((
-					SELECT COUNT(*)
-					FROM heart h
-					WHERE h.clsId = o.clsId
-				), 0) AS heartCnt
-			    FROM oclass o
-			    LEFT JOIN schedule s ON o.clsId = s.clsId
-			    LEFT JOIN review r ON r.scdNum = s.scdNum
-			    JOIN code c ON o.clsCode = c.codNum
-			    GROUP BY o.clsId
-			) AS oc
-			WHERE oc.codNum=#{codNum} AND scdNum > 0;
+	<select id="mainMenuOClassList" parameterType="hashmap" resultType="com.kosta.openday.user.dto.CollectDTO">
+	<![CDATA[ 		 
+		 SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCode, scdDate, tchcNickname, tFilNum FROM (
+SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
+   o.filNum AS filNum, COUNT(r.rvNum) AS reviewCount, o.clsCode as clsCode, s.scdDate as scdDate, t.tchcNickname as tchcNickname, t.filNum as tFilNum, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
+         IFNULL((
+      SELECT COUNT(*)
+      FROM heart h
+      WHERE h.clsId = o.clsId
+   ), 0) AS heartCnt
+FROM oclass o 
+LEFT join schedule s on o.clsId = s.clsId
+LEFT join review r on r.scdNum = s.scdNum
+JOIN code c ON o.clsCode=c.codNum
+join teacher_channel t on t.userId = o.userId
 		]]> 
-	</select>
+<include refid="where1"></include>
+	<![CDATA[ 		 
+GROUP BY o.clsId) AS oc
+limit #{endRow} offset #{startRow}
+		]]> 
 
+	</select>
+	<sql id="where1">
+			<if test="codNum != null and codNum != ''">
+				where c.codNum=#{codNum}
+			</if>			
+	</sql>
+
+<select id="mainMenuOClassListCount" parameterType="hashmap" resultType="Integer">
+SELECT COUNT(*)
+FROM oclass o JOIN schedule s ON o.clsId=s.clsId 
+<if test="codNum != null and codNum != ''">
+	where o.clsCode=#{codNum}
+</if>			
+
+	
+			  
+
+	</select>
 
 
 	<!-- 개설요청참여 participation -->
