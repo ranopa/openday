@@ -17,10 +17,23 @@ table {
     border-top: 1px thin #444444;
     border-collapse: collapse;
   }
- th, td {
-    border-bottom: 1px thin;
-    padding: 10px;
+table th, td {
+    border-bottom-style: solid;
+    border-bottom-color: #F4F4F4;
+    text-align: center;
   }
+table th {
+	height: 33px;
+	font-size: 20px;
+	padding: 10px;
+}  
+
+table td { 
+	height: 28px;
+	padding: 10px;
+	font-size: 17px;
+}
+  
  th {
  	background: #F4F4F4;
  } 

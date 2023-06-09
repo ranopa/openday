@@ -39,62 +39,12 @@
 			<input type="radio" id="category4" name="admSecret" value="2" style="width:40px; margin-bottom:40px;"><label for="category4">비공개</label>
 			</div>
 			
-			<p style="margin-left:230px; margin-bottom:10px;">제목</p>
-			<input type="text" name="admTitle" style="width:820px; height:40px; margin-left:230px; border:1px solid; border-radius: 5px; margin-bottom:40px"/>
+			<p style="margin-left:230px; margin-bottom:10px; font-size:18px;">제목</p>
+			<input type="text" name="admTitle" style="width:820px; height:40px; margin-left:230px; border:1px solid; border-radius: 5px; margin-bottom:40px" placeholder="제목을 입력해주세요"/>
 
-			<p style="margin-left:230px; margin-bottom:10px;">내용</p>
-			<textarea name="admContent" style="height:380px; width:818px; margin-left:230px; margin-bottom:40px; border-radius: 5px;" ></textarea>
+			<p style="margin-left:230px; margin-bottom:10px; font-size:18px;">내용</p>
+			<textarea name="admContent" style="height:380px; width:818px; margin-left:230px; margin-bottom:40px; border-radius: 5px;" placeholder="내용을 입력해주세요" ></textarea>
 			
-			<p style="margin-left:230px; margin-bottom:10px;">첨부파일</p>
-			<input id="fileInput" type="file" name="file" style="display: none;">
-			<div class="dropBox" style="width:820px; height:40px; margin-left:230px; border:1px solid; margin-bottom:40px">
-  			<p><span>파일 추가</span> 또는 파일을 여기로 드래그</p>
-			</div>
-			
-			<script>
-			const $drop = document.querySelector(".dropBox");
-			const $title = document.querySelector(".dropBox p");
-			const $fileInput = document.getElementById("fileInput");
-
-			  // 드래그한 파일 객체가 해당 영역에 놓였을 때
-			  $drop.ondrop = (e) => {
-			    e.preventDefault();
-			    $drop.className = "dropBox";
-
-			    // 파일 리스트
-			    const files = [...e.dataTransfer?.files];
-			    $title.innerHTML = files.map(v => v.name).join("<br>");
-			    $fileInput.files = files;
-			  }
-
-			  // ondragover 이벤트가 없으면 onDrop 이벤트가 실행되지 않습니다.
-			  $drop.ondragover = (e) => {
-			    e.preventDefault();
-			  }
-
-			  // 드래그한 파일이 최초로 진입했을 때
-			  $drop.ondragenter = (e) => {
-			    e.preventDefault();
-			    $drop.classList.add("active");
-			  }
-
-			  // 드래그한 파일이 영역을 벗어났을 때
-			  $drop.ondragleave = (e) => {
-			    e.preventDefault();
-			    $drop.classList.remove("active");
-			  }
-
-			  // 파일 입력 필드를 클릭하여 파일 선택
-			  $drop.onclick = () => {
-			    $fileInput.click();
-			  }
-
-			  // 파일 선택 시 파일 리스트 업데이트
-			  $fileInput.onchange = () => {
-			    const files = [...$fileInput.files];
-			    $title.innerHTML = files.map(v => v.name).join("<br>");
-			  }
-			</script>
 			<button type="submit" class="submit-btn">제출하기</button>
 			</form>
 	</div>
