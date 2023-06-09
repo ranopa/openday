@@ -38,7 +38,7 @@
 		<![CDATA[
 		insert into application_payment
 		values (nextval(application_payment_seq),
-				#{apPstatus}, #{apAstatus},
+				#{apPstatus}, #{apAstatus}, #{apPgProvider},
 				#{apMethod}, #{apFinalAmount}, CURDATE(),
 				#{scdNum}, #{userId})
 		]]>
