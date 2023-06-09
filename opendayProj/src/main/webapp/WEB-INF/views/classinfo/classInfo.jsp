@@ -39,7 +39,6 @@
 	* {
 		font-family: 'NanumBarunGothic', sans-serif;
 		padding: 0;
-		margin: 0 auto;
 	}
 
 	#wrap {
@@ -65,6 +64,7 @@
 
 	.texts {
 		margin-top: 40px;
+		margin-left: 80px;
 	}
 
 	.buttons {
@@ -84,7 +84,6 @@
 
 	h2 {
 		font-size: 24px;
-		margin-right: 200px;
 	}
 
 	p {
@@ -139,12 +138,15 @@
 	}
 
 	.tab-menu {
-		width: 77%;
+		width: 75%;
 		list-style-type: none;
 		padding: 0;
-		margin-top: 40px;
-		margin-bottom: 20px;
 		border-bottom: 1px solid #D9D9D9;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		margin-top: 40px;
 	}
 
 	.tab-menu li {
@@ -152,8 +154,8 @@
 		cursor: pointer;
 		font-size: 17px;
 		color: gray;
-		margin-left: 54px;
-		margin-right: 25.5px;
+		margin-left: 24px;
+		margin-right: 24px;
 	}
 
 	.tab-menu li.active {
@@ -175,12 +177,14 @@
 	}
 	
 	.tab-content p {
-		width: 74%;
+		margin: 0 auto;
+		width: 72%;
     	font-size: 17px;
   	}
   	
   	.tab-content #reviews p {
-    	width: 74%;
+    	width: 72%;
+    	margin-top: 20px;
     	font-size: 14px;
     	border-bottom: 1px solid #D9D9D9;
     }
@@ -206,7 +210,8 @@
 	}
 	
 	.tab-content #instructor {
-		width: 74%;
+		margin: 0 auto;
+		width: 72%;
 	}
 	
 	.instructor-button {
@@ -301,7 +306,8 @@
     
     textarea {
     	height: 250px;
-    	width: 200%;
+    	width: 80%;
+    	margin-left: 150.5px;
     	transform: translateX(-24.9%);
     	border: 1px solid #D9D9D9;
     	margin-top: 10px;
@@ -431,7 +437,7 @@ $(function() {
 	<div id="wrap">
 
 		<div class="container">
-			<div class="image"><img src="${contextPath}/img/${res.clsInfo.filNum}"></div>
+			<div class="image"><img src="${contextPath}/img/${res.clsInfo.filNum}" style="width: 350px;"></div>
 
 			<div class="txt-con">
 				<div class="texts">
@@ -442,7 +448,7 @@ $(function() {
 				<div class="buttons">
 					<button id="heartButton" class="heart-button"><span class="material-symbols-outlined">favorite</span></button>
 					<span id="clickedCount" class="clicked-count">${res.heartCnt}</span>
-					<button class="apply-button" onclick="window.location.href='${contextPath}/apply/${res.clsInfo.clsId}'">신청하기</button>
+					<button class="apply-button" onclick="window.location.href='${contextPath}/apply?clsId=${res.clsInfo.clsId}'">신청하기</button>
 				</div>
 			</div>
 		</div>

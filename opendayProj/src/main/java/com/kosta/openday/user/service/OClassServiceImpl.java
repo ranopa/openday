@@ -71,9 +71,10 @@ public class OClassServiceImpl implements OClassService {
 	@Override
 	public List<RequestDTO> getRequestList(PageInfo pageInfo) throws Exception {
 		// TODO Auto-generated method stub
-		return oClassDAO.selectRequestList();
+		return oClassDAO.selectRequestList(1);
 	}
 
+	 
 	@Override
 	public RequestDTO getRequest(Integer reqId) throws Exception {
 		// TODO Auto-generated method stub

@@ -17,6 +17,7 @@
 	</select>
 	
 	<select id="selectRequestList" resultType="com.kosta.openday.user.dto.RequestDTO"  parameterType="Integer">
+ 
 		<![CDATA[
 			select *
 			from request  limit #{startRow},10

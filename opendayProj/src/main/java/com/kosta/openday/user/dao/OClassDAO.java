@@ -21,7 +21,7 @@ public interface OClassDAO {
 	void insertOClass(OClassDTO dto) throws Exception;
 
 	void insertRequest(RequestDTO request) throws Exception;
-
+ 
 	List<RequestDTO> selectRequestList(int startRow) throws Exception;
 
 	RequestDTO selectRequest(Integer reqId) throws Exception;
@@ -68,9 +68,7 @@ public interface OClassDAO {
 
 	void insertHeartByClsIdAndUser(Map<String, Object> param) throws Exception;
 
-	void deleteHeartByClsIdAndUser(Map<String, Object> param) throws Exception;
-
-	List<RequestDTO> selectRequestList() throws Exception;
+	void deleteHeartByClsIdAndUser(Map<String, Object> param) throws Exception; 
 
 	ApplyClassResponseDTO selectOClassAndScheduleForApplyClass(Integer clsId) throws Exception;
 

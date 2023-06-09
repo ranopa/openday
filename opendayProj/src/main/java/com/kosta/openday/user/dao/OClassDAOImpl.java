@@ -60,12 +60,7 @@ public class OClassDAOImpl implements OClassDAO {
 	public ScheduleDTO selectSchedule(Integer scdNum) throws Exception {
 		return sqlSession.selectOne("mapper.oclass.selectSchedule", scdNum);
 	}
-
-	@Override
-	public List<RequestDTO> selectRequestList() throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.oclass.selectRequestList");
-	}
+ 
 	
 	@Override
 	public void insertSchedule(ScheduleDTO dto) throws Exception {
@@ -123,7 +118,7 @@ public class OClassDAOImpl implements OClassDAO {
 		return sqlSession.selectOne("mapper.oclass.selectOClassAndScheduleForApplyClass", clsId);
 	}
 	
-
+ 
 	public List<RequestDTO> selectRequestList(int startRow) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.rclass.selectRequestList", startRow);

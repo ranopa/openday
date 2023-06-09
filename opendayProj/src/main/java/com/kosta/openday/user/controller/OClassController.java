@@ -157,8 +157,8 @@ public class OClassController {
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setCurPage(page);
 		mav.setViewName("requestboard/requestList");
-		try {
-			List<RequestDTO> requestList = oClassService.getRequestList(pageInfo);
+		try { 
+			List<RequestDTO> requestList = oClassService.getRequestList(pageInfo); 
 			mav.addObject("requestList", requestList);
 			mav.addObject("pageInfo", pageInfo);
 		} catch (Exception e) {

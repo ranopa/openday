@@ -68,7 +68,7 @@
     }
     
     .form-fields input[type="text"] {
-        width: 150%;
+        width: 135%;
         height: 30px;
         padding: 5px;
         font-size: 14px;
@@ -78,7 +78,7 @@
     }
     
     .form-fields textarea {
-    	width: 150%;
+    	width: 135%;
     	height: 130px;
         padding: 5px;
         font-size: 14px;
@@ -94,7 +94,7 @@
         border-radius: 5px;
         border: none;
         cursor: pointer;
-        margin-left: 160px;
+        margin-left: 134.5px;
         margin-top: 49.5px;
     }       
     
