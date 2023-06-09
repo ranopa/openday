@@ -58,7 +58,11 @@
 </style>
 
 <script>
+<<<<<<< HEAD
  /*   $.datepicker.setDefaults({
+=======
+   $.datepicker.setDefaults({
+>>>>>>> branch 'channel_notice_open' of https://github.com/binunu/openday.git
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
