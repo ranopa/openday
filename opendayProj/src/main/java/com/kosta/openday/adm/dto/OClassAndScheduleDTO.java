@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.scheduling.annotation.Schedules;
 
-import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 
 public class OClassAndScheduleDTO {
 	private Integer clsId;	// 클래스번호
@@ -14,87 +14,87 @@ public class OClassAndScheduleDTO {
 	private String teacherTel; 	// 강사연락처  
 	private String clsCreatedAt; // 등록일 
 	private String clsLoc; // 지역 
-	private List<Schedules> schedules;
+	private List<ScheduleDTO> schedules;
 	
 	public OClassAndScheduleDTO() {}
 
-	public OClassAndScheduleDTO(Integer clsId, String clsName, String clsCode, String teacherId, String teacherTel,
-			String clsCreatedAt, String clsLoc, List<Schedules> schedules) {
-		this.clsId = clsId;
-		this.clsName = clsName;
-		this.clsCode = clsCode;
-		this.teacherId = teacherId;
-		this.teacherTel = teacherTel;
-		this.clsCreatedAt = clsCreatedAt;
-		this.clsLoc = clsLoc;
-		this.schedules = schedules;
-	}
-
 	public Integer getClsId() {
 		return clsId;
-	}
-
-	public void setClsId(Integer clsId) {
-		this.clsId = clsId;
 	}
 
 	public String getClsName() {
 		return clsName;
 	}
 
-	public void setClsName(String clsName) {
-		this.clsName = clsName;
-	}
-
 	public String getClsCode() {
 		return clsCode;
-	}
-
-	public void setClsCode(String clsCode) {
-		this.clsCode = clsCode;
 	}
 
 	public String getTeacherId() {
 		return teacherId;
 	}
 
-	public void setTeacherId(String teacherId) {
-		this.teacherId = teacherId;
-	}
-
 	public String getTeacherTel() {
 		return teacherTel;
-	}
-
-	public void setTeacherTel(String teacherTel) {
-		this.teacherTel = teacherTel;
 	}
 
 	public String getClsCreatedAt() {
 		return clsCreatedAt;
 	}
 
-	public void setClsCreatedAt(String clsCreatedAt) {
-		this.clsCreatedAt = clsCreatedAt;
-	}
-
 	public String getClsLoc() {
 		return clsLoc;
+	}
+
+	public List<ScheduleDTO> getSchedules() {
+		return schedules;
+	}
+
+	public void setClsId(Integer clsId) {
+		this.clsId = clsId;
+	}
+
+	public void setClsName(String clsName) {
+		this.clsName = clsName;
+	}
+
+	public void setClsCode(String clsCode) {
+		this.clsCode = clsCode;
+	}
+
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
+	}
+
+	public void setTeacherTel(String teacherTel) {
+		this.teacherTel = teacherTel;
+	}
+
+	public void setClsCreatedAt(String clsCreatedAt) {
+		this.clsCreatedAt = clsCreatedAt;
 	}
 
 	public void setClsLoc(String clsLoc) {
 		this.clsLoc = clsLoc;
 	}
 
-	public List<Schedules> getSchedules() {
-		return schedules;
-	}
-
-	public void setSchedules(List<Schedules> schedules) {
+	public void setSchedules(List<ScheduleDTO> schedules) {
 		this.schedules = schedules;
 	}
 
-	
+	public OClassAndScheduleDTO(Integer clsId, String clsName, String clsCode, String teacherId, String teacherTel,
+			String clsCreatedAt, String clsLoc, List<ScheduleDTO> schedules) {
+		super();
+		this.clsId = clsId;
+		this.clsName = clsName;
+		this.clsCode = clsCode;
+		this.teacherId = teacherId;
+		this.teacherTel = teacherTel;
+		this.clsCreatedAt = clsCreatedAt;
+		this.clsLoc = clsLoc;
+		this.schedules = schedules;
+	}
+
 	
 	
 }

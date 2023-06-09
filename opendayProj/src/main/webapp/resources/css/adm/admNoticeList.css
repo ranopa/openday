@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+#adm-notice {
+	width: 100vw;
+	height: 100vw;
+	background-color: rgb(240, 240, 240);
+}
+
+#adm-notice .container {
+	/* width: calc(1280-245)px;  */
+	width: 1035px;
+	padding: 20px;
+	margin: 0 auto;
+	margin-left: 245px;
+}
+
+#adm-notice h2 {
+	font-size: 24px;
+	color: #7C4AFF;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	margin-left: 70px;
+}
+
+#adm-notice .table {
+	width: 950px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+	border-collapse: separate;
+	border-spacing: 0px 20px;
+}
+
+#adm-notice tr {
+	background-color: rgb(255, 255, 255);
+}
+
+#adm-notice th {
+	height: 50px;
+	color: rgb(68, 59, 59);
+}
+
+#adm-notice .th-color {
+	background-color: rgb(223, 223, 223);
+}
+
+#adm-notice td {
+	height: 60px;
+}
+
+#adm-notice td:first-child {
+	border-radius: 7px 0px 0px 7px;
+}
+
+#adm-notice td:last-child {
+	border-radius: 0px 7px 7px 0px;
+}
+
+#adm-notice th:first-child {
+	border-radius: 7px 0px 0px 7px;
+}
+
+#adm-notice th:last-child {
+	border-radius: 0px 7px 7px 0px;
+}
+
+#adm-notice .td1 {
+	width: 150px;
+}
+
+#adm-notice .td2 {
+	width: 600px;
+}
+
+#adm-notice .td3 {
+	width: 200px;
+}
+
+#adm-notice .td4 {
+	width: 200px;
+}
+
+#adm-notice .ellipsis {
+	text-overflow: ellipsis;
+	width: 90%;
+	margin: 0 auto;
+	color: black;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	height: 1.1em;
+}
+
+#adm-notice .waiting {
+	background-color: #633bc7;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+	font-size: 11px;
+	width: 30px;
+	margin: 0 auto;
+}
+
+#adm-notice .waiting.clear {
+	background-color: #dcd8e7;
+}
+
+#adm-notice a:hover {
+	text-decoration: underline;
+}
+
+#adm-notice a:active {
+	color: black;
+}
+
+#adm-notice .btns {
+	width: 950px;
+	display: flex;
+	margin: 0 auto;
+	justify-content: flex-end;
+}
+
+#adm-notice .btnss {
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	margin-right: 20px;
+	color: rgb(138, 138, 138);
+	transition: 0.2s all;
+}
+
+#adm-notice .btnss:hover {
+	color: #7C4AFF;
+	font-weight: bold;
+}
+
+#adm-notice .btnss.hover-color {
+	color: #7C4AFF;
+	font-weight: bold;
+}
+
+#adm-notice .write-box {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+#adm-notice .write-btn {
+	width: 150px;
+	font-size: 14px;
+	height: 35px;
+	border-radius: 4px;
+	background-color: #7C4AFF;
+	border: none;
+	color: white;
+}
+
+#adm-notice .write-btn:hover {
+	background-color: #4e309b;
+}

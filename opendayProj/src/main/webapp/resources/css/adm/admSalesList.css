@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+ #adm-sales {
+        width: 100vw;
+        height: 100vw;
+        background-color: rgb(240, 240, 240);
+    }
+
+    #adm-sales .sr-container {
+        /* width: calc(1280-245)px;  */
+        width: 1035px;
+        padding: 20px;
+        margin: 0 auto;
+        margin-left: 245px;
+    }
+
+    #adm-sales h2 {
+        font-size: 24px;
+        color: #7C4AFF;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        margin-left: 70px;
+    }
+
+    #adm-sales .table {
+        width: 950px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 14px;
+        border-collapse: separate;
+         border-spacing: 0px 20px;
+    }
+
+    #adm-sales tr { 
+        background-color: rgb(255, 255, 255);
+        border-radius: 7px;
+    }
+
+    #adm-sales th {
+        height: 50px;
+        color: rgb(68, 59, 59);
+        padding-right: 14px;
+    }
+
+    #adm-sales .th-color {
+        background-color: rgb(223, 223, 223);
+    }
+
+    #adm-sales td {
+        height: 60px; 
+    }
+
+    #adm-sales .td1 {
+        width: 100px;
+    }
+
+    #adm-sales .td2 {
+        width: 450px;
+    }
+
+    #adm-sales .td3 {
+        width: 200px;
+    }
+
+    #adm-sales .td4 {
+        width: 200px;
+    }
+    #adm-sales .td5 {
+        width: 200px;
+    }
+  
+  
+    #adm-sales .ellipsis {
+        text-overflow: ellipsis;
+        width: 90%;
+        margin: 0 auto;
+        color: black;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        height: 1.1em;
+    }
+
+    #adm-sales .a-box {
+        width: 100%;
+        height: 100%;
+    }
+
+    #adm-sales .search-box {
+        background-color: rgb(228, 228, 228);
+        width: 949.99px;
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0 auto;
+        border-bottom: 2px solid #d1d1d1;
+    }
+
+    #adm-sales .search1 {
+        display: flex;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+
+    #adm-sales .s-p {
+        color: black;
+        font-size: 15px;
+        margin-left: 50px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        width: 150px;
+    }
+
+    #adm-sales .ip-box:focus,
+    .ip-box:active {
+        outline: none;
+        box-shadow: none;
+        border: 1px solid #8251ff;
+
+    }
+
+    #adm-sales .ip-box {
+        height: 33px;
+        width: 170px;
+        text-align: center;
+        border-radius: 7px;
+        margin-left: -15px;
+        border: 1px solid rgb(211, 211, 211);
+        transition: all 0.5s;
+
+    } 
+ 
+    
+    #adm-sales .sub-btn {
+        background-color: #7C4AFF;
+        width: 40px;
+        height: 35px;
+        margin-left: 25px;
+        border-radius: 7px;
+        border: none;
+        padding-top: 5px;
+        text-align: center;
+    }
+    #adm-sales .material-symbols-outlined {
+        color: white;  
+    }
+
+
+    /* 데이트피커 css */
+
+    #adm-sales .ui-datepicker {
+        background-color: #ffffff;
+        border-radius: 7px;
+        padding: 5px;
+        
+     
+    }
+
+    #adm-sales .ui-datepicker-header {
+        background-color: #ffffff;
+        padding-bottom: 5px;
+
+    }
+
+    #adm-sales .ui-datepicker-prev,
+    #adm-sales .ui-datepicker-next {
+        background-color: #ffffff !important;
+        color: #ffffff !important;
+
+    }
+
+    #adm-sales .ui-datepicker-calendar {
+        margin: 0 auto !important;
+        padding: 5px !important;
+    }
+
+    #adm-sales .ui-datepicker-week-end {
+        color: rgb(170, 106, 255);
+    }
+
+    #adm-sales .ui-datepicker-current-day {
+        background-color: #cbcbcb;
+        border-radius: 50% !important;
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    #adm-sales .ui-datepicker-calendar td {
+        text-align: center;
+    }
+
+    #adm-sales .ui-datepicker-calendar td a {
+        border-radius: 50%;
+        border: none !important;
+        background-color: transparent !important;
+        width: 30px !important;
+        height: 30px !important; 
+        transition: all 0.2s;
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+    }
+
+    #adm-sales .ui-datepicker-calendar td a:hover {
+        background-color: #7C4AFF !important;
+        color: white;
+    }

@@ -1,6 +1,8 @@
 package com.kosta.openday.adm.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
+import com.kosta.openday.adm.dto.AnnouncementDTO;
+import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.adm.service.AdmService;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.service.OClassService;
@@ -110,8 +116,8 @@ public class AdmController {
 	@RequestMapping(value = "/admclasslist", method = RequestMethod.GET)
 	public String classList(Model model) { 
 		try {
-//			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
-//			 model.addAttribute("list", list);
+			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
+			 model.addAttribute("list", list);
 			model.addAttribute("page","admClassList");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -168,5 +174,73 @@ public class AdmController {
 		return "admin/admMain";
 	}
 
+	
+	//매출확인
+	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
+	public String admSalesList(Model model) { 
+		try {
+			model.addAttribute("page","admSalesList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "admin/admMain";
+	}
+
+	// 공지사항 목록
+	@RequestMapping(value="/adminannouncementlist")
+	public String adminAnnouncementList(Model model) {
+		try {
+			List<AnnouncementDTO> ancList = admService.findAnnouncementList();
+			model.addAttribute("ancList", ancList);
+			model.addAttribute("page","admAnnouncementList");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/admMain";
+	}
+	
+	// 공지사항 디테일
+	@RequestMapping(value="/admannouncementdetail")
+	public String adminAnnouncementDetail(@RequestParam Integer ancId,  Model model) {
+		try {
+			AnnouncementDTO anc = admService.findAnnouncement(ancId);
+			model.addAttribute("anc", anc);
+			
+			List<AdmInquiryDTO> inquiryList = admService.findAllAdmInquiryList();
+			model.addAttribute("inquiryList", inquiryList);
+			model.addAttribute("page","admInquiryList");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/admMain";
+	}
+	
+	// 공지사항 작성
+	@RequestMapping(value="/admannouncementwrite", method=RequestMethod.POST)
+	public String writeAdmAnnouncement(
+			@RequestParam String title,
+			@RequestParam String content,
+			@RequestParam String type,
+			@RequestPart(value = "file", required = false) MultipartFile file,
+			Model model) throws Exception{
+		// 제목, 내용, 분류(일반,강사), 파일
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("title", title);
+			map.put("content", content);
+			map.put("type", type);
+			map.put("file", file);
+			admService.writeAdmAnnouncement(map);
+			
+			List<AnnouncementDTO> ancList = admService.findAnnouncementList();
+			model.addAttribute("ancList", ancList);
+			model.addAttribute("page","admAnnouncementList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "adm/admMain";
+		
+	
+	}
 	
 }

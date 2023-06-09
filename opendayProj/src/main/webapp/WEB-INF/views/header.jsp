@@ -58,7 +58,7 @@
 </style>
 
 <script>
-/*   $.datepicker.setDefaults({
+ /*   $.datepicker.setDefaults({
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -70,7 +70,7 @@
     showMonthAfterYear: true,
     yearSuffix: '년'
   });
-
+ */
   $(function() {
     $("#datepicker1, #datepicker2").datepicker();
   });
@@ -95,7 +95,7 @@
  				if(idx%5==0) tablestr+='<tr>';
 
  				tablestr += `<td><button type="button" class="categoryButton"
-					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=\${code.codNum}'">\${code.codName}</button></td>`;
+					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=\${code.codNum}&codName=\${code.codName}'">\${code.codName}</button></td>`;
 
  				if(idx%5==0) tablestr+='<\tr>';	
  				idx++;
@@ -209,7 +209,7 @@
 						<c:when test="${authority eq 0}">
 
 							<div class="IconColorAdmin">
-								<a href="#"><div class="IconBoxAdmin">
+								<a href="adm"><div class="IconBoxAdmin">
 										<div class="material-symbols-outlined">engineering</div>
 										<div class="IconTextAdmin">관리자</div>
 									</div></a>

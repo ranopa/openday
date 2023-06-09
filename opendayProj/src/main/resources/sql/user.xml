@@ -361,7 +361,7 @@ FROM (
 			    JOIN code c ON o.clsCode = c.codNum
 			    GROUP BY o.clsId
 			) AS oc
-			WHERE oc.codNum=#{codNum}
+			WHERE oc.codNum=#{codNum} AND scdNum > 0;
 		]]> 
 	</select>
 
@@ -555,4 +555,16 @@ FROM (
 	]]>
 	</update>
 
+<!-- 메인메뉴 코드받아오기 -->
+
+	<select id="selectCode" parameterType="String" resultType="com.kosta.openday.adm.dto.CodeDTO">
+	<![CDATA[
+		select * from code where codNum=#{codNum}
+	]]>
+	</select>
+	
+
+
+
 </mapper>
+
