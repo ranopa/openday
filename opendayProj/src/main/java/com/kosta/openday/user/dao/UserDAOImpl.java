@@ -85,9 +85,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<CollectDTO> selectInputOClassList(String keyword) throws Exception {
+	public List<CollectDTO> selectInputOClassList(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		List<CollectDTO> list = sqlSession.selectList("mapper.search.searchInputSelect", keyword);
+		List<CollectDTO> list = sqlSession.selectList("mapper.search.searchInputSelect", map);
 		int count = list.size();
 		System.out.println("Map의 갯수: " + count);
 		return list;
@@ -167,10 +167,23 @@ public class UserDAOImpl implements UserDAO {
 	public CodeDTO selectCode(String codNum) throws Exception {
 		return sqlSession.selectOne("mapper.user.selectCode", codNum);
 	}
-	
+
 	@Override
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
 		return sqlSession.selectOne("mapper.search.searchOClassCount", map);
 	}
+
+	@Override
+	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.user.mainMenuOClassListCount", map);
+	}
+	
+	@Override
+	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.search.searchInputSelectCount", map);
+	}
+
 
 }

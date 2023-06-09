@@ -41,7 +41,7 @@ public interface UserDAO {
 
 	public List<CollectDTO> selectMainDeadlineOClassList() throws Exception;
 
-	public List<CollectDTO> selectInputOClassList(String keyword) throws Exception;
+	public List<CollectDTO> selectInputOClassList(HashMap<String, Object> map) throws Exception;
 
 	public void updateUser(Map<String, Object> map) throws Exception;
 
@@ -66,4 +66,9 @@ public interface UserDAO {
 	public CodeDTO selectCode(String codNum) throws Exception;
 
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception;
+	
+	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception;
+	
+	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
+
 }

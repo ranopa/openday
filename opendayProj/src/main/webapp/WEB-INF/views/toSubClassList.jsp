@@ -178,9 +178,9 @@ text-decoration: none;
 			
 
 			
-			<%-- <div class="tc-paging">
+			<div class="tc-paging">
 						<c:if test="${pu.startPageNum>5 }">
-							<a href="search?pageNum=${pu.startPageNum-1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">이전</a>
+							<a href="searchinput?pageNum=${pu.startPageNum-1 }&keyword=${map.keyword}">이전</a>
 						</c:if>
 
 						<c:forEach var="i" begin="${pu.startPageNum }"
@@ -188,21 +188,21 @@ text-decoration: none;
 							<c:choose>
 								<c:when test="${pu.pageNum==i }">
 									<!-- 현재페이지 -->
-									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span
+									<a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span
 										style='color: blue; font-weight: bold'>[${i }]</span>
 									</a>
 								</c:when>
 								<c:otherwise>
-									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span style='color: gray;'>[${i }]</span>
+									<a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span style='color: gray;'>[${i }]</span>
 									</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:if test="${pu.endPageNum<pu.totalPageCount }">
-							<a href="search?pageNum=${pu.endPageNum+1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">다음</a>
+							<a href="searchinput?pageNum=${pu.endPageNum+1 }&keyword=${map.keyword}">다음</a>
 						</c:if>
-					</div> --%>
+					</div>
 			
 		</div>
 

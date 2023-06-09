@@ -25,14 +25,17 @@ public class PageUtil {
 		this.totalRowCount=totalRowCount;
 		startRow=(pageNum-1)*rowBlockCount;
 		endRow = rowBlockCount;
-		System.out.println(startRow);
-		System.out.println(endRow);
 		totalPageCount=(int)Math.ceil(totalRowCount/(double)rowBlockCount);
 		startPageNum=(pageNum-1)/pageBlockCount*pageBlockCount+1;
 		endPageNum=startPageNum+pageBlockCount-1;
 		if(totalPageCount<endPageNum) {
 			endPageNum=totalPageCount;
 		}
+		System.out.println("startRow:"+startRow);
+		System.out.println("endRow:"+endRow);
+		System.out.println("totalPageCount:"+totalPageCount);
+		System.out.println("startPageNum:"+startPageNum);
+		System.out.println("endPageNum:"+endPageNum);
 	}
 	public int getPageNum() {
 		return pageNum;

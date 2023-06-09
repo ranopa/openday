@@ -78,13 +78,26 @@ public class HeaderController {
 
 	// 강사 클래스 검색
 	@RequestMapping(value = "/searchinput", method = RequestMethod.GET)
-	public ModelAndView getSearchInputOClass(@RequestParam("keyword") String keyword) {
-		System.out.println(keyword);
+	public ModelAndView getSearchInputOClass(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam HashMap<String, Object> map) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			List<CollectDTO> searchInputList = userService.getSearchInputOClass(keyword);
-			mav.addObject("searchInputList", searchInputList);
 			mav.setViewName("toSubClassList");
+			// 페이징
+						int totalRowCount = userService.searchInputSelectCount(map);// 전체글의 갯수
+						PageUtil pu = new PageUtil(pageNum, 12, 5, totalRowCount);
+						int startRow = pu.getStartRow();
+						int endRow = pu.getEndRow();
+
+						map.put("startRow", startRow);
+						map.put("endRow", endRow);
+						mav.addObject("pu", pu);
+						mav.addObject("map", map);
+						
+						
+			List<CollectDTO> searchInputList = userService.getSearchInputOClass(map);
+			mav.addObject("searchInputList", searchInputList);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -95,10 +108,22 @@ public class HeaderController {
 	/* 메인 매뉴 클릭시 */
 
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
-	public ModelAndView getMainMenuOClassList(@RequestParam HashMap<String, Object> map,
-			@RequestParam("codName") String codName) {
+	public ModelAndView getMainMenuOClassList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam HashMap<String, Object> map, @RequestParam("codName") String codName) {
 		ModelAndView mav = new ModelAndView();
 		try {
+			mav.setViewName("menu");
+			// 페이징
+			int totalRowCount = userService.mainMenuOClassListCount(map);// 전체글의 갯수
+			PageUtil pu = new PageUtil(pageNum, 12, 5, totalRowCount);
+			System.out.println(totalRowCount);
+			int startRow = pu.getStartRow();
+			int endRow = pu.getEndRow();
+
+			map.put("startRow", startRow);
+			map.put("endRow", endRow);
+			mav.addObject("pu", pu);
+			mav.addObject("map", map);
 
 			List<CollectDTO> hMenuList = userService.getMainMenuOClassList(map);
 //			String hcn = userService.getCode(codNum).getCodName();
@@ -106,7 +131,7 @@ public class HeaderController {
 			System.out.println(hMenuList);
 			mav.addObject("hcn", codName);
 			mav.addObject("hMenuList", hMenuList);
-			mav.setViewName("menu");
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -148,7 +173,7 @@ public class HeaderController {
 			map.put("endRow", endRow);
 			mav.addObject("pu", pu);
 			mav.addObject("map", map);
-			
+
 			List<CollectDTO> collectList = userService.getSearchOClass(map);
 			System.out.println(collectList.size());
 			mav.addObject("collectList", collectList);

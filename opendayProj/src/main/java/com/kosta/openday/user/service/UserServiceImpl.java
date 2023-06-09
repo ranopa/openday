@@ -134,8 +134,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchInputOClass(String keyword) throws Exception {
-		return userDAO.selectInputOClassList(keyword);
+	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception {
+		return userDAO.selectInputOClassList(map);
 	}
 
 	@Override
@@ -281,4 +281,17 @@ public class UserServiceImpl implements UserService {
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
 		return userDAO.searchOClassCount(map);
 	}
+	
+	@Override
+	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.mainMenuOClassListCount(map);
+	}
+	
+	@Override
+	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.searchInputSelectCount(map);
+	}
+	
 }

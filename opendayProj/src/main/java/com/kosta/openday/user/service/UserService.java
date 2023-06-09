@@ -25,7 +25,6 @@ public interface UserService {
 
 	List<CollectDTO> getSearchOClass(HashMap<String, Object> map) throws Exception;
 
-	public List<CollectDTO> getSearchInputOClass(String keyword) throws Exception;
 
 	public List<CollectDTO> getMainNewOClassList() throws Exception;
 
@@ -65,4 +64,12 @@ public interface UserService {
 	public CodeDTO getCode(String codNum) throws Exception; 
 
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception;
+	
+
+	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception;
+	
+	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
+	
+	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
+	
 }

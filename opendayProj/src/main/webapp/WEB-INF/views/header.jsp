@@ -95,7 +95,7 @@
  				if(idx%5==0) tablestr+='<tr>';
 
  				tablestr += `<td><button type="button" class="categoryButton"
-					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=\${code.codNum}&codName=\${code.codName}'">\${code.codName}</button></td>`;
+					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?pageNum=1&codNum=\${code.codNum}&codName=\${code.codName}'">\${code.codName}</button></td>`;
 
  				if(idx%5==0) tablestr+='<\tr>';	
  				idx++;

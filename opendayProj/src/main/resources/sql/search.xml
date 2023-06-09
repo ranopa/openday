@@ -146,10 +146,10 @@ GROUP BY o.clsId) AS oc
 
 
 
-	<select id="searchInputSelect" parameterType="String"
+	<select id="searchInputSelect" parameterType="hashmap"
 		resultType="com.kosta.openday.user.dto.CollectDTO">  
 		
-	         <![CDATA[
+	       
 	         SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCode, scdDate, tchcNickname, tFilNum, scdNum, tchcNum FROM (
 SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
    o.filNum AS filNum, COUNT(r.rvNum) AS reviewCount, o.clsCode as clsCode, s.scdDate as scdDate, t.tchcNickname as tchcNickname, t.filNum as tFilNum, s.scdNum AS scdNum,t.tchcNum AS tchcNum, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
@@ -163,9 +163,38 @@ LEFT join schedule s on o.clsId = s.clsId
 LEFT join review r on r.scdNum = s.scdNum
 JOIN code c ON o.clsCode=c.codNum
 join teacher_channel t on t.userId = o.userId
+<include refid="search2"></include>
+
 GROUP BY o.clsId) AS oc
-	      WHERE (oc.tchcNickname LIKE CONCAT('%', #{keyword}, '%') AND oc.scdNum >= 0)
-    OR (oc.clsName LIKE CONCAT('%', #{keyword}, '%') AND oc.scdNum > 0)
-	        ]]>
+    limit #{endRow} offset #{startRow}
+	      
 	</select>
+	
+	<sql id="search2">
+		<if test="keyword!=null and keyword!=''">
+			WHERE 
+			t.tchcNickname LIKE CONCAT('%', #{keyword}, '%')
+   			OR o.clsName LIKE  CONCAT('%', #{keyword}, '%')
+		</if>
+	</sql>
+	
+	<select id="searchInputSelectCount" parameterType="hashmap" resultType="int">
+		select count(*) from ( SELECT clsId, clsLoc, clsPrice, clsDiscount, clsName, codName, filNum, reviewCount, finalPrice, avgStar, clsCode, scdDate, tchcNickname, tFilNum, scdNum, tchcNum FROM (
+SELECT o.clsId AS clsId, o.clsLoc AS clsLoc, o.clsPrice AS clsPrice, o.clsDiscount AS clsDiscount, o.clsName AS clsName, c.codName AS codName, 
+   o.filNum AS filNum, COUNT(r.rvNum) AS reviewCount, o.clsCode as clsCode, s.scdDate as scdDate, t.tchcNickname as tchcNickname, t.filNum as tFilNum, s.scdNum AS scdNum,t.tchcNum AS tchcNum, round(o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) AS finalPrice, IFNULL(AVG(r.rvStar),0) AS avgStar, 
+         IFNULL((
+      SELECT COUNT(*)
+      FROM heart h
+      WHERE h.clsId = o.clsId
+   ), 0) AS heartCnt
+FROM oclass o 
+LEFT join schedule s on o.clsId = s.clsId
+LEFT join review r on r.scdNum = s.scdNum
+JOIN code c ON o.clsCode=c.codNum
+join teacher_channel t on t.userId = o.userId
+	   	<include refid="search2"></include>
+GROUP BY o.clsId) AS oc	) as x
+    </select>
+	
+	
 </mapper>
