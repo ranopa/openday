@@ -57,7 +57,7 @@ public class UserDAOImpl implements UserDAO {
 	public List<CollectDTO> selectOClassList(HashMap<String, Object> param) throws Exception {
 		// TODO Auto-generated method stub
 		int count = param.size();
-		System.out.println("Map의 갯수: " + count);
+		/* System.out.println("Map의 갯수: " + count); */
 
 		return sqlSession.selectList("mapper.search.searchSelect", param);
 	}
@@ -89,7 +89,7 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		List<CollectDTO> list = sqlSession.selectList("mapper.search.searchInputSelect", map);
 		int count = list.size();
-		System.out.println("Map의 갯수: " + count);
+		/* System.out.println("Map의 갯수: " + count); */
 		return list;
 	}
 

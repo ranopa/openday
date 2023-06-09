@@ -116,7 +116,7 @@ public class HeaderController {
 			// 페이징
 			int totalRowCount = userService.mainMenuOClassListCount(map);// 전체글의 갯수
 			PageUtil pu = new PageUtil(pageNum, 12, 5, totalRowCount);
-			System.out.println(totalRowCount);
+			/* System.out.println(totalRowCount); */
 			int startRow = pu.getStartRow();
 			int endRow = pu.getEndRow();
 
@@ -128,7 +128,7 @@ public class HeaderController {
 			List<CollectDTO> hMenuList = userService.getMainMenuOClassList(map);
 //			String hcn = userService.getCode(codNum).getCodName();
 //			System.out.println("codName:"+hcn);
-			System.out.println(hMenuList);
+			/* System.out.println(hMenuList); */
 			mav.addObject("hcn", codName);
 			mav.addObject("hMenuList", hMenuList);
 	
@@ -175,7 +175,7 @@ public class HeaderController {
 			mav.addObject("map", map);
 
 			List<CollectDTO> collectList = userService.getSearchOClass(map);
-			System.out.println(collectList.size());
+			/* System.out.println(collectList.size()); */
 			mav.addObject("collectList", collectList);
 
 		} catch (Exception e) {
