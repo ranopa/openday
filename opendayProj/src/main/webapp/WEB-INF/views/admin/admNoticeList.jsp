@@ -26,6 +26,7 @@
         <div class="container">
             <h2>공지</h2>
             <div class="btns"> 
+                <button type="button" id="all-btn" class="btnss" value="전체">전체</button>
                 <button type="button" id="tchc-btn" class="btnss" value="강사공지">강사공지</button>
                 <button type="button" id="nomal-btn" class="btnss" value="일반공지">일반공지</button>
             </div>
