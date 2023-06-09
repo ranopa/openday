@@ -45,10 +45,7 @@ public class UserServiceImpl implements UserService {
 	private ServletContext servletContext;
 	
 	private final String uploadDir = "/resources/upload/";
-
-//	private final String uploadDir = String.join(File.separator, System.getProperty("user.dir"), "resources", "upload")
-//			+ File.separator;
-	
+  
 
 	// 회원가입 > 데베에 insert
 	@Override
@@ -80,6 +77,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
+
+//		Integer filNum = 0;
+//
+//		if (file != null && !file.isEmpty()) {
+//			FileDTO fil = new FileDTO();
+//			fil.setFilClassification(file.getContentType());
+//			fil.setFilOrgName(file.getOriginalFilename());
+//			fil.setFilSaveName(file.getName());
+//			fil.setFilSize(file.getSize());
+//			filNum = fileDAO.selectNewFileId();
+//			fil.setFilNum(filNum);
+//			fileDAO.insertFile(fil);
+
+			// File dfile = new
+			// File("/resources/upload/"+filNum+file.getOriginalFilename());
+//			File dfile = new File(servletContext.getRealPath(uploadDir) + filNum);
+//
+//			file.transferTo(dfile);
+//			map.put("filNum", filNum); 
 		Integer fileNum = 0;
 		try {
 			fileNum = fileService.createFile(file);

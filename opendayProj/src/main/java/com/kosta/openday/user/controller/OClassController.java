@@ -84,6 +84,7 @@ public class OClassController {
 
 			ResourceBundle rd = ResourceBundle.getBundle("config/payment");
 			String storeIdCode = rd.getString("portone.storeIdCode");
+			String kakaopayCID = rd.getString("portone.kakaopayCID");
 			
 			if (oClass == null || schedule == null) {
 				throw new Exception("oClass or schedule not found");
@@ -100,6 +101,7 @@ public class OClassController {
 
 			model.addAttribute("data", responseDto);
 			model.addAttribute("storeIdCode", storeIdCode);
+			model.addAttribute("kakaopayCID", kakaopayCID);
 
 		} catch (Exception e) {
 			e.printStackTrace();

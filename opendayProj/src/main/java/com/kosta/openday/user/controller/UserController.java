@@ -25,7 +25,9 @@ import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
+import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.UserDTO;
+import com.kosta.openday.user.service.OClassService;
 import com.kosta.openday.user.service.UserService;
 
 @Controller
@@ -40,6 +42,9 @@ public class UserController {
 	@Autowired
 	private HttpSession session;
 	
+	@Autowired
+	private OClassService oClassService;
+
 	// 회원가입폼
 	@RequestMapping("/joinform")
 	public String joinForm() {
@@ -70,14 +75,13 @@ public class UserController {
 		return mesg;
 	}
 
-	// 마이페이지 (테스트용)
+	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPage() {
 		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
-			String id = "sbsb";
-			session.setAttribute("id", id);
-			UserDTO user = userService.getUserInfo(id);
+
+			UserDTO user = (UserDTO)session.getAttribute("userId");
 			mav.addObject("user", user);
 			mav.addObject("page","myPage");
 
@@ -89,18 +93,15 @@ public class UserController {
 
 	// 프로필수정
 	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
-	public ModelAndView editProfile(HttpSession session,
-			@RequestPart(value = "file", required = false) MultipartFile file,
+	public ModelAndView editProfile(@RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestParam(value = "nickname", required = false) String nickname,
 			@RequestParam(value = "tel", required = false) String tel) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> map = new HashMap<>();
 		try {
-			String id = (String) session.getAttribute("id");
-
-			UserDTO user = userService.getUserInfo(id);
-
-			map.put("id", id);
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			
+			map.put("id", user.getUserId());
 			map.put("nickname", nickname);
 			map.put("tel", tel);
 
@@ -127,14 +128,13 @@ public class UserController {
 
 	// 선호카테고리
 	@RequestMapping("/myprefer")
-	public ModelAndView myPrefer(HttpSession session) throws Exception {
+	public ModelAndView myPrefer() throws Exception {
 		ModelAndView mav = new ModelAndView();
 		try {
 			List<CodeDTO> list = codeService.categoryInfoList();
 
 			// + 유저의 선호카테고리
-			String id = (String) session.getAttribute("id");
-			UserDTO user = userService.getUserInfo(id);
+			UserDTO user = (UserDTO)session.getAttribute("userId");
 			if (user.getUserPrefer() != null) {
 				mav.addObject("user", user);
 			}
@@ -161,8 +161,8 @@ public class UserController {
 	public ModelAndView heart(){
 		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
-			String userId = (String)session.getAttribute("id");
-			List<CollectDTO> list = userService.HeartOClass(userId);  
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			List<CollectDTO> list = userService.HeartOClass(user.getUserId());  
 			mav.addObject("heartList",list);
 			mav.addObject("page","heart");
 		}catch(Exception e) {
@@ -182,9 +182,9 @@ public class UserController {
 	public ModelAndView reservedList() {
 		 ModelAndView mav = new  ModelAndView("mypage/myMain");
 		 try {
-			 String userId = (String)session.getAttribute("id");
+			 UserDTO user = (UserDTO)session.getAttribute("userId");
 			 String text = "수강예정"; 
-			 List<MyRecordDTO> list = userService.getReservedList(userId,text);
+			 List<MyRecordDTO> list = userService.getReservedList(user.getUserId(),text);
 			 mav.addObject("page","reservedRecord");
 			 mav.addObject("reservedList",list);
 		 }catch(Exception e) {
@@ -196,14 +196,14 @@ public class UserController {
 	@RequestMapping(value = "/reservedmenuselect",  method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
     public List<MyRecordDTO> getData(@RequestParam(value="h2Text") String h2Text) {
-		String userId = (String)session.getAttribute("id");
+		UserDTO user = (UserDTO)session.getAttribute("userId");
 		String text = null;
 		List<MyRecordDTO> reservedList = null; 
 		try {
 			if(h2Text.equals("신청내역")) text = "수강예정";
 			else if(h2Text.equals("수강내역")) text ="수강완료";
 			else text="수강취소"; 
-			reservedList= userService.getReservedList(userId,text); 
+			reservedList= userService.getReservedList(user.getUserId(),text); 
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -230,8 +230,8 @@ public class UserController {
 	public String removeHeart(@RequestParam("clsId") String clsIdStr) {  
 		try {
 			Integer clsId = Integer.parseInt(clsIdStr);
-			String userId = (String)session.getAttribute("id");
-			userService.removeHeart(clsId,userId);
+			 UserDTO user = (UserDTO)session.getAttribute("userId");
+			userService.removeHeart(clsId,user.getUserId());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -243,21 +243,35 @@ public class UserController {
 	public String addHeart(@RequestParam("clsId") String clsIdStr) {  
 		try {
 			Integer clsId = Integer.parseInt(clsIdStr);
-			String userId = (String)session.getAttribute("id");
-			userService.addHeart(clsId,userId);
+			 UserDTO user = (UserDTO)session.getAttribute("userId");
+			userService.addHeart(clsId,user.getUserId());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return "redirect:/myheart";
 	}
+	//class정보페이지로 이동
+	@RequestMapping(value = "/toclassinfofrommy/{clsNum}", method = RequestMethod.GET)
+	public ModelAndView toclassInfoFromMy(@PathVariable Integer clsNum) {
+		ModelAndView mav = new ModelAndView();
+		try { 
+			OClassDTO oclass = oClassService.findOne(clsNum); 
+			mav.addObject("oclass",oclass);
+			mav.setViewName("classinfo/classInfo");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
 	
 	//follow 강사 목록 보기
 	@RequestMapping(value = "/myfollow", method = RequestMethod.GET)
 	public ModelAndView followList() {
 		ModelAndView mav = new ModelAndView("mypage/myMain");
-		String userId = (String)session.getAttribute("id");
+		 UserDTO user = (UserDTO)session.getAttribute("userId");
 		try {
-			List<TeacherChannelDTO> tchcList = userService.getTchcList(userId); 
+			List<TeacherChannelDTO> tchcList = userService.getTchcList(user.getUserId()); 
 			mav.addObject("tchcList",tchcList);
 			mav.addObject("page","follow");
 		} catch (Exception e) {
@@ -266,13 +280,27 @@ public class UserController {
 		return mav;
 	}
 	
+	//follow 강사 목록 보기
+//		@RequestMapping(value = "/totchcchannel/{tchcNum}", method = RequestMethod.GET)
+//		public ModelAndView toTchcChannel(@PathVariable String tchcNum) {
+//			ModelAndView mav = new ModelAndView();
+//			try {
+//				//getTchcChannel 만들어야함
+//				TeacherChannelDTO tchcChannel = userService.getTchcChannel(tchcNum); 
+//				mav.addObject("tchcList",tchcList);
+//				mav.addObject("page","채널jsp");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			return mav;
+//		}
+	
 	
 	
 	// 선호카테고리 수정하기
 	@RequestMapping(value = "/prefer", method = RequestMethod.POST)
 //	public ModelAndView preferUpload(HttpSession session, @RequestParam("checkboxGroup") String c1, @RequestParam("checkboxGroup") String c2, @RequestParam("checkboxGroup") String c3) {
-	public ModelAndView preferUpload(HttpSession session,
-			@RequestParam(value = "checkboxGroup1", required = false) String c1,
+	public ModelAndView preferUpload( @RequestParam(value = "checkboxGroup1", required = false) String c1,
 			@RequestParam(value = "checkboxGroup2", required = false) String c2,
 			@RequestParam(value = "checkboxGroup3", required = false) String c3) {
 
@@ -289,10 +317,13 @@ public class UserController {
 		}
 		return mav;
 	}
+	
+	//회원탈퇴
 	@RequestMapping(value = "/withdraw", method = RequestMethod.POST)
 	public String userWithdraw() throws Exception {
-		String id = (String) session.getAttribute("id");
-		userService.withdrawUser(id);
+		UserDTO user = (UserDTO)session.getAttribute("userId");
+		userService.withdrawUser(user.getUserId());
+		session.removeAttribute("userId");
 		return "redirect:/";
 	}
 	

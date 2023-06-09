@@ -188,7 +188,7 @@ public class OClassDAOImpl implements OClassDAO {
 	
 	@Override
 	public List<OClassAndScheduleDTO> selectOClassAndSchedules() throws Exception {
-		return sqlSession.selectOne("mapper.oclass.selectOClassAndSchedules");
+		return sqlSession.selectList("mapper.oclass.selectOClassAndSchedules");
 	}
 
 	@Override

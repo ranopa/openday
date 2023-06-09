@@ -19,12 +19,8 @@
 
 //주문번호, 아이템이름, 가격, 이메일, 이름, 전화번호, 상점아이디, 포스트코
 function requestPay() {
-  alert('request button')
   const merchant_uid = ""+Math.random();
-  console.log(merchant_uid);
-  console.log('${storeIdCode}');
-  // const pg_kakao = `kakaopay.${storeIdCode}`;
-  const pg_kakao = 'kakaopay';
+  const pg_kakao = `kakaopay.${kakaopayCID}`;
 	IMP.request_pay({
 		pg: pg_kakao,
 		pay_method: "card",
@@ -38,13 +34,12 @@ function requestPay() {
 		
 	}, function(resp) {
 		// callback
-    console.log(resp);
-    if(resp.success) {
-      $('input[name="paymentMethod"]').val(resp.pay_method);
-      $('input[name="pgProvider"]').val(resp.pg_provider);
-      $( '#payment-form' ).submit();
-
-    }
+	    console.log(resp);
+	    if(resp.success) {
+	      $('input[name="paymentMethod"]').val(resp.pay_method);
+	      $('input[name="pgProvider"]').val(resp.pg_provider);
+	      $( '#payment-form' ).submit();
+    	}
 	});
 }
 
