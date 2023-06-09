@@ -16,7 +16,7 @@
 	<!-- 아이디로 강사 채널 선택 -->
 	<select id="selectteacherChannel" parameterType="String" resultType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
 		 <![CDATA[
-		 	select * from teacherChannel where userId = #{userId}
+		 	select * from teacher_channel where userId = #{userId}
 	 	 ]]>
 	</select>
 	
