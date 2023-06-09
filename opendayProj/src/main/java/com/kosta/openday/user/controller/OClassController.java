@@ -1,7 +1,7 @@
 package com.kosta.openday.user.controller;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,6 +23,7 @@ import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplicationPaymentDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.user.dto.PageInfo;
 import com.kosta.openday.user.dto.PaymentProcessDTO;
 import com.kosta.openday.user.dto.PaymentProcessResponseDTO;
 import com.kosta.openday.user.dto.PaymentRequestDTO;
@@ -32,7 +33,6 @@ import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.OClassService;
 import com.kosta.openday.user.service.PaymentService;
 import com.kosta.openday.user.service.UserService;
-import com.kosta.openday.user.dto.PageInfo;
 
 @Controller
 public class OClassController {
@@ -133,7 +133,8 @@ public class OClassController {
 		request.setReqTitle(title);
 		request.setReqContent(content);
 		request.setReqLocation(location);
-		request.setUserId("jane");
+		UserDTO user = (UserDTO)session.getAttribute("userId");
+		request.setUserId(user.getUserId());
 		try {
 			oClassService.requestClass(request);
 		} catch(Exception e) {
@@ -216,20 +217,83 @@ public class OClassController {
 		}
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/heart", method=RequestMethod.POST)
+	public ResponseEntity<Integer> heart(@RequestParam("clsId") Integer clsId) {
+		try {
+			UserDTO user = (UserDTO)session.getAttribute("user");
+//			Integer heartCnt = oClassService.toggleHeartSchedule(clsId, user.getUserId());
+			Integer heartCnt = oClassService.toggleHeartSchedule(clsId, "jane");
+			return new ResponseEntity<Integer>(heartCnt, HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@RequestMapping(value = "/classinfo/{clsId}", method=RequestMethod.GET)
-	public ModelAndView classInfo(@PathVariable(value="clsId") Integer scdNum) {
+	public ModelAndView classInfo(@PathVariable(value="clsId") Integer clsId) {
 		ModelAndView mav = new ModelAndView("classinfo/classInfo");
 		try {
-//			UserDTO user = (UserDTO)session.getAttribute("user");
-//			Map<String,Object> result = oClassService.getScheduleDetail(scdNum, user.getUserId());
-			Map<String,Object> result = oClassService.getScheduleDetail(scdNum, "jane");
+			//로그인 처리 완료후 삭제
+			UserDTO user = new UserDTO();
+			user.setUserId("jane");
+			session.setAttribute("user", user);
+			
+			//로그인 처리 완료후 주석 풀기
+			//UserDTO user = (UserDTO)session.getAttribute("user");
+			
+			Map<String,Object> result = oClassService.getOclassDetail(clsId, user.getUserId());
 			mav.addObject("res", result);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return mav;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/clsinquiry", method=RequestMethod.POST ,produces="application/json; charset=utf-8")
+	public ResponseEntity<String> clsInquiry(@RequestParam("ciContent") String ciContent, 
+				@RequestParam(value="ciSecret", required = false, defaultValue = "false") String ciSecret, 
+				@RequestParam("clsId") Integer clsId) {
+		System.out.println(ciContent);
+		try {
+			UserDTO user = (UserDTO)session.getAttribute("user");
+			oClassService.clsInquiry(ciContent, ciSecret, clsId, user.getUserId());
+			return new ResponseEntity<String>("문의하였습니다.", HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("문의에 에러가 발생했습니다.", HttpStatus.BAD_REQUEST);
+		}
+	}
 
+	@ResponseBody
+	@RequestMapping(value="/modClsInquiry", method=RequestMethod.POST ,produces="application/json; charset=utf-8")
+	public ResponseEntity<String> modClsInquiry(@RequestParam("ciContent") String ciContent, 
+				@RequestParam(value="ciSecret", required = false, defaultValue = "false") String ciSecret, 
+				@RequestParam("ciNum") Integer ciNum) {
+		System.out.println(ciSecret);
+		try {
+			oClassService.modifyClsInquiry(ciContent, ciSecret, ciNum);
+			return new ResponseEntity<String>("true", HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("false", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping(value="/removeReview",  method=RequestMethod.POST ,produces="application/json; charset=utf-8")
+	public ResponseEntity<String> removeReview(@RequestParam("rvNum") Integer rvNum) {
+		System.out.println(rvNum);
+		try {
+			oClassService.removeReview(rvNum);
+			return new ResponseEntity<String>("true", HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("false", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@RequestMapping(value = "/reviewwrite", method=RequestMethod.GET)
 	public String mp() {
 		return "mypage/reviewWrite";

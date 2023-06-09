@@ -65,7 +65,7 @@
 	}
 
 	.buttons {
-		margin-bottom:22px;
+		margin-bottom: 22px;
 	}
 
 	.image {
@@ -172,12 +172,12 @@
 	}
 	
 	.tab-content p {
-		width: 77%;
+		width: 74%;
     	font-size: 17px;
   	}
   	
   	.tab-content #reviews p {
-    	width: 77%;
+    	width: 74%;
     	font-size: 14px;
     	border-bottom: 1px solid #D9D9D9;
     }
@@ -200,8 +200,60 @@
 		font-weight: bold;
 		color: yellow;
 	}
+	
+	.tab-content #instructor {
+		width: 74%;
+	}
+	
+	.instructor-button {
+    	display: inline-block;
+    	background-color: white;
+    	color: gray;
+    	padding: 50px 80px;
+    	border: 1px solid gray;
+		cursor: pointer;
+    	text-decoration: none;
+    	font-size: 18px;
+    	border-radius: 5px;
+	}
+	
+	.inquiry-button {
+		background-color: gray;
+		border-radius: 5px;
+		color: white;
+		padding: 5px 15px;
+		border: none;
+		font-size: 16px;
+		cursor: pointer;
+	}
+	
+	.edit-button {
+		background-color: white;
+		color: gray;
+		padding: 1.5px 5px;
+		border-radius: 2px;
+		border: 1px solid gray;
+		cursor: pointer;
+	}
+	
+	.tab-content #inquiry p {
+    	font-size: 15px;
+    }
+    
+    .inquiry .user-id {
+    	font-weight: bold;
+    }
+    
+    .instructor-id {
+    	font-weight: bold;
+    }
+    
+    .response {
+    	width: 710px;
+  		height: 110px;
+  		background-color: #D9D9D9;
+    }
 </style>
-
 <script>
 	function openTab(tabId) {
 		var tabs = document.getElementsByClassName('tab');
@@ -284,7 +336,9 @@ $(function() {
 					<div id="curriculum" class="tab">
 						<p>${res.clsInfo.clsCurri }</p>
 					</div>
-					<div id="instructor" class="tab">C</div>
+					<div id="instructor" class="tab">
+						<a href class="instructor-button">채널 바로가기&nbsp;&nbsp;&nbsp;＞</a>
+					</div>
 					<div id="location" class="tab">
 						<p>${res.clsInfo.scdLoc }${res.clsInfo.scdPlace }</p>
 					</div>
@@ -300,18 +354,25 @@ $(function() {
     					</c:forEach>
 					</div>
 					<div id="inquiry" class="tab">
-					<table border="1">
-					<c:forEach items="${res.inquiryList}" var="inquiry">
-						<tr>
-							<td>${inquiry.ciNum }</td>
-							<td>${inquiry.ciDate }</td>
-							<td>${inquiry.ciTitle }</td>
-							<td>${inquiry.ciContent }</td>
-							<td>${inquiry.userId }</td>
-						</tr>
-					</c:forEach>
-					</table>
-					
+						<p>
+							<button class="inquiry-button">문의하기</button><br/><br/>
+						</p>
+						<c:forEach items="${res.inquiryList}" var="inquiry">
+							<p>
+								<span class="user-id">${inquiry.userId }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<span>${inquiry.ciDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="edit-button">수정</button><br/><br/>
+								<span>${inquiry.ciContent }</span><br/><br/><br/>
+							</p>
+						</c:forEach>
+						<div class="response">
+      						<p>
+      							<br/>
+        						<span class="instructor-id">강사</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>답변일</span><br/><br/>
+        						<span>답변내용</span>
+      						</p>
+    					</div>
 					</div>
 				</div>
 			</div>

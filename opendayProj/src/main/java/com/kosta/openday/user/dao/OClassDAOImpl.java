@@ -1,5 +1,6 @@
 package com.kosta.openday.user.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
+import com.kosta.openday.teacher.dto.AnswerDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
+import com.kosta.openday.user.dto.ClsInquiryAndAnswerDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.RequestDTO;
@@ -24,7 +28,7 @@ public class OClassDAOImpl implements OClassDAO {
 
 	@Override
 	public void insertRequest(RequestDTO request) throws Exception {
-		sqlSession.insert("mapper.oclass.insertRequest", request);
+		sqlSession.insert("mapper.rclass.insertRequest", request);
 	}
 
 	@Override
@@ -132,47 +136,92 @@ public class OClassDAOImpl implements OClassDAO {
 	}
 
 	@Override
-	public Map<String, Object> selectScheduleDetail(Integer scdNum) throws Exception {
+	public Map<String, Object> selectOclassDetail(Integer clsId) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("mapper.rclass.selectScheduleDetail", scdNum);
+		return sqlSession.selectOne("mapper.rclass.selectOclassDetail", clsId);
 	}
 
 	@Override
-	public List<ReviewDTO> selectReviewByStdNum(Integer scdNum) throws Exception {
+	public List<ReviewDTO> selectReviewByClsId(Integer clsId) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.rclass.selectReviewByStdNum", scdNum);
+		return sqlSession.selectList("mapper.rclass.selectReviewByClsId", clsId);
 	}
 
 	@Override
-	public List<ClsInquiryDTO> selectInquiryByStdNum(Integer scdNum) throws Exception {
+	public List<ClsInquiryDTO> selectInquiryByClsId(Integer clsId) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.rclass.selectInquiryByStdNum", scdNum);
+		return sqlSession.selectList("mapper.rclass.selectInquiryByClsId", clsId);
 	}
 
 	@Override
-	public Integer selectHeartByStdNumAndUser(Map<String, Object> param) throws Exception {
+	public List<ClsInquiryAndAnswerDTO> selectInquiryAndAnswerByClsId(Integer clsId) throws Exception {
+		List<ClsInquiryAndAnswerDTO> inquiryAndAnswerList = new ArrayList<>();
+		List<ClsInquiryDTO> inquiryList = selectInquiryByClsId(clsId);
+		for(ClsInquiryDTO inquiry : inquiryList) {
+			ClsInquiryAndAnswerDTO inquiryAndAnswer = new ClsInquiryAndAnswerDTO();
+			inquiryAndAnswer.setClsInquiry(inquiry);
+			AnswerDTO answer = selectReviewByCiNum(inquiry.getCiNum());
+			if(answer!=null) {
+				inquiryAndAnswer.setAnswer(answer);
+			}
+			inquiryAndAnswerList.add(inquiryAndAnswer);
+		}
+		return inquiryAndAnswerList;
+	}
+	
+	@Override
+	public Integer selectHeartByClsIdAndUser(Map<String, Object> param) throws Exception {
 
-		return sqlSession.selectOne("mapper.rclass.selectHeartByStdNumAndUser", param);
+		return sqlSession.selectOne("mapper.rclass.selectHeartByClsIdAndUser", param);
 	}
 
 	@Override
-	public Integer selectHeartCntByStdNum(Integer scdNum) throws Exception {
+	public Integer selectHeartCntByClsId(Integer clsId) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("mapper.rclass.selectHeartCntByStdNum", scdNum);
+		return sqlSession.selectOne("mapper.rclass.selectHeartCntByClsId", clsId);
 	}
 
 	@Override
-	public void insertHeartByStdNumAndUser(Map<String,Object> param) throws Exception {
-		sqlSession.insert("mapper.rclass.insertHeartByStdNumAndUser", param);		
+	public void insertHeartByClsIdAndUser(Map<String,Object> param) throws Exception {
+		sqlSession.insert("mapper.rclass.insertHeartByClsIdAndUser", param);		
 	}
 
 	@Override
-	public void deleteHeartByStdNumAndUser(Map<String,Object> param) throws Exception {
-		sqlSession.delete("mapper.rclass.deleteHeartByStdNumAndUser", param);		
+	public void deleteHeartByClsIdAndUser(Map<String,Object> param) throws Exception {
+		sqlSession.delete("mapper.rclass.deleteHeartByClsIdAndUser", param);		
 	}
 	
 	@Override
 	public List<OClassAndScheduleDTO> selectOClassAndSchedules() throws Exception {
 		return sqlSession.selectOne("mapper.oclass.selectOClassAndSchedules");
+	}
+
+	@Override
+	public AnswerDTO selectReviewByCiNum(Integer ciNum) throws Exception {
+		return sqlSession.selectOne("mapper.rclass.selectReviewByCiNum", ciNum);
+	}
+
+	@Override
+	public void insertClsInquiry(Map param) throws Exception {
+		sqlSession.selectOne("mapper.rclass.insertClsInquiry", param);
+		
+	}
+
+	@Override
+	public void updateClsInquiry(Map param) throws Exception {
+		sqlSession.selectOne("mapper.rclass.updateClsInquiry", param);
+		
+	}
+
+	@Override
+	public void deleteReview(Integer rvNum) throws Exception {
+		sqlSession.insert("mapper.rclass.deleteReview", rvNum);
+		
+	}
+
+	@Override
+	public TeacherChannelDTO selectteacherChannel(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.teacher.selectteacherChannel", userId);
 	}
 }

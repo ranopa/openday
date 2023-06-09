@@ -5,19 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
-import com.kosta.openday.user.dto.ClsInquiryDTO;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dao.OClassDAO;
+import com.kosta.openday.user.dto.ApplyClassResponseDTO;
+import com.kosta.openday.user.dto.ClsInquiryAndAnswerDTO;
+import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.PageInfo;
 import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.user.dto.ReviewDTO;
-import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 
 
 @Service
@@ -144,44 +145,53 @@ public class OClassServiceImpl implements OClassService {
 	}
 	
 	@Override
-	public Map<String, Object> getScheduleDetail(Integer scdNum, String userId) throws Exception {
+	public Map<String, Object> getOclassDetail(Integer clsId, String userId) throws Exception {
 		//클래스번호,클래스명,파일명,가격,소개,커리,장소
-		Map<String, Object> clsInfo = oClassDAO.selectScheduleDetail(scdNum);
+		Map<String, Object> clsInfo = oClassDAO.selectOclassDetail(clsId);
+		
+		//장소
+		List<ScheduleDTO> scheduleList  = oClassDAO.selectScheduleByOClass(clsId);
 		//후기
-		List<ReviewDTO> reviewList = oClassDAO.selectReviewByStdNum(scdNum);
-		//문의
-		List<ClsInquiryDTO> inquiryList = oClassDAO.selectInquiryByStdNum(scdNum);
+		List<ReviewDTO> reviewList = oClassDAO.selectReviewByClsId(clsId);
+		//문의&답변
+		List<ClsInquiryAndAnswerDTO> inquiryAndAnswerList = oClassDAO.selectInquiryAndAnswerByClsId(clsId);
+		//강사채널
+		TeacherChannelDTO teacherChannel = getTeacherChannel(userId);
 		//찜수
-		Integer heartCnt = oClassDAO.selectHeartCntByStdNum(scdNum);
+		Integer heartCnt = oClassDAO.selectHeartCntByClsId(clsId);
 		//찜여부
 		Map<String,Object> param = new HashMap<>();
-		param.put("scdNum", scdNum);
+		param.put("clsId", clsId);
 		param.put("userId", userId);
-		Integer heart = oClassDAO.selectHeartByStdNumAndUser(param);
+		Integer heart = oClassDAO.selectHeartByClsIdAndUser(param);
 		System.out.println(heart);
 		Map<String, Object> result = new HashMap<>();
 		result.put("clsInfo", clsInfo);
+		result.put("scheduleList", scheduleList);
 		result.put("reviewList", reviewList);
-		result.put("inquiryList", inquiryList);
+		result.put("inquiryList", inquiryAndAnswerList);
+		if(teacherChannel!=null) {
+			result.put("teacherChannel", teacherChannel.getTchcNum());
+		}
 		result.put("heartCnt", heartCnt);
 		result.put("heart", heart);
 		return result;
 	}
 
 	@Override
-	public Integer toggleHeartSchedule(Integer scdNum, String userId) throws Exception {
+	public Integer toggleHeartSchedule(Integer clsId, String userId) throws Exception {
 		Map<String, Object> param = new HashMap<>();
-		param.put("scdNum", scdNum);
+		param.put("clsId", clsId);
 		param.put("userId", userId);
 		
-		Integer heartYN = oClassDAO.selectHeartByStdNumAndUser(param);
+		Integer heartYN = oClassDAO.selectHeartByClsIdAndUser(param);
 		if(heartYN==1) {
-			oClassDAO.deleteHeartByStdNumAndUser(param);
+			oClassDAO.deleteHeartByClsIdAndUser(param);
 		} else {
-			oClassDAO.insertHeartByStdNumAndUser(param);
+			oClassDAO.insertHeartByClsIdAndUser(param);
 		}
 		
-		return oClassDAO.selectHeartByStdNumAndUser(param);
+		return oClassDAO.selectHeartCntByClsId(clsId);
 	}
 
 	@Override
@@ -189,4 +199,44 @@ public class OClassServiceImpl implements OClassService {
 		return oClassDAO.selectOClassAndSchedules();
 	}
 
+	@Override
+	public void clsInquiry(String ciContent, String ciSecret, Integer clsId, String userId) throws Exception {
+		Map<String, Object> param = new HashMap<>();
+		param.put("ciContent", ciContent);
+		if(ciSecret.equals("true")) {
+			param.put("ciSecret", 1);
+		} else {
+			param.put("ciSecret", 0);
+		}
+		param.put("clsId", clsId);
+		param.put("userId", userId);
+		oClassDAO.insertClsInquiry(param);
+	}
+
+	@Override
+	public void modifyClsInquiry(String ciContent, String ciSecret, Integer ciNum) throws Exception {
+		System.out.println(ciContent);
+		Map<String, Object> param = new HashMap<>();
+		param.put("ciContent", ciContent);
+		if(ciSecret.equals("true")) {
+			param.put("ciSecret", 1);
+		} else {
+			param.put("ciSecret", 0);
+		}
+		param.put("ciNum", ciNum);	
+		System.out.println(param);
+		oClassDAO.updateClsInquiry(param);
+	}
+
+	@Override
+	public void removeReview(Integer rvNum) throws Exception {
+		oClassDAO.deleteReview(rvNum);
+		
+	}
+
+	@Override
+	public TeacherChannelDTO getTeacherChannel(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return oClassDAO.selectteacherChannel(userId);
+	}
 }
