@@ -169,6 +169,18 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public UserDTO selectUserByNickName(String userNickname) throws Exception { 
+		System.out.println(userNickname);
+		UserDTO user =  sqlSession.selectOne("mapper.user.selectUserByNickname",userNickname);
+		if(user==null) {
+			System.out.println("yes");
+		}else {
+			System.out.println("no");
+		}
+		System.out.println(user);
+		System.out.println(user.getUserNickname());
+		return user;
+	}
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
 		return sqlSession.selectOne("mapper.search.searchOClassCount", map);
 	}

@@ -173,8 +173,7 @@ public class AdmController {
 		} 
 		return "admin/admMain";
 	}
-
-	
+ 
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
 	public String admSalesList(Model model) { 
@@ -242,5 +241,4 @@ public class AdmController {
 		
 	
 	}
-	
 }
