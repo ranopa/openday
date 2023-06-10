@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dto.CodeDTO;
@@ -73,5 +75,12 @@ public interface UserService {
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
 	
 	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;
+	
+	//이메일발송
+	public void sendEmail(UserDTO user, String div) throws Exception;
+
+	//비밀번호찾기
+	public void findPw(HttpServletResponse resp, UserDTO user) throws Exception;
+
 	
 }

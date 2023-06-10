@@ -193,4 +193,11 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList("mapper.user.mainPreferenceOClassList",preferences);
 	}
 
+	
+	//비밀번호변경
+	@Override
+	public int updatePw(UserDTO user) throws Exception {
+		return sqlSession.update("mapper.user.updatePw", user);
+	}
+	
 }

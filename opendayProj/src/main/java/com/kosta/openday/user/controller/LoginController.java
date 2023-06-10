@@ -1,14 +1,18 @@
 package com.kosta.openday.user.controller;
 
+import java.util.Random;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.user.dto.UserDTO;
@@ -55,32 +59,38 @@ public class LoginController {
 	}
 	
 	
-	  @RequestMapping(value="/findpw", method=RequestMethod.POST) 
-	  public ModelAndView getUserFindPw(@RequestParam("userId") String userId,@RequestParam("userEmail") String userEmail)
-	  {
-	  System.out.println(userEmail);
-	  
-	  ModelAndView mav = new ModelAndView(); 
+	/*
+	 * @RequestMapping(value="/findpw", method=RequestMethod.POST) public
+	 * ModelAndView getUserFindPw(@RequestParam("userId") String
+	 * userId,@RequestParam("userEmail") String userEmail) {
+	 * System.out.println(userEmail);
+	 * 
+	 * ModelAndView mav = new ModelAndView();
+	 * 
+	 * try {
+	 * 
+	 * UserDTO findPw = userService.getUserFindPw(userId, userEmail);
+	 * 
+	 * mav.addObject("findPw",findPw); mav.setViewName("/login/pwConfirm");
+	 * 
+	 * } catch (Exception e) { e.printStackTrace();
+	 * 
+	 * }
+	 * 
+	 * return mav;
+	 * 
+	 * }
+	 */
 	 
-	  try {
-	 
-		  UserDTO findPw = userService.getUserFindPw(userId, userEmail);
-	  
-	  mav.addObject("findPw",findPw);
-	  mav.setViewName("/login/pwConfirm");
-	  
-	  } 
-	  catch (Exception e) 
-	  { 
-		  e.printStackTrace();
-	  
-	  } 
-	  
-	  return mav; 
-	  
+	  /* 비밀번호 찾기 */
+	  @RequestMapping(value = "/findpw", method = RequestMethod.GET)
+	  public void findPwGET() throws Exception{
 	  }
-	 
-	
+
+	  @RequestMapping(value = "/findpw", method = RequestMethod.POST)
+	  public void findPwPOST(@ModelAttribute UserDTO user, HttpServletResponse response) throws Exception{
+	  	userService.findPw(response, user);
+	  }
 	
 	/*
 	 * @RequestMapping(value="findpw", method=RequestMethod.POST) public

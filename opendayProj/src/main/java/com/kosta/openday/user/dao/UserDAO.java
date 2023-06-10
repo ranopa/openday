@@ -73,4 +73,7 @@ public interface UserDAO {
 	
 	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception;
 
+	// 비밀번호 변경
+	public int updatePw(UserDTO user) throws Exception;
+
 }

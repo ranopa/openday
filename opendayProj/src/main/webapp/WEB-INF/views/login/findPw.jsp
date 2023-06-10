@@ -9,6 +9,26 @@
 <script src='<c:url value="/resources/js/user/findPw.js"/>'></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/findPw.css"/>">
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	$(function(){
+		$("#findBtn").click(function(){
+			$.ajax({
+				url : "/findpw",
+				type : "POST",
+				data : {
+					id : $("#id").val(),
+					email : $("#email").val()
+				},
+				success : function(result) {
+					alert(result);
+				},
+			})
+		});
+	})
+</script>
+	
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -24,13 +44,13 @@
 			<form type="text" action="findpw" method="post">
 				<ul class="findPwContainer">
 						<li>
-							<input type="text" class="findPwPIdBox" id="findPwPIdBox"
+							<input type="text" class="findPwPIdBox" id="id"
 							name="userId" placeholder="아이디">
 						</li>
 
 						<li>
 							<input type="text" class="findPwPEmailBox"
-							id="findPwEmailBox" name="userEmail" placeholder="이메일">
+							id="email" name="userEmail" placeholder="이메일">
 						</li>
 					<div class="AuthenticationNumberWrapper">
 						<li>
@@ -47,7 +67,7 @@
 
 
 				<div class="findPwBtns">
-					<input type="submit" class="findPwBtn" value="확인">
+					<input type="submit" class="findPwBtn" value="확인" id="findBtn">
 				</div>
 			</form>
 			<!-- 
