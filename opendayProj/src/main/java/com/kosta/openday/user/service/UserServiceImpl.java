@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -203,15 +204,30 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
 	@Override
 	public List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception {
-		String userPreferStr = userDAO.selectUserPrefer(userId);
-		String[] prefers = userPreferStr.split("_");
-		
-		List<String> preferList = Arrays.asList(prefers);
+		  String userPreferStr = userDAO.selectUserPrefer(userId);
+		    if (userPreferStr == null || userPreferStr.isEmpty()) {
+		        return Collections.emptyList();
+		    }
 
-		return userDAO.mainPreferenceOClassList(preferList);
-	}
+		    String[] prefers = userPreferStr.split("_");
+		    List<String> preferList = Arrays.asList(prefers);
+
+		    return userDAO.mainPreferenceOClassList(preferList);
+		}
+	
+	
+	/*
+	 * @Override public List<CollectDTO> mainPreferenceOClassList(String userId)
+	 * throws Exception { String userPreferStr = userDAO.selectUserPrefer(userId);
+	 * String[] prefers = userPreferStr.split("_");
+	 * 
+	 * List<String> preferList = Arrays.asList(prefers);
+	 * 
+	 * return userDAO.mainPreferenceOClassList(preferList); }
+	 */
 	/*
 	 * public void func() { String preference = "C1_C3_C15"; String[] code =
 	 * preference.split("_");

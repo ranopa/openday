@@ -135,6 +135,43 @@
 }
 
 </style>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.querySelector('.search');
+  var disElement = document.getElementById('dis');
+  var categoryElement = document.getElementById('category');
+  var disMenuElement = document.getElementById('disMenu');
+  var menuIconInput = document.querySelector('.menuIcon');
+
+  searchInput.addEventListener('click', function(event) {
+    event.stopPropagation();
+    disElement.style.display = 'block';
+    disMenuElement.style.display = 'none';
+  });
+
+  categoryElement.addEventListener('click', function() {
+    disMenuElement.style.display = 'none';
+  });
+
+  menuIconInput.addEventListener('click', function(event) {
+    event.stopPropagation();
+    disMenuElement.style.display = 'block';
+    disElement.style.display = 'none';
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!disElement.contains(event.target)) {
+      disElement.style.display = 'none';
+    }
+    if (!disMenuElement.contains(event.target)) {
+      disMenuElement.style.display = 'none';
+    }
+  });
+});
+</script>
+
+
+
 </head>
 <body>
 
@@ -245,7 +282,7 @@
 						</c:otherwise>
 					</c:choose>
 
-					<div class="IconColor">
+					<div class="IconColor menuIcon">
 						<a href="#"><div class="IconBox" onclick="disMenu()">
 								<div class="material-symbols-outlined" id="menu"
 									>menu</div>

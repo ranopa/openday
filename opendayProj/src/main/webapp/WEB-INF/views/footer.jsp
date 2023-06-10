@@ -79,7 +79,7 @@
 	font-family: 'Cafe24 Ohsquare';
 	font-style: normal;
 	font-weight: 700;
-	font-size: 36px;
+	font-size: 35px;
 	line-height: 42px;
 	color: #999999;
 

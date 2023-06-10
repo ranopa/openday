@@ -546,8 +546,9 @@ align-items: center;}
 	</div>
 	</div>
 	
+	<a href="classOpen">
 	<img src="resources/image/user/cooksmallbanner.jpg" alt="이미지"
-		class="smallBanner">
+		class="smallBanner"></a>
 
 	
 	<div class="classWrapper">
