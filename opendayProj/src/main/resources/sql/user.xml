@@ -585,6 +585,41 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	]]>
 	</select>
 	
+<!-- 인기순으로 정렬된 결과 가져오기 -->
+<select id="getSearchOClassByPopularity" parameterType="java.util.HashMap" resultMap="collectResultMap">
+    SELECT *
+    FROM your_table
+    WHERE
+        COUNT(r.rvNum) AS reviewCount
+    ORDER BY popularity DESC
+</select>
+
+<!-- 등록일순으로 정렬된 결과 가져오기 -->
+<select id="getSearchOClassByDate" parameterType="java.util.HashMap" resultMap="collectResultMap">
+    SELECT *
+    FROM your_table
+    WHERE
+        your_conditions
+    ORDER BY registration_date DESC
+</select>
+
+<!-- 가격 높은 순으로 정렬된 결과 가져오기 -->
+<select id="getSearchOClassByHighPrice" parameterType="java.util.HashMap" resultMap="collectResultMap">
+    SELECT *
+    FROM your_table
+    WHERE
+        your_conditions
+    ORDER BY price DESC
+</select>
+
+<!-- 가격 낮은 순으로 정렬된 결과 가져오기 -->
+<select id="getSearchOClassByLowPrice" parameterType="java.util.HashMap" resultMap="collectResultMap">
+    SELECT *
+    FROM your_table
+    WHERE
+        your_conditions
+    ORDER BY price ASC
+</select>
 
 
 
