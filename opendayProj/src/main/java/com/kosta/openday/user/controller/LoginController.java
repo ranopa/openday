@@ -55,17 +55,30 @@ public class LoginController {
 	}
 	
 	
-	  @RequestMapping(value="/findpw", method=RequestMethod.POST) public
-	  ModelAndView getUserFindPw(@RequestParam("userId") String
-	  userId,@RequestParam("userEmail") String userEmail) {
-	  System.out.println(userEmail); ModelAndView mav = new ModelAndView(); try {
-	  UserDTO findPw = userService.getUserFindPw(userId, userEmail);
+	  @RequestMapping(value="/findpw", method=RequestMethod.POST) 
+	  public ModelAndView getUserFindPw(@RequestParam("userId") String userId,@RequestParam("userEmail") String userEmail)
+	  {
+	  System.out.println(userEmail);
 	  
-	  mav.addObject("findPw",findPw); mav.setViewName("/login/pwConfirm");
+	  ModelAndView mav = new ModelAndView(); 
+	 
+	  try {
+	 
+		  UserDTO findPw = userService.getUserFindPw(userId, userEmail);
 	  
-	  } catch (Exception e) { e.printStackTrace();
+	  mav.addObject("findPw",findPw);
+	  mav.setViewName("/login/pwConfirm");
 	  
-	  } return mav; }
+	  } 
+	  catch (Exception e) 
+	  { 
+		  e.printStackTrace();
+	  
+	  } 
+	  
+	  return mav; 
+	  
+	  }
 	 
 	
 	
