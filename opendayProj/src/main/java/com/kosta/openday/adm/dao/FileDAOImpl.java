@@ -1,7 +1,7 @@
 package com.kosta.openday.adm.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.openday.adm.dto.FileDTO;

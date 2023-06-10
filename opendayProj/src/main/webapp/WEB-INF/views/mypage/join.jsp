@@ -24,7 +24,7 @@
                 </div>
                 <ul class="ipcontainer">
               			 <li>
-                        <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="userId" name="userId"
+                        <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="inputId" name="userId"
                             placeholder="아이디" required maxlength="15">
                         <input type="button" class="idcheck ck" id="idCheckBtn" value="중복확인">
               			  <p id="idMessage"></p>
@@ -47,6 +47,7 @@
                             <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="userNickname" name="userNickname"
                                 placeholder="닉네임" required>
                             <input type="button" class="idcheck ck" id="nickCheckBtn" value="중복확인">
+                            <p id="nickMessage"></p>
                         </li>
                           <li>
                            <input type="text" class="ipbox notreq" name="userTel"
@@ -217,7 +218,7 @@
 
             <div class="btns">
                 <button type="button" class="cancel-btn">취소</button>
-                <button type="submit" class="submit-btn">가입완료</button>
+                <button type="submit" class="submit-btn" id="join-check-btn">가입완료</button>
             </div>
 
         </form>
