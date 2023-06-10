@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
@@ -73,5 +74,11 @@ public interface UserService {
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
 	
 	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;
+	
+	List<CollectOptionDTO> getSearchOClassByPopularity() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByDate() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByHighPrice() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByLowPrice() throws Exception;
+
 	
 }

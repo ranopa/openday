@@ -12,6 +12,7 @@ import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
@@ -191,6 +192,30 @@ public class UserDAOImpl implements UserDAO {
 	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.user.mainPreferenceOClassList",preferences);
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByPopularity() throws Exception {
+		// TODO Auto-generated method stub
+		 return sqlSession.selectList("mapper.user.getSearchOClassByPopularity");
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByDate() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.user.getSearchOClassByDate");
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByHighPrice() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.user.getSearchOClassByHighPrice");
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByLowPrice() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.user.getSearchOClassByLowPrice");
 	}
 
 }

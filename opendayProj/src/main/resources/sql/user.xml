@@ -585,40 +585,50 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	]]>
 	</select>
 	
+	
+	
 <!-- 인기순으로 정렬된 결과 가져오기 -->
-<select id="getSearchOClassByPopularity" parameterType="java.util.HashMap" resultMap="collectResultMap">
-    SELECT *
-    FROM your_table
-    WHERE
-        COUNT(r.rvNum) AS reviewCount
-    ORDER BY popularity DESC
+<select id="getSearchOClassByPopularity" resultMap="com.kosta.openday.user.dto.CollectOptionDTO">
+  
+  <![CDATA[
+    SELECT o.*, r.rvNum
+FROM review r
+JOIN oclass o ON o.clsId = r.clsId
+GROUP BY o.clsId
+HAVING r.rvNum = (
+    SELECT MAX(rvNum)
+    FROM review
+    WHERE clsId = o.clsId
+)
+]]>
 </select>
 
-<!-- 등록일순으로 정렬된 결과 가져오기 -->
-<select id="getSearchOClassByDate" parameterType="java.util.HashMap" resultMap="collectResultMap">
-    SELECT *
-    FROM your_table
-    WHERE
-        your_conditions
-    ORDER BY registration_date DESC
+<!-- 최근등록일순으로 정렬된 결과 가져오기 -->
+<select id="getSearchOClassByDate"  resultMap="com.kosta.openday.user.dto.CollectOptionDTO">
+   <![CDATA[
+   SELECT *
+FROM schedule s
+JOIN oclass o ON o.clsId = s.clsId
+ORDER BY ABS(DATEDIFF(scdUploadDate, NOW()))
+]]>
 </select>
 
 <!-- 가격 높은 순으로 정렬된 결과 가져오기 -->
-<select id="getSearchOClassByHighPrice" parameterType="java.util.HashMap" resultMap="collectResultMap">
-    SELECT *
-    FROM your_table
-    WHERE
-        your_conditions
-    ORDER BY price DESC
+<select id="getSearchOClassByHighPrice" resultMap="com.kosta.openday.user.dto.CollectOptionDTO">
+    <![CDATA[
+   SELECT o.*
+FROM oclass o
+ORDER BY (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) DESC, o.clsId
+]]>
 </select>
 
 <!-- 가격 낮은 순으로 정렬된 결과 가져오기 -->
-<select id="getSearchOClassByLowPrice" parameterType="java.util.HashMap" resultMap="collectResultMap">
-    SELECT *
-    FROM your_table
-    WHERE
-        your_conditions
-    ORDER BY price ASC
+<select id="getSearchOClassByLowPrice"  resultMap="com.kosta.openday.user.dto.CollectOptionDTO">
+ <![CDATA[
+ SELECT o.*
+FROM oclass o
+ORDER BY (o.clsPrice - (o.clsPrice * (o.clsDiscount / 100))) ASC, o.clsId
+]]>
 </select>
 
 
