@@ -50,9 +50,18 @@
 						</tr>
 						<tr class="txtbox">
 							<td class="td1 bold">답변</td>
+							<c:choose>
+							<c:when test="${inquiry.admAnContent eq null}">
+							<td colspan="3" class="td2"><textarea type="text"
+									name="answer" maxlength="1000" name="admAnContent" class="txtarea txt-ip" required
+									></textarea></td>
+							</c:when>
+							<c:otherwise>
 							<td colspan="3" class="td2"><textarea type="text"
 									name="answer" maxlength="1000" class="txtarea txt-ip" required
 									readonly>${inquiry.admAnContent}</textarea></td>
+							</c:otherwise>
+							</c:choose>
 						</tr>
 					</tbody>
 				</table>
