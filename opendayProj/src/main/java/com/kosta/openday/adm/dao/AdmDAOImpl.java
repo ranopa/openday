@@ -80,7 +80,15 @@ public class AdmDAOImpl implements AdmDAO {
 	public AdmInquiryDTO selectAdmInquiry(Integer admNum) throws Exception {
 		return sqlSession.selectOne("mapper.adm.selectAdmInquiry", admNum);
 	}
-
+	
+	@Override
+	public void updateInquiryAnswer(Integer admNum, String answer) {
+		Map map = new HashMap<>();
+		map.put("admNum", admNum);
+		map.put("answer", answer);
+		sqlSession.update("mapper.notice.updateAdmInquiryAnswer", map);
+	}
+	// 공지사항 
 	@Override
 	public List<AnnouncementDTO> selectAnnouncementList() throws Exception {
 		return sqlSession.selectList("mapper.announcement.selectAnnouncementList");
@@ -96,12 +104,5 @@ public class AdmDAOImpl implements AdmDAO {
 		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
 	}
 
-	@Override
-	public void updateInquiryAnswer(Integer admNum, String answer) {
-		Map map = new HashMap<>();
-		map.put("admNum", admNum);
-		map.put("answer", answer);
-		sqlSession.update("mapper.announcement.updateInquiryAnswer", map);
-	}
-	
+
 }

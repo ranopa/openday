@@ -80,10 +80,10 @@
 </insert>
 
 <!-- 어드민 문의 답변 등록 --> 
-<update id="updateAdmInquiry" parameterType="java.util.Map">
+<update id="updateAdmInquiryAnswer" parameterType="java.util.Map">
 	<![CDATA[
 		update adm_inquiry
-		set admAnContent = #{answer}, admAnDate = curdate()
+		set admAnContent = #{answer}, admAnDate = curdate(), admStatus=1
 		where admNum=#{admNum}
 	]]> 
 
