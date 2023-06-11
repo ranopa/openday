@@ -139,6 +139,86 @@
 }
 
 </style>
+<!-- 알림css -->
+ <style>
+        #alarm *{
+            padding: 0;
+            margin:0; 
+        }
+        #alarm{
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s all;
+             position: absolute;
+            right: 60px;
+            top: 130;
+            background-color: white;
+        }
+        #alarm.show{
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #alarm .a-a{
+            text-decoration: none;
+            color: black;
+        }
+        #alarm .a-a:hover{
+            text-decoration: underline;
+        }
+        
+        #alarm .a-box{
+            width: 290px;  
+            min-height: 250px;
+            box-shadow: 2px 2px 3px 1px  rgb(206, 206, 206);
+            border-radius: 4px;
+            padding:15px;
+            
+        }
+        #alarm .a-p{ 
+            margin:0 auto;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 1px solid rgb(223, 223, 223);
+            margin-top : 5px;
+            margin-bottom : 10px;
+            padding-bottom : 10px;
+        }
+        #alarm .a-ul{
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            
+        }
+        #alarm .a-span{
+            font-weight: bold;
+            font-size: 13px;
+            position:relative;
+        }
+        
+        #alarm .a-del-btn{
+            border: none;
+            background-color: transparent;  
+            cursor: pointer;  
+        }
+        #alarm .message{
+            font-size: 12px;
+        }
+            
+        
+        #alarm .material-symbols-outlined{
+            font-size: 20px;
+            color:rgb(207, 207, 207);     
+            padding-top: 3px;
+        }
+		 .alarm-btn{
+		 	background-color:transparent;
+		 	border:none;
+		 	color:#7C4AFF;
+		 }
+    </style>
 </head>
 <body>
 
@@ -222,10 +302,10 @@
 						</c:when>
 					</c:choose>
 					<div class="IconColor">
-						<a href="#"><div class="IconBox">
+						<button type="button" id="abtn" class="alarm-btn"><div class="IconBox">
 								<div class="material-symbols-outlined">notifications</div>
 								<div class="IconText">알림</div>
-							</div></a>
+							</div></button>
 					</div>
 					<c:set var="userId" value="${sessionScope.userId }" />
 
@@ -370,7 +450,60 @@
 			</table>
 		</div>
 	</div>
+	 <div id="alarm"> 
+        <div class="a-box">
+            <p class="a-p">알림</p> 
+            <c:forEach items=" " var="alarm">
+            <ul class="a-ul">
+                <li><a href="${alarm.ntfUrl}" class="a-a"> 
+                  <span class="message">${alarm.ntfMessage}</span>
+                </a>
+                </li>
+                <li>
+                    <button class="a-del-btn"><span class="material-symbols-outlined">
+                        close</span></button>
+                        <input type="hidden" id="ntfId" value="${alarm.ntfId}">
+                </li>
+            </ul> 
+            </c:forEach>
+          
+        </div> 
+    </div>
+    <script>
+        var alarmBtn = document.querySelector('#abtn');
+        var ModalBtn = document.querySelector('#alarm');
+        alarmBtn.addEventListener('click',()=>{ 
+            if(!ModalBtn.classList.contains('show')){
+                ModalBtn.classList.add('show');
+            }else{
+                ModalBtn.classList.remove('show'); 
+            }
+        })
+       
+          var delBtns = document.querySelectorAll('#alarm .a-del-btn');
+        delBtns.forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                var ipEl = btn.nextElementSibling.value.toString;
+                console.log(ipEl); 
+                var ulValue = btn.parentElement.parentElement;
+                ulValue.remove();
 
+
+                $.ajax({
+                    url:"deletealarm",
+                    type:'post',
+                    data: {"ipEl":ipEl},
+                    success:function(response){
+                        console.log('success');
+                    },
+                    error:function(){
+                        console.log('error');
+                    }
+                })
+            })
+        }) 
+
+    </script>
 
 </body>
 </html>
