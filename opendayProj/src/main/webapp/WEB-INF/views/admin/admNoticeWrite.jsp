@@ -5,7 +5,8 @@
         <div class="container">
             <h2>공지 작성</h2>
             <div class="page">
-                <form action="" , method="post">
+                <form action="admannouncementwrite"  method="post" enctype="multipart/form-data"
+			name="noticefile">
                     <table class="table">
                         <tbody>
                             <tr>

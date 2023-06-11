@@ -5,7 +5,7 @@
 	<div class="container">
 		<h2>문의목록</h2>
 		<div class="page">
-			<form action="" , method="post">
+			<form action="../adminquiryanswer"  method="post">
 				<table class="table">
 					<tbody>
 						<tr>
@@ -53,8 +53,9 @@
 							<c:choose>
 							<c:when test="${inquiry.admAnContent eq null}">
 							<td colspan="3" class="td2"><textarea type="text"
-									name="answer" maxlength="1000" name="admAnContent" class="txtarea txt-ip" required
+									name="answer" maxlength="1000"  class="txtarea txt-ip" required
 									></textarea></td>
+									<input type="hidden" name="admNum" value="${inquiry.admNum}">
 							</c:when>
 							<c:otherwise>
 							<td colspan="3" class="td2"><textarea type="text"

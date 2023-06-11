@@ -268,6 +268,19 @@ public class AdmController {
 		} 
 		return "admin/admMain";
 	}
+	
+	//유저문의답변등록
+		@RequestMapping(value = "/adminquiryanswer", method = RequestMethod.POST)
+		public String admInquiryDetail(@RequestParam("admNum") Integer admNum, @RequestParam("answer") String admAnContent, Model model) { 
+			try {
+				System.out.println(admNum+":"+admAnContent);
+				admService.inquiryAnswer(admNum, admAnContent);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			return "redirect:/adminquirylist";
+		} 
 
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
@@ -316,9 +329,9 @@ public class AdmController {
 	// 공지사항 작성
 	@RequestMapping(value="/admannouncementwrite", method=RequestMethod.POST)
 	public String writeAdmAnnouncement(
-			@RequestParam String title,
-			@RequestParam String content,
-			@RequestParam String type,
+			@RequestParam("ancTitle") String title,
+			@RequestParam("ancContent") String content,
+			@RequestParam("ancType") String type,
 			@RequestPart(value = "file", required = false) MultipartFile file,
 			Model model) throws Exception{
 		// 제목, 내용, 분류(일반,강사), 파일
@@ -327,18 +340,28 @@ public class AdmController {
 			map.put("title", title);
 			map.put("content", content);
 			map.put("type", type);
-			map.put("file", file);
+			if(file!=null) {
+				map.put("file", file); 				
+			}
 			admService.writeAdmAnnouncement(map);
 			
 			List<AnnouncementDTO> ancList = admService.findAnnouncementList();
 			model.addAttribute("ancList", ancList);
-			model.addAttribute("page","admAnnouncementList");
+			model.addAttribute("page","admNoticeList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "admin/admMain";
 		
 	
+	}
+	
+	//공지사항 삭제
+	@RequestMapping(value="/removenotive", method=RequestMethod.GET)
+	public String removeNotice(@RequestParam("ancId") Integer ancId, Model model) throws Exception { 
+		admService.removeNotice(ancId);
+	 return "redirect:/admwaitinglist";
+		
 	}
 	
 

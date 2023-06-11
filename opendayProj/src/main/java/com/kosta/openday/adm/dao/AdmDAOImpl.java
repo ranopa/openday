@@ -94,5 +94,17 @@ public class AdmDAOImpl implements AdmDAO {
 	public void insertAnnouncement(Map map) throws Exception {
 		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
 	}
+
+	@Override
+	public void updateAnInquiry(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.adm.updateAnswerInquiry",map);
+	}
+
+	@Override
+	public void deleteNotice(Integer ancId) throws Exception {
+		sqlSession.delete("mapper.adm.deleteAdmNotice",ancId);
+		
+		
+	}
 	
 }

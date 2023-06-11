@@ -255,7 +255,7 @@
 			
 			scd.scdNum as scdNum,
 			scd.scdDate as scdDate,
-			scd.scdTime as scdTime,
+			scd.scdStartTime as scdStartTime,
 			scd.scdPlace as scdPlace,
 			scd.scdPlaceDetail as scdPlaceDetail
 		FROM
@@ -304,7 +304,7 @@
 			
 			scd.scdNum as scdNum,
 			scd.scdDate as scdDate,
-			scd.scdTime as scdTime,
+			scd.scdStartTime as scdStartTime,
 			scd.scdPlace as scdPlace,
 			scd.scdPlaceDetail as scdPlaceDetail,
 			scd.scdMinPersonnel as scdMinPersonnel,
@@ -339,7 +339,7 @@
 		<collection property="schedules" ofType="com.kosta.openday.teacher.dto.ScheduleDTO">
 			<result column="scdNum" property="scdNum" />
 			<result column="scdDate" property="scdDate" />
-			<result column="scdTime" property="scdTime" />
+			<result column="scdStartTime" property="scdStartTime" />
 			<result column="scdPlace" property="scdPlace" />
 			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 			<result column="scdMinPersonnel" property="scdMinPersonnel" />

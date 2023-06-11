@@ -29,5 +29,7 @@ public interface AdmDAO {
 	List<AdmInquiryDTO> selectInquiryList() throws Exception;
 	void deleteInquiry(Integer admNum) throws Exception;
 	void updateInquiry(Map<String,Object> param) throws Exception; 
+	void updateAnInquiry(Map<String,Object> map)throws Exception;
 
+	void deleteNotice(Integer ancId) throws Exception;
 }

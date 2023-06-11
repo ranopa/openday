@@ -63,7 +63,7 @@
 								<ul class="sub-ul">
 									<li>${scd.scdNum}</li>
 									<li>${scd.scdDate}</li>
-									<li>${scd.scdTime}</li>
+									<li>${scd.scdStartTime}</li>
 									<li>${scd.scdPlace}</li>
 									<li>${scd.scdMaxPersonnel}</li>
 									<li>${scd.scdStatus}</li>

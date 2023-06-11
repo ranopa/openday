@@ -82,4 +82,16 @@
 		]]>
 	</select>
 	
+	<!-- 관리자 문의 답변등록 -->
+	<update id="updateAnswerInquiry" parameterType="java.util.Map">
+		<![CDATA[
+			update adm_inquiry set admAnContent = #{admAnContent}, admStatus=1  where admNum=#{admNum}
+		]]>
+	</update>
+	<!-- 공지사항삭제 -->
+	<delete id="deleteAdmNotice" parameterType="String">
+		<![CDATA[
+			delete * from announcement where ancId=#{ancId}	
+		]]>
+	</delete>
 </mapper>

@@ -18,7 +18,7 @@
 	<div class="container">
 		<h2>공지</h2>
 		<div class="page">
-			<form action="" method="post">
+			<form action="/removenotive" method="get">
 				<table class="table">
 					<tbody>
 						<tr>
@@ -45,7 +45,7 @@
 					<button type="button" class="submit-btn btn2">목록으로</button>
 					<button type="button" class="submit-btn btn1" id="del-btn">삭제</button>
 				</div>
-
+				<input type="hidden" name="ancId" value="${anc.ancId}">
 			</form>
 		</div>
 	</div>
