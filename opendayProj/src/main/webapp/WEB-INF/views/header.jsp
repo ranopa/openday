@@ -122,6 +122,8 @@
     var searchFilterWrapper = document.querySelector(".searchFilterWrapper");
     searchFilterWrapper.style.display = "none";
   }
+  
+
 </script>
 <style>
 
@@ -282,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						</c:otherwise>
 					</c:choose>
 
-					<div class="IconColor menuIcon">
+					<div class="IconColor menuIcon" id="menuIcon">
 						<a href="#"><div class="IconBox" onclick="disMenu()">
 								<div class="material-symbols-outlined" id="menu"
 									>menu</div>
