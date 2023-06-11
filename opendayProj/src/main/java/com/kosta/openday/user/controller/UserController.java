@@ -221,8 +221,8 @@ public class UserController {
 			if(h2Text.equals("신청내역")) text = "수강예정";
 			else if(h2Text.equals("수강내역")) text ="수강완료";
 			else text="수강취소"; 
-			reservedList= userService.getReservedList(user.getUserId(),text); 
-			
+			reservedList= userService.getReservedList(user.getUserId(),text);  
+			System.out.println(reservedList.isEmpty());
 		}catch(Exception e) {
 			e.printStackTrace();
 		} 
