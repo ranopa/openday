@@ -450,24 +450,24 @@
 			</table>
 		</div>
 	</div>
-	<%--  <div id="alarm"> 
+	 <div id="alarm"> 
         <div class="a-box">
             <p class="a-p">알림</p> 
-            <c:forEach items="${}" var="alarm">
+            <c:forEach items=" " var="alarm">
             <ul class="a-ul">
                 <li><a href="${alarm.ntfUrl}" class="a-a"> 
-                    <span class="a-span">[${}]</span> <span class="message">${alarm.ntfMessage}</span>
+                  <span class="message">${alarm.ntfMessage}</span>
                 </a>
                 </li>
                 <li>
                     <button class="a-del-btn"><span class="material-symbols-outlined">
-                        close</button>
-                        </span>
+                        close</span></button>
+                        <input type="hidden" id="ntfId" value="${alarm.ntfId}">
                 </li>
-            </ul>
+            </ul> 
             </c:forEach>
           
-        </div> --%>
+        </div> 
     </div>
     <script>
         var alarmBtn = document.querySelector('#abtn');
@@ -479,6 +479,30 @@
                 ModalBtn.classList.remove('show'); 
             }
         })
+       
+          var delBtns = document.querySelectorAll('#alarm .a-del-btn');
+        delBtns.forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                var ipEl = btn.nextElementSibling.value.toString;
+                console.log(ipEl); 
+                var ulValue = btn.parentElement.parentElement;
+                ulValue.remove();
+
+
+                $.ajax({
+                    url:"deletealarm",
+                    type:'post',
+                    data: {"ipEl":ipEl},
+                    success:function(response){
+                        console.log('success');
+                    },
+                    error:function(){
+                        console.log('error');
+                    }
+                })
+            })
+        }) 
+
     </script>
 
 </body>
