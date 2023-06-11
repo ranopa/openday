@@ -35,7 +35,7 @@
 	</form>
 	<div class="tc-nav">
 		<ul class="tc-nav-item">
-			<li class="tc-nav-list"><a href="#">클래스 개설</a></li>
+			<li class="tc-nav-list"><a href="classOpen">클래스 개설</a></li>
 			<li class="tc-nav-list"><a href="tcHome">대시보드</a></li>
 			<li class="tc-nav-list"><a href="tcClass">클래스 관리</a></li>
 			<li class="tc-nav-list"><a href="tcClsUser">수강생 관리</a></li>
