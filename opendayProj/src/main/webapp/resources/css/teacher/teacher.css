@@ -489,7 +489,7 @@ a {
 .profileUpload-profile input {
 	width: 100%;
 }
-.fc-scrollgrid {
-	position: absolute;
+.fc {
+	position: relative;
     z-index: -1;
 }
