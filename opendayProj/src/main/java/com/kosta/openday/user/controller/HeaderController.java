@@ -64,6 +64,7 @@ public class HeaderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.getMessage();
+			mav.addObject("loginFailed", true); //로그인 실패 추가
 			mav.setViewName("/login/login");
 		}
 		return mav;
