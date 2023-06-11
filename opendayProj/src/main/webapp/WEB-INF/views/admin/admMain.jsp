@@ -75,6 +75,8 @@
 	href='<c:url value="/resources/css/adm/admNoticeDetail.css"/>'>
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/css/adm/admSalesList.css"/>'>
+	<link rel="stylesheet" type="text/css"
+	href='<c:url value="/resources/css/adm/admSettleDetail.css"/>'>
 <!-- js -->
 <script src="<c:url value="/resources/js/adm/admHeader.js"/>"></script>
 <script src="<c:url value="/resources/js/adm/admSettleRecordList.js"/>"></script>

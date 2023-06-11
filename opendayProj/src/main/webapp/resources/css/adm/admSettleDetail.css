@@ -1,0 +1,119 @@
+@charset "UTF-8";
+ #settle-detail {
+            width: 100vw;
+            height: 100vw;
+            background-color: rgb(240, 240, 240);
+        }
+
+        #settle-detail .s-container {
+            /* width: calc(1280-245)px;  */
+            width: 1035px;
+            padding: 20px;
+            margin: 0 auto;
+            margin-left: 245px;
+        }
+
+        #settle-detail h2 {
+            font-size: 24px;
+            color: #7C4AFF;
+            margin-top: 100px;
+            margin-bottom: 50px;
+            margin-left: 70px;
+        }
+
+        #settle-detail .btn-par {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            margin: 30px auto;
+
+        }
+
+
+        #settle-detail .btn2:hover {
+            color: white;
+            background-color: #6c32ff;
+        }
+
+
+        #settle-detail .page {
+            width: 900px;
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            margin-left: 60px;
+            padding-top: 45px;
+        }
+
+        #settle-detail .receipt {
+            width: 40%;
+            margin: 0 auto;
+            box-shadow: 2px 2px 2px 1px gray;
+            padding: 30px;
+
+        }
+
+        #settle-detail .conbox {
+            font-size: 15px;
+
+        }
+
+        #settle-detail .phead {
+            text-align: center;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+
+        }
+
+        #settle-detail .receipt-head {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px auto;
+        }
+
+        #settle-detail .seperate {
+            color: black;
+            margin: 10px auto;
+        }
+
+        #settle-detail .receipt-head p {
+            color: black;
+        }
+
+        #settle-detail .re-ul {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px auto;
+        }
+
+        #settle-detail .re-ul li {
+            color: black;
+            font-size: 14px;
+        }
+
+
+        #settle-detail .submit-btn {
+            width: 160px;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #settle-detail .btn2 {
+            color: white;
+            background-color: #7C4AFF;
+            margin-left: 10px;
+        }
+        
+        #settle-detail .btn1 {
+            color: #929292;
+            border: 1px solid #929292;
+            background-color: white;
+            margin-right: 10px;
+        }
+        
+        #settle-detail .btn1:hover {
+            color: #131313;
+            border: 1px solid #131313; 
+        }
