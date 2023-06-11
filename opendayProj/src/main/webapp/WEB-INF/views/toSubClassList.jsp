@@ -55,7 +55,7 @@ text-decoration: none;
 					</c:forEach>
 
 				</div>
-				<div class="subOption">
+				<!-- <div class="subOption">
 					<label class="checkLabel"><input type="checkbox"
 						name="color" value="blue">인기순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">등록일순</label> <label
@@ -63,7 +63,7 @@ text-decoration: none;
 						value="blue">가격높은순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">가격낮은순</label>
 
-				</div>
+				</div> -->
 
 				<div class="oclassListWrapper">
 					<!-- <div class="arrowIcon">
