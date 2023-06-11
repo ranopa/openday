@@ -565,6 +565,15 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	</select>
 	
 	
+	<!-- 유저선호카테고리 저장 -->
+	<update id="updatePrefer" parameterType="java.util.Map">
+	<![CDATA[
+		update user set userPreference = #{preferValues} where userId = #{userId} 
+	]]>
+	</update>
+	
+
+	
 
 
 

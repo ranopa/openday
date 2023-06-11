@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
 <link rel="stylesheet" href="/resources/css/user/footer.css">
 
 <style>
@@ -122,10 +121,6 @@ footer {
 
 </style>
 
-
-=======
-<link rel="stylesheet" href='<c:url value="/resources/css/user/footer.css" />' >
->>>>>>> branch 'channel_notice_open' of https://github.com/binunu/openday.git
 </head>
 <body>
 	<div class="footerWrapper">
