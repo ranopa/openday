@@ -47,7 +47,7 @@ public class AdmController {
 		String status = "승인대기";
 		List<OClassDTO> watingOClassList = admService.findOClassByStatus(status);
 		model.addAttribute("list", watingOClassList);
-	
+		model.addAttribute("page","admWaitingList");
 		return "admin/admMain";
 	}
 
