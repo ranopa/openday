@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -290,8 +291,8 @@ public class AdmController {
 	}
 	
 	// 공지사항 디테일
-	@RequestMapping(value="/admannouncementdetail")
-	public String adminAnnouncementDetail(@RequestParam Integer ancId,  Model model) {
+	@RequestMapping(value="/admannouncementdetail/{ancId}")
+	public String adminAnnouncementDetail(@PathVariable Integer ancId,  Model model) {
 		try {
 			AnnouncementDTO anc = admService.findAnnouncement(ancId);
 			model.addAttribute("anc", anc);
