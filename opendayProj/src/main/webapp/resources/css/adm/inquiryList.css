@@ -49,19 +49,19 @@ table td {
     }
     
     
-body> a:link {
+.alist:link {
   color : black;
   text-decoration: none;
 }
-body> a:visited {
+.alist:visited {
   color : purple;
   text-decoration: none;
 }
-body> a:hover {
+.alist:hover {
   color : red;
   text-decoration: underline;
 }
-body> a:active {
+.alist:active {
   color : green;
   text-decoration: none;
 }

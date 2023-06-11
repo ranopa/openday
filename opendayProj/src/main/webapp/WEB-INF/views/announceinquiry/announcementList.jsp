@@ -22,10 +22,10 @@
 <%@ include file="../header.jsp"%>
 	<body>
 		<div id="noticeWrapper">
-			<a href="announcementList" class="atag">공지사항</a> <a href="inquiry"
-				class="atag">문의하기</a> <a href="inquiryList" class="atag">문의내역</a> <br>
-			<br>
-			<br>
+			<a href="announcementList" class="atag">공지사항</a> 
+			<a href="inquiry" class="atag">문의하기</a> 
+			<a href="inquiryList" class="atag">문의내역</a> 
+			<br><br><br>
 
 			<table>
 				<tr>
