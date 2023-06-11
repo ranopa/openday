@@ -58,11 +58,8 @@
 </style>
 
 <script>
-<<<<<<< HEAD
- /*   $.datepicker.setDefaults({
-=======
+
    $.datepicker.setDefaults({
->>>>>>> branch 'channel_notice_open' of https://github.com/binunu/openday.git
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -453,34 +450,60 @@
 	 <div id="alarm"> 
         <div class="a-box">
             <p class="a-p">알림</p> 
-            <c:forEach items=" " var="alarm">
-            <ul class="a-ul">
-                <li><a href="${alarm.ntfUrl}" class="a-a"> 
-                  <span class="message">${alarm.ntfMessage}</span>
-                </a>
-                </li>
-                <li>
-                    <button class="a-del-btn"><span class="material-symbols-outlined">
-                        close</span></button>
-                        <input type="hidden" id="ntfId" value="${alarm.ntfId}">
-                </li>
-            </ul> 
-            </c:forEach>
-          
+            <ul class="a-ul" id="notiList">
+              
+            </ul>
         </div> 
     </div>
     <script>
-        var alarmBtn = document.querySelector('#abtn');
-        var ModalBtn = document.querySelector('#alarm');
-        alarmBtn.addEventListener('click',()=>{ 
-            if(!ModalBtn.classList.contains('show')){
-                ModalBtn.classList.add('show');
+    $(function() {
+        var alarmBtn = $('#abtn');
+        var modalBtn = $('#alarm');
+        
+        var userId = '${userId.userId}';
+
+        alarmBtn.on('click',()=>{ 
+            if(!modalBtn.classList.contains('show')){
+                modalBtn.classList.add('show');
             }else{
-                ModalBtn.classList.remove('show'); 
+                modalBtn.classList.remove('show'); 
             }
         })
+        if (userId) {
+            setInterval(function() {
+            $.ajax({
+              url: 'notification/'+userId,
+              type:'get',
+              contentType: 'application/json',
+              success: function(data){
+                $('#notiList li').remove();
+                 if ($('#notiList li').length == 0) {
+                  for(const noti of data) {
+                    console.log(noti.ntfMessage)
+                    $('#notiList').append(`
+                      <li>
+                        <a href="\${noti.ntfUrl}" class="a-a">
+                        <span class="message">\${noti.ntfMessage}</span>
+                        </a>
+                      </li>
+                      <li>
+                        <button class="a-del-btn">
+                          <span class="material-symbols-outlined">
+                              close
+                          </span>
+                        </button>
+                        <input type="hidden" id="ntfId" value="\${noti.ntfId}">
+                      </li>
+                    `);
+                  }
+                 }  
+              }
+            })
+            },5*1000);
+        }
+        
        
-          var delBtns = document.querySelectorAll('#alarm .a-del-btn');
+        var delBtns = document.querySelectorAll('#alarm .a-del-btn');
         delBtns.forEach(btn=>{
             btn.addEventListener('click',()=>{
                 var ipEl = btn.nextElementSibling.value.toString;
@@ -502,6 +525,8 @@
                 })
             })
         }) 
+    })
+        
 
     </script>
 

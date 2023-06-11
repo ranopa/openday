@@ -2,6 +2,11 @@ package com.kosta.openday.adm.dto;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 public class NotificationDTO {
 	private Integer ntfId; // pk 
 	private Integer ntfSourceId; // 알림 발생한 객체 id
@@ -9,6 +14,9 @@ public class NotificationDTO {
 	private String ntfMessage; // 메시지 본문 
 	private Boolean ntfIsRead; // 읽음 여부 
 	private Boolean ntfIsDeleted; // 삭제 여부 
+	
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime ntfCreatedAt; // 알림 생성 일자 
 	private String ntfUrl;
 	private String ntfSenderId; // 발송인 아이디 

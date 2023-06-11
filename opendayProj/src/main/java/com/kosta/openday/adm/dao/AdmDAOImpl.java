@@ -13,6 +13,7 @@ import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 
 @Repository
 public class AdmDAOImpl implements AdmDAO {
@@ -102,6 +103,12 @@ public class AdmDAOImpl implements AdmDAO {
 	@Override
 	public void insertAnnouncement(Map map) throws Exception {
 		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
+	}
+
+	@Override
+	public List<SettlementAmountDTO> selectSettlementListByStatus(String status) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.adm.selectSettlementWaitingList", status);
 	}
 
 

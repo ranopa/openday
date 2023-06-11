@@ -26,6 +26,7 @@ import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 
 import com.kosta.openday.adm.service.AdmService;
 import com.kosta.openday.adm.service.NotificationService;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.service.OClassService;
 import org.springframework.web.servlet.ModelAndView;
@@ -244,7 +245,9 @@ public class AdmController {
 	@RequestMapping(value = "/admsettlewaitinglist", method = RequestMethod.GET)
 	public String settleWaitingList(Model model) { 
 		try {
+			List<SettlementAmountDTO> list = admService.findSettlementListByStatus("정산대기");
 			model.addAttribute("page","admSettleWaitingList");
+			model.addAttribute("list", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -255,12 +258,16 @@ public class AdmController {
 	@RequestMapping(value = "/admsettlerecordlist", method = RequestMethod.GET)
 	public String settleRecordList(Model model) { 
 		try {
+			List<SettlementAmountDTO> list = admService.findSettlementListByStatus("정산완료");
 			model.addAttribute("page","admSettleRecordList");
+			model.addAttribute("list", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 		return "admin/admMain";
 	}
+	
+	
 	
 	//유저문의목록
 	@RequestMapping(value = "/adminquirylist", method = RequestMethod.GET)
@@ -291,13 +298,18 @@ public class AdmController {
 	// 유저문의 답변 등록 
 	@RequestMapping(value="/adminquriyanswer", method=RequestMethod.POST)
 	public String admInquriyAnswer(@RequestParam Integer admNum, @RequestParam String answer, Model model) {
-		
 		try {
 			AdmInquiryDTO inquiry = admService.findAdmInquiry(admNum);
 			if (inquiry == null) {
 				throw new Exception("not exist");
 			}
 			admService.inquiryAnswer(admNum, answer);
+			notiService.createNotification(admNum, 
+					NotificationSourceType.ADMIN_INQUIRY_ANSWER, 
+					inquiry.getAdmTitle(), 
+					null, 
+					inquiry.getUserId()
+			);
 			
 			// 목록으로리턴 
 			List<AdmInquiryDTO> inquiryList = admService.findAllAdmInquiryList();
