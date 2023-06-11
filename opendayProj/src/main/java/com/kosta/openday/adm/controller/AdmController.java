@@ -21,10 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
-
+import com.kosta.openday.adm.dto.NotificationSourceType;
 import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 
 import com.kosta.openday.adm.service.AdmService;
+import com.kosta.openday.adm.service.NotificationService;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.service.OClassService;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,9 +39,11 @@ public class AdmController {
 	@Autowired
 	private AdmService admService;
 
-
 	@Autowired
 	private OClassService oClassService;
+	
+	@Autowired
+	private NotificationService notiService;
 	
 	@RequestMapping(value = "/adm/", method = RequestMethod.GET)
 	public String main(@RequestParam(value = "page", required = false) String page, Model model) {
@@ -76,19 +79,51 @@ public class AdmController {
 	}
 	
 	// 개설 승낙
-	@RequestMapping(value = "/adm/adminallow", method = RequestMethod.POST)
-	public String allowNewClass(@RequestParam Integer clsId, Model model) {
+	@RequestMapping(value = "/adm/adminallow/{clsId}", method = RequestMethod.POST)
+	public String allowNewClass(@PathVariable Integer clsId, Model model) {
 		try {
 			OClassDTO oClass = oClassService.findOne(clsId);
 			if (oClass == null) 
 				throw new Exception("존재하지 않는 클래스");
 			
 			admService.allowOClass(clsId);
+			// 알림전송
+			notiService.createNotification(
+					oClass.getClsId(), // 알림 발생한 대상(클래스) 아이디 
+					NotificationSourceType.OCLASS_ALLOW, // 알림 타입 
+					oClass.getClsName(), // 알림 발생한 대상 이름 
+					null, // 알림 발생시킨 사람 (관리자라 임시로 null) 
+					oClass.getUserId()); // 알림 받을 사람(강사) 
+			if (oClass.getClsOpenType().equals("요청")) {
+				// 요청에 참여한 사람들에게도 알림 전송 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "admin/adminWatingList";
 	}
+	
+	// 개설 거절 
+	@RequestMapping(value = "/adm/adminrefuse/{clsId}", method = RequestMethod.POST)
+	public String refuseNewClass(@PathVariable Integer clsId, Model model) {
+		try {
+			OClassDTO oClass = oClassService.findOne(clsId);
+			if (oClass == null) 
+				throw new Exception("존재하지 않는 클래스");
+			
+			admService.refuseOClass(clsId);
+			notiService.createNotification(
+					oClass.getClsId(), 
+					NotificationSourceType.OCLASS_REFUSE, 
+					oClass.getClsName(), 
+					null, 
+					oClass.getUserId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/adminWatingList";
+	}
+	
 	
 	@RequestMapping(value="/inquiry", method=RequestMethod.POST)
 	public ModelAndView inquiry(@ModelAttribute AdmInquiryDTO admInquiryDTO, HttpSession session) {
@@ -158,20 +193,7 @@ public class AdmController {
 		return "announceinquiry/announcementDetail";
 	}
 
-	// 개설 거절 
-	@RequestMapping(value = "/adm/adminrefuse", method = RequestMethod.POST)
-	public String refuseNewClass(@RequestParam Integer clsId, Model model) {
-		try {
-			OClassDTO oClass = oClassService.findOne(clsId);
-			if (oClass == null) 
-				throw new Exception("존재하지 않는 클래스");
-			
-			admService.refuseOClass(clsId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "admin/adminWatingList";
-	}
+
 	
 	//개설신청 디테일
 	@RequestMapping(value="/adm/adminwaitingdetail")
@@ -265,6 +287,28 @@ public class AdmController {
 		} 
 		return "admin/admMain";
 	}
+	
+	// 유저문의 답변 등록 
+	@RequestMapping(value="/adminquriyanswer", method=RequestMethod.POST)
+	public String admInquriyAnswer(@RequestParam Integer admNum, @RequestParam String answer, Model model) {
+		
+		try {
+			AdmInquiryDTO inquiry = admService.findAdmInquiry(admNum);
+			if (inquiry == null) {
+				throw new Exception("not exist");
+			}
+			admService.inquiryAnswer(admNum, answer);
+			
+			// 목록으로리턴 
+			List<AdmInquiryDTO> inquiryList = admService.findAllAdmInquiryList();
+			model.addAttribute("inquiryList", inquiryList);
+			model.addAttribute("page","admInquiryList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "adm/admMain";
+	}
+	
 
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)

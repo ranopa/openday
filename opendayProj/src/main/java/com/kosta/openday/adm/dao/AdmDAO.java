@@ -28,6 +28,7 @@ public interface AdmDAO {
 	FileDTO selectFile(Integer filNum) throws Exception;
 	List<AdmInquiryDTO> selectInquiryList() throws Exception;
 	void deleteInquiry(Integer admNum) throws Exception;
-	void updateInquiry(Map<String,Object> param) throws Exception; 
+	void updateInquiry(Map<String,Object> param) throws Exception;
+	void updateInquiryAnswer(Integer admNum, String answer) throws Exception;
 
 }

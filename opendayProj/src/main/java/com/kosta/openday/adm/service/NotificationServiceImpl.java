@@ -31,6 +31,8 @@ public class NotificationServiceImpl implements NotificationService {
 		noti.setNtfReceiverId(receiverId);
 		
 		Integer id = notificationDAO.insertNotification(noti); // todo
+		
+		System.out.println("new noti: "+noti.getNtfMessage());
 		return id;
 	}
 

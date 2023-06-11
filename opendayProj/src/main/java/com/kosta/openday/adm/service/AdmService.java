@@ -36,4 +36,6 @@ public interface AdmService {
 	List<AdmInquiryDTO> inquiryListSelect() throws Exception;
 	void inquiryDelete(Integer admNum) throws Exception;
 	void inquiryUpdate(Integer admNum, String admTitle, String admContent) throws Exception;
+
+	void inquiryAnswer(Integer admNum, String answer) throws Exception;
 }

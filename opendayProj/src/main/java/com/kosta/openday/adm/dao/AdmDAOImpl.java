@@ -1,5 +1,6 @@
 package com.kosta.openday.adm.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -93,6 +94,14 @@ public class AdmDAOImpl implements AdmDAO {
 	@Override
 	public void insertAnnouncement(Map map) throws Exception {
 		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
+	}
+
+	@Override
+	public void updateInquiryAnswer(Integer admNum, String answer) {
+		Map map = new HashMap<>();
+		map.put("admNum", admNum);
+		map.put("answer", answer);
+		sqlSession.update("mapper.announcement.updateInquiryAnswer", map);
 	}
 	
 }

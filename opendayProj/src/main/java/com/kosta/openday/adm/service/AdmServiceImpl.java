@@ -82,6 +82,11 @@ public class AdmServiceImpl implements AdmService {
 		map.put("admContent", admContent);
 		admDAO.updateInquiry(map);
 	}
+	
+	@Override
+	public void inquiryAnswer(Integer admNum, String answer) throws Exception {
+		admDAO.updateInquiryAnswer(admNum, answer);
+	}
 
 	@Override
 	public List<OClassDTO> findOClassByStatus(String status) throws Exception {

@@ -79,6 +79,15 @@
 ]]> 
 </insert>
 
+<!-- 어드민 문의 답변 등록 --> 
+<update id="updateAdmInquiry" parameterType="java.util.Map">
+	<![CDATA[
+		update adm_inquiry
+		set admAnContent = #{answer}, admAnDate = curdate()
+		where admNum=#{admNum}
+	]]> 
+
+</update>
  
 <!-- 후기 review -->
 
