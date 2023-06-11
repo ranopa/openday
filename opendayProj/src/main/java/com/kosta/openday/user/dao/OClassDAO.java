@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
-
 import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.teacher.dto.AnswerDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.ClsInquiryAndAnswerDTO;
 import com.kosta.openday.user.dto.ClsInquiryDTO;
