@@ -1,5 +1,6 @@
 package com.kosta.openday.adm.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 
 @Repository
 public class AdmDAOImpl implements AdmDAO {
@@ -79,7 +81,15 @@ public class AdmDAOImpl implements AdmDAO {
 	public AdmInquiryDTO selectAdmInquiry(Integer admNum) throws Exception {
 		return sqlSession.selectOne("mapper.adm.selectAdmInquiry", admNum);
 	}
-
+	
+	@Override
+	public void updateInquiryAnswer(Integer admNum, String answer) {
+		Map map = new HashMap<>();
+		map.put("admNum", admNum);
+		map.put("answer", answer);
+		sqlSession.update("mapper.notice.updateAdmInquiryAnswer", map);
+	}
+	// 공지사항 
 	@Override
 	public List<AnnouncementDTO> selectAnnouncementList() throws Exception {
 		return sqlSession.selectList("mapper.announcement.selectAnnouncementList");
@@ -94,5 +104,12 @@ public class AdmDAOImpl implements AdmDAO {
 	public void insertAnnouncement(Map map) throws Exception {
 		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
 	}
-	
+
+	@Override
+	public List<SettlementAmountDTO> selectSettlementListByStatus(String status) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.adm.selectSettlementWaitingList", status);
+	}
+
+
 }
