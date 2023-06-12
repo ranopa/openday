@@ -19,6 +19,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
 <style>
+
+
 .menuContentW{
 margin-top:60px;
 width: 1280px;
@@ -30,6 +32,49 @@ margin-top: 55px;
 }
 
  
+</style>
+<style>
+
+.numBox{
+border: 1px solid;
+width: 30px;
+height: 30px;
+}
+
+.tc-paging a{
+text-decoration: none;
+}
+.tc-paging a:hover{
+text-decoration-line: none;
+
+}
+
+.tc-paging{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.numBox{
+margin-right: 10px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.pagenp{
+color:#CFCFCF;
+margin-top: 3px;
+
+}
+.pagenp:hover{
+color:#8556FF;
+
+}
+
+.pagep{
+margin-right: 8px;
+}
+
 </style>
 
 </head>
@@ -168,7 +213,7 @@ margin-top: 55px;
 			
 			<div class="tc-paging">
 						<c:if test="${pu.startPageNum>5 }">
-							<a href="menu?pageNum=${pu.startPageNum-1 }&codNum=${map.codNum}&codName=${map.codName}">이전</a>
+							<a href="menu?pageNum=${pu.startPageNum-1 }&codNum=${map.codNum}&codName=${map.codName}"><span class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
 						</c:if>
 
 						<c:forEach var="i" begin="${pu.startPageNum }"
@@ -176,19 +221,20 @@ margin-top: 55px;
 							<c:choose>
 								<c:when test="${pu.pageNum==i }">
 									<!-- 현재페이지 -->
-									<a href="menu?pageNum=${i }&codNum=${map.codNum}&codName=${map.codName}"> <span
-										style='color: blue; font-weight: bold'>[${i }]</span>
-									</a>
+									<div class="numBox" style='color: #8556FF;'><a href="menu?pageNum=${i }&codNum=${map.codNum}&codName=${map.codName}"> <span
+										style='color: #8556FF; font-weight: bold'>${i }</span>
+									</a></div>
 								</c:when>
 								<c:otherwise>
-									<a href="menu?pageNum=${i }&codNum=${map.codNum}&codName=${map.codName}"> <span style='color: gray;'>[${i }]</span>
-									</a>
+									<div class="numBox" style='color: #CFCFCF;'>
+									<a href="menu?pageNum=${i }&codNum=${map.codNum}&codName=${map.codName}"> <span style='color: gray;'>${i }</span>
+									</a></div>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:if test="${pu.endPageNum<pu.totalPageCount }">
-							<a href="menu?pageNum=${pu.endPageNum+1 }&codNum=${map.codNum}&codName=${map.codName}">다음</a>
+							<a href="menu?pageNum=${pu.endPageNum+1 }&codNum=${map.codNum}&codName=${map.codName}"><span class="material-symbols-outlined pagenp">chevron_right</span></a>
 						</c:if>
 					</div>
 			
