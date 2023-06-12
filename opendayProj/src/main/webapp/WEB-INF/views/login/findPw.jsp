@@ -19,7 +19,7 @@
        var sm_email = $("#email").val();
        console.log(sm_email)
        $.ajax({
-            type:"GET",
+            type:"POST",
             url:"mailCheck",
             data:{userId:$("#userId").val(), sm_email:sm_email},
             cache : false,
