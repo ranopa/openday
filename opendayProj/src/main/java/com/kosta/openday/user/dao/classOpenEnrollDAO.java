@@ -16,7 +16,7 @@ public interface classOpenEnrollDAO {
 	FileDTO selectFile(Integer filNum) throws Exception;
 	public int classEnrollment(ScheduleDTO dto) throws Exception;
 	Map<String, Object> selectSchedule(Integer clsId) throws Exception;
-	void updateClassInfo(OClassDTO dto) throws Exception; 
+	void updateClassInfo(Map<String, Object> map) throws Exception; 
 	void updateClassFile(FileDTO dto) throws Exception;
-	void updateClassSchedule(ScheduleDTO dto) throws Exception;
+	void updateClassSchedule(Map<String, Object> map) throws Exception;
 }

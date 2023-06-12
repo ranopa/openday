@@ -53,8 +53,8 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	}
 
 	@Override
-	public void updateClassInfo(OClassDTO dto) throws Exception {
-		sqlSession.update("mapper.oclass.updateclassOpen", dto);		
+	public void updateClassInfo(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.oclass.updateclassOpen", map);		
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	}
 
 	@Override
-	public void updateClassSchedule(ScheduleDTO dto) throws Exception {
-		sqlSession.update("mapper.teacher.updateclassEnrollment", dto);
+	public void updateClassSchedule(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.teacher.updateclassEnrollment", map);
 		
 	}
 

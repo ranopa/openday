@@ -29,10 +29,10 @@
 	</select>
 	
 	<!-- oclass 내용 업데이트 -->
-	<update id="updateclassOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
+	<update id="updateclassOpen" parameterType="java.util.Map">
 			<![CDATA[
 				update oclass set clsName=#{clsName}, clsLoc=#{clsLoc}, clsCode=#{clsCode}, clsDescription=#{clsDescription},
-				filNum = nextval(file_seq), clsCareer=#{clsCareer}, clsCurri=#{clsCurri}  where clsId=#{clsId}		
+				filNum = #{filNum}, clsCareer=#{clsCareer}, clsCurri=#{clsCurri}  where clsId=#{clsId}		
 			]]>
 	</update>
 	

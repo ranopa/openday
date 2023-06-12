@@ -14,6 +14,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dao.classOpenEnrollDAO;
 import com.kosta.openday.user.dto.OClassDTO;
@@ -26,6 +27,9 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	
 	@Autowired
 	private classOpenEnrollDAO classopenenrollDAO;
+	
+	@Autowired
+	private FileService fileService;
 
 	@Override
 	public void classCreate(OClassDTO dto, MultipartFile file) throws Exception {
@@ -78,8 +82,10 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	}
 
 	@Override
-	public void classInfoUpdate(OClassDTO dto) throws Exception {
-		classopenenrollDAO.updateClassInfo(dto);		
+	public void classInfoUpdate(Map<String, Object> map, MultipartFile file) throws Exception {
+		Integer fileNum = fileService.createFile(file);
+		map.put("fileNum", fileNum);
+		classopenenrollDAO.updateClassInfo(map);		
 	}
 
 	@Override
@@ -88,8 +94,8 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	}
 
 	@Override
-	public void classScheduleUpdate(ScheduleDTO dto) throws Exception {
-		classopenenrollDAO.updateClassSchedule(dto);
+	public void classScheduleUpdate(Map<String, Object> map) throws Exception {
+		classopenenrollDAO.updateClassSchedule(map);
 	}
 
 	@Override

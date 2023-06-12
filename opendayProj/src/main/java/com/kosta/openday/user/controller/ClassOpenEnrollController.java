@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -147,11 +148,9 @@ public class ClassOpenEnrollController {
 	}
 	
 	@RequestMapping(value = "/classUpdate", method = RequestMethod.GET)
-	public ModelAndView classUpdatetForm(@ModelAttribute OClassDTO dto, HttpSession session, @RequestParam Map<String, Object> map, Integer clsId) {
+	public ModelAndView classUpdatetForm(@ModelAttribute OClassDTO dto, @RequestParam Map<String, Object> map, Integer clsId) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			UserDTO user = (UserDTO)session.getAttribute("userId");
-			dto.setUserId(user.getUserId());
 			Map<String, Object> scheduleDetail = classopenenrollService.getSchedule(clsId);
 			mav.addObject("scheduleDetail", scheduleDetail);
 			mav.setViewName("classOpenEnrollment/classUpdate");
@@ -160,34 +159,42 @@ public class ClassOpenEnrollController {
 		}
 		return mav;
 	}
+	
 
-	@ResponseBody
 	@RequestMapping(value = "/classUpdate", method=RequestMethod.POST )
-	public ModelAndView classUpdate(@RequestParam MultipartFile file, HashMap<String, Object> map) {
+	public ModelAndView classUpdate(@RequestParam(value = "file", required = false) MultipartFile file, 
+			@RequestBody OClassDTO odto, @RequestBody ScheduleDTO sdto) {
 		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<>();
+		try {
+			OClassDTO olcass = (OClassDTO)session.getAttribute("clsId");
+			map.put("clsId", olcass.getClsId());
+			map.put("clsCode", odto.getClsCode());
+			map.put("clsDescription", odto.getClsDescription());
+			map.put("clsPrice", odto.getClsPrice());
+			map.put("clsCurri", odto.getClsCurri());
+			map.put("clsCarrer", odto.getClsCareer());
+			map.put("clsLoc", odto.getClsLoc());
+			map.put("clsDiscount", odto.getClsDiscount());
+			map.put("clsfilNum", odto.getFilNum());
+			map.put("scdRunTime", sdto.getScdRunTime());
+			map.put("scdStartTime", sdto.getScdStartTime());
+			map.put("scdEndTime", sdto.getScdEndTime());
+			map.put("scdPlace", sdto.getScdPlace());
+			map.put("scdPlaceDetail", sdto.getScdPlaceDetail());
+			map.put("scdMinPersonnel", sdto.getScdMinPersonnel());
+			map.put("scdMaxPersonnel", sdto.getScdMaxPersonnel());
+			
 		String path = sc.getRealPath("/resources/upload");
 		String orgfilename = file.getOriginalFilename();// 전송된 파일명
 		String savefilename = UUID.randomUUID() + "_" + orgfilename; // 저장할 파일명(중복되지 않는 이름으로 만들기)
 		new File(path + "\\" + savefilename);
-		try {
-			System.out.println(22);
 			InputStream is = file.getInputStream();
 			FileOutputStream fos = new FileOutputStream(path + "\\" + savefilename);
 			FileCopyUtils.copy(is, fos);
 			is.close();
 			fos.close();
-			Integer clsId = oclassDTO.getClsId();
-			Integer scdNum = scheduleDTO.getScdNum();
-			OClassDTO odto = classopenenrollService.getOclass(clsId);
-			ScheduleDTO sdto = classopenenrollService.getScheduleNum(scdNum);
-			odto = classopenenrollService.getOclass(clsId);
-			sdto = classopenenrollService.getScheduleNum(scdNum);
 			FileDTO fileDTO = new FileDTO(odto.getFilNum(), file.getContentType(), orgfilename, savefilename, file.getSize(), null );
-			classopenenrollService.classInfoUpdate(odto);
-			classopenenrollService.classScheduleUpdate(sdto);
-		    classopenenrollService.classFileUpdate(fileDTO);	
-			//OClassDTO oclassDTO = classopenenrollService.getOclass(clsId);
-			//Integer clsId =  
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

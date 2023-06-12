@@ -63,7 +63,7 @@
 	</select>
 	
 	<!-- oclass 내용 업데이트 -->
-	<update id="updateclassEnrollment"  parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
+	<update id="updateclassEnrollment"  parameterType="java.util.Map">
 			<![CDATA[
 				update oclass set scdDate=#{scdDate}, scdRunTime=#{scdRunTime}, scdStartTime=#{scdStartTime}, scdEndTime=#{scdEndTime},
 				scdPlace = #{scdPlace}, scdPlaceDetail=#{scdPlaceDetail}, scdMinPersonnel=#{scdMinPersonnel}, scdMaxPersonnel=#{scdMaxPersonnel} where clsId=#{clsId}		
