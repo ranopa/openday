@@ -74,5 +74,5 @@ public interface UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
-	
+	public void reviewWrite(Map<String,String> param, String userId) throws Exception;
 }

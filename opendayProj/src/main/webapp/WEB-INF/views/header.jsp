@@ -8,43 +8,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-<%-- <script src="<c:url value="/resources/js/user/jquery-3.3.1.js"/>"></script> --%>
-
 <script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/mainContent.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/mainContent.css"/>">
 
 <script src='<c:url value="/resources/js/user/header.js"/>'></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/user/header.css"/>">
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/header.css"/>">
-<!-- 달력 -->
-<!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script> -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/header.css"/>">
 <!-- 제이쿼리달력-->
-
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <style>
 /* datepicer 버튼 롤오버 시 손가락 모양 표시 */
 .ui-datepicker-trigger {
@@ -71,7 +47,7 @@
     showMonthAfterYear: true,
     yearSuffix: '년'
   });
- */
+ 
   $(function() {
     $("#datepicker1, #datepicker2").datepicker();
   });

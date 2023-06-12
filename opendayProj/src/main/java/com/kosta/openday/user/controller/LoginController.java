@@ -52,6 +52,8 @@ public class LoginController {
 		return mav;
 	}
 	
+	
+	
 	@RequestMapping(value="/findpw", method=RequestMethod.POST)
 	public ModelAndView getUserFindPw(@RequestParam("userId") String userId,@RequestParam("userEmail") String userEmail) {
 		System.out.println(userEmail);
