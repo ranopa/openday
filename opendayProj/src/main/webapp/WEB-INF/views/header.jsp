@@ -16,6 +16,7 @@
 	href="<c:url value="/resources/css/user/mainContent.css"/>">
 
 <script src='<c:url value="/resources/js/user/header.js"/>'></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -71,7 +72,7 @@
     showMonthAfterYear: true,
     yearSuffix: '년'
   });
- */
+
   $(function() {
     $("#datepicker1, #datepicker2").datepicker();
   });
@@ -143,8 +144,8 @@
             margin:0; 
         }
         #alarm{
-            opacity: 0;
-            visibility: hidden;
+             opacity: 0;
+            visibility: hidden; 
             transition: 0.3s all;
              position: absolute;
             right: 60px;
@@ -454,81 +455,7 @@
               
             </ul>
         </div> 
-    </div>
-    <script>
-    $(function() {
-        var alarmBtn = $('#abtn');
-        var modalBtn = $('#alarm');
-        
-        var userId = '${userId.userId}';
-
-        alarmBtn.on('click',()=>{ 
-            if(!modalBtn.classList.contains('show')){
-                modalBtn.classList.add('show');
-            }else{
-                modalBtn.classList.remove('show'); 
-            }
-        })
-        if (userId) {
-            setInterval(function() {
-            $.ajax({
-              url: 'notification/'+userId,
-              type:'get',
-              contentType: 'application/json',
-              success: function(data){
-                $('#notiList li').remove();
-                 if ($('#notiList li').length == 0) {
-                  for(const noti of data) {
-                    console.log(noti.ntfMessage)
-                    $('#notiList').append(`
-                      <li>
-                        <a href="\${noti.ntfUrl}" class="a-a">
-                        <span class="message">\${noti.ntfMessage}</span>
-                        </a>
-                      </li>
-                      <li>
-                        <button class="a-del-btn">
-                          <span class="material-symbols-outlined">
-                              close
-                          </span>
-                        </button>
-                        <input type="hidden" id="ntfId" value="\${noti.ntfId}">
-                      </li>
-                    `);
-                  }
-                 }  
-              }
-            })
-            },5*1000);
-        }
-        
-       
-        var delBtns = document.querySelectorAll('#alarm .a-del-btn');
-        delBtns.forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                var ipEl = btn.nextElementSibling.value.toString;
-                console.log(ipEl); 
-                var ulValue = btn.parentElement.parentElement;
-                ulValue.remove();
-
-
-                $.ajax({
-                    url:"deletealarm",
-                    type:'post',
-                    data: {"ipEl":ipEl},
-                    success:function(response){
-                        console.log('success');
-                    },
-                    error:function(){
-                        console.log('error');
-                    }
-                })
-            })
-        }) 
-    })
-        
-
-    </script>
+    </div> 
 
 </body>
 </html>
