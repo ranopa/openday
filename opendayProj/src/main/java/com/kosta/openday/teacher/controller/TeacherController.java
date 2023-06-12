@@ -294,8 +294,10 @@ public class TeacherController {
 	public FileDTO profileImage(@RequestParam String id) {
 		FileDTO file = null;
 		try {
+			//id = session.getAttribute("userId");
+			System.out.println(session.getAttribute("userId"));
 			UserDTO user = userService.getUserInfo(id);
-			if(user.getFilNum() == null) {
+			if(user == null) {
 				file = null;
 			}else {
 				file = teacherService.tcProfileInfo(user.getFilNum());
