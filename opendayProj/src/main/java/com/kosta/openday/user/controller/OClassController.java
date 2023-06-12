@@ -1,10 +1,13 @@
 package com.kosta.openday.user.controller;
  
-import java.util.List;  
+import java.io.FileInputStream;
+import java.io.InputStream; 
+import java.util.List;
 import java.util.Map; 
 import java.util.Properties;
 import java.util.ResourceBundle; 
-import java.util.Map; 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -313,28 +316,12 @@ public class OClassController {
 	}
 	
 	@RequestMapping(value = "/reviewwrite", method=RequestMethod.GET) 
-	public ModelAndView reviewWriteForm(Map<String,Object> param) {
-		ModelAndView mav = new ModelAndView("mypage/reviewWrite");
-		mav.addObject("param", param);
-		return mav;
+	public String mp() {
+		return "mypage/reviewWrite";
 	}
-	
-	@RequestMapping(value = "/reviewwrite", method=RequestMethod.POST) 
-	public ModelAndView reviewWrite(@RequestParam Map<String, String> param) {
-		ModelAndView mav = new ModelAndView("redirect:/reservedrecord");
-		System.out.println(param);
-		try {
-			// 로그인 처리 완성후 삭제
-			UserDTO iuser = new UserDTO();
-			iuser.setUserId("jane");
-			session.setAttribute("user", iuser);
-			/////////////////////////////////////
-			
-			UserDTO user = (UserDTO)session.getAttribute("user");
-			userService.reviewWrite(param, user.getUserId());
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return mav;
-	}	
+
+	@RequestMapping(value = "/test2", method = RequestMethod.GET)
+	public String ci() {
+		return "classinfo/test2";
+	}
 }

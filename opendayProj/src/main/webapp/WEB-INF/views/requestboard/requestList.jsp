@@ -43,7 +43,7 @@
 		margin: 0 auto;
 	}
 
-	.rl-above {
+	h1 {
 		font-size: 24px;
 		color: #5A2ECE;
 		margin-bottom: 20px;
@@ -119,9 +119,8 @@
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
-		<h1 class="rl-above">클래스 개설 요청</h1>
+		<h1>클래스 개설 요청</h1>
 		&nbsp;&nbsp;
 		<div class="container">
 			<div class="btn1">
@@ -151,7 +150,7 @@
   						<a href="#">＜ 이전</a>
   					</c:when>
   					<c:otherwise>
-  						<a href="${contextPath }/requestlist?page=${pageInfo.startPage-1}">＜ 이전</a>
+  						<a href="${contextPath }/requestlist?page=${pageInfo.startPage-1}">&laquo; 이전</a>
   					</c:otherwise>
   				</c:choose>			
                 <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="pageNumber">
@@ -166,17 +165,15 @@
                 </c:forEach>
     			<c:choose>
     				<c:when test="${pageInfo.endPage eq pageInfo.allPage }">
-  						
     					<a href="#" >다음 ＞</a>
     				</c:when>
     				<c:otherwise>
-    					<a href="${contextPath}/requestlist?page=${pageInfo.endPage+1 }">다음 ＞</a>    		
+    					<a href="${contextPath}/requestlist?page=${pageInfo.endPage+1 }">다음 &raquo;</a>    		
     				</c:otherwise>
     			</c:choose>                
                 
             </div>
 		</div>
 	</div>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

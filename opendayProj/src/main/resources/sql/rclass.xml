@@ -20,7 +20,7 @@
  
 		<![CDATA[
 			select *
-			from request  limit #{startRow},5
+			from request  limit #{startRow},10
 		]]>	
 	</select>
 	
