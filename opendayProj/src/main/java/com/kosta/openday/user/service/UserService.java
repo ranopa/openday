@@ -2,6 +2,7 @@ package com.kosta.openday.user.service;
 
 import java.io.OutputStream;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +23,8 @@ public interface UserService {
 
 	public UserDTO userLogin(Map<String, String> map) throws Exception;
 
-	List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode) throws Exception;
+	List<CollectDTO> getSearchOClass(HashMap<String, Object> map) throws Exception;
 
-	public List<CollectDTO> getSearchInputOClass(String keyword) throws Exception;
 
 	public List<CollectDTO> getMainNewOClassList() throws Exception;
 
@@ -34,7 +34,7 @@ public interface UserService {
 
 	public List<CollectDTO> getMainDeadlineOClassList() throws Exception;
 
-	public List<CollectDTO> getMainMenuOClassList(String codNum) throws Exception;
+	public List<CollectDTO> getMainMenuOClassList(HashMap<String, Object> map) throws Exception;
 
 	void fileView(Integer id, OutputStream out) throws Exception;
 
@@ -62,7 +62,19 @@ public interface UserService {
 	List<TeacherChannelDTO> getTchcList(String userId) throws Exception;
 	
 	public CodeDTO getCode(String codNum) throws Exception; 
-	
+	 
 	public void reviewWrite(Map<String,String> param, String userId) throws Exception;
+ 
+	//닉네임중복확인
+	public UserDTO userByNickname(String userNickname) throws Exception;
+ 
+	public int searchOClassCount(HashMap<String, Object> map) throws Exception;
+	
 
+	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception;
+	
+	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
+	
+	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
+	
 }

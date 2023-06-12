@@ -58,7 +58,8 @@
 </style>
 
 <script>
- /*   $.datepicker.setDefaults({
+
+   $.datepicker.setDefaults({
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -87,7 +88,7 @@
 		dataType:'json',
 		contentType:'application/json;charset=utf-8',
 		success:function(data){
-			data.unshift({codNum: 'all', codClassfication: '카테고리', codName: '전체', codNewdate: 1684854000000});
+			data.unshift({codNum: '', codClassfication: '카테고리', codName: '전체', codNewdate: 1684854000000});
 			let tablestr = '';
 			let idx = 0
  			for(let code of data){
@@ -95,7 +96,7 @@
  				if(idx%5==0) tablestr+='<tr>';
 
  				tablestr += `<td><button type="button" class="categoryButton"
-					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?codNum=\${code.codNum}&codName=\${code.codName}'">\${code.codName}</button></td>`;
+					name="categoryButton" value="\${code.codNum}" onclick="location.href='./menu?pageNum=1&codNum=\${code.codNum}&codName=\${code.codName}'">\${code.codName}</button></td>`;
 
  				if(idx%5==0) tablestr+='<\tr>';	
  				idx++;
@@ -135,6 +136,86 @@
 }
 
 </style>
+<!-- 알림css -->
+ <style>
+        #alarm *{
+            padding: 0;
+            margin:0; 
+        }
+        #alarm{
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s all;
+             position: absolute;
+            right: 60px;
+            top: 130;
+            background-color: white;
+        }
+        #alarm.show{
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #alarm .a-a{
+            text-decoration: none;
+            color: black;
+        }
+        #alarm .a-a:hover{
+            text-decoration: underline;
+        }
+        
+        #alarm .a-box{
+            width: 290px;  
+            min-height: 250px;
+            box-shadow: 2px 2px 3px 1px  rgb(206, 206, 206);
+            border-radius: 4px;
+            padding:15px;
+            
+        }
+        #alarm .a-p{ 
+            margin:0 auto;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 1px solid rgb(223, 223, 223);
+            margin-top : 5px;
+            margin-bottom : 10px;
+            padding-bottom : 10px;
+        }
+        #alarm .a-ul{
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            
+        }
+        #alarm .a-span{
+            font-weight: bold;
+            font-size: 13px;
+            position:relative;
+        }
+        
+        #alarm .a-del-btn{
+            border: none;
+            background-color: transparent;  
+            cursor: pointer;  
+        }
+        #alarm .message{
+            font-size: 12px;
+        }
+            
+        
+        #alarm .material-symbols-outlined{
+            font-size: 20px;
+            color:rgb(207, 207, 207);     
+            padding-top: 3px;
+        }
+		 .alarm-btn{
+		 	background-color:transparent;
+		 	border:none;
+		 	color:#7C4AFF;
+		 }
+    </style>
 </head>
 <body>
 
@@ -218,10 +299,10 @@
 						</c:when>
 					</c:choose>
 					<div class="IconColor">
-						<a href="#"><div class="IconBox">
+						<button type="button" id="abtn" class="alarm-btn"><div class="IconBox">
 								<div class="material-symbols-outlined">notifications</div>
 								<div class="IconText">알림</div>
-							</div></a>
+							</div></button>
 					</div>
 					<c:set var="userId" value="${sessionScope.userId }" />
 
@@ -246,9 +327,9 @@
 					</c:choose>
 
 					<div class="IconColor">
-						<a href="#"><div class="IconBox">
+						<a href="#"><div class="IconBox" onclick="disMenu()">
 								<div class="material-symbols-outlined" id="menu"
-									onclick="disMenu()">menu</div>
+									>menu</div>
 								<div class="IconText">카테고리</div>
 							</div></a>
 					</div>
@@ -271,7 +352,7 @@
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
 					<label class="radio-label"> <input type="radio"
-						name="clsLoc" value="all" checked />전체
+						name="clsLoc" value="" checked />전체
 					</label> <label class="radio-label"> <input type="radio"
 						name="clsLoc" value="서울" />서울
 					</label> <label class="radio-label"> <input type="radio"
@@ -366,7 +447,88 @@
 			</table>
 		</div>
 	</div>
+	 <div id="alarm"> 
+        <div class="a-box">
+            <p class="a-p">알림</p> 
+            <ul class="a-ul" id="notiList">
+              
+            </ul>
+        </div> 
+    </div>
+    <script>
+    $(function() {
+        var alarmBtn = $('#abtn');
+        var modalBtn = $('#alarm');
+        
+        var userId = '${userId.userId}';
 
+        alarmBtn.on('click',()=>{ 
+            if(!modalBtn.classList.contains('show')){
+                modalBtn.classList.add('show');
+            }else{
+                modalBtn.classList.remove('show'); 
+            }
+        })
+        if (userId) {
+            setInterval(function() {
+            $.ajax({
+              url: 'notification/'+userId,
+              type:'get',
+              contentType: 'application/json',
+              success: function(data){
+                $('#notiList li').remove();
+                 if ($('#notiList li').length == 0) {
+                  for(const noti of data) {
+                    console.log(noti.ntfMessage)
+                    $('#notiList').append(`
+                      <li>
+                        <a href="\${noti.ntfUrl}" class="a-a">
+                        <span class="message">\${noti.ntfMessage}</span>
+                        </a>
+                      </li>
+                      <li>
+                        <button class="a-del-btn">
+                          <span class="material-symbols-outlined">
+                              close
+                          </span>
+                        </button>
+                        <input type="hidden" id="ntfId" value="\${noti.ntfId}">
+                      </li>
+                    `);
+                  }
+                 }  
+              }
+            })
+            },5*1000);
+        }
+        
+       
+        var delBtns = document.querySelectorAll('#alarm .a-del-btn');
+        delBtns.forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                var ipEl = btn.nextElementSibling.value.toString;
+                console.log(ipEl); 
+                var ulValue = btn.parentElement.parentElement;
+                ulValue.remove();
+
+
+                $.ajax({
+                    url:"deletealarm",
+                    type:'post',
+                    data: {"ipEl":ipEl},
+                    success:function(response){
+                        console.log('success');
+                    },
+                    error:function(){
+                        console.log('error');
+                    }
+                })
+            })
+        }) 
+    })
+        
+
+    </script>
 
 </body>
 </html>

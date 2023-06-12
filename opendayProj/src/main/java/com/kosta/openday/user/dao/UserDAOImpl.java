@@ -1,5 +1,6 @@
 package com.kosta.openday.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,10 +55,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<CollectDTO> selectOClassList(Map<String, Object> param) throws Exception {
+	public List<CollectDTO> selectOClassList(HashMap<String, Object> param) throws Exception {
 		// TODO Auto-generated method stub
 		int count = param.size();
-		System.out.println("Map의 갯수: " + count);
+		/* System.out.println("Map의 갯수: " + count); */
 
 		return sqlSession.selectList("mapper.search.searchSelect", param);
 	}
@@ -85,11 +86,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<CollectDTO> selectInputOClassList(String keyword) throws Exception {
+	public List<CollectDTO> selectInputOClassList(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		List<CollectDTO> list = sqlSession.selectList("mapper.search.searchInputSelect", keyword);
+		List<CollectDTO> list = sqlSession.selectList("mapper.search.searchInputSelect", map);
 		int count = list.size();
-		System.out.println("Map의 갯수: " + count);
+		/* System.out.println("Map의 갯수: " + count); */
 		return list;
 	}
 
@@ -129,9 +130,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<CollectDTO> selectMainMenuOClassList(String codNum) throws Exception {
+	public List<CollectDTO> selectMainMenuOClassList(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		List<CollectDTO> list = sqlSession.selectList("mapper.user.mainMenuOClassList", codNum);
+		List<CollectDTO> list = sqlSession.selectList("mapper.user.mainMenuOClassList", map);
 		return list;
 	}
 
@@ -168,7 +169,7 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("mapper.user.selectCode", codNum);
 	}
 
-	@Override
+	@Override 
 	public Integer selectReviewNum() throws Exception {
 		return sqlSession.selectOne("mapper.user.selectReviewNum");
 	}
@@ -176,5 +177,34 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void insertReview(ReviewDTO reviewDTO) throws Exception {
 		sqlSession.selectOne("mapper.user.insertReview", reviewDTO);
+	} 
+	public UserDTO selectUserByNickName(String userNickname) throws Exception { 
+		System.out.println(userNickname);
+		UserDTO user =  sqlSession.selectOne("mapper.user.selectUserByNickname",userNickname);
+		if(user==null) {
+			System.out.println("yes");
+		}else {
+			System.out.println("no");
+		}
+		System.out.println(user);
+		System.out.println(user.getUserNickname());
+		return user;
 	}
+
+	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.search.searchOClassCount", map);
+	}
+
+	@Override
+	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.user.mainMenuOClassListCount", map);
+	}
+	
+	@Override
+	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.search.searchInputSelectCount", map);
+	}
+ 
 }

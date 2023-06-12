@@ -136,26 +136,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getSearchOClass(String clsLoc, Date startDate, Date endDate, String clsCode)
+	public List<CollectDTO> getSearchOClass(HashMap<String, Object> map)
 			throws Exception {
-		Map<String, Object> param = new HashMap<>();
 
-		param.put("clsLoc", clsLoc);
-		param.put("startDate", startDate);
-		param.put("endDate", endDate);
-
-		param.put("clsCode", clsCode);
-
-		System.out.println(param);
-
-		// TODO Auto-generated method stub
-		return userDAO.selectOClassList(param);
+		return userDAO.selectOClassList(map);
 
 	}
 
 	@Override
-	public List<CollectDTO> getSearchInputOClass(String keyword) throws Exception {
-		return userDAO.selectInputOClassList(keyword);
+	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception {
+		return userDAO.selectInputOClassList(map);
 	}
 
 	@Override
@@ -196,9 +186,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<CollectDTO> getMainMenuOClassList(String codNum) throws Exception {
+	public List<CollectDTO> getMainMenuOClassList(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return userDAO.selectMainMenuOClassList(codNum);
+		return userDAO.selectMainMenuOClassList(map);
 	}
 
 	public List<CollectDTO> HeartOClass(String userId) throws Exception {
@@ -298,7 +288,7 @@ public class UserServiceImpl implements UserService {
 		return userDAO.selectCode(codNum);
 	}
 
-	@Override
+	@Override 
 	public void reviewWrite(Map<String, String> param, String userId) throws Exception {
 		
 		ReviewDTO reviewDTO = new ReviewDTO();
@@ -314,5 +304,25 @@ public class UserServiceImpl implements UserService {
 		reviewDTO.setClsId(scheduleDTO.getClsId());
 		System.out.println(reviewDTO.getRvNum());
 		userDAO.insertReview(reviewDTO);
+	} 
+	public UserDTO userByNickname(String userNickname) throws Exception { 
+		return userDAO.selectUserByNickName(userNickname);
 	}
+	
+	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
+		return userDAO.searchOClassCount(map);
+	}
+	
+	@Override
+	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.mainMenuOClassListCount(map);
+	}
+	
+	@Override
+	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.searchInputSelectCount(map);
+	}
+	 
 }
