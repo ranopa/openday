@@ -36,9 +36,15 @@ font-size: 16px;
 	font-family: 'NanumBarunGothic';
 }
 </style>
+<<<<<<< HEAD
+
+<script>  
+   /*$.datepicker.setDefaults({ 
+=======
  
 <script>   
   $.datepicker.setDefaults({ 
+>>>>>>> refs/remotes/origin/main
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',

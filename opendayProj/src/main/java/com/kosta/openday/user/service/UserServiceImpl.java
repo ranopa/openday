@@ -307,6 +307,21 @@ public class UserServiceImpl implements UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.searchInputSelectCount(map);
+	} 
+	@Override
+	public void addPrefer(String preferValues, String userId) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("preferValues", preferValues);
+		map.put("userId", userId);
+		userDAO.updatePrefer(map); 
 	}
-	
+
+	@Override
+	public String[] getUserPrefer(String userId) throws Exception {
+		String[] userPrefer = null;
+		String str = userDAO.selectUserInfo(userId).getUserPreference();  
+		userPrefer = str.split("_");
+		return userPrefer; 
+		
+	} 
 }

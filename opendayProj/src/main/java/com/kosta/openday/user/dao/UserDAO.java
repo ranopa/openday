@@ -72,11 +72,12 @@ public interface UserDAO {
 	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception;
 	
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
-	
+	 
+	public void updatePrefer(Map<String,String> map)throws Exception; 
 
 	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception;
 
 
-
+ 
 
 }

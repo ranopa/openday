@@ -74,7 +74,11 @@ public interface UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
+	 
+	public void addPrefer(String preferValues,String userId)throws Exception;
+	
+	public String[] getUserPrefer(String userId) throws Exception; 
 	
 	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;
-	
+	 
 }
