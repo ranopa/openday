@@ -51,7 +51,7 @@
         margin: 0 auto;
     }
     
-    h1 {
+    .rd-above {
         font-size: 24px;
         color: #5A2ECE;
         margin-bottom: 20px;
@@ -153,6 +153,14 @@
     	justify-content: space-between;
     	position: relative;
     }  
+    
+    #reqContent {
+    	resize: none;
+    }
+    
+    #reqContent:focus, #reqLocation:focus, #reqTitle:focus {
+    	outline: none;
+    }
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -224,11 +232,12 @@ $(function() {
 </script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/header.jsp" %>
     <div id="wrap">
     
     <form method="get">
     <div class="main-con">
-    <h1>클래스 개설 요청</h1>&nbsp;&nbsp;
+    <h1 class="rd-above">클래스 개설 요청</h1>&nbsp;&nbsp;
     <input type="hidden" id="reqId" name="reqId" value="${request.reqId }"/>
         <table>
             <tr>
@@ -269,5 +278,6 @@ $(function() {
     </div>
     </form>
     </div>
+    <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

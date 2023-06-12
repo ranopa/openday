@@ -1,6 +1,5 @@
 package com.kosta.openday.user.service;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.sql.Date;
@@ -19,14 +18,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.CodeDTO;
-import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.adm.service.FileService;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
+import com.kosta.openday.user.dao.OClassDAO;
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
+import com.kosta.openday.user.dto.ReviewDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service
@@ -40,6 +41,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private OClassDAO oclassDAO;
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -292,5 +296,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public CodeDTO getCode(String codNum) throws Exception {
 		return userDAO.selectCode(codNum);
+	}
+
+	@Override
+	public void reviewWrite(Map<String, String> param, String userId) throws Exception {
+		
+		ReviewDTO reviewDTO = new ReviewDTO();
+		reviewDTO.setScdNum(Integer.valueOf(param.get("scdNum")));
+		reviewDTO.setRvContent((String)param.get("content"));
+		reviewDTO.setRvStar(Integer.valueOf(param.get("rating")));
+		reviewDTO.setUserId(userId);
+		Integer rvNum = userDAO.selectReviewNum();
+		System.out.println(rvNum);
+		reviewDTO.setRvNum(rvNum);
+		System.out.println(param.get("scdNum"));
+		ScheduleDTO scheduleDTO = oclassDAO.selectSchedule(Integer.valueOf(param.get("scdNum")));
+		reviewDTO.setClsId(scheduleDTO.getClsId());
+		System.out.println(reviewDTO.getRvNum());
+		userDAO.insertReview(reviewDTO);
 	}
 }

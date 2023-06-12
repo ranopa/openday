@@ -62,5 +62,7 @@ public interface UserService {
 	List<TeacherChannelDTO> getTchcList(String userId) throws Exception;
 	
 	public CodeDTO getCode(String codNum) throws Exception; 
+	
+	public void reviewWrite(Map<String,String> param, String userId) throws Exception;
 
 }

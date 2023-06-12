@@ -71,7 +71,23 @@ public class OClassServiceImpl implements OClassService {
 	@Override
 	public List<RequestDTO> getRequestList(PageInfo pageInfo) throws Exception {
 		// TODO Auto-generated method stub
-		return oClassDAO.selectRequestList(1);
+		int totalCount=oClassDAO.selectAllRequestCnt();
+		int maxPage=totalCount/5;;
+		if(totalCount%10!=0) maxPage+=1;
+		
+		int startPage=pageInfo.getCurPage()/5;
+		if(pageInfo.getCurPage()%10==0) startPage-=1;
+		startPage=startPage*5+1;
+		
+		int endPage=startPage+5-1;
+		if(endPage>maxPage) endPage=maxPage;
+		
+		pageInfo.setAllPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+
+		int startrow =(pageInfo.getCurPage()-1)*5+1;
+		return oClassDAO.selectRequestList(startrow-1);
 	}
 
 	 
