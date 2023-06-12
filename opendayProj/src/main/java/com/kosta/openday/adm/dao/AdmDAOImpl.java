@@ -1,5 +1,6 @@
 package com.kosta.openday.adm.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 
 @Repository
 public class AdmDAOImpl implements AdmDAO {
@@ -79,7 +81,9 @@ public class AdmDAOImpl implements AdmDAO {
 	public AdmInquiryDTO selectAdmInquiry(Integer admNum) throws Exception {
 		return sqlSession.selectOne("mapper.adm.selectAdmInquiry", admNum);
 	}
-
+	
+ 
+	// 공지사항 
 	@Override
 	public List<AnnouncementDTO> selectAnnouncementList() throws Exception {
 		return sqlSession.selectList("mapper.announcement.selectAnnouncementList");
@@ -94,5 +98,27 @@ public class AdmDAOImpl implements AdmDAO {
 	public void insertAnnouncement(Map map) throws Exception {
 		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
 	}
-	
+
+	@Override 
+	public void updateAnInquiry(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.adm.updateAnswerInquiry",map);
+	}
+
+	@Override
+	public void deleteNotice(Integer ancId) throws Exception {
+		sqlSession.delete("mapper.adm.deleteAdmNotice",ancId);
+		
+		
+	}
+
+	@Override
+	public String selectCategoryByCode(String codNum) throws Exception { 
+		return sqlSession.selectOne("mapper.adm.selectCategoryByCode", codNum);
+	} 
+	public List<SettlementAmountDTO> selectSettlementListByStatus(String status) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.adm.selectSettlementWaitingList", status);
+	}
+ 
+ 
 }

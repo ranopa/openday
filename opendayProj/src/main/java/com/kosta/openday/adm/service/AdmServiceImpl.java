@@ -19,6 +19,7 @@ import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 @Service
@@ -82,6 +83,8 @@ public class AdmServiceImpl implements AdmService {
 		map.put("admContent", admContent);
 		admDAO.updateInquiry(map);
 	}
+	
+	
 
 	@Override
 	public List<OClassDTO> findOClassByStatus(String status) throws Exception {
@@ -149,5 +152,35 @@ public class AdmServiceImpl implements AdmService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+ 
+	@Override
+	public void inquiryAnswer(Integer admNum, String admAnContent) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("admAnContent", admAnContent);
+		map.put("admNum", admNum);
+		admDAO.updateAnInquiry(map); 
+	}
+
+	@Override
+	public void removeNotice(Integer ancId) throws Exception {
+		admDAO.deleteNotice(ancId);
+		
+	}
+
+	@Override
+	public String getCodeName(String codNum) throws Exception { 
+		return admDAO.selectCategoryByCode(codNum);
+	}
+
+	@Override
+	public void noticeRemove(Integer ancId) throws Exception {
+		admDAO.deleteNotice(ancId);
+	}
+	
+	@Override
+	public List<SettlementAmountDTO> findSettlementListByStatus(String status)  throws Exception {
+		return admDAO.selectSettlementListByStatus(status);
+ 
 	}
 }

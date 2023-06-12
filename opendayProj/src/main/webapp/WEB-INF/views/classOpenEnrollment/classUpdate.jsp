@@ -28,13 +28,13 @@
 <script src='<c:url value="/resources/lib/main.js" />'></script>
 </head>
 
-		<%@ include file="../header.jsp"%>
+<%@ include file="../header.jsp"%>
 <body>
 	<div id="includeWrapper">
 	<div id="div1">
-	<form id="form" action="classEnrollment" method="post" enctype="multipart/form-data">
+	<form id="form" action="classUpdate" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="" name="clsId" value="${scheduleDetail.clsId }" />
-		
+		<input type="hidden" id="" name="scdNum" value="${scheduleDetail.scdNum }" />
 		
 		<h3>클래스 개설</h3>
 		<div id=opendiv1>
@@ -268,11 +268,11 @@
 		<div class="btns">
 		<button type="button" class="cancel-btn" onClick="window.location.reload()">초기화</button>
       <button type="button" class="cancel-btn">취소</button>
-      <button type="submit" class="submit-btn">클래스 등록</button>
+      <button type="submit" class="submit-btn">수정</button>
 	</div>
 	</form>
 	</div>
 	</div>
-<%@ include file="../footer.jsp"%>
 </body>
+<%@ include file="../footer.jsp"%>
 </html>

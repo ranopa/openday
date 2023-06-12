@@ -3,9 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>Insert title here</title>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> refs/remotes/origin/main
 <link rel="stylesheet" href="/resources/css/user/footer.css">
+
 
 <style>
 @font-face {
@@ -79,7 +85,7 @@
 	font-family: 'Cafe24 Ohsquare';
 	font-style: normal;
 	font-weight: 700;
-	font-size: 36px;
+	font-size: 35px;
 	line-height: 42px;
 	color: #999999;
 
