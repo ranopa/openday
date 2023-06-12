@@ -36,7 +36,7 @@
 					<td class="td2">
 						<p class="ellipsis">${cas.clsName}</p>
 					</td>
-					<td class="td3">${cas.clsCode}</td>
+					<td class="td3">${cas.codName}</td>
 					<td class="td4">${cas.teacherId}</td>
 					<td class="td5">${cas.teacherTel}</td>
 					<td class="td6">${cas.clsCreatedAt}</td>

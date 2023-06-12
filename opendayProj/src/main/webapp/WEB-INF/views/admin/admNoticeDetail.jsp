@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
 <div id="notice-detail">
-	<form action="admnoticedelete" method="get">
+	<form action="${contextPath}/admnoticedelete" method="get">
 		<div class="w-modal">
 			<div class="w-wrap">
 				<div class="w-txtbox">
 					<p class="w-p">정말 이 게시글을 삭제하시겠습니까?</p>
 				</div>
 				<div class="w-btn-box">
-					<button type="button" class="w-submit-btn">취소하기</button>
-					<input type="submit" class="w-cancel-btn" value="삭제하기">
+					<button id="go-back-btn" type="button" class="w-submit-btn">취소하기</button>
+					<input id="real-del-btn" type="submit" class="w-cancel-btn" value="삭제하기" >
 				</div>
 			</div>
 		</div>
@@ -18,7 +19,7 @@
 	<div class="container">
 		<h2>공지</h2>
 		<div class="page">
-			<form action="/removenotive" method="get">
+			<form action="${contextPath }/admnoticedelete" method="get">
 				<table class="table">
 					<tbody>
 						<tr>
@@ -40,16 +41,25 @@
 						</tr>
 
 					</tbody>
-				</table>
+				</table> 
 				<div class="btn-par">
-					<button type="button" class="submit-btn btn2">목록으로</button>
-					<button type="button" class="submit-btn btn1" id="del-btn">삭제</button>
+					<button type="button" class="submit-btn btn2" id="go-list">목록으로</button>
+					<button type="submit" class="submit-btn btn1" id="del-btn">삭제</button>
 				</div>
-				<input type="hidden" name="ancId" value="${anc.ancId}">
+				<input type="hidden" name="ancId" value="${anc.ancId}"> 
 			</form>
 		</div>
 	</div>
+<script> 
+var goListBtn = document.querySelector('#go-list');
 
+goListBtn.addEventListener('click',()=>{
+	location.href="../admnoticelist";
+})
+
+
+
+</script>
 
 </div>
 

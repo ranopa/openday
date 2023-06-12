@@ -26,7 +26,7 @@
                             </tr>
                             <tr>
                                 <td colspan="4" class="file-id" style="border-radius: 7px;"><input type="file"
-                                        style="display: none" id="file" name="filNum">
+                                        style="display: none" id="file" name="file">
                                     <label for="file" id="file-label"> 파일을 선택해 주세요</label>
                                 </td>
                             </tr>

@@ -40,4 +40,6 @@ public interface AdmService {
 	
 	void removeNotice(Integer ancId) throws Exception;
 	public String getCodeName(String codNum)throws Exception;
+	
+	public void noticeRemove(Integer ancId)throws Exception;
 }

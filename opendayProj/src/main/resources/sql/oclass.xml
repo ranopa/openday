@@ -330,7 +330,7 @@
 	type="com.kosta.openday.adm.dto.OClassAndScheduleDTO">
 		<result column="clsId" property="clsId" />
 		<result column="clsName" property="clsName" />
-		<result column="clsCode" property="clsCode" />
+		<result column="codName" property="codName" />
 		<result column="teacherId" property="teacherId" />
 		<result column="teacherTel" property="teacherTel" />
 		<result column="clsCreatedAt" property="clsCreatedAt" />

@@ -211,9 +211,9 @@ public class AdmController {
 	@RequestMapping(value = "/admclasslist", method = RequestMethod.GET)
 	public String classList(Model model) { 
 		try {
-			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules();
+			 List<OClassAndScheduleDTO> list = oClassService.findClassAndSchedules(); 
 			 model.addAttribute("list", list);
-			model.addAttribute("page","admClassList");
+			 model.addAttribute("page","admClassList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -328,9 +328,9 @@ public class AdmController {
 	// 공지사항 작성
 	@RequestMapping(value="/admannouncementwrite", method=RequestMethod.POST)
 	public String writeAdmAnnouncement(
-			@RequestParam String title,
-			@RequestParam String content,
-			@RequestParam String type,
+			@RequestParam("ancTitle") String title,
+			@RequestParam("ancContent") String content,
+			@RequestParam("ancType") String type,
 			@RequestPart(value = "file", required = false) MultipartFile file,
 			Model model) throws Exception{
 		// 제목, 내용, 분류(일반,강사), 파일
@@ -339,18 +339,23 @@ public class AdmController {
 			map.put("title", title);
 			map.put("content", content);
 			map.put("type", type);
-			map.put("file", file);  
-			admService.writeAdmAnnouncement(map);
-			
-			List<AnnouncementDTO> ancList = admService.findAnnouncementList();
-			model.addAttribute("ancList", ancList);
-			model.addAttribute("page","admAnnouncementList");
+			if(file!=null) {
+				map.put("file", file); 				
+			}
+			admService.writeAdmAnnouncement(map); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/admMain";
+		return "redirect:/admnoticelist";
 		
 	
+	}
+	//공지사항 삭제
+	@RequestMapping(value="/admnoticedelete", method=RequestMethod.GET)
+	public String removeNotice(@RequestParam("ancId") Integer ancId, Model model) throws Exception {
+		admService.removeNotice(ancId);
+	 return "redirect:/admnoticelist";
+		
 	}
 	
 

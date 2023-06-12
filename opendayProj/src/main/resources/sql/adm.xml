@@ -95,9 +95,9 @@
 		]]>
 	</update>
 	<!-- 공지사항삭제 -->
-	<delete id="deleteAdmNotice" parameterType="String">
+	<delete id="deleteAdmNotice" parameterType="Integer">
 		<![CDATA[
-			delete * from announcement where ancId=#{ancId}	
+			delete from announcement where ancId=#{ancId}	
 		]]>
 	</delete>
 </mapper>

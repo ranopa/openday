@@ -169,4 +169,9 @@ public class AdmServiceImpl implements AdmService {
 	public String getCodeName(String codNum) throws Exception { 
 		return admDAO.selectCategoryByCode(codNum);
 	}
+
+	@Override
+	public void noticeRemove(Integer ancId) throws Exception {
+		admDAO.deleteNotice(ancId);
+	}
 }
