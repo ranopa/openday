@@ -27,7 +27,7 @@
 	cursor: pointer;
 }
 
-/* datepicer input 롤오버 시 손가락 모양 표시 */
+ /* datepicer input 롤오버 시 손가락 모양 표시  */
 .hasDatepicker {
 	cursor: pointer;
 }
@@ -36,15 +36,11 @@ font-size: 16px;
 	font-family: 'NanumBarunGothic';
 }
 </style>
-<<<<<<< HEAD
 
-<script>  
-   /*$.datepicker.setDefaults({ 
-=======
+
  
 <script>   
   $.datepicker.setDefaults({ 
->>>>>>> refs/remotes/origin/main
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -308,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 				<div class="verticalAlign">
-					<c:set var="authority" value="${sessrionScope.userId.authority }" />
+					<c:set var="authority" value="${sessionScope.userId.authority }" />
 					<c:choose>
 						<c:when test="${authority eq 0}">
 

@@ -5,11 +5,10 @@
 <head>
 <meta charset="UTF-8"> 
 <title>Insert title here</title>
-<<<<<<< HEAD
-=======
 
 
->>>>>>> refs/remotes/origin/main
+
+
 <link rel="stylesheet" href="/resources/css/user/footer.css">
 
 
