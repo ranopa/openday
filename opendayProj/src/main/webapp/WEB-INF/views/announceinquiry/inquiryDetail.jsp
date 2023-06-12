@@ -17,8 +17,8 @@
       $.noConflict();
 </script>
 </head>
-<body>
 <%@ include file="../header.jsp"%>
+<body>
 	<div id="includeWrapper">
 	<div id="noticeWrapper">	
 			<a href="announcementList" class="atag">공지사항</a>
@@ -28,7 +28,7 @@
 			
 			<form action="inquiryUpdate" method="post">
 			<input type="hidden" name="admNum" class="alist" value="${inquiry.admNum }"/>
-			<table>
+			<table class="inquiryDetailTable">
 			<tr>
 			<th>작성자</th><td><input type="text" name="userId" class="alist" value="${inquiry.userId}" readonly/></td>
 			<th>등록일</th><td><input type="text"  class="alist" value="${inquiry.admUploadDate}" readonly/></td>
@@ -45,7 +45,7 @@
 						
 			<br><br>
 			
-			<table>
+			<table class="inquiryDetailTable">
 			<tr>
 			<th>답변제목</th><td>${inquiry.admAnTitle}</td>
 			<th>등록일</th><td>${inquiry.admAnDate}</td>
@@ -59,8 +59,7 @@
       		<button type="button" class="list-btn"><a href="inquiryList" style="text-decoration: none; color:white;">목록</a></button>
       		</form>
 	</div>
-			<%@ include file="../footer.jsp"%>
-
 	</div>
 </body>
+<%@ include file="../footer.jsp"%>
 </html>

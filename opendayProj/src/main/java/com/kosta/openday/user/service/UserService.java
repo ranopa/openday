@@ -48,7 +48,7 @@ public interface UserService {
 
 	UserDTO getUserFindPw(String userId, String userEmail) throws Exception;
 
-	void getResetPassword(UserDTO user) throws Exception;
+	void resetPassword(UserDTO user) throws Exception;
 
 	// 찜하기, 찜취소
 	public void removeHeart(Integer clsId, String userId) throws Exception;
@@ -74,8 +74,9 @@ public interface UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
-	
+	 
 	//강사권한부여
-	public void alterAuthorityTchc(String userId)throws Exception;
+	public void alterAuthorityTchc(String userId)throws Exception; 
+	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception; 
 	
 }

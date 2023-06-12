@@ -76,8 +76,26 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	public Map<String, Object> getSchedule(Integer clsId) throws Exception {
 		return classopenenrollDAO.selectSchedule(clsId);
 	}
-
  
+	@Override
+	public void classInfoUpdate(OClassDTO dto) throws Exception {
+		classopenenrollDAO.updateClassInfo(dto);		
+	}
+
+	@Override
+	public void classFileUpdate(FileDTO dto) throws Exception {
+		classopenenrollDAO.updateClassFile(dto);	
+	}
+
+	@Override
+	public void classScheduleUpdate(ScheduleDTO dto) throws Exception {
+		classopenenrollDAO.updateClassSchedule(dto);
+	}
+
+	@Override
+	public ScheduleDTO getScheduleNum(Integer scdNum) throws Exception {
+		return classopenenrollDAO.selectScheduleNum(scdNum);
+	} 
 	
 
 }

@@ -34,10 +34,10 @@ margin-top:60px;
 				<p class="subTitle">검색결과</p>
 
 
-				<hr>
+				<hr style="margin-bottom:60px;">
 
 
-				<div class="subOption">
+			<!-- 	<div class="subOption">
 					<label class="checkLabel"><input type="checkbox"
 						name="color" value="blue">인기순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">등록일순</label> <label
@@ -45,7 +45,7 @@ margin-top:60px;
 						value="blue">가격높은순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">가격낮은순</label>
 
-				</div>
+				</div> -->
 
 				<div class="oclassListWrapper">
 					<!-- <div class="arrowIcon">
