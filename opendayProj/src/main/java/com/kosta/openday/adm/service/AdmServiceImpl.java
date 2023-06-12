@@ -19,6 +19,7 @@ import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.AdmUserViewDTO;
 import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 
 @Service
@@ -81,6 +82,11 @@ public class AdmServiceImpl implements AdmService {
 		map.put("admTitle", admTitle);
 		map.put("admContent", admContent);
 		admDAO.updateInquiry(map);
+	}
+	
+	@Override
+	public void inquiryAnswer(Integer admNum, String answer) throws Exception {
+		admDAO.updateInquiryAnswer(admNum, answer);
 	}
 
 	@Override
@@ -149,5 +155,10 @@ public class AdmServiceImpl implements AdmService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public List<SettlementAmountDTO> findSettlementListByStatus(String status)  throws Exception {
+		return admDAO.selectSettlementListByStatus(status);
 	}
 }

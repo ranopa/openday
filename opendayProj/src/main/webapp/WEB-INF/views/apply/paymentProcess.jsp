@@ -113,7 +113,7 @@ $(function() {
 					</tr>
 					<tr>
 						<td>일정</td>
-						<td>${data.scdDate}, ${data.scdTime}</td>
+						<td>${data.scdDate}, ${data.scdStartTime}</td>
 					</tr>
 					<tr>
 						<td>장소</td>
