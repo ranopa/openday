@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/user/footer.css">
 <title>Insert title here</title>
-
-<<<<<<< HEAD
 <style>
 @font-face {
 	font-family: 'Cafe24 Ohsquare';
@@ -121,10 +120,6 @@ footer {
 
 </style>
 
-
-=======
->>>>>>> refs/heads/main
-<link rel="stylesheet" href='<c:url value="/resources/css/user/footer.css" />' >
 </head>
 <body>
 	<div class="footerWrapper">
