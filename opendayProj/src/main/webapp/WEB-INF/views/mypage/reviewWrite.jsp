@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,12 +44,11 @@
         align-items: center;
     }
     
-    .review-above {
+    h1 {
         font-size: 24px;
         color: #5A2ECE;
         margin-left: 17px;
         margin-bottom: 25px;
-        font-family: 'NanumBarunGothic', sans-serif;
     }
     
     .form-container {
@@ -67,17 +64,26 @@
     }
     
     .form-fields {
-    	width: 242px;
-    	height: 385px;
     	margin-left: 20px;
     }
     
-    .form-fields textarea {
-    	width: 241px;
-    	height: 130px;
+    .form-fields input[type="text"] {
+        width: 135%;
+        height: 30px;
+        padding: 5px;
         font-size: 14px;
         border: 1px solid #D9D9D9;
-        margin-top: 48px;
+        margin-bottom: 40px;
+        margin-top: 40px;
+    }
+    
+    .form-fields textarea {
+    	width: 135%;
+    	height: 130px;
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid #D9D9D9;
+        margin-bottom: 10px;
     }
     
     .form-fields input[type="submit"] {
@@ -88,8 +94,8 @@
         border-radius: 5px;
         border: none;
         cursor: pointer;
-        margin-top: 42%;
-        margin-right: -2px;
+        margin-left: 134.5px;
+        margin-top: 49.5px;
     }       
     
     .complete-detail {
@@ -116,95 +122,27 @@
         background-color: #F2F2F2;
         padding: 20px;
     }
-    
-	.stars {
- 		width: 100%;
- 		display: flex;
- 		justify-content: center;
- 	}
- 
-	.star-rating {
-  		display: flex;
-  		flex-direction: row-reverse;
-  		font-size: 2.25rem;
-  		line-height: 2.5rem;
-  		justify-content: space-around;
-  		padding: 0 0.2em;
-  		text-align: center;
-  		width: 5em;
-	}
- 
-	.star-rating input {
-  		display: none;
-	}
- 
-	.star-rating label {
-  		-webkit-text-fill-color: transparent;
-  		-webkit-text-stroke-width: 2.3px;
-  		-webkit-text-stroke-color: yellow;
-  		cursor: pointer;
-  		margin-top: 18px;
-  		margin-right: 10px;
-	}
- 
-	.star-rating :checked ~ label {
-  		-webkit-text-fill-color: yellow;
-	}
- 
-	.star-rating label:hover,
-	.star-rating label:hover ~ label {
-  		-webkit-text-fill-color: yellow;
-	}    
-
-	#content {
-		resize: none;
-	}
-	
-	#content:focus {
-		outline: none;
-	}
-
-	.rev-complete {
-		width: 100%;
-		height: 36%;
-		display: flex;
-		flex-direction: row-reverse;
-	}
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
-		<form action="${contextPath}/reviewwrite" method="POST">
-			<input type="hidden" name="scdNum" value="${param.scdNum}"/>
-			<h1 class="review-above">후기</h1>&nbsp;&nbsp;
+		<form>
+			<h1>후기</h1>&nbsp;&nbsp;
 			<div class="form-container">
 				<div class="complete-class">
-					<div class="image-box"><img src="${contextPath}/img/${param.filNum}" width="100%" height="100%"></div>
+					<div class="image-box"><img src=""></div>
             		<div class="complete-detail">
-                		<p class="complete-date">${param.strDate}</p>
-                		<p class="compcla-name">${param.clsName}</p>
-                		<p class="compcla-price">${param.apFinalAmount}</p>
+                		<p class="complete-date">수강일자</p>
+                		<p class="compcla-name">클래스 이름</p>
+                		<p class="compcla-price">가격</p>
             		</div>
         		</div>
 				
 				<div class="form-fields">
 					<table>
         				<tr>
-            				<td class="stars">
-								<div class="star-rating space-x-4 mx-auto">
-									<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
-									<label for="5-stars" class="star pr-4">★</label>
-									<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
-									<label for="4-stars" class="star">★</label>
-									<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
-									<label for="3-stars" class="star">★</label>
-									<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
-									<label for="2-stars" class="star">★</label>
-									<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" checked/>
-									<label for="1-star" class="star">★</label>
-								</div>            				
-      							<input type="hidden" name="star" id="star" required placeholder="별점">
+            				<td>
+                 				<input type="text" name="star" id="star" required placeholder="별점">
             				</td>
         				</tr>
 						<tr>
@@ -213,13 +151,12 @@
 							</td>
 						</tr>
 					</table>
-					<div class="rev-complete">
+					<div>
 						<input type="submit" value="후기 작성" class="submit-button">
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
-    <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

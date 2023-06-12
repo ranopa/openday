@@ -39,6 +39,7 @@
 	* {
 		font-family: 'NanumBarunGothic', sans-serif;
 		padding: 0;
+		margin: 0 auto;
 	}
 
 	#wrap {
@@ -64,7 +65,6 @@
 
 	.texts {
 		margin-top: 40px;
-		margin-left: 80px;
 	}
 
 	.buttons {
@@ -84,6 +84,7 @@
 
 	h2 {
 		font-size: 24px;
+		margin-right: 200px;
 	}
 
 	p {
@@ -138,15 +139,12 @@
 	}
 
 	.tab-menu {
-		width: 75%;
+		width: 77%;
 		list-style-type: none;
 		padding: 0;
-		border-bottom: 1px solid #D9D9D9;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-evenly;
-		align-items: center;
 		margin-top: 40px;
+		margin-bottom: 20px;
+		border-bottom: 1px solid #D9D9D9;
 	}
 
 	.tab-menu li {
@@ -154,8 +152,8 @@
 		cursor: pointer;
 		font-size: 17px;
 		color: gray;
-		margin-left: 24px;
-		margin-right: 24px;
+		margin-left: 54px;
+		margin-right: 25.5px;
 	}
 
 	.tab-menu li.active {
@@ -177,14 +175,12 @@
 	}
 	
 	.tab-content p {
-		margin: 0 auto;
-		width: 72%;
+		width: 74%;
     	font-size: 17px;
   	}
   	
   	.tab-content #reviews p {
-    	width: 72%;
-    	margin-top: 20px;
+    	width: 74%;
     	font-size: 14px;
     	border-bottom: 1px solid #D9D9D9;
     }
@@ -210,8 +206,7 @@
 	}
 	
 	.tab-content #instructor {
-		margin: 0 auto;
-		width: 72%;
+		width: 74%;
 	}
 	
 	.instructor-button {
@@ -306,8 +301,7 @@
     
     textarea {
     	height: 250px;
-    	width: 80%;
-    	margin-left: 150.5px;
+    	width: 200%;
     	transform: translateX(-24.9%);
     	border: 1px solid #D9D9D9;
     	margin-top: 10px;
@@ -437,7 +431,7 @@ $(function() {
 	<div id="wrap">
 
 		<div class="container">
-			<div class="image"><img src="${contextPath}/img/${res.clsInfo.filNum}" style="width: 350px;"></div>
+			<div class="image"><img src="${contextPath}/img/${res.clsInfo.filNum}"></div>
 
 			<div class="txt-con">
 				<div class="texts">

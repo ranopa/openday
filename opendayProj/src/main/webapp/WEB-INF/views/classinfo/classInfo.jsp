@@ -201,6 +201,7 @@
 		border-radius: 2px;
 		border: 1px solid gray;
 		cursor: pointer;
+		margin-bottom: 10px;
 	}
 	
 	.review-star {
@@ -311,14 +312,6 @@
     	border: 1px solid #D9D9D9;
     	margin-top: 10px;
     }
-    
-    #ciContent, #ciModContent {
-    	resize: none;
-    }
-    
-    #ciContent:focus, #ciModContent {
-		outline: none;
-	}
 </style>
 <script>
 	function openTab(tabId) {
@@ -336,6 +329,8 @@
 		document.getElementById(tabId).style.display = 'block';
 		document.getElementById('menu-' + tabId).classList.add('active');
 	}
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -439,7 +434,6 @@ $(function() {
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
 
 		<div class="container">
@@ -496,9 +490,8 @@ $(function() {
             					<span class="user-id">${review.userId }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             					<span class="review-date">${review.rvDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             					<c:if test="${user.userId==review.userId}">
-            					<button class="delete-button" data-reviewnum=${review.rvNum }>삭제</button>
+            					<button class="delete-button" data-reviewnum=${review.rvNum }>삭제</button><br/>
             					</c:if>
-            					<br/>
             					<span class="review-star">${review.rvStar }</span><br/><br/>
             					<span class="review-content">${review.rvContent }</span><br/><br/>
         					</p>
@@ -543,7 +536,7 @@ $(function() {
 									<span>${inquiryAndAnswer.clsInquiry.ciContent }</span><br/><br/>
 								</c:when>
 								<c:otherwise>
-									<br/><br/><span>비밀글 입니다.</span><br/><br/>
+									<span>비밀글입니다.</span><br/><br/>
 								</c:otherwise>
 								</c:choose>
 							</p>
@@ -559,7 +552,7 @@ $(function() {
 									<span>${inquiryAndAnswer.answer.ansContent }</span><br/><br/>
 								</c:when>
 								<c:otherwise>
-									<span>비밀글 입니다.</span><br/><br/>
+									<span>비밀글입니다.</span><br/><br/>
 								</c:otherwise>
 								</c:choose>
 							</p>	
@@ -595,6 +588,5 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

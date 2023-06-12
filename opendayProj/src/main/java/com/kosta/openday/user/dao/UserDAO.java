@@ -10,7 +10,6 @@ import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
-import com.kosta.openday.user.dto.ReviewDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 //test
@@ -65,10 +64,7 @@ public interface UserDAO {
 	public TeacherChannelDTO selectTchcChannel(Integer tchcNum) throws Exception;
 	
 	public CodeDTO selectCode(String codNum) throws Exception;
-	 
-	public Integer selectReviewNum() throws Exception;
-	public void insertReview(ReviewDTO reviewDTO) throws Exception;
- 
+	
 	public UserDTO selectUserByNickName(String userNickname) throws Exception;
 
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception;
@@ -76,6 +72,5 @@ public interface UserDAO {
 	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception;
 	
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
- 
 
 }

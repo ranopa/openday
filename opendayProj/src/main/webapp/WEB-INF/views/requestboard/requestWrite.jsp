@@ -42,7 +42,7 @@
 		margin-left: -50px;
 	}
 	
-    .rw-above {
+    h1 {
         font-size: 24px;
         color: #5A2ECE;
         margin-bottom: 20px;
@@ -118,25 +118,16 @@
         border: none;
         cursor: pointer;
     }
-    
-    #content {
-		resize: none;
-	}
-	
-	#content:focus, #location:focus, #title:focus {
-		outline: none;
-	}
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
 	
 	<form method="post" action="requestwrite">
 	
 	
 	<div class="main-con">
-	<h1 class="rw-above">클래스 개설 요청</h1>&nbsp;&nbsp;
+	<h1>클래스 개설 요청</h1>&nbsp;&nbsp;
 		<table>
         	<tr>
             	<td>
@@ -161,6 +152,5 @@
 	</div>
 	</form>
 	</div>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>
