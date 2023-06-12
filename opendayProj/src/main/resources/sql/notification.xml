@@ -5,31 +5,58 @@
 <mapper namespace="mapper.notification">
 	<select id="selectNotification"
 		parameterType="Integer"
-		resultType="com.kosta.openday.user.dto.NotificationDTO">
+		resultType="com.kosta.openday.adm.dto.NotificationDTO">
 		<![CDATA[
 		SELECT * FROM notification
 		where ntfId = #{ntfId}
 		]]>
 	</select>
 	
+	<select id="selectNotificationListByReceiverId" 
+		parameterType="java.util.HashMap" 
+		resultType="com.kosta.openday.adm.dto.NotificationDTO" >
+		<![CDATA[
+			SELECT * FROM notification
+			where ntfReceiverId = #{receiverId}
+			and ntfId > #{lastReceiveNumber}
+		]]>
+		
+	</select>
+	
 	<select id="selectNotificationList"
-		resultType="com.kosta.openday.user.dto.NotificationDTO">
+		resultType="com.kosta.openday.adm.dto.NotificationDTO">
 		<![CDATA[
 		SELECT * FROM notification
 		]]>
 	</select>
 	
-	<insert id="insertNotification">
+	<insert id="insertNotification" parameterType="com.kosta.openday.adm.dto.NotificationDTO"
+	 useGeneratedKeys="true" keyProperty="ntfId">
 		<![CDATA[
-		INSERT INTO notification
+		INSERT INTO notification(
+			ntfSourceId,
+			ntfSourceType,
+			ntfMessage,
+			ntfIsRead,
+			ntfIsDeleted,
+			ntfCreatedAt,
+			ntfUrl,
+			ntfSenderId,
+			ntfReceiverId
+		)
 		VALUES(
-			nextval(notification_seq),
-			#{ntfTitle},
-			#{ntfContent},
-			#{ntfType},
-			#{ntfCreatedAt},
-			#{userNum}
+			#{ntfSourceId},
+			#{ntfSourceType},
+			#{ntfMessage},
+			#{ntfIsRead},
+			#{ntfIsDeleted},
+			now(),
+			#{ntfUrl},
+			#{ntfSenderId},
+			#{ntfReceiverId}
 		)
 		]]>
 	</insert>
+	
+	
 </mapper>

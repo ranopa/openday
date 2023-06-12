@@ -180,7 +180,8 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println(user);
 		System.out.println(user.getUserNickname());
 		return user;
-	}
+	} 
+ 
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
 		return sqlSession.selectOne("mapper.search.searchOClassCount", map);
 	}

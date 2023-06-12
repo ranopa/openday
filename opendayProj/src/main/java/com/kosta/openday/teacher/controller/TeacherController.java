@@ -273,7 +273,6 @@ public class TeacherController {
 			fos.close();
 			String id = (String) session.getAttribute("id");
 			id = "hong";
-			System.out.println(map);
 			//TeacherChannelDTO tcDTO = classOpenEnrollService.selectteacherChannel
 			UserDTO userDTO = userService.getUserInfo(id);
 			if(userDTO.getFilNum() == null) {
@@ -281,7 +280,6 @@ public class TeacherController {
 				userDTO = userService.getUserInfo(id);
 				FileDTO fileDTO = new FileDTO(userDTO.getFilNum(), fileProfile.getContentType(), orgfilename, savefilename, fileProfile.getSize(), null);
 				teacherService.tcProfileAdd(fileDTO);
-				System.out.println("확인용");
 			}else {
 				FileDTO fileDTO = new FileDTO(userDTO.getFilNum(), fileProfile.getContentType(), orgfilename, savefilename, fileProfile.getSize(), null);
 				teacherService.tcProfileUpdate(fileDTO);

@@ -17,7 +17,7 @@ public class PaymentProcessResponseDTO {
 	
 	private Integer scdNum;
 	private Date scdDate;
-	private Time scdTime;
+	private Time scdStartTime;
 
 	private String clsLoc;
 	private String scdPlace;
@@ -45,7 +45,7 @@ public class PaymentProcessResponseDTO {
 			
 			schedule.getScdNum(),
 			schedule.getScdDate(),
-			schedule.getScdTime(),
+			schedule.getScdStartTime(),
 			
 			oClass.getClsLoc(),
 			schedule.getScdPlace(),
@@ -70,7 +70,7 @@ public class PaymentProcessResponseDTO {
 		this.clsName = clsName;
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
-		this.scdTime = scdTime;
+		this.scdStartTime = scdStartTime;
 		this.clsLoc = clsLoc;
 		this.scdPlace = scdPlace;
 		this.scdPlaceDetail = scdPlaceDetail;
@@ -160,12 +160,12 @@ public class PaymentProcessResponseDTO {
 		this.scdDate = scdDate;
 	}
 
-	public Time getScdTime() {
-		return scdTime;
+	public Time getScdStartTime() {
+		return scdStartTime;
 	}
 
-	public void setScdTime(Time scdTime) {
-		this.scdTime = scdTime;
+	public void setScdStartTime(Time scdStartTime) {
+		this.scdStartTime = scdStartTime;
 	}
 
 	public String getClsLoc() {

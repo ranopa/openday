@@ -82,4 +82,14 @@
 		]]>
 	</select>
 	
+	<select id="selectSettlementWaitingList"
+	parameterType="String"
+	resultType="com.kosta.openday.teacher.dto.SettlementAmountDTO">
+	<![CDATA[
+		select * from settlement_amount
+		where saStatus = #{status}
+	]]>
+		
+	</select>
+	
 </mapper>
