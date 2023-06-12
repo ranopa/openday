@@ -1,5 +1,5 @@
 window.onload = () => {
-
+	alert('userlist');
 
             var subBtns = document.querySelectorAll(".detail-btn");
 

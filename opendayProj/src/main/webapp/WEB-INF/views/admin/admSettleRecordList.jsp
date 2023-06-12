@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="settle-record">
 	<div class="sr-container">
 		<h2>정산 내역 조회</h2>
@@ -37,6 +38,7 @@
 			</tr>
 		</thead>
 		<tbody>
+		<c:forEach items="settleList" var="settle">
 			<tr>
 				<td class="td1">41</td>
 				<td class="td2">
@@ -46,8 +48,8 @@
 				<td class="td4">100,000</td>
 				<td class="td5">900,000</td>
 				<td class="td6">2023-05-07</td>
-			</tr>
-
+			</tr> 
+		</c:forEach>
 		</tbody>
 	</table>
 </div>
