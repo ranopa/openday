@@ -39,4 +39,5 @@ public interface AdmService {
 	void inquiryAnswer(Integer admNum, String admAnContent) throws Exception;
 	
 	void removeNotice(Integer ancId) throws Exception;
+	public String getCodeName(String codNum)throws Exception;
 }

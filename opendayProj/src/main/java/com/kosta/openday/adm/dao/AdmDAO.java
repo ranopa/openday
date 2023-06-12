@@ -32,4 +32,5 @@ public interface AdmDAO {
 	void updateAnInquiry(Map<String,Object> map)throws Exception;
 
 	void deleteNotice(Integer ancId) throws Exception;
+	String selectCategoryByCode(String codNum) throws Exception;
 }

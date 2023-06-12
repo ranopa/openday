@@ -31,9 +31,9 @@
 <!-- 외부 -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" 
+<link rel="stylesheet"
 	href='<c:url value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>'>
-	 
+
 <!-- jQuery UI CSS 임포트 -->
 
 <script src="resources/js/teacher/jquery-3.1.1.min.js"></script>
@@ -46,10 +46,11 @@
 	href='<c:url value="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>'>
 
 <!-- jQuery 및 jQuery UI JavaScript 임포트 -->
-<script src="<c:url value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>"></script>   
+<script
+	src="<c:url value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-	
+
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/css/adm/admHeader.css"/>'>
@@ -75,8 +76,10 @@
 	href='<c:url value="/resources/css/adm/admNoticeDetail.css"/>'>
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/css/adm/admSalesList.css"/>'>
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/css/adm/admSettleDetail.css"/>'>
+<link rel="stylesheet" type="text/css"
+	href='<c:url value="/resources/css/adm/admWaitingDetail.css"/>'>
 <!-- js -->
 <script src="<c:url value="/resources/js/adm/admHeader.js"/>"></script>
 <script src="<c:url value="/resources/js/adm/admSettleRecordList.js"/>"></script>

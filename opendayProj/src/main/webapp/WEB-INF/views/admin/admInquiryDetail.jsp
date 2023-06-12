@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
 <div id="adm-inquiry-detail">
 	<div class="container">
 		<h2>문의목록</h2>
 		<div class="page">
-			<form action="../adminquiryanswer"  method="post">
+			<form action="${contextPath}/adminquiryanswer"  method="post">
 				<table class="table">
 					<tbody>
 						<tr>
@@ -77,7 +78,7 @@
 					 location.href="/openday/adminquirylist";
 				 })
 				</script>
-
+				<input type="hidden" name="admNum" value="${inquiry.admNum }">
 			</form>
 		</div>
 	</div>

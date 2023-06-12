@@ -106,5 +106,10 @@ public class AdmDAOImpl implements AdmDAO {
 		
 		
 	}
+
+	@Override
+	public String selectCategoryByCode(String codNum) throws Exception { 
+		return sqlSession.selectOne("mapper.adm.selectCategoryByCode", codNum);
+	}
 	
 }

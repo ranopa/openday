@@ -18,7 +18,7 @@
                 <c:forEach items="${list}" var="oclass">
                     <tr>
                         <td class="td1" >${oclass.clsId}</td>
-                        <td class="td2"> <a href="#" class="a-box"><p class="ellipsis">${oclass.clsName}</p></a></td>
+                        <td class="td2"> <a href="adm/adminwaitingdetail/${oclass.clsId}" class="a-box"><p class="ellipsis">${oclass.clsName}</p></a></td>
                         <td class="td3">카테고리명</td>
                         <td class="td4">${oclass.userId}</td>
                         <td class="td5">${oclass.clsCreatedAt}</td>

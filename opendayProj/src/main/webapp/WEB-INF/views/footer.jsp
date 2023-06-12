@@ -123,9 +123,7 @@ footer {
 </style>
 
 
-=======
 <link rel="stylesheet" href='<c:url value="/resources/css/user/footer.css" />' >
->>>>>>> branch 'channel_notice_open' of https://github.com/binunu/openday.git
 </head>
 <body>
 	<div class="footerWrapper">

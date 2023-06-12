@@ -198,5 +198,7 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("mapper.search.searchInputSelectCount", map);
 	}
 
+	 
+
 
 }

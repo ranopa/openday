@@ -84,13 +84,12 @@ public class AdmController {
 		try {
 			OClassDTO oClass = oClassService.findOne(clsId);
 			if (oClass == null) 
-				throw new Exception("존재하지 않는 클래스");
-			
-			admService.allowOClass(clsId);
+				throw new Exception("존재하지 않는 클래스"); 
+			admService.allowOClass(clsId); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/adminWatingList";
+		return "redirect:/admwaitinglist";
 	}
 	
 	@RequestMapping(value="/inquiry", method=RequestMethod.POST)
@@ -173,20 +172,21 @@ public class AdmController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/adminWatingList";
+		return "redirect:/admwaitinglist";
 	}
 	
 	//개설신청 디테일
-	@RequestMapping(value="/adm/adminwaitingdetail")
-	public String watingDetail(@RequestParam Integer clsId, Model model) {
+	@RequestMapping(value="/adm/adminwaitingdetail/{clsId}")
+	public String watingDetail(@PathVariable Integer clsId, Model model) {
 		try {
 			OClassDTO oClass = oClassService.findOne(clsId);
-			
-			model.addAttribute("oClass", oClass);
+			oClass.setClsCode(admService.getCodeName(oClass.getClsCode())); 
+			model.addAttribute("oclass", oClass);
+			model.addAttribute("page","admWaitingDetail");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/adminWatingDetail";
+		return "admin/admMain";
 	}
 	
 	
@@ -269,19 +269,18 @@ public class AdmController {
 		return "admin/admMain";
 	}
 	
-	//유저문의답변등록
-		@RequestMapping(value = "/adminquiryanswer", method = RequestMethod.POST)
-		public String admInquiryDetail(@RequestParam("admNum") Integer admNum, @RequestParam("answer") String admAnContent, Model model) { 
-			try {
-				System.out.println(admNum+":"+admAnContent);
-				admService.inquiryAnswer(admNum, admAnContent);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-			return "redirect:/adminquirylist";
+	//문의답변
+	@RequestMapping(value = "/adminquiryanswer", method = RequestMethod.POST)
+	public String admInquiryAnswer(@RequestParam("admNum") Integer admNum, @RequestParam("answer") String admAnContent , Model model) { 
+		try {
+			admService.inquiryAnswer(admNum, admAnContent); 
+		} catch (Exception e) {
+			e.printStackTrace();
 		} 
-
+		return "redirect:/adminquirylist";
+	}
+	
+	
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
 	public String admSalesList(Model model) { 
@@ -329,9 +328,9 @@ public class AdmController {
 	// 공지사항 작성
 	@RequestMapping(value="/admannouncementwrite", method=RequestMethod.POST)
 	public String writeAdmAnnouncement(
-			@RequestParam("ancTitle") String title,
-			@RequestParam("ancContent") String content,
-			@RequestParam("ancType") String type,
+			@RequestParam String title,
+			@RequestParam String content,
+			@RequestParam String type,
 			@RequestPart(value = "file", required = false) MultipartFile file,
 			Model model) throws Exception{
 		// 제목, 내용, 분류(일반,강사), 파일
@@ -340,28 +339,18 @@ public class AdmController {
 			map.put("title", title);
 			map.put("content", content);
 			map.put("type", type);
-			if(file!=null) {
-				map.put("file", file); 				
-			}
+			map.put("file", file);  
 			admService.writeAdmAnnouncement(map);
 			
 			List<AnnouncementDTO> ancList = admService.findAnnouncementList();
 			model.addAttribute("ancList", ancList);
-			model.addAttribute("page","admNoticeList");
+			model.addAttribute("page","admAnnouncementList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "admin/admMain";
 		
 	
-	}
-	
-	//공지사항 삭제
-	@RequestMapping(value="/removenotive", method=RequestMethod.GET)
-	public String removeNotice(@RequestParam("ancId") Integer ancId, Model model) throws Exception { 
-		admService.removeNotice(ancId);
-	 return "redirect:/admwaitinglist";
-		
 	}
 	
 
