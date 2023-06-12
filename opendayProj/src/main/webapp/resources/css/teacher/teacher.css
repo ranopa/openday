@@ -18,13 +18,14 @@ table {
 	border-collapse: separate;
 	border-spacing: 0 10px;
 	width: 100%;
-	table-layout:fixed;
+	table-layout: fixed;
 	padding: 0 15px;
 }
+
 table>tbody>tr>td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 input[type="submit"], input[type="reset"], input[type="button"] {
@@ -34,11 +35,17 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 	cursor: pointer;
 }
 
-input, select {
+input, select, textarea {
 	width: 150px;
 	height: 30px;
 	box-sizing: border-box;
 	margin: 10px 0;
+}
+
+textarea {
+	width: 100%;
+	height: 6.25em;
+	resize: none;
 }
 
 a {
@@ -55,11 +62,11 @@ a {
 }
 
 .tc-haeder {
-    text-align: center;
-    box-sizing: border-box;
-    position: fixed;
-    min-height: 1000px;
-    width: 250px;
+	text-align: center;
+	box-sizing: border-box;
+	position: fixed;
+	min-height: 1000px;
+	width: 250px;
 }
 
 .tc-logo {
@@ -83,9 +90,10 @@ a {
 }
 
 .tc-profileImg {
-	width: 150px;
-	height: 150px;
-	border-radius: 80px;
+	width: 170px;
+	height: 170px;
+	border-radius: 100px;
+	cursor: pointer;
 }
 
 .tc-profileEditLink {
@@ -95,11 +103,15 @@ a {
 	top: -40px;
 }
 
+.tc-profileEditLink:hover {
+	cursor: pointer;
+}
+
 .tc-container {
 	border: 1px solid;
-    box-sizing: border-box;
-    margin-left: 23%;
-    min-height: 1000px;
+	box-sizing: border-box;
+	margin-left: 23%;
+	min-height: 1000px;
 }
 
 .tc-nav {
@@ -378,26 +390,106 @@ a {
 
 .tc-sales-list>div:first-of-type {
 	width: 40%;
-    margin: 40px 0;
-    box-sizing: border-box;
-    padding: 0 20px;
+	margin: 40px 0;
+	box-sizing: border-box;
+	padding: 0 20px;
 }
+
 .tc-sales-list>div>span:first-of-type {
 	background-color: #5A2ECE;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 3px;
-    margin-right: 20px;
+	color: white;
+	padding: 5px 20px;
+	border-radius: 3px;
+	margin-right: 20px;
 }
-.tc-sales-list>div:nth-of-type(2), .tc-sales-list>div:nth-of-type(3){
+
+.tc-sales-list>div:nth-of-type(2), .tc-sales-list>div:nth-of-type(3) {
 	width: 30%;
 	text-align: center;
 }
-.tc-sales-list>div:nth-of-type(2)>div, .tc-sales-list>div:nth-of-type(3)>div {
-    padding: 15px;
+
+.tc-sales-list>div:nth-of-type(2)>div, .tc-sales-list>div:nth-of-type(3)>div
+	{
+	padding: 15px;
 }
+
 .tc-sales-list>div:last-of-type {
 	width: 100%;
 	margin: 10px 0;
 	padding: 0 20px;
+}
+
+.profileUpload {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
+	max-width: 650px;
+	height: 40%;
+	display: flex;
+	border-radius: 10px;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.profileUpload-profile {
+	text-align: left;
+}
+
+.profileUpload-profile button {
+	display: block;
+	float: right;
+	width: 60px;
+	height: 30px;
+	margin: 10px;
+}
+
+.profileUpload-image {
+	width: 50%;
+	margin-top: 100px;
+}
+
+.profileUpload-image>i {
+	left: -50px;
+}
+
+.profileUpload-profile {
+	width: 50%;
+	padding: 20px;
+	margin-top: 30px;
+}
+
+.profileUpload-profile div {
+	margin: 10px 0;
+}
+
+.profileUpload-profile input {
+	width: 100%;
+}
+.fc {
+	position: relative;
+    z-index: -1;
 }

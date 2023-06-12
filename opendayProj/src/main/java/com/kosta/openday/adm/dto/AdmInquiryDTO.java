@@ -14,11 +14,12 @@ public class AdmInquiryDTO {
 	private Date admAnDate; //답변일
 	private boolean admSecret; // 비밀글 
 	private String userId; //문의자id
-	
+
 	public AdmInquiryDTO() {}
 
 	public AdmInquiryDTO(Integer admNum, String admTitle, String admContent, String admType, Date admUploadDate,
-			String admAnContent, boolean admStatus, Date admAnDate, boolean admSecret, String userId) {
+			String admAnTitle, String admAnContent, boolean admStatus, Date admAnDate, String userId, boolean admSecret) {
+		super();
 		this.admNum = admNum;
 		this.admTitle = admTitle;
 		this.admContent = admContent;
@@ -27,11 +28,9 @@ public class AdmInquiryDTO {
 		this.admAnContent = admAnContent;
 		this.admStatus = admStatus;
 		this.admAnDate = admAnDate;
-		this.admSecret = admSecret;
 		this.userId = userId;
+		this.admSecret = admSecret;
 	}
-
-
 
 	public Integer getAdmNum() {
 		return admNum;
@@ -112,4 +111,5 @@ public class AdmInquiryDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 }

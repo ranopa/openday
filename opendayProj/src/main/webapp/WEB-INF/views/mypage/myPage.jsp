@@ -183,7 +183,7 @@
 										
 										<c:choose>
 											<c:when test="${tchc.tchcIntro eq null}">
-											<p class="mymenu2">채널의 소개글을 작성해 주세요</p> 
+											<p class="mymenu2">소개글을 작성해 주세요</p> 
 											</c:when>
 											<c:otherwise>
 												<p class="mymenu2">${tchc.tchcIntro}</p>

@@ -64,6 +64,8 @@ public interface UserDAO {
 	public TeacherChannelDTO selectTchcChannel(Integer tchcNum) throws Exception;
 	
 	public CodeDTO selectCode(String codNum) throws Exception;
+	
+	public UserDTO selectUserByNickName(String userNickname) throws Exception;
 
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception;
 	

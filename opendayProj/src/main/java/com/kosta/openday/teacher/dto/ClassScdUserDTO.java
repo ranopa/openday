@@ -1,7 +1,5 @@
 package com.kosta.openday.teacher.dto;
 
-import java.sql.Date;
-
 //강사 클래스 일정별 수강생 DTO
 public class ClassScdUserDTO {
 
