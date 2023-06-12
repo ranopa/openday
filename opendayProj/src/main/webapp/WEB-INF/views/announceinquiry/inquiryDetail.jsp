@@ -58,7 +58,7 @@
 			</table>
 			<br><br>
 			<button type="button" class="edit-btn">수정</button>
-      		<button type="button" class="list-btn">목록</button>
+      		<button type="button" class="list-btn"><a href="inquiryList" style="text-decoration: none; color:white;">목록</a></button>
 	</div>
 	<div id="includeFooter" class="includeFooter">
 			<%@ include file="../footer.jsp"%>

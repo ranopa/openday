@@ -26,14 +26,13 @@
 <body>
 	
 	<div id="includeWrapper">
-	<div id="includeHeader" class="includeHeader">
 		<%@ include file="../header.jsp"%>
-	</div>
 	<div id="div1">
 	<form id="form" action="classOpen" method="post" enctype="multipart/form-data">
 		<h3>클래스 개설</h3>
 		<div id=opendiv1>
-			
+			<input type="hidden" name="clsStatus" value="검토중" />
+			<input type="hidden" name="clsOpenType" value="일반" />
 			<div class="opendiv2">
 				<span class="span">클래스 이름</span> <input type="text" id="clsName" name="clsName" placeholder="클래스 이름을 입력해 주세요(20자 이하)" required autofocus maxlength="20">
 			</div>
@@ -123,9 +122,7 @@
 	</div>
 	</form>
 	</div>
-	<div id="includeFooter" class="includeFooter">
-			<%@ include file="../footer.jsp"%>
-	</div>
+			<%@ include file="../footer.jsp"%>>
 	</div>	
 </body>
 </html>

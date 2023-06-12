@@ -41,7 +41,7 @@
 			</tr>
 			</table>
 			<br><br>
-			<button type="button" class="list-btn">목록</button>
+			<button type="button" class="list-btn"><a href="announcementList">목록</a></button>
 	</div>
 	<div id="includeFooter" class="includeFooter">
 			<%@ include file="../footer.jsp"%>
