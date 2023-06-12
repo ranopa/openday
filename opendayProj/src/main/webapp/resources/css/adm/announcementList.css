@@ -12,29 +12,30 @@
 	padding-top: 60px;
 }
 
-table {
+#announcementTable {
     width: 100%;
     border-top: 1px thin #444444;
     border-collapse: collapse;
   }
-table th, td {
-    border-bottom-style: solid;
-    border-bottom-color: #F4F4F4;
-    text-align: center;
-  }
-table th {
+#announcementTable th {
 	height: 33px;
 	font-size: 20px;
 	padding: 10px;
+	border-bottom-style: solid;
+    border-bottom-color: #F4F4F4;
+    text-align: center;
 }  
 
-table td { 
+#announcementTable td { 
 	height: 28px;
 	padding: 10px;
 	font-size: 17px;
+	border-bottom-style: solid;
+    border-bottom-color: #F4F4F4;
+    text-align: center;
 }
   
- th {
+#announcementTable th {
  	background: #F4F4F4;
  } 
 .smallth {

@@ -33,6 +33,7 @@
 		<div id=opendiv1>
 			<input type="hidden" name="clsStatus" value="검토중" />
 			<input type="hidden" name="clsOpenType" value="일반" />
+			<input type="hidden" name="userId" value="일반" />
 			<div class="opendiv2">
 				<span class="span">클래스 이름</span> <input type="text" id="clsName" name="clsName" placeholder="클래스 이름을 입력해 주세요(20자 이하)" required autofocus maxlength="20">
 			</div>

@@ -248,7 +248,7 @@
 								<li class="topButton tB topButtonsMargin"><a
 									href="requestlist"><span>클래스요청</span></a></li>
 
-								<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
+								<li class="topButton tB tBLast topButtonsMargin"><a href="announcementList"><span>고객센터</span></a></li>
 
 							</ul>
 						</div>

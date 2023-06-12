@@ -62,7 +62,7 @@
 		<![CDATA[
 			update adm_inquiry set admTitle=#{admTitle}, admContent=#{admContent} where admNum=#{admNum}		
 		]]>
-	</update>
+</update>
 <!-- =========== 문의 답변 answer =============================================== -->
 
 <!-- 1. 문의번호로 답변 조회 -->

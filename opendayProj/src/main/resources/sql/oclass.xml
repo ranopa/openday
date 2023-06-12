@@ -28,6 +28,22 @@
 		]]> 		
 	</select>
 	
+	<!-- oclass 내용 업데이트 -->
+	<update id="updateclassOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
+			<![CDATA[
+				update oclass set clsName=#{clsName}, clsLoc=#{clsLoc}, clsCode=#{clsCode}, clsDescription=#{clsDescription},
+				filNum = nextval(file_seq), clsCareer=#{clsCareer}, clsCurri=#{clsCurri}  where clsId=#{clsId}		
+			]]>
+	</update>
+	
+	<!-- 썸네일 업데이트 -->
+	<update id="updateThumbnail" parameterType="com.kosta.openday.adm.dto.FileDTO">
+		 <![CDATA[
+		 	update file set filClassification = #{filClassification}, filOrgName = #{filOrgName}, filSaveName = #{filSaveName}, filSize = #{filSize}
+		 	where filNum = #{filNum}
+	 	 ]]>
+	</update>
+	
 	<!-- 파일업로드(썸네일)  -->
 	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[

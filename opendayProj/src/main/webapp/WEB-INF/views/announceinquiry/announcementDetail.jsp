@@ -16,17 +16,15 @@
       $.noConflict();
 </script>
 </head>
+<%@ include file="../header.jsp"%>
 <body>
 	<div id="includeWrapper">
-	<div id="includeHeader" class="includeHeader">
-		<%@ include file="../header.jsp"%>
-	</div>
 	<div id="noticeWrapper">	
 			<a href="announcementList" class="atag">공지사항</a>
 			<a href="inquiry" class="atag">문의하기</a>
 			<a href="inquiryList" class="atag">문의내역</a>
 			<br><br><hr><br><br>
-			<table>
+			<table id="announcementDetailTable">
 			<tr>
 			<th>작성날짜</th><td colspan="3"><input type="date" id="now_date" class="alist" value="${anc.ancUploadDate }" readonly></input></td>
 			</tr>
@@ -43,9 +41,7 @@
 			<br><br>
 			<button type="button" class="list-btn"><a href="announcementList" style="color:white; text-decoration:none;">목록</a></button>
 	</div>
-	<div id="includeFooter" class="includeFooter">
-			<%@ include file="../footer.jsp"%>
-	</div>
 	</div>
 </body>
+<%@ include file="../footer.jsp"%>
 </html>

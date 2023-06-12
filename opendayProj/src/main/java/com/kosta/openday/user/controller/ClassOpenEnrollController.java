@@ -1,7 +1,13 @@
 package com.kosta.openday.user.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.UserDTO;
@@ -29,6 +37,16 @@ public class ClassOpenEnrollController {
 
 	@Autowired
 	private classOpenEnrollService classopenenrollService;
+	
+	@Autowired
+	private ServletContext sc;
+	
+	@Autowired
+	private HttpSession session;
+
+	private ScheduleDTO oclassDTO;
+
+	private ScheduleDTO scheduleDTO;
 
 	@RequestMapping(value = "/classOpen", method = RequestMethod.GET)
 	public String classOpenForm() {
@@ -44,8 +62,8 @@ public class ClassOpenEnrollController {
 	 */
 
 	@RequestMapping(value = "/classOpen", method = RequestMethod.POST)
-	public ModelAndView classOpen(@ModelAttribute OClassDTO dto,
-			@RequestPart(value = "file", required = false) MultipartFile file, HttpSession session) {
+	public ModelAndView classOpen(@ModelAttribute OClassDTO dto, HttpSession session,
+			@RequestPart(value = "file", required = false) MultipartFile file) {
 		ModelAndView mav = new ModelAndView();
 		try {
 			UserDTO user = (UserDTO)session.getAttribute("userId");
@@ -59,9 +77,11 @@ public class ClassOpenEnrollController {
 	}
 
 	@RequestMapping(value = "/classEnrollment", method = RequestMethod.GET)
-	public ModelAndView classEnrollmentForm(@RequestParam Map<String, Object> map, Integer clsId) {
+	public ModelAndView classEnrollmentForm(@ModelAttribute OClassDTO dto, HttpSession session, @RequestParam Map<String, Object> map, Integer clsId) {
 		ModelAndView mav = new ModelAndView();
 		try {
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			dto.setUserId(user.getUserId());
 			Map<String, Object> scheduleDetail = classopenenrollService.getSchedule(clsId);
 			mav.addObject("scheduleDetail", scheduleDetail);
 			mav.setViewName("classOpenEnrollment/classEnrollment");
@@ -125,10 +145,55 @@ public class ClassOpenEnrollController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping(value = "/classUpdate", method = RequestMethod.GET)
+	public ModelAndView classUpdatetForm(@ModelAttribute OClassDTO dto, HttpSession session, @RequestParam Map<String, Object> map, Integer clsId) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			dto.setUserId(user.getUserId());
+			Map<String, Object> scheduleDetail = classopenenrollService.getSchedule(clsId);
+			mav.addObject("scheduleDetail", scheduleDetail);
+			mav.setViewName("classOpenEnrollment/classUpdate");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
 
-	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
-	public String calendar() {
-		return "classOpenEnrollment/calendar";
+	@ResponseBody
+	@RequestMapping(value = "/classUpdate", method=RequestMethod.POST )
+	public ModelAndView classUpdate(@RequestParam MultipartFile file, HashMap<String, Object> map) {
+		ModelAndView mav = new ModelAndView();
+		String path = sc.getRealPath("/resources/upload");
+		String orgfilename = file.getOriginalFilename();// 전송된 파일명
+		String savefilename = UUID.randomUUID() + "_" + orgfilename; // 저장할 파일명(중복되지 않는 이름으로 만들기)
+		new File(path + "\\" + savefilename);
+		try {
+			System.out.println(22);
+			InputStream is = file.getInputStream();
+			FileOutputStream fos = new FileOutputStream(path + "\\" + savefilename);
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			Integer clsId = oclassDTO.getClsId();
+			Integer scdNum = scheduleDTO.getScdNum();
+			OClassDTO odto = classopenenrollService.getOclass(clsId);
+			ScheduleDTO sdto = classopenenrollService.getScheduleNum(scdNum);
+			odto = classopenenrollService.getOclass(clsId);
+			sdto = classopenenrollService.getScheduleNum(scdNum);
+			FileDTO fileDTO = new FileDTO(odto.getFilNum(), file.getContentType(), orgfilename, savefilename, file.getSize(), null );
+			classopenenrollService.classInfoUpdate(odto);
+			classopenenrollService.classScheduleUpdate(sdto);
+		    classopenenrollService.classFileUpdate(fileDTO);	
+			//OClassDTO oclassDTO = classopenenrollService.getOclass(clsId);
+			//Integer clsId =  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mav.setViewName("classOpenEnrollment/classUpdate");
+		return mav;
+		
 	}
 
 }
