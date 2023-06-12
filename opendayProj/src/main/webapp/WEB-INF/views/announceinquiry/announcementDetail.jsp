@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link href='<c:url value="/resources/css/adm/announcementDetail.css" />' rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src='<c:url value="/resources/js/announcement/announcementDetail.js" />'></script>
+<script src='<c:url value="/resources/js/adm/announcementDetail.js" />'></script>
 
 <!-- 일단 임시로 넣어줌 아이콘 문제임 -->
 <link rel="shortcut icon" href="#">
@@ -28,20 +28,20 @@
 			<br><br><hr><br><br>
 			<table>
 			<tr>
-			<th>작성날짜</th><td colspan="3"> <input type="date" id="now_date" value="" readonly></input></td>
+			<th>작성날짜</th><td colspan="3"><input type="date" id="now_date" class="alist" value="${anc.ancUploadDate }" readonly></input></td>
 			</tr>
 			<tr>
-			<th>제목</th><td colspan="3"><input type="text" value="" readonly></input></td>
+			<th>제목</th><td colspan="3"><input type="text" value="${anc.ancTitle }" class="alist" readonly></input></td>
 			</tr>
 			<tr style="height:400px">
-			<th>내용</th><td colspan="3"><input type="text" id="content" value="" readonly></td>
+			<th>내용</th><td colspan="3"><input type="text" id="content" class="alist" value="${anc.ancContent }" readonly></td>
 			</tr>
 			<tr>
-			<th>첨부파일</th><td colspan="3"><input type="file"></td>
+			<th>첨부파일</th><td colspan="3"><input type="file" class="alist" value="${anc.filNum }"></td>
 			</tr>
 			</table>
 			<br><br>
-			<button type="button" class="list-btn">목록</button>
+			<button type="button" class="list-btn"><a href="announcementList" style="color:white; text-decoration:none;">목록</a></button>
 	</div>
 	<div id="includeFooter" class="includeFooter">
 			<%@ include file="../footer.jsp"%>

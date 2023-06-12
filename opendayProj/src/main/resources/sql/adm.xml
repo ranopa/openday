@@ -78,7 +78,7 @@
 	<!-- 관리자 문의 목록 -->
 	<select id="selectAdmInquiryList" resultType="com.kosta.openday.adm.dto.AdmInquiryDTO">
 		<![CDATA[
-			select * from adm_inquiry
+			select * from adm_inquiry order by admNum desc	
 		]]>
 	</select>
 	

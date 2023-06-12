@@ -3,6 +3,7 @@ package com.kosta.openday.user.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.OClassDTO;
+import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.classOpenEnrollService;
 
 @Controller
@@ -43,9 +45,11 @@ public class ClassOpenEnrollController {
 
 	@RequestMapping(value = "/classOpen", method = RequestMethod.POST)
 	public ModelAndView classOpen(@ModelAttribute OClassDTO dto,
-			@RequestPart(value = "file", required = false) MultipartFile file) {
+			@RequestPart(value = "file", required = false) MultipartFile file, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		try {
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			dto.setUserId(user.getUserId());
 			classopenenrollService.classCreate(dto, file);
 		} catch (Exception e) {
 			e.printStackTrace();
