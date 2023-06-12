@@ -1,11 +1,12 @@
 package com.kosta.openday.user.service;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.CodeDTO;
-import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
@@ -64,11 +64,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int idCheck(String id) throws Exception {
+		/* System.out.println(id); */
 		UserDTO user = userDAO.selectUserInfo(id);
 		if (user == null) {
 
 			return 0;
 		}
+		/* System.out.println(user.getUserId()); */
 		return 1;
 
 	}
@@ -179,12 +181,36 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
+	@Override
+	public List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception {
+		  String userPreferStr = userDAO.selectUserPrefer(userId);
+		    if (userPreferStr == null || userPreferStr.isEmpty()) {
+		        return Collections.emptyList();
+		    }
+
+		    String[] prefers = userPreferStr.split("_");
+		    List<String> preferList = Arrays.asList(prefers);
+
+		    return userDAO.mainPreferenceOClassList(preferList);
+		}
+	
+	
+	/*
+	 * @Override public List<CollectDTO> mainPreferenceOClassList(String userId)
+	 * throws Exception { String userPreferStr = userDAO.selectUserPrefer(userId);
+	 * String[] prefers = userPreferStr.split("_");
+	 * 
+	 * List<String> preferList = Arrays.asList(prefers);
+	 * 
+	 * return userDAO.mainPreferenceOClassList(preferList); }
+	 */
 	/*
 	 * public void func() { String preference = "C1_C3_C15"; String[] code =
 	 * preference.split("_");
 	 * 
 	 * }
-	 */
+	 */	 
 
 	// 찜취소
 	@Override
@@ -252,7 +278,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void getResetPassword(UserDTO user) throws Exception {
+	public void resetPassword(UserDTO user) throws Exception {
 		userDAO.resetPassword(user);
 
 	}

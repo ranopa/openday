@@ -19,7 +19,7 @@ public interface UserDAO {
 
 	public void updateUserPrefer(Map<String, String> map) throws Exception;
 
-	public List<String> selectUserPrefer(String id) throws Exception;
+	public String selectUserPrefer(String id) throws Exception;
 
 	public List<HeartDTO> selectHeartList(String userId) throws Exception;
 
@@ -73,6 +73,10 @@ public interface UserDAO {
 	
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
+
+	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception;
+
+
 
 
 }
