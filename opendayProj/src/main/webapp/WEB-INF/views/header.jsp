@@ -58,9 +58,14 @@
 }
 </style>
 
+<<<<<<< HEAD
+<script> 
+ /*   $.datepicker.setDefaults({   
+=======
 <script>
 
-   $.datepicker.setDefaults({
+/*    $.datepicker.setDefaults({
+>>>>>>> refs/heads/main
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -71,8 +76,13 @@
     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
     showMonthAfterYear: true,
     yearSuffix: '년'
+<<<<<<< HEAD
   });
 
+=======
+  }); */
+   
+>>>>>>> refs/heads/main
   $(function() {
     $("#datepicker1, #datepicker2").datepicker();
   });

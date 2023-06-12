@@ -47,3 +47,20 @@ table td {
 .highlighted {
       color: blue;
     }
+    
+.alist:link {
+  color : black;
+  text-decoration: none;
+}
+.alist:visited {
+  color : purple;
+  text-decoration: none;
+}
+.alist:hover {
+  color : red;
+  text-decoration: underline;
+}
+.alist:active {
+  color : green;
+  text-decoration: none;
+}    

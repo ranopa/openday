@@ -123,6 +123,8 @@
 	font-size: 50px;
 	color: #FF729D;
 	font-weight: 200;
+	position: absolute;
+	z-index : 10px;
 } 
 	 
 .material-symbols-outlined.fill{ 

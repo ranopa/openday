@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,20 +20,26 @@ import com.kosta.openday.user.dto.OClassDTO;
 
 @Service
 public class classOpenEnrollServiceImpl implements classOpenEnrollService {
-
+	
+	@Autowired
+	private ServletContext sc;
+	
 	@Autowired
 	private classOpenEnrollDAO classopenenrollDAO;
 
 	@Override
 	public void classCreate(OClassDTO dto, MultipartFile file) throws Exception {
 		if(file!=null && !file.isEmpty()) {
-			String dir = "C:/openday_file/";
+			String dir = sc.getRealPath("/resources/upload");
+			
+			String savefilename = UUID.randomUUID() + "_" + file.getOriginalFilename();
 			
 			Integer fileNum = classopenenrollDAO.selectFileNum();
 			
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setFilNum(fileNum);
 			fileDTO.setFilOrgName(file.getOriginalFilename());
+			fileDTO.setFilSaveName(savefilename);
 			fileDTO.setFilSize((long) file.getSize());
 			fileDTO.setFilClassification(file.getContentType());
 			classopenenrollDAO.insertFile(fileDTO);

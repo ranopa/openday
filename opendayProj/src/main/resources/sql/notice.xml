@@ -60,7 +60,7 @@
 <!-- 5. 문의 업데이트 -->
 <update id="updateAdmInquiry" parameterType="java.util.Map">
 		<![CDATA[
-			update adm_inquiry set admTitle=#{title}, admContent=#{admContent} where admNum=#{admNum}		
+			update adm_inquiry set admTitle=#{admTitle}, admContent=#{admContent} where admNum=#{admNum}		
 		]]>
 	</update>
 <!-- =========== 문의 답변 answer =============================================== -->
