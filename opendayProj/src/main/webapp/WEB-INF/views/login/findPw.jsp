@@ -9,6 +9,44 @@
 <script src='<c:url value="/resources/js/user/findPw.js"/>'></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/findPw.css"/>">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		let authenConfirm = false;
+	var code = "";
+    $("#emailChk").click(function(e){
+    	e.preventDefault();
+       var sm_email = $("#email").val();
+       console.log(sm_email)
+       $.ajax({
+            type:"GET",
+            url:"mailCheck",
+            data:{userId:$("#userId").val(), sm_email:sm_email},
+            cache : false,
+            success:function(data){
+               if(data == "error"){
+                  alert("이메일 주소가 올바르지 않습니다. 유효한 이메일 주소를 입력해주세요.");
+               }else{                 
+                alert("인증번호 발송이 완료되었습니다.\n입력한 이메일에서 인증번호 확인을 해주십시오.");
+                  code = data;
+                  authenConfirm = true;
+               }
+            }
+        });
+    });
+    
+    $("#confirm").click(function(e) {
+    	if(authenConfirm==false || $("#authenNum").val()!=code) {
+    		alert("인증번호를 확인하세요.");
+    		e.preventDefault();
+    	}
+    })
+    
+    
+	})
+	
+	</script>
+
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -21,42 +59,25 @@
 				<li><a href="findid">아이디 찾기</a></li>
 				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
 			</ul>
-			<form type="text" action="findpw" method="post">
+			<form action="findpw" method="post">
 				<ul class="findPwContainer">
-						<li>
-							<input type="text" class="findPwPIdBox" id="findPwPIdBox"
-							name="userId" placeholder="아이디">
-						</li>
-
-						<li>
-							<input type="text" class="findPwPEmailBox"
-							id="findPwEmailBox" name="userEmail" placeholder="이메일">
-						</li>
+					<li><input type="text" class="findPwPIdBox" id="userId"
+						name="userId" placeholder="아이디"></li>
+					<li>
 					<div class="AuthenticationNumberWrapper">
-						<li>
-							<input type="text" class="AuthenticationNumberBox"
-							id="AuthenticationNumberBox" name="AuthenticationNumberBox"
-							placeholder="인증번호"> 
-							<input type="button"
-							class="AuthenticationNumber" id="AuthenticationNumber"
-							value="인증번호 전송">
-						</li>
+						<input type="text" class="findPwPEmailBox" id="email" name="userEmail" placeholder="이메일">
+						<input type="button" class="AuthenticationNumber" id="emailChk"	value="이메일인증">
 					</div>
+					</li>
+					<li>
+						<input type="text" class="AuthenticationNumberBox" id="authenNum" name="AuthenticationNumberBox" placeholder="인증번호"> 
+					</li>
 				</ul>
-
-
-
 				<div class="findPwBtns">
-					<input type="submit" class="findPwBtn" value="확인">
+					<input type="submit" class="findPwBtn" id="confirm" value="확인">
 				</div>
 			</form>
-			<!-- 
-			<div class="loginBtns">
-				<button type="button" class="cancel-btn">취소</button>
-				<button type="submit" class="submit-btn">가입완료</button>
-			</div>
 
- -->
 		</div>
 	</div>
 	<%@ include file="../footer.jsp"%>

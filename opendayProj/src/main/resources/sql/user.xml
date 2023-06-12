@@ -78,8 +78,8 @@
 	<update id="resetPassword" parameterType="com.kosta.openday.user.dto.UserDTO">
 		<![CDATA[ 
 			UPDATE user
-			SET password = #{password}
-			WHERE id = #{id}
+			SET userPassword = #{userPassword}
+			WHERE userId = #{userId}
 		]]>
 	</update>
 

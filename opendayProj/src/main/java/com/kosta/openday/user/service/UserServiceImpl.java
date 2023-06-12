@@ -70,10 +70,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int idCheck(String id) throws Exception {
+		/* System.out.println(id); */
 		UserDTO user = userDAO.selectUserInfo(id);
 		if (user == null) {
 			return 0;
 		}
+		/* System.out.println(user.getUserId()); */
 		return 1;
 
 	}
@@ -301,7 +303,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void getResetPassword(UserDTO user) throws Exception {
+	public void resetPassword(UserDTO user) throws Exception {
 		userDAO.resetPassword(user);
 
 	}

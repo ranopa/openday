@@ -107,7 +107,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void resetPassword(UserDTO user) throws Exception {
-		sqlSession.selectOne("mapper.user.userFindPw", user);
+		sqlSession.selectOne("mapper.user.resetPassword", user);
 
 	}
 

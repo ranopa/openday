@@ -48,7 +48,7 @@ public interface UserService {
 
 	UserDTO getUserFindPw(String userId, String userEmail) throws Exception;
 
-	void getResetPassword(UserDTO user) throws Exception;
+	void resetPassword(UserDTO user) throws Exception;
 
 	// 찜하기, 찜취소
 	public void removeHeart(Integer clsId, String userId) throws Exception;
