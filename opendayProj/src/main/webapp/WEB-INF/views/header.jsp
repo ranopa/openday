@@ -57,9 +57,14 @@
 }
 </style>
 
+<<<<<<< HEAD
+<script> 
+ /*   $.datepicker.setDefaults({   
+=======
 <script>
 
 /*    $.datepicker.setDefaults({
+>>>>>>> refs/heads/main
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',

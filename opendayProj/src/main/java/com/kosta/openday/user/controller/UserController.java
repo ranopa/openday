@@ -83,8 +83,9 @@ public class UserController {
 		public String nickNameCheck(@RequestParam("userNickname") String userNickname) throws Exception {
 			System.out.println(userNickname);
 			String mesg = null;
-			UserDTO user = userService.userByNickname(userNickname); 
-			if (user.getUserNickname().equals(userNickname)==true) {
+			UserDTO user = null;
+			user = userService.userByNickname(userNickname); 
+			if (user!=null) {
 				mesg = "1"; //불가능
 			} else { 
 				mesg = "0"; //가능
@@ -92,7 +93,8 @@ public class UserController {
 			System.out.println(mesg);
 			return mesg;
 		}
-
+		
+		
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPage() {
