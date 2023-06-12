@@ -121,7 +121,6 @@ footer {
 
 </style>
 
-
 </head>
 <body>
 	<div class="footerWrapper">

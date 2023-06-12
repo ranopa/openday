@@ -1,8 +1,5 @@
 package com.kosta.openday.teacher.dto;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class TeacherScheduleDTO {
 	private String clsName; // 클래스명
 	private String scdDate; // 강의 일
