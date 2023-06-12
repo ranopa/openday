@@ -9,6 +9,7 @@ public class AdmInquiryDTO {
 	private String admContent; //내용
 	private String admType; //유형
 	private Date admUploadDate; //등록일
+	private String admAnTitle; //답변내용
 	private String admAnContent; //답변내용
 	private boolean admStatus; //답변상태
 	private Date admAnDate; //답변일
@@ -25,11 +26,20 @@ public class AdmInquiryDTO {
 		this.admContent = admContent;
 		this.admType = admType;
 		this.admUploadDate = admUploadDate;
+		this.admAnTitle = admAnTitle;
 		this.admAnContent = admAnContent;
 		this.admStatus = admStatus;
 		this.admAnDate = admAnDate;
 		this.userId = userId;
 		this.admSecret = admSecret;
+	}
+
+	public String getAdmAnTitle() {
+		return admAnTitle;
+	}
+
+	public void setAdmAnTitle(String admAnTitle) {
+		this.admAnTitle = admAnTitle;
 	}
 
 	public Integer getAdmNum() {

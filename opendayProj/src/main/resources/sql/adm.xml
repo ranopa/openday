@@ -84,10 +84,10 @@
 	<!-- 관리자 문의 목록 -->
 	<select id="selectAdmInquiryList" resultType="com.kosta.openday.adm.dto.AdmInquiryDTO">
 		<![CDATA[
-			select * from adm_inquiry
+			select * from adm_inquiry order by admNum desc	
 		]]>
 	</select>
-	
+	 
 	<!-- 관리자 문의 답변등록 -->
 	<update id="updateAnswerInquiry" parameterType="java.util.Map">
 		<![CDATA[
@@ -99,5 +99,15 @@
 		<![CDATA[
 			delete from announcement where ancId=#{ancId}	
 		]]>
-	</delete>
+	</delete> 
+	<select id="selectSettlementWaitingList"
+	parameterType="String"
+	resultType="com.kosta.openday.teacher.dto.SettlementAmountDTO">
+	<![CDATA[
+		select * from settlement_amount
+		where saStatus = #{status}
+	]]>
+		
+	</select>
+	 
 </mapper>

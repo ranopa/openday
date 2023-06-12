@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kosta.openday.adm.dto.NotificationSourceType;
+import com.kosta.openday.adm.service.NotificationService;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplicationPaymentDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
@@ -52,6 +54,9 @@ public class OClassController {
 
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private NotificationService notiService;
 
 	/**
 	 * 클래스 상세 화면에서, "신청하기" 버튼 클릭 시
@@ -124,6 +129,10 @@ public class OClassController {
 			PaymentResultDTO paymentResult = paymentService.buildPaymentResult(payment);
 			
 			model.addAttribute("result", paymentResult);
+			
+			// 알림 생성 
+			notiService.createNotification(null, NotificationSourceType.OCLASS_APPLY_DONE, "", "", payment.getUserId());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

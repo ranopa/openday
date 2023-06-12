@@ -18,7 +18,7 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 
 	@Override
 	public int classOpen(OClassDTO dto) throws Exception {
-		return sqlSession.insert("mapper.oclass.classOpen", dto);
+		return sqlSession.insert("mapper.oclass.insertOClass", dto);
 	}
 
 	@Override

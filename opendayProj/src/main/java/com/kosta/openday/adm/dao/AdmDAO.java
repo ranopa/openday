@@ -9,6 +9,7 @@ import com.kosta.openday.adm.dto.AnnouncementDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.adm.dto.AdmInquiryDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.teacher.dto.SettlementAmountDTO;
 
 public interface AdmDAO {
 
@@ -28,9 +29,15 @@ public interface AdmDAO {
 	FileDTO selectFile(Integer filNum) throws Exception;
 	List<AdmInquiryDTO> selectInquiryList() throws Exception;
 	void deleteInquiry(Integer admNum) throws Exception;
-	void updateInquiry(Map<String,Object> param) throws Exception; 
+ 
 	void updateAnInquiry(Map<String,Object> map)throws Exception;
 
 	void deleteNotice(Integer ancId) throws Exception;
 	String selectCategoryByCode(String codNum) throws Exception;
+ 
+	void updateInquiry(Map<String,Object> param) throws Exception;
+	 
+	//정산 대기 목록 조회 
+	List<SettlementAmountDTO> selectSettlementListByStatus(String status);
+ 
 }
