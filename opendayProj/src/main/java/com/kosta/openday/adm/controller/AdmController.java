@@ -141,7 +141,7 @@ public class AdmController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/inquiryList")
+	@RequestMapping(value = "/inquiryList", method=RequestMethod.GET)
 	public ModelAndView inquiryHistoryList() {
 		ModelAndView mav = new ModelAndView();
 		try {
@@ -163,7 +163,7 @@ public class AdmController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mav.setViewName("redirect:/announceinquiry/inquiryDetail");
+		mav.setViewName("redirect:/inquiryList");
 		return mav;
 	}
 	
@@ -180,21 +180,17 @@ public class AdmController {
 	}
 	
 	@RequestMapping(value = "/inquiryDetail",method=RequestMethod.GET)
-	public String inquiryHistoryDetial() {
-		return "announceinquiry/inquiryDetail";
+	public ModelAndView inquiryHistoryDetail(@RequestParam("admNum") Integer admNum) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			AdmInquiryDTO inquiry = admService.findAdmInquiry(admNum);
+			mav.addObject("inquiry", inquiry);
+			mav.setViewName("announceinquiry/inquiryDetail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
 	}
-	
-	@RequestMapping(value = "/announcementList",method=RequestMethod.GET)
-	public String announcementList() {
-		return "announceinquiry/announcementList";
-	}
-	
-	@RequestMapping(value = "/announcementDetail",method=RequestMethod.GET)
-	public String announcementDetail() {
-		return "announceinquiry/announcementDetail";
-	}
-
-
 	
 	//개설신청 디테일
 	@RequestMapping(value="/adm/adminwaitingdetail")
@@ -208,9 +204,6 @@ public class AdmController {
 		}
 		return "admin/adminWatingDetail";
 	}
-	
-	
-
 	
 	//유저리스트
 	@RequestMapping(value = "/admuserlist", method = RequestMethod.GET)
@@ -321,7 +314,6 @@ public class AdmController {
 		return "adm/admMain";
 	}
 	
-
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
 	public String admSalesList(Model model) { 
@@ -334,32 +326,32 @@ public class AdmController {
 	}
 
 	// 공지사항 목록
-	@RequestMapping(value="/adminannouncementlist")
-	public String adminAnnouncementList(Model model) {
+	@RequestMapping(value="/announcementList")
+	public ModelAndView adminAnnouncementList() {
+		ModelAndView mav = new ModelAndView();
 		try {
 			List<AnnouncementDTO> ancList = admService.findAnnouncementList();
-			model.addAttribute("ancList", ancList);
-			model.addAttribute("page","admAnnouncementList");
+			mav.addObject("ancList", ancList);
+			mav.setViewName("announceinquiry/announcementList");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/admMain";
+		return mav;
 	}
 	
+	
 	// 공지사항 디테일
-	@RequestMapping(value="/admannouncementdetail/{ancId}")
-	public String adminAnnouncementDetail(@PathVariable Integer ancId,  Model model) {
+	@RequestMapping(value="/announcementDetail", method=RequestMethod.GET)
+	public ModelAndView adminAnnouncementDetail(@RequestParam("ancId") Integer ancId) {
+		ModelAndView mav = new ModelAndView();
 		try {
 			AnnouncementDTO anc = admService.findAnnouncement(ancId);
-			model.addAttribute("anc", anc);
-			
-			List<AdmInquiryDTO> inquiryList = admService.findAllAdmInquiryList();
-			model.addAttribute("inquiryList", inquiryList);
-			model.addAttribute("page","admInquiryList");
+			mav.addObject("anc", anc);
+			mav.setViewName("announceinquiry/announcementDetail");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/admMain";
+		return mav;
 	}
 	
 	// 공지사항 작성

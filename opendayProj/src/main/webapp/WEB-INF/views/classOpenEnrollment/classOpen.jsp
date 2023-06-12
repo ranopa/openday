@@ -24,9 +24,9 @@
 </script>
 </head>
 <body>
+		<%@ include file="../header.jsp"%>
 	
 	<div id="includeWrapper">
-		<%@ include file="../header.jsp"%>
 	<div id="div1">
 	<form id="form" action="classOpen" method="post" enctype="multipart/form-data">
 		<h3>클래스 개설</h3>
@@ -122,7 +122,7 @@
 	</div>
 	</form>
 	</div>
-			<%@ include file="../footer.jsp"%>>
 	</div>	
+			<%@ include file="../footer.jsp"%>>
 </body>
 </html>
