@@ -282,5 +282,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDAO.searchInputSelectCount(map);
 	}
+
+	@Override
+	public void alterAuthorityTchc(String userId) throws Exception {
+		userDAO.updateUserAuthority(userId);
+	}
 	
 }

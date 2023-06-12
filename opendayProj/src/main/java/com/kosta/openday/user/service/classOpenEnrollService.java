@@ -15,4 +15,5 @@ public interface classOpenEnrollService {
 	public void fileView(Integer filNum, OutputStream out) throws Exception;	
 	void classUpload(ScheduleDTO dto) throws Exception;
 	Map<String, Object> getSchedule(Integer clsId) throws Exception;
+	
 }

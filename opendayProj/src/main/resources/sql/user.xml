@@ -561,6 +561,12 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	]]>
 	</select>
 	
+	<update id="updateUserAuthorty" parameterType="String" >
+	<![CDATA[
+		update user set authority = 2 where userId=#{userId}
+	]]>
+	</update>
+	
 	
 
 

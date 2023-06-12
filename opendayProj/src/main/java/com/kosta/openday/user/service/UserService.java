@@ -75,4 +75,7 @@ public interface UserService {
 	
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
 	
+	//강사권한부여
+	public void alterAuthorityTchc(String userId)throws Exception;
+	
 }

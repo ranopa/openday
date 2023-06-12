@@ -198,6 +198,12 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("mapper.search.searchInputSelectCount", map);
 	}
 
+	@Override
+	public void updateUserAuthority(String userId) throws Exception {
+		sqlSession.update("mapper.user.updateUserAuthorty", userId);
+		
+	}
+
 	 
 
 

@@ -73,6 +73,6 @@ public interface UserDAO {
 	
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
-
+	public void updateUserAuthority(String userId) throws Exception;
 
 }
