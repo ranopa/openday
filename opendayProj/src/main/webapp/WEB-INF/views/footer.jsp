@@ -63,69 +63,7 @@
 		format('truetype');
 }
 
-.nanumbarungothic * {
-	font-family: 'NanumBarunGothic', sans-serif;
-}
-
-* {
-	padding: 0;
-	margin: 0;
-}
-
-.footerLogo {
-	width: 130px;
-	height: 42px;
-	left: 80px;
-	top: 54px;
-	font-family: 'Cafe24 Ohsquare';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 36px;
-	line-height: 42px;
-	color: #999999;
-
-	margin-top: 43px;
-}
-
-footer {
-	display: flex;
-	align-items: center;
-
-}
-
-
-.footerContentWrapper {
-	margin: 0 auto;
-	width: 1280px;
-
-}
-
-.footerWrapper {
-	margin-top:150px;
-	width: 100%;
- 	height: 125px; 
-	background-color: #F4F4F4;
-	left: 0;
-	right: 0;
-
-   
-}
-.footerCopyRight{
-	margin-left:15px;
-	margin-top:33px;
-	color:#717171;
-}
-
-
-
-
-
-</style>
-
-
-=======
 <link rel="stylesheet" href='<c:url value="/resources/css/user/footer.css" />' >
->>>>>>> branch 'channel_notice_open' of https://github.com/binunu/openday.git
 </head>
 <body>
 	<div class="footerWrapper">
