@@ -57,15 +57,10 @@
 	cursor: pointer;
 }
 </style>
+ 
+<script>   
 
-<<<<<<< HEAD
-<script> 
- /*   $.datepicker.setDefaults({   
-=======
-<script>
-
-/*    $.datepicker.setDefaults({
->>>>>>> refs/heads/main
+/*    $.datepicker.setDefaults({ 
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -75,14 +70,9 @@
     dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
     showMonthAfterYear: true,
-    yearSuffix: '년'
-<<<<<<< HEAD
+    yearSuffix: '년' 
   });
-
-=======
-  }); */
-   
->>>>>>> refs/heads/main
+  */
   $(function() {
     $("#datepicker1, #datepicker2").datepicker();
   });
@@ -91,6 +81,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 에이작스 밑에 쓰기 -->
 <script>
+
+
  //$(function(){
 	$.ajax({
 		url:'categorylist',
@@ -458,14 +450,93 @@
 			</table>
 		</div>
 	</div>
-	 <div id="alarm"> 
+	 <div id="alarm" > 
         <div class="a-box">
             <p class="a-p">알림</p> 
             <ul class="a-ul" id="notiList">
               
             </ul>
-        </div> 
+        </div>         
     </div> 
+    <script>
+    
+	 var alarmBtn = document.querySelector("#abtn");
+     var modalBtn = document.querySelector("#alarm"); 
+    
 
+     alarmBtn.addEventListener('click',()=>{   
+    	 if(!modalBtn.classList.contains('show')){
+             modalBtn.classList.add('show');
+         }else{
+             modalBtn.classList.remove('show'); 
+         }
+     })
+    </script>
 </body>
+<script>
+
+window.onload=()=>{
+	   
+    
+
+ var userId = '${userId.userId}';
+     if (userId) {
+         setInterval(function() {
+         $.ajax({
+           url: 'notification/'+userId,
+           type:'get',
+           contentType: 'application/json',
+           success: function(data){
+             $('#notiList li').remove();
+              if ($('#notiList li').length == 0) {
+               for(const noti of data) {
+                 console.log(noti.ntfMessage)
+                 $('#notiList').append(`
+                   <li>
+                     <a href="\${noti.ntfUrl}" class="a-a">
+                     <span class="message">\${noti.ntfMessage}</span>
+                     </a>
+                   </li>
+                   <li>
+                     <button class="a-del-btn">
+                       <span class="material-symbols-outlined">
+                           close
+                       </span>
+                     </button>
+                     <input type="hidden" id="ntfId" value="\${noti.ntfId}">
+                   </li>
+                 `);
+               }
+              }  
+           }
+         })
+         },5*1000);
+     }
+     
+    
+     var delBtns = document.querySelectorAll('#alarm .a-del-btn');
+     delBtns.forEach(btn=>{
+         btn.addEventListener('click',()=>{
+             var ipEl = btn.nextElementSibling.value.toString();
+             console.log(ipEl); 
+             var ulValue = btn.parentElement.parentElement;
+             ulValue.remove();
+
+
+             $.ajax({
+                 url:"deletealarm",
+                 type:'post',
+                 data: {"ipEl":ipEl},
+                 success:function(response){
+                     console.log('success');
+                 },
+                 error:function(){
+                     console.log('error');
+                 }
+             })
+         })
+     }) 
+ }
+     
+</script>
 </html>

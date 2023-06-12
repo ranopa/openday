@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/user/footer.css">
+<meta charset="UTF-8"> 
 <title>Insert title here</title>
 <style>
 @font-face {
