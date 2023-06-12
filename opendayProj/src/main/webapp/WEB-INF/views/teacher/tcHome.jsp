@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>열어데이 - 강사페이지</title>
-<!-- 값 제어를 위해 jquery -->
-<script src="resources/js/teacher/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/teacher/teacher.css">
 <link rel="stylesheet"

@@ -62,10 +62,12 @@ public interface UserService {
 	List<TeacherChannelDTO> getTchcList(String userId) throws Exception;
 	
 	public CodeDTO getCode(String codNum) throws Exception; 
-	
+	 
+	public void reviewWrite(Map<String,String> param, String userId) throws Exception;
+ 
 	//닉네임중복확인
 	public UserDTO userByNickname(String userNickname) throws Exception;
-
+ 
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception;
 	
 

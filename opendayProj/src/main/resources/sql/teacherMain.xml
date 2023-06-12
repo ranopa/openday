@@ -8,38 +8,8 @@
 	<select id="tcAnnouncementList"
 		resultType="com.kosta.openday.adm.dto.AnnouncementDTO">
 		SELECT * FROM announcement WHERE ancType = "강사"
-		order by
-		ancUploadDate desc
+		order by ancUploadDate desc
 		limit 10 offset 0
 	</select>
-	
-	<!-- 강사 프로필 파일넘버 강사채널에 넣기 -->
-	<update id="tcProfileUserUpdate" parameterType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
-		<![CDATA[
-			update teacher_channel set tchcNickname = #{tchcNickname}, tchcIntro = #{tchcIntro}, filNum = nextval(file_seq) WHERE userId = #{userId}
-	   ]]>
-	</update>
-	<!-- 강사 프로필 -->
-	<insert id="tcProfileAdd"
-		parameterType="com.kosta.openday.adm.dto.FileDTO">
-		 <![CDATA[
-		     INSERT INTO file VALUES(#{filNum},#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
-	     ]]>
-	</insert>
 
-	<!-- 강사 프로필 업데이트 -->
-	<update id="tcProfileUpdate"
-		parameterType="com.kosta.openday.adm.dto.FileDTO">
-		 <![CDATA[
-		 	update file set filClassification = #{filClassification}, filOrgName = #{filOrgName}, filSaveName = #{filSaveName}, filSize = #{filSize}
-		 	where filNum = #{filNum}
-	 	 ]]>
-	</update>
-	<!-- 강사 프로필 -->
-	<select id="tcProfileInfo" parameterType="int"
-		resultType="com.kosta.openday.adm.dto.FileDTO">
-		 <![CDATA[
-		 	select * from file where filNum = #{filNum}
-	 	 ]]>
-	</select>
 </mapper>

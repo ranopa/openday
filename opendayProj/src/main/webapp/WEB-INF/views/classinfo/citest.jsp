@@ -201,7 +201,6 @@
 		border-radius: 2px;
 		border: 1px solid gray;
 		cursor: pointer;
-		margin-bottom: 10px;
 	}
 	
 	.review-star {
@@ -312,6 +311,14 @@
     	border: 1px solid #D9D9D9;
     	margin-top: 10px;
     }
+    
+    #ciContent, #ciModContent {
+    	resize: none;
+    }
+    
+    #ciContent:focus, #ciModContent {
+		outline: none;
+	}
 </style>
 <script>
 	function openTab(tabId) {
@@ -329,8 +336,6 @@
 		document.getElementById(tabId).style.display = 'block';
 		document.getElementById('menu-' + tabId).classList.add('active');
 	}
-
-
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -448,7 +453,7 @@ $(function() {
 				<div class="buttons">
 					<button id="heartButton" class="heart-button"><span class="material-symbols-outlined">favorite</span></button>
 					<span id="clickedCount" class="clicked-count">${res.heartCnt}</span>
-					<button class="apply-button" onclick="window.location.href='${contextPath}/apply/${res.clsInfo.clsId}'">신청하기</button>
+					<button class="apply-button" onclick="window.location.href='${contextPath}/apply?clsId=${res.clsInfo.clsId}'">신청하기</button>
 				</div>
 			</div>
 		</div>
@@ -490,8 +495,9 @@ $(function() {
             					<span class="user-id">${review.userId }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             					<span class="review-date">${review.rvDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             					<c:if test="${user.userId==review.userId}">
-            					<button class="delete-button" data-reviewnum=${review.rvNum }>삭제</button><br/>
+            					<button class="delete-button" data-reviewnum=${review.rvNum }>삭제</button>
             					</c:if>
+            					<br/>
             					<span class="review-star">${review.rvStar }</span><br/><br/>
             					<span class="review-content">${review.rvContent }</span><br/><br/>
         					</p>
@@ -536,7 +542,7 @@ $(function() {
 									<span>${inquiryAndAnswer.clsInquiry.ciContent }</span><br/><br/>
 								</c:when>
 								<c:otherwise>
-									<span>비밀글입니다.</span><br/><br/>
+									<br/><br/><span>비밀글 입니다.</span><br/><br/>
 								</c:otherwise>
 								</c:choose>
 							</p>
@@ -552,7 +558,7 @@ $(function() {
 									<span>${inquiryAndAnswer.answer.ansContent }</span><br/><br/>
 								</c:when>
 								<c:otherwise>
-									<span>비밀글입니다.</span><br/><br/>
+									<span>비밀글 입니다.</span><br/><br/>
 								</c:otherwise>
 								</c:choose>
 							</p>	

@@ -31,13 +31,6 @@ public class PageUtil {
 		if(totalPageCount<endPageNum) {
 			endPageNum=totalPageCount;
 		}
-		/*
-		 * System.out.println("startRow:"+startRow);
-		 * System.out.println("endRow:"+endRow);
-		 * System.out.println("totalPageCount:"+totalPageCount);
-		 * System.out.println("startPageNum:"+startPageNum);
-		 * System.out.println("endPageNum:"+endPageNum);
-		 */
 	}
 	public int getPageNum() {
 		return pageNum;
