@@ -17,11 +17,9 @@
       $.noConflict();
 </script>
 </head>
+<%@ include file="../header.jsp"%>
 <body>
 	<div id="includeWrapper">
-	<div id="includeHeader" class="includeHeader">
-		<%@ include file="../header.jsp"%>
-	</div>
 	<div id="noticeWrapper">	
 			<a href="announcementList" class="atag">공지사항</a>
 			<a href="inquiry" class="atag">문의하기</a>
@@ -47,10 +45,8 @@
 			
 			<button type="submit" class="submit-btn">제출하기</button>
 			</form>
-	</div>
-	<div id="includeFooter" class="includeFooter">
-			<%@ include file="../footer.jsp"%>
-	</div>
+		</div>
 	</div>
 </body>
+<%@ include file="../footer.jsp"%>
 </html>

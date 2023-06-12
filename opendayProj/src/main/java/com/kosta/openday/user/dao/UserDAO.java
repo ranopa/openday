@@ -15,7 +15,7 @@ import com.kosta.openday.user.dto.UserDTO;
 //test
 public interface UserDAO {
 
-	void insertUser(UserDTO user) throws Exception;
+	public void insertUser(UserDTO user) throws Exception;
 
 	public void updateUserPrefer(Map<String, String> map) throws Exception;
 
@@ -51,7 +51,7 @@ public interface UserDAO {
 
 	public UserDTO selectUserFindPw(Map<String, Object> param) throws Exception;
 
-	void resetPassword(UserDTO user) throws Exception;
+	public void resetPassword(UserDTO user) throws Exception;
 
 	public void deleteHeart(Map<String, Object> map) throws Exception;
 
@@ -73,6 +73,10 @@ public interface UserDAO {
 	
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
+
 	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception;
+
+
+
 
 }

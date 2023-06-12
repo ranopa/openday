@@ -18,7 +18,7 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 
 	@Override
 	public int classOpen(OClassDTO dto) throws Exception {
-		return sqlSession.insert("mapper.oclass.classOpen", dto);
+		return sqlSession.insert("mapper.oclass.insertOClass", dto);
 	}
 
 	@Override
@@ -50,6 +50,27 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	@Override
 	public Map<String, Object> selectSchedule(Integer clsId) throws Exception {
 		return sqlSession.selectOne("mapper.teacher.selectSchedule", clsId);
+	}
+
+	@Override
+	public void updateClassInfo(OClassDTO dto) throws Exception {
+		sqlSession.update("mapper.oclass.updateclassOpen", dto);		
+	}
+
+	@Override
+	public void updateClassFile(FileDTO dto) throws Exception {
+		sqlSession.update("mapper.oclass.updateThumbnail", dto);
+	}
+
+	@Override
+	public void updateClassSchedule(ScheduleDTO dto) throws Exception {
+		sqlSession.update("mapper.teacher.updateclassEnrollment", dto);
+		
+	}
+
+	@Override
+	public ScheduleDTO selectScheduleNum(Integer scdNum) throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectSchedule",scdNum);
 	}
 
 }

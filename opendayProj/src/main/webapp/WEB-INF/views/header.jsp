@@ -13,6 +13,7 @@
 
 <link rel="stylesheet"	href="<c:url value="/resources/css/user/header.css"/>">
 <script src='<c:url value="/resources/js/user/header.js"/>'></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -35,10 +36,9 @@ font-size: 16px;
 	font-family: 'NanumBarunGothic';
 }
 </style>
-
-<script>
-
-  $.datepicker.setDefaults({
+ 
+<script>   
+  $.datepicker.setDefaults({ 
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -48,7 +48,7 @@ font-size: 16px;
     dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
     showMonthAfterYear: true,
-    yearSuffix: '년'
+    yearSuffix: '년' 
   });
 
   $(function() {
@@ -60,6 +60,7 @@ font-size: 16px;
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 에이작스 밑에 쓰기 -->
 <script>
+
  $(function(){
 	$.ajax({
 		url:'categorylist',
@@ -159,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
             margin:0; 
         }
         #alarm{
-            opacity: 0;
-            visibility: hidden;
+             opacity: 0;
+            visibility: hidden; 
             transition: 0.3s all;
              position: absolute;
             right: 60px;
@@ -265,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
 								<li class="topButton tB topButtonsMargin"><a
 									href="requestlist"><span>클래스요청</span></a></li>
 
-								<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
+								<li class="topButton tB tBLast topButtonsMargin"><a href="announcementList"><span>고객센터</span></a></li>
 
 							</ul>
 						</div>
@@ -445,88 +446,93 @@ document.addEventListener('DOMContentLoaded', function() {
 			</table>
 		</div>
 	</div>
-	 <div id="alarm"> 
+	 <div id="alarm" > 
         <div class="a-box">
             <p class="a-p">알림</p> 
             <ul class="a-ul" id="notiList">
               
             </ul>
-        </div> 
-    </div>
+        </div>         
+    </div> 
     <script>
-    $(function() {
-        var alarmBtn = $('#abtn');
-        var modalBtn = $('#alarm');
-        
-        var userId = '${userId.userId}';
+    
+	 var alarmBtn = document.querySelector("#abtn");
+     var modalBtn = document.querySelector("#alarm"); 
+    
 
-        alarmBtn.on('click',()=>{ 
-            if(!modalBtn.classList.contains('show')){
-                modalBtn.classList.add('show');
-            }else{
-                modalBtn.classList.remove('show'); 
-            }
-        })
-        if (userId) {
-            setInterval(function() {
-            $.ajax({
-              url: 'notification/'+userId,
-              type:'get',
-              contentType: 'application/json',
-              success: function(data){
-                $('#notiList li').remove();
-                 if ($('#notiList li').length == 0) {
-                  for(const noti of data) {
-                    console.log(noti.ntfMessage)
-                    $('#notiList').append(`
-                      <li>
-                        <a href="\${noti.ntfUrl}" class="a-a">
-                        <span class="message">\${noti.ntfMessage}</span>
-                        </a>
-                      </li>
-                      <li>
-                        <button class="a-del-btn">
-                          <span class="material-symbols-outlined">
-                              close
-                          </span>
-                        </button>
-                        <input type="hidden" id="ntfId" value="\${noti.ntfId}">
-                      </li>
-                    `);
-                  }
-                 }  
-              }
-            })
-            },5*1000);
-        }
-        
-       
-        var delBtns = document.querySelectorAll('#alarm .a-del-btn');
-        delBtns.forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                var ipEl = btn.nextElementSibling.value.toString;
-                console.log(ipEl); 
-                var ulValue = btn.parentElement.parentElement;
-                ulValue.remove();
-
-
-                $.ajax({
-                    url:"deletealarm",
-                    type:'post',
-                    data: {"ipEl":ipEl},
-                    success:function(response){
-                        console.log('success');
-                    },
-                    error:function(){
-                        console.log('error');
-                    }
-                })
-            })
-        }) 
-    })
-        
-
+     alarmBtn.addEventListener('click',()=>{   
+    	 if(!modalBtn.classList.contains('show')){
+             modalBtn.classList.add('show');
+         }else{
+             modalBtn.classList.remove('show'); 
+         }
+     })
     </script>
-
 </body>
+<script>
+
+window.onload=()=>{
+	   
+    
+
+ var userId = '${userId.userId}';
+     if (userId) {
+         setInterval(function() {
+         $.ajax({
+           url: 'notification/'+userId,
+           type:'get',
+           contentType: 'application/json',
+           success: function(data){
+             $('#notiList li').remove();
+              if ($('#notiList li').length == 0) {
+               for(const noti of data) {
+                 console.log(noti.ntfMessage)
+                 $('#notiList').append(`
+                   <li>
+                     <a href="\${noti.ntfUrl}" class="a-a">
+                     <span class="message">\${noti.ntfMessage}</span>
+                     </a>
+                   </li>
+                   <li>
+                     <button class="a-del-btn">
+                       <span class="material-symbols-outlined">
+                           close
+                       </span>
+                     </button>
+                     <input type="hidden" id="ntfId" value="\${noti.ntfId}">
+                   </li>
+                 `);
+               }
+              }  
+           }
+         })
+         },5*1000);
+     }
+     
+    
+     var delBtns = document.querySelectorAll('#alarm .a-del-btn');
+     delBtns.forEach(btn=>{
+         btn.addEventListener('click',()=>{
+             var ipEl = btn.nextElementSibling.value.toString();
+             console.log(ipEl); 
+             var ulValue = btn.parentElement.parentElement;
+             ulValue.remove();
+
+
+             $.ajax({
+                 url:"deletealarm",
+                 type:'post',
+                 data: {"ipEl":ipEl},
+                 success:function(response){
+                     console.log('success');
+                 },
+                 error:function(){
+                     console.log('error');
+                 }
+             })
+         })
+     }) 
+ }
+     
+</script>
 </html>

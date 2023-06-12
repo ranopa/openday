@@ -224,6 +224,7 @@
 			<version>20200518</version>
 		</dependency>
 
+
 		<!-- Gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -236,7 +237,6 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.13.3</version>
-			
 		</dependency>
 
 	</dependencies>
