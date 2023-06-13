@@ -16,11 +16,57 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 <style>
 .contentTopMargin{
-margin-top:60px;
+margin-top:60px;}
 .tBox a{
 color:#404040;
 text-decoration: none;
 }
+
+
+.tBox:hover{
+border:1px solid #FFBACF;
+
+}
+
+
+.numBox{
+border: 1px solid;
+width: 30px;
+height: 30px;
+}
+
+.tc-paging a{
+text-decoration: none;
+}
+.tc-paging a:hover{
+text-decoration-line: none;
+
+}
+
+.tc-paging{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.numBox{
+margin-right: 10px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.pagenp{
+color:#CFCFCF;
+margin-top: 3px;
+
+}
+.pagenp:hover{
+color:#8556FF;
+
+}
+
+.pagep{
+margin-right: 8px;
 }
 
 </style>
@@ -45,7 +91,8 @@ text-decoration: none;
 						<c:if test="${loop.index < 5}">
 							<c:if test="${list.tchcNickname != previousNickname}">
 								<div class="tBox">
-								<a href="tchcinfo/${list.tchcNum}">
+							<%-- 	<a href="tchcinfo/${list.tchcNum}"> --%>
+							<a href="javascript:void(0);">
 									<img src="img/${list.tFilNum}" class="tFil"> <span>${list.tchcNickname}</span>
 								</a>
 								</div>
@@ -55,7 +102,7 @@ text-decoration: none;
 					</c:forEach>
 
 				</div>
-				<div class="subOption">
+				<!-- <div class="subOption">
 					<label class="checkLabel"><input type="checkbox"
 						name="color" value="blue">인기순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">등록일순</label> <label
@@ -63,7 +110,7 @@ text-decoration: none;
 						value="blue">가격높은순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">가격낮은순</label>
 
-				</div>
+				</div> -->
 
 				<div class="oclassListWrapper">
 					<!-- <div class="arrowIcon">
@@ -180,7 +227,7 @@ text-decoration: none;
 			
 			<div class="tc-paging">
 						<c:if test="${pu.startPageNum>5 }">
-							<a href="searchinput?pageNum=${pu.startPageNum-1 }&keyword=${map.keyword}">이전</a>
+							<a href="searchinput?pageNum=${pu.startPageNum-1 }&keyword=${map.keyword}">	<span class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
 						</c:if>
 
 						<c:forEach var="i" begin="${pu.startPageNum }"
@@ -188,19 +235,20 @@ text-decoration: none;
 							<c:choose>
 								<c:when test="${pu.pageNum==i }">
 									<!-- 현재페이지 -->
-									<a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span
-										style='color: blue; font-weight: bold'>[${i }]</span>
-									</a>
+									<div class="numBox" style='color: #8556FF;'><a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span
+										style='color: #8556FF; font-weight: bold'>${i }</span>
+									</a></div>
 								</c:when>
 								<c:otherwise>
-									<a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span style='color: gray;'>[${i }]</span>
-									</a>
+								<div class="numBox" style='color: #CFCFCF;'>
+									<a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span style='color: gray;'>${i }</span>
+									</a></div>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:if test="${pu.endPageNum<pu.totalPageCount }">
-							<a href="searchinput?pageNum=${pu.endPageNum+1 }&keyword=${map.keyword}">다음</a>
+							<a href="searchinput?pageNum=${pu.endPageNum+1 }&keyword=${map.keyword}"><span class="material-symbols-outlined pagenp">chevron_right</span></a>
 						</c:if>
 					</div>
 			

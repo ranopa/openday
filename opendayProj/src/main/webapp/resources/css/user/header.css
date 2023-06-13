@@ -37,7 +37,8 @@
 	font-family: 'Cafe24 Ohsquare';
 	font-size: 35px;
 	text-decoration-line: none;
-	color: #5A2ECE;
+	color: #5A2ECE;	
+	/* margin-top: 25px; */
 }
 
 .logo a:hover {
@@ -65,30 +66,50 @@ headerWrapper {
 .contentWrapper {
 	margin: 0 auto;
 	width: 1280px;
-	
 }
-
 
 .hr1 {
 	/* top: 27px; */
 	left: 0px;
-/* 	border: none; */
-	border-bottom:1px solid #E1E1E1;
-/* 	height: 1px;
+	/* 	border: none; */
+	border-bottom: 1px solid #E1E1E1;
+	/* 	height: 1px;
 	background-color: #E1E1E1; */
 }
 
 .hr2 {
 	left: 0px;
-/* 	border: none; */
-border-bottom:1px solid #FFD8E4;
-/* 	background-color: #FFD8E4; */
+	/* 	border: none; */
+	border-bottom: 1px solid #FFD8E4;
+	/* 	background-color: #FFD8E4; */
 	/* height: 1px; */
 	/* 	margin-top: 20px; */
 }
 
+/* h1 {
+	width: 130px;
+	height: 42px;
+	left: 80px;
+	top: 54px;
+	font-family: 'Cafe24 Ohsquare';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 42px;
+	color: #5A2ECE;
+		margin-top: 34px;
+}
 
+h1 a {
+	text-decoration-line: none;
+	color: #5A2ECE;
+}
 
+h1 a:hover {
+	text-decoration-line: none;
+	color: #5A2ECE;
+}
+ */
 .topButtonColor {
 	/* width: 51px; */
 	height: 16px;
@@ -133,10 +154,9 @@ border-bottom:1px solid #FFD8E4;
 .verticalAlign {
 	display: flex;
 	list-style: none;
-/* 	margin-top: 18px; */
+	/* 	margin-top: 18px; */
 	/* margin-left:250px; */
 }
-
 
 /* .verticalAlign p {
 	margin-top: -1px;
@@ -146,15 +166,16 @@ border-bottom:1px solid #FFD8E4;
 .verticalAlign li {
 	margin-right: 20px;
 } */
-
 .logoMenu {
 	display: flex;
 	justify-content: space-between;
 	align-items: center
 }
-.logoMenu{
+
+.logoMenu {
 	height: 120px;
 }
+
 .searchAndMenu {
 	display: flex;
 }
@@ -166,9 +187,6 @@ border-bottom:1px solid #FFD8E4;
 .searchAndIcon {
 	
 } */
-
-
-
 .search {
 	/* 	position: relative; */
 	box-sizing: border-box;
@@ -181,70 +199,72 @@ border-bottom:1px solid #FFD8E4;
 }
 
 .IconBox {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-       /* 부모 요소의 높이에 따라 조정 */
-    }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* 부모 요소의 높이에 따라 조정 */
+}
+
 .IconText {
 	/* margin-left: 7px; */
-	margin-top:6px;
-	color: #7C4AFF;
-}
-.IconColor{
-	color: #7C4AFF;
-	margin-left:15px;
-}
-.IconColor:hover{
+	margin-top: 6px;
 	color: #7C4AFF;
 }
 
-.IconColor a{
+.IconColor {
+	color: #7C4AFF;
+	margin-left: 15px;
+}
+
+.IconColor:hover {
 	color: #7C4AFF;
 }
 
+.IconColor a {
+	color: #7C4AFF;
+}
 
-.IconColorAdmin{
+.IconColorAdmin {
 	color: #B397FF;
-	margin-left:15px;
+	margin-left: 15px;
 }
-.IconColorAdmin:hover{
+
+.IconColorAdmin:hover {
 	color: #B397FF;
 }
-.IconColorAdmin a{
+
+.IconColorAdmin a {
 	color: #B397FF;
 }
 
-.IconBoxAdmin:hover{
-	color:  #B397FF;
-
-
+.IconBoxAdmin:hover {
+	color: #B397FF;
 }
-.IconBoxAdmin{
- display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;}
+
+.IconBoxAdmin {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 .IconTextAdmin {
 	/* margin-left: 7px; */
-	margin-top:6px;
+	margin-top: 6px;
 	color: #B397FF;
 }
 
-.IconBox:hover{
-	color:  #7C4AFF;
+.IconBox:hover {
+	color: #7C4AFF;
 }
 
-
-.searchAndIconBox{
-display: flex;
-/* justify-content: center;
+.searchAndIconBox {
+	display: flex;
+	/* justify-content: center;
 text-decoration: row; */
-align-items: center
+	align-items: center
 }
-
 
 .rSearchIcon {
 	/* position: absolute; */
@@ -255,14 +275,14 @@ align-items: center
 	/* margin-top: 9px; */
 	margin-left: 5px;
 	color: #7C4AFF;
- border: none;
-	
+	border: none;
 	background-color: #FFFFFF;
 }
+
 .rSearchIcon:hover {
 	color: #FF99B8;
-	
 }
+
 .searchIcon {
 	/* position: absolute; */
 	font-size: 15px;
@@ -302,11 +322,12 @@ align-items: center
 }
 
 .tB {
-/* 	padding-top: 10px;
+	/* 	padding-top: 10px;
 	padding-bottom: 10px; */
 	/* magin-left:10px; */
 	/* 	height: 30px; */
 	/* width: 80px; */
+	
 }
 
 /* .topButtonsMargin {
@@ -315,17 +336,17 @@ align-items: center
 .tB a {
 	text-decoration-line: none;
 }
-.topBA0{
-	height: 35px;	
+
+.topBA0 {
+	height: 35px;
 }
-.topBA{
+
+.topBA {
 	display: flex;
-
- 	    align-items: center;
- 	flex-direction: row-reverse;
- 	align-content: center;
+	align-items: center;
+	flex-direction: row-reverse;
+	align-content: center;
 }
-
 
 .tB a:hover {
 	text-decoration-line: none;
@@ -346,6 +367,7 @@ align-items: center
 .logoMenu {
 	/* margin-top: -10px; */
 	/* margin-bottom: 30px; */
+	
 }
 
 /* .topButtons {
@@ -367,26 +389,29 @@ align-items: center
 	border: 0.5px solid #9E9E9E;
 	border-radius: 5px;
 	background-color: #F8F8F8;
-/* 	display: flex;
+	/* 	display: flex;
 	align-items: flex-start;
 	justify-content: center; */
 	margin-left: 10px;
 }
-.logoutButton span{
+
+.logoutButton span {
 	font-size: 12px;
 }
+
 .logoutButton {
-  display: flex;
-/*   justify-content: center;
+	display: flex;
+	/*   justify-content: center;
   align-items: center; */
 }
 
-.logoutButton a{
+.logoutButton a {
 	text-decoration: none;
 }
-.logoutBox{
+
+.logoutBox {
 	display: flex;
-/* 	align-items: center;
+	/* 	align-items: center;
 	justify-content: center; */
 }
 
@@ -595,7 +620,229 @@ button {
 	margin-top: 23px;
 }
 
+/* .alarm {
+	color: #7C4AFF;
+} */
+
+/* .admin {
+	margin-left: 15px;
+	color: #7C4AFF;
+}
+ */
+/* .admPageLinkButton span {
+	margin-left: 5px;
+} */
+
+/* .menu {
+	margin-left: 17px;
+	color: #7C4AFF;
+}
+ */
+/* .admPageLinkButton button {
+	padding-right: -50px;
+	padding-top: 5px;
+	height: 30px;
+	width: 180px;
+	background-color: white;
+	border: 0.5px solid #9E9E9E;
+	border-radius: 5px;
+	background-color: #F8F8F8;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+} */ 
 .radio-label {
+	background: #FFFFFF;
+	border: 1px solid #CFCFCF;
+	border-radius: 7px;
+	width: 53px;
+	height: 29px;
 	margin-right: 10px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
 }
 
+.filterUl1 input[type="radio"] {
+	display: none;
+}
+.filterUl1 input[type="radio"]:checked + .radio-label {
+	background-color: #FF99B8;
+	color: #FFFFFF;
+	 border: none; 
+}
+
+.radio-label-long {
+	background: #FFFFFF;
+	border: 1px solid #CFCFCF;
+	border-radius: 7px;
+	width: 90px;
+	height: 29px;
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+
+.filterUl1 input[type="radio"]:checked + .radio-label-long {
+	background-color: #FF99B8;
+	color: #FFFFFF;
+	 border: none; 
+}
+
+/* .radio-label-long span {
+  display: inline-block;
+  vertical-align: middle; 요소를 수직 가운데 정렬
+} */
+
+/* 검색필터 달력 */
+/* .input-group input {
+	padding: 15px 15px !important;
+	border: 1px solid lightgrey !important;
+	border-radius: 10px;
+	box-sizing: border-box;
+	background-color: #fff !important;
+	color: #FF99B8 !important;
+	font-size: 15px !important;
+	letter-spacing: 1px;
+	position: relative;
+	font-weight: bold !important;
+}
+
+.input1 {
+	text-align: left !important;
+}
+
+.input2 {
+	text-align: right !important;
+}
+
+.input-group input:focus {
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	border: 1px solid #512DA8;
+	outline-width: 0;
+}
+
+::placeholder {
+	color: #BDBDBD;
+	opacity: 1;
+}
+
+:-ms-input-placeholder {
+	color: #BDBDBD;
+}
+
+::-ms-input-placeholder {
+	color: #BDBDBD;
+}
+
+.searchDatepicker button:focus {
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	outline-width: 0;
+}
+
+.datepicker {
+	background-color: #fff;
+	border-radius: 0 !important;
+	padding: 15px 20px !important;
+	align-content: center !important;
+}
+
+.datepicker-dropdown {
+	top: 0;
+		left: calc(50% - 161px) !important;
+}
+
+.datepicker-dropdown.datepicker-orient-left:before {
+	left: calc(50% - 6px) !important;
+}
+
+.datepicker-dropdown.datepicker-orient-left:after {
+	left: calc(50% - 5px) !important;
+}
+
+.datepicker table tr td.today, span.focused {
+	border-radius: 50% !important;
+	background-image: linear-gradient(#FFF3E0, #FFE0B2);
+}
+
+.datepicker table tr td.today.range {
+	background-image: linear-gradient(#eeeeee, #eeeeee) !important;
+	border-radius: 0 !important;
+}
+ */
+/*Weekday title*/
+/* thead tr:nth-child(3) th {
+	font-weight: bold !important;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.old, .day, .new {
+	width: 40px !important;
+	height: 40px !important;
+	border-radius: 0px !important;
+	border: 1px solid lightgrey !important;
+}
+
+.day.old, .day.new {
+	background-color: #F5F5F5 !important;
+	color: #E0E0E0 !important;
+}
+
+.day.old:hover, .day.new:hover {
+	border-radius: 0px !important;
+}
+
+.old-day:hover, .day:hover, .new-day:hover, .month:hover, .year:hover,
+	.decade:hover, .century:hover {
+	border-radius: 50% !important;
+	background-color: #eee;
+}
+
+.active {
+	border-radius: 50% !important;
+	background-image: linear-gradient(#FF99B8, #FF99B8) !important;
+	color: #fff !important;
+}
+ */
+/* .range-start, .range-end {
+	border-radius: 50% !important;
+	background-image: linear-gradient(#FF99B8, #FF99B8) !important;
+}
+ */
+/* .range {
+	color: #FF99B8 !important;
+} */
+
+/* .prev, .next, .datepicker-switch {
+	border-radius: 0 !important;
+	padding: 10px 10px 10px 10px !important;
+	font-size: 18px;
+	opacity: 0.7;
+	color: #FF99B8;
+} */
+
+/* .prev:hover, .next:hover, .datepicker-switch:hover {
+	background-color: inherit !important;
+	opacity: 1;
+} */
+
+/* @media screen and (max-width: 500px) {
+	.datepicker-dropdown.datepicker-orient-right:before {
+		right: calc(50% - 6px) !important;
+	}
+	.datepicker-dropdown.datepicker-orient-right:after {
+		right: calc(50% - 5px) !important;
+	} */
+}

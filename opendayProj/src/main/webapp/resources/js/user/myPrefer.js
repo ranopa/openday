@@ -1,5 +1,4 @@
-
-/*    
+   
 window.onload = function() {
   var categoryButtons = document.querySelectorAll('.categoryButton');
   var selectedButtons = [];
@@ -11,7 +10,8 @@ window.onload = function() {
       selectedButtons.splice(index, 1);
     } else {
       selectedButtons.push(button);
-    }
+    } 
+    
   }
 
   categoryButtons.forEach(function(button) {
@@ -19,8 +19,33 @@ window.onload = function() {
       toggleSelection(this);
     });
   });
+
+
+var buttons = document.getElementsByClassName("category-btn");
+	var selectedValues = [];
+	
+	for (var i = 0; i < buttons.length; i++) {
+	  buttons[i].addEventListener("click", function() {
+	    if (this.classList.contains("selected")) {
+	      this.classList.remove("selected");
+	      var index = selectedValues.indexOf(this.value);
+	      if (index !== -1) {
+	        selectedValues.splice(index, 1);
+	      }
+	    } else {
+	      this.classList.add("selected");
+	      selectedValues.push(this.value);
+	    }
+	  });
+	}
+	
+	var resultButton = document.getElementById("preferBtn");
+	resultButton.addEventListener("click", function() { 
+	var concatenatedValues = selectedValues.join('_');
+	document.getElementById("preferValues").value = concatenatedValues; 
+	});
 };
-*/
+ 
 
 
 function toggleCategoryButton() {

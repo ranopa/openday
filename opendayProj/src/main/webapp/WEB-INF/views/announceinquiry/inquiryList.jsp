@@ -16,14 +16,14 @@
 </script>
 </head>
 <%@ include file="../header.jsp"%>
-<div id="includeWrapper">
 <body>
+<div id="includeWrapper">
     <div id="noticeWrapper">
         <a href="announcementList" class="atag">공지사항</a>
         <a href="inquiry" class="atag">문의하기</a>
         <a href="inquiryList" class="atag">문의내역</a>
         <br><br><br>
-        <table>
+        <table id="inquiryTable">
             <thead>
                 <tr>
                     <th class="smallth">번호</th>
@@ -53,8 +53,8 @@
         </table>
         <div id="pagination"  style="text-align: center; text-decoration: none; margin-top:50px;"></div>
     </div>
-    </body>
-</div>
+	</div>
+   </body>
 
 <script>
 $(document).ready(function() {

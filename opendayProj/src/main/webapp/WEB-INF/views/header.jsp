@@ -11,8 +11,13 @@
 <script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/user/mainContent.css"/>">
 
+<link rel="stylesheet"	href="<c:url value="/resources/css/user/header.css"/>">
 <script src='<c:url value="/resources/js/user/header.js"/>'></script>
+
 <link rel="stylesheet" href="<c:url value="/resources/css/user/header.css"/>">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -27,15 +32,20 @@
 	cursor: pointer;
 }
 
-/* datepicer input 롤오버 시 손가락 모양 표시 */
+ /* datepicer input 롤오버 시 손가락 모양 표시  */
 .hasDatepicker {
 	cursor: pointer;
 }
+.IconText{
+font-size: 16px;
+	font-family: 'NanumBarunGothic';
+}
 </style>
 
-<script>
 
-   $.datepicker.setDefaults({
+ 
+<script>   
+  $.datepicker.setDefaults({ 
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -45,18 +55,23 @@
     dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
     showMonthAfterYear: true,
-    yearSuffix: '년'
+    yearSuffix: '년' 
   });
- 
-  $(function() {
+  /* $(function() {
     $("#datepicker1, #datepicker2").datepicker();
+  }); */
+
+  $(function() {
+    $("#datepicker1").datepicker();
+    $("#datepicker2").datepicker();
   });
 
 </script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 에이작스 밑에 쓰기 -->
 <script>
- //$(function(){
+
+ $(function(){
 	$.ajax({
 		url:'categorylist',
 		type:'post',
@@ -79,26 +94,23 @@
  			} 
 			
  			$('#categoryTable').append(tablestr);
-
  			
  			$(".categoryButton").click(function(e) {
  				$(".categoryButton").removeClass("selected");
  				console.log($(this).val());
  				$(this).addClass("selected");
- 				
- 			
- 		
  			})
-
 		}
 	})
-
+ })
 </script>
 <script>
   function closeSearchFilterWrapper() {
     var searchFilterWrapper = document.querySelector(".searchFilterWrapper");
     searchFilterWrapper.style.display = "none";
   }
+  
+
 </script>
 <style>
 
@@ -112,6 +124,45 @@
 }
 
 </style>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.querySelector('.search');
+  var disElement = document.getElementById('dis');
+  var categoryElement = document.getElementById('category');
+  var disMenuElement = document.getElementById('disMenu');
+  var menuIconInput = document.querySelector('.menuIcon');
+
+  searchInput.addEventListener('click', function(event) {
+    event.stopPropagation();
+    disElement.style.display = 'block';
+    disMenuElement.style.display = 'none';
+  });
+
+  categoryElement.addEventListener('click', function() {
+    disMenuElement.style.display = 'none';
+  });
+
+  menuIconInput.addEventListener('click', function(event) {
+    event.stopPropagation();
+    disMenuElement.style.display = 'block';
+    disElement.style.display = 'none';
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!disElement.contains(event.target)) {
+      disElement.style.display = 'none';
+    }
+    if (!disMenuElement.contains(event.target)) {
+      disMenuElement.style.display = 'none';
+    }
+  });
+});
+</script>
+
+
+
+
 <!-- 알림css -->
  <style>
         #alarm *{
@@ -119,8 +170,8 @@
             margin:0; 
         }
         #alarm{
-            opacity: 0;
-            visibility: hidden;
+             opacity: 0;
+            visibility: hidden; 
             transition: 0.3s all;
              position: absolute;
             right: 60px;
@@ -192,6 +243,7 @@
 		 	color:#7C4AFF;
 		 }
     </style>
+
 </head>
 <body>
 
@@ -224,7 +276,7 @@
 								<li class="topButton tB topButtonsMargin"><a
 									href="requestlist"><span>클래스요청</span></a></li>
 
-								<li class="topButton tB tBLast topButtonsMargin"><a href=#><span>고객센터</span></a></li>
+								<li class="topButton tB tBLast topButtonsMargin"><a href="announcementList"><span>고객센터</span></a></li>
 
 							</ul>
 						</div>
@@ -260,9 +312,8 @@
 
 
 				<div class="verticalAlign">
-					<c:set var="authority" value="${userId.authority }" />
+					<c:set var="authority" value="${sessionScope.userId.authority }" />
 					<c:choose>
-
 						<c:when test="${authority eq 0}">
 
 							<div class="IconColorAdmin">
@@ -302,7 +353,7 @@
 						</c:otherwise>
 					</c:choose>
 
-					<div class="IconColor">
+					<div class="IconColor menuIcon" id="menuIcon">
 						<a href="#"><div class="IconBox" onclick="disMenu()">
 								<div class="material-symbols-outlined" id="menu"
 									>menu</div>
@@ -327,41 +378,24 @@
 			<div class="contentWrapper">
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
-					<label class="radio-label"> <input type="radio"
-						name="clsLoc" value="" checked />전체
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="서울" />서울
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="경기" />경기
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="인천" />인천
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="강원" />강원
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="충북" />충북
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="충남" />충남
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="세종" />세종
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="대전" />대전
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="광주" />광주
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="전북" />전북
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="경북" />경북
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="대구" />대구
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="제주" />제주
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="전남" />전남
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="경남/울산" />경남/울산
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="부산" />부산
-					</label>
+					<input type="radio" name="clsLoc" id="all" value="" checked />
+					<label class="radio-label" for="all">전체</label>
+					<input type="radio" name="clsLoc" value="서울" id="seoul"/> <label class="radio-label" for="seoul">서울</label> 
+						 <input type="radio" name="clsLoc" id="gyeonggi" value="경기" /><label class="radio-label" for="gyeonggi">경기 </label>
+					<input type="radio" name="clsLoc" value="인천" id="incheon" /> <label class="radio-label" for="incheon">인천 </label>
+					 <input type="radio" name="clsLoc" value="강원" id="gangwon"/><label class="radio-label" for="gangwon">강원 </label>
+					 <input type="radio" name="clsLoc" value="충북" id="chungbuk"/><label class="radio-label" for="chungbuk">충북 </label>
+					 <input type="radio" name="clsLoc" value="충남" id="chungnam"/><label class="radio-label" for="chungnam">충남 </label> 
+					 <input type="radio" name="clsLoc" value="세종" id="sejong"/><label class="radio-label" for="sejong">세종 </label> 
+					<input type="radio" name="clsLoc" value="대전" id="daejeon"/><label class="radio-label" for="daejeon"> 대전 </label> 
+					 <input type="radio" name="clsLoc" value="광주" id="gwangju"/><label class="radio-label" for="gwangju">광주 </label> 
+					 <input type="radio" name="clsLoc" value="전북" id="jeonbuk"/><label class="radio-label" for="jeonbuk">전북 </label> 
+					 <input type="radio" name="clsLoc" value="경북" id="gyeongbuk"/><label class="radio-label" for="gyeongbuk">경북 </label> 
+					 <input type="radio" name="clsLoc" value="대구" id="daegu"/><label class="radio-label" for="daegu">대구 </label>
+					  <input type="radio" name="clsLoc" value="제주" id="jeju"/><label class="radio-label" for="jeju">제주 </label>
+					 <input type="radio" name="clsLoc" value="전남" id="jeonnam"/>  <label class="radio-label" for="jeonnam">전남 </label> 
+					  <input type="radio" name="clsLoc" value="경남/울산" id="gyeongnam"/> <label class="radio-label-long" for="gyeongnam">경남/울산 </label> 
+					   <input type="radio" name="clsLoc" value="부산" id="busan"/><label class="radio-label" for="busan">부산 </label>
 
 				</div>
 
@@ -397,9 +431,8 @@
 					<p class="filterUlTitle">기간</p>
 
 					<p>
-						<input type="date" id="datepicker1" name="startDate"
-							placeholder="yyyy-mm-dd"> ~ <input type="date"
-							id="datepicker2" name="endDate" placeholder="yyyy-mm-dd">
+						<input type="date" id="datepicker1" name="startDate" placeholder="yyyy-mm-dd"> ~ 
+						<input type="date" id="datepicker2" name="endDate" placeholder="yyyy-mm-dd">
 					</p>
 				</div>
 
@@ -423,88 +456,93 @@
 			</table>
 		</div>
 	</div>
-	 <div id="alarm"> 
+	 <div id="alarm" > 
         <div class="a-box">
             <p class="a-p">알림</p> 
             <ul class="a-ul" id="notiList">
               
             </ul>
-        </div> 
-    </div>
+        </div>         
+    </div> 
     <script>
-    $(function() {
-        var alarmBtn = $('#abtn');
-        var modalBtn = $('#alarm');
-        
-        var userId = '${userId.userId}';
+    
+	 var alarmBtn = document.querySelector("#abtn");
+     var modalBtn = document.querySelector("#alarm"); 
+    
 
-        alarmBtn.on('click',()=>{ 
-            if(!modalBtn.classList.contains('show')){
-                modalBtn.classList.add('show');
-            }else{
-                modalBtn.classList.remove('show'); 
-            }
-        })
-        if (userId) {
-            setInterval(function() {
-            $.ajax({
-              url: 'notification/'+userId,
-              type:'get',
-              contentType: 'application/json',
-              success: function(data){
-                $('#notiList li').remove();
-                 if ($('#notiList li').length == 0) {
-                  for(const noti of data) {
-                    console.log(noti.ntfMessage)
-                    $('#notiList').append(`
-                      <li>
-                        <a href="\${noti.ntfUrl}" class="a-a">
-                        <span class="message">\${noti.ntfMessage}</span>
-                        </a>
-                      </li>
-                      <li>
-                        <button class="a-del-btn">
-                          <span class="material-symbols-outlined">
-                              close
-                          </span>
-                        </button>
-                        <input type="hidden" id="ntfId" value="\${noti.ntfId}">
-                      </li>
-                    `);
-                  }
-                 }  
-              }
-            })
-            },5*1000);
-        }
-        
-       
-        var delBtns = document.querySelectorAll('#alarm .a-del-btn');
-        delBtns.forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                var ipEl = btn.nextElementSibling.value.toString;
-                console.log(ipEl); 
-                var ulValue = btn.parentElement.parentElement;
-                ulValue.remove();
-
-
-                $.ajax({
-                    url:"deletealarm",
-                    type:'post',
-                    data: {"ipEl":ipEl},
-                    success:function(response){
-                        console.log('success');
-                    },
-                    error:function(){
-                        console.log('error');
-                    }
-                })
-            })
-        }) 
-    })
-        
-
+     alarmBtn.addEventListener('click',()=>{   
+    	 if(!modalBtn.classList.contains('show')){
+             modalBtn.classList.add('show');
+         }else{
+             modalBtn.classList.remove('show'); 
+         }
+     })
     </script>
-
 </body>
+<script>
+
+window.onload=()=>{
+	   
+    
+
+ var userId = '${userId.userId}';
+     if (userId) {
+         setInterval(function() {
+         $.ajax({
+           url: 'notification/'+userId,
+           type:'get',
+           contentType: 'application/json',
+           success: function(data){
+             $('#notiList li').remove();
+              if ($('#notiList li').length == 0) {
+               for(const noti of data) {
+                 console.log(noti.ntfMessage)
+                 $('#notiList').append(`
+                   <li>
+                     <a href="\${noti.ntfUrl}" class="a-a">
+                     <span class="message">\${noti.ntfMessage}</span>
+                     </a>
+                   </li>
+                   <li>
+                     <button class="a-del-btn">
+                       <span class="material-symbols-outlined">
+                           close
+                       </span>
+                     </button>
+                     <input type="hidden" id="ntfId" value="\${noti.ntfId}">
+                   </li>
+                 `);
+               }
+              }  
+           }
+         })
+         },5*1000);
+     }
+     
+    
+     var delBtns = document.querySelectorAll('#alarm .a-del-btn');
+     delBtns.forEach(btn=>{
+         btn.addEventListener('click',()=>{
+             var ipEl = btn.nextElementSibling.value.toString();
+             console.log(ipEl); 
+             var ulValue = btn.parentElement.parentElement;
+             ulValue.remove();
+
+
+             $.ajax({
+                 url:"deletealarm",
+                 type:'post',
+                 data: {"ipEl":ipEl},
+                 success:function(response){
+                     console.log('success');
+                 },
+                 error:function(){
+                     console.log('error');
+                 }
+             })
+         })
+     }) 
+ }
+     
+</script>
 </html>

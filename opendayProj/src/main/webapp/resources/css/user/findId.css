@@ -140,6 +140,7 @@ button {
 .AuthenticationNumberWrapper {
 	display: flex;
 	margin-left: 115px;
+	
 }
 
 .AuthenticationNumberBox {
@@ -195,6 +196,7 @@ button {
 	height: 40px;
 	border-radius: 7px;
 	cursor: pointer;
+	margin-top: 4px;
 }
 
 .AuthenticationNumber {
