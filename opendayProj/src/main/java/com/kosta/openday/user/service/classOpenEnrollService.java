@@ -16,8 +16,9 @@ public interface classOpenEnrollService {
 	public void fileView(Integer filNum, OutputStream out) throws Exception;	
 	void classUpload(ScheduleDTO dto) throws Exception;
 	Map<String, Object> getSchedule(Integer clsId) throws Exception;
-	void classInfoUpdate(Map<String, Object> map, MultipartFile file) throws Exception;
+	void classInfoUpdate(OClassDTO dto) throws Exception;
 	void classFileUpdate(FileDTO dto) throws Exception;
+	void classScheduleUpdate(ScheduleDTO dto) throws Exception; 
+	void classInfoUpdate(Map<String, Object> map, MultipartFile file) throws Exception;
 	void classScheduleUpdate(Map<String, Object> map) throws Exception;
-	
 }

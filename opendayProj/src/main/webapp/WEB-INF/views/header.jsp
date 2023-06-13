@@ -8,59 +8,44 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-<%-- <script src="<c:url value="/resources/js/user/jquery-3.3.1.js"/>"></script> --%>
-
 <script src='<c:url value="/resources/js/user/mainContent.js"/>'></script>
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/mainContent.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/user/mainContent.css"/>">
 
+<link rel="stylesheet"	href="<c:url value="/resources/css/user/header.css"/>">
 <script src='<c:url value="/resources/js/user/header.js"/>'></script>
+
+<link rel="stylesheet" href="<c:url value="/resources/css/user/header.css"/>">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/header.css"/>">
-<!-- 달력 -->
-<!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script> -->
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/user/header.css"/>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
 <!-- 제이쿼리달력-->
-
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <style>
 /* datepicer 버튼 롤오버 시 손가락 모양 표시 */
 .ui-datepicker-trigger {
 	cursor: pointer;
 }
 
-/* datepicer input 롤오버 시 손가락 모양 표시 */
+ /* datepicer input 롤오버 시 손가락 모양 표시  */
 .hasDatepicker {
 	cursor: pointer;
 }
+.IconText{
+font-size: 16px;
+	font-family: 'NanumBarunGothic';
+}
 </style>
+
+
  
 <script>   
-
-/*    $.datepicker.setDefaults({ 
+  $.datepicker.setDefaults({ 
     dateFormat: 'yy-mm',
     prevText: '이전 달',
     nextText: '다음 달',
@@ -72,9 +57,13 @@
     showMonthAfterYear: true,
     yearSuffix: '년' 
   });
-  */
-  $(function() {
+  /* $(function() {
     $("#datepicker1, #datepicker2").datepicker();
+  }); */
+
+  $(function() {
+    $("#datepicker1").datepicker();
+    $("#datepicker2").datepicker();
   });
 
 </script>
@@ -82,8 +71,7 @@
 <!-- 에이작스 밑에 쓰기 -->
 <script>
 
-
- //$(function(){
+ $(function(){
 	$.ajax({
 		url:'categorylist',
 		type:'post',
@@ -106,26 +94,23 @@
  			} 
 			
  			$('#categoryTable').append(tablestr);
-
  			
  			$(".categoryButton").click(function(e) {
  				$(".categoryButton").removeClass("selected");
  				console.log($(this).val());
  				$(this).addClass("selected");
- 				
- 			
- 		
  			})
-
 		}
 	})
-
+ })
 </script>
 <script>
   function closeSearchFilterWrapper() {
     var searchFilterWrapper = document.querySelector(".searchFilterWrapper");
     searchFilterWrapper.style.display = "none";
   }
+  
+
 </script>
 <style>
 
@@ -139,6 +124,45 @@
 }
 
 </style>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.querySelector('.search');
+  var disElement = document.getElementById('dis');
+  var categoryElement = document.getElementById('category');
+  var disMenuElement = document.getElementById('disMenu');
+  var menuIconInput = document.querySelector('.menuIcon');
+
+  searchInput.addEventListener('click', function(event) {
+    event.stopPropagation();
+    disElement.style.display = 'block';
+    disMenuElement.style.display = 'none';
+  });
+
+  categoryElement.addEventListener('click', function() {
+    disMenuElement.style.display = 'none';
+  });
+
+  menuIconInput.addEventListener('click', function(event) {
+    event.stopPropagation();
+    disMenuElement.style.display = 'block';
+    disElement.style.display = 'none';
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!disElement.contains(event.target)) {
+      disElement.style.display = 'none';
+    }
+    if (!disMenuElement.contains(event.target)) {
+      disMenuElement.style.display = 'none';
+    }
+  });
+});
+</script>
+
+
+
+
 <!-- 알림css -->
  <style>
         #alarm *{
@@ -219,6 +243,7 @@
 		 	color:#7C4AFF;
 		 }
     </style>
+
 </head>
 <body>
 
@@ -287,9 +312,8 @@
 
 
 				<div class="verticalAlign">
-					<c:set var="authority" value="${userId.authority }" />
+					<c:set var="authority" value="${sessionScope.userId.authority }" />
 					<c:choose>
-
 						<c:when test="${authority eq 0}">
 
 							<div class="IconColorAdmin">
@@ -329,7 +353,7 @@
 						</c:otherwise>
 					</c:choose>
 
-					<div class="IconColor">
+					<div class="IconColor menuIcon" id="menuIcon">
 						<a href="#"><div class="IconBox" onclick="disMenu()">
 								<div class="material-symbols-outlined" id="menu"
 									>menu</div>
@@ -354,41 +378,24 @@
 			<div class="contentWrapper">
 				<div class="filterUl1">
 					<p class="filterUlTitle">지역</p>
-					<label class="radio-label"> <input type="radio"
-						name="clsLoc" value="" checked />전체
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="서울" />서울
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="경기" />경기
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="인천" />인천
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="강원" />강원
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="충북" />충북
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="충남" />충남
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="세종" />세종
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="대전" />대전
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="광주" />광주
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="전북" />전북
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="경북" />경북
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="대구" />대구
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="제주" />제주
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="전남" />전남
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="경남/울산" />경남/울산
-					</label> <label class="radio-label"> <input type="radio"
-						name="clsLoc" value="부산" />부산
-					</label>
+					<input type="radio" name="clsLoc" id="all" value="" checked />
+					<label class="radio-label" for="all">전체</label>
+					<input type="radio" name="clsLoc" value="서울" id="seoul"/> <label class="radio-label" for="seoul">서울</label> 
+						 <input type="radio" name="clsLoc" id="gyeonggi" value="경기" /><label class="radio-label" for="gyeonggi">경기 </label>
+					<input type="radio" name="clsLoc" value="인천" id="incheon" /> <label class="radio-label" for="incheon">인천 </label>
+					 <input type="radio" name="clsLoc" value="강원" id="gangwon"/><label class="radio-label" for="gangwon">강원 </label>
+					 <input type="radio" name="clsLoc" value="충북" id="chungbuk"/><label class="radio-label" for="chungbuk">충북 </label>
+					 <input type="radio" name="clsLoc" value="충남" id="chungnam"/><label class="radio-label" for="chungnam">충남 </label> 
+					 <input type="radio" name="clsLoc" value="세종" id="sejong"/><label class="radio-label" for="sejong">세종 </label> 
+					<input type="radio" name="clsLoc" value="대전" id="daejeon"/><label class="radio-label" for="daejeon"> 대전 </label> 
+					 <input type="radio" name="clsLoc" value="광주" id="gwangju"/><label class="radio-label" for="gwangju">광주 </label> 
+					 <input type="radio" name="clsLoc" value="전북" id="jeonbuk"/><label class="radio-label" for="jeonbuk">전북 </label> 
+					 <input type="radio" name="clsLoc" value="경북" id="gyeongbuk"/><label class="radio-label" for="gyeongbuk">경북 </label> 
+					 <input type="radio" name="clsLoc" value="대구" id="daegu"/><label class="radio-label" for="daegu">대구 </label>
+					  <input type="radio" name="clsLoc" value="제주" id="jeju"/><label class="radio-label" for="jeju">제주 </label>
+					 <input type="radio" name="clsLoc" value="전남" id="jeonnam"/>  <label class="radio-label" for="jeonnam">전남 </label> 
+					  <input type="radio" name="clsLoc" value="경남/울산" id="gyeongnam"/> <label class="radio-label-long" for="gyeongnam">경남/울산 </label> 
+					   <input type="radio" name="clsLoc" value="부산" id="busan"/><label class="radio-label" for="busan">부산 </label>
 
 				</div>
 
@@ -424,9 +431,8 @@
 					<p class="filterUlTitle">기간</p>
 
 					<p>
-						<input type="date" id="datepicker1" name="startDate"
-							placeholder="yyyy-mm-dd"> ~ <input type="date"
-							id="datepicker2" name="endDate" placeholder="yyyy-mm-dd">
+						<input type="date" id="datepicker1" name="startDate" placeholder="yyyy-mm-dd"> ~ 
+						<input type="date" id="datepicker2" name="endDate" placeholder="yyyy-mm-dd">
 					</p>
 				</div>
 

@@ -45,7 +45,7 @@ public class AdmController {
 
 	@RequestMapping(value = "/adm", method = RequestMethod.GET)
 	public String main(@RequestParam(value = "page", required = false) String page, Model model) throws Exception {
-		String status = "승인대기";
+		String status = "검토중";
 		List<OClassDTO> watingOClassList = admService.findOClassByStatus(status);
 		model.addAttribute("list", watingOClassList);
 		model.addAttribute("page","admWaitingList");
@@ -60,7 +60,7 @@ public class AdmController {
 	// 개설신청 목록 조회
 	@RequestMapping(value = "/admwaitinglist", method = RequestMethod.GET)
 	public String watingList(Model model) {
-		String status = "승인대기";
+		String status = "검토중";
 		try {
 			List<OClassDTO> watingOClassList = admService.findOClassByStatus(status);
 			model.addAttribute("list", watingOClassList);
@@ -85,8 +85,8 @@ public class AdmController {
 	}
 	
 	// 개설 승낙
-	@RequestMapping(value = "/adm/adminallow/{clsId}", method = RequestMethod.POST)
-	public String allowNewClass(@PathVariable Integer clsId, Model model) {
+	@RequestMapping(value = "/adm/adminallow", method = RequestMethod.POST)
+	public String allowNewClass(@RequestParam Integer clsId, Model model) {
 		try {
 			OClassDTO oClass = oClassService.findOne(clsId);
 			if (oClass == null)  
@@ -110,8 +110,8 @@ public class AdmController {
 	}
 	
 	// 개설 거절 
-	@RequestMapping(value = "/adm/adminrefuse/{clsId}", method = RequestMethod.POST)
-	public String refuseNewClass(@PathVariable Integer clsId, Model model) {
+	@RequestMapping(value = "/adm/adminrefuse/", method = RequestMethod.POST)
+	public String refuseNewClass(@RequestParam Integer clsId, Model model) {
 		try {
 			OClassDTO oClass = oClassService.findOne(clsId);
 			if (oClass == null) 
@@ -291,7 +291,7 @@ public class AdmController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return "admin/admMain";
+		return "admin/admMain";  
 	} 
 	// 유저문의 답변 등록 
 	@RequestMapping(value="/adminquriyanswer", method=RequestMethod.POST)
@@ -329,8 +329,7 @@ public class AdmController {
 		} 
 		return "redirect:/adminquirylist";
 	}
-	
-	  
+	 
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
 	public String admSalesList(Model model) { 
@@ -400,9 +399,8 @@ public class AdmController {
 			e.printStackTrace();
 		}
 		return "redirect:/admnoticelist";
-		
-	 
 	}
+ 
 	//공지사항 삭제
 	@RequestMapping(value="/admnoticedelete", method=RequestMethod.GET)
 	public String removeNotice(@RequestParam("ancId") Integer ancId, Model model) throws Exception {
@@ -411,5 +409,4 @@ public class AdmController {
 		
 	}
 	  
-}
-  
+} 

@@ -1,6 +1,5 @@
 package com.kosta.openday.user.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -51,7 +50,7 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	public Map<String, Object> selectSchedule(Integer clsId) throws Exception {
 		return sqlSession.selectOne("mapper.teacher.selectSchedule", clsId);
 	}
-
+ 
 	@Override
 	public void updateClassInfo(Map<String, Object> map) throws Exception {
 		sqlSession.update("mapper.oclass.updateclassOpen", map);		
@@ -78,4 +77,13 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 		return sqlSession.selectOne("mapper.oclass.selectOclassMap", clsId);
 	}
 
+	@Override
+	public void updateClassInfo(OClassDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void updateClassSchedule(ScheduleDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+	}
 }

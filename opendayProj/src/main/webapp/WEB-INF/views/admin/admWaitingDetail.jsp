@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <div id="waiting-detail">
 	<div id="div1">
 		<div class="page">
@@ -43,7 +43,7 @@
 				<div id=curri class="opendiv2">
 					<p class="s1" style="font-size: 18px; margin-bottom: 10px;">커리큘럼
 						작성</p>
-					<div id="viewer">${oclass.clsCurri }</div>
+					<div id="viewer" >${oclass.clsCurri }</div>
 				</div>
 			</div>
 			<div class="container">
@@ -65,7 +65,11 @@
 	</div>
 </div>
 
-
+<style>
+#viewer p{
+	color:black !important;
+}
+</style>
 <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const viewer = toastui.Editor.factory({
@@ -77,10 +81,5 @@
 
             });
 
-            var wValue = $('#waiting-number').val();
-            $('#waiting-detail #ok-btn').click(() => {
-            })
-            $('#waiting-detail #no-btn').cilck(() => {
-            })
 
         </script>

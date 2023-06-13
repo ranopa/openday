@@ -3,15 +3,15 @@ package com.kosta.openday.teacher.dto;
 public class TeacherScheduleDTO {
 	private String clsName; // 클래스명
 	private String scdDate; // 강의 일
-	private String scdTime; // 강의 시간
+	private String scdStartTime; // 강의 시간
 	
 	public TeacherScheduleDTO() {}
 
-	public TeacherScheduleDTO(String clsName, String scdDate, String scdTime) {
+	public TeacherScheduleDTO(String clsName, String scdDate, String scdStartTime) {
 		super();
 		this.clsName = clsName;
 		this.scdDate = scdDate;
-		this.scdTime = scdTime;
+		this.scdStartTime = scdStartTime;
 	}
 
 	public String getClsName() {
@@ -30,12 +30,12 @@ public class TeacherScheduleDTO {
 		this.scdDate = scdDate;
 	}
 
-	public String getScdTime() {
-		return scdTime;
+	public String getscdStartTime() {
+		return scdStartTime;
 	}
 
-	public void setScdTime(String scdTime) {
-		this.scdTime = scdTime;
+	public void setscdStartTime(String scdStartTime) {
+		this.scdStartTime = scdStartTime;
 	}
 
 	

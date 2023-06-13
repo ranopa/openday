@@ -85,7 +85,7 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 			return res; 			
 		}
 	}
-
+ 
 	@Override
 	public void classInfoUpdate(Map<String, Object> map, MultipartFile file) throws Exception {
 		Integer fileNum = fileService.createFile(file);
@@ -107,6 +107,18 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	public ScheduleDTO getScheduleNum(Integer scdNum) throws Exception {
 		return classopenenrollDAO.selectScheduleNum(scdNum);
 	}
+
+	@Override
+	public void classInfoUpdate(OClassDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void classScheduleUpdate(ScheduleDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		
+	} 
 	
 
 }

@@ -31,6 +31,7 @@ import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.UserDTO;
+import com.kosta.openday.user.service.UserService;
 import com.kosta.openday.user.service.classOpenEnrollService;
 
 @Controller
@@ -39,7 +40,9 @@ public class ClassOpenEnrollController {
 	@Autowired
 	private classOpenEnrollService classopenenrollService;
 	
-	@Autowired
+	@Autowired 
+	private UserService userService;
+	 
 	private ServletContext sc;
 	
 	@Autowired
@@ -48,7 +51,7 @@ public class ClassOpenEnrollController {
 	private ScheduleDTO oclassDTO;
 
 	private ScheduleDTO scheduleDTO;
-
+ 
 	@RequestMapping(value = "/classOpen", method = RequestMethod.GET)
 	public String classOpenForm() {
 		return "classOpenEnrollment/classOpen";
@@ -70,6 +73,9 @@ public class ClassOpenEnrollController {
 			UserDTO user = (UserDTO)session.getAttribute("userId");
 			dto.setUserId(user.getUserId());
 			classopenenrollService.classCreate(dto, file);
+			
+			userService.alterAuthorityTchc(user.getUserId()); 
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

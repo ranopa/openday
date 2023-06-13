@@ -141,7 +141,7 @@
 			values(
 				nextval(schedule_seq),
 				#{scdDate},
-				#{scdTime}, 
+				#{scdStartTime}, 
 				#{scdPlace},
 				#{scdPlaceDetail},
 				#{scdMinPersonnel},
@@ -305,7 +305,7 @@
 		<collection property="schedules" ofType="com.kosta.openday.user.dto.ApplyScheduleDTO">
 			<result column="scdNum" property="scdNum" />
 			<result column="scdDate" property="scdDate" />
-			<result column="scdTime" property="scdTime" />
+			<result column="scdStartTime" property="scdStartTime" />
 			<result column="scdPlace" property="scdPlace" />
 			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 		</collection>
