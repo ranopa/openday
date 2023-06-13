@@ -37,8 +37,14 @@ public interface AdmService {
 	List<AdmInquiryDTO> inquiryListSelect() throws Exception;
 	void inquiryDelete(Integer admNum) throws Exception;
 	void inquiryUpdate(Integer admNum, String admTitle, String admContent) throws Exception;
-
-	void inquiryAnswer(Integer admNum, String answer) throws Exception;
+ 
+	void inquiryAnswer(Integer admNum, String admAnContent) throws Exception;
+	
+	void removeNotice(Integer ancId) throws Exception;
+	public String getCodeName(String codNum)throws Exception;
+	
+	public void noticeRemove(Integer ancId)throws Exception; 
 
 	List<SettlementAmountDTO> findSettlementListByStatus(String status) throws Exception;
+ 
 }

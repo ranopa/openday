@@ -21,10 +21,12 @@
 						message.css("color", "blue"); 
 						resultMessage = "사용가능한 아이디입니다.";
 						idCheckIndex="Y";
+						console.log(resultMessage);
 					}else{
 						message.css("color", "red"); 
 						resultMessage = "이미 존재하는 아이디입니다.";
 						idCheckIndex="N";
+						console.log(resultMessage);
 						
 					}				
 					message.text(resultMessage);					
@@ -50,10 +52,12 @@
 						message.css("color", "blue"); 
 						resultMessage = "사용가능한 닉네임입니다.";
 						nickCheckIndex="Y";
+						console.log(resultMessage);
 					}else{
 						message.css("color", "red"); 
 						resultMessage = "이미 존재하는 닉네임입니다.";
 						nickCheckIndex="N";
+						console.log(resultMessage);
 					}				
 					message.text(resultMessage);					
 				},

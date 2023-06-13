@@ -61,10 +61,17 @@
 	margin: 0;
 }
 
-.logo {
+.logo a {
 	font-family: 'Cafe24 Ohsquare';
 	font-size: 35px;
+	text-decoration-line: none;
+	color: #5A2ECE;	
 	/* margin-top: 25px; */
+}
+
+.logo a:hover {
+	text-decoration-line: none;
+	color: #5A2ECE;
 }
 
 body {
@@ -87,40 +94,38 @@ headerWrapper {
 .contentWrapper {
 	margin: 0 auto;
 	width: 1280px;
-	
 }
-
 
 .hr1 {
 	/* top: 27px; */
 	left: 0px;
-/* 	border: none; */
-	border-bottom:1px solid #E1E1E1;
-/* 	height: 1px;
+	/* 	border: none; */
+	border-bottom: 1px solid #E1E1E1;
+	/* 	height: 1px;
 	background-color: #E1E1E1; */
 }
 
 .hr2 {
 	left: 0px;
-/* 	border: none; */
-border-bottom:1px solid #FFD8E4;
-/* 	background-color: #FFD8E4; */
+	/* 	border: none; */
+	border-bottom: 1px solid #FFD8E4;
+	/* 	background-color: #FFD8E4; */
 	/* height: 1px; */
 	/* 	margin-top: 20px; */
 }
 
-h1 {
+/* h1 {
 	width: 130px;
 	height: 42px;
 	left: 80px;
-	/* top: 54px; */
+	top: 54px;
 	font-family: 'Cafe24 Ohsquare';
 	font-style: normal;
 	font-weight: 700;
 	font-size: 36px;
 	line-height: 42px;
 	color: #5A2ECE;
-	/* 	margin-top: 34px; */
+		margin-top: 34px;
 }
 
 h1 a {
@@ -132,7 +137,7 @@ h1 a:hover {
 	text-decoration-line: none;
 	color: #5A2ECE;
 }
-
+ */
 .topButtonColor {
 	/* width: 51px; */
 	height: 16px;
@@ -177,10 +182,9 @@ h1 a:hover {
 .verticalAlign {
 	display: flex;
 	list-style: none;
-/* 	margin-top: 18px; */
+	/* 	margin-top: 18px; */
 	/* margin-left:250px; */
 }
-
 
 /* .verticalAlign p {
 	margin-top: -1px;
@@ -190,15 +194,16 @@ h1 a:hover {
 .verticalAlign li {
 	margin-right: 20px;
 } */
-
 .logoMenu {
 	display: flex;
 	justify-content: space-between;
 	align-items: center
 }
-.logoMenu{
+
+.logoMenu {
 	height: 120px;
 }
+
 .searchAndMenu {
 	display: flex;
 }
@@ -210,9 +215,6 @@ h1 a:hover {
 .searchAndIcon {
 	
 } */
-
-
-
 .search {
 	/* 	position: relative; */
 	box-sizing: border-box;
@@ -225,70 +227,72 @@ h1 a:hover {
 }
 
 .IconBox {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-       /* 부모 요소의 높이에 따라 조정 */
-    }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* 부모 요소의 높이에 따라 조정 */
+}
+
 .IconText {
 	/* margin-left: 7px; */
-	margin-top:6px;
-	color: #7C4AFF;
-}
-.IconColor{
-	color: #7C4AFF;
-	margin-left:15px;
-}
-.IconColor:hover{
+	margin-top: 6px;
 	color: #7C4AFF;
 }
 
-.IconColor a{
+.IconColor {
+	color: #7C4AFF;
+	margin-left: 15px;
+}
+
+.IconColor:hover {
 	color: #7C4AFF;
 }
 
+.IconColor a {
+	color: #7C4AFF;
+}
 
-.IconColorAdmin{
+.IconColorAdmin {
 	color: #B397FF;
-	margin-left:15px;
+	margin-left: 15px;
 }
-.IconColorAdmin:hover{
+
+.IconColorAdmin:hover {
 	color: #B397FF;
 }
-.IconColorAdmin a{
+
+.IconColorAdmin a {
 	color: #B397FF;
 }
 
-.IconBoxAdmin:hover{
-	color:  #B397FF;
-
-
+.IconBoxAdmin:hover {
+	color: #B397FF;
 }
-.IconBoxAdmin{
- display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;}
+
+.IconBoxAdmin {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 .IconTextAdmin {
 	/* margin-left: 7px; */
-	margin-top:6px;
+	margin-top: 6px;
 	color: #B397FF;
 }
 
-.IconBox:hover{
-	color:  #7C4AFF;
+.IconBox:hover {
+	color: #7C4AFF;
 }
 
-
-.searchAndIconBox{
-display: flex;
-/* justify-content: center;
+.searchAndIconBox {
+	display: flex;
+	/* justify-content: center;
 text-decoration: row; */
-align-items: center
+	align-items: center
 }
-
 
 .rSearchIcon {
 	/* position: absolute; */
@@ -299,14 +303,14 @@ align-items: center
 	/* margin-top: 9px; */
 	margin-left: 5px;
 	color: #7C4AFF;
- border: none;
-	
+	border: none;
 	background-color: #FFFFFF;
 }
+
 .rSearchIcon:hover {
 	color: #FF99B8;
-	
 }
+
 .searchIcon {
 	/* position: absolute; */
 	font-size: 15px;
@@ -346,11 +350,12 @@ align-items: center
 }
 
 .tB {
-/* 	padding-top: 10px;
+	/* 	padding-top: 10px;
 	padding-bottom: 10px; */
 	/* magin-left:10px; */
 	/* 	height: 30px; */
 	/* width: 80px; */
+	
 }
 
 /* .topButtonsMargin {
@@ -359,17 +364,17 @@ align-items: center
 .tB a {
 	text-decoration-line: none;
 }
-.topBA0{
-	height: 35px;	
+
+.topBA0 {
+	height: 35px;
 }
-.topBA{
+
+.topBA {
 	display: flex;
-
- 	    align-items: center;
- 	flex-direction: row-reverse;
- 	align-content: center;
+	align-items: center;
+	flex-direction: row-reverse;
+	align-content: center;
 }
-
 
 .tB a:hover {
 	text-decoration-line: none;
@@ -390,6 +395,7 @@ align-items: center
 .logoMenu {
 	/* margin-top: -10px; */
 	/* margin-bottom: 30px; */
+	
 }
 
 /* .topButtons {
@@ -411,26 +417,29 @@ align-items: center
 	border: 0.5px solid #9E9E9E;
 	border-radius: 5px;
 	background-color: #F8F8F8;
-/* 	display: flex;
+	/* 	display: flex;
 	align-items: flex-start;
 	justify-content: center; */
 	margin-left: 10px;
 }
-.logoutButton span{
+
+.logoutButton span {
 	font-size: 12px;
 }
+
 .logoutButton {
-  display: flex;
-/*   justify-content: center;
+	display: flex;
+	/*   justify-content: center;
   align-items: center; */
 }
 
-.logoutButton a{
+.logoutButton a {
 	text-decoration: none;
 }
-.logoutBox{
+
+.logoutBox {
 	display: flex;
-/* 	align-items: center;
+	/* 	align-items: center;
 	justify-content: center; */
 }
 
@@ -684,10 +693,55 @@ button {
 	align-items: flex-start;
 	justify-content: center;
 } */
-
 .radio-label {
+	background: #FFFFFF;
+	border: 1px solid #CFCFCF;
+	border-radius: 7px;
+	width: 53px;
+	height: 29px;
 	margin-right: 10px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
 }
+
+.filterUl1 input[type="radio"] {
+	display: none;
+}
+.filterUl1 input[type="radio"]:checked + .radio-label {
+	background-color: #FF99B8;
+	color: #FFFFFF;
+	 border: none; 
+}
+
+.radio-label-long {
+	background: #FFFFFF;
+	border: 1px solid #CFCFCF;
+	border-radius: 7px;
+	width: 90px;
+	height: 29px;
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+
+.filterUl1 input[type="radio"]:checked + .radio-label-long {
+	background-color: #FF99B8;
+	color: #FFFFFF;
+	 border: none; 
+}
+
+/* .radio-label-long span {
+  display: inline-block;
+  vertical-align: middle; 요소를 수직 가운데 정렬
+} */
 
 /* 검색필터 달력 */
 /* .input-group input {

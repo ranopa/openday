@@ -9,7 +9,7 @@ import com.kosta.openday.teacher.dto.ScheduleDTO;
 public class OClassAndScheduleDTO {
 	private Integer clsId;	// 클래스번호
 	private String clsName; // 클래스명
-	private String clsCode; // 코드(카테고리)
+	private String codName; // 코드(카테고리)
 	private String teacherId; 	// 강사아이디  
 	private String teacherTel; 	// 강사연락처  
 	private String clsCreatedAt; // 등록일 
@@ -17,6 +17,19 @@ public class OClassAndScheduleDTO {
 	private List<ScheduleDTO> schedules;
 	
 	public OClassAndScheduleDTO() {}
+
+	public OClassAndScheduleDTO(Integer clsId, String clsName, String codName, String teacherId, String teacherTel,
+			String clsCreatedAt, String clsLoc, List<ScheduleDTO> schedules) {
+		super();
+		this.clsId = clsId;
+		this.clsName = clsName;
+		this.codName = codName;
+		this.teacherId = teacherId;
+		this.teacherTel = teacherTel;
+		this.clsCreatedAt = clsCreatedAt;
+		this.clsLoc = clsLoc;
+		this.schedules = schedules;
+	}
 
 	public Integer getClsId() {
 		return clsId;
@@ -26,8 +39,8 @@ public class OClassAndScheduleDTO {
 		return clsName;
 	}
 
-	public String getClsCode() {
-		return clsCode;
+	public String getCodName() {
+		return codName;
 	}
 
 	public String getTeacherId() {
@@ -58,8 +71,8 @@ public class OClassAndScheduleDTO {
 		this.clsName = clsName;
 	}
 
-	public void setClsCode(String clsCode) {
-		this.clsCode = clsCode;
+	public void setCodName(String codName) {
+		this.codName = codName;
 	}
 
 	public void setTeacherId(String teacherId) {
@@ -82,19 +95,7 @@ public class OClassAndScheduleDTO {
 		this.schedules = schedules;
 	}
 
-	public OClassAndScheduleDTO(Integer clsId, String clsName, String clsCode, String teacherId, String teacherTel,
-			String clsCreatedAt, String clsLoc, List<ScheduleDTO> schedules) {
-		super();
-		this.clsId = clsId;
-		this.clsName = clsName;
-		this.clsCode = clsCode;
-		this.teacherId = teacherId;
-		this.teacherTel = teacherTel;
-		this.clsCreatedAt = clsCreatedAt;
-		this.clsLoc = clsLoc;
-		this.schedules = schedules;
-	}
-
+	
 	
 	
 }

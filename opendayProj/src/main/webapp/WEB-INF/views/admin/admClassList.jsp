@@ -30,14 +30,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${list}" var="cas">
-
+			<c:forEach items="${list}" var="cas"> 
 				<tr>
 					<td class="td1">${cas.clsId }</td>
 					<td class="td2">
-						<p class="ellipsis">${cas.clsName }</p>
+						<p class="ellipsis">${cas.clsName}</p>
 					</td>
-					<td class="td3">${cas.clsCode}</td>
+					<td class="td3">${cas.codName}</td>
 					<td class="td4">${cas.teacherId}</td>
 					<td class="td5">${cas.teacherTel}</td>
 					<td class="td6">${cas.clsCreatedAt}</td>
@@ -64,7 +63,7 @@
 								<ul class="sub-ul">
 									<li>${scd.scdNum}</li>
 									<li>${scd.scdDate}</li>
-									<li>${scd.scdTime}</li>
+									<li>${scd.scdStartTime}</li>
 									<li>${scd.scdPlace}</li>
 									<li>${scd.scdMaxPersonnel}</li>
 									<li>${scd.scdStatus}</li>
@@ -80,3 +79,20 @@
 	</table>
 
 </div> 
+<script>
+window.onload = () => { 
+    var subBtns = document.querySelectorAll(".detail-btn");
+
+    subBtns.forEach((btn) => {
+        var hiddenUl = btn.parentElement.parentElement.nextElementSibling;
+        btn.addEventListener('click', () => {
+            if (hiddenUl.classList.contains('show')) {
+                hiddenUl.classList.remove('show');
+            } else {
+                hiddenUl.classList.add('show');
+
+            } 
+        });
+    });
+};
+</script>

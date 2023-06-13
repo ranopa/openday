@@ -84,10 +84,7 @@ public class AdmServiceImpl implements AdmService {
 		admDAO.updateInquiry(map);
 	}
 	
-	@Override
-	public void inquiryAnswer(Integer admNum, String answer) throws Exception {
-		admDAO.updateInquiryAnswer(admNum, answer);
-	}
+	
 
 	@Override
 	public List<OClassDTO> findOClassByStatus(String status) throws Exception {
@@ -156,9 +153,34 @@ public class AdmServiceImpl implements AdmService {
 			e.printStackTrace();
 		}
 	}
+ 
+	@Override
+	public void inquiryAnswer(Integer admNum, String admAnContent) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("admAnContent", admAnContent);
+		map.put("admNum", admNum);
+		admDAO.updateAnInquiry(map); 
+	}
+
+	@Override
+	public void removeNotice(Integer ancId) throws Exception {
+		admDAO.deleteNotice(ancId);
+		
+	}
+
+	@Override
+	public String getCodeName(String codNum) throws Exception { 
+		return admDAO.selectCategoryByCode(codNum);
+	}
+
+	@Override
+	public void noticeRemove(Integer ancId) throws Exception {
+		admDAO.deleteNotice(ancId);
+	}
 	
 	@Override
 	public List<SettlementAmountDTO> findSettlementListByStatus(String status)  throws Exception {
 		return admDAO.selectSettlementListByStatus(status);
+ 
 	}
 }

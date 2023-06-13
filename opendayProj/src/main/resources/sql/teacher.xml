@@ -55,7 +55,6 @@
 	     ]]>
 	</insert> -->
 	
-	
 	<!-- 스케쥴 불러오기 -->
 	<select id="selectSchedule" parameterType="Integer" resultType="java.util.Map">
 		 <![CDATA[
@@ -70,5 +69,11 @@
 	 	 ]]>
 	</select>
 	
-	
+	<!-- oclass 내용 업데이트 -->
+	<update id="updateclassEnrollment"  parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
+			<![CDATA[
+				update oclass set scdDate=#{scdDate}, scdRunTime=#{scdRunTime}, scdStartTime=#{scdStartTime}, scdEndTime=#{scdEndTime},
+				scdPlace = #{scdPlace}, scdPlaceDetail=#{scdPlaceDetail}, scdMinPersonnel=#{scdMinPersonnel}, scdMaxPersonnel=#{scdMaxPersonnel} where clsId=#{clsId}		
+			]]>
+	</update>
 </mapper>

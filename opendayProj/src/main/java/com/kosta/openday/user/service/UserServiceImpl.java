@@ -1,11 +1,12 @@
 package com.kosta.openday.user.service;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
 import com.kosta.openday.adm.dto.CodeDTO;
-import com.kosta.openday.adm.dto.FileDTO;
 import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
@@ -33,10 +33,7 @@ import com.kosta.openday.user.dto.UserDTO;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private FileDAO fileDAO;
-	
-	@Autowired
-	private FileService fileService;;
+	private FileService fileService;
 	
 	@Autowired
 	private UserDAO userDAO;
@@ -67,43 +64,26 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int idCheck(String id) throws Exception {
+		/* System.out.println(id); */
 		UserDTO user = userDAO.selectUserInfo(id);
 		if (user == null) {
+
 			return 0;
 		}
+		/* System.out.println(user.getUserId()); */
 		return 1;
 
 	}
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
+		// 파일 insert 
+		Integer filNum = fileService.createFile(file); 
+		// 유저 update
+		map.put("filNum", filNum);
+		
+		userDAO.updateUser(map);
 
-//		Integer filNum = 0;
-//
-//		if (file != null && !file.isEmpty()) {
-//			FileDTO fil = new FileDTO();
-//			fil.setFilClassification(file.getContentType());
-//			fil.setFilOrgName(file.getOriginalFilename());
-//			fil.setFilSaveName(file.getName());
-//			fil.setFilSize(file.getSize());
-//			filNum = fileDAO.selectNewFileId();
-//			fil.setFilNum(filNum);
-//			fileDAO.insertFile(fil);
-
-			// File dfile = new
-			// File("/resources/upload/"+filNum+file.getOriginalFilename());
-//			File dfile = new File(servletContext.getRealPath(uploadDir) + filNum);
-//
-//			file.transferTo(dfile);
-//			map.put("filNum", filNum); 
-		Integer fileNum = 0;
-		try {
-			fileNum = fileService.createFile(file);
-			map.put("filNum", fileNum);
-			userDAO.updateUser(map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -201,12 +181,36 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	
+	@Override
+	public List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception {
+		  String userPreferStr = userDAO.selectUserPrefer(userId);
+		    if (userPreferStr == null || userPreferStr.isEmpty()) {
+		        return Collections.emptyList();
+		    }
+
+		    String[] prefers = userPreferStr.split("_");
+		    List<String> preferList = Arrays.asList(prefers);
+
+		    return userDAO.mainPreferenceOClassList(preferList);
+		}
+	
+	
+	/*
+	 * @Override public List<CollectDTO> mainPreferenceOClassList(String userId)
+	 * throws Exception { String userPreferStr = userDAO.selectUserPrefer(userId);
+	 * String[] prefers = userPreferStr.split("_");
+	 * 
+	 * List<String> preferList = Arrays.asList(prefers);
+	 * 
+	 * return userDAO.mainPreferenceOClassList(preferList); }
+	 */
 	/*
 	 * public void func() { String preference = "C1_C3_C15"; String[] code =
 	 * preference.split("_");
 	 * 
 	 * }
-	 */
+	 */	 
 
 	// 찜취소
 	@Override
@@ -274,7 +278,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void getResetPassword(UserDTO user) throws Exception {
+	public void resetPassword(UserDTO user) throws Exception {
 		userDAO.resetPassword(user);
 
 	}
@@ -303,6 +307,21 @@ public class UserServiceImpl implements UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.searchInputSelectCount(map);
+	} 
+	@Override
+	public void addPrefer(String preferValues, String userId) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("preferValues", preferValues);
+		map.put("userId", userId);
+		userDAO.updatePrefer(map); 
 	}
-	
+
+	@Override
+	public String[] getUserPrefer(String userId) throws Exception {
+		String[] userPrefer = null;
+		String str = userDAO.selectUserInfo(userId).getUserPreference();  
+		userPrefer = str.split("_");
+		return userPrefer; 
+		
+	} 
 }

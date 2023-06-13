@@ -34,8 +34,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<String> selectUserPrefer(String id) throws Exception {
-		return sqlSession.selectList("mapper.user.selectUserPrefer", id);
+	public String selectUserPrefer(String id) throws Exception {
+		return sqlSession.selectOne("mapper.user.selectUserPrefer", id);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void resetPassword(UserDTO user) throws Exception {
-		sqlSession.selectOne("mapper.user.userFindPw", user);
+		sqlSession.selectOne("mapper.user.resetPassword", user);
 
 	}
 
@@ -180,8 +180,8 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println(user);
 		System.out.println(user.getUserNickname());
 		return user;
-	}
-
+	} 
+ 
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
 		return sqlSession.selectOne("mapper.search.searchOClassCount", map);
 	}
@@ -191,12 +191,30 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.user.mainMenuOClassListCount", map);
 	}
-	
+
 	@Override
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.search.searchInputSelectCount", map);
 	}
+ 
+	@Override
+	public void updatePrefer(Map<String, String> map) throws Exception {
+		sqlSession.update("mapper.user.updatePrefer", map);
+		
+	}
+ 
+
+	
+	
+	@Override
+	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.user.mainPreferenceOClassList",preferences);
+	}
+
+	 
+
 
 
 }

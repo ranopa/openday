@@ -82,13 +82,7 @@ public class AdmDAOImpl implements AdmDAO {
 		return sqlSession.selectOne("mapper.adm.selectAdmInquiry", admNum);
 	}
 	
-	@Override
-	public void updateInquiryAnswer(Integer admNum, String answer) {
-		Map map = new HashMap<>();
-		map.put("admNum", admNum);
-		map.put("answer", answer);
-		sqlSession.update("mapper.notice.updateAdmInquiryAnswer", map);
-	}
+ 
 	// 공지사항 
 	@Override
 	public List<AnnouncementDTO> selectAnnouncementList() throws Exception {
@@ -105,11 +99,26 @@ public class AdmDAOImpl implements AdmDAO {
 		sqlSession.insert("mapper.announcement.insertAnnouncement", map);
 	}
 
+	@Override 
+	public void updateAnInquiry(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.adm.updateAnswerInquiry",map);
+	}
+
 	@Override
+	public void deleteNotice(Integer ancId) throws Exception {
+		sqlSession.delete("mapper.adm.deleteAdmNotice",ancId);
+		
+		
+	}
+
+	@Override
+	public String selectCategoryByCode(String codNum) throws Exception { 
+		return sqlSession.selectOne("mapper.adm.selectCategoryByCode", codNum);
+	} 
 	public List<SettlementAmountDTO> selectSettlementListByStatus(String status) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.adm.selectSettlementWaitingList", status);
 	}
-
-
+ 
+ 
 }
