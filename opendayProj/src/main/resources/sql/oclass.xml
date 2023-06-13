@@ -28,6 +28,12 @@
 		]]> 		
 	</select>
 	
+	<select id="selectOclassMap" parameterType="Integer" resultType="java.util.Map">
+		<![CDATA[
+			select * from oclass where clsId=#{clsId}
+		]]> 		
+	</select>	
+	
 	<!-- oclass 내용 업데이트 -->
 	<update id="updateclassOpen" parameterType="java.util.Map">
 			<![CDATA[
@@ -47,7 +53,7 @@
 	<!-- 파일업로드(썸네일)  -->
 	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-		insert into file values(nextval(file_seq),#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
+		insert into file values(#{filNum},#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
 		]]> 
 	</insert>
 	

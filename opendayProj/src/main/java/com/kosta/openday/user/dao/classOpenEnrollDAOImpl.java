@@ -73,4 +73,9 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 		return sqlSession.selectOne("mapper.oclass.selectSchedule",scdNum);
 	}
 
+	@Override
+	public Map<String, Object> selectOclassMap(Integer clsId) throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectOclassMap", clsId);
+	}
+
 }

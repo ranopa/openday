@@ -34,7 +34,7 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 	@Override
 	public void classCreate(OClassDTO dto, MultipartFile file) throws Exception {
 		if(file!=null && !file.isEmpty()) {
-			String dir = sc.getRealPath("/resources/upload");
+			String dir = sc.getRealPath("/resources/upload/");
 			
 			String savefilename = UUID.randomUUID() + "_" + file.getOriginalFilename();
 			
@@ -62,7 +62,7 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 
 	@Override
 	public void fileView(Integer filNum, OutputStream out) throws Exception {
-		String dir = "C:/openday_file/";
+		String dir = sc.getRealPath("/resources/upload/");
 		FileDTO fileDTO = classopenenrollDAO.selectFile(filNum);
 		FileInputStream fis = new FileInputStream(dir+filNum);
 		FileCopyUtils.copy(fis, out);
@@ -78,7 +78,12 @@ public class classOpenEnrollServiceImpl implements classOpenEnrollService {
 
 	@Override
 	public Map<String, Object> getSchedule(Integer clsId) throws Exception {
-		return classopenenrollDAO.selectSchedule(clsId);
+		Map<String, Object> res = classopenenrollDAO.selectSchedule(clsId);
+		if(res==null || res.size()==0) {
+			return classopenenrollDAO.selectOclassMap(clsId);
+		} else {
+			return res; 			
+		}
 	}
 
 	@Override
