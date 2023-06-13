@@ -78,7 +78,6 @@
 		margin-top: 60px;
 		display: block;
 		background-size: contain;
-		background-image: url("resources/image/user/Laderach about.jpg");
 		background-position: center;
 	}
 
@@ -201,7 +200,6 @@
 		border-radius: 2px;
 		border: 1px solid gray;
 		cursor: pointer;
-		margin-bottom: 10px;
 	}
 	
 	.review-star {
@@ -312,6 +310,37 @@
     	border: 1px solid #D9D9D9;
     	margin-top: 10px;
     }
+    
+    #ciContent, #ciModContent {
+    	resize: none;
+    }
+    
+    #ciContent:focus, #ciModContent {
+		outline: none;
+	}
+	
+	.stars {
+ 		width: 72%;
+ 	}
+ 
+	.star-rating {
+  		font-size: 1rem;
+  		line-height: 1rem;
+  		flex-direction: row-reverse;
+  		justify-content: space-around;
+  		padding: 0 0.2em;
+	}
+ 
+	.star-rating input {
+  		display: none;
+	}
+ 
+	.star-rating label {
+  		-webkit-text-fill-color: transparent;
+  		-webkit-text-stroke-width: 0.5px;
+  		-webkit-text-stroke-color: yellow;
+	}
+
 </style>
 <script>
 	function openTab(tabId) {
@@ -329,12 +358,18 @@
 		document.getElementById(tabId).style.display = 'block';
 		document.getElementById('menu-' + tabId).classList.add('active');
 	}
-
-
+	
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://github.com/teamdf/jquery-number"></script>
 <script>
+function addComma(num) 
+{
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+}
+
 $(function() {
 	let heartYN = '${res.heart}';
 	function heartFill(heart) {
@@ -377,6 +412,10 @@ $(function() {
 				  },
 			success:function(res) {
 				alert(res);
+			},
+			error:function(res) {
+				console.log(res);
+				alert(res.responseText);
 			}
 		})
 		
@@ -430,10 +469,14 @@ $(function() {
 			}
 		})		
 	})
+	let price = addComma('${res.clsInfo.price}');
+	console.log(price)
+	$("#price").text(price+'원');
 })
 </script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
 
 		<div class="container">
@@ -443,7 +486,7 @@ $(function() {
 				<div class="texts">
 					<h2>${res.clsInfo.clsName}</h2>
 					<br/>
-					<p>${res.clsInfo.price}</p>
+					<p id="price">${res.clsInfo.price}원</p>
 				</div>
 				<div class="buttons">
 					<button id="heartButton" class="heart-button"><span class="material-symbols-outlined">favorite</span></button>
@@ -478,7 +521,7 @@ $(function() {
     					<c:forEach items="${res.scheduleList}" var="schedule">
     						<p>
 								<span>${schedule.scdDate}</span>&nbsp;&nbsp;
-								<span>${schedule.scdTime}</span>&nbsp;&nbsp;
+								<span>${schedule.scdStartTime}</span>&nbsp;&nbsp;
 								<span>${schedule.scdPlace}</span>&nbsp;&nbsp;
 								<span>${schedule.scdPlaceDetail}</span>
 							</p>
@@ -490,9 +533,21 @@ $(function() {
             					<span class="user-id">${review.userId }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             					<span class="review-date">${review.rvDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             					<c:if test="${user.userId==review.userId}">
-            					<button class="delete-button" data-reviewnum=${review.rvNum }>삭제</button><br/>
+            					<button class="delete-button" data-reviewnum=${review.rvNum }>삭제</button>
             					</c:if>
-            					<span class="review-star">${review.rvStar }</span><br/><br/>
+            					<br/>
+            					
+								<span class="star-rating space-x-4 mx-auto">
+									<c:forEach begin="1" end="${review.rvStar}" varStatus="status">
+										<input type="radio" name="rating" v-model="ratings"  disabled="disabled" checked/>
+										<label for="1-star" class="star" style="-webkit-text-fill-color: yellow;">★</label>
+									</c:forEach>
+ 									<c:forEach begin="${review.rvStar+1}" end="5" varStatus="status">
+										<input type="radio" name="rating" v-model="ratings"  disabled="disabled"/>
+										<label for="1-star" class="star">★</label>
+									</c:forEach>
+								</span>       
+            					<br/><br/>
             					<span class="review-content">${review.rvContent }</span><br/><br/>
         					</p>
     					</c:forEach>
@@ -526,7 +581,7 @@ $(function() {
 								<span class="user-id">${inquiryAndAnswer.clsInquiry.userId }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<span>${inquiryAndAnswer.clsInquiry.ciDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<c:choose>
-								<c:when test="${user.userId==inquiryAndAnswer.clsInquiry.userId}">
+								<c:when test="${userId.userId==inquiryAndAnswer.clsInquiry.userId}">
 									<button class="edit-button" data-bs-toggle="modal" data-bs-target="#modifyModal"
 										data-cinum="${inquiryAndAnswer.clsInquiry.ciNum}"
 										data-cisecret="${inquiryAndAnswer.clsInquiry.ciSecret}">수정</button><br/><br/>
@@ -536,7 +591,7 @@ $(function() {
 									<span>${inquiryAndAnswer.clsInquiry.ciContent }</span><br/><br/>
 								</c:when>
 								<c:otherwise>
-									<span>비밀글입니다.</span><br/><br/>
+									<br/><br/><span>비밀글 입니다.</span><br/><br/>
 								</c:otherwise>
 								</c:choose>
 							</p>
@@ -552,7 +607,7 @@ $(function() {
 									<span>${inquiryAndAnswer.answer.ansContent }</span><br/><br/>
 								</c:when>
 								<c:otherwise>
-									<span>비밀글입니다.</span><br/><br/>
+									<span>비밀글 입니다.</span><br/><br/>
 								</c:otherwise>
 								</c:choose>
 							</p>	
@@ -588,5 +643,6 @@ $(function() {
 			</div>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

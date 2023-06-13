@@ -13,7 +13,11 @@
 
 <link rel="stylesheet"	href="<c:url value="/resources/css/user/header.css"/>">
 <script src='<c:url value="/resources/js/user/header.js"/>'></script>
+
+<link rel="stylesheet" href="<c:url value="/resources/css/user/header.css"/>">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -21,6 +25,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <style>
 /* datepicer 버튼 롤오버 시 손가락 모양 표시 */
 .ui-datepicker-trigger {

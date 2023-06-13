@@ -14,6 +14,7 @@ import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
+import com.kosta.openday.user.dto.ReviewDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Repository
@@ -218,5 +219,16 @@ public class UserDAOImpl implements UserDAO {
 	 
 
 
-
+	
+	//최제인꺼 삭제하지 마시오
+	@Override 
+	public Integer selectReviewNum() throws Exception {
+		return sqlSession.selectOne("mapper.user.selectReviewNum");
+	}
+	
+	//최제인꺼 삭제하지 마시오
+	@Override
+	public void insertReview(ReviewDTO reviewDTO) throws Exception {
+		sqlSession.selectOne("mapper.user.insertReview", reviewDTO);
+	} 	
 }

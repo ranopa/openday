@@ -74,6 +74,9 @@ public interface UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
+
+	public void reviewWrite(Map<String,String> param, String userId) throws Exception;
+
 	 
 	//강사권한부여
 	public void alterAuthorityTchc(String userId)throws Exception; 
@@ -83,4 +86,5 @@ public interface UserService {
 	public String[] getUserPrefer(String userId) throws Exception; 
 	
 	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;
+
 }

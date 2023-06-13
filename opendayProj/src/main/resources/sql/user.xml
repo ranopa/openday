@@ -593,6 +593,12 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	]]>
 	</select>
 	
+<!-- 	review insert: by 최제인 -->
+	<insert id="insertReview" parameterType="com.kosta.openday.user.dto.ReviewDTO">
+		insert into review (rvNum,rvContent,rvDate,rvStar,userId,scdNum,clsId)
+		values(#{rvNum},#{rvContent},curdate(),#{rvStar},#{userId},#{scdNum},#{clsId})
+	</insert>
+
 	<update id="updateUserAuthorty" parameterType="String" >
 	<![CDATA[
 		update user set authority = 2 where userId=#{userId}
@@ -612,5 +618,9 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 
 
 
+
+	<select id="selectReviewNum" resultType="Integer">
+		select nextval(review_seq)
+	</select>	
 </mapper>
 
