@@ -12,6 +12,11 @@
 		ancUploadDate desc
 		limit 10 offset 0
 	</select>
+	<!-- 강사 공지사항 정보 -->
+	<select id="tcAnnouncementInfo" parameterType="int"
+		resultType="com.kosta.openday.adm.dto.AnnouncementDTO">
+		SELECT * FROM announcement WHERE ancType = "강사" and ancId = #{ancId}
+	</select>
 	
 	<!-- 강사 프로필 파일넘버 강사채널에 넣기 -->
 	<update id="tcProfileUserUpdate" parameterType="com.kosta.openday.teacher.dto.TeacherChannelDTO">

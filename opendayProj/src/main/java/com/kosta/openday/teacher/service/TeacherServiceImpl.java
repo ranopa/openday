@@ -123,5 +123,13 @@ public class TeacherServiceImpl implements TeacherService {
 	public TeacherChannelDTO tcProfileSelect(HashMap<String, Object> map) throws Exception {
 		return teacherDAO.tcProfileSelect(map);
 	}
+	@Override
+	public AnnouncementDTO tcAnnouncementInfo(int ancId) throws Exception {
+		return teacherDAO.tcAnnouncementInfo(ancId);
+	}
+	@Override
+	public void SalesAdd(HashMap<String, Object> map) throws Exception {
+		teacherDAO.SalesAdd(map);
+	}
 
 }

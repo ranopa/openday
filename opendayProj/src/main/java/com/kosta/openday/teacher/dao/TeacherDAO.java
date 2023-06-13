@@ -37,5 +37,7 @@ public interface TeacherDAO {
 	int tcClassListStatus2Count(HashMap<String, Object> map) throws Exception;
 	int tcClassListReviewCount(HashMap<String, Object> map) throws Exception;
 	double tcClassListAvgStarCount(HashMap<String, Object> map) throws Exception;
+	AnnouncementDTO tcAnnouncementInfo(int ancId) throws Exception;
+	void SalesAdd(HashMap<String, Object> map) throws Exception;
 }	
 

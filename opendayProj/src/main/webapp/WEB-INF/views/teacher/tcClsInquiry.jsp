@@ -20,9 +20,8 @@
 		<jsp:include page="tcHaeder.jsp" />
 		<div class="tc-container">
 			<div class="tc-maintop">
-				<span class="tc-mainTitle">강사페이지</span>
-				<span class="tc-mainSession">${userId.userName} 강사님</span>
-				<span class="tc-mainTimer">남은시간 : <span id="timer"></span></span>
+				<span class="tc-mainTitle">강사페이지</span> <span class="tc-mainSession">${userId.userName}
+					강사님</span> <span class="tc-mainTimer">남은시간 : <span id="timer"></span></span>
 			</div>
 			<hr>
 			<div class="tc-classList">
@@ -49,11 +48,11 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${tcCllist }" var="tcCllist">
-								<tr  onclick="classInquiryList(${tcCllist.clsId })">
+								<tr onclick="classInquiryList(${tcCllist.clsId })">
 									<td>${tcCllist.clsId }</td>
 									<td>${tcCllist.clsName }</td>
-									<td><%-- ${tcCllist.clsStar } --%></td>
-									<td><%-- ${tcCllist.clsHeart } --%></td>
+									<td>${tcCllist.rvStar }</td>
+									<td>${tcCllist.heartCount }</td>
 									<td>${tcCllist.clsInquiry  }</td>
 									<td>${tcCllist.clsCreatedAt }</td>
 								</tr>
@@ -63,30 +62,37 @@
 
 				</div>
 				<div class="tc-paging">
-						<c:if test="${pu.startPageNum>5 }">
-							<a href="tcClassInquiry?pageNum=${pu.startPageNum-1 }">이전</a>
-						</c:if>
+					<c:if test="${pu.startPageNum>5 }">
+						<a href="tcClsInquiry?pageNum=${pu.startPageNum-1 }"><span
+							class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
+					</c:if>
 
-						<c:forEach var="i" begin="${pu.startPageNum }"
-							end="${pu.endPageNum }">
-							<c:choose>
-								<c:when test="${pu.pageNum==i }">
-									<!-- 현재페이지 -->
-									<a href="tcClassInquiry?pageNum=${i }"> <span
-										style='color: blue; font-weight: bold'>[${i }]</span>
+					<c:forEach var="i" begin="${pu.startPageNum }"
+						end="${pu.endPageNum }">
+						<c:choose>
+							<c:when test="${pu.pageNum==i }">
+								<!-- 현재페이지 -->
+								<div class="numBox" style='color: #8556FF;'>
+									<a href="tcClsInquiry?pageNum=${i }"> <span
+										style='color: #8556FF; font-weight: bold'>${i }</span>
 									</a>
-								</c:when>
-								<c:otherwise>
-									<a href="tcClassInquiry?pageNum=${i }"> <span style='color: gray;'>[${i }]</span>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="numBox" style='color: #CFCFCF;'>
+									<a href="tcClsInquiry?pageNum=${i }"> <span
+										style='color: gray;'>${i }</span>
 									</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 
-						<c:if test="${pu.endPageNum<pu.totalPageCount }">
-							<a href="tcClassInquiry?pageNum=${pu.endPageNum+1 }">다음</a>
-						</c:if>
-					</div>
+					<c:if test="${pu.endPageNum<pu.totalPageCount }">
+						<a href="tcClsInquiry?pageNum=${pu.endPageNum+1 }"><span
+							class="material-symbols-outlined pagenp">chevron_right</span></a>
+					</c:if>
+				</div>
 				<div class="tc-classScheduleUser">
 					<h2>문의 내역</h2>
 					<table class="tc-classUserTable">
@@ -113,6 +119,33 @@
 			</div>
 		</div>
 	</div>
+	<div id="modal1" onclick="tcModalClose()">
+		<div class="modal1-content">
+			<div class="tc-title">
+				<span class="tcAnnouncement">문의 답글</span> <span
+					class="close-modal1 float-r" onclick="tcAnClose()">X</span>
+			</div>
+			<table class="modal1-table" border>
+				<tr>
+					<th>수강생명</th>
+					<td id="ancUploadDate"></td>
+				</tr>
+				<tr>
+					<th>문의제목</th>
+					<td id="filNum"></td>
+				</tr>
+				<tr>
+					<th>문의내용</th>
+					<td id="ancContent"></td>
+				</tr>
+				<tr>
+					<th>문의답글</th>
+					<td id="ancContent"><textarea rows="" cols="" style="height: 150px;" id="answer"></textarea><br>
+						<button id="save-modal">저장</button></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
 <script>
@@ -129,7 +162,7 @@
 				$(".tc-classUserTable>tbody *").remove();
 				let text = "";
 				for(let i=0; i<data.length; i++){
-					let str = "<button>답변하기</button>";
+					let str = "<button onclick='tcAnFunc(" + data[i].ciNum + ")'>답변하기</button>";
 					if(data[i].ciStatus == true) {
 						str = "답변완료";
 					}
@@ -174,7 +207,6 @@ function setTimer(){ // 1초 간격으로 호출할 타이머 함수
       remainSecond--;
       setTimeout("setTimer()",1000); //1초간격으로 재귀호출!
    }else{
-      alert('세션종료');
       /*세션 종료시 작동할 이벤트*/ 
    }
 }
@@ -185,5 +217,37 @@ function Lpad(str,len){  // hh mm형식으로 표기하기 위한 함수
       str = "0"+str;
    }
    return str;
+}
+function tcAnFunc(num) {
+	modal1.style.display = "block";
+ 	document.body.style.overflow = "hidden"; // 스크롤바 제거
+ 	$.ajax({
+		type:"POST",
+		url:"tcAnInfo",
+		data:{
+			"ciNum": num
+		},
+		dataType: "json",
+		success:function(data){
+			console.log(data);
+			$("#ancTitle").text(data.ancTitle);
+			$("#ancContent").text(data.ancContent);
+			$("#ancUploadDate").text(data.ancUploadDate);
+			$("#filNum").text(data.filNum);
+		},
+		fail:function(data){
+			console.log(data);
+		}
+	});
+}
+function tcAnClose() {
+	modal1.style.display = "none";
+ 	document.body.style.overflow = "auto"; // 스크롤바 보이기
+}
+function tcModalClose() {
+	if(!document.getElementById("modal1")) {
+		  modal1.style.display = "none";
+		  document.body.style.overflow = "auto"; // 스크롤바 보이기
+	}
 }
 </script>

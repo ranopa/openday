@@ -2,6 +2,8 @@ package com.kosta.openday.adm.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 //공지사항
 public class AnnouncementDTO {
 	private Integer ancId; //글번호
@@ -9,6 +11,7 @@ public class AnnouncementDTO {
 	private String  ancContent; //내용
 	private Integer ancViewcount; //조회수
 	private String ancType; //분류
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date ancUploadDate; //작성일 
 	private Integer filNum; //파일번호
 	

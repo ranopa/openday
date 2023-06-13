@@ -119,6 +119,14 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public TeacherChannelDTO tcProfileSelect(HashMap<String, Object> map) throws Exception {
 		return sqlSession.selectOne("mapper.teacherMain.tcProfileSelect", map);
 	}
+	@Override
+	public AnnouncementDTO tcAnnouncementInfo(int ancId) throws Exception {
+		return sqlSession.selectOne("mapper.teacherMain.tcAnnouncementInfo", ancId);
+	}
+	@Override
+	public void SalesAdd(HashMap<String, Object> map) throws Exception {
+		sqlSession.selectOne("mapper.teacherClass.SalesAdd", map);
+	}
 	
 	
 }

@@ -211,7 +211,26 @@ public class TeacherController {
 		}
 		return list;
 	}
-
+	@RequestMapping(value = "/tcAnInfo", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody AnnouncementDTO tcAnInfo(@RequestParam Integer ancId) {
+		AnnouncementDTO dto = null;
+		try {
+			dto = teacherService.tcAnnouncementInfo(ancId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	@RequestMapping(value = "/SalesAdd", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody void SalesAdd(@RequestParam HashMap<String, Object> map) {
+		try {
+			UserDTO dto = (UserDTO) session.getAttribute("userId");
+			map.put("userId", dto.getUserId());
+			teacherService.SalesAdd(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	@RequestMapping("/tcClsSchedule")
 	public ModelAndView tcClassSchedule(@RequestParam HashMap<String, Object> map) {
 		ModelAndView mav = new ModelAndView("teacher/tcClsSchedule");

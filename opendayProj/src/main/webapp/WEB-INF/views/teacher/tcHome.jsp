@@ -62,7 +62,7 @@
 						<col width="10%" />
 					</colgroup>
 					<c:forEach items="${tcAnlist }" var="tcAnlist">
-						<tr onclick="tcAnFunc(${tcAnlist.ancId })">
+						<tr onclick="tcAnFunc(${tcAnlist.ancId })" class="openModal">
 							<td >공지</td>
 							<td>${tcAnlist.ancTitle }</td>
 							<td>${tcAnlist.ancUploadDate }</td>
@@ -82,22 +82,21 @@
 			<table class="modal1-table" border>
 				<tr>
 					<th>공지</th>
-					<td>공지사항</td>
+					<td id="ancTitle"></td>
 				</tr>
 				<tr>
 					<th>등록일</th>
-					<td>0000-00-00</td>
+					<td id="ancUploadDate"></td>
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td>첨부파일</td>
+					<td id="filNum"></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td>내용</td>
+					<td id="ancContent"></td>
 				</tr>
 			</table>
-			
 		</div>
 	</div>
 </body>
@@ -161,15 +160,33 @@ modal1.addEventListener("click", (e) => {
 function tcAnFunc(num) {
 	modal1.style.display = "block";
  	document.body.style.overflow = "hidden"; // 스크롤바 제거
+ 	$.ajax({
+		type:"POST",
+		url:"tcAnInfo",
+		data:{
+			"ancId": num
+		},
+		dataType: "json",
+		success:function(data){
+			console.log(data);
+			$("#ancTitle").text(data.ancTitle);
+			$("#ancContent").text(data.ancContent);
+			$("#ancUploadDate").text(data.ancUploadDate);
+			$("#filNum").text(data.filNum);
+		},
+		fail:function(data){
+			console.log(data);
+		}
+	}); 
 }
 function tcAnClose() {
 	modal1.style.display = "none";
-	  document.body.style.overflow = "auto"; // 스크롤바 보이기
+ 	document.body.style.overflow = "auto"; // 스크롤바 보이기
 }
 function tcModalClose() {
-	if(!(document.getElementById("modal1"))) {
+	if(!document.getElementById("modal1")) {
 		  modal1.style.display = "none";
 		  document.body.style.overflow = "auto"; // 스크롤바 보이기
-		}
+	}
 }
 </script>

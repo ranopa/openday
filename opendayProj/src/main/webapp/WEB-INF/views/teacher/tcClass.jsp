@@ -84,8 +84,8 @@
 							<col width="20%" />
 							<col width="10%" />
 							<col width="10%" />
-							<col width="4%" />
-							<col width="4%" />
+						<%-- 	<col width="4%" />
+							<col width="4%" /> --%>
 						</colgroup>
 						<thead>
 							<tr>
@@ -94,8 +94,8 @@
 								<th>클래스명</th>
 								<th>수강료</th>
 								<th>개설일</th>
-								<th></th>
-								<th></th>
+							<!-- 	<th></th>
+								<th></th> -->
 							</tr>
 						</thead>
 						<tbody>
@@ -106,8 +106,8 @@
 									<td>${tcCllist.clsName }</td>
 									<td>${tcCllist.clsPrice }원</td>
 									<td>${tcCllist.clsCreatedAt }</td>
-									<td><button>취소</button></td>
-									<td><button>폐강</button></td>
+								<!-- 	<td><button>취소</button></td>
+									<td><button>폐강</button></td> -->
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -118,7 +118,7 @@
 				<div class="tc-paging">
 					<c:if test="${pu.startPageNum>5 }">
 						<a
-							href="tcClass?pageNum=${pu.startPageNum-1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}&keyword=${map.keyword}">이전</a>
+							href="tcClass?pageNum=${pu.startPageNum-1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}&keyword=${map.keyword}"><span class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
 					</c:if>
 
 					<c:forEach var="i" begin="${pu.startPageNum }"
@@ -126,25 +126,28 @@
 						<c:choose>
 							<c:when test="${pu.pageNum==i }">
 								<!-- 현재페이지 -->
+								<div class="numBox" style='color: #8556FF;'>
 								<a
 									href="tcClass?pageNum=${i }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}&keyword=${map.keyword}">
-									<span style='color: blue; font-weight: bold'>[${i }]</span>
-								</a>
+									<span style='color: #8556FF; font-weight: bold'>${i }</span>
+								</a></div>
 							</c:when>
 							<c:otherwise>
+							<div class="numBox" style='color: #CFCFCF;'>
 								<a
 									href="tcClass?pageNum=${i }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}&keyword=${map.keyword}">
-									<span style='color: gray;'>[${i }]</span>
-								</a>
+									<span style='color: gray;'>${i }</span>
+								</a></div>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:if test="${pu.endPageNum<pu.totalPageCount }">
 						<a
-							href="tcClass?pageNum=${pu.endPageNum+1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}&keyword=${map.keyword}">다음</a>
+							href="tcClass?pageNum=${pu.endPageNum+1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}&keyword=${map.keyword}"><span class="material-symbols-outlined pagenp">chevron_right</span></a>
 					</c:if>
 				</div>
+				
 			</div>
 		</div>
 

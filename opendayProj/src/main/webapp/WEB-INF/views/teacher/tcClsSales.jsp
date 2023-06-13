@@ -110,7 +110,7 @@
 									<td>${list.amountPaid }원</td>
 									<td>${list.saFee }원</td>
 									<td>${list.amountOutstanding }원</td>
-									<td><button>정산신청</button></td>
+									<td><button onclick="SalesAdd(${list.amountOutstanding })">정산신청</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -121,7 +121,7 @@
 					<div class="tc-paging">
 						<c:if test="${pu.startPageNum>5 }">
 							<a
-								href="tcClsSales?pageNum=${pu.startPageNum-1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}">이전</a>
+								href="tcClsSales?pageNum=${pu.startPageNum-1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}"><span class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
 						</c:if>
 
 						<c:forEach var="i" begin="${pu.startPageNum }"
@@ -129,23 +129,25 @@
 							<c:choose>
 								<c:when test="${pu.pageNum==i }">
 									<!-- 현재페이지 -->
+									<div class="numBox" style='color: #8556FF;'>
 									<a
 										href="tcClsSales?pageNum=${i }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}">
-										<span style='color: blue; font-weight: bold'>[${i }]</span>
-									</a>
+										<span style='color: #8556FF; font-weight: bold'>${i }</span>
+									</a></div>
 								</c:when>
 								<c:otherwise>
+								<div class="numBox" style='color: #CFCFCF;'>
 									<a
 										href="tcClsSales?pageNum=${i }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}">
-										<span style='color: gray;'>[${i }]</span>
-									</a>
+										<span style='color: gray;'>${i }</span>
+									</a></div>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:if test="${pu.endPageNum<pu.totalPageCount }">
 							<a
-								href="tcClsSales?pageNum=${pu.endPageNum+1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}">다음</a>
+								href="tcClsSales?pageNum=${pu.endPageNum+1 }&prevDate=${map.prevDate}&nextDate=${map.nextDate}&clsStatus=${map.clsStatus}"><span class="material-symbols-outlined pagenp">chevron_right</span></a>
 						</c:if>
 					</div>
 			</div>
@@ -181,7 +183,6 @@ function setTimer(){ // 1초 간격으로 호출할 타이머 함수
       remainSecond--;
       setTimeout("setTimer()",1000); //1초간격으로 재귀호출!
    }else{
-      alert('세션종료');
       /*세션 종료시 작동할 이벤트*/ 
    }
 }
@@ -192,5 +193,26 @@ function Lpad(str,len){  // hh mm형식으로 표기하기 위한 함수
       str = "0"+str;
    }
    return str;
+}
+function SalesAdd(money) {
+	if(money <= 0 || money == null) {
+		alert("신청할 수 있는 금액이 아닙니다.");
+		return false;
+	}else {
+		$.ajax({
+			type:"POST",
+			url:"SalesAdd",
+			data:{
+				"money": money
+			},
+			dataType: "json",
+			success:function(data){
+			},
+			fail:function(data) {
+				alert("실패");
+			}
+		});
+		alert("정산신청되었습니다.");
+	}
 }
 </script>

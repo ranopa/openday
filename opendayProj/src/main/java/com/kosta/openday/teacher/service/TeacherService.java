@@ -38,4 +38,6 @@ public interface TeacherService {
 	double tcClassListAvgStarCount(HashMap<String, Object> map) throws Exception;
 	int tcSalesMonthTotal(HashMap<String, Object> map) throws Exception;
 	TeacherChannelDTO tcProfileSelect(HashMap<String, Object> map) throws Exception;
+	AnnouncementDTO tcAnnouncementInfo(int ancId) throws Exception;
+	void SalesAdd(HashMap<String, Object> map) throws Exception;
 }
