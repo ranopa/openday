@@ -177,10 +177,10 @@ public class AdmController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			admService.inquiryDelete(admNum);
-			mav.setViewName("redirect:/announceinquiry/inquiryList");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mav.setViewName("announceinquiry/inquiryList");
 		return mav;
 	}
 	

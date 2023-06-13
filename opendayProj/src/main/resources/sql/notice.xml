@@ -46,7 +46,7 @@
 <insert id="insertAdmInquiry" parameterType="com.kosta.openday.adm.dto.AdmInquiryDTO">
 <![CDATA[
 	insert into adm_inquiry values (nextval(adm_inquiry_seq),#{admTitle},#{admContent},#{admType},
-	CURDATE(),#{admAnContent},#{admStatus},#{admAnDate},#{userId},#{admSecret})
+	CURDATE(),#{admAnTitle},#{admAnContent},#{admStatus},#{admAnDate},#{userId},#{admSecret})
 ]]> 
 </insert>
 
