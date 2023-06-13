@@ -320,7 +320,9 @@ public class UserServiceImpl implements UserService {
 	public String[] getUserPrefer(String userId) throws Exception {
 		String[] userPrefer = null;
 		String str = userDAO.selectUserInfo(userId).getUserPreference();  
-		userPrefer = str.split("_");
+		if(str!=null) {
+			userPrefer = str.split("_");  
+		}
 		return userPrefer; 
 		
 	} 

@@ -46,17 +46,23 @@
 						<table class="e-flex">
 							<tr>
 								<td>
-									<c:if test ="${userPrefer ne null}">
-									<% 
-										String[] userPreferList = (String[]) request.getAttribute("userPrefer");
-										for(String str : userPreferList){
-									%>
-									<button type="button" class="checked" name="prefer"><%=str%></button>
-									
 									<%
-										}
-									%> 
-									</c:if>
+									String[] userPreferList = (String[]) request.getAttribute("userPrefer");
+									%>
+									<c:choose>
+										<c:when test="${userPreferList eq null}">
+											<p>선호 카테고리를 선택해주세요(최대 3개)</p>
+										</c:when>
+										<c:otherwise>
+											<%
+											for (String str : userPreferList) {
+											%>
+											<button type="button" class="checked" name="prefer"><%=str%></button>
+											<%
+											}
+											%>
+										</c:otherwise>
+									</c:choose>
 								</td>
 							</tr>
 						</table>
@@ -85,12 +91,12 @@
 							</tr>
 						</table>
 
-					</div> 
+					</div>
 					<input type="hidden" id="preferValues" name="preferValues">
 					<button type="submit" id="preferBtn" class="submit-btn">적용하기</button>
 				</div>
 			</div>
-		</form> 
+		</form>
 </body>
 
 </html>
