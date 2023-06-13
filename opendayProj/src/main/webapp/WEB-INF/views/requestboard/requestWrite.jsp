@@ -136,6 +136,7 @@
 	
 	
 	<div class="main-con">
+	<br/>
 	<h1 class="rw-above">클래스 개설 요청</h1>&nbsp;&nbsp;
 		<table>
         	<tr>

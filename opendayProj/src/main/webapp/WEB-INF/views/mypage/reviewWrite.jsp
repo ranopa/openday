@@ -177,6 +177,7 @@
 	<div id="wrap">
 		<form action="${contextPath}/reviewwrite" method="POST">
 			<input type="hidden" name="scdNum" value="${param.scdNum}"/>
+			<br/>
 			<h1 class="review-above">후기</h1>&nbsp;&nbsp;
 			<div class="form-container">
 				<div class="complete-class">
