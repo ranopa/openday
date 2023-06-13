@@ -62,4 +62,13 @@
 		 	select * from schedule s join oclass o ON s.clsId = o.clsId WHERE o.clsId=#{clsId};
 	 	 ]]>
 	</select>
+	
+	<!-- 스케쥴 불러오기 -->
+	<select id="tcChannelInfo" parameterType="String" resultType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
+		 <![CDATA[
+		 	select * from teacher_channel where userId = #{userId}
+	 	 ]]>
+	</select>
+	
+	
 </mapper>

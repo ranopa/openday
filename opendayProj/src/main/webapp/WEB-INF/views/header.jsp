@@ -71,10 +71,9 @@
     showMonthAfterYear: true,
     yearSuffix: '년'
   });
- */
-  $(function() {
+  /* $(function() {
     $("#datepicker1, #datepicker2").datepicker();
-  });
+  }); */
 
 </script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

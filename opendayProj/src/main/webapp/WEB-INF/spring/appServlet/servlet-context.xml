@@ -26,4 +26,14 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="100000000"></beans:property>
 	</beans:bean>
+	
+<!-- 	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/loginform"/>
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="img/**"/>
+			<beans:bean class="com.kosta.openday.teacher.util.LoginCheckInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors> -->
 </beans:beans>

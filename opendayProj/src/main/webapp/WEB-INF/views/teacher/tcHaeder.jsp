@@ -24,9 +24,9 @@
 				<div class="profileUpload-profile">
 					<h3>프로필 수정</h3>
 					<div>닉네임</div>
-					<input type="text" name="nickName"><br>
+					<input type="text" name="nickName" value="${tcDTO.nickName }"><br>
 					<div>강사 소개 입력</div>
-					<textarea rows="" cols="" name="tcIntroduction"></textarea>
+					<textarea rows="" cols="" name="tcIntroduction" >${tcDTO.tcIntroduction }</textarea>
 					<button id="save-modal">저장</button>
 					<button id="close-modal">취소</button>
 				</div>
@@ -74,14 +74,20 @@
 	});
 	
 	saveModalBtn.addEventListener("click", (e) => {
-		console.log("버튼클릭");
 		$( "#frm_profile" ).submit();
         let fileProfile = $("input[name='fileProfile']").val();
+        let nickName = $("input[name='nickName']").val();
+        let tcIntroduction = $("input[name='tcIntroduction']").val();
         var frm = document.getElementById('profile_file_add');
         frm.method = "POST";
         frm.enctype = "multipart/form-data";
         var Data = new FormData($("#frm_profile")[0]);
-        Data.append("file",fileProfile);
+        
+        if(!($("#profile_file_add1").attr("src") == $("#profile_file_add").attr("src"))) {
+	        Data.append("file",fileProfile);
+        }
+        Data.append("nickName",nickName);
+        Data.append("tcIntroduction",tcIntroduction);
         // ajax
         $.ajax({
             type:'POST',
@@ -90,8 +96,6 @@
             contentType: false,
             processData: false,
             success : function(data) {
-            	console.log("성공적");
-            	console.log(data);
             },
             error : function(request,status,error) {  
             	console.log("실패","code:"+request.status+"\n"+"error:"+error);
@@ -124,8 +128,6 @@
 		        }
 		        $('#profile_file_add').attr("src",img.src);
 		        $('#file').attr("src",img.src);
-		        //$('#file').val(file);
-		        $('#file').attr("src",img.src);
 		    };
 		    reader.readAsDataURL(file);
 		   
@@ -134,9 +136,6 @@
 	 	$.ajax({
 	        type:'POST',
 	        url:'profileImage',
-	        data : {
-	        	id : "hong"//${session.id}
-	        },
 	        success : function(data) {
 	        	if(data == '' || data == null) {
 		        	$("#profile_file_add").attr("src","resources/image/user/basic_profile.png");
