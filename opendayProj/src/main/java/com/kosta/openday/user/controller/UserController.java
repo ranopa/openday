@@ -65,16 +65,36 @@ public class UserController {
 	// 회원가입 id중복확인
 	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	@ResponseBody
-	public String idCheck(@RequestParam("userId") String id, @RequestParam("userPassword") String pw) throws Exception {
-  
+	public String idCheck(@RequestParam("userId") String id) throws Exception {
+		 
+		
 		int result = userService.idCheck(id);
-		String mesg = "사용가능한 아이디입니다.";
+		String mesg = "0";
 		if (result == 1) {
-			mesg = "이미 존재하는 아이디입니다.";
+			mesg = "1";
 		}
+		System.out.println(mesg);
 		return mesg;
 	}
-
+	
+	// 회원가입 닉네임 중복확인
+		@RequestMapping(value = "/nicknamecheck", method = RequestMethod.GET)
+		@ResponseBody
+		public String nickNameCheck(@RequestParam("userNickname") String userNickname) throws Exception {
+			System.out.println(userNickname);
+			String mesg = null;
+			UserDTO user = null;
+			user = userService.userByNickname(userNickname); 
+			if (user!=null) {
+				mesg = "1"; //불가능
+			} else { 
+				mesg = "0"; //가능
+			}
+			System.out.println(mesg);
+			return mesg;
+		}
+		
+		
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPage() {
@@ -129,17 +149,20 @@ public class UserController {
 	// 선호카테고리
 	@RequestMapping("/myprefer")
 	public ModelAndView myPrefer() throws Exception {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("mypage/myMain");
+		String[] userPrefer = null;
 		try {
 			List<CodeDTO> list = codeService.categoryInfoList();
 
 			// + 유저의 선호카테고리
 			UserDTO user = (UserDTO)session.getAttribute("userId");
-			if (user.getUserPrefer() != null) {
-				mav.addObject("user", user);
+			userPrefer =userService.getUserPrefer(user.getUserId()); 
+			if(userPrefer!=null) {
+				mav.addObject("userPrefer", userPrefer); 				 
 			}
+			 
 			mav.addObject("cateNames", list);
-			mav.setViewName("mypage/myPreference");
+			mav.addObject("page","myPreference");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,8 +226,8 @@ public class UserController {
 			if(h2Text.equals("신청내역")) text = "수강예정";
 			else if(h2Text.equals("수강내역")) text ="수강완료";
 			else text="수강취소"; 
-			reservedList= userService.getReservedList(user.getUserId(),text); 
-			
+			reservedList= userService.getReservedList(user.getUserId(),text);  
+		 
 		}catch(Exception e) {
 			e.printStackTrace();
 		} 
@@ -300,17 +323,14 @@ public class UserController {
 	// 선호카테고리 수정하기
 	@RequestMapping(value = "/prefer", method = RequestMethod.POST)
 //	public ModelAndView preferUpload(HttpSession session, @RequestParam("checkboxGroup") String c1, @RequestParam("checkboxGroup") String c2, @RequestParam("checkboxGroup") String c3) {
-	public ModelAndView preferUpload( @RequestParam(value = "checkboxGroup1", required = false) String c1,
-			@RequestParam(value = "checkboxGroup2", required = false) String c2,
-			@RequestParam(value = "checkboxGroup3", required = false) String c3) {
+	public ModelAndView preferUpload( @RequestParam("preferValues") String preferValues){
 
 		ModelAndView mav = new ModelAndView();
 		try {
-			System.out.println(c1 + c2 + c3);
-//			mav.addObject("cateNames",user);
-
-			mav.setViewName("redirect:/myprefer");
-			// 변경, 받아오고 리다이렉
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			System.out.println(preferValues);
+			userService.addPrefer(preferValues,user.getUserId());
+			mav.setViewName("redirect:/myprefer");  
 
 		} catch (Exception e) {
 			e.printStackTrace();

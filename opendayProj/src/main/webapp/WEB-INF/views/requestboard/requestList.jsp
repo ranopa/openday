@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
-	@font-face {
+ 	@font-face {
  		font-family: 'NanumBarunGothic';
  		font-style: normal;
  		font-weight: 400;
@@ -30,7 +31,7 @@
  		font-weight: 300;
  		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
  		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype');
-	}
+	} 
 	
 	* {
 	    font-family: 'NanumBarunGothic', sans-serif;
@@ -43,7 +44,7 @@
 		margin: 0 auto;
 	}
 
-	h1 {
+	.rl-above {
 		font-size: 24px;
 		color: #5A2ECE;
 		margin-bottom: 20px;
@@ -119,13 +120,17 @@
 </style>
 </head>
 <body>
+ 	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
-		<h1>클래스 개설 요청</h1>
+		<br/>
+		<h1 class="rl-above">클래스 개설 요청</h1>
 		&nbsp;&nbsp;
 		<div class="container">
+		<c:if test="${userId!=null }">
 			<div class="btn1">
 				<a href="requestwrite" class="button">새 글</a>
 			</div>
+		</c:if>
 				<table>
 					<tr>
 						<th>번호</th>
@@ -150,7 +155,7 @@
   						<a href="#">＜ 이전</a>
   					</c:when>
   					<c:otherwise>
-  						<a href="${contextPath }/requestlist?page=${pageInfo.startPage-1}">&laquo; 이전</a>
+  						<a href="${contextPath }/requestlist?page=${pageInfo.startPage-1}">＜ 이전</a>
   					</c:otherwise>
   				</c:choose>			
                 <c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="pageNumber">
@@ -165,15 +170,17 @@
                 </c:forEach>
     			<c:choose>
     				<c:when test="${pageInfo.endPage eq pageInfo.allPage }">
+  						
     					<a href="#" >다음 ＞</a>
     				</c:when>
     				<c:otherwise>
-    					<a href="${contextPath}/requestlist?page=${pageInfo.endPage+1 }">다음 &raquo;</a>    		
+    					<a href="${contextPath}/requestlist?page=${pageInfo.endPage+1 }">다음 ＞</a>    		
     				</c:otherwise>
     			</c:choose>                
                 
             </div>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

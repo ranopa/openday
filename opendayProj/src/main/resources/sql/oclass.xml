@@ -8,13 +8,14 @@
 	<!-- 클래스 오픈 요청 -->
 	<insert id="classOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
-		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCareer,clsCurri)
+		     insert into oclass (clsId,clsName,clsLoc,clsCode,clsDescription,filNum,clsCareer,clsCurri)
 		     values(
 		     nextval(oclass_seq),
 		     #{clsName},
+		     #{clsLoc},
 		     #{clsCode},
 		     #{clsDescription},
-		     #{fileId},
+		     #{filNum},
 		     #{clsCareer},
 		     #{clsCurri})
 	     ]]>
@@ -27,10 +28,26 @@
 		]]> 		
 	</select>
 	
+	<!-- oclass 내용 업데이트 -->
+	<update id="updateclassOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
+			<![CDATA[
+				update oclass set clsName=#{clsName}, clsLoc=#{clsLoc}, clsCode=#{clsCode}, clsDescription=#{clsDescription},
+				filNum = nextval(file_seq), clsCareer=#{clsCareer}, clsCurri=#{clsCurri}  where clsId=#{clsId}		
+			]]>
+	</update>
+	
+	<!-- 썸네일 업데이트 -->
+	<update id="updateThumbnail" parameterType="com.kosta.openday.adm.dto.FileDTO">
+		 <![CDATA[
+		 	update file set filClassification = #{filClassification}, filOrgName = #{filOrgName}, filSaveName = #{filSaveName}, filSize = #{filSize}
+		 	where filNum = #{filNum}
+	 	 ]]>
+	</update>
+	
 	<!-- 파일업로드(썸네일)  -->
 	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
 		<![CDATA[
-		insert into file values(#{filNum},#{filClassification},#{filOriginalname},#{filSavename},#{filSize},CURDATE())
+		insert into file values(nextval(file_seq),#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
 		]]> 
 	</insert>
 	
@@ -40,7 +57,7 @@
 			select * from file where filNum=#{filNum}
 		]]> 		
 	</select>
-
+	
 	
 	<!-- =========== 클래스 oclass =============================================== -->
 	<!-- 1. 클래스 번호로 클래스 조회 -->
@@ -75,14 +92,14 @@
 				nextval(oclass_seq),
 				#{clsName},
 				#{clsCode},
-				#{clsDiscription},
+				#{clsDescription},
 				#{clsPrice}, 
 				#{clsCurri}, 
 				#{clsCareer}, 
 				#{clsStatus},
 				#{clsLoc},
-				#{clsDiscount},
-				#{clsCreatedAt},
+				COALESCE(#{clsDiscount}, 0),
+				curdate(),
 				#{clsOpenType},
 				#{filNum},
 				#{userId},
@@ -118,7 +135,7 @@
 			values(
 				nextval(schedule_seq),
 				#{scdDate},
-				#{scdTime}, 
+				#{scdStartTime}, 
 				#{scdPlace},
 				#{scdPlaceDetail},
 				#{scdMinPersonnel},
@@ -254,7 +271,7 @@
 			
 			scd.scdNum as scdNum,
 			scd.scdDate as scdDate,
-			scd.scdTime as scdTime,
+			scd.scdStartTime as scdStartTime,
 			scd.scdPlace as scdPlace,
 			scd.scdPlaceDetail as scdPlaceDetail
 		FROM
@@ -282,7 +299,7 @@
 		<collection property="schedules" ofType="com.kosta.openday.user.dto.ApplyScheduleDTO">
 			<result column="scdNum" property="scdNum" />
 			<result column="scdDate" property="scdDate" />
-			<result column="scdTime" property="scdTime" />
+			<result column="scdStartTime" property="scdStartTime" />
 			<result column="scdPlace" property="scdPlace" />
 			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 		</collection>
@@ -303,7 +320,7 @@
 			
 			scd.scdNum as scdNum,
 			scd.scdDate as scdDate,
-			scd.scdTime as scdTime,
+			scd.scdStartTime as scdStartTime,
 			scd.scdPlace as scdPlace,
 			scd.scdPlaceDetail as scdPlaceDetail,
 			scd.scdMinPersonnel as scdMinPersonnel,
@@ -329,7 +346,7 @@
 	type="com.kosta.openday.adm.dto.OClassAndScheduleDTO">
 		<result column="clsId" property="clsId" />
 		<result column="clsName" property="clsName" />
-		<result column="clsCode" property="clsCode" />
+		<result column="codName" property="codName" />
 		<result column="teacherId" property="teacherId" />
 		<result column="teacherTel" property="teacherTel" />
 		<result column="clsCreatedAt" property="clsCreatedAt" />
@@ -338,7 +355,7 @@
 		<collection property="schedules" ofType="com.kosta.openday.teacher.dto.ScheduleDTO">
 			<result column="scdNum" property="scdNum" />
 			<result column="scdDate" property="scdDate" />
-			<result column="scdTime" property="scdTime" />
+			<result column="scdStartTime" property="scdStartTime" />
 			<result column="scdPlace" property="scdPlace" />
 			<result column="scdPlaceDetail" property="scdPlaceDetail" />
 			<result column="scdMinPersonnel" property="scdMinPersonnel" />

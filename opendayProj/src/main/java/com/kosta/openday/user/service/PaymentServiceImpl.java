@@ -50,7 +50,7 @@ public class PaymentServiceImpl implements PaymentService {
 	
 		// todo: 결제성공/실패 별도 코드 추가
 		payment.setApPstatus("정상"); // 결제상태
-		payment.setApAstatus("예정"); // 수강상태
+		payment.setApAstatus("수강예정"); // 수강상태
 		payment.setApPgProvider(paymentRequest.getPgProvider());
 		payment.setApMethod(paymentRequest.getPaymentMethodName());
 		payment.setApFinalAmount(finalAmount);
