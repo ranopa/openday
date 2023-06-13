@@ -643,7 +643,7 @@ a {
 }
 
 .modal1-table th {
-	width: 200px;
+	width: 100px;
 	background-color: lightgray;
 }
 .modal1-table tr:last-child th {
@@ -651,4 +651,53 @@ a {
 }
 .modal1-table th, .modal1-table td {
 	padding-left: 20px;
+}
+.numBox{
+border: 1px solid;
+width: 30px;
+height: 30px;
+}
+
+.tc-paging a{
+text-decoration: none;
+}
+.tc-paging a:hover{
+text-decoration-line: none;
+
+}
+
+.tc-paging{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.numBox{
+margin-right: 10px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.pagenp{
+color:#CFCFCF;
+margin-top: 3px;
+
+}
+.pagenp:hover{
+color:#8556FF;
+
+}
+
+.pagep{
+margin-right: 8px;
+}
+.close-modal1 {
+	font-size: 20px;
+    cursor: pointer;
+}
+.openModal {
+	cursor: pointer;
+}
+.openModal:hover {
+	
 }

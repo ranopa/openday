@@ -106,7 +106,6 @@ function setTimer(){ // 1초 간격으로 호출할 타이머 함수
       remainSecond--;
       setTimeout("setTimer()",1000); //1초간격으로 재귀호출!
    }else{
-      alert('세션종료');
       /*세션 종료시 작동할 이벤트*/ 
    }
 }

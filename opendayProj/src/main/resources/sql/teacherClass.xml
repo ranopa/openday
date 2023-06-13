@@ -7,11 +7,17 @@
 	<!-- 클래스 리스트 -->
 	<select id="tcClassList" parameterType="hashmap"
 		resultType="com.kosta.openday.user.dto.OClassDTO">
-		SELECT *,(select COUNT(*)
-		from cls_inquiry c , schedule s
+		SELECT o.*,
+		(select COUNT(*)
+		from cls_inquiry c
 		WHERE c.clsId
-		= s.clsId
-		AND s.clsId = o.clsId ) AS clsInquiry
+		= o.clsId) AS clsInquiry,
+		(select AVG(r.rvStar)
+		from review r
+		where r.clsId = o.clsId ) AS rvStar,
+		(select COUNT(h.userId)
+		from heart h
+		where h.clsId = o.clsId ) AS heartCount
 		FROM oclass o
 		WHERE
 		userId = #{userId}
@@ -53,22 +59,26 @@
 	<!-- 클래스 승인 카운트 -->
 	<select id="tcClassListStatus1Count" parameterType="hashmap"
 		resultType="int">
-		SELECT COUNT(*) FROM oclass o WHERE userId = #{userId} AND o.clsStatus = "승인"
+		SELECT COUNT(*) FROM oclass o WHERE userId = #{userId} AND
+		o.clsStatus = "승인"
 	</select>
 	<!-- 클래스 미승인 카운트 -->
 	<select id="tcClassListStatus2Count" parameterType="hashmap"
 		resultType="int">
-		SELECT COUNT(*) FROM oclass o WHERE userId = #{userId} AND o.clsStatus = "미승인"
+		SELECT COUNT(*) FROM oclass o WHERE userId = #{userId} AND
+		o.clsStatus = "미승인"
 	</select>
 	<!-- 클래스 후기 카운트 -->
 	<select id="tcClassListReviewCount" parameterType="hashmap"
 		resultType="int">
-		SELECT COUNT(*) FROM review r, oclass o WHERE o.clsId = r.clsId AND o.userId = #{userId}
+		SELECT COUNT(*) FROM review r, oclass o WHERE o.clsId =
+		r.clsId AND o.userId = #{userId}
 	</select>
 	<!-- 클래스 별점 평균 카운트 -->
 	<select id="tcClassListAvgStarCount" parameterType="hashmap"
 		resultType="double">
-		SELECT AVG(r.rvStar) FROM review r, oclass o WHERE r.clsId = o.clsId AND o.userId =  #{userId}
+		SELECT AVG(r.rvStar) FROM review r, oclass o WHERE r.clsId
+		= o.clsId AND o.userId = #{userId}
 	</select>
 	<!-- 클래스 일정 리스트 -->
 	<select id="tcClassScheduleList" parameterType="hashmap"
@@ -80,15 +90,21 @@
 		s.scdPlaceDetail as scdPlaceDetail,
 		s.scdMinPersonnel as
 		scdMinPersonnel,
+		((SELECT COUNT(*) FROM application_payment ap WHERE
+		ap.scdNum = s.scdNum AND ap.apPstatus = "정상")-(SELECT COUNT(*) FROM
+		application_payment ap WHERE ap.scdNum = s.scdNum AND ap.apPstatus =
+		"취소")) AS scdApCount,
 		s.scdMaxPersonnel as scdMaxPersonnel,
 		s.scdUploadDate
 		as scdUploadDate
 		FROM schedule s, oclass o
-		where s.clsId = o.clsId
+		where s.clsId
+		= o.clsId
 		and
 		userId = #{userId}
 		order by s.scdUploadDate desc
-		limit #{endRow} offset
+		limit
+		#{endRow} offset
 		#{startRow}
 	</select>
 	<!-- 클래스 일정 리스트 카운트 -->
@@ -128,10 +144,9 @@
 	<select id="tcClassInquiryList" parameterType="Integer"
 		resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
 		SELECT *
-		FROM cls_inquiry c, schedule s
-		WHERE c.clsId =
-		s.clsId
-		AND s.clsId = #{clsId}
+		FROM cls_inquiry c, oclass o
+		WHERE c.clsId = o.clsId
+		AND o.clsId = #{clsId}
 
 	</select>
 
@@ -153,16 +168,29 @@
 	<select id="tcClassSalesList" parameterType="hashmap"
 		resultType="com.kosta.openday.user.dto.OClassDTO">
 
-		SELECT *
-		<!-- ,IFNULL((SELECT SUM(apFinalAmount) FROM application_payment a, schedule 
-			s WHERE a.scdNum = s.scdNum AND s.clsId = o.clsId ),0) AS totprice, IFNULL((SELECT 
-			sum(sa.saSettleAmount) FROM settlement_amount sa, schedule s WHERE sa.scdNum 
-			= s.scdNum AND s.clsId = o.clsId ),0) AS amountPaid, IFNULL((SELECT SUM(apFinalAmount) 
-			FROM application_payment a, schedule s WHERE a.scdNum = s.scdNum AND s.clsId 
-			= o.clsId )-(SELECT sum(sa.saPayment) FROM settlement_amount sa, schedule 
-			s WHERE sa.scdNum = s.scdNum AND s.clsId = o.clsId),0) AS amountOutstanding, 
-			IFNULL((SELECT sum(sa.saFee) FROM settlement_amount sa, schedule s WHERE 
-			sa.scdNum = s.scdNum AND s.clsId = o.clsId ),0) AS saFee -->
+		SELECT *,
+		IFNULL((SELECT SUM(ap.apFinalAmount)
+		FROM application_payment ap, schedule s
+		WHERE ap.scdNum = s.scdNum
+		and s.clsId = o.clsId
+		),0) AS totprice,
+		IFNULL((SELECT SUM(sa.saSettleAmount)
+		FROM settlement_amount sa, application_payment a, schedule s
+		WHERE sa.apNum = a.apNum
+		AND a.scdNum = s.scdNum
+		AND s.clsId = o.clsId
+		),0) as amountPaid
+		, IFNULL((SELECT SUM(apFinalAmount)
+		FROM application_payment a, schedule s WHERE a.scdNum = s.scdNum AND
+		s.clsId
+		= o.clsId ) - (SELECT sum(sa.saPayment)
+		FROM settlement_amount sa, application_payment a, schedule s
+		WHERE sa.apNum = a.apNum
+		AND a.scdNum = s.scdNum
+		AND s.clsId = o.clsId),0) AS amountOutstanding,
+		IFNULL((SELECT sum(sa.saFee) FROM settlement_amount sa, application_payment a,
+		schedule s WHERE sa.apNum = a.apNum AND a.scdNum = s.scdNum AND
+		s.clsId = o.clsId ),0) AS saFee
 		FROM oclass o
 		WHERE userId = #{userId}
 		AND clsStatus = "승인"
@@ -205,6 +233,7 @@
 		settlement_amount sa, user u
 		WHERE sa.userId = u.userId
 		and u.userId = #{userId}
+		order by sa.saAppDate desc
 	</select>
 
 	<!-- 정산완료 수익금 -->
@@ -225,5 +254,11 @@
 			AND sa.saSettleDate <= CURDATE()
 		]]>
 	</select>
+	<insert id="SalesAdd" parameterType="hashmap">
+		INSERT INTO
+		settlement_amount VALUES (nextval(settlement_amount_seq), #{userId},
+		'정산대기', CURDATE(), null, null, #{money}, #{money}*0.9, #{money}*0.1,
+		null);
+	</insert>
 
 </mapper>

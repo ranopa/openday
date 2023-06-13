@@ -30,6 +30,9 @@ public class OClassDTO {
 	private Integer totPrice; // 클래스 결제 통합 금액
 	private Integer amountPaid; // 클래스 지급 금액
 	private Integer amountOutstanding; // 클래스 미지급 금액
+	private double rvStar;
+	private int heartCount;
+	
 	private Integer  saFee;
 	public OClassDTO() {
 	}
@@ -256,6 +259,26 @@ public class OClassDTO {
 
 	public void setSaFee(Integer saFee) {
 		this.saFee = saFee;
+	}
+
+
+	public double getRvStar() {
+		return rvStar;
+	}
+
+
+	public void setRvStar(double rvStar) {
+		this.rvStar = rvStar;
+	}
+
+
+	public int getHeartCount() {
+		return heartCount;
+	}
+
+
+	public void setHeartCount(int heartCount) {
+		this.heartCount = heartCount;
 	}
 
 
