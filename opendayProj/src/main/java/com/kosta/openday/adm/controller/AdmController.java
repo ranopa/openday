@@ -291,7 +291,7 @@ public class AdmController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return "admin/admMain";
+		return "admin/admMain";  
 	} 
 	// 유저문의 답변 등록 
 	@RequestMapping(value="/adminquriyanswer", method=RequestMethod.POST)
@@ -329,8 +329,7 @@ public class AdmController {
 		} 
 		return "redirect:/adminquirylist";
 	}
-	
-	  
+	 
 	//매출확인
 	@RequestMapping(value = "/admsaleslist", method = RequestMethod.GET)
 	public String admSalesList(Model model) { 
@@ -400,9 +399,8 @@ public class AdmController {
 			e.printStackTrace();
 		}
 		return "redirect:/admnoticelist";
-		
-	 
 	}
+ 
 	//공지사항 삭제
 	@RequestMapping(value="/admnoticedelete", method=RequestMethod.GET)
 	public String removeNotice(@RequestParam("ancId") Integer ancId, Model model) throws Exception {
@@ -411,5 +409,4 @@ public class AdmController {
 		
 	}
 	  
-}
-  
+} 

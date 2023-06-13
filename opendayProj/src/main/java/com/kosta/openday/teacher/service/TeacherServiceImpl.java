@@ -86,5 +86,42 @@ public class TeacherServiceImpl implements TeacherService {
 		teacherDAO.tcProfileUserUpdate(dto);
 		
 	}
+	@Override
+	public TeacherChannelDTO tcChannelInfo(String userId) throws Exception {
+		return teacherDAO.tcChannelInfo(userId);
+	}
+	@Override
+	public void tcProfileUserImgUpdate(TeacherChannelDTO dto) throws Exception {
+		teacherDAO.tcProfileUserImgUpdate(dto);
+		
+	}
+	@Override
+	public int tcSalesTotal(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcSalesTotal(map);
+	}
+	@Override
+	public int tcClassListStatus1Count(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcClassListStatus1Count(map);
+	}
+	@Override
+	public int tcClassListStatus2Count(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcClassListStatus2Count(map);
+	}
+	@Override
+	public int tcClassListReviewCount(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcClassListReviewCount(map);
+	}
+	@Override
+	public double tcClassListAvgStarCount(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcClassListAvgStarCount(map);
+	}
+	@Override
+	public int tcSalesMonthTotal(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcSalesMonthTotal(map);
+	}
+	@Override
+	public TeacherChannelDTO tcProfileSelect(HashMap<String, Object> map) throws Exception {
+		return teacherDAO.tcProfileSelect(map);
+	}
 
 }

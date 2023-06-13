@@ -542,7 +542,10 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 		SELECT apNum, apPstatus, apAstatus, apFinalAmount, scdNum,
 		    (SELECT s.scdDate
 		    FROM schedule s
-		    WHERE a.scdNum = s.scdNum) AS scdDate,
+		    WHERE a.scdNum = s.scdNum) AS scdDate, 
+		    (SELECT o.clsId
+		    FROM oclass o JOIN schedule s ON o.clsId = s.clsId
+		    WHERE s.scdNum = a.scdNum) AS clsId,
 		    (SELECT o.clsName
 		    FROM oclass o JOIN schedule s ON o.clsId = s.clsId
 		    WHERE s.scdNum = a.scdNum) AS clsName,
@@ -596,6 +599,15 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	]]>
 	</update>
 	
+	
+	<!-- 유저선호카테고리 저장 -->
+	<update id="updatePrefer" parameterType="java.util.Map">
+	<![CDATA[
+		update user set userPreference = #{preferValues} where userId = #{userId} 
+	]]>
+	</update>
+	
+
 	
 
 

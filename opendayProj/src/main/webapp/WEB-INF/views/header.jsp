@@ -27,7 +27,7 @@
 	cursor: pointer;
 }
 
-/* datepicer input 롤오버 시 손가락 모양 표시 */
+ /* datepicer input 롤오버 시 손가락 모양 표시  */
 .hasDatepicker {
 	cursor: pointer;
 }
@@ -36,6 +36,8 @@ font-size: 16px;
 	font-family: 'NanumBarunGothic';
 }
 </style>
+
+
  
 <script>   
   $.datepicker.setDefaults({ 
@@ -50,6 +52,9 @@ font-size: 16px;
     showMonthAfterYear: true,
     yearSuffix: '년' 
   });
+  /* $(function() {
+    $("#datepicker1, #datepicker2").datepicker();
+  }); */
 
   $(function() {
     $("#datepicker1").datepicker();
@@ -302,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 				<div class="verticalAlign">
-					<c:set var="authority" value="${sessrionScope.userId.authority }" />
+					<c:set var="authority" value="${sessionScope.userId.authority }" />
 					<c:choose>
 						<c:when test="${authority eq 0}">
 

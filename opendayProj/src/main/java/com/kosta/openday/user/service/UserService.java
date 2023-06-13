@@ -77,6 +77,10 @@ public interface UserService {
 	 
 	//강사권한부여
 	public void alterAuthorityTchc(String userId)throws Exception; 
-	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception; 
 	
+	public void addPrefer(String preferValues,String userId)throws Exception;
+	
+	public String[] getUserPrefer(String userId) throws Exception; 
+	
+	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;
 }
