@@ -56,15 +56,15 @@
         font-size: 24px;
         color: #5A2ECE;
         margin-bottom: 20px;
-        margin-left: 150px;
+        margin-left: 55px;
     }
 
-    table {
+    .rtable table {
         width: 70%;
         margin: 0 auto;  
     }
 
-    th {
+    .rtable th {
         text-align: left;
         vertical-align: top;
         font-weight: normal;
@@ -72,7 +72,7 @@
         color: #D9D9D9;
     }
 
-    td {
+    .rtable td {
         vertical-align: top;
         margin:0 auto;
     }
@@ -82,24 +82,24 @@
     	width: 50px;    
     }
 
-    label {
+/*     label {
         display: block;
         font-weight: normal;
         font-size: 14px;
         color: #D9D9D9;
         margin-bottom: 5px;
-    }
+    } */
 
-    input[type="text"] {
-        width: 95%;
+    .rtable input[type="text"] {
+        width: 900px;
         padding: 5px;
         font-size: 14px;
         border: 1px solid #D9D9D9;
         margin-bottom: 10px;
     }
     
-    textarea {
-        width: 95%;
+    .rtable textarea {
+        width: 900px;
         height: 300px;
         padding: 5px;
         font-size: 14px;
@@ -127,7 +127,7 @@
     	margin-left: 52px;
     }
     
-    input[type="submit"] {
+    .buttons input[type="submit"] {
         background-color: #5A2ECE;
         color: white;
         height: 30px;
@@ -138,7 +138,7 @@
         cursor: pointer;
     }
     
-    Button[type="button"] {
+    .participation-button Button[type="button"] {
     	background-color: white;
     	color: #FF99B8;
     	font-size: 14px;
@@ -149,7 +149,7 @@
     
     .buttons {
     	display: flex;
-    	width: 70%;
+    	width: 95%;
     	margin: 0 auto; 
     	flex-direction: row-reverse;
     	justify-content: space-between;
@@ -245,7 +245,7 @@ $(function() {
     <br/>
     <h1 class="rd-above">클래스 개설 요청</h1>&nbsp;&nbsp;
     <input type="hidden" id="reqId" name="reqId" value="${request.reqId }"/>
-        <table>
+        <table class="rtable">
             <tr>
                 <td class="f">지역</td>
                 <td><input name="reqLocation" type="text" id="reqLocation" value="${request.reqLocation }"/></td>
