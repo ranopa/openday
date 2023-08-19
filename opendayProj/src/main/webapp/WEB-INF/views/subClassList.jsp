@@ -20,6 +20,46 @@
 .contentTopMargin{
 margin-top:60px;
 }
+.numBox{
+border: 1px solid;
+width: 30px;
+height: 30px;
+}
+
+.tc-paging a{
+text-decoration: none;
+}
+.tc-paging a:hover{
+text-decoration-line: none;
+
+}
+
+.tc-paging{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.numBox{
+margin-right: 10px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.pagenp{
+color:#CFCFCF;
+margin-top: 3px;
+
+}
+.pagenp:hover{
+color:#8556FF;
+
+}
+
+.pagep{
+margin-right: 8px;
+}
+
 </style>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -34,7 +74,8 @@ margin-top:60px;
 				<p class="subTitle">검색결과</p>
 
 
-				<hr>
+				<hr style="margin-bottom:60px;">
+
 
 
 				<div class="subOption">
@@ -43,6 +84,16 @@ margin-top:60px;
 			    <label class="checkLabel"><input type="checkbox" name="orderBy" value="highPrice">가격높은순</label>
 			    <label class="checkLabel"><input type="checkbox" name="orderBy" value="lowPrice">가격낮은순</label>
 				</div>
+
+			<!-- 	<div class="subOption">
+					<label class="checkLabel"><input type="checkbox"
+						name="color" value="blue">인기순</label> <label class="checkLabel"><input
+						type="checkbox" name="color" value="blue">등록일순</label> <label
+						class="checkLabel"><input type="checkbox" name="color"
+						value="blue">가격높은순</label> <label class="checkLabel"><input
+						type="checkbox" name="color" value="blue">가격낮은순</label>
+
+				</div> -->
 
 
 
@@ -168,7 +219,8 @@ margin-top:60px;
 </nav> -->
 			<div class="tc-paging">
 						<c:if test="${pu.startPageNum>5 }">
-							<a href="search?pageNum=${pu.startPageNum-1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">이전</a>
+							<a href="search?pageNum=${pu.startPageNum-1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">
+							<span class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
 						</c:if>
 
 						<c:forEach var="i" begin="${pu.startPageNum }"
@@ -176,19 +228,21 @@ margin-top:60px;
 							<c:choose>
 								<c:when test="${pu.pageNum==i }">
 									<!-- 현재페이지 -->
-									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span
-										style='color: blue; font-weight: bold'>[${i }]</span>
-									</a>
+									<div class="numBox" style='color: #8556FF;'><a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span
+										style='color: #8556FF; font-weight: bold'>${i }</span>
+									</a></div>
 								</c:when>
 								<c:otherwise>
-									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span style='color: gray;'>[${i }]</span>
-									</a>
+								<div class="numBox" style='color: #CFCFCF;'>
+									<a href="search?pageNum=${i }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}"> <span style='color: gray;'>${i }</span>
+									</a></div>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:if test="${pu.endPageNum<pu.totalPageCount }">
-							<a href="search?pageNum=${pu.endPageNum+1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">다음</a>
+							<a href="search?pageNum=${pu.endPageNum+1 }&startDate=${map.startDate}&endDate=${map.endDate}&clsCode=${map.clsCode}&clsLoc=${map.clsLoc}">
+							<span class="material-symbols-outlined pagenp">chevron_right</span></a>
 						</c:if>
 					</div>
 		</div>

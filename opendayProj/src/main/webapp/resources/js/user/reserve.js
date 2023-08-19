@@ -7,7 +7,6 @@
       var h2Text = menuH2.innerText;
       var txt = menuBtn.firstElementChild;
       var tableText = '<table class="oclassTable"><tr class="tableTr">';
-      
          menuBtns.forEach((btn)=>{ 
          var btbfe = btn.firstElementChild;  
          if(btbfe.classList.contains('pick')){
@@ -30,8 +29,8 @@
 		         	if(i%4===0&&i!=0){
 			        	tableText+='</tr><tr>';
 			        	}  
-		         	tableText += '<td class="oclass">'+
-        						  '<a href="javascript:void(0)" class="r-link">'+
+		         	tableText += '<td class="oclass">'+ 
+        						 '<a href="classinfo/'+list[i].clsId+'" class="r-link">'+ 
                 			      '<img src="img/'+list[i].filNum+'\" class="h-ssum-img"> '+
                 				  '<div class="txt-box">'+
                    				  '<div class="t1">'+
@@ -58,8 +57,21 @@
 			                     '<span class="fp price">'+list[i].apFinalAmount+'&nbsp;원</span>'+
 			                     '</div>'+
 			                     '</div>'+
-			                     '</a>'+
-			                     '</td>'; 
+			                     '</a>';
+			                     
+			                      if(h2Text==="수강내역"){   
+                    tableText += '<form action="reviewwrite" method="post">'+
+                    			 '<input type="hidden" name="clsId"'+list[i].clsId +'">'+
+                    			 '<input type="hidden" name="scdNum"'+list[i].scdNum +'">'+
+                    			 '<input type="hidden" name="clsName"'+list[i].clsName +'">'+
+                    			 '<input type="hidden" name="filNum"'+list[i].filNum +'">'+
+                    			 '<input type="hidden" name="apFinalAmount"'+list[i].apFinalAmount+'">'+
+                    			 '<input type="hidden" name="strDate"'+list[i].strDate +'">'+ 
+                    			 '<button type="submit" class="review-btn">후기작성</button></form>';
+                    			 }
+                     tableText += '</td>';  
+			                      
+			                      
 					}		         	
 		         	
 		         	tableText += '</tr></table>'; 

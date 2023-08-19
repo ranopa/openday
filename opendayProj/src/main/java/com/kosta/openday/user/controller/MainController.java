@@ -10,10 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.user.dto.CollectDTO;
-import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 

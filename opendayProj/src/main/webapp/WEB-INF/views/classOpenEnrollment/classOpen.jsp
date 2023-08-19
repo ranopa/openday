@@ -17,23 +17,52 @@
 
 <!-- 일단 임시로 넣어줌 아이콘 문제임 -->
 <link rel="shortcut icon" href="#">
-</head>
 
+<!-- 제이쿼리 문제 -->
+<script type="text/javascript">
+      $.noConflict();
+</script>
+</head>
 <body>
+		<%@ include file="../header.jsp"%>
 	
 	<div id="includeWrapper">
-	<div id="includeHeader" class="includeHeader">
-		<%@ include file="../header.jsp"%>
-	</div>
 	<div id="div1">
 	<form id="form" action="classOpen" method="post" enctype="multipart/form-data">
 		<h3>클래스 개설</h3>
 		<div id=opendiv1>
-			
+			<input type="hidden" name="clsStatus" value="검토중" />
+			<input type="hidden" name="clsOpenType" value="일반" />
+			<input type="hidden" name="userId" value="일반" />
 			<div class="opendiv2">
 				<span class="span">클래스 이름</span> <input type="text" id="clsName" name="clsName" placeholder="클래스 이름을 입력해 주세요(20자 이하)" required autofocus maxlength="20">
 			</div>
-
+			<div class="opendiv2">
+				<span class="span">클래스 지역</span>
+				<select id="select" name="clsLoc")>
+										<option>선택</option>
+										<option>서울</option>
+										<option>경기</option>
+										<option>부산</option>
+										<option>인천</option>
+										<option>대전</option>
+										<option>대구</option>
+										<option>광주</option>
+										<option>경북</option>
+										<option>경남/울산</option>
+										<option>전북</option>
+										<option>전남</option>
+										<option>충북</option>
+										<option>충남</option>
+										<option>세종</option>
+										<option>강원</option>
+										<option>제주</option>										
+							</select>
+			</div>
+			<div class="opendiv2">
+				<span class="span">클래스 수강료</span> <input type="number" id="clsPrice" name="clsPrice" min="0" required autofocus>원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="span">할인률</span> <input type="number" id="clsDiscount" name="clsDiscount" min="0" max="100" autofocus>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
 			<div class="opendiv2">
 				<span class="span">클래스 카테고리</span><br><br>
 				<div class=catediv>
@@ -69,20 +98,20 @@
 
 			<div id="divdouble">
 				<div>
-					<p>클래스 썸네일 설정</p>
+					<p style="font-size:18px;">클래스 썸네일 설정</p>
 					<div class="thumbnail-container" id="thumbnail-container">
 						<input type="file" name="file" class="file-input" id="thumbnail-input" onchange="readURL(this);"> <img id="preview" />
 					</div>
 				</div>
 
 				<div>
-					<p>강사, 강의 경력</p>
+					<p style="font-size:18px;">강사, 강의 경력</p>
 					<textarea placeholder="내용을 입력해 주세요" name="clsCareer"></textarea>
 				</div>
 			</div>
 
 			<div id=curri class="opendiv2">
-				<p>커리큘럼 작성</p>
+				<p style="font-size:18px;">커리큘럼 작성</p>
 				<div id="editor"></div>
 				<input type="hidden" id="hidden" value="" name="clsCurri"> 
 			</div>
@@ -94,9 +123,7 @@
 	</div>
 	</form>
 	</div>
-	<div id="includeFooter" class="includeFooter">
-			<%@ include file="../footer.jsp"%>
-	</div>
 	</div>	
+			<%@ include file="../footer.jsp"%>>
 </body>
 </html>

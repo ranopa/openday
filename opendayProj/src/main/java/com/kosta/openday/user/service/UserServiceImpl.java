@@ -1,6 +1,5 @@
 package com.kosta.openday.user.service;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.sql.Date;
@@ -11,7 +10,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 
@@ -21,29 +19,38 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
-import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.user.dao.UserDAO; 
+import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.FileService;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
+import com.kosta.openday.user.dao.OClassDAO;
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
+import com.kosta.openday.user.dto.ReviewDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private FileDAO fileDAO;
-	
-	@Autowired
-	private FileService fileService;;
+	private FileService fileService;
 	
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private ServletContext servletContext;
+
+//	private final String uploadDir = String.join(File.separator, System.getProperty("user.dir"), "resources", "upload")
+//			+ File.separator;
+	
+	@Autowired
+	private OClassDAO oclassDAO;
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -71,51 +78,46 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int idCheck(String id) throws Exception {
+		/* System.out.println(id); */
 		UserDTO user = userDAO.selectUserInfo(id);
 		if (user == null) {
+
 			return 0;
 		}
+		/* System.out.println(user.getUserId()); */
 		return 1;
 
 	}
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
+		// 파일 insert
+		Integer filNum = 0;
+		String dir = servletContext.getRealPath("/resources/upload/");
 
-//		Integer filNum = 0;
-//
-//		if (file != null && !file.isEmpty()) {
-//			FileDTO fil = new FileDTO();
-//			fil.setFilClassification(file.getContentType());
-//			fil.setFilOrgName(file.getOriginalFilename());
-//			fil.setFilSaveName(file.getName());
-//			fil.setFilSize(file.getSize());
-//			filNum = fileDAO.selectNewFileId();
-//			fil.setFilNum(filNum);
-//			fileDAO.insertFile(fil);
+		if (file != null && !file.isEmpty()) {
+			FileDTO fil = new FileDTO();
+			fil.setFilClassification(file.getContentType());
+			fil.setFilOrginalname(file.getOriginalFilename());
+			fil.setFilSavename(file.getName());
+			fil.setFilSize(file.getSize());
+			fileDAO.insertFile(fil);
+		// 파일 insert 
+		Integer filNum = fileService.createFile(file); 
+		// 유저 update
+		map.put("filNum", filNum);
+		
+		userDAO.updateUser(map);
 
-			// File dfile = new
-			// File("/resources/upload/"+filNum+file.getOriginalFilename());
-//			File dfile = new File(servletContext.getRealPath(uploadDir) + filNum);
-//
-//			file.transferTo(dfile);
-//			map.put("filNum", filNum); 
-		Integer fileNum = 0;
-		try {
-			fileNum = fileService.createFile(file);
-			map.put("filNum", fileNum);
-			userDAO.updateUser(map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
-
 	@Override
 	public UserDTO getUserInfo(String id) throws Exception {
 		return userDAO.selectUserInfo(id);
 
 	}
-
+			// File dfile = new
+			// File("/resources/upload/"+filNum+file.getOriginalFilename());
+			File dfile = new File(dir+filNum + file.getOriginalFilename());
 	/*
 	 * @Override public UserDTO userLogin(Map<String, String> map) throws Exception
 	 * { return userDAO.selectUserLogin(map);
@@ -144,6 +146,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void fileView(Integer id, OutputStream out) throws Exception {
+		String dir = servletContext.getRealPath("/resources/upload/");
+		FileDTO file = fileDAO.selectFile(id);
+		FileInputStream fis = new FileInputStream(dir + file.getFilNum() + file.getFilOriginalname());
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception {
 		return userDAO.selectInputOClassList(map);
 	}
@@ -157,9 +163,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
 		FileInputStream fis = new FileInputStream(servletContext.getRealPath(uploadDir) + id);
+
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}
+//	
+//	@Override
+//	public String fileView(Integer id, HttpServletResponse response) throws Exception {
+//		String dir = servletContext.getRealPath("/resources/upload/");
+//		FileDTO file = fileDAO.selectFile(id);
+//		return dir+""+file.getFilNum()+""+file.getFilOriginalname();
+//		
+//		
+//	}
 
 	@Override
 	public void withdrawUser(String id) throws Exception {
@@ -302,7 +318,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void getResetPassword(UserDTO user) throws Exception {
+	public void resetPassword(UserDTO user) throws Exception {
 		userDAO.resetPassword(user);
 
 	}
@@ -310,6 +326,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public CodeDTO getCode(String codNum) throws Exception {
 		return userDAO.selectCode(codNum);
+	}
+
+	@Override
+	public UserDTO userByNickname(String userNickname) throws Exception { 
+		return userDAO.selectUserByNickName(userNickname);
 	}
 	
 	public int searchOClassCount(HashMap<String, Object> map) throws Exception {
@@ -326,6 +347,13 @@ public class UserServiceImpl implements UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.searchInputSelectCount(map);
+	} 
+	@Override
+	public void addPrefer(String preferValues, String userId) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("preferValues", preferValues);
+		map.put("userId", userId);
+		userDAO.updatePrefer(map); 
 	}
 
 	@Override
@@ -352,4 +380,38 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getSearchOClassByLowPrice();
 	}
 	
+	//최제인꺼 삭제하지 마시오.
+	@Override 
+	public void reviewWrite(Map<String, String> param, String userId) throws Exception {
+		
+		ReviewDTO reviewDTO = new ReviewDTO();
+		reviewDTO.setScdNum(Integer.valueOf(param.get("scdNum")));
+		reviewDTO.setRvContent((String)param.get("content"));
+		reviewDTO.setRvStar(Integer.valueOf(param.get("rating")));
+		reviewDTO.setUserId(userId);
+		Integer rvNum = userDAO.selectReviewNum();
+		System.out.println(rvNum);
+		reviewDTO.setRvNum(rvNum);
+		System.out.println(param.get("scdNum"));
+		ScheduleDTO scheduleDTO = oclassDAO.selectSchedule(Integer.valueOf(param.get("scdNum")));
+		reviewDTO.setClsId(scheduleDTO.getClsId());
+		System.out.println(reviewDTO.getRvNum());
+		userDAO.insertReview(reviewDTO);
+	} 	
+
+
+	@Override 
+	public void alterAuthorityTchc(String userId) throws Exception {
+		userDAO.updateUserAuthority(userId);
+	}
+	 
+	public String[] getUserPrefer(String userId) throws Exception {
+		String[] userPrefer = null;
+		String str = userDAO.selectUserInfo(userId).getUserPreference();  
+		if(str!=null) {
+			userPrefer = str.split("_");  
+		}
+		return userPrefer; 
+		
+	}  
 }

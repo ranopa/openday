@@ -5,11 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,18 +54,25 @@ public class HeaderController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView userLogin(@RequestParam Map<String, String> map, HttpSession session) throws Exception {
+	public ModelAndView userLogin(@RequestParam Map<String, String> map,HttpServletRequest request, HttpSession session) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 		try {
 			UserDTO user = userService.userLogin(map);
 			mav.setViewName("redirect:/");
-
+			session.setMaxInactiveInterval(5*60);
+			//long time = session.getMaxInactiveInterval()/60;
+			session = request.getSession();
+			long sessionTime = session.getLastAccessedTime();
+			long systemTime = System.currentTimeMillis();
+			long minusTime = (systemTime - sessionTime) / 1000;
+			session.setAttribute("minusTime", minusTime);
+			//session.setAttribute("time", time);
 			session.setAttribute("userId", user);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			e.getMessage();
+			mav.addObject("loginFailed", true); //로그인 실패 추가
 			mav.setViewName("/login/login");
 		}
 		return mav;

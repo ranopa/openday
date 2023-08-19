@@ -20,7 +20,9 @@
  
 		<![CDATA[
 			select *
-			from request  limit #{startRow},10
+			from request  order by reqId desc 
+			limit #{startRow},5 
+			
 		]]>	
 	</select>
 	
@@ -155,5 +157,6 @@
 			delete from review where rvNum=#{rvNum} 	
 		]]>		
 	</delete>
+	
 	
 </mapper>

@@ -21,7 +21,7 @@ public class UserDTO {
 	private Integer userAccount; //계좌번호
 	private String userAlarm; //알림여부 
 	private Date userJoindate; //가입일
-	private String userPrefer; //선호카테고리
+	private String userPreference; //선호카테고리
 	private String authority; //권한 ("0": 관리자,"1":일반회원,"2":강사)
 	private Integer filNum; //파일번호
 	
@@ -29,8 +29,9 @@ public class UserDTO {
 
 	public UserDTO(String userId, String userPassword, String userName, String userNickname, String userTel,
 			String userAddress, String emailVal, String domain, String userEmail, String birthVal, Date userBirth,
-			String userActivation, Integer userAccount, String userAlarm, Date userJoindate, String userPrefer,
+			String userActivation, Integer userAccount, String userAlarm, Date userJoindate, String userPreference,
 			String authority, Integer filNum) {
+		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
@@ -46,25 +47,11 @@ public class UserDTO {
 		this.userAccount = userAccount;
 		this.userAlarm = userAlarm;
 		this.userJoindate = userJoindate;
-		this.userPrefer = userPrefer;
+		this.userPreference = userPreference;
 		this.authority = authority;
 		this.filNum = filNum;
 	}
 
-	
-
-	@Override
-	public String toString() {
-		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
-				+ ", userNickname=" + userNickname + ", userTel=" + userTel + ", userAddress=" + userAddress
-				+ ", emailVal=" + emailVal + ", domain=" + domain + ", userEmail=" + userEmail + ", birthVal="
-				+ birthVal + ", userBirth=" + userBirth + ", userActivation=" + userActivation + ", userAccount="
-				+ userAccount + ", userAlarm=" + userAlarm + ", userJoindate=" + userJoindate + ", userPrefer="
-				+ userPrefer + ", authority=" + authority + ", userFilenum=" + filNum + "]";
-	}
-
-	 
-	
 	public String getUserId() {
 		return userId;
 	}
@@ -185,12 +172,12 @@ public class UserDTO {
 		this.userJoindate = userJoindate;
 	}
 
-	public String getUserPrefer() {
-		return userPrefer;
+	public String getUserPreference() {
+		return userPreference;
 	}
 
-	public void setUserPrefer(String userPrefer) {
-		this.userPrefer = userPrefer;
+	public void setUserPreference(String userPreference) {
+		this.userPreference = userPreference;
 	}
 
 	public String getAuthority() {
@@ -208,10 +195,18 @@ public class UserDTO {
 	public void setFilNum(Integer filNum) {
 		this.filNum = filNum;
 	}
-	
-	
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userNickname=" + userNickname + ", userTel=" + userTel + ", userAddress=" + userAddress
+				+ ", emailVal=" + emailVal + ", domain=" + domain + ", userEmail=" + userEmail + ", birthVal="
+				+ birthVal + ", userBirth=" + userBirth + ", userActive=" + userActive + ", userAccount=" + userAccount
+				+ ", userAlarm=" + userAlarm + ", userJoindate=" + userJoindate + ", userPrefer=" + userPrefer
+				+ ", authority=" + authority + ", filNum=" + filNum + "]";
+	}
+
 	
 }
 

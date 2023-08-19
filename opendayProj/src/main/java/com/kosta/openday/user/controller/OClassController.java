@@ -1,11 +1,8 @@
 package com.kosta.openday.user.controller;
  
-import java.io.FileInputStream;
-import java.io.InputStream; 
 import java.util.List;
-import java.util.Map; 
-import java.util.Properties;
-import java.util.ResourceBundle; 
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kosta.openday.adm.dto.NotificationSourceType;
+import com.kosta.openday.adm.service.NotificationService;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplicationPaymentDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
@@ -51,6 +50,9 @@ public class OClassController {
 
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private NotificationService notiService;
 
 	/**
 	 * 클래스 상세 화면에서, "신청하기" 버튼 클릭 시
@@ -123,6 +125,10 @@ public class OClassController {
 			PaymentResultDTO paymentResult = paymentService.buildPaymentResult(payment);
 			
 			model.addAttribute("result", paymentResult);
+			
+			// 알림 생성 
+			notiService.createNotification(null, NotificationSourceType.OCLASS_APPLY_DONE, "", "", payment.getUserId());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -173,13 +179,10 @@ public class OClassController {
 	public ModelAndView requestDetail(@RequestParam("reqId") Integer reqId) {
 		ModelAndView mav = new ModelAndView("requestboard/requestDetail");
 
-		UserDTO user = new UserDTO();
-		user.setUserId("jane");
-		user.setAuthority("1");
-		session.setAttribute("user", user);
 		try {
 			RequestDTO request = oClassService.getRequest(reqId);
 			Integer partpaCnt = oClassService.getPartpaCntByReqId(reqId);
+			UserDTO user = (UserDTO)session.getAttribute("userId");
 			mav.addObject("request", request);
 			mav.addObject("partpaCnt", partpaCnt);
 			mav.addObject("partpaYN", oClassService.getPartPaYN(user.getUserId(), reqId));
@@ -217,7 +220,7 @@ public class OClassController {
 	@RequestMapping(value = "/participation", method = RequestMethod.POST)
 	public ResponseEntity<String> participation(@RequestParam("reqId") Integer reqId) {
 		try {
-			UserDTO user = (UserDTO) session.getAttribute("user");
+			UserDTO user = (UserDTO) session.getAttribute("userId");
 			Boolean yn = oClassService.coupleParticipation(user.getUserId(), reqId);
 			return new ResponseEntity<String>(String.valueOf(yn), HttpStatus.OK);
 		} catch (Exception e) {
@@ -230,9 +233,9 @@ public class OClassController {
 	@RequestMapping(value="/heart", method=RequestMethod.POST)
 	public ResponseEntity<Integer> heart(@RequestParam("clsId") Integer clsId) {
 		try {
-			UserDTO user = (UserDTO)session.getAttribute("user");
-//			Integer heartCnt = oClassService.toggleHeartSchedule(clsId, user.getUserId());
-			Integer heartCnt = oClassService.toggleHeartSchedule(clsId, "jane");
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			Integer heartCnt = oClassService.toggleHeartSchedule(clsId, user.getUserId());
+			
 			return new ResponseEntity<Integer>(heartCnt, HttpStatus.OK);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -245,13 +248,8 @@ public class OClassController {
   
 		ModelAndView mav = new ModelAndView("classinfo/classInfo");
 		try { 
-			//로그인 처리 완료후 삭제
-			UserDTO user = new UserDTO();
-			user.setUserId("jane");
-			session.setAttribute("user", user);
-			
 			//로그인 처리 완료후 주석 풀기
-			//UserDTO user = (UserDTO)session.getAttribute("user");
+			UserDTO user = (UserDTO)session.getAttribute("userId");
 			
 			Map<String,Object> result = oClassService.getOclassDetail(clsId, user.getUserId());
   
@@ -267,9 +265,8 @@ public class OClassController {
 	public ResponseEntity<String> clsInquiry(@RequestParam("ciContent") String ciContent, 
 				@RequestParam(value="ciSecret", required = false, defaultValue = "false") String ciSecret, 
 				@RequestParam("clsId") Integer clsId) {
-		System.out.println(ciContent);
 		try {
-			UserDTO user = (UserDTO)session.getAttribute("user");
+			UserDTO user = (UserDTO)session.getAttribute("userId");
 			oClassService.clsInquiry(ciContent, ciSecret, clsId, user.getUserId());
 			return new ResponseEntity<String>("문의하였습니다.", HttpStatus.OK);
 		} catch(Exception e) {
@@ -306,12 +303,29 @@ public class OClassController {
 	}
 	
 	@RequestMapping(value = "/reviewwrite", method=RequestMethod.GET) 
-	public String mp() {
-		return "mypage/reviewWrite";
+	public ModelAndView reviewWriteForm(Map<String,Object> param) {
+		ModelAndView mav = new ModelAndView("mypage/reviewWrite");
+		mav.addObject("param", param);
+		return mav;
 	}
-
-	@RequestMapping(value = "/test2", method = RequestMethod.GET)
-	public String ci() {
-		return "classinfo/test2";
+	
+	@RequestMapping(value = "/reviewwrite", method=RequestMethod.POST) 
+	public ModelAndView reviewWrite(@RequestParam Map<String, String> param) {
+		ModelAndView mav = new ModelAndView("redirect:/reservedrecord");
+		System.out.println(param);
+		try {
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			userService.reviewWrite(param, user.getUserId());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}	
+	
+	@ResponseBody
+	@RequestMapping(value = "/classinfo/notification/{userId}", method= {RequestMethod.POST,RequestMethod.GET})
+	public void notification(@PathVariable String userId) {
+		return;
 	}
+	
 }
