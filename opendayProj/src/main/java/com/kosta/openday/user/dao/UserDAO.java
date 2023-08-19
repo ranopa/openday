@@ -81,6 +81,9 @@ public interface UserDAO {
     public List<CollectOptionDTO> getSearchOClassByHighPrice() throws Exception;
     public List<CollectOptionDTO> getSearchOClassByLowPrice() throws Exception;
 
+
+	// 비밀번호 변경
+	public int updatePw(UserDTO user) throws Exception;
 	public Integer selectReviewNum() throws Exception;
 	public void insertReview(ReviewDTO reviewDTO) throws Exception;
 	public void updateUserAuthority(String userId) throws Exception;
@@ -88,6 +91,5 @@ public interface UserDAO {
 	public void updatePrefer(Map<String,String> map)throws Exception;  
 
 	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception;
- 
- 
+
 }

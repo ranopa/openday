@@ -21,6 +21,11 @@
 		]]>
 	</update>
 
+<!-- 비밀번호 변경 -->
+<update id="updatePw" parameterType="com.kosta.openday.user.dto.UserDTO">
+	update member set userPassword = #{userPassword} where userId = #{userId}
+</update>
+
 	<!--선호카테고리 받아오기 -->
 	<select id="selectUserPrefer" parameterType="String"
 		resultType="String">
