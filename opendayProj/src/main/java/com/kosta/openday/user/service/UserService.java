@@ -11,6 +11,7 @@ import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
@@ -81,6 +82,12 @@ public interface UserService {
 	
 	public void addPrefer(String preferValues,String userId)throws Exception;
 	
+
+	List<CollectOptionDTO> getSearchOClassByPopularity() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByDate() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByHighPrice() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByLowPrice() throws Exception;
+
 	public String[] getUserPrefer(String userId) throws Exception; 
 	
 	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;

@@ -77,6 +77,14 @@ margin-right: 8px;
 				<hr style="margin-bottom:60px;">
 
 
+
+				<div class="subOption">
+			    <label class="checkLabel"><input type="checkbox" name="orderBy" value="popularity">인기순</label>
+			    <label class="checkLabel"><input type="checkbox" name="orderBy" value="date">등록일순</label>
+			    <label class="checkLabel"><input type="checkbox" name="orderBy" value="highPrice">가격높은순</label>
+			    <label class="checkLabel"><input type="checkbox" name="orderBy" value="lowPrice">가격낮은순</label>
+				</div>
+
 			<!-- 	<div class="subOption">
 					<label class="checkLabel"><input type="checkbox"
 						name="color" value="blue">인기순</label> <label class="checkLabel"><input
@@ -86,6 +94,10 @@ margin-right: 8px;
 						type="checkbox" name="color" value="blue">가격낮은순</label>
 
 				</div> -->
+
+
+
+
 
 				<div class="oclassListWrapper">
 					<!-- <div class="arrowIcon">

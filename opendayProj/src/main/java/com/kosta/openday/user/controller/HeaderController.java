@@ -21,6 +21,7 @@ import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
 import com.kosta.openday.teacher.util.PageUtil;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.UserDTO;
 import com.kosta.openday.user.service.UserService;
 
@@ -182,10 +183,34 @@ public class HeaderController {
 			mav.addObject("pu", pu);
 			mav.addObject("map", map);
 
-			List<CollectDTO> collectList = userService.getSearchOClass(map);
+			 List<CollectDTO> collectList = null;
+			 List<CollectOptionDTO> collectOption = null;
+			/* List<CollectDTO> collectList = userService.getSearchOClass(map); */
 			/* System.out.println(collectList.size()); */
-			mav.addObject("collectList", collectList);
+			/* mav.addObject("collectList", collectList); */
 
+			 String orderBy = (String) map.get("orderBy");
+	            switch (orderBy) {
+	                case "popularity":
+	                	collectOption = userService.getSearchOClassByPopularity();
+	                    break;
+	                case "date":
+	                	collectOption = userService.getSearchOClassByDate();
+	                    break;
+	                case "highPrice":
+	                	collectOption = userService.getSearchOClassByHighPrice();
+	                    break;
+	                case "lowPrice":
+	                	collectOption = userService.getSearchOClassByLowPrice();
+	                    break;
+	                default:
+	                    collectList = userService.getSearchOClass(map);
+	                    break;
+	            }
+
+	            mav.addObject("collectList", collectList);
+	            mav.addObject("collectOption", collectOption);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 

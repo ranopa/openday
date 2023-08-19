@@ -29,6 +29,7 @@ import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dao.OClassDAO;
 import com.kosta.openday.user.dao.UserDAO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.ReviewDTO;
@@ -353,6 +354,30 @@ public class UserServiceImpl implements UserService {
 		map.put("preferValues", preferValues);
 		map.put("userId", userId);
 		userDAO.updatePrefer(map); 
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByPopularity() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getSearchOClassByPopularity();
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByDate() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getSearchOClassByDate();
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByHighPrice() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getSearchOClassByHighPrice();
+	}
+
+	@Override
+	public List<CollectOptionDTO> getSearchOClassByLowPrice() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getSearchOClassByLowPrice();
 	}
 	
 	//최제인꺼 삭제하지 마시오.
