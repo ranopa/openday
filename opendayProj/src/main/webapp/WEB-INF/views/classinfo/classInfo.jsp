@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
@@ -36,7 +39,6 @@
 	* {
 		font-family: 'NanumBarunGothic', sans-serif;
 		padding: 0;
-		margin: 0 auto;
 	}
 
 	#wrap {
@@ -62,10 +64,11 @@
 
 	.texts {
 		margin-top: 40px;
+		margin-left: 80px;
 	}
 
 	.buttons {
-		margin-bottom:22px;
+		margin-bottom: 22px;
 	}
 
 	.image {
@@ -75,13 +78,11 @@
 		margin-top: 60px;
 		display: block;
 		background-size: contain;
-		background-image: url("resources/image/user/Laderach about.jpg");
 		background-position: center;
 	}
 
 	h2 {
 		font-size: 24px;
-		margin-right: 200px;
 	}
 
 	p {
@@ -136,12 +137,15 @@
 	}
 
 	.tab-menu {
-		width: 77%;
+		width: 75%;
 		list-style-type: none;
 		padding: 0;
-		margin-top: 40px;
-		margin-bottom: 20px;
 		border-bottom: 1px solid #D9D9D9;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		margin-top: 40px;
 	}
 
 	.tab-menu li {
@@ -149,8 +153,8 @@
 		cursor: pointer;
 		font-size: 17px;
 		color: gray;
-		margin-left: 54px;
-		margin-right: 25.5px;
+		margin-left: 24px;
+		margin-right: 24px;
 	}
 
 	.tab-menu li.active {
@@ -172,12 +176,14 @@
 	}
 	
 	.tab-content p {
-		width: 77%;
+		margin: 0 auto;
+		width: 72%;
     	font-size: 17px;
   	}
   	
   	.tab-content #reviews p {
-    	width: 77%;
+    	width: 72%;
+    	margin-top: 20px;
     	font-size: 14px;
     	border-bottom: 1px solid #D9D9D9;
     }
@@ -189,19 +195,153 @@
     .delete-button {
 		background-color: white;
 		color: gray;
-		padding: 1.5px 5px;
+		font-size: 12.5px;
+		padding: 0.5px 4px;
 		border-radius: 2px;
 		border: 1px solid gray;
 		cursor: pointer;
-		margin-bottom: 10px;
 	}
 	
 	.review-star {
 		font-weight: bold;
 		color: yellow;
 	}
-</style>
+	
+	.tab-content #instructor {
+		margin: 0 auto;
+		width: 72%;
+	}
+	
+	.instructor-button {
+    	display: inline-block;
+    	background-color: white;
+    	color: gray;
+    	padding: 50px 80px;
+    	border: 1px solid gray;
+		cursor: pointer;
+    	text-decoration: none;
+    	font-size: 18px;
+    	border-radius: 5px;
+	}
+	
+	.btn.btn-primary {
+		background-color: gray !important;
+		border-radius: 5px;
+		color: white;
+		padding: 5px 15px;
+		border: none;
+		font-size: 16px;
+		cursor: pointer;
+	}
+	
+	.btn.btn-primary:not(:active) {
+    	background-color: gray;
+  	}
+	
+	.edit-button {
+		background-color: white;
+		color: gray;
+		font-size: 12.5px;
+		padding: 0.5px 4px;
+		border-radius: 2px;
+		border: 1px solid gray;
+		cursor: pointer;
+	}
+	
+	.tab-content #inquiry p {
+    	font-size: 14px;
+    }
+    
+    .inquiry .user-id {
+    	font-weight: bold;
+    }
+    
+    .instructor-id {
+    	font-weight: bold;
+    }
+    
+    .response {
+    	width: 710px;
+  		height: 110px;
+  		background-color: #D9D9D9;
+  		border-radius: 4px;
+    }
+    
+    .modal-header, .modal-footer {
+        border: none;
+    }
+    
+    .modal-content {
+    	height: auto;
+    }
+    
+    .modal-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: gray;
+    }
+    
+    .modal-footer .btn.btn-danger {
+        background-color: gray;
+        color: white;
+        border: none;
+        font-size: 16px;
+        margin-left: 350px;
+    }
+    
+    .modal-header .btn-close {
+    	margin-left: 350px;
+    }
+    
+    .secret-opt {
+    	color: gray;
+    }
+    
+    .modal-body {
+    	position: relative;
+    	padding: 0;
+    }
+    
+    textarea {
+    	height: 250px;
+    	width: 80%;
+    	margin-left: 150.5px;
+    	transform: translateX(-24.9%);
+    	border: 1px solid #D9D9D9;
+    	margin-top: 10px;
+    }
+    
+    #ciContent, #ciModContent {
+    	resize: none;
+    }
+    
+    #ciContent:focus, #ciModContent {
+		outline: none;
+	}
+	
+	.stars {
+ 		width: 72%;
+ 	}
+ 
+	.star-rating {
+  		font-size: 1rem;
+  		line-height: 1rem;
+  		flex-direction: row-reverse;
+  		justify-content: space-around;
+  		padding: 0 0.2em;
+	}
+ 
+	.star-rating input {
+  		display: none;
+	}
+ 
+	.star-rating label {
+  		-webkit-text-fill-color: transparent;
+  		-webkit-text-stroke-width: 0.5px;
+  		-webkit-text-stroke-color: yellow;
+	}
 
+</style>
 <script>
 	function openTab(tabId) {
 		var tabs = document.getElementsByClassName('tab');
@@ -218,50 +358,140 @@
 		document.getElementById(tabId).style.display = 'block';
 		document.getElementById('menu-' + tabId).classList.add('active');
 	}
+	
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://github.com/teamdf/jquery-number"></script>
+<script>
+function addComma(num) 
+{
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+}
 
-	function toggleHeart() {
-		var heartButton = document.getElementById('heartButton');
-		var clickedCount = document.getElementById('clickedCount');
-		var fileHeart = document.querySelector('.material-symbols-outlined');
-
-		if (heartButton.classList.contains('clicked')) {
-			heartButton.classList.remove('clicked');
-			clickedCount.textContent = "";
-			fileHeart.classList.remove('fill');
+$(function() {
+	let heartYN = '${res.heart}';
+	function heartFill(heart) {
+		if(heart==1) {
+			$('.material-symbols-outlined').addClass("fill");
 		} else {
-			fileHeart.classList.add('fill');
-			heartButton.classList.add('clicked');
-			clickedCount.textContent = "1";
+			$('.material-symbols-outlined').removeClass("fill");
 		}
 	}
-</script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-$(function() {	
-	if('${res.heart}'==1) {
-		$('.material-symbols-outlined').addClass("fill");
-	} else {
-		$('.material-symbols-outlined').removeClass("fill");
-	}
+	
+	heartFill(heartYN);
+	
+	$("#heartButton").click(function() {
+
+		$.ajax({
+			url:"${contextPath}/heart",
+			method:"POST",
+			async:true,
+			data:{clsId:'${res.clsInfo.clsId}'},
+			success:function(res) {
+				if(heartYN==1) {
+					heartYN=0;
+				} else {
+					heartYN=1;
+				}
+				heartFill(heartYN);
+				$("#clickedCount").text(res);
+			}
+		})
+	})
+	
+	$("#inquiryBtn").click(function() {
+		$.ajax({
+			url:"${contextPath}/clsinquiry",
+			method:"POST",
+			async:true,
+			data:{clsId:'${res.clsInfo.clsId}',
+				  ciContent:$("#ciContent").val(),
+				  ciSecret:$("#ciSecret").is(':checked')
+				  },
+			success:function(res) {
+				alert(res);
+			},
+			error:function(res) {
+				console.log(res);
+				alert(res.responseText);
+			}
+		})
+		
+	})
+	
+	let editBtn;
+	$(".edit-button").click(function() {
+		editBtn = $(this);
+		ciNum = editBtn.data("cinum")
+		$("#ciModContent").val($('#ct'+ciNum).text());
+		
+		if($(this).data("cisecret")==true) {
+			$("#ciModSecret").prop("checked", true);
+		} else {
+			$("#ciModSecret").prop("checked", false);
+		}
+	})
+	
+	$("#modInquiryBtn").click(function() {
+		$.ajax({
+			url:"${contextPath}/modClsInquiry",
+			method:"POST",
+			async:true,
+			data:{ciNum:editBtn.data("cinum"),
+				  ciContent:$("#ciModContent").val(),
+				  ciSecret:$("#ciModSecret").is(':checked')
+				  },
+			success:function(res) {
+				if(res==true) {
+					$('#ct'+ciNum).text($("#ciModContent").val());
+					editBtn.data("cisecret", $("#ciModSecret").is(':checked'));
+				}
+			}
+		})
+		
+	})	
+	
+	$(".delete-button").click(function() {
+		let rvNum = $(this).data("reviewnum")
+		console.log(rvNum);
+		$.ajax({
+			url:"${contextPath}/removeReview",
+			method:"POST",
+			async:true,
+			data:{rvNum:rvNum},
+			success:function(res) {
+				console.log($('#p'+$(this).data("reviewnum")));
+				if(res==true) {
+					$('#p'+rvNum).remove();
+				}
+			}
+		})		
+	})
+	let price = addComma('${res.clsInfo.price}');
+	console.log(price)
+	$("#price").text(price+'원');
 })
 </script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
 
 		<div class="container">
-			<div class="image"><img src="./image?num=${res.clsInfo.filNum}"></div>
+			<div class="image"><img src="${contextPath}/img/${res.clsInfo.filNum}" style="width: 350px;"></div>
 
 			<div class="txt-con">
 				<div class="texts">
-					<h2>${res.clsInfo.clsName} </h2>
-					<br />
-					<p>${res.clsInfo.price}</p>
+					<h2>${res.clsInfo.clsName}</h2>
+					<br/>
+					<p id="price">${res.clsInfo.price}원</p>
 				</div>
 				<div class="buttons">
-					<button id="heartButton" class="heart-button" onclick="toggleHeart()"><span class="material-symbols-outlined">favorite</span></button>
+					<button id="heartButton" class="heart-button"><span class="material-symbols-outlined">favorite</span></button>
 					<span id="clickedCount" class="clicked-count">${res.heartCnt}</span>
-					<button class="apply-button" onclick="window.location.href='/apply'">신청하기</button>
+					<button class="apply-button" onclick="window.location.href='${contextPath}/apply?clsId=${res.clsInfo.clsId}'">신청하기</button>
 				</div>
 			</div>
 		</div>
@@ -284,38 +514,135 @@ $(function() {
 					<div id="curriculum" class="tab">
 						<p>${res.clsInfo.clsCurri }</p>
 					</div>
-					<div id="instructor" class="tab">C</div>
+					<div id="instructor" class="tab">
+						<a href="${contextPath}/../${res.teacherChannel.tchcNum}" class="instructor-button">채널 바로가기&nbsp;&nbsp;&nbsp;＞</a>
+					</div>
 					<div id="location" class="tab">
-						<p>${res.clsInfo.scdLoc }${res.clsInfo.scdPlace }</p>
+    					<c:forEach items="${res.scheduleList}" var="schedule">
+    						<p>
+								<span>${schedule.scdDate}</span>&nbsp;&nbsp;
+								<span>${schedule.scdStartTime}</span>&nbsp;&nbsp;
+								<span>${schedule.scdPlace}</span>&nbsp;&nbsp;
+								<span>${schedule.scdPlaceDetail}</span>
+							</p>
+						</c:forEach>
 					</div>
 					<div id="reviews" class="tab">
     					<c:forEach items="${res.reviewList}" var="review">
-        					<p>
+        					<p id='p${review.rvNum}'>
             					<span class="user-id">${review.userId }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             					<span class="review-date">${review.rvDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            					<button class="delete-button">삭제</button><br/>
-            					<span class="review-star">${review.rvStar }</span><br/><br/>
+            					<c:if test="${user.userId==review.userId}">
+            					<button class="delete-button" data-reviewnum=${review.rvNum }>삭제</button>
+            					</c:if>
+            					<br/>
+            					
+								<span class="star-rating space-x-4 mx-auto">
+									<c:forEach begin="1" end="${review.rvStar}" varStatus="status">
+										<input type="radio" name="rating" v-model="ratings"  disabled="disabled" checked/>
+										<label for="1-star" class="star" style="-webkit-text-fill-color: yellow;">★</label>
+									</c:forEach>
+ 									<c:forEach begin="${review.rvStar+1}" end="5" varStatus="status">
+										<input type="radio" name="rating" v-model="ratings"  disabled="disabled"/>
+										<label for="1-star" class="star">★</label>
+									</c:forEach>
+								</span>       
+            					<br/><br/>
             					<span class="review-content">${review.rvContent }</span><br/><br/>
         					</p>
     					</c:forEach>
 					</div>
 					<div id="inquiry" class="tab">
-					<table border="1">
-					<c:forEach items="${res.inquiryList}" var="inquiry">
-						<tr>
-							<td>${inquiry.ciNum }</td>
-							<td>${inquiry.ciDate }</td>
-							<td>${inquiry.ciTitle }</td>
-							<td>${inquiry.ciContent }</td>
-							<td>${inquiry.userId }</td>
-						</tr>
-					</c:forEach>
-					</table>
-					
+						<p>
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">문의하기</button><br/><br/>
+						</p>
+									
+						<div class="modal" id="myModal">
+  							<div class="modal-dialog">
+    							<div class="modal-content">
+     								<div class="modal-header">
+        								<h4 class="modal-title">문의 작성</h4>
+        								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      								</div>
+      								
+      								<div class="modal-body"><textarea id="ciContent"></textarea></div>
+      								
+      								<div class="modal-footer">
+      								  	<input type="checkbox" id="ciSecret" name="ciSecret" value="true">
+      								  		<span class="secret-opt">비밀글</span>
+										<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="inquiryBtn">작성 완료</button>
+      								</div>
+      							</div>
+  							</div>
+						</div>
+						
+						<c:forEach items="${res.inquiryList}" var="inquiryAndAnswer">
+							<p>
+								<span class="user-id">${inquiryAndAnswer.clsInquiry.userId }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<span>${inquiryAndAnswer.clsInquiry.ciDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<c:choose>
+								<c:when test="${userId.userId==inquiryAndAnswer.clsInquiry.userId}">
+									<button class="edit-button" data-bs-toggle="modal" data-bs-target="#modifyModal"
+										data-cinum="${inquiryAndAnswer.clsInquiry.ciNum}"
+										data-cisecret="${inquiryAndAnswer.clsInquiry.ciSecret}">수정</button><br/><br/>
+									<span id='ct${inquiryAndAnswer.clsInquiry.ciNum}'>${inquiryAndAnswer.clsInquiry.ciContent }</span><br/><br/>
+								</c:when>
+								<c:when test="${inquiryAndAnswer.clsInquiry.ciSecret==false}">
+									<span>${inquiryAndAnswer.clsInquiry.ciContent }</span><br/><br/>
+								</c:when>
+								<c:otherwise>
+									<br/><br/><span>비밀글 입니다.</span><br/><br/>
+								</c:otherwise>
+								</c:choose>
+							</p>
+							
+							<c:if test="${inquiryAndAnswer.answer!=null}">
+							<div class="response">
+							<p>
+								<br/>
+								<span>${inquiryAndAnswer.answer.ansDate }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
+								<c:choose>
+								<c:when test="${user.userId==inquiryAndAnswer.clsInquiry.userId or 
+											inquiryAndAnswer.clsInquiry.ciSecret==false}">
+									<span>${inquiryAndAnswer.answer.ansContent }</span><br/><br/>
+								</c:when>
+								<c:otherwise>
+									<span>비밀글 입니다.</span><br/><br/>
+								</c:otherwise>
+								</c:choose>
+							</p>	
+							</div>	
+							</c:if>	
+							<br/>				
+						</c:forEach>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<!-- 	수정하기 모달 -->
+	<div class="modal" id="modifyModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">문의 수정</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<div class="modal-body">
+					<textarea id="ciModContent"></textarea>
+				</div>
+
+				<div class="modal-footer">
+					<input type="checkbox" id="ciModSecret" name="ciModSecret" value="true">
+					<span class="secret-opt">비밀글</span>
+					<button type="button" class="btn btn-danger"
+						data-bs-dismiss="modal" id="modInquiryBtn">수정 완료</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

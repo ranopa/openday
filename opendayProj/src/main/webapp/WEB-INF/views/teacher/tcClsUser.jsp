@@ -20,7 +20,8 @@
 		<jsp:include page="tcHaeder.jsp" />
 		<div class="tc-container">
 			<div class="tc-maintop">
-				<span class="tc-mainTitle">강사페이지</span>
+				<span class="tc-mainTitle">강사페이지</span> <span class="tc-mainSession">${userId.userName}
+					강사님</span> <span class="tc-mainTimer">남은시간 : <span id="timer"></span></span>
 			</div>
 			<hr>
 			<div class="tc-classList">
@@ -51,9 +52,9 @@
 								<tr onclick="classUserList(${tcClScdlist.scdNum })">
 									<td>${tcClScdlist.scdNum }</td>
 									<td>${tcClScdlist.clsName }</td>
-									<td>${tcClScdlist.scdTime }</td>
+									<td>${tcClScdlist.scdStartTime }</td>
 									<td>${tcClScdlist.scdPlaceDetail }</td>
-									<td>0/${tcClScdlist.scdMinPersonnel }</td>
+									<td>${tcClScdlist.scdApCount}/${tcClScdlist.scdMinPersonnel }</td>
 									<td>${tcClScdlist.scdUploadDate }</td>
 								</tr>
 							</c:forEach>
@@ -62,30 +63,37 @@
 
 				</div>
 				<div class="tc-paging">
-						<c:if test="${pu.startPageNum>5 }">
-							<a href="tcClassUser?pageNum=${pu.startPageNum-1 }">이전</a>
-						</c:if>
+					<c:if test="${pu.startPageNum>5 }">
+						<a href="tcClsUser?pageNum=${pu.startPageNum-1 }"><span
+							class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
+					</c:if>
 
-						<c:forEach var="i" begin="${pu.startPageNum }"
-							end="${pu.endPageNum }">
-							<c:choose>
-								<c:when test="${pu.pageNum==i }">
-									<!-- 현재페이지 -->
-									<a href="tcClassUser?pageNum=${i }"> <span
-										style='color: blue; font-weight: bold'>[${i }]</span>
+					<c:forEach var="i" begin="${pu.startPageNum }"
+						end="${pu.endPageNum }">
+						<c:choose>
+							<c:when test="${pu.pageNum==i }">
+								<!-- 현재페이지 -->
+								<div class="numBox" style='color: #8556FF;'>
+									<a href="tcClsUser?pageNum=${i }"> <span
+										style='color: #8556FF; font-weight: bold'>${i }</span>
 									</a>
-								</c:when>
-								<c:otherwise>
-									<a href="tcClassUser?pageNum=${i }"> <span style='color: gray;'>[${i }]</span>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="numBox" style='color: #CFCFCF;'>
+									<a href="tcClsUser?pageNum=${i }"> <span
+										style='color: gray;'>${i }</span>
 									</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 
-						<c:if test="${pu.endPageNum<pu.totalPageCount }">
-							<a href="tcClassUser?pageNum=${pu.endPageNum+1 }">다음</a>
-						</c:if>
-					</div>
+					<c:if test="${pu.endPageNum<pu.totalPageCount }">
+						<a href="tcClsUser?pageNum=${pu.endPageNum+1 }"><span
+							class="material-symbols-outlined pagenp">chevron_right</span></a>
+					</c:if>
+				</div>
 				<div class="tc-classScheduleUser">
 					<h2>수강생 목록</h2>
 					<table class="tc-classUserTable">
@@ -142,4 +150,43 @@
 			}
 		}); 
 	}
+</script>
+<script>
+/* 전역 변수 */
+var initMinute;  // 최초 설정할 시간(min)
+var remainSecond;  // 남은시간(sec)
+ 
+$(document).ready(function(){
+   clearTime(${minusTime}); // 세션 만료 적용 시간 
+   setTimer();    // 문서 로드시 타이머 시작
+});
+ 
+function clearTime(min){ // 타이머 초기화 함수
+   initMinute = min; 
+   remainSecond = min*60; 
+}
+ 
+function setTimer(){ // 1초 간격으로 호출할 타이머 함수 
+ 
+   // hh : mm 으로 남은시간 표기하기 위한 변수
+   remainMinute_ = parseInt(remainSecond/60);
+   remainSecond_ = remainSecond%60;
+ 
+   if(remainSecond > 0){
+      $("#timer").empty();
+      $("#timer").append(Lpad(remainMinute_,2) + ":" + Lpad(remainSecond_,2));    // hh:mm 표기
+      remainSecond--;
+      setTimeout("setTimer()",1000); //1초간격으로 재귀호출!
+   }else{
+      /*세션 종료시 작동할 이벤트*/ 
+   }
+}
+ 
+function Lpad(str,len){  // hh mm형식으로 표기하기 위한 함수
+   str = str+"";
+   while(str.length<len){
+      str = "0"+str;
+   }
+   return str;
+}
 </script>

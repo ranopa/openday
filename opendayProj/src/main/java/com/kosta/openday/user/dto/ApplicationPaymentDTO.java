@@ -7,6 +7,8 @@ public class ApplicationPaymentDTO {
 	private Integer apNum; //수강신청번호
 	private String apPstatus; //결제상태
 	private String apAstatus; //수강상태
+	
+	private String apPgProvider; // 결제대행
 	private String apMethod; //결제방식
 
 	private Integer apFinalAmount; //최종결제금액
@@ -18,12 +20,13 @@ public class ApplicationPaymentDTO {
 	
 	public ApplicationPaymentDTO() {}
 
-	public ApplicationPaymentDTO(Integer apNum, String apPstatus, String apAstatus, String apMethod,
+	public ApplicationPaymentDTO(Integer apNum, String apPstatus, String apAstatus, String apPgProvider, String apMethod,
 			Integer apFinalAmount, Date apDate, Integer scdNum, String userId) {
 		super();
 		this.apNum = apNum;
 		this.apPstatus = apPstatus;
 		this.apAstatus = apAstatus;
+		this.apPgProvider = apPgProvider;
 		this.apMethod = apMethod;
 		this.apFinalAmount = apFinalAmount;
 		this.apDate = apDate;
@@ -94,7 +97,13 @@ public class ApplicationPaymentDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
-	
+
+	public String getApPgProvider() {
+		return apPgProvider;
+	}
+
+	public void setApPgProvider(String apPgProvider) {
+		this.apPgProvider = apPgProvider;
+	}
 	
 }

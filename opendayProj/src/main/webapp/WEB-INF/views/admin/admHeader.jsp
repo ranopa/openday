@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
   <div id="header">
         <div class="white-header">
             <div class="abox">
@@ -16,7 +18,7 @@
                     <li class="f-list">
                         <ul class="s-ul">
                             클래스 개설 검토
-                            <a href="admwaitinglist" class="h-atag">
+                            <a href="${contextPath}/admwaitinglist" class="h-atag">
                                 <li class="s-li">개설 신청 목록</li>
                             </a>
                         </ul>
@@ -24,10 +26,10 @@
                     <li class="f-list">
                         <ul class="s-ul">
                             회원 관리
-                            <a href="admuserlist" class="h-atag">
+                            <a href="${contextPath}/admuserlist" class="h-atag">
                                 <li class="s-li">회원 목록</li>
                             </a>
-                              <a href="admclasslist" class="h-atag">
+                              <a href="${contextPath}/admclasslist" class="h-atag">
                                 <li class="s-li">클래스 목록</li>
                             </a>
                         </ul>
@@ -35,10 +37,10 @@
                     <li class="f-list">
                         <ul class="s-ul">
                             고객센터
-                            <a href="adminquirylist" class="h-atag">
+                            <a href="${contextPath}/adminquirylist" class="h-atag">
                                 <li class="s-li">문의</li>
                             </a>
-                            <a href="#" class="h-atag">
+                            <a href="${contextPath}/admnoticelist" class="h-atag">
                                 <li class="s-li">공지</li>
                             </a>
                         </ul>
@@ -46,13 +48,13 @@
                     <li class="f-list">
                         <ul class="s-ul">
                             정산 및 매출
-                            <a href="admsettlewaitinglist" class="h-atag">
+                            <a href="${contextPath}/admsettlewaitinglist" class="h-atag">
                                 <li class="s-li">정산 대기 목록</li>
                             </a>
-                            <a href="admsettlerecordlist" class="h-atag">
+                            <a href="${contextPath}/admsettlerecordlist" class="h-atag">
                                 <li class="s-li">정산 내역 조회</li>
                             </a>
-                            <a href="">
+                            <a href="${contextPath}/admsaleslist">
                                 <div class="s-li-div" class="h-atag">
                                     <li class="s-li">매출 확인</li>
                                 </div>

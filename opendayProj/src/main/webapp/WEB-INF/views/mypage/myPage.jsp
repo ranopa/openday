@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <c:set var="contextPath" value="<%=request.getContextPath()%>" /> --%>
-
+<%-- <c:set var=”authority” value=”${user.authority}”/> --%>
 
 <!DOCTYPE html>
 <html>
@@ -19,8 +19,9 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <%--  <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
-<script src="resources/js/user/mypage.js"></script>
+<script src='<c:url value="/resources/js/user/mypage.js"/>'></script>
 </head>
+
 <body>
 	<!--모달  -->
 	<form action="withdraw" method="post">
@@ -128,11 +129,16 @@
 							</c:otherwise>
 						</c:choose>
 
-						<p class="tcen">${user.userNickname}</p>
+						<p class="tcen">
+							<c:if test="${user.authority eq 2}">
+								<span class="host-badge">H</span>
+							</c:if>
+							${user.userNickname}
+						</p>
 						<div class="myprofile">
 							<div class="border-bottom">
 								<p class="mymenu1">이메일</p>
-								<p class="mymenu2">${user.userEmail }</p>
+								<p class="mymenu2">${user.userEmail}</p>
 							</div>
 							<div class="border-bottom">
 								<p class="mymenu1">전화번호</p>
@@ -147,21 +153,71 @@
 							</div>
 							<div>
 								<button id="profile-edit-btn" class="myprofile-btn"
-									type="button">
-									프로필 </button> 
+									type="button">프로필</button>
 							</div>
 						</div>
 					</div>
-					<a href="">
-						<div class="mybox2 square">
-							<span class="material-symbols-outlined">
-								face_retouching_natural </span>
-							<div class="mymenu-txt">
-								<p class="mymenu1">클래스 개설</p>
-								<p class="mymenu2">열어데이의 강사님이 되어보세요</p>
-							</div>
-						</div>
-					</a>
+
+					<c:choose>
+						<c:when test="${user.authority eq 2}">
+							<a href="tcHome">
+								<div class="mybox2 square">
+									<c:choose>
+										<c:when test="${tchc.filNum eq null}">
+											<img src="resources/image/user/basic_tchc.png"
+												class="tchc-profile" alt="강사기본프로필사진">
+										</c:when>
+										<c:otherwise>
+											<img src="img/${tchc.filNum}" alt="강사프로필사진">
+										</c:otherwise>
+									</c:choose>
+									<div class="mymenu-txt">
+										<c:choose>
+											<c:when test="${tchc.tchcNickname eq null}">
+												<p class="mymenu1">채널의 이름을 설정해 주세요</p>
+											</c:when>
+											<c:otherwise>
+												<p class="mymenu1">${tchc.tchcNickname}</p>
+											</c:otherwise>
+										</c:choose>
+										
+										<c:choose>
+											<c:when test="${tchc.tchcIntro eq null}">
+											<p class="mymenu2">소개글을 작성해 주세요</p> 
+											</c:when>
+											<c:otherwise>
+												<p class="mymenu2">${tchc.tchcIntro}</p>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="classOpen">
+								<div class="mybox2 square">
+									<span class="material-symbols-outlined">
+										face_retouching_natural </span>
+									<div class="mymenu-txt">
+										<p class="mymenu1">클래스 개설</p>
+										<p class="mymenu2">열어데이의 강사님이 되어보세요</p>
+									</div>
+								</div>
+							</a>
+						</c:otherwise>
+					</c:choose>
+					<style>
+#mypage .tchc-profile {
+	margin-left: 30px;
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+}
+</style>
+
+
+
+
 				</div>
 				<div class="sec2">
 					<a href="myprefer">
@@ -210,7 +266,70 @@
 			</div>
 		</div>
 	</div>
+<script>
+window.onload=function(){
+    var modalBtn = document.querySelector("#profile-edit-btn");
+    var modalEl = document.querySelector(".modal");
+	var	cancelBtn = document.querySelector(".cancel-btn");
+    
+    modalBtn.addEventListener('click',()=>{
+        if(!modalEl.classList.contains('hide')){
+           modalEl.classList.add("hide"); 
+        }
+    })
+    
+    cancelBtn.addEventListener('click',()=>{
+    	console.log("back");
+        if(modalEl.classList.contains('hide')){
+        	modalEl.classList.remove('hide');
+        }    	
+    })
+    
+    document.getElementById("select-file").addEventListener("click",()=>{
+    	 document.querySelector(".custom-file-input input[type='file']").click();
+    })
+    
+    document.getElementById("myfile").addEventListener("change", function() {
+    var fileInput = this;
+    var imageElement = document.getElementById("myImg");
 
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      imageElement.src = e.target.result;
+    };
+    
+    reader.readAsDataURL(fileInput.files[0]);
+  });
+  
+   
+  var wModalBtn = document.querySelector("#withdraw-a");
+  var wModalEl = document.querySelector(".w-modal"); 
+  var wCancelBtn = document.querySelector(".w-cancel-btn");
+  var wSubmitBtn = document.querySelector(".w-submit-btn");
+  
+  
+  
+  
+  wModalBtn.addEventListener("click",()=>{
+  	console.log("cleck")
+        if(!wModalEl.classList.contains('w-hide')){
+           wModalEl.classList.add("w-hide"); 
+        }
+    })
+
+  
+   wSubmitBtn.addEventListener('click',()=>{
+        if(wModalEl.classList.contains('w-hide')){
+        	wModalEl.classList.remove('w-hide');
+        }    	
+    })
+    
+
+   
+}
+
+
+</script>
 
 
 </body>

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.atag {
+	text-decoration: none;
+	color: rgba(160, 160, 160, 1);
+	margin-right: 25px;
+	font-size: 22px;
+}
+
+#noticeWrapper {
+	width:1280px; margin:0 auto;
+	padding-top: 60px;
+}
+
+.inquiryDetailTable{
+    width: 1000px;
+    border: 1px solid rgba(160, 160, 160, 1);
+    border-collapse: collapse;
+    margin-left:auto;
+    margin-right:auto;
+  }
+.inquiryDetailTable td {
+    border: 1px solid rgba(160, 160, 160, 1);
+    padding: 10px;
+  }
+.inquiryDetailTable th {
+ 	border: 1px solid rgba(160, 160, 160, 1);
+ 	background: #F4F4F4;
+ 	width: 150px;
+ 	padding: 10px;
+ } 
+.smallth {
+	width: 10%; 
+}
+#largeth {
+	width: 60%; 
+}
+
+.alist {
+	 width:100%; 
+	 height:100%;
+	 border: none;
+}
+
+.alist:focus{
+    outline: none;
+}
+
+    
+.list-btn {
+	box-sizing: border-box;
+	width: 200px;
+	height: 43px;
+	background: rgba(255, 166, 193, 1);
+	border-radius: 7px;
+	color: #fff;
+	font-weight: bold;
+	border-style: none;
+	font-size: 14px;
+}
+
+.edit-btn {
+    box-sizing: border-box;
+    width: 200px;
+    height: 43px;
+    background: rgba(188, 188, 188, 1);
+    border-radius: 7px;
+    font-weight: bold;
+    border-style: none;
+    margin-right: 40px;
+    margin-left: 420px;
+    color:white;
+}

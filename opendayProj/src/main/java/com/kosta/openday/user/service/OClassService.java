@@ -2,14 +2,17 @@ package com.kosta.openday.user.service;
 
 import java.sql.Date;
 import java.util.List;
-
 import java.util.Map;
+
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.RequestDTO;
 import com.kosta.openday.user.dto.PageInfo;
+import com.kosta.openday.user.dto.RequestDTO;
 
 public interface OClassService {
 
@@ -45,10 +48,17 @@ public interface OClassService {
 
 	ApplyClassResponseDTO getApplyClassResponse(Integer id) throws Exception;
 
-	Map<String, Object> getScheduleDetail(Integer scdNum, String userId) throws Exception;
+	Map<String, Object> getOclassDetail(Integer clsId, String userId) throws Exception;
 
-	Integer toggleHeartSchedule(Integer scdNum, String userId) throws Exception;
+	Integer toggleHeartSchedule(Integer clsId, String userId) throws Exception;
 
 	List<OClassAndScheduleDTO> findClassAndSchedules() throws Exception;
 
+	void clsInquiry(String ciContent, String ciSecret, Integer clsId, String userId ) throws Exception;
+	
+	void modifyClsInquiry(String ciContent, String ciSecret, Integer ciNum) throws Exception;
+	
+	void removeReview(Integer rvNum) throws Exception;
+	
+	TeacherChannelDTO getTeacherChannel(String userId) throws Exception;
 }

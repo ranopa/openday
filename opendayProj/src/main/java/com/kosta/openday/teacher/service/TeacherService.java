@@ -29,4 +29,15 @@ public interface TeacherService {
 	void tcProfileUpdate(FileDTO dto) throws Exception;
 	FileDTO tcProfileInfo(int filNum) throws Exception;
 	void tcProfileUserUpdate(TeacherChannelDTO dto) throws Exception;
+	void tcProfileUserImgUpdate(TeacherChannelDTO dto) throws Exception;
+	TeacherChannelDTO tcChannelInfo(String userId) throws Exception;
+	int tcSalesTotal(HashMap<String, Object> map) throws Exception;
+	int tcClassListStatus1Count(HashMap<String, Object> map) throws Exception;
+	int tcClassListStatus2Count(HashMap<String, Object> map) throws Exception;
+	int tcClassListReviewCount(HashMap<String, Object> map) throws Exception;
+	double tcClassListAvgStarCount(HashMap<String, Object> map) throws Exception;
+	int tcSalesMonthTotal(HashMap<String, Object> map) throws Exception;
+	TeacherChannelDTO tcProfileSelect(HashMap<String, Object> map) throws Exception;
+	AnnouncementDTO tcAnnouncementInfo(int ancId) throws Exception;
+	void SalesAdd(HashMap<String, Object> map) throws Exception;
 }

@@ -7,8 +7,9 @@ public class ClassScheduleDTO {
 
 	private Integer scdNum; // 클래스 일정번호
 	private String clsName; // 강의 시간
-	private String scdTime; // 강의 시간
+	private String scdStartTime; // 강의 시간
 	private String scdPlaceDetail; // 장소
+	private Integer scdApCount; // 신청인원
 	private Integer scdMinPersonnel; // 최대수강인원
 	private Integer scdMaxPersonnel; // 최소수강인원
 	private String scdPrice; // 최종수강료(할인적용)
@@ -17,13 +18,14 @@ public class ClassScheduleDTO {
 	public ClassScheduleDTO() {
 	}
 
-	public ClassScheduleDTO(Integer scdNum, String clsName, String scdTime, String scdPlaceDetail,
-			Integer scdMinPersonnel, Integer scdMaxPersonnel, String scdPrice, Date scdUploadDate) {
+	public ClassScheduleDTO(Integer scdNum, String clsName, String scdStartTime, String scdPlaceDetail,
+			Integer scdApCount, Integer scdMinPersonnel, Integer scdMaxPersonnel, String scdPrice, Date scdUploadDate) {
 		super();
 		this.scdNum = scdNum;
 		this.clsName = clsName;
-		this.scdTime = scdTime;
+		this.scdStartTime = scdStartTime;
 		this.scdPlaceDetail = scdPlaceDetail;
+		this.scdApCount = scdApCount;
 		this.scdMinPersonnel = scdMinPersonnel;
 		this.scdMaxPersonnel = scdMaxPersonnel;
 		this.scdPrice = scdPrice;
@@ -46,12 +48,12 @@ public class ClassScheduleDTO {
 		this.clsName = clsName;
 	}
 
-	public String getScdTime() {
-		return scdTime;
+	public String getScdStartTime() {
+		return scdStartTime;
 	}
 
-	public void setScdTime(String scdTime) {
-		this.scdTime = scdTime;
+	public void setScdStartTime(String scdStartTime) {
+		this.scdStartTime = scdStartTime;
 	}
 
 	public String getScdPlaceDetail() {
@@ -60,6 +62,14 @@ public class ClassScheduleDTO {
 
 	public void setScdPlaceDetail(String scdPlaceDetail) {
 		this.scdPlaceDetail = scdPlaceDetail;
+	}
+
+	public Integer getScdApCount() {
+		return scdApCount;
+	}
+
+	public void setScdApCount(Integer scdApCount) {
+		this.scdApCount = scdApCount;
 	}
 
 	public Integer getScdMinPersonnel() {
@@ -93,6 +103,8 @@ public class ClassScheduleDTO {
 	public void setScdUploadDate(Date scdUploadDate) {
 		this.scdUploadDate = scdUploadDate;
 	}
+
+	
 
 	
 

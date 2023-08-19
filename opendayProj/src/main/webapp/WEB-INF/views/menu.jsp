@@ -10,6 +10,8 @@
 <script src='<c:url value="/resources/js/user/subClassList.js"/>'></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user/menu.css"/>">
+	<link rel="stylesheet"
+	href="<c:url value="/resources/css/user/subClassList.css"/>">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -17,6 +19,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
 <style>
+
+
 .menuContentW{
 margin-top:60px;
 width: 1280px;
@@ -26,11 +30,57 @@ margin-right:auto;
 .oclassListWrapper{
 margin-top: 55px;
 }
+
+ 
+</style>
+<style>
+
+.numBox{
+border: 1px solid;
+width: 30px;
+height: 30px;
+}
+
+.tc-paging a{
+text-decoration: none;
+}
+.tc-paging a:hover{
+text-decoration-line: none;
+
+}
+
+.tc-paging{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.numBox{
+margin-right: 10px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.pagenp{
+color:#CFCFCF;
+margin-top: 3px;
+
+}
+.pagenp:hover{
+color:#8556FF;
+
+}
+
+.pagep{
+margin-right: 8px;
+}
+
 </style>
 
 </head>
 
 <body>
+
 <%@ include file="header.jsp"%>
 	<div class="menuContentBigWrapper">
 		<div class="menuContentWrapper">
@@ -42,14 +92,14 @@ margin-top: 55px;
 			
 			
 			</div>
-			<div class="subOption">
+			<!-- <div class="subOption">
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">인기순</label>
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">등록일순</label>
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">가격높은순</label>
 				<label class="checkLabel"><input type="checkbox" name="color" value="blue">가격낮은순</label>
 
 			</div>
-			
+			 -->
 			<div class="oclassListWrapper">
 				<!-- <div class="arrowIcon">
 					<div class="material-symbols-outlined">
@@ -97,9 +147,9 @@ margin-top: 55px;
     <c:if test="${loop.index % 4 == 0}">
       <ul class="tableTr">
     </c:if>
-    <a href="classinfo/${list.clsId}">
     <li class="oclass">
-    <img src="img/${list.filNum}" class="ssum-img">
+    <a href="classinfo/${list.clsId}">
+    	<img src="img/${list.filNum}" class="ssum-img" alt="클래스대표이미지">
       <div class="txt-box">
         <div class="tb1">
           <div class="t1">
@@ -112,14 +162,14 @@ margin-top: 55px;
         </div>
         <p class="cls-name">${list.clsName}</p>
         <div class="tb2">
-          <span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+          <span class="oriPrice"><del>${list.clsPrice}원</del></span>
           <div class="price">
             <span class="disc">${list.clsDiscount}%</span> <span class="fp">${list.finalPrice}원</span>
           </div>
         </div>
       </div>
-    </li>
     </a>
+    </li>
     <c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
       </ul>
     </c:if>
@@ -158,6 +208,35 @@ margin-top: 55px;
 					</c:forEach>
 				</div> --%>
 			</div>
+			
+				
+			
+			<div class="tc-paging">
+						<c:if test="${pu.startPageNum>5 }">
+							<a href="menu?pageNum=${pu.startPageNum-1 }&codNum=${map.codNum}&codName=${map.codName}"><span class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
+						</c:if>
+
+						<c:forEach var="i" begin="${pu.startPageNum }"
+							end="${pu.endPageNum }">
+							<c:choose>
+								<c:when test="${pu.pageNum==i }">
+									<!-- 현재페이지 -->
+									<div class="numBox" style='color: #8556FF;'><a href="menu?pageNum=${i }&codNum=${map.codNum}&codName=${map.codName}"> <span
+										style='color: #8556FF; font-weight: bold'>${i }</span>
+									</a></div>
+								</c:when>
+								<c:otherwise>
+									<div class="numBox" style='color: #CFCFCF;'>
+									<a href="menu?pageNum=${i }&codNum=${map.codNum}&codName=${map.codName}"> <span style='color: gray;'>${i }</span>
+									</a></div>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test="${pu.endPageNum<pu.totalPageCount }">
+							<a href="menu?pageNum=${pu.endPageNum+1 }&codNum=${map.codNum}&codName=${map.codName}"><span class="material-symbols-outlined pagenp">chevron_right</span></a>
+						</c:if>
+					</div>
 			
 		</div>
 		</div>

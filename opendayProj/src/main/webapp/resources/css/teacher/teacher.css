@@ -5,6 +5,24 @@
 	pause: 0;
 }
 
+.float-r {
+	float: right;
+}
+
+.float-l {
+	float: left;
+}
+
+h1 {
+	padding: 20px 10px;
+	background-color: white;
+}
+
+h2:not(.fc-toolbar-title) {
+	padding: 20px 10px;
+	border-bottom: 1px solid;
+}
+
 button {
 	cursor: pointer;
 	border: none;
@@ -57,8 +75,8 @@ a {
 .tc-main {
 	width: 1080px;
 	height: 100%;
-	border: 1px solid;
 	margin: 0 auto;
+	position: sticky;
 }
 
 .tc-haeder {
@@ -66,17 +84,16 @@ a {
 	box-sizing: border-box;
 	position: fixed;
 	min-height: 1000px;
-	width: 250px;
+	width: 230px;
 }
 
 .tc-logo {
-	background-color: #5A2ECE;
 	text-align: center;
 	padding: 2px;
 }
 
 .tc-logoLink {
-	color: white;
+	color: #5A2ECE;
 }
 
 .tc-profile {
@@ -90,8 +107,8 @@ a {
 }
 
 .tc-profileImg {
-	width: 170px;
-	height: 170px;
+	width: 150px;
+	height: 150px;
 	border-radius: 100px;
 	cursor: pointer;
 }
@@ -108,10 +125,12 @@ a {
 }
 
 .tc-container {
-	border: 1px solid;
+	position: relative;
+	z-index: -50;
 	box-sizing: border-box;
-	margin-left: 23%;
+	margin-left: 230px;
 	min-height: 1000px;
+	background-color: whitesmoke;
 }
 
 .tc-nav {
@@ -121,37 +140,49 @@ a {
 .tc-nav-item {
 	list-style: none;
 	font-size: 16px;
-	padding: 0 20px;
+	padding: 0;
 }
 
 .tc-nav-item>li {
-	width: 150px;
 	height: 30px;
 	line-height: 30px;
-	border: 1px solid;
-	border-radius: 10px;
 	text-align: center;
-	margin: 20px 0;
+	padding: 10px 0;
 	line-height: 30px;
+	margin: 0 40px;
 }
 
-.tc-nav-item>li:hover {
-	background-color: #9e9e9e;
+.tc-nav-item>li:not(:first-child)::after {
+	content: '';
+	display: block;
+	width: 0;
+	height: 2px;
+	background: #5A2ECE;
+	transition: width .3s;
+}
+
+.tc-nav-item>li:not(:first-child):hover::after {
+	width: 100%;
 }
 
 .tc-nav-item>li:first-child {
 	margin-bottom: 100px;
-	background-color: #5A2ECE;
 }
 
 .tc-nav-item>li:first-child>a {
 	color: white;
+	background-color: #5A2ECE;
+	border-radius: 10px;
 }
 
 .tc-nav-list>a {
 	display: inline-block;
-	width: 150px;
-	height: 30px;
+	width: 100%;
+	height: 100%;
+}
+
+.tc-nav-list:target {
+	color: #5A2ECE;
 }
 
 .tc-maintop {
@@ -162,8 +193,26 @@ a {
 }
 
 .tc-mainTitle {
-	flex-basis: 80%;
+	flex-basis: 60%;
 	line-height: 35px;
+	padding: 10px 20px;
+	font-weight: bold;
+}
+
+.tc-mainSession {
+	flex-basis: 20%;
+	padding: 10px 0;
+	line-height: 35px;
+	font-size: 15px;
+	color: #5A2ECE;
+	font-weight: bold;
+}
+
+.tc-mainTimer {
+	flex-basis: 20%;
+	padding: 10px 0;
+	line-height: 35px;
+	font-size: 15px;
 }
 
 .tc-mainHome {
@@ -176,25 +225,27 @@ a {
 }
 
 .tc-dashboard {
+	background-color: white;
 	display: flex;
 	flex-wrap: wrap;
-	margin: 50px 20px;
+	margin: 20px;
 }
 
 .tc-dashboard-list {
 	width: 33%;
 	text-align: center;
 	padding: 70px 0;
-	border: 1px solid;
+	border: 1px solid whitesmoke;
 }
 
 .tc-announcement {
-	border: 1px solid;
-	margin: 50px 20px;
+	background-color: white;
+	margin: 20px;
+	height: 535px;
 }
 
 .tc-announcement-title {
-	margin: 15px 20px;
+	padding: 15px 20px;
 }
 
 .tc-announcement-table {
@@ -241,13 +292,10 @@ a {
 	margin: 20px 0;
 }
 
-.tc-classFilter, .tc-classBoard {
-	border: 1px solid;
-}
-
 .tc-classFilter {
 	margin: 20px 0;
 	padding: 20px;
+	background-color: white;
 }
 
 .tc-classFilter>form>input[type="date"] {
@@ -256,6 +304,7 @@ a {
 
 .tc-classBoard {
 	margin: 20px 0;
+	background-color: white;
 }
 
 .tc-classBoardList {
@@ -273,6 +322,7 @@ a {
 
 .tc-FilterBtn {
 	text-align: center;
+	margin: 15px 0;
 }
 
 .tc-FilterBtn>input:first-child {
@@ -295,10 +345,12 @@ a {
 
 .tc-keywordInput {
 	width: 320px;
+	width: 50%;
 }
 
 .tc-paging {
 	text-align: center;
+	padding-bottom: 20px;
 }
 
 .filterBtn {
@@ -311,13 +363,13 @@ a {
 }
 
 .tc-classSchedule {
-	border: 1px solid;
-	height: 400px;
+	height: 450px;
+	background-color: white;
 }
 
 .tc-classScheduleUser {
-	border: 1px solid;
-	height: 400px;
+	height: 450px;
+	background-color: white;
 }
 
 .tc-classTable>tbody>tr:hover {
@@ -334,7 +386,8 @@ a {
 }
 
 .tc-CalenderList>h2 {
-	margin: 20px 10px;
+	padding: 20px 10px;
+	background-color: white;
 }
 
 .fc-header-toolbar {
@@ -425,9 +478,11 @@ a {
 	left: 0;
 	top: 0;
 	width: 100%;
+	height: 100%;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.4);
 	display: none;
+	overflow: auto;
 }
 
 .modal-content {
@@ -489,7 +544,161 @@ a {
 .profileUpload-profile input {
 	width: 100%;
 }
+
 .fc-scrollgrid {
 	position: absolute;
-    z-index: -1;
+	z-index: -1;
+}
+
+.tc-dashboard-list>div:first-child {
+	color: graytext;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+#calendar {
+	background-color: white;
+	position: sticky;
+}
+
+.refresh {
+	width: 2em;
+	font-size: 14px !important;
+	background-color: #9E9E9E;
+	vertical-align: middle;
+	line-height: 25px !important;
+	height: 30px;
+}
+
+.refreshBtn {
+	background-color: #9E9E9E;
+	padding: 3px 15px 0px 5px;
+}
+
+.search {
+	width: 2em;
+	font-size: 14px !important;
+	background-color: #5A2ECE;
+	vertical-align: middle;
+	line-height: 25px !important;
+	height: 30px;
+}
+
+.searchBtn {
+	padding: 3px 15px 0px 5px;
+}
+
+#modal1 {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+}
+
+.modal1-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+    max-width: 700px;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal1-table th {
+	width: 20%;
+}
+
+.tcAnnouncement {
+	color: red;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.tc-title {
+	border-bottom: 1px solid red;
+	padding-bottom: 10px;
+	margin: 10px 0;
+}
+
+.modal1-table {
+	border-collapse: collapse;
+	height: 150px;
+}
+
+.modal1-table th {
+	width: 100px;
+	background-color: lightgray;
+}
+.modal1-table tr:last-child th {
+	height: 200px;
+}
+.modal1-table th, .modal1-table td {
+	padding-left: 20px;
+}
+.numBox{
+border: 1px solid;
+width: 30px;
+height: 30px;
+}
+
+.tc-paging a{
+text-decoration: none;
+}
+.tc-paging a:hover{
+text-decoration-line: none;
+
+}
+
+.tc-paging{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.numBox{
+margin-right: 10px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.pagenp{
+color:#CFCFCF;
+margin-top: 3px;
+
+}
+.pagenp:hover{
+color:#8556FF;
+
+}
+
+.pagep{
+margin-right: 8px;
+}
+.close-modal1 {
+	font-size: 20px;
+    cursor: pointer;
+}
+.openModal {
+	cursor: pointer;
+}
+.openModal:hover {
+	
 }

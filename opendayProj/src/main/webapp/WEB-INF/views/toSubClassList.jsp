@@ -16,7 +16,57 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 <style>
 .contentTopMargin{
-margin-top:60px;
+margin-top:60px;}
+.tBox a{
+color:#404040;
+text-decoration: none;
+}
+
+
+.tBox:hover{
+border:1px solid #FFBACF;
+
+}
+
+
+.numBox{
+border: 1px solid;
+width: 30px;
+height: 30px;
+}
+
+.tc-paging a{
+text-decoration: none;
+}
+.tc-paging a:hover{
+text-decoration-line: none;
+
+}
+
+.tc-paging{
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.numBox{
+margin-right: 10px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.pagenp{
+color:#CFCFCF;
+margin-top: 3px;
+
+}
+.pagenp:hover{
+color:#8556FF;
+
+}
+
+.pagep{
+margin-right: 8px;
 }
 
 </style>
@@ -25,6 +75,7 @@ margin-top:60px;
 </head>
 
 <body>
+
 	<%@ include file="header.jsp"%>
 	<div class="mainContentBigWrapper">
 		<div class="mainContentWrapper">
@@ -40,7 +91,10 @@ margin-top:60px;
 						<c:if test="${loop.index < 5}">
 							<c:if test="${list.tchcNickname != previousNickname}">
 								<div class="tBox">
+							<%-- 	<a href="tchcinfo/${list.tchcNum}"> --%>
+							<a href="javascript:void(0);">
 									<img src="img/${list.tFilNum}" class="tFil"> <span>${list.tchcNickname}</span>
+								</a>
 								</div>
 								<c:set var="previousNickname" value="${list.tchcNickname}" />
 							</c:if>
@@ -48,7 +102,7 @@ margin-top:60px;
 					</c:forEach>
 
 				</div>
-				<div class="subOption">
+				<!-- <div class="subOption">
 					<label class="checkLabel"><input type="checkbox"
 						name="color" value="blue">인기순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">등록일순</label> <label
@@ -56,7 +110,7 @@ margin-top:60px;
 						value="blue">가격높은순</label> <label class="checkLabel"><input
 						type="checkbox" name="color" value="blue">가격낮은순</label>
 
-				</div>
+				</div> -->
 
 				<div class="oclassListWrapper">
 					<!-- <div class="arrowIcon">
@@ -101,38 +155,39 @@ margin-top:60px;
  --%>
 
 					<div class="oclassTable">
-						<ul class="tableTr">
-							<c:forEach items="${searchInputList}" var="list" varStatus="loop">
-								<c:if test="${loop.index < 4}">
-									<li class="oclass"><img src="img/${list.filNum}"
-										class="ssum-img">
-										<div class="txt-box">
-											<div class="tb1">
-												<div class="t1">
-													<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
-												</div>
-												<div class="t2">
-													<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
-													<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
-												</div>
-											</div>
-											<p class="cls-name">${list.clsName}</p>
-											<div class="tb2">
-												<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
-												<div class="price">
-													<span class="disc">${list.clsDiscount}%</span> <span
-														class="fp">${list.finalPrice}원</span>
-												</div>
-											</div>
-										</div></li>
-								</c:if>
-								<c:if test="${loop.index == 3}">
-						</ul>
-						<ul>
+						<c:forEach items="${searchInputList}" var="list" varStatus="loop">
+							<c:if test="${loop.index % 4 == 0}">
+								<ul class="tableTr">
 							</c:if>
-							</c:forEach>
-						</ul>
+							<a href="classinfo/${list.clsId}">
+								<li class="oclass"><img src="img/${list.filNum}"
+									class="ssum-img">
+									<div class="txt-box">
+										<div class="tb1">
+											<div class="t1">
+												<span>${list.clsLoc}</span><span>|</span><span>${list.codName}</span>
+											</div>
+											<div class="t2">
+												<span><i class="bi bi-star-fill star"></i></span><span>${list.avgStar}</span><span>(${list.reviewCount})</span>
+												<span><i class="bi bi-heart-fill heart"></i></span><span>${list.heartCnt}</span>
+											</div>
+										</div>
+										<p class="cls-name">${list.clsName}</p>
+										<div class="tb2">
+											<span class="oriPrice"><strike>${list.clsPrice}원</strike></span>
+											<div class="price">
+												<span class="disc">${list.clsDiscount}%</span> <span
+													class="fp">${list.finalPrice}원</span>
+											</div>
+										</div>
+									</div></li>
+							</a>
+							<c:if test="${(loop.index + 1) % 4 == 0 || loop.last}">
+								</ul>
+							</c:if>
+						</c:forEach>
 					</div>
+
 
 					<%-- 	<div class="newList">
 
@@ -167,6 +222,36 @@ margin-top:60px;
 				</div> --%>
 				</div>
 			</div>
+			
+
+			
+			<div class="tc-paging">
+						<c:if test="${pu.startPageNum>5 }">
+							<a href="searchinput?pageNum=${pu.startPageNum-1 }&keyword=${map.keyword}">	<span class="material-symbols-outlined pagenp pagep">chevron_left</span></a>
+						</c:if>
+
+						<c:forEach var="i" begin="${pu.startPageNum }"
+							end="${pu.endPageNum }">
+							<c:choose>
+								<c:when test="${pu.pageNum==i }">
+									<!-- 현재페이지 -->
+									<div class="numBox" style='color: #8556FF;'><a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span
+										style='color: #8556FF; font-weight: bold'>${i }</span>
+									</a></div>
+								</c:when>
+								<c:otherwise>
+								<div class="numBox" style='color: #CFCFCF;'>
+									<a href="searchinput?pageNum=${i }&keyword=${map.keyword}"> <span style='color: gray;'>${i }</span>
+									</a></div>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test="${pu.endPageNum<pu.totalPageCount }">
+							<a href="searchinput?pageNum=${pu.endPageNum+1 }&keyword=${map.keyword}"><span class="material-symbols-outlined pagenp">chevron_right</span></a>
+						</c:if>
+					</div>
+			
 		</div>
 
 	</div>

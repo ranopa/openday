@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
-
-import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.dto.OClassAndScheduleDTO;
+import com.kosta.openday.teacher.dto.AnswerDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
+import com.kosta.openday.teacher.dto.TeacherChannelDTO;
+import com.kosta.openday.teacher.dto.ScheduleDTO;
 import com.kosta.openday.user.dto.ApplyClassResponseDTO;
+import com.kosta.openday.user.dto.ClsInquiryAndAnswerDTO;
+import com.kosta.openday.user.dto.ClsInquiryDTO;
 import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.RequestDTO;
-import com.kosta.openday.teacher.dto.ScheduleDTO;
-
-import com.kosta.openday.user.dto.ClsInquiryDTO;
-
 import com.kosta.openday.user.dto.ReviewDTO;
 
 @Repository
@@ -21,7 +21,7 @@ public interface OClassDAO {
 	void insertOClass(OClassDTO dto) throws Exception;
 
 	void insertRequest(RequestDTO request) throws Exception;
-
+ 
 	List<RequestDTO> selectRequestList(int startRow) throws Exception;
 
 	RequestDTO selectRequest(Integer reqId) throws Exception;
@@ -52,27 +52,36 @@ public interface OClassDAO {
 
 	List<ScheduleDTO> selectScheduleByOClass(Integer clsId) throws Exception;
 
-	Map<String, Object> selectScheduleDetail(Integer scdNum) throws Exception;
+	Map<String, Object> selectOclassDetail(Integer clsId) throws Exception;
 	
 	void insertSchedule(ScheduleDTO dto) throws Exception;
 
-	List<ReviewDTO> selectReviewByStdNum(Integer scdNum) throws Exception;
+	List<ReviewDTO> selectReviewByClsId(Integer clsId) throws Exception;
 
-	List<ClsInquiryDTO> selectInquiryByStdNum(Integer scdNum) throws Exception;
+	List<ClsInquiryDTO> selectInquiryByClsId(Integer clsId) throws Exception;
+	
+	List<ClsInquiryAndAnswerDTO> selectInquiryAndAnswerByClsId(Integer clsId) throws Exception;
 
-	Integer selectHeartByStdNumAndUser(Map<String, Object> param) throws Exception;
+	Integer selectHeartByClsIdAndUser(Map<String, Object> param) throws Exception;
 
-	Integer selectHeartCntByStdNum(Integer scdNum) throws Exception;
+	Integer selectHeartCntByClsId(Integer clsId) throws Exception;
 
-	void insertHeartByStdNumAndUser(Map<String, Object> param) throws Exception;
+	void insertHeartByClsIdAndUser(Map<String, Object> param) throws Exception;
 
-	void deleteHeartByStdNumAndUser(Map<String, Object> param) throws Exception;
-
-	List<RequestDTO> selectRequestList() throws Exception;
+	void deleteHeartByClsIdAndUser(Map<String, Object> param) throws Exception; 
 
 	ApplyClassResponseDTO selectOClassAndScheduleForApplyClass(Integer clsId) throws Exception;
 
 	List<OClassAndScheduleDTO> selectOClassAndSchedules() throws Exception;
 	
-
+	AnswerDTO selectReviewByCiNum(Integer ciNum) throws Exception;
+	
+	void insertClsInquiry(Map param) throws Exception;
+	
+	void updateClsInquiry(Map param) throws Exception;
+	
+	void deleteReview(Integer rvNum) throws Exception;
+	
+	TeacherChannelDTO selectteacherChannel(String userId) throws Exception;
 }
+
