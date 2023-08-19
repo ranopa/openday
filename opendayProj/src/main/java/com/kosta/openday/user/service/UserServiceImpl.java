@@ -19,6 +19,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosta.openday.adm.dao.FileDAO;
+import com.kosta.openday.adm.dto.FileDTO;
+import com.kosta.openday.user.dao.UserDAO; 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.FileService;
 import com.kosta.openday.teacher.dto.ScheduleDTO;
@@ -40,6 +42,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private ServletContext servletContext;
+
+//	private final String uploadDir = String.join(File.separator, System.getProperty("user.dir"), "resources", "upload")
+//			+ File.separator;
 	
 	@Autowired
 	private OClassDAO oclassDAO;
@@ -83,6 +90,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception {
+		// 파일 insert
+		Integer filNum = 0;
+		String dir = servletContext.getRealPath("/resources/upload/");
+
+		if (file != null && !file.isEmpty()) {
+			FileDTO fil = new FileDTO();
+			fil.setFilClassification(file.getContentType());
+			fil.setFilOrginalname(file.getOriginalFilename());
+			fil.setFilSavename(file.getName());
+			fil.setFilSize(file.getSize());
+			fileDAO.insertFile(fil);
 		// 파일 insert 
 		Integer filNum = fileService.createFile(file); 
 		// 유저 update
@@ -91,13 +109,14 @@ public class UserServiceImpl implements UserService {
 		userDAO.updateUser(map);
 
 	}
-
 	@Override
 	public UserDTO getUserInfo(String id) throws Exception {
 		return userDAO.selectUserInfo(id);
 
 	}
-
+			// File dfile = new
+			// File("/resources/upload/"+filNum+file.getOriginalFilename());
+			File dfile = new File(dir+filNum + file.getOriginalFilename());
 	/*
 	 * @Override public UserDTO userLogin(Map<String, String> map) throws Exception
 	 * { return userDAO.selectUserLogin(map);
@@ -126,6 +145,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void fileView(Integer id, OutputStream out) throws Exception {
+		String dir = servletContext.getRealPath("/resources/upload/");
+		FileDTO file = fileDAO.selectFile(id);
+		FileInputStream fis = new FileInputStream(dir + file.getFilNum() + file.getFilOriginalname());
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception {
 		return userDAO.selectInputOClassList(map);
 	}
@@ -139,9 +162,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void fileView(Integer id, OutputStream out) throws Exception {
 		FileInputStream fis = new FileInputStream(servletContext.getRealPath(uploadDir) + id);
+
 		FileCopyUtils.copy(fis, out);
 		out.flush();
 	}
+//	
+//	@Override
+//	public String fileView(Integer id, HttpServletResponse response) throws Exception {
+//		String dir = servletContext.getRealPath("/resources/upload/");
+//		FileDTO file = fileDAO.selectFile(id);
+//		return dir+""+file.getFilNum()+""+file.getFilOriginalname();
+//		
+//		
+//	}
 
 	@Override
 	public void withdrawUser(String id) throws Exception {

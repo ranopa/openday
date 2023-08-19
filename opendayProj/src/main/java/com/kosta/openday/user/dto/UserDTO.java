@@ -196,9 +196,17 @@ public class UserDTO {
 		this.filNum = filNum;
 	}
 
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userNickname=" + userNickname + ", userTel=" + userTel + ", userAddress=" + userAddress
+				+ ", emailVal=" + emailVal + ", domain=" + domain + ", userEmail=" + userEmail + ", birthVal="
+				+ birthVal + ", userBirth=" + userBirth + ", userActive=" + userActive + ", userAccount=" + userAccount
+				+ ", userAlarm=" + userAlarm + ", userJoindate=" + userJoindate + ", userPrefer=" + userPrefer
+				+ ", authority=" + authority + ", filNum=" + filNum + "]";
+	}
+
 	
 }
 

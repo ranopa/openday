@@ -564,6 +564,15 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	]]>
 	</select>
 	
+
+	<!-- 유저id로 찜 목록 찾기 -->
+	<select id="selectUserHeart" parameterType="String" resultType="com.kosta.openday.user.dto.HeartDTO">
+		<![CDATA[
+			select * from heart where userId=#{id}
+		]]>
+	</select>
+	
+
 	<!-- 강사채널목록조회 -->
 	<select id="selectChannelOne" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
 	<![CDATA[
@@ -571,6 +580,7 @@ FROM oclass o JOIN schedule s ON o.clsId=s.clsId
 	]]>
 	</select>
 	
+
 
 	<!-- 회원탈퇴 -->
 	<update id="updateUserDelete" parameterType="String">

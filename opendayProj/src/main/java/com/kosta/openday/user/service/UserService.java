@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.multipart.MultipartFile; 
+import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
@@ -16,9 +16,7 @@ import com.kosta.openday.user.dto.UserDTO;
 
 public interface UserService {
 	void joinUser(UserDTO user) throws Exception;
-
 	void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception;
-
 	UserDTO getUserInfo(String id) throws Exception;
 
 	public UserDTO userLogin(Map<String, String> map) throws Exception;
@@ -37,10 +35,10 @@ public interface UserService {
 	public List<CollectDTO> getMainMenuOClassList(HashMap<String, Object> map) throws Exception;
 
 	void fileView(Integer id, OutputStream out) throws Exception;
-
 	void withdrawUser(String id) throws Exception;
-
 	int idCheck(String id) throws Exception;
+	void fileView(Integer id, OutputStream out) throws Exception;
+
 
 	List<CollectDTO> HeartOClass(String userId) throws Exception;
 
