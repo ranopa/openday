@@ -80,9 +80,9 @@
 					<table class="tc-classBoardList">
 						<colgroup>
 							<col width="5%" />
-							<col width="10%" />
-							<col width="20%" />
-							<col width="10%" />
+							<col width="8%" />
+							<col width="35%" />
+							<col width="8%" />
 							<col width="10%" />
 						<%-- 	<col width="4%" />
 							<col width="4%" /> --%>
