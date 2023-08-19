@@ -131,6 +131,8 @@ a {
 	margin-left: 230px;
 	min-height: 1000px;
 	background-color: whitesmoke;
+	position: relative;
+	z-index: -1;
 }
 
 .tc-nav {
@@ -241,7 +243,7 @@ a {
 .tc-announcement {
 	background-color: white;
 	margin: 20px;
-	height: 535px;
+  height: 535px;
 }
 
 .tc-announcement-title {
@@ -700,5 +702,5 @@ margin-right: 8px;
 	cursor: pointer;
 }
 .openModal:hover {
-	
+
 }
