@@ -38,7 +38,7 @@
 <!-- 2. 문의목록 조회  -->
 <select id="selectAdmInquiryList" resultType="com.kosta.openday.adm.dto.AdmInquiryDTO">
 <![CDATA[
-	select * from adm_inquiry
+	select * from adm_inquiry order by admNum desc
 ]]> 
 </select>
 
@@ -46,10 +46,23 @@
 <insert id="insertAdmInquiry" parameterType="com.kosta.openday.adm.dto.AdmInquiryDTO">
 <![CDATA[
 	insert into adm_inquiry values (nextval(adm_inquiry_seq),#{admTitle},#{admContent},#{admType},
-	#{admUploadDate},#{admAnContent},#{admStatus},#{admAnDate},#{userId})
+	CURDATE(),#{admAnTitle},#{admAnContent},#{admStatus},#{admAnDate},#{userId},#{admSecret})
 ]]> 
 </insert>
 
+<!-- 4. 문의 삭제 -->
+<delete id="deleteAdmInquiry" parameterType="Integer">
+		<![CDATA[
+			delete from adm_inquiry where admNum=#{admNum}		
+		]]>
+</delete>
+
+<!-- 5. 문의 업데이트 -->
+<update id="updateAdmInquiry" parameterType="java.util.Map">
+		<![CDATA[
+			update adm_inquiry set admTitle=#{admTitle}, admContent=#{admContent} where admNum=#{admNum}		
+		]]>
+</update>
 <!-- =========== 문의 답변 answer =============================================== -->
 
 <!-- 1. 문의번호로 답변 조회 -->
@@ -66,6 +79,15 @@
 ]]> 
 </insert>
 
+<!-- 어드민 문의 답변 등록 --> 
+<update id="updateAdmInquiryAnswer" parameterType="java.util.Map">
+	<![CDATA[
+		update adm_inquiry
+		set admAnContent = #{answer}, admAnDate = curdate(), admStatus=1
+		where admNum=#{admNum}
+	]]> 
+
+</update>
  
 <!-- 후기 review -->
 

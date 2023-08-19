@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,19 +52,19 @@
         margin: 0 auto;
     }
     
-    h1 {
+    .rd-above {
         font-size: 24px;
         color: #5A2ECE;
         margin-bottom: 20px;
-        margin-left: 150px;
+        margin-left: 55px;
     }
 
-    table {
+    .rtable table {
         width: 70%;
         margin: 0 auto;  
     }
 
-    th {
+    .rtable th {
         text-align: left;
         vertical-align: top;
         font-weight: normal;
@@ -71,7 +72,7 @@
         color: #D9D9D9;
     }
 
-    td {
+    .rtable td {
         vertical-align: top;
         margin:0 auto;
     }
@@ -81,24 +82,24 @@
     	width: 50px;    
     }
 
-    label {
+/*     label {
         display: block;
         font-weight: normal;
         font-size: 14px;
         color: #D9D9D9;
         margin-bottom: 5px;
-    }
+    } */
 
-    input[type="text"] {
-        width: 95%;
+    .rtable input[type="text"] {
+        width: 900px;
         padding: 5px;
         font-size: 14px;
         border: 1px solid #D9D9D9;
         margin-bottom: 10px;
     }
     
-    textarea {
-        width: 95%;
+    .rtable textarea {
+        width: 900px;
         height: 300px;
         padding: 5px;
         font-size: 14px;
@@ -117,7 +118,8 @@
     }
     
     .submit-button {
-        width: 60px;
+        width: 95px;
+        margin-right: 5px;
     }
     
     .participation-button {
@@ -125,7 +127,7 @@
     	margin-left: 52px;
     }
     
-    input[type="submit"] {
+    .buttons input[type="submit"] {
         background-color: #5A2ECE;
         color: white;
         height: 30px;
@@ -136,7 +138,7 @@
         cursor: pointer;
     }
     
-    Button[type="button"] {
+    .participation-button Button[type="button"] {
     	background-color: white;
     	color: #FF99B8;
     	font-size: 14px;
@@ -147,20 +149,30 @@
     
     .buttons {
     	display: flex;
-    	width: 70%;
+    	width: 95%;
     	margin: 0 auto; 
     	flex-direction: row-reverse;
     	justify-content: space-between;
     	position: relative;
     }  
+    
+    #reqContent {
+    	resize: none;
+    }
+    
+    #reqContent:focus, #reqLocation:focus, #reqTitle:focus {
+    	outline: none;
+    }
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(function() {
-	if('\${partpaYN}'==1) {
-		$("#participationBtn").css('backgroundColor','red');
+	if('${partpaYN}'==1) {
+		$("#participationBtn").css('backgroundColor','#FF99B8');
+		$("#participationBtn").css('color','white');
 	} else {
-		$("#participationBtn").css('backgroundColor','');
+		$("#participationBtn").css('backgroundColor','white');
+		$("#participationBtn").css('color','#FF99B8');
 	}
 	
 	$("#modifyBtn").click(function(e){
@@ -205,6 +217,7 @@ $(function() {
 			async:true,
 			data:{reqId:$("#reqId").val()},
 			success:function(result) {
+				console.log(result)
 				if(result==="true") {	
 					$("#participationCnt").text(+$("#participationCnt").text()+1);
 					$("#participationBtn").css('backgroundColor','#FF99B8');
@@ -224,13 +237,15 @@ $(function() {
 </script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/header.jsp" %>
     <div id="wrap">
     
-    <form method="get">
+    <form method="get" action="${contextPath}/delrequest">
     <div class="main-con">
-    <h1>클래스 개설 요청</h1>&nbsp;&nbsp;
+    <br/>
+    <h1 class="rd-above">클래스 개설 요청</h1>&nbsp;&nbsp;
     <input type="hidden" id="reqId" name="reqId" value="${request.reqId }"/>
-        <table>
+        <table class="rtable">
             <tr>
                 <td class="f">지역</td>
                 <td><input name="reqLocation" type="text" id="reqLocation" value="${request.reqLocation }"/></td>
@@ -246,22 +261,32 @@ $(function() {
         </table>
         &nbsp;&nbsp;
         <div class="buttons">
-        	<c:choose>
-        		<c:when test="${user.authority eq '2'}">
+           	<div class="form-container">
+        	<c:if test="${userId.authority eq '2'}">
+	    	    <input type="submit" onclick="window.location.href='${contextPath}/classOpen'" value="클래스 개설" class="submit-button">
+        	</c:if>
+        	<c:if test="${userId.userId eq request.userId }">
+	        	<input type="submit" id="modifyBtn" value="수정" class="submit-button" style="margin-right: 10px;">
+        	   	<input type="submit" id="deleteBtn" value="삭제" class="submit-button" style="margin-right: 10px;">
+        	</c:if>
+        	   	<input type="submit" id="requestlistBtn" value="목록" class="submit-button" style="margin-right: 22px;"/>
+           	</div>
+        <%-- 	<c:choose>
+        		<c:when test="${userId.authority eq '2'}">
 	        		<div class="form-container">
-        	    	<input type="submit" onclick="window.location.href='/createclass'" value="클래스 개설" class="submit-button">
+        	    	<input type="submit" onclick="window.location.href='${contextPath}/classOpen'" value="클래스 개설" class="submit-button">
         	    	<input type="submit" value="목록" class="submit-button"/>
         			</div>
         		</c:when>
         		<c:otherwise>
-        			<c:if test="${user.userId eq request.userId }">
+        			<c:if test="${userId.userId eq request.userId }">
 	        		<div class="form-container">
      	       		<input type="submit" id="modifyBtn" value="수정" class="submit-button" style="margin-right: 10px;">
         	   		<input type="submit" id="deleteBtn" value="삭제" class="submit-button" style="margin-right: 10px;">
         	   		<input type="submit" id="requestlistBtn" value="목록" class="submit-button" style="margin-right: 22px;"/></div>
         	   		</c:if>        		
         		</c:otherwise>
-        	</c:choose>
+        	</c:choose> --%>
         	<div class="participation-button">
         		<button type="button" id="participationBtn">참여&nbsp;&nbsp;<span id="participationCnt">${partpaCnt }</span></button>
         	</div>
@@ -269,5 +294,6 @@ $(function() {
     </div>
     </form>
     </div>
+    <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

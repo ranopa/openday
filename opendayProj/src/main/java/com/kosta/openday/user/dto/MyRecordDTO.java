@@ -11,6 +11,7 @@ public class MyRecordDTO {
 	private Integer scdNum; //클래스 일정번호 
 	 
 	//oclass T
+	private Integer clsId; //클래스번호
 	private String clsName; //클래스이름
 	private Integer filNum; //파일번호
 	//schedule T
@@ -22,13 +23,14 @@ public class MyRecordDTO {
 
 
 	public MyRecordDTO(Integer apNum, String apPstatus, String apAstatus, Integer apFinalAmount, Integer scdNum,
-			String clsName, Integer filNum, Date scdDate, String strDate) {
+			Integer clsId, String clsName, Integer filNum, Date scdDate, String strDate) {
 		super();
 		this.apNum = apNum;
 		this.apPstatus = apPstatus;
 		this.apAstatus = apAstatus;
 		this.apFinalAmount = apFinalAmount;
 		this.scdNum = scdNum;
+		this.clsId = clsId;
 		this.clsName = clsName;
 		this.filNum = filNum;
 		this.scdDate = scdDate;
@@ -83,6 +85,16 @@ public class MyRecordDTO {
 
 	public void setScdNum(Integer scdNum) {
 		this.scdNum = scdNum;
+	}
+
+
+	public Integer getClsId() {
+		return clsId;
+	}
+
+
+	public void setClsId(Integer clsId) {
+		this.clsId = clsId;
 	}
 
 

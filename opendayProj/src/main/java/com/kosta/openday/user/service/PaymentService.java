@@ -1,7 +1,6 @@
 package com.kosta.openday.user.service;
 
 import com.kosta.openday.user.dto.ApplicationPaymentDTO;
-import com.kosta.openday.user.dto.OClassDTO;
 import com.kosta.openday.user.dto.PaymentRequestDTO;
 import com.kosta.openday.user.dto.PaymentResultDTO;
 

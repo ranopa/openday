@@ -37,15 +37,43 @@
 	<!-- 클래스 등록(승인 후) -->
 	<insert id="classEnrollemnt" parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
 		 <![CDATA[
-		     insert into schedule (scdNum,scdDate,scdLoc,scdUploadDate,clsId)
-		     values( nextval(schedule_seq),#{scdDate},#{scdLoc},curdate(),#{clsId})
+		     insert into schedule (scdNum,scdDate,scdRunTime,scdStartTime,scdEndTime,scdPlace,scdPlaceDetail,scdMinPersonnel,
+		     scdMaxPersonnel,scdUploadDate,scdStatus,clsId)
+		     values(nextval(schedule_seq),#{scdDate},#{scdRunTime},#{scdStartTime},#{scdEndTime},#{scdPlace},#{scdPlaceDetail},#{scdMinPersonnel},
+		     #{scdMaxPersonnel},curdate(),#{scdStatus},#{clsId})
 	     ]]>
 	</insert>
+<!-- 	<insert id="classEnrollemnt" parameterType="java.util.ArrayList">
+		 <![CDATA[
+		     insert into schedule (scdNum,scdDate,scdRunTime,scdStartTime,scdEndTime,scdPlace,scdPlaceDetail,scdMinPersonnel,
+		     scdMaxPersonnel,scdUploadDate,scdStatus,clsId)
+		     values
+		     <foreach collection="list" item="item" separator=",">
+		     (nextval(schedule_seq),#{scdDate},#{scdRunTime},#{scdStartTime},#{scdEndTime},#{scdPlace},#{scdPlaceDetail},#{scdMinPersonnel},
+		     #{scdMaxPersonnel},curdate(),#{scdStatus},#{clsId})
+		     </foreach>
+	     ]]>
+	</insert> -->
 	
 	<!-- 스케쥴 불러오기 -->
 	<select id="selectSchedule" parameterType="Integer" resultType="java.util.Map">
 		 <![CDATA[
-		 	select * from schedule s join oclass o ON s.clsId = o.clsId WHERE s.clsId=#{clsId};
+		 	select * from schedule s join oclass o ON s.clsId = o.clsId WHERE o.clsId=#{clsId};
 	 	 ]]>
 	</select>
+	
+	<!-- 스케쥴 불러오기 -->
+	<select id="tcChannelInfo" parameterType="String" resultType="com.kosta.openday.teacher.dto.TeacherChannelDTO">
+		 <![CDATA[
+		 	select * from teacher_channel where userId = #{userId}
+	 	 ]]>
+	</select>
+	
+	<!-- oclass 내용 업데이트 -->
+	<update id="updateclassEnrollment"  parameterType="java.util.Map">
+			<![CDATA[
+				update oclass set scdDate=#{scdDate}, scdRunTime=#{scdRunTime}, scdStartTime=#{scdStartTime}, scdEndTime=#{scdEndTime},
+				scdPlace = #{scdPlace}, scdPlaceDetail=#{scdPlaceDetail}, scdMinPersonnel=#{scdMinPersonnel}, scdMaxPersonnel=#{scdMaxPersonnel} where clsId=#{clsId}		
+			]]>
+	</update>
 </mapper>

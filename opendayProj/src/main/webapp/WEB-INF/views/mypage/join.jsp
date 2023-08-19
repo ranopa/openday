@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
-
+<%@ include file="../header.jsp"%>
+<body> 
     <div class="wrap">
 
         <h2>회원가입</h2>
@@ -24,7 +25,7 @@
                 </div>
                 <ul class="ipcontainer">
               			 <li>
-                        <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="userId" name="userId"
+                        <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="inputId" name="userId"
                             placeholder="아이디" required maxlength="15">
                         <input type="button" class="idcheck ck" id="idCheckBtn" value="중복확인">
               			  <p id="idMessage"></p>
@@ -47,6 +48,7 @@
                             <span class="red">*</span>&nbsp;&nbsp;<input type="text" class="ipbox" id="userNickname" name="userNickname"
                                 placeholder="닉네임" required>
                             <input type="button" class="idcheck ck" id="nickCheckBtn" value="중복확인">
+                            <p id="nickMessage"></p>
                         </li>
                           <li>
                            <input type="text" class="ipbox notreq" name="userTel"
@@ -217,11 +219,14 @@
 
             <div class="btns">
                 <button type="button" class="cancel-btn">취소</button>
-                <button type="submit" class="submit-btn">가입완료</button>
+                <button type="submit" class="submit-btn" id="join-check-btn">가입완료</button>
             </div>
 
         </form>
 
     </div>
+    
 </body>
 </html>
+
+<%@ include file="../footer.jsp"%>
