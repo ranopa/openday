@@ -24,7 +24,7 @@
 			 -->
 			
 			<div class="findUserIdInfo">
-					<p>${findPw.userName}님의 비밀번호는 ${findPw.userPassword} 입니다.</p>
+					<p>${userName}님의 비밀번호는 ${tempPassword} 입니다.</p>
 				</div>
 			<%-- 
 			 <c:choose>

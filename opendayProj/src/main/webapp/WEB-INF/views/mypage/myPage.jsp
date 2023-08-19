@@ -18,13 +18,24 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link
+	href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-eco.css"
+	rel="stylesheet">
+<%-- <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
+<script src="resources/js/user/mypage.js"></script>
+
+</head>
+<%-- <jsp:include page="../header.jsp" /> --%>
 <%--  <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
 <script src='<c:url value="/resources/js/user/mypage.js"/>'></script>
 </head>
 
 <body>
 	<!--모달  -->
+	<%-- 	<%@ include file=”../header.jsp” %> --%>
+
 	<form action="withdraw" method="post">
+
 		<div class="w-modal">
 			<div class="w-wrap">
 				<h2 class="w-h2">회원탈퇴</h2>
@@ -51,6 +62,16 @@
 				<div class="m-container">
 					<h2 class="m-h2">프로필 수정</h2>
 					<div class="pf-box">
+						<c:choose>
+							<c:when test="${user.filNum eq null} ">
+								<p>파일번호 null</p>
+								<img src="resources/image/user/basic_profile.png"
+									class="picture" id="myImg" alt="회원프로필기본이미지">
+
+							</c:when>
+							<c:otherwise>
+								<img src="img/${user.filNum}" class="picture" id="myImg"
+									alt="회원프로필이미지">
 
 						<c:choose>
 							<c:when test="${user.filNum eq null}">
@@ -62,7 +83,6 @@
 								<img src="img/${user.filNum }" class="picture" id="myImg">
 							</c:otherwise>
 						</c:choose>
-
 						<div class="custom-file-input">
 							<input name="file" type="file" id="myfile" accept="image/*" />
 						</div>
@@ -112,6 +132,39 @@
 
 	</div>
 	<!--메인  -->
+	<div id=wrap>
+
+		<h2 class="my-h2">마이페이지</h2>
+		<div class="sec1">
+			<div class="mybox1 square">
+				<%-- <c:choose>
+					<c:when test="${user.filNum eq null }">
+						<img src="resources/image/user/basic_profile.png"
+							class="myprofile-pic">
+					</c:when>
+					<c:otherwise>
+						<img src="img/${user.filNum}" class="myprofile-pic">
+					</c:otherwise>
+				</c:choose> --%>
+				
+				<c:choose>
+					<c:when test="${empty user.filNum}">
+						<img src="resources/image/user/basic_profile.png"
+							class="myprofile-pic">
+					</c:when>
+					<c:otherwise>
+						<img src="img/${user.filNum}" class="myprofile-pic">
+					</c:otherwise>
+				</c:choose> 
+
+				<p class="tcen">${user.userNickname}</p>
+				<div class="myprofile">
+					<div class="border-bottom">
+						<p class="mymenu1">이메일</p>
+						<p class="mymenu2">${user.userEmail }</p>
+					</div>
+					<div class="border-bottom">
+						<p class="mymenu1">전화번호</p>
 	<div id="mypage">
 		<div id="my-width">
 			<h2 class="my-h2">마이페이지</h2>
@@ -219,6 +272,14 @@
 
 
 				</div>
+			</div> -->
+			</a>
+			<div id="withdraw-a">
+				<div class="mybox7 square">
+					<div class="mymenu-txt">
+						<span class="material-symbols-outlined"> person_off </span>
+						<p class="mymenu1">회원 탈퇴</p>
+						<p class="mymenu2">열어데이 회원 탈퇴</p>
 				<div class="sec2">
 					<a href="myprefer">
 						<div class="mybox3 square">
@@ -266,8 +327,72 @@
 			</div>
 		</div>
 	</div>
+<script>
+window.onload=function(){
+    var modalBtn = document.querySelector("#profile-edit-btn");
+    var modalEl = document.querySelector(".modal");
+	var	cancelBtn = document.querySelector(".cancel-btn");
+    
+    modalBtn.addEventListener('click',()=>{
+        if(!modalEl.classList.contains('hide')){
+           modalEl.classList.add("hide"); 
+        }
+    })
+    
+    cancelBtn.addEventListener('click',()=>{
+    	console.log("back");
+        if(modalEl.classList.contains('hide')){
+        	modalEl.classList.remove('hide');
+        }    	
+    })
+    
+    document.getElementById("select-file").addEventListener("click",()=>{
+    	 document.querySelector(".custom-file-input input[type='file']").click();
+    })
+    
+    document.getElementById("myfile").addEventListener("change", function() {
+    var fileInput = this;
+    var imageElement = document.getElementById("myImg");
 
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      imageElement.src = e.target.result;
+    };
+    
+    reader.readAsDataURL(fileInput.files[0]);
+  });
+  
+   
+  var wModalBtn = document.querySelector("#withdraw-a");
+  var wModalEl = document.querySelector(".w-modal"); 
+  var wCancelBtn = document.querySelector(".w-cancel-btn");
+  var wSubmitBtn = document.querySelector(".w-submit-btn");
+  
+  
+  
+  
+  wModalBtn.addEventListener("click",()=>{
+  	console.log("cleck")
+        if(!wModalEl.classList.contains('w-hide')){
+           wModalEl.classList.add("w-hide"); 
+        }
+    })
+
+  
+   wSubmitBtn.addEventListener('click',()=>{
+        if(wModalEl.classList.contains('w-hide')){
+        	wModalEl.classList.remove('w-hide');
+        }    	
+    })
+    
+
+   
+}
+
+
+</script>
 
 
 </body>
 </html>
+<%-- <jsp:include page="../footer.jsp" /> --%>

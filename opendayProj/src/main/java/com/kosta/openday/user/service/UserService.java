@@ -6,19 +6,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.multipart.MultipartFile; 
+import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 public interface UserService {
 	void joinUser(UserDTO user) throws Exception;
-
 	void editUserProfile(Map<String, Object> map, MultipartFile file) throws Exception;
-
 	UserDTO getUserInfo(String id) throws Exception;
 
 	public UserDTO userLogin(Map<String, String> map) throws Exception;
@@ -37,10 +36,10 @@ public interface UserService {
 	public List<CollectDTO> getMainMenuOClassList(HashMap<String, Object> map) throws Exception;
 
 	void fileView(Integer id, OutputStream out) throws Exception;
-
 	void withdrawUser(String id) throws Exception;
-
 	int idCheck(String id) throws Exception;
+	void fileView(Integer id, OutputStream out) throws Exception;
+
 
 	List<CollectDTO> HeartOClass(String userId) throws Exception;
 
@@ -48,7 +47,7 @@ public interface UserService {
 
 	UserDTO getUserFindPw(String userId, String userEmail) throws Exception;
 
-	void getResetPassword(UserDTO user) throws Exception;
+	void resetPassword(UserDTO user) throws Exception;
 
 	// 찜하기, 찜취소
 	public void removeHeart(Integer clsId, String userId) throws Exception;
@@ -74,5 +73,23 @@ public interface UserService {
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
 	
 	public List<CollectDTO> getSearchInputOClass(HashMap<String, Object> map) throws Exception;
+
+	public void reviewWrite(Map<String,String> param, String userId) throws Exception;
+
+	 
+	//강사권한부여
+	public void alterAuthorityTchc(String userId)throws Exception; 
 	
+	public void addPrefer(String preferValues,String userId)throws Exception;
+	
+
+	List<CollectOptionDTO> getSearchOClassByPopularity() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByDate() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByHighPrice() throws Exception;
+    List<CollectOptionDTO> getSearchOClassByLowPrice() throws Exception;
+
+	public String[] getUserPrefer(String userId) throws Exception; 
+	
+	List<CollectDTO> mainPreferenceOClassList(String userId) throws Exception;
+
 }

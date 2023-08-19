@@ -1,6 +1,5 @@
 package com.kosta.openday.user.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,7 +17,7 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 
 	@Override
 	public int classOpen(OClassDTO dto) throws Exception {
-		return sqlSession.insert("mapper.oclass.classOpen", dto);
+		return sqlSession.insert("mapper.oclass.insertOClass", dto);
 	}
 
 	@Override
@@ -51,5 +50,40 @@ public class classOpenEnrollDAOImpl implements classOpenEnrollDAO {
 	public Map<String, Object> selectSchedule(Integer clsId) throws Exception {
 		return sqlSession.selectOne("mapper.teacher.selectSchedule", clsId);
 	}
+ 
+	@Override
+	public void updateClassInfo(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.oclass.updateclassOpen", map);		
+	}
 
+	@Override
+	public void updateClassFile(FileDTO dto) throws Exception {
+		sqlSession.update("mapper.oclass.updateThumbnail", dto);
+	}
+
+	@Override
+	public void updateClassSchedule(Map<String, Object> map) throws Exception {
+		sqlSession.update("mapper.teacher.updateclassEnrollment", map);
+		
+	}
+
+	@Override
+	public ScheduleDTO selectScheduleNum(Integer scdNum) throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectSchedule",scdNum);
+	}
+
+	@Override
+	public Map<String, Object> selectOclassMap(Integer clsId) throws Exception {
+		return sqlSession.selectOne("mapper.oclass.selectOclassMap", clsId);
+	}
+
+	@Override
+	public void updateClassInfo(OClassDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void updateClassSchedule(ScheduleDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+	}
 }

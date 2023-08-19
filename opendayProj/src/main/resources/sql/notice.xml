@@ -60,9 +60,9 @@
 <!-- 5. 문의 업데이트 -->
 <update id="updateAdmInquiry" parameterType="java.util.Map">
 		<![CDATA[
-			update adm_inquiry set admTitle=#{title}, admContent=#{admContent} where admNum=#{admNum}		
+			update adm_inquiry set admTitle=#{admTitle}, admContent=#{admContent} where admNum=#{admNum}		
 		]]>
-	</update>
+</update>
 <!-- =========== 문의 답변 answer =============================================== -->
 
 <!-- 1. 문의번호로 답변 조회 -->
@@ -79,6 +79,15 @@
 ]]> 
 </insert>
 
+<!-- 어드민 문의 답변 등록 --> 
+<update id="updateAdmInquiryAnswer" parameterType="java.util.Map">
+	<![CDATA[
+		update adm_inquiry
+		set admAnContent = #{answer}, admAnDate = curdate(), admStatus=1
+		where admNum=#{admNum}
+	]]> 
+
+</update>
  
 <!-- 후기 review -->
 

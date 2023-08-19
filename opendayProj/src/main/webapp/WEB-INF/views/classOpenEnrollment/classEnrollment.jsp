@@ -28,9 +28,9 @@
 <script src='<c:url value="/resources/lib/main.js" />'></script>
 </head>
 
+		<%@ include file="../header.jsp"%>
 <body>
 	<div id="includeWrapper">
-		<%@ include file="../header.jsp"%>
 	<div id="div1">
 	<form id="form" action="classEnrollment" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="" name="clsId" value="${scheduleDetail.clsId }" />
@@ -271,6 +271,7 @@
       <button type="submit" class="submit-btn">클래스 등록</button>
 	</div>
 	</form>
+	</div>
 	</div>
 <%@ include file="../footer.jsp"%>
 </body>

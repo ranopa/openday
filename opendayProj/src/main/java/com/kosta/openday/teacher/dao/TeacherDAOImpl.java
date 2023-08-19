@@ -82,6 +82,51 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public void tcProfileUserUpdate(TeacherChannelDTO dto) throws Exception {
 		sqlSession.update("mapper.teacherMain.tcProfileUserUpdate", dto);
 	}
+	@Override
+	public TeacherChannelDTO tcChannelInfo(String userId) throws Exception {
+		return sqlSession.selectOne("mapper.teacher.tcChannelInfo", userId);
+	}
+	@Override
+	public void tcProfileUserImgUpdate(TeacherChannelDTO dto) throws Exception {
+		sqlSession.update("mapper.teacherMain.tcProfileUserImgUpdate", dto);
+		
+	}
+	@Override
+	public int tcSalesTotal(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherClass.tcSalesTotal", map);
+	}
+	@Override
+	public int tcClassListStatus1Count(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherClass.tcClassListStatus1Count", map);
+	}
+	@Override
+	public int tcClassListStatus2Count(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherClass.tcClassListStatus2Count", map);
+	}
+	@Override
+	public int tcClassListReviewCount(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherClass.tcClassListReviewCount", map);
+	}
+	@Override
+	public double tcClassListAvgStarCount(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherClass.tcClassListAvgStarCount", map);
+	}
+	@Override
+	public int tcSalesMonthTotal(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherClass.tcSalesMonthTotal", map);
+	}
+	@Override
+	public TeacherChannelDTO tcProfileSelect(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("mapper.teacherMain.tcProfileSelect", map);
+	}
+	@Override
+	public AnnouncementDTO tcAnnouncementInfo(int ancId) throws Exception {
+		return sqlSession.selectOne("mapper.teacherMain.tcAnnouncementInfo", ancId);
+	}
+	@Override
+	public void SalesAdd(HashMap<String, Object> map) throws Exception {
+		sqlSession.selectOne("mapper.teacherClass.SalesAdd", map);
+	}
 	
 	
 }

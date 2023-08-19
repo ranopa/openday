@@ -8,18 +8,20 @@ import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.teacher.dto.TeacherFollowDTO;
 import com.kosta.openday.user.dto.CollectDTO;
+import com.kosta.openday.user.dto.CollectOptionDTO;
 import com.kosta.openday.user.dto.HeartDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
+import com.kosta.openday.user.dto.ReviewDTO;
 import com.kosta.openday.user.dto.UserDTO;
 
 //test
 public interface UserDAO {
 
-	void insertUser(UserDTO user) throws Exception;
+	public void insertUser(UserDTO user) throws Exception;
 
 	public void updateUserPrefer(Map<String, String> map) throws Exception;
 
-	public List<String> selectUserPrefer(String id) throws Exception;
+	public String selectUserPrefer(String id) throws Exception;
 
 	public List<HeartDTO> selectHeartList(String userId) throws Exception;
 
@@ -51,7 +53,7 @@ public interface UserDAO {
 
 	public UserDTO selectUserFindPw(Map<String, Object> param) throws Exception;
 
-	void resetPassword(UserDTO user) throws Exception;
+	public void resetPassword(UserDTO user) throws Exception;
 
 	public void deleteHeart(Map<String, Object> map) throws Exception;
 
@@ -72,5 +74,20 @@ public interface UserDAO {
 	public int mainMenuOClassListCount(HashMap<String, Object> map) throws Exception;
 	
 	public int searchInputSelectCount(HashMap<String, Object> map) throws Exception;
+	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception;
+	
+    public List<CollectOptionDTO> getSearchOClassByPopularity() throws Exception;
+    public List<CollectOptionDTO> getSearchOClassByDate() throws Exception;
+    public List<CollectOptionDTO> getSearchOClassByHighPrice() throws Exception;
+    public List<CollectOptionDTO> getSearchOClassByLowPrice() throws Exception;
 
+	public Integer selectReviewNum() throws Exception;
+	public void insertReview(ReviewDTO reviewDTO) throws Exception;
+	public void updateUserAuthority(String userId) throws Exception;
+  
+	public void updatePrefer(Map<String,String> map)throws Exception;  
+
+	public List<CollectDTO> mainPreferenceOClassList(List<String> preferences) throws Exception;
+ 
+ 
 }

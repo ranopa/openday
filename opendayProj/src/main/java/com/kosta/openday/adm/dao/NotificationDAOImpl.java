@@ -1,12 +1,14 @@
 package com.kosta.openday.adm.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.openday.user.dto.NotificationDTO;
+import com.kosta.openday.adm.dto.NotificationDTO;
 
 @Repository
 public class NotificationDAOImpl implements NotificationDAO {
@@ -24,8 +26,17 @@ public class NotificationDAOImpl implements NotificationDAO {
 	}
 
 	@Override
-	public void insertNotification(NotificationDTO nDTO) throws Exception {
+	public Integer insertNotification(NotificationDTO nDTO) throws Exception {
 		sqlSession.insert("mapper.notification.insertNotification", nDTO);
+		return nDTO.getNtfId();
+	}
+
+	@Override
+	public List<NotificationDTO> selectNotificationListByReceiverId(String receiverId, Integer lastReceiveNumber) throws Exception {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("receiverId", receiverId);
+		map.put("lastReceiveNumber", lastReceiveNumber);
+		return sqlSession.selectList("mapper.notification.selectNotificationListByReceiverId", map);
 	}
 	
 	

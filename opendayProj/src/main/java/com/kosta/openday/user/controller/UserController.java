@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosta.openday.adm.dto.CodeDTO;
 import com.kosta.openday.adm.service.CodeService;
+
+import com.kosta.openday.adm.service.FileService; 
+
 import com.kosta.openday.teacher.dto.TeacherChannelDTO;
 import com.kosta.openday.user.dto.CollectDTO;
 import com.kosta.openday.user.dto.MyRecordDTO;
@@ -41,9 +45,18 @@ public class UserController {
 	
 	@Autowired
 	private HttpSession session;
+
+	@Autowired
+	private FileService fileService;
+	@Autowired
+	private ServletContext servletContext;
+
+
+
 	
 	@Autowired
 	private OClassService oClassService;
+
 
 	// 회원가입폼
 	@RequestMapping("/joinform")
@@ -83,8 +96,9 @@ public class UserController {
 		public String nickNameCheck(@RequestParam("userNickname") String userNickname) throws Exception {
 			System.out.println(userNickname);
 			String mesg = null;
-			UserDTO user = userService.userByNickname(userNickname); 
-			if (user.getUserNickname().equals(userNickname)==true) {
+			UserDTO user = null;
+			user = userService.userByNickname(userNickname); 
+			if (user!=null) {
 				mesg = "1"; //불가능
 			} else { 
 				mesg = "0"; //가능
@@ -92,16 +106,39 @@ public class UserController {
 			System.out.println(mesg);
 			return mesg;
 		}
-
+		
+		
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView myPage() {
+
+		ModelAndView mav = new ModelAndView();
+		String dir = null;
+		try {
+			String id = "sbsb";
+			session.setAttribute("id", id);
+			UserDTO user = userService.getUserInfo(id);
+			System.out.println(user.getFilNum());
+			mav.addObject("user",user);
+			//파일 디렉토리 찾아오기
+//			if(user.getFilNum()!=null) {
+//				System.out.println(user.getFilNum());
+//				FileDTO file = fileService.searchFile(user.getFilNum());
+//				System.out.println(file.getFilOriginalname());
+//				 dir = servletContext.getRealPath("/resources/upload/")+file.getFilOriginalname();
+//				System.out.println(dir);
+//			}else {
+//				 dir = "resources/image/user/basic_profile.png";
+//			}
+			mav.setViewName("mypage/myPage");
+
 		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
 
 			UserDTO user = (UserDTO)session.getAttribute("userId");
 			mav.addObject("user", user);
 			mav.addObject("page","myPage");
+
 
 		} catch (Exception e) {
 			e.printStackTrace(); 
@@ -147,35 +184,54 @@ public class UserController {
 	// 선호카테고리
 	@RequestMapping("/myprefer")
 	public ModelAndView myPrefer() throws Exception {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("mypage/myMain");
+		String[] userPrefer = null;
 		try {
 			List<CodeDTO> list = codeService.categoryInfoList();
 
 			// + 유저의 선호카테고리
 			UserDTO user = (UserDTO)session.getAttribute("userId");
-			if (user.getUserPrefer() != null) {
-				mav.addObject("user", user);
+			userPrefer =userService.getUserPrefer(user.getUserId()); 
+			if(userPrefer!=null) {
+				mav.addObject("userPrefer", userPrefer); 				 
 			}
+			 
 			mav.addObject("cateNames", list);
-			mav.setViewName("mypage/myPreference");
+			mav.addObject("page","myPreference");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/img/{filNum}", method = RequestMethod.GET)
+
+	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response){
+	 
+
 	public void image(@PathVariable("filNum") Integer filNum, HttpServletResponse response) {
+
 		try { 
 			userService.fileView(filNum, response.getOutputStream());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}  
 	}
 
 	// 찜한클래스
 	@RequestMapping("/myheart")
+
+	public ModelAndView heartList(HttpSession session) {
+		ModelAndView mav = new ModelAndView("mypage/heart");
+		try {
+//		 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+
 	public ModelAndView heart(){
 		ModelAndView mav = new ModelAndView("mypage/myMain");
 		try {
@@ -186,6 +242,7 @@ public class UserController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+
 		return mav;
 	}
 
@@ -221,8 +278,8 @@ public class UserController {
 			if(h2Text.equals("신청내역")) text = "수강예정";
 			else if(h2Text.equals("수강내역")) text ="수강완료";
 			else text="수강취소"; 
-			reservedList= userService.getReservedList(user.getUserId(),text); 
-			
+			reservedList= userService.getReservedList(user.getUserId(),text);  
+		 
 		}catch(Exception e) {
 			e.printStackTrace();
 		} 
@@ -318,17 +375,14 @@ public class UserController {
 	// 선호카테고리 수정하기
 	@RequestMapping(value = "/prefer", method = RequestMethod.POST)
 //	public ModelAndView preferUpload(HttpSession session, @RequestParam("checkboxGroup") String c1, @RequestParam("checkboxGroup") String c2, @RequestParam("checkboxGroup") String c3) {
-	public ModelAndView preferUpload( @RequestParam(value = "checkboxGroup1", required = false) String c1,
-			@RequestParam(value = "checkboxGroup2", required = false) String c2,
-			@RequestParam(value = "checkboxGroup3", required = false) String c3) {
+	public ModelAndView preferUpload( @RequestParam("preferValues") String preferValues){
 
 		ModelAndView mav = new ModelAndView();
 		try {
-			System.out.println(c1 + c2 + c3);
-//			mav.addObject("cateNames",user);
-
-			mav.setViewName("redirect:/myprefer");
-			// 변경, 받아오고 리다이렉
+			UserDTO user = (UserDTO)session.getAttribute("userId");
+			System.out.println(preferValues);
+			userService.addPrefer(preferValues,user.getUserId());
+			mav.setViewName("redirect:/myprefer");  
 
 		} catch (Exception e) {
 			e.printStackTrace();
