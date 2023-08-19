@@ -17,16 +17,49 @@
 			<div class="idConfirmPageTitleWrapper">
 				<p class="idConfirmPageTitle">아이디/비밀번호 찾기</p>
 			</div>
-			<ul class="findMenu">
-				<li>아이디 찾기</li>
-				<li class="pwFindMenu">비밀번호 찾기</li>
-			</ul>
-			 <div class="findUserIdInfo">			 
-			 <p>${userName}님의 아이디는 ${userId}입니다.</p>
-			 </div>
-			<div class="idConfirmBtns">
-				<button type="button" class="loginBtn">로그인하기</button>
-				<button type="button" class="findPwBtn">비밀번호찾기</button>
+			<!-- <ul class="findMenu">
+				<li><a href="findid">아이디 찾기</a></li>
+				<li class="pwFindMenu"><a href="findpw">비밀번호 찾기</a></li>
+			</ul> -->
+
+			<div class="findUserIdInfo">
+				<p>${findId.userName}님의 아이디는 ${findId.userId} 입니다.</p>
+			</div>
+
+			<%-- 아이디 찾기 결과 --%>
+			<%-- <c:if test="${requestScope.menu eq 'id'}">
+				<div class="findUserIdInfo">
+					<p>${findId.userName}님의아이디는${findId.userId}입니다.</p>
+				</div>
+			</c:if>
+ --%>
+			<%-- 비밀번호 찾기 결과 --%>
+
+			<%-- 		<c:if test="${requestScope.menu eq 'pw'}">
+		
+				<div class="findUserIdInfo">
+					<p>${findId.userName}님의비밀번호는${userPassword}입니다.</p>
+				</div>
+			</c:if>
+
+ --%>
+			<!-- 아래부분 낫이퀄로 바꾸기 -->
+			<%-- 		<c:if test="${requestScope.menu eq 'pw'}">
+				<div class="findUserIdInfo">
+				
+					<p>해당하는 정보를 찾을 수 없습니다.</p>
+			
+			
+				</div>
+			</c:if>
+ --%>
+			<!-- <div class="idConfirmBtns">
+				<button type="submit" class="loginBtn">로그인하기</button>
+			</div> -->
+
+				<div class="idConfirmBtns">
+				<a href="loginform"><button type="button" class="loginBtn">로그인하기</button></a>
+				<a href="findpw"><button type="button" class="findPwBtn">비밀번호찾기</button></a>
 			</div>
 
 		</div>

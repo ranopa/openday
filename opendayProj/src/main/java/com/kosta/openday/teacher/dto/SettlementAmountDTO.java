@@ -2,11 +2,13 @@ package com.kosta.openday.teacher.dto;
 
 import java.sql.Date;
 
+import com.kosta.openday.user.dto.UserDTO;
+
 //정산
-public class SettlementAmountDTO {
+public class SettlementAmountDTO extends UserDTO{
 	private Integer saNum; //정산번호 
 	private String userId; //강사id
-	private Integer saStatus; //정산상태 
+	private String saStatus; //정산상태 
 	private Date saAppDate; //신청일 
 	private Integer saStuNumber; //수강자수
 	private Date saSettleDate; //정산일 
@@ -14,10 +16,10 @@ public class SettlementAmountDTO {
 	private Integer saSettleAmount; //최종지급금액 
 	private Integer saFee; //수수료
 	private Integer apNum; //수강신청번호 
-	
+	private Date estimatedPaymentDate;
 	public SettlementAmountDTO() {}
 
-	public SettlementAmountDTO(Integer saNum, String userId, Integer saStatus, Date saAppDate, Integer saStuNumber,
+	public SettlementAmountDTO(Integer saNum, String userId, String saStatus, Date saAppDate, Integer saStuNumber,
 			Date saSettleDate, Integer saPayment, Integer saSettleAmount, Integer saFee, Integer apNum) {
 		super();
 		this.saNum = saNum;
@@ -48,11 +50,11 @@ public class SettlementAmountDTO {
 		this.userId = userId;
 	}
 
-	public Integer getSaStatus() {
+	public String getSaStatus() {
 		return saStatus;
 	}
 
-	public void setSaStatus(Integer saStatus) {
+	public void setSaStatus(String saStatus) {
 		this.saStatus = saStatus;
 	}
 
@@ -110,6 +112,14 @@ public class SettlementAmountDTO {
 
 	public void setApNum(Integer apNum) {
 		this.apNum = apNum;
+	}
+
+	public Date getEstimatedPaymentDate() {
+		return estimatedPaymentDate;
+	}
+
+	public void setEstimatedPaymentDate(Date estimatedPaymentDate) {
+		this.estimatedPaymentDate = estimatedPaymentDate;
 	}
 	
 	

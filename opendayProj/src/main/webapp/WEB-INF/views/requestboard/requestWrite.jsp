@@ -6,19 +6,48 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	@font-face {
+ 		font-family: 'NanumBarunGothic';
+ 		font-style: normal;
+ 		font-weight: 400;
+ 		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ 		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+	}
+
+	@font-face {
+ 		font-family: 'NanumBarunGothic';
+ 		font-style: normal;
+ 		font-weight: 700;
+ 		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
+ 		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
+	}
+
+	@font-face {
+ 		font-family: 'NanumBarunGothic';
+ 		font-style: normal;
+ 		font-weight: 300;
+ 		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
+ 		src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype');
+	}
+	
 	* {
+		font-family: 'NanumBarunGothic', sans-serif;
 		padding: 0;
 		margin: 0;
 	}
 	
 	#wrap {
 		width: 1280px;
+		margin: 0 auto;
+		margin-left: -50px;
 	}
 	
-    h1 {
-        font-family: Gothic;
+    .rw-above {
         font-size: 24px;
         color: #5A2ECE;
+        margin-bottom: 20px;
+        text-align: center;
+        margin-right: 340px;
     }
 
     table {
@@ -47,21 +76,23 @@
     }
 
     input[type="text"] {
-        width: 100%;
+        width: 120%;
         padding: 5px;
         font-size: 14px;
         border: 1px solid #FF99B8;
+        margin-bottom: 10px;
     }
     
     textarea {
-    	width: 100%;
+    	width: 120%;
     	height: 300px;
         padding: 5px;
         font-size: 14px;
         border: 1px solid #FF99B8;
+        margin-bottom: 10px;
     }
     
-    .main-con{
+    .main-con {
     	width: 1000px;
     	margin: 0 auto;
     }
@@ -75,7 +106,7 @@
     
     .submit-button {   
     	width: 100px;
-    	margin-right: -9px;
+    	margin-right: -110px;
     }
     
     input[type="submit"] {
@@ -87,20 +118,30 @@
         border: none;
         cursor: pointer;
     }
+    
+    #content {
+		resize: none;
+	}
+	
+	#content:focus, #location:focus, #title:focus {
+		outline: none;
+	}
 </style>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/header.jsp" %>
 	<div id="wrap">
 	
 	<form method="post" action="requestwrite">
 	
 	
 	<div class="main-con">
-	<h1>클래스 개설 요청</h1>&nbsp;&nbsp;
+	<br/>
+	<h1 class="rw-above">클래스 개설 요청</h1>&nbsp;&nbsp;
 		<table>
         	<tr>
             	<td>
-                 	<input type="text" name="location" id="location" required placeholder="(예)서울시 강남구">
+                 	<input type="text" name="location" id="location" required placeholder="원하는 클래스 진행의 지역을 대략적으로 적어주세요. (예)서울시 강남구">
             	</td>
         	</tr>
 			<tr>
@@ -110,7 +151,7 @@
 			</tr>
 			<tr>
 				<td>
-					<textarea name="content" id="content" placeholder="내용"></textarea>
+					<textarea name="content" id="content" placeholder="요청 내용"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -121,5 +162,6 @@
 	</div>
 	</form>
 	</div>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

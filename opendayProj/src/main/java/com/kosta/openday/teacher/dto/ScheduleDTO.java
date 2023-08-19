@@ -8,25 +8,30 @@ public class ScheduleDTO {
 
 	private Integer scdNum; //클래스 일정번호 
 	private Date scdDate; //강의일
-	private Time scdTime; //소요시간
-	private String scdLoc; //장소
-	private Integer scdPersonnel; //모집인원
-
-	private Integer scdDiscount; //할인율
+	private Integer scdRunTime; //소요시간
+	private Time scdStartTime; //클래스 시작 시간
+	private Time scdEndTime; //클래스 끝 시간
+	private String scdPlace; //장소
+	private String scdPlaceDetail; //세부장소
+	private Integer scdMinPersonnel; //모집인원
+	private Integer scdMaxPersonnel; //모집인원
 	private Date scdUploadDate; //등록일 
-	private String scdStatus; //강의상태 
+	private String scdStatus; //강의상태 (예정/폐강/완료)
 	private Integer clsId; //클래스번호
 	
 	public ScheduleDTO() {}
-	
-	public ScheduleDTO(Integer scdNum, Date scdDate, Time scdTime, String scdLoc, Integer scdPersonnel,
-			Integer scdDiscount, Date scdUploadDate, String scdStatus, Integer clsId) {
+
+	public ScheduleDTO(Integer scdNum, Date scdDate, Integer scdRunTime,Time scdStartTime, Time scdEndTime, String scdPlace, 
+			String scdPlaceDetail,Integer scdMinPersonnel, Integer scdMaxPersonnel, Date scdUploadDate, String scdStatus, Integer clsId) {
 		this.scdNum = scdNum;
 		this.scdDate = scdDate;
-		this.scdLoc = scdLoc;
-		this.scdPersonnel = scdPersonnel;
-
-		this.scdDiscount = scdDiscount;
+		this.scdRunTime = scdRunTime;
+		this.scdStartTime = scdStartTime;
+		this.scdEndTime = scdEndTime;
+		this.scdPlace = scdPlace;
+		this.scdPlaceDetail = scdPlaceDetail;
+		this.scdMinPersonnel = scdMinPersonnel;
+		this.scdMaxPersonnel = scdMaxPersonnel;
 		this.scdUploadDate = scdUploadDate;
 		this.scdStatus = scdStatus;
 		this.clsId = clsId;
@@ -48,36 +53,60 @@ public class ScheduleDTO {
 		this.scdDate = scdDate;
 	}
 
-	public Time getScdTime() {
-		return scdTime;
+	public Integer getScdRunTime() {
+		return scdRunTime;
 	}
 
-	public void setScdTime(Time scdTime) {
-		this.scdTime = scdTime;
+	public void setScdRunTime(Integer scdRunTime) {
+		this.scdRunTime = scdRunTime;
 	}
 
-	public String getScdLoc() {
-		return scdLoc;
+	public Time getScdStartTime() {
+		return scdStartTime;
 	}
 
-	public void setScdLoc(String scdLoc) {
-		this.scdLoc = scdLoc;
+	public void setScdStartTime(Time scdStartTime) {
+		this.scdStartTime = scdStartTime;
 	}
 
-	public Integer getScdPersonnel() {
-		return scdPersonnel;
+	public Time getScdEndTime() {
+		return scdEndTime;
 	}
 
-	public void setScdPersonnel(Integer scdPersonnel) {
-		this.scdPersonnel = scdPersonnel;
+	public void setScdEndTime(Time scdEndTime) {
+		this.scdEndTime = scdEndTime;
 	}
 
-	public Integer getScdDiscount() {
-		return scdDiscount;
+	public String getScdPlace() {
+		return scdPlace;
 	}
 
-	public void setScdDiscount(Integer scdDiscount) {
-		this.scdDiscount = scdDiscount;
+	public void setScdPlace(String scdPlace) {
+		this.scdPlace = scdPlace;
+	}
+
+	public String getScdPlaceDetail() {
+		return scdPlaceDetail;
+	}
+
+	public void setScdPlaceDetail(String scdPlaceDetail) {
+		this.scdPlaceDetail = scdPlaceDetail;
+	}
+
+	public Integer getScdMinPersonnel() {
+		return scdMinPersonnel;
+	}
+
+	public void setScdMinPersonnel(Integer scdMinPersonnel) {
+		this.scdMinPersonnel = scdMinPersonnel;
+	}
+
+	public Integer getScdMaxPersonnel() {
+		return scdMaxPersonnel;
+	}
+
+	public void setScdMaxPersonnel(Integer scdMaxPersonnel) {
+		this.scdMaxPersonnel = scdMaxPersonnel;
 	}
 
 	public Date getScdUploadDate() {
@@ -103,4 +132,41 @@ public class ScheduleDTO {
 	public void setClsId(Integer clsId) {
 		this.clsId = clsId;
 	}
+
+	public void setScdDate(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setScdStartTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setScdEndTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setStart(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTitle(Object title) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object getTitle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setEnd(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

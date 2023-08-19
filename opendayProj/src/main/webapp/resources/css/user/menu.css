@@ -1,0 +1,238 @@
+@font-face {
+	font-family: 'Cafe24 Ohsquare';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix')
+		format('embedded-opentype'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff')
+		format('woff'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix')
+		format('embedded-opentype'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff')
+		format('woff'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf')
+		format('truetype')
+}
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
+	src:
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix')
+		format('embedded-opentype'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff')
+		format('woff'),
+		url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf')
+		format('truetype');
+}
+
+.nanumbarungothic * {
+	font-family: 'NanumBarunGothic', sans-serif;
+}
+
+.menuContentWrapper {
+	margin: 0 auto;
+	width: 1280px;
+}
+
+.menuContentBigWrapper {
+	width: 100%;
+	/* height: 100%; */
+	left: 0;
+	right: 0;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'NanumBarunGothic';
+}
+
+/* 클래스 카드 */
+/* .newList{
+	
+	display: flex;
+	
+}
+
+.tableTr{
+	display: flex;
+	flex-wrap: wrap;
+} */
+
+/* 슬라이드 화살표 */
+/* .arrowIcon{
+	
+}
+
+.arrowIcon span {
+	font-size: 30px;
+} */
+
+/* .smallBanner{
+	width: 1280px;
+	height:168px;
+} */
+/* .bigBanner{
+	width: 1440px;
+	height:412px;
+} */
+
+/* 카드 간격 */
+.oclassListWrapper {
+	display: flex;
+	justify-content: space-between
+}
+.classWrapper{
+	margin-top: 55px;
+}
+.mainOclassListTitle{
+	font-size:20px;
+	font-weight: bold;
+	margin-left:50px;
+}
+
+/* 클래스 리스트 카드 정보 */
+.oclass {
+	width: 260px;
+/* 	height: 368.95px; */
+	/* background-color: antiquewhite; */
+	border-radius: 5px;
+	border: 1px solid rgb(207, 207, 207);
+	margin-bottom: 20px;
+	margin: 0 18px;
+}
+
+.ssum-img {
+	width: 100%;
+	height: 260px;
+	background-color: rgb(218, 218, 218);
+	margin-bottom: 10px;
+}
+
+.txt-box {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.tb1 {
+	display: flex;
+	justify-content: space-between;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+.t1 {
+	margin-left: 6px;
+}
+
+.t1 span {
+	margin-right: 3px;
+	color: #7A7A7A;
+	font-weight: bold;
+}
+
+.t2 {
+	margin-right: 6px;
+}
+
+.t2 span {
+	margin-right: 3px;
+}
+
+.heart {
+	font-size: 12px;
+	color: #FF729D;
+}
+
+.star {
+	color: #FFD029;
+}
+
+.cls-name {
+	font-size: 18px;
+	font-weight: bold;
+	border-bottom: 1px solid rgb(212, 212, 212);
+	width: 95%;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+
+.oclass p {
+	margin-top: 7px;
+}
+
+.tb2 {
+	display: flex;
+	font-size: 18px;
+	padding-bottom: 15px;
+	margin-right: 10px;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.oriPrice {
+	color: #B4B4B4;
+	font-size: 15px;
+	margin-right: 5px;
+	margin-top: 3px;
+}
+
+.disc {
+	color: #8556FF;
+	font-weight: 600;
+}
+
+.fp {
+	font-weight: 600;
+}
+
+.oclassIcon {
+	font-size: 14px;
+}
+
+/* 카드 와 카드 사이 간격조정 */
+.oclass {
+	display: inline-block;
+}
+
+.tableTr a{
+color: inherit;
+  text-decoration: none;
+}
+
+.tableTr a:hover{
+color: inherit;
+  text-decoration: none;
+}

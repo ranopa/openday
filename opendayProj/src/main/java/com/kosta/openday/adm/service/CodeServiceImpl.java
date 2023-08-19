@@ -11,12 +11,18 @@ import com.kosta.openday.adm.dto.CodeDTO;
 @Service
 public class CodeServiceImpl implements CodeService {
 
-	@Autowired
-	private CodeDAO codeDAO;
-	
-	@Override
-	public List<CodeDTO> categoryInfoList() throws Exception { 
-		return codeDAO.selectCategoryList();
+
+   @Autowired
+   private CodeDAO codeDAO;
+   
+   @Override
+	public List<CodeDTO> codeList(String codClassfication) throws Exception {
+		return codeDAO.codeList(codClassfication);
 	}
+   
+   @Override
+   public List<CodeDTO> categoryInfoList() throws Exception { 
+      return codeDAO.selectCategoryList();
+   }
 
 }

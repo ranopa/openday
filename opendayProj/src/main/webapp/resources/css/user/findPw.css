@@ -83,6 +83,12 @@
 body {
 	font-family: 'NanumBarunGothic';
 }
+.findMenu a{
+	color: #8A8A8A;
+}
+.findPwBtns input{
+	cursor: pointer;
+}
 
 .findPwBtns {
 	width: 420px;
@@ -139,7 +145,7 @@ button {
 
 .AuthenticationNumberWrapper {
 	display: flex;
-	margin-left: 115px;
+	margin-left: 111px;
 }
 
 .AuthenticationNumberBox {
@@ -198,6 +204,7 @@ button {
 	height: 40px;
 	border-radius: 7px;
 	cursor: pointer;
+	margin-top: 4px;
 }
 
 .AuthenticationNumber {

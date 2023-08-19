@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <c:set var="contextPath" value="<%=request.getContextPath()%>" /> --%>
+<%-- <c:set var=”authority” value=”${user.authority}”/> --%>
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,10 @@
 
 </head>
 <%-- <jsp:include page="../header.jsp" /> --%>
+<%--  <script src="${contextPath}/resources/js/user/mypage.js"></script> --%>
+<script src='<c:url value="/resources/js/user/mypage.js"/>'></script>
+</head>
+
 <body>
 	<!--모달  -->
 	<%-- 	<%@ include file=”../header.jsp” %> --%>
@@ -68,6 +73,14 @@
 								<img src="img/${user.filNum}" class="picture" id="myImg"
 									alt="회원프로필이미지">
 
+						<c:choose>
+							<c:when test="${user.filNum eq null}">
+								<img
+									src='<c:url value='/resources/image/user/basic_profile.png'/>'
+									class="picture">
+							</c:when>
+							<c:otherwise>
+								<img src="img/${user.filNum }" class="picture" id="myImg">
 							</c:otherwise>
 						</c:choose>
 						<div class="custom-file-input">
@@ -152,74 +165,112 @@
 					</div>
 					<div class="border-bottom">
 						<p class="mymenu1">전화번호</p>
+	<div id="mypage">
+		<div id="my-width">
+			<h2 class="my-h2">마이페이지</h2>
+			<div class="mypage-content">
+				<div class="sec1">
+					<div class="mybox1 square0">
 						<c:choose>
-							<c:when test="${empty user.userTel}">
-								<p class="mymenu2">전화번호를 등록해주세요</p>
+							<c:when test="${user.filNum eq null}">
+								<img
+									src='<c:url value='/resources/image/user/basic_profile.png'/>'
+									class="myprofile-pic">
 							</c:when>
 							<c:otherwise>
-								<p class="mymenu2">${user.userTel }</p>
+								<img src="img/${user.filNum }" class="myprofile-pic">
 							</c:otherwise>
 						</c:choose>
+
+						<p class="tcen">
+							<c:if test="${user.authority eq 2}">
+								<span class="host-badge">H</span>
+							</c:if>
+							${user.userNickname}
+						</p>
+						<div class="myprofile">
+							<div class="border-bottom">
+								<p class="mymenu1">이메일</p>
+								<p class="mymenu2">${user.userEmail}</p>
+							</div>
+							<div class="border-bottom">
+								<p class="mymenu1">전화번호</p>
+								<c:choose>
+									<c:when test="${empty user.userTel}">
+										<p class="mymenu2">전화번호를 등록해주세요</p>
+									</c:when>
+									<c:otherwise>
+										<p class="mymenu2">${user.userTel }</p>
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div>
+								<button id="profile-edit-btn" class="myprofile-btn"
+									type="button">프로필</button>
+							</div>
+						</div>
 					</div>
-					<div>
-						<button id="profile-edit-btn" class="myprofile-btn" type="button">프로필
-							수정하기</button>
-					</div>
-				</div>
-			</div>
-			<a href="">
-				<div class="mybox2 square">
-					<div class="mymenu-txt">
-						<span class="material-symbols-outlined">
-							face_retouching_natural </span>
-						<p class="mymenu1">클래스 개설</p>
-						<p class="mymenu2">열어데이의 강사님이 되어보세요</p>
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="sec2">
-			<a href="myprefer">
-				<div class="mybox3 square">
-					<div class="mymenu-txt">
-						<span class="material-symbols-outlined"> star </span>
-						<p class="mymenu1">선호 카테고리</p>
-						<p class="mymenu2">선호에 맞는 클래스를 추천해 드릴게요</p>
-					</div>
-				</div>
-			</a> <a href="myheart">
-				<div class="mybox4 square">
-					<div class="mymenu-txt">
-						<span class="material-symbols-outlined"> favorite </span>
-						<p class="mymenu1">찜한 클래스</p>
-						<p class="mymenu2">내가 찜한 클래스</p>
-					</div>
-				</div>
-			</a> <a href="reservedrecord">
-				<div class="mybox5 square">
-					<div class="mymenu-txt">
-						<span class="material-symbols-outlined"> calendar_add_on </span>
-						<p class="mymenu1">예약/결제 내역</p>
-						<p class="mymenu2">신청한 클래스의 정보를 확인하세요</p>
-					</div>
-				</div>
-			</a> <a href="myfollow">
-				<div class="mybox6 square">
-					<div class="mymenu-txt">
-						<span class="material-symbols-outlined"> thumb_up </span>
-						<p class="mymenu1">팔로우 목록</p>
-						<p class="mymenu2">팔로우한 강사님들을 모아보세요</p>
-					</div>
-				</div>
-			</a>
-			<!-- 	<button type="button" id="withdraw-a"> -->
-			<!-- <div class="mybox7 square" >
-				<div class="mybox7 square">
-					<div class="mymenu-txt">
-						<span class="material-symbols-outlined"> person_off </span>
-						<p class="mymenu1">회원 탈퇴</p>
-						<p class="mymenu2">열어데이 회id="withdraw-a"원 탈퇴</p>
-					</div>
+
+					<c:choose>
+						<c:when test="${user.authority eq 2}">
+							<a href="tcHome">
+								<div class="mybox2 square">
+									<c:choose>
+										<c:when test="${tchc.filNum eq null}">
+											<img src="resources/image/user/basic_tchc.png"
+												class="tchc-profile" alt="강사기본프로필사진">
+										</c:when>
+										<c:otherwise>
+											<img src="img/${tchc.filNum}" alt="강사프로필사진">
+										</c:otherwise>
+									</c:choose>
+									<div class="mymenu-txt">
+										<c:choose>
+											<c:when test="${tchc.tchcNickname eq null}">
+												<p class="mymenu1">채널의 이름을 설정해 주세요</p>
+											</c:when>
+											<c:otherwise>
+												<p class="mymenu1">${tchc.tchcNickname}</p>
+											</c:otherwise>
+										</c:choose>
+										
+										<c:choose>
+											<c:when test="${tchc.tchcIntro eq null}">
+											<p class="mymenu2">소개글을 작성해 주세요</p> 
+											</c:when>
+											<c:otherwise>
+												<p class="mymenu2">${tchc.tchcIntro}</p>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="classOpen">
+								<div class="mybox2 square">
+									<span class="material-symbols-outlined">
+										face_retouching_natural </span>
+									<div class="mymenu-txt">
+										<p class="mymenu1">클래스 개설</p>
+										<p class="mymenu2">열어데이의 강사님이 되어보세요</p>
+									</div>
+								</div>
+							</a>
+						</c:otherwise>
+					</c:choose>
+					<style>
+#mypage .tchc-profile {
+	margin-left: 30px;
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+}
+</style>
+
+
+
+
 				</div>
 			</div> -->
 			</a>
@@ -229,13 +280,117 @@
 						<span class="material-symbols-outlined"> person_off </span>
 						<p class="mymenu1">회원 탈퇴</p>
 						<p class="mymenu2">열어데이 회원 탈퇴</p>
+				<div class="sec2">
+					<a href="myprefer">
+						<div class="mybox3 square">
+							<span class="material-symbols-outlined"> star </span>
+							<div class="mymenu-txt">
+								<p class="mymenu1">선호 카테고리</p>
+								<p class="mymenu2">선호에 맞는 클래스를 추천해 드릴게요</p>
+							</div>
+						</div>
+					</a> <a href="myheart">
+						<div class="mybox4 square">
+							<span class="material-symbols-outlined"> favorite </span>
+							<div class="mymenu-txt">
+								<p class="mymenu1">찜한 클래스</p>
+								<p class="mymenu2">내가 찜한 클래스</p>
+							</div>
+						</div>
+					</a> <a href="reservedrecord">
+						<div class="mybox5 square">
+							<span class="material-symbols-outlined"> calendar_add_on </span>
+							<div class="mymenu-txt">
+								<p class="mymenu1">예약/결제 내역</p>
+								<p class="mymenu2">신청한 클래스의 정보를 확인하세요</p>
+							</div>
+						</div>
+					</a> <a href="myfollow">
+						<div class="mybox6 square">
+							<span class="material-symbols-outlined"> thumb_up </span>
+							<div class="mymenu-txt">
+								<p class="mymenu1">팔로우 목록</p>
+								<p class="mymenu2">팔로우한 강사님들을 모아보세요</p>
+							</div>
+						</div>
+					</a>
+					<div id="withdraw-a">
+						<div class="mybox7 square">
+							<span class="material-symbols-outlined"> person_off </span>
+							<div class="mymenu-txt">
+								<p class="mymenu1">회원 탈퇴</p>
+								<p class="mymenu2">열어데이 회원 탈퇴</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<script>
+window.onload=function(){
+    var modalBtn = document.querySelector("#profile-edit-btn");
+    var modalEl = document.querySelector(".modal");
+	var	cancelBtn = document.querySelector(".cancel-btn");
+    
+    modalBtn.addEventListener('click',()=>{
+        if(!modalEl.classList.contains('hide')){
+           modalEl.classList.add("hide"); 
+        }
+    })
+    
+    cancelBtn.addEventListener('click',()=>{
+    	console.log("back");
+        if(modalEl.classList.contains('hide')){
+        	modalEl.classList.remove('hide');
+        }    	
+    })
+    
+    document.getElementById("select-file").addEventListener("click",()=>{
+    	 document.querySelector(".custom-file-input input[type='file']").click();
+    })
+    
+    document.getElementById("myfile").addEventListener("change", function() {
+    var fileInput = this;
+    var imageElement = document.getElementById("myImg");
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      imageElement.src = e.target.result;
+    };
+    
+    reader.readAsDataURL(fileInput.files[0]);
+  });
+  
+   
+  var wModalBtn = document.querySelector("#withdraw-a");
+  var wModalEl = document.querySelector(".w-modal"); 
+  var wCancelBtn = document.querySelector(".w-cancel-btn");
+  var wSubmitBtn = document.querySelector(".w-submit-btn");
+  
+  
+  
+  
+  wModalBtn.addEventListener("click",()=>{
+  	console.log("cleck")
+        if(!wModalEl.classList.contains('w-hide')){
+           wModalEl.classList.add("w-hide"); 
+        }
+    })
+
+  
+   wSubmitBtn.addEventListener('click',()=>{
+        if(wModalEl.classList.contains('w-hide')){
+        	wModalEl.classList.remove('w-hide');
+        }    	
+    })
+    
+
+   
+}
 
 
+</script>
 
 
 </body>

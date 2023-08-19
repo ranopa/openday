@@ -140,6 +140,7 @@ button {
 .AuthenticationNumberWrapper {
 	display: flex;
 	margin-left: 115px;
+	
 }
 
 .AuthenticationNumberBox {
@@ -175,6 +176,15 @@ button {
 .findIdPageTitle {
 	font-size: 20px;
 	margin-top: 80px;
+	
+}
+.findIdBtns input{
+	cursor: pointer;
+}
+
+
+.findMenu a{
+	color: #8A8A8A;
 }
 
 .AuthenticationNumber {
@@ -186,6 +196,7 @@ button {
 	height: 40px;
 	border-radius: 7px;
 	cursor: pointer;
+	margin-top: 4px;
 }
 
 .AuthenticationNumber {

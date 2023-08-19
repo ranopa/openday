@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="mapper.rclass">
+
+	<insert id="insertRequest" parameterType="com.kosta.openday.user.dto.RequestDTO">
+		<![CDATA[
+			insert into request (reqId,reqTitle,reqLocation,reqContent,reqViews,reqDate,reqUpdateDate,userId)
+			values(nextval(request_seq),#{reqTitle},#{reqLocation},#{reqContent},0,curdate(),curdate(),#{userId})
+		]]>
+	</insert>
+	<select id="selectAllRequestCnt" resultType="Integer">
+		<![CDATA[
+			select count(*) from request
+		]]>	
+	</select>
+	
+	<select id="selectRequestList" resultType="com.kosta.openday.user.dto.RequestDTO"  parameterType="Integer">
+ 
+		<![CDATA[
+			select *
+			from request  order by reqId desc 
+			limit #{startRow},5 
+			
+		]]>	
+	</select>
+	
+	<select id="selectRequest" parameterType="Integer" resultType="com.kosta.openday.user.dto.RequestDTO">
+		<![CDATA[
+			select  *
+			from request
+			where reqId=#{reqId}
+		]]>	
+	</select>
+	
+	<update id="updateReqViews" parameterType="Integer">
+		<![CDATA[
+			update request set reqViews=reqViews+1 where reqId=#{reqId}
+		]]>	
+	</update>
+	
+	<update id="updateRequest" parameterType="com.kosta.openday.user.dto.RequestDTO">
+		<![CDATA[
+			update request set reqLocation=#{reqLocation},reqTitle=#{reqTitle},reqContent=#{reqContent}
+			where reqId=#{reqId}
+		]]>	
+	</update>
+	
+	<delete id="deleteRequest" parameterType="Integer">
+		<![CDATA[
+			delete from request where reqId=#{reqId}
+		]]>	
+	</delete>
+	
+	<select id="selectPartpaCntByReqId" parameterType="Integer" resultType="Integer">
+		<![CDATA[
+			select count(reqId) from participation
+		]]>	
+	</select>
+	
+	<select id="selectPartpaYN" parameterType="java.util.Map" resultType="Integer">
+		<![CDATA[
+			select count(*) from participation 
+			where userId=#{userId} and reqId=#{reqId}
+		]]>	
+	</select>	
+	
+	<insert id="insertParticipation" parameterType="java.util.Map">
+		<![CDATA[
+			insert into participation (userId,reqId) values(#{userId},#{reqId}) 
+		]]>	
+	</insert>
+	
+	<delete id="deleteParticipation" parameterType="java.util.Map">
+		<![CDATA[
+			delete from participation where userId=#{userId} and reqId=#{reqId}
+		]]>	
+	</delete>
+	
+	<select id="selectOclassDetail" parameterType="Integer" resultType="java.util.Map">
+		<![CDATA[
+			SELECT clsId, clsName, filNum, clsDescription, clsCurri,
+ 				round(clsPrice*(1-clsDiscount/100),0) AS price
+			FROM oclass 	
+			WHERE clsId = #{clsId}
+		]]>	
+	</select>
+	
+
+	<select id="selectReviewByClsId" parameterType="Integer" resultType="com.kosta.openday.user.dto.ReviewDTO">
+		<![CDATA[
+			SELECT * FROM review WHERE clsId = #{clsId}
+		]]>	
+	</select>
+
+	<select id="selectInquiryByClsId" parameterType="Integer" resultType="com.kosta.openday.user.dto.ClsInquiryDTO">
+		<![CDATA[
+			SELECT * FROM cls_inquiry WHERE clsId = #{clsId}
+		]]>	
+	</select>
+	
+	<select id="selectHeartByClsIdAndUser" parameterType="java.util.Map" resultType="Integer">
+		<![CDATA[
+			SELECT COUNT(*) FROM heart WHERE clsId=#{clsId} and userId=#{userId}
+		]]>	
+	</select>	
+	
+	<select id="selectHeartCntByClsId" parameterType="Integer" resultType="Integer">
+		<![CDATA[
+			SELECT COUNT(*) FROM heart WHERE clsId=#{clsId}
+		]]>	
+	</select>	
+	
+	<insert id="insertHeartByClsIdAndUser" parameterType="java.util.Map">
+		<![CDATA[
+			insert into heart (userId, clsId) values (#{userId}, #{clsId})
+		]]>	
+	</insert>
+	
+	<delete id="deleteHeartByClsIdAndUser" parameterType="java.util.Map">
+		<![CDATA[
+			delete from heart where userId=#{userId} and clsId=#{clsId}
+		]]>		
+	</delete>
+	
+	<select id="selectTeacherChannel" parameterType="String">
+		<![CDATA[
+			SELECT tchcNum, filNum 
+			FROM teacher_channel WHERE userId=#{teacherId} 	
+		]]>		
+	</select>
+	
+	<select id="selectReviewByCiNum" parameterType="Integer" resultType="com.kosta.openday.teacher.dto.AnswerDTO">
+		<![CDATA[
+			SELECT * FROM answer where ciNum = #{ciNum}
+		]]>	
+	</select>
+
+	<insert id="insertClsInquiry" parameterType="java.util.Map">
+		<![CDATA[
+			insert cls_inquiry 
+			values(nextval(cls_inquiry_seq),null,#{ciContent},0,curdate(),#{ciSecret},curdate(),#{userId},#{clsId}); 	
+		]]>		
+	</insert>
+	
+	<update id="updateClsInquiry" parameterType="java.util.Map">
+		<![CDATA[
+			update cls_inquiry 
+			set ciContent=#{ciContent}, ciSecret=#{ciSecret}
+			where ciNum=#{ciNum}
+		]]>	
+	</update>
+	
+	<delete id="deleteReview" parameterType="Integer">
+		<![CDATA[
+			delete from review where rvNum=#{rvNum} 	
+		]]>		
+	</delete>
+	
+	
+</mapper>

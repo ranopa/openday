@@ -4,26 +4,67 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.oclass">
-	
+
 	<!-- 클래스 오픈 요청 -->
 	<insert id="classOpen" parameterType="com.kosta.openday.user.dto.OClassDTO">
 		 <![CDATA[
-		     insert into oclass (clsId,clsName,clsCode,clsDescription,fileId,clsCareer,clsCurri)
-		     values( nextval(oclass_seq),#{clsName},#{clsCode},#{clsDescription},#{fileId},
-		     		#{clsCareer},#{clsCurri})
+		     insert into oclass (clsId,clsName,clsLoc,clsCode,clsDescription,filNum,clsCareer,clsCurri)
+		     values(
+		     nextval(oclass_seq),
+		     #{clsName},
+		     #{clsLoc},
+		     #{clsCode},
+		     #{clsDescription},
+		     #{filNum},
+		     #{clsCareer},
+		     #{clsCurri})
 	     ]]>
 	</insert>
-	
-
-	<!-- 파일 넣는거 만들다고 그만둠 -->
-	<!-- <insert id="insertFile" parameterType="com.kosta.openday.dto.FileVO">
+			
+	<!-- 클래스 불러오기  -->
+	<select id="selectOclass" parameterType="Integer" resultType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
-			insert into file values (#{num},#{directory},#{name},#{classification},#{originalname},#{savename},#{size},#{newdate})	
-		]]>		
-	</insert> -->
-
-
-
+			select * from oclass where clsId=#{clsId}
+		]]> 		
+	</select>
+	
+	<select id="selectOclassMap" parameterType="Integer" resultType="java.util.Map">
+		<![CDATA[
+			select * from oclass where clsId=#{clsId}
+		]]> 		
+	</select>	
+	
+	<!-- oclass 내용 업데이트 -->
+	<update id="updateclassOpen" parameterType="java.util.Map">
+			<![CDATA[
+				update oclass set clsName=#{clsName}, clsLoc=#{clsLoc}, clsCode=#{clsCode}, clsDescription=#{clsDescription},
+				filNum = #{filNum}, clsCareer=#{clsCareer}, clsCurri=#{clsCurri}  where clsId=#{clsId}		
+			]]>
+	</update>
+	
+	<!-- 썸네일 업데이트 -->
+	<update id="updateThumbnail" parameterType="com.kosta.openday.adm.dto.FileDTO">
+		 <![CDATA[
+		 	update file set filClassification = #{filClassification}, filOrgName = #{filOrgName}, filSaveName = #{filSaveName}, filSize = #{filSize}
+		 	where filNum = #{filNum}
+	 	 ]]>
+	</update>
+	
+	<!-- 파일업로드(썸네일)  -->
+	<insert id="insertFile" parameterType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+		insert into file values(#{filNum},#{filClassification},#{filOrgName},#{filSaveName},#{filSize},CURDATE())
+		]]> 
+	</insert>
+	
+	<!-- 파일 불러오기  -->
+	<select id="selectFile" parameterType="Integer" resultType="com.kosta.openday.adm.dto.FileDTO">
+		<![CDATA[
+			select * from file where filNum=#{filNum}
+		]]> 		
+	</select>
+	
+	
 	<!-- =========== 클래스 oclass =============================================== -->
 	<!-- 1. 클래스 번호로 클래스 조회 -->
 	<select id="selectOClassByClsId" parameterType="Integer"
@@ -53,12 +94,26 @@
 	<insert id="insertOClass"
 		parameterType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
-			insert into oclass values(nextval(oclass_seq),#{clsName},#{clsCode},#{clsDiscription},
-										#{clsPrice}, #{clsCurri}, #{clsCareer}, #{clsStar},#{clsHeart},
-									  	#{clsStatus},#{clsCreatedAt}, #{clsOpenType},#{filNum},#{userId},#{reqId})
+			insert into oclass values(
+				nextval(oclass_seq),
+				#{clsName},
+				#{clsCode},
+				#{clsDescription},
+				#{clsPrice}, 
+				#{clsCurri}, 
+				#{clsCareer}, 
+				#{clsStatus},
+				#{clsLoc},
+				COALESCE(#{clsDiscount}, 0),
+				curdate(),
+				#{clsOpenType},
+				#{filNum},
+				#{userId},
+				#{reqId}
+			)
 		]]>
 	</insert>
-
+	
 	<!-- =========== 클래스일정 schedule =============================================== -->
 	<!-- 1. 클래스일정번호로 클래스일정조회 -->
 	<select id="selectSchedule" parameterType="Integer"
@@ -83,9 +138,22 @@
 		parameterType="com.kosta.openday.teacher.dto.ScheduleDTO">
 		<![CDATA[ 
 			insert into schedule 
-			values(nextval(schedule_seq),#{scdDate},#{scdTime},#{scdLoc},#{scdPersonnel},#{scdDiscount},#{scdUploadDate},#{scdStatus},#{clsId})
+			values(
+				nextval(schedule_seq),
+				#{scdDate},
+				#{scdStartTime}, 
+				#{scdPlace},
+				#{scdPlaceDetail},
+				#{scdMinPersonnel},
+				#{scdMaxPersonnel},
+				#{scdDiscount},
+				#{scdUploadDate},
+				#{scdStatus},
+				#{clsId}
+			)
 		]]>
 	</insert>
+	
 
 	<!-- =========== 클래스찜 heart =============================================== -->
 	<!-- 1. 유저아이디로 클래스찜 조회 -->
@@ -114,37 +182,43 @@
 	</insert>
 
 	<!-- 메인에서 클래스 리스트 불러오기 -->
-	<select id="oClassList"
+<!-- 	<select id="oClassList"
 		resultType="com.kosta.openday.user.dto.OClassDTO">
 		<![CDATA[
 			select * from oclass
 		]]>
 	</select>
-
+ -->
 	<!-- 메인 검색 필터에서 선택해서 조회 -->
+
 <!-- 아직 되는지 안되는지 모름 -->
 <!-- 진행중 -->
-	<select id="searchSelect"
+	<!-- <select id="searchSelect"
 		resultType="com.kosta.openday.teacher.dto.ScheduleDTO" parameterType="java.util.Map">
+
 		<choose>
-			<when test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
+			<when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 				]]>
 			</when>
-			<when test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
+			<when
+				test="#{scdLoc}.equals('all') and #{startDate}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 					where o.clsCode=#{clsCode}
 				]]>
 			</when>
-			<when test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
+			<when
+				test="#{scdLoc}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 					where  s.scdDate between #{startDate} and #{endDate}
 				]]>
 			</when>
-			<when test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
+			<when
+				test="#{startDate}.equals('all') and #{clsCode}.equals('all')">
 				<![CDATA[
 					select s.scdLoc, s.scdDate, o.clsCode from schedule s join oclass o ON s.clsId = o.clsId
 					where s.scdLoc=#{scdLoc} 
@@ -175,7 +249,125 @@
 				]]>
 			</otherwise>
 		</choose>
+	</select> -->
+
+	<!-- 검색필터 카테고리 옵션 -->
+
+<!-- 	<select id="categoryList"
+		resultType="com.kosta.openday.user.dto.CategoryDTO">
+		<![CDATA[
+			select * from code
+		]]>
 	</select>
+ -->
+
 	<!-- 메인 검색 필터에서 전체 선택해서 조회 -->
+	
+	<select id="selectOClassAndScheduleForApplyClass"
+	parameterType="Integer"
+	resultMap="applyClassMap">
+		SELECT
+			cls.clsId as clsId,
+			cls.clsName as clsName,
+			cod.codName as codName,
+			cls.clsPrice as clsPrice,
+			cls.filNum as filNum,
+			cls.clsLoc as clsLoc,
+			cls.clsDiscount as clsDiscount,
+			
+			scd.scdNum as scdNum,
+			scd.scdDate as scdDate,
+			scd.scdStartTime as scdStartTime,
+			scd.scdPlace as scdPlace,
+			scd.scdPlaceDetail as scdPlaceDetail
+		FROM
+			oclass AS cls
+			INNER JOIN
+			schedule AS scd
+			ON
+			cls.clsId = scd.clsId
+			INNER JOIN
+			code as cod
+			ON cls.clsCode = cod.codNum
+		WHERE cls.clsId = #{clsId}
+	</select>
+	
+	<resultMap id="applyClassMap"
+	type="com.kosta.openday.user.dto.ApplyClassResponseDTO">
+		<result column="clsId" property="clsId" />
+		<result column="clsName" property="clsName" />
+		<result column="clsPrice" property="clsPrice" />
+		<result column="clsLoc" property="clsLoc" />
+		<result column="filNum" property="filNum" />
+		<result column="codName" property="codName" />
+		<result column="clsDiscount" property="clsDiscount" />
+		
+		<collection property="schedules" ofType="com.kosta.openday.user.dto.ApplyScheduleDTO">
+			<result column="scdNum" property="scdNum" />
+			<result column="scdDate" property="scdDate" />
+			<result column="scdStartTime" property="scdStartTime" />
+			<result column="scdPlace" property="scdPlace" />
+			<result column="scdPlaceDetail" property="scdPlaceDetail" />
+		</collection>
+	</resultMap>
+	
+	
+	<!-- 클래스 및 스케줄 전체조회 for admin -->
+	<select id="selectOClassAndSchedules"
+	resultMap="oClassAndScheduleMap">
+		SELECT
+			cls.clsId as clsId,
+			cls.clsName as clsName,
+			cod.codName as codName,
+			cls.clsLoc as clsLoc,
+			cls.clsCreatedAt as clsCreatedAt,
+			cls.userId as teacherId,
+			u.userTel as teacherTel,
+			
+			scd.scdNum as scdNum,
+			scd.scdDate as scdDate,
+			scd.scdStartTime as scdStartTime,
+			scd.scdPlace as scdPlace,
+			scd.scdPlaceDetail as scdPlaceDetail,
+			scd.scdMinPersonnel as scdMinPersonnel,
+			scd.scdMaxPersonnel as scdMaxPersonnel,
+			scd.scdStatus as scdStatus
+		FROM
+			oclass AS cls
+			INNER JOIN
+				schedule AS scd
+			ON
+				cls.clsId = scd.clsId
+			INNER JOIN
+				code as cod
+			ON
+				cls.clsCode = cod.codNum
+			INNER JOIN
+				user as u
+			ON
+				cls.userId = u.userId
+	</select>
+	
+	<resultMap id="oClassAndScheduleMap"
+	type="com.kosta.openday.adm.dto.OClassAndScheduleDTO">
+		<result column="clsId" property="clsId" />
+		<result column="clsName" property="clsName" />
+		<result column="codName" property="codName" />
+		<result column="teacherId" property="teacherId" />
+		<result column="teacherTel" property="teacherTel" />
+		<result column="clsCreatedAt" property="clsCreatedAt" />
+		<result column="clsLoc" property="clsLoc" />
+		
+		<collection property="schedules" ofType="com.kosta.openday.teacher.dto.ScheduleDTO">
+			<result column="scdNum" property="scdNum" />
+			<result column="scdDate" property="scdDate" />
+			<result column="scdStartTime" property="scdStartTime" />
+			<result column="scdPlace" property="scdPlace" />
+			<result column="scdPlaceDetail" property="scdPlaceDetail" />
+			<result column="scdMinPersonnel" property="scdMinPersonnel" />
+			<result column="scdMaxPersonnel" property="scdMaxPersonnel" />
+			<result column="scdStatus" property="scdStatus" />
+		</collection>
+	</resultMap>
 </mapper>
 

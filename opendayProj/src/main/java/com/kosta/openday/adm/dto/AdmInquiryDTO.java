@@ -9,16 +9,17 @@ public class AdmInquiryDTO {
 	private String admContent; //내용
 	private String admType; //유형
 	private Date admUploadDate; //등록일
-	private String admAnTitle; // 답변제목
+	private String admAnTitle; //답변내용
 	private String admAnContent; //답변내용
 	private boolean admStatus; //답변상태
 	private Date admAnDate; //답변일
+	private boolean admSecret; // 비밀글 
 	private String userId; //문의자id
 
 	public AdmInquiryDTO() {}
 
 	public AdmInquiryDTO(Integer admNum, String admTitle, String admContent, String admType, Date admUploadDate,
-			String admAnTitle, String admAnContent, boolean admStatus, Date admAnDate, String userId) {
+			String admAnTitle, String admAnContent, boolean admStatus, Date admAnDate, String userId, boolean admSecret) {
 		super();
 		this.admNum = admNum;
 		this.admTitle = admTitle;
@@ -30,26 +31,7 @@ public class AdmInquiryDTO {
 		this.admStatus = admStatus;
 		this.admAnDate = admAnDate;
 		this.userId = userId;
-	}
-
-	public Integer getAdmNum() {
-		return admNum;
-	}
-
-	public String getAdmTitle() {
-		return admTitle;
-	}
-
-	public String getAdmContent() {
-		return admContent;
-	}
-
-	public String getAdmType() {
-		return admType;
-	}
-
-	public Date getAdmUploadDate() {
-		return admUploadDate;
+		this.admSecret = admSecret;
 	}
 
 	public String getAdmAnTitle() {
@@ -60,58 +42,84 @@ public class AdmInquiryDTO {
 		this.admAnTitle = admAnTitle;
 	}
 
-	public String getAdmAnContent() {
-		return admAnContent;
-	}
-
-	public boolean isAdmStatus() {
-		return admStatus;
-	}
-
-	public Date getAdmAnDate() {
-		return admAnDate;
-	}
-
-	public String getUserId() {
-		return userId;
+	public Integer getAdmNum() {
+		return admNum;
 	}
 
 	public void setAdmNum(Integer admNum) {
 		this.admNum = admNum;
 	}
 
+	public String getAdmTitle() {
+		return admTitle;
+	}
+
 	public void setAdmTitle(String admTitle) {
 		this.admTitle = admTitle;
+	}
+
+	public String getAdmContent() {
+		return admContent;
 	}
 
 	public void setAdmContent(String admContent) {
 		this.admContent = admContent;
 	}
 
+	public String getAdmType() {
+		return admType;
+	}
+
 	public void setAdmType(String admType) {
 		this.admType = admType;
+	}
+
+	public Date getAdmUploadDate() {
+		return admUploadDate;
 	}
 
 	public void setAdmUploadDate(Date admUploadDate) {
 		this.admUploadDate = admUploadDate;
 	}
 
+	public String getAdmAnContent() {
+		return admAnContent;
+	}
+
 	public void setAdmAnContent(String admAnContent) {
 		this.admAnContent = admAnContent;
+	}
+
+	public boolean isAdmStatus() {
+		return admStatus;
 	}
 
 	public void setAdmStatus(boolean admStatus) {
 		this.admStatus = admStatus;
 	}
 
+	public Date getAdmAnDate() {
+		return admAnDate;
+	}
+
 	public void setAdmAnDate(Date admAnDate) {
 		this.admAnDate = admAnDate;
+	}
+
+	public boolean isAdmSecret() {
+		return admSecret;
+	}
+
+	public void setAdmSecret(boolean admSecret) {
+		this.admSecret = admSecret;
+	}
+
+	public String getUserId() {
+		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
-	
-	
+
 }

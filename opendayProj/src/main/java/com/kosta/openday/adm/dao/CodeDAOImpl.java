@@ -13,10 +13,15 @@ public class CodeDAOImpl implements CodeDAO {
 
 	@Autowired
 	public SqlSessionTemplate sqlSession;
-	
+
 	@Override
-	public List<CodeDTO> selectCategoryList() throws Exception { 
+	public List<CodeDTO> selectCategoryList() throws Exception {
 		return sqlSession.selectList("mapper.adm.selectCategoryList");
+	}
+
+	@Override
+	public List<CodeDTO> codeList(String codClassfication) throws Exception {
+		return sqlSession.selectList("mapper.code.codeList", codClassfication);
 	}
 
 }

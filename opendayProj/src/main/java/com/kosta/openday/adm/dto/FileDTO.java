@@ -15,6 +15,8 @@ public class FileDTO {
 
 	public FileDTO(Integer filNum, String filClassification, String filOriginalname, String filSavename, Long filSize,
 			Date filNewdate) {
+	public FileDTO(Integer filNum, String filClassification, String filOrgName, String filSaveName, Long filSize,
+			Date filNewDate) {
 		super();
 		this.filNum = filNum;
 		this.filClassification = filClassification;
@@ -59,11 +61,50 @@ public class FileDTO {
 	public Long getFilSize() {
 		return filSize;
 	}
+=======
+	}
+
+	public String getFilClassification() {
+		return filClassification;
+	}
+
+	public void setFilClassification(String filClassification) {
+		this.filClassification = filClassification;
+	}
+
+	public String getFilOrgName() {
+		return filOrgName;
+	}
+
+	public void setFilOrgName(String filOrgName) {
+		this.filOrgName = filOrgName;
+	}
+
+	public String getFilSaveName() {
+		return filSaveName;
+	}
+
+	public void setFilSaveName(String filSaveName) {
+		this.filSaveName = filSaveName;
+	}
+
+	public Long getFilSize() {
+		return filSize;
+	}
 
 	public void setFilSize(Long filSize) {
 		this.filSize = filSize;
 	}
 
+	public Date getFilNewDate() {
+		return filNewDate;
+	}
+
+	public void setFilNewDate(Date filNewDate) {
+		this.filNewDate = filNewDate;
+	}
+
+  
 	public Date getFilNewdate() {
 		return filNewdate;
 	}
@@ -72,7 +113,5 @@ public class FileDTO {
 		this.filNewdate = filNewdate;
 	}
 	
-	
-	 
 	
 }
